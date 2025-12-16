@@ -1,0 +1,7 @@
+ENLACES ÚTILES DEL PROYECTO
+
+Página para obtener los códigos RGB de los colores:  https://gradients.app/es/color
+Descargar TTF de fuentes de texto:  https://fonts.google.com/selection
+
+Documentación de la librería LVGL 8.4.0:  https://docs.lvgl.io/8.4/
+Manual bodmer/TFT_eSPI:  https://github.com/Bodmer/User_Manual_TFT_eSPI
