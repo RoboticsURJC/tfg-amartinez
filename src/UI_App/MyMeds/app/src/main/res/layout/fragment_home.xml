@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        tools:context=".ui.home.HomeFragment">
+
+        <Button
+            android:id="@+id/button_oxigen"
+            android:layout_width="333dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="336dp"
+            android:backgroundTint="#4A148C"
+            android:text="OXÍGENO EN SANGRE"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Bienvenido a MyMeds"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.027" />
+
+        <Button
+            android:id="@+id/button_conf"
+            android:layout_width="333dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="76dp"
+            android:backgroundTint="#4A148C"
+            android:text="Configurar dispensador"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_pulse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/button_pulse"
+            android:layout_width="333dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="204dp"
+            android:backgroundTint="#4A148C"
+            android:text="PULSÓMETRO"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_oxigen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/logo_mymeds"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toBottomOf="@id/button_oxigen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
