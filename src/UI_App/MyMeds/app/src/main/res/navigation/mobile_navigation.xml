@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.mymeds.ui.welcome.WelcomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Welcome"
+        tools:layout="@layout/fragment_welcome" />
 
     <fragment
         android:id="@+id/homeFragment"

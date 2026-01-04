@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.mymeds.R
 import com.example.mymeds.databinding.FragmentConfigPillsBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mymeds.databinding.FragmentHomeBinding
 
 class ConfigFragment : Fragment() {
@@ -21,6 +22,12 @@ class ConfigFragment : Fragment() {
     ): View {
         _binding = FragmentConfigPillsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as AppCompatActivity)
+            .supportActionBar?.show()
     }
 
     override fun onDestroyView() {
