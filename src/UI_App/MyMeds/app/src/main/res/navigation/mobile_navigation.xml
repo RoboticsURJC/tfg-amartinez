@@ -28,4 +28,17 @@
         android:name="com.example.mymeds.ui.pulse_oxigen.Pulse_oxigenFragment"
         android:label="Pulsómetro/Oxigenación"
         tools:layout="@layout/fragment_pulse_oxigen" />
+
+    <fragment
+        android:id="@+id/qrScannerFragment"
+        android:name="com.example.mymeds.ui.qr.QrScannerFragment"
+        android:label="Escanear QR"
+        tools:layout="@layout/fragment_qr_scanner" />
+
+    <fragment
+        android:id="@+id/wifiConfigFragment"
+        android:name="com.example.mymeds.ui.wifi.WifiConfigFragment"
+        android:label="Configurar WiFi"
+        tools:layout="@layout/fragment_wifi_config" />
+
 </navigation>
