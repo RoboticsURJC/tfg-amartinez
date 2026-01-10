@@ -21,6 +21,10 @@ class QrScannerFragment : Fragment() {
     ): View {
         _binding = FragmentQrScannerBinding.inflate(inflater, container, false)
 
+        binding.buttonBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         // Botón que SIMULA que el QR se ha leído correctamente
         binding.buttonSimulateQr.setOnClickListener {
             // En el futuro aquí llegará el ID real del dispositivo

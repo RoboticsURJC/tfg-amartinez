@@ -3,13 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/welcomeFragment">
-
-    <fragment
-        android:id="@+id/welcomeFragment"
-        android:name="com.example.mymeds.ui.welcome.WelcomeFragment"
-        android:label="Welcome"
-        tools:layout="@layout/fragment_welcome" />
+    app:startDestination="@+id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"

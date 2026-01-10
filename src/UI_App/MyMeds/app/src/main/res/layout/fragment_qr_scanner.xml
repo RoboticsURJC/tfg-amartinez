@@ -5,24 +5,40 @@
     android:layout_height="match_parent"
     android:padding="24dp">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_back"
+        android:layout_width="111dp"
+        android:layout_height="61dp"
+        android:layout_margin="16dp"
+        android:text="ATRÁS"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/purple_200"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:iconGravity="textStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/text_qr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
         android:text="Simulación de escáner QR"
         android:textSize="22sp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSimulateQr"
         android:layout_width="0dp"
         android:layout_height="64dp"
+        android:layout_marginTop="48dp"
         android:text="Simular QR leído"
-        app:layout_constraintTop_toBottomOf="@id/text_qr"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_qr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

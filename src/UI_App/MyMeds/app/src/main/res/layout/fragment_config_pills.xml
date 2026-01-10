@@ -2,6 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -10,6 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="24dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back"
+            android:layout_width="111dp"
+            android:layout_height="61dp"
+            android:layout_margin="16dp"
+            android:text="ATRÁS"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/purple_200"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:iconGravity="textStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_title"
@@ -25,10 +40,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.104" />
+            app:layout_constraintVertical_bias="0.144" />
 
         <TextView
             android:id="@+id/text_status"
@@ -43,20 +58,20 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_title"
-            app:layout_constraintVertical_bias="0.043" />
+            app:layout_constraintVertical_bias="0.018" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_conf"
             android:layout_width="333dp"
             android:layout_height="130dp"
             android:layout_marginTop="92dp"
-            android:backgroundTint="#4A148C"
+            android:backgroundTint="@color/purple_200"
             android:text="Escanear QR"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="38sp"
             app:cornerRadius="24dp"
             app:icon="@drawable/ic_qr_code"
