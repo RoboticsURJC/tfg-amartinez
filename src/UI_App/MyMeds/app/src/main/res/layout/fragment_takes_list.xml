@@ -1,0 +1,163 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_back"
+        android:layout_width="111dp"
+        android:layout_height="61dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/purple_200"
+        android:text="ATRÁS"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:iconGravity="textStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/list_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:text="MIS TOMAS CONFIGURADAS"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/list_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="No hay tomas configuradas"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAddFirstTake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Añadir nueva toma" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/takes_state"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/list_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!--Hour-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🕒 08:30"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+                <!--Medicine-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paracetamol 500mg\nIbuprofeno 400mg"
+                    android:textSize="10dp"/>
+
+                <!--Days-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="L M X J V"
+                    android:textSize="10dp"/>
+
+                <!--Recordatory-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔔 Recordatorio activado"
+                    android:textSize="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_marginTop="16dp">
+
+                    <!--Edit button-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonEditTake"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Editar"
+                        style="?attr/materialButtonOutlinedStyle"/>
+
+                    <!--Delete button-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonDeleteTake"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Eliminar"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="@android:color/holo_red_dark"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--Add take button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAddTake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="+ Añadir nueva toma"
+            android:layout_marginTop="24dp"/>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

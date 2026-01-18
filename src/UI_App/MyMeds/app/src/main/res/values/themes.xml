@@ -12,7 +12,7 @@
     <!-- Tema SPLASH -->
     <style name="Theme.MyMeds.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/purple_very_light</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/splash_logo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo_mymeds</item>
 
         <!-- Tema real tras la splash -->
         <item name="postSplashScreenTheme">@style/Theme.MyMeds</item>

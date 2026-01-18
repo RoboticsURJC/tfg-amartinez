@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.mymeds.databinding.FragmentWifiConfigBinding
 import android.view.inputmethod.InputMethodManager
 import android.content.Context
+import com.example.mymeds.R
 
 class WifiConfigFragment : Fragment() {
 
@@ -34,6 +35,8 @@ class WifiConfigFragment : Fragment() {
                 "Configuración WiFi enviada (simulado)",
                 Toast.LENGTH_SHORT
             ).show()
+
+            findNavController().navigate(R.id.takesListFragment)
         }
 
         return binding.root

@@ -35,4 +35,10 @@
         android:label="Configurar WiFi"
         tools:layout="@layout/fragment_wifi_config" />
 
+    <fragment
+        android:id="@+id/takesListFragment"
+        android:name="com.example.mymeds.ui.takesList.TakesListFragment"
+        android:label="Tomas"
+        tools:layout="@layout/fragment_takes_list" />
+
 </navigation>
