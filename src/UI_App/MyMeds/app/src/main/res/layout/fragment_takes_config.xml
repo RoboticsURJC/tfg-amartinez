@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back"
+            android:layout_width="111dp"
+            android:layout_height="61dp"
+            android:layout_margin="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/purple_200"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="ATRÁS"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:iconGravity="textStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/configTakes_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Configurar toma"
+            android:textAlignment="center"
+            android:layout_marginTop="92dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Hour -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/time_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Hora de la toma (Ej:  08:30)"
+            app:layout_constraintTop_toBottomOf="@id/configTakes_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/time_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="none"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Days -->
+        <TextView
+            android:id="@+id/days_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Días de la semana"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/time_layout"
+            android:layout_marginTop="24dp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/days_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="0dp"
+            app:chipSpacingVertical="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/days_lb"
+            app:singleSelection="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_monday"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="L"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+
+                app:checkedIconVisible="false"
+
+                app:chipBackgroundColor="@color/purple_200"
+                app:chipCornerRadius="12dp"
+                app:chipStrokeColor="@color/purple_500"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_tuesday"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:text="M"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                app:checkedIconVisible="false"
+
+                app:chipBackgroundColor="@color/purple_200"
+                app:chipCornerRadius="12dp"
+                app:chipStrokeColor="@color/purple_500"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_wednesday"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="X"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                app:checkedIconVisible="false"
+
+                app:chipBackgroundColor="@color/purple_200"
+                app:chipCornerRadius="12dp"
+                app:chipStrokeColor="@color/purple_500"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_thursday"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="J"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                app:checkedIconVisible="false"
+
+                app:chipBackgroundColor="@color/purple_200"
+                app:chipCornerRadius="12dp"
+                app:chipStrokeColor="@color/purple_500"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_friday"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="V"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                app:checkedIconVisible="false"
+
+                app:chipBackgroundColor="@color/purple_200"
+                app:chipCornerRadius="12dp"
+                app:chipStrokeColor="@color/purple_500"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_saturday"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="S"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                app:checkedIconVisible="false"
+
+                app:chipBackgroundColor="@color/purple_200"
+                app:chipCornerRadius="12dp"
+                app:chipStrokeColor="@color/purple_500"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sunday"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="D"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                app:checkedIconVisible="false"
+
+                app:chipBackgroundColor="@color/purple_200"
+                app:chipCornerRadius="12dp"
+                app:chipStrokeColor="@color/purple_500"
+                app:chipStrokeWidth="1dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Medicines -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/medicines_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Medicamentos"
+            app:layout_constraintTop_toBottomOf="@id/days_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/medicines_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Quantity -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/quantity_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Cantidad"
+            app:layout_constraintTop_toBottomOf="@id/medicines_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/quantity_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Reminder -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/reminder_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activar recordatorio"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/quantity_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="24dp"/>
+
+        <!-- Advance warning -->
+        <TextView
+            android:id="@+id/warning_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Aviso previo"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reminder_switch" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/warning_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintStart_toEndOf="@id/warning_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@id/warning_label"
+            android:layout_marginStart="16dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/warning_dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Selecciona"
+                android:inputType="none"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Save -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSave"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:text="Guardar toma"
+            app:layout_constraintTop_toBottomOf="@id/warning_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

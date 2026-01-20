@@ -30,15 +30,15 @@ class TakesListFragment : Fragment() {
         }
 
         binding.buttonAddFirstTake.setOnClickListener(){
-            //Later navigation
+            findNavController().navigate(R.id.takesConfigFragment)
         }
 
         binding.buttonAddTake.setOnClickListener(){
-            //Later navigation
+            findNavController().navigate(R.id.takesConfigFragment)
         }
 
         binding.buttonEditTake.setOnClickListener(){
-            //Later navigation
+            findNavController().navigate(R.id.takesConfigFragment)
         }
         binding.buttonDeleteTake.setOnClickListener(){
             showDeleteConfirmation()
