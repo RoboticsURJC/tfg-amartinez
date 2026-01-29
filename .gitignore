@@ -1,1 +1,23 @@
 Doc/Manuals/2.8inch_ESP32-2432S028R.zip
+# === Archivos generados por LaTeX ===
+*.aux
+*.bbl
+*.blg
+*.idx
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.pdf
+
+# Listados y extras
+*.locode
+*.lomyequation
+
+# Temporales
+*.tmp
+*.bak
+*~
+
