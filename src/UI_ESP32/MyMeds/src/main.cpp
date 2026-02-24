@@ -6,7 +6,7 @@
 extern TFT_eSPI tft;
 
 #include <WebServer.h>
-extern WebServer server;
+WebServer server(80);
 
 #include "lvgl_display.h"
 #include "lvgl_touch.h"
@@ -15,42 +15,51 @@ extern WebServer server;
 #include "user_interface/wifi_portal.h"
 #include "user_interface/clock_mod.h"
 
-#include "logo_mymeds_240_swapped_from_original.h"
+#include "logo_mymeds.h"
 
 static const int LOGO_TIME_MS = 4000;
 static bool wifi_connected = false;
+static bool portal_running = false;
 
 static lv_timer_t *clock_timer = nullptr;
-
-void draw_logo()    //Show logo with TFT library
-{
-    tft.startWrite();
-    tft.pushImage(
-        40,
-        0,
-        240,
-        240,
-        logo_mymeds_240
-    );
-    tft.endWrite();
-}
 
 void setup()
 {
     Serial.begin(115200);
     delay(200);
 
-    // TFT
-    if (is_first_boot()){   //Show logo only on first boot
-        tft.begin();
-        tft.setRotation(3);
-        tft.fillScreen(TFT_WHITE);
-        draw_logo();
-        delay(LOGO_TIME_MS);
+    lvgl_begin();
+
+    Preferences p;
+    p.begin("sys", false);
+    bool skipLogo = p.getBool("skip_logo", false);
+    p.putBool("skip_logo", false);   // Resetearla inmediatamente
+    p.end();
+
+    if (!skipLogo){   //Show logo only on first boot
+        lv_obj_t *logo_screen = lv_obj_create(NULL);
+        lv_scr_load(logo_screen);
+
+        //lv_obj_set_style_bg_color(logo_screen, lv_color_white(), LV_PART_MAIN);
+        //lv_obj_set_style_bg_opa(logo_screen, LV_OPA_COVER, LV_PART_MAIN);
+
+        lv_obj_t *img = lv_img_create(logo_screen);
+        lv_img_set_src(img, &logo_mymeds_blanco);
+        lv_img_set_zoom(img, 250);  // ajusta si quieres
+        lv_obj_center(img);
+
+        unsigned long start = millis();
+        while (millis() - start < LOGO_TIME_MS) {
+            lv_timer_handler();
+            delay(5);
+        }
+
+        Serial.println("LOGO END");
     }
 
-    // LVGL
-    lvgl_begin();
+    WiFi.mode(WIFI_AP_STA);
+    WiFi.disconnect(true);
+    delay(100);
 
     if (wifi_credentials_exists()){
         String ssid, password;
@@ -58,9 +67,12 @@ void setup()
         WiFi.begin(ssid.c_str(), password.c_str());
 
         unsigned long start = millis();
-        while (WiFi.status() != WL_CONNECTED && millis() - start < 5000){
+        while (WiFi.status() != WL_CONNECTED && millis() - start < 10000){
             delay(100);
+            Serial.print(".");
         }
+
+        Serial.println(WiFi.status());
 
         if (WiFi.status() == WL_CONNECTED){
             wifi_connected = true;
@@ -77,15 +89,26 @@ void setup()
     lv_obj_clean(lv_scr_act());
     show_wifi_screen(lv_scr_act());
     wifi_portal_init();
+    portal_running = true;
 }
 
 void loop(){
     lv_timer_handler();
-    server.handleClient();
     delay(5);
 
+    if (portal_running) {
+        server.handleClient();
+    }
+
     if (!wifi_connected && WiFi.status() == WL_CONNECTED){
+
         wifi_connected = true;
+
+        if (portal_running) {
+            server.stop();
+            //WiFi.softAPdisconnect(true);
+            portal_running = false;
+        }
 
         lv_obj_clean(lv_scr_act());
         show_clock_screen(lv_scr_act());

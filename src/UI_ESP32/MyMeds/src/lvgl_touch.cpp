@@ -20,7 +20,7 @@ static void touch_read_cb(lv_indev_drv_t *drv, lv_indev_data_t *data)
     TS_Point p = ts.getPoint();
 
     uint16_t x = map(p.x, 3800, 300, 0, 320);
-    uint16_t y = map(p.x, 3685, 148, 0, 240);
+    uint16_t y = map(p.y, 3685, 148, 0, 240);
 
     data->state = LV_INDEV_STATE_PR;
     data->point.x = x;

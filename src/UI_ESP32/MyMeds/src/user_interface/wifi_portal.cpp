@@ -4,36 +4,21 @@
 #include <Preferences.h>
 
 Preferences prefs;
-WebServer server(80);
+extern WebServer server;
 static String new_ssid = "";
 static String new_password = "";
-
-bool is_first_boot()
-{
-    Preferences p;
-    p.begin("sys", true);
-    bool fb = p.getBool("first_boot", true);
-    p.end();
-    
-    return fb;
-}
-
-void set_first_boot(bool v)
-{
-    Preferences p;
-    p.begin("sys", false);
-    bool fb = p.getBool("fisrt_bool", true);
-    p.end();
-}
 
 bool wifi_credentials_exists()
 {
     Preferences p;
     p.begin("wifi", true);
-    bool ok = p.isKey("ssid") && p.isKey("password");
+
+    String ssid = p.getString("ssid", "");
+    String password = p.getString("password", "");
+
     p.end();
 
-    return ok;
+    return (ssid.length() > 0 && password.length() > 0);
 }
 
 void wifi_load_credentials(String &ssid, String &password)
@@ -68,25 +53,46 @@ void handle_save()
     new_ssid = server.arg("ssid");
     new_password = server.arg("password");
 
+    Serial.print("Saved SSID: ");
+    Serial.println(new_ssid);
+
     Preferences p;
     p.begin("wifi", false);
     p.putString("ssid", new_ssid);
     p.putString("password", new_password);
     p.end();
 
-    set_first_boot(false);
-    server.send(200, "text/html", "<html><body><h2>Guardado. Reiniciando...</h2></body></html>");
+    server.send(200, "text/html",
+        "<html><body><h2>Guardado correctamente. Reiniciando...</h2></body></html>");
 
-    delay(1000);
+    delay(2000);   
+    server.stop();
+    delay(200);
+
+    p.begin("sys", false);
+    p.putBool("skip_logo", true);
+    p.end();
+
     ESP.restart();
 }
 
 void wifi_portal_init()
 {
-    WiFi.mode(WIFI_AP);
+    //WiFi.mode(WIFI_AP);
+    IPAddress local_ip(192,168,4,1);
+    IPAddress gateway(192,168,4,1);
+    IPAddress subnet(255,255,255,0);
+
+    WiFi.softAPConfig(local_ip, gateway, subnet);
     WiFi.softAP("MyMeds-Setup");
+
+    Serial.print("AP IP: ");
+    Serial.println(WiFi.softAPIP());
 
     server.on("/", handle_web_root);
     server.on("/save", HTTP_POST, handle_save);
     server.begin();
+
+    Serial.println((uint32_t)&server);
+    Serial.println("Server started");
 }

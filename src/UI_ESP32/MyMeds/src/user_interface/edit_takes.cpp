@@ -9,6 +9,7 @@ static lv_obj_t *roller_minutes;
 static lv_obj_t *days_repeat;
 static lv_obj_t *days_warning;
 static lv_obj_t *sw_recordatory;
+static lv_obj_t *btn_rep_days;
 
 static int right_x(int width)
 {
@@ -17,8 +18,11 @@ static int right_x(int width)
 
 void set_rollers_init(int index)
 {
-    int hh, mm;
-    sscanf(takes[index].hour, "%d:%d", hh, mm);
+    int hh = 0, mm = 0;
+    sscanf(takes[index].hour, "%d:%d", &hh, &mm);
+
+    lv_roller_set_selected(roller_hours, hh, LV_ANIM_OFF);
+    lv_roller_set_selected(roller_minutes, mm, LV_ANIM_OFF);
 }
 
 void edit_takes_screen(int index)
@@ -144,7 +148,7 @@ void edit_takes_screen(int index)
         lv_event_code_t code = lv_event_get_code(e);
         lv_obj_t *obj = lv_event_get_target(e);
 
-        if (code = LV_EVENT_READY){
+        if (code == LV_EVENT_READY){
             lv_obj_t *list = lv_dropdown_get_list(obj);
             lv_obj_set_size(list, 180, 120);
             lv_obj_set_style_bg_color(list, lv_color_white(), LV_PART_MAIN);
@@ -157,21 +161,42 @@ void edit_takes_screen(int index)
             lv_obj_set_style_text_font(obj, &montserrat_24_regular, LV_PART_ITEMS);
             lv_obj_set_style_text_color(obj, lv_color_black(), LV_PART_ITEMS);
         }
+
+        if (code == LV_EVENT_VALUE_CHANGED){
+
+            uint16_t selected = lv_dropdown_get_selected(obj);
+
+            if (selected == 2) {  // Personalizar
+                lv_obj_clear_flag(btn_rep_days, LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_add_flag(btn_rep_days, LV_OBJ_FLAG_HIDDEN);
+            }
+        }
     }, LV_EVENT_ALL, NULL);
 
     //****EDIT DAYS****
-    lv_obj_t *btn_rep_days = lv_btn_create(scr);
+    btn_rep_days = lv_btn_create(scr);
     lv_obj_set_size(btn_rep_days, 190, 40);
     lv_obj_set_style_bg_color(btn_rep_days, lv_color_make(160, 50, 200), LV_PART_MAIN);
     lv_obj_set_style_bg_opa(btn_rep_days, LV_OPA_COVER, LV_PART_MAIN);
     lv_obj_set_style_radius(btn_rep_days, 10, LV_PART_MAIN);
     lv_obj_set_pos(btn_rep_days, dd_x+(rep_dd_w-190)/2, rep_row_y+50);
 
-    lv_obj_t *lbl_rep_days = lv_label_create(scr);
+    lv_obj_t *lbl_rep_days = lv_label_create(btn_rep_days);
     lv_label_set_text(lbl_rep_days, "Editar días");
-    lv_obj_set_style_text_font(lbl_rep_days, &montserrat_34_regular, LV_PART_MAIN);
+    lv_obj_set_style_text_font(lbl_rep_days, &montserrat_30_regular, LV_PART_MAIN);
     lv_obj_set_style_text_color(lbl_rep_days, lv_color_white(), LV_PART_MAIN);
     lv_obj_center(lbl_rep_days);
+
+    lv_obj_add_flag(btn_rep_days, LV_OBJ_FLAG_HIDDEN);
+
+    uint16_t selected = lv_dropdown_get_selected(days_repeat);
+
+    if (selected == 2) {
+        lv_obj_clear_flag(btn_rep_days, LV_OBJ_FLAG_HIDDEN);
+    } else {
+        lv_obj_add_flag(btn_rep_days, LV_OBJ_FLAG_HIDDEN);
+    }
 
     lv_obj_add_event_cb(btn_rep_days, [](lv_event_t *e)
     {
@@ -239,13 +264,13 @@ void edit_takes_screen(int index)
 
     //----------- SAVE -------------------------------------------
     lv_obj_t *btn_save = lv_btn_create(scr);
-    lv_obj_set_size(btn_save, 190, 45);
+    lv_obj_set_size(btn_save, 150, 45);
     lv_obj_set_style_bg_color(btn_save, lv_color_make(160, 50, 200), LV_PART_MAIN);
     lv_obj_set_style_bg_opa(btn_save, LV_OPA_COVER, LV_PART_MAIN);
     lv_obj_set_style_radius(btn_save, 10, LV_PART_MAIN);
-    lv_obj_set_pos(btn_save, right_x(190), 320);
+    lv_obj_set_pos(btn_save, right_x(150), 320);
 
-    lv_obj_t *lbl_save = lv_label_create(scr);
+    lv_obj_t *lbl_save = lv_label_create(btn_save);
     lv_label_set_text(lbl_save, "Guardar");
     lv_obj_set_style_text_font(lbl_save, &montserrat_24_regular, LV_PART_MAIN);
     lv_obj_set_style_text_color(lbl_save, lv_color_white(), LV_PART_MAIN);
@@ -266,13 +291,13 @@ void edit_takes_screen(int index)
 
     //----------- GO BACK -------------------------------------------
     lv_obj_t *btn_back = lv_btn_create(scr);
-    lv_obj_set_size(btn_back, 190, 45);
+    lv_obj_set_size(btn_back, 150, 45);
     lv_obj_set_style_bg_color(btn_back, lv_color_make(160, 50, 200), LV_PART_MAIN);
     lv_obj_set_style_bg_opa(btn_back, LV_OPA_COVER, LV_PART_MAIN);
     lv_obj_set_style_radius(btn_back, 10, LV_PART_MAIN);
-    lv_obj_set_pos(btn_back, 10, 320);
+    lv_obj_set_pos(btn_back, 5, 320);
 
-    lv_obj_t *lbl_back = lv_label_create(scr);
+    lv_obj_t *lbl_back = lv_label_create(btn_back);
     lv_label_set_text(lbl_back, "Atrás");
     lv_obj_set_style_text_font(lbl_back, &montserrat_24_regular, LV_PART_MAIN);
     lv_obj_set_style_text_color(lbl_back, lv_color_white(), LV_PART_MAIN);

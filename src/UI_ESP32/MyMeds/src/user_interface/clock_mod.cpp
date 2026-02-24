@@ -33,7 +33,7 @@ void show_clock_screen(lv_obj_t *parent)
     lv_obj_set_style_radius(btn_init, 20, LV_PART_MAIN);
     lv_obj_align(btn_init, LV_ALIGN_BOTTOM_MID, 0, -10);
 
-    lv_obj_t *lbl_init = lv_label_create(parent);
+    lv_obj_t *lbl_init = lv_label_create(btn_init);
     lv_label_set_text(lbl_init, "INICIO");
     lv_obj_set_style_text_font(lbl_init, &lv_font_montserrat_40, LV_PART_MAIN);
     lv_obj_set_style_text_color(lbl_init, lv_color_white(), LV_PART_MAIN);

@@ -25,25 +25,29 @@ void takes_list_screen()
     lv_obj_set_style_bg_color(btn_add, lv_color_make(160, 50, 200), LV_PART_MAIN);
     lv_obj_align(btn_add, LV_ALIGN_TOP_LEFT, 10, 50);
 
-    lv_obj_t *lbl_btn_add = lv_label_create(scr);
+    lv_obj_t *lbl_btn_add = lv_label_create(btn_add);
     lv_label_set_text(lbl_btn_add, "+ Añadir toma");
     lv_obj_set_style_text_font(lbl_btn_add, &montserrat_24_regular, LV_PART_MAIN);
     lv_obj_set_style_text_color(lbl_btn_add, lv_color_white(), LV_PART_MAIN);
     lv_obj_center(lbl_btn_add);
 
     lv_obj_add_event_cb(btn_add, [](lv_event_t *e){
-        if (total_takes < MAX_TAKES){
-            strcpy(takes[total_takes].hour, "00:00");
-            for (int r=0; r < 7; r++){
-                takes[total_takes].repeat[r] = true;
-                takes[total_takes]. personalized = false;
-                takes[total_takes].recordatory = true;
-                takes[total_takes].warning_time = 0;
-            }
+        if (total_takes >= MAX_TAKES) return;
 
-            edit_takes_screen(total_takes);
-            total_takes++;
+        int new_index = total_takes;
+        total_takes++;
+
+        strcpy(takes[new_index].hour, "00:00");
+
+        for (int r = 0; r < 7; r++){
+            takes[new_index].repeat[r] = true;
         }
+
+        takes[new_index].personalized = false;
+        takes[new_index].recordatory = true;
+        takes[new_index].warning_time = 0;
+
+        edit_takes_screen(new_index);
     }, LV_EVENT_CLICKED, NULL);
 
     takes_list = lv_obj_create(scr);
@@ -53,18 +57,27 @@ void takes_list_screen()
     lv_obj_set_flex_flow(takes_list, LV_FLEX_FLOW_COLUMN);
 
     for (int i=0; i < total_takes; i++){
-        lv_obj_t *row = lv_obj_create(NULL);
+        lv_obj_t *row = lv_obj_create(takes_list);
         lv_obj_set_size(row, 280, 40);
         lv_obj_set_flex_flow(row, LV_FLEX_FLOW_ROW);
+        lv_obj_set_style_pad_all(row, 5, LV_PART_MAIN);
 
         char lbl_text[20];
         sprintf(lbl_text, "Toma %d", i+1);
-        lv_label_set_text(lv_label_create(row), lbl_text);
-        lv_label_set_text(lv_label_create(row), takes[i].hour);
+
+        lv_obj_t *lbl_name = lv_label_create(row);
+        lv_label_set_text(lbl_name, lbl_text);
+
+        lv_obj_t *lbl_hour = lv_label_create(row);
+        lv_label_set_text(lbl_hour, takes[i].hour);
 
         lv_obj_t *btn_edit = lv_btn_create(row);
         lv_obj_set_size(btn_edit, 70, 30);
-        lv_label_set_text(lv_label_create(btn_edit), "Editar");
+
+        lv_obj_t *lbl_edit = lv_label_create(btn_edit);
+        lv_label_set_text(lbl_edit, "Editar");
+        lv_obj_center(lbl_edit);
+
         lv_obj_set_user_data(btn_edit, (void*)i);
 
         lv_obj_add_event_cb(btn_edit, [](lv_event_t *e){

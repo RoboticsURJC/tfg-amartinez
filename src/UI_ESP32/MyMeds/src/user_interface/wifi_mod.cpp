@@ -35,20 +35,19 @@ static void generate_wifi_qr(lv_obj_t *parent)
         return;
     }
 
-    for (int y=0; y < size; y++){
-        for (int x=0; x < size; x++){
+    for (int y = 0; y < size; y++) {
+        for (int x = 0; x < size; x++) {
+
             bool black = qrcodegen_getModule(qr_data, x, y);
-            lv_color_t c;
+            lv_color_t c = black ? lv_color_black() : lv_color_white();
 
-            if (black){
-                c = lv_color_black();
-            } else{
-                c = lv_color_white();
-            }
+            for (int dy = 0; dy < scale; dy++) {
+                for (int dx = 0; dx < scale; dx++) {
 
-            for (int dy = 0; dy < scale; dy++){
-                for (int dx = 0; dx < scale; dx++){
-                    buf[(y*scale*dy)*out_size+(x*scale*dx)] = c;
+                    int px = x * scale + dx;
+                    int py = y * scale + dy;
+
+                    buf[py * out_size + px] = c;
                 }
             }
         }

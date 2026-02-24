@@ -26,9 +26,10 @@ void show_home_screen()
     lv_obj_align(btn1, LV_ALIGN_TOP_MID, 0, 40);
     lv_obj_add_event_cb(btn1, btn_event_cb, LV_EVENT_CLICKED, (void *)"Tomas hoy");
 
-    lv_obj_t *lbl1 = lv_label_create(scr);
+    lv_obj_t *lbl1 = lv_label_create(btn1);
     lv_label_set_text(lbl1, "Tomas hoy");
     lv_obj_set_style_text_font(lbl1, &montserrat_34_regular, LV_PART_MAIN);
+    lv_obj_set_style_text_color(lbl1, lv_color_white(), LV_PART_MAIN);
     lv_obj_center(lbl1);
 
     // ---------------------------------------------------------------
@@ -39,9 +40,10 @@ void show_home_screen()
     lv_obj_align(btn2, LV_ALIGN_TOP_MID, 0, 130);
     lv_obj_add_event_cb(btn2, btn_event_cb, LV_EVENT_CLICKED, (void *)"Historial");
 
-    lv_obj_t *lbl2 = lv_label_create(scr);
+    lv_obj_t *lbl2 = lv_label_create(btn2);
     lv_label_set_text(lbl2, "Historial");
     lv_obj_set_style_text_font(lbl2, &montserrat_34_regular, LV_PART_MAIN);
+    lv_obj_set_style_text_color(lbl2, lv_color_white(), LV_PART_MAIN);
     lv_obj_center(lbl2);
 
     // ---------------------------------------------------------------
@@ -52,9 +54,10 @@ void show_home_screen()
     lv_obj_align(btn3, LV_ALIGN_TOP_MID, 0, 220);
     lv_obj_add_event_cb(btn3, btn_event_cb, LV_EVENT_CLICKED, (void *)"Pulsómetro");
 
-    lv_obj_t *lbl3 = lv_label_create(scr);
+    lv_obj_t *lbl3 = lv_label_create(btn3);
     lv_label_set_text(lbl3, "Pulsómetro");
     lv_obj_set_style_text_font(lbl3, &montserrat_34_regular, LV_PART_MAIN);
+    lv_obj_set_style_text_color(lbl3, lv_color_white(), LV_PART_MAIN);
     lv_obj_center(lbl3);
 
     // ---------------------------------------------------------------
@@ -65,8 +68,9 @@ void show_home_screen()
     lv_obj_align(btn4, LV_ALIGN_TOP_MID, 0, 310);
     lv_obj_add_event_cb(btn4, btn_event_cb, LV_EVENT_CLICKED, (void *)"Configuración de tomas");
 
-    lv_obj_t *lbl4 = lv_label_create(scr);
+    lv_obj_t *lbl4 = lv_label_create(btn4);
     lv_label_set_text(lbl4, "Configuración\n           de\n        tomas");
     lv_obj_set_style_text_font(lbl4, &montserrat_34_regular, LV_PART_MAIN);
+    lv_obj_set_style_text_color(lbl4, lv_color_white(), LV_PART_MAIN);
     lv_obj_center(lbl4);
 }
