@@ -5,145 +5,59 @@ Este capítulo detalla algunos de los sistemas y soluciones más significativos 
 
 Se han revisado propuestas académicas publicadas en revistas de alto impacto y también implementaciones prácticas de código abierto, para estudiar sus propiedades técnicas, beneficios, restricciones y su uso en la creación de un dispensador automático que cuente con pantalla táctil y aplicación móvil.\\
 
-\section{A Systematic Review on Pill and Medication Dispensers from a Human-Centered Perspective}
-\label{sec:systematic_review}
+\section{Transformación digital y automatización en el ámbito sanitario}
+\label{sec:digital_as}
 
-En el artículo presentado por \cite{Gargioni2024} se realizó una revisión sistemática sobre dispensadores automáticos de medicamentos siguiendo la metodología \textit{PRISMA (Preferred Reporting Items for Systematic Reviews and Meta-Analyses}). El estudio analizó soluciones publicadas en bases de datos como \textit{Scopus} y \textit{PubMed} con el objetivo de responder a la siguiente cuestión: qué tipos de soluciones automatizadas se han propuesto en la literatura científica para mejorar la adherencia terapéutica.\\
+La transformación digital en el sector sanitario ha impulsado la integración progresiva de tecnologías inteligentes en procesos clínicos, asistenciales y farmacéuticos. La automatización, promovida por la robótica, la inteligencia artificial y los sistemas conectados, ha permitido mejorar la precisión en tareas repetitivas, reducir el error humano y optimizar la gestión de recursos sanitarios, tal y como se analiza en \cite{airobotics2023}.\\
 
-Después de un proceso de selección, como se muestra en la Figura \ref{fig:prisma_diagram}, se redujeron los 426 artículos iniciales a 56 trabajos finales. La clasificación de las soluciones estudiadas se realizó según su estado de desarrollo (ya sea prototipo, estudio conceptual o producto comercial) y se examinó desde cuatro perspectivas: la tecnología empleada, la arquitectura hardware/software, el grado de participación de los distintos actores (tales como cuidadores, pacientes y personal sanitario) y los tipos de interacción.\\
+Como se muestra en la Figura \ref{fig:ia_robotica_salud}, la integración de inteligencia artificial y robótica en el ámbito sanitario abarca múltiples áreas, desde la fabricación farmacéutica hasta los sistemas de liberación de fármacos y la atención médica.\\
 
-\begin{figure} [H]
-  \begin{center}
-    \includegraphics[width=\textwidth]{figs/prisma_diagram.png}
-  \end{center}
-  \caption{Diagrama PRISMA del proceso de selección de artículos. Adaptado de \cite{Gargioni2024}.}
-  \label{fig:prisma_diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figs/ia_robotica_salud.png}
+    \caption{Ámbitos de aplicación de la inteligencia artificial y la robótica en los sectores farmacéutico y médico. Adaptado de \cite{airobotics2023} bajo licencia CC BY 4.0.}
+    \label{fig:ia_robotica_salud}
 \end{figure}
 
-Un aspecto a destacar fue su perspectiva centrada en el usuario. A diferencia de otras revisiones que solo se centraban en los aspectos técnicos, este estudio también analizó variables como la aceptabilidad, la usabilidad y el contexto de uso, especialmente en pacientes con enfermedades crónicas y personas mayores.\\
+En el ámbito farmacéutico, la incorporación de sistemas automatizados para la preparación y dispensación de medicamentos constituye una de las aplicaciones más relevantes de esta evolución tecnológica. Diversos análisis recientes, entre ellos el presentado en \cite{gargioni2024}, destacan que los sistemas inteligentes permiten no solo automatizar la entrega de fármacos, sino también integrar mecanismos de supervisión, trazabilidad y análisis de datos clínicos.\\
 
-El análisis reveló que la mayoría de los sistemas incorporaban funciones como recordatorios por medio de señales acústicas o luminosas, conexión con aplicaciones para móviles y conectividad a la nube para supervisión desde lejos. No obstante, también se identificaron deficiencias relevantes en la integración con los sistemas de salud oficiales, en el manejo de terapias complejas y en la adaptación a personas con deterioro cognitivo.\\
+Paralelamente, el desarrollo del paradigma \textit{Internet of Things} (IoT) en salud ha favorecido la aparición del denominado \textit{Internet of Medical Things} (IoMT), donde dispositivos embebidos, sensores biomédicos y aplicaciones móviles interactúan de forma coordinada para proporcionar monitorización remota y asistencia distribuida. Según se expone en \cite{iot2022}, este modelo facilita la transición desde un sistema sanitario centrado exclusivamente en el entorno hospitalario hacia esquemas híbridos que combinan atención presencial y seguimiento domiciliario.\\
 
-\
+En este contexto, la convergencia entre robótica, inteligencia artificial y sistemas IoT constituye uno de los pilares fundamentales de la medicina digital contemporánea. Según se describe en \cite{aiot2022}, la aplicación de enfoques AIoT en sistemas de dispensación permite integrar conectividad, procesamiento en el borde y análisis inteligente, incrementando la seguridad y eficiencia en la administración terapéutica. Estas bases tecnológicas establecen el marco conceptual para el desarrollo de dispositivos inteligentes de asistencia farmacológica como el propuesto en este proyecto.\\
 
-Las ventajas de este estudio fueron las siguientes:
+\section{Sistemas inteligentes de dispensación y adherencia terapéutica}
+\label{sec:dispensacion_adherencia}
 
-\begin{itemize}
-    \item Aplicación rigurosa de metodología PRISMA.
-    \item Clasificación clara de las soluciones según su estado de desarrollo.
-    \item Análisis conjunto de arquitectura técnica e interacción usuario-sistema.
-    \item Enfoque centrado en la aceptabilidad y usabilidad.\\
-\end{itemize}
+En el tratamiento de personas de edad avanzada y pacientes crónicos, la adhesión a las terapias es uno de los retos más importantes. El riesgo de cometer errores al administrar medicamentos aumenta debido a la complejidad de los regímenes farmacológicos y a la presencia simultánea de diversas enfermedades. Esto ha fomentado el desarrollo de sistemas inteligentes para la dispensación.\\
 
-Las desventajas identificadas en las soluciones revisadas fueron las siguientes:
+Las revisiones recientes, como la presentada en \cite{gargioni2024}, evidencian que la mayoría de los dispensadores actuales incorporan programación horaria y sistemas de alerta, aunque todavía existen limitaciones en términos de usabilidad avanzada, integración con aplicaciones móviles y personalización del seguimiento clínico.\\
 
-\begin{itemize}
-    \item Falta de estandarización en la medición de la adherencia terapéutica.
-    \item Escasa integración con sistemas sanitarios nacionales.
-    \item Coste elevado en varias propuestas comerciales.
-    \item Limitada consideración de la experiencia de usuario en población mayor.
-\end{itemize}
+En respuesta a estas limitaciones, diversas propuestas han evolucionado hacia arquitecturas conectadas basadas en IoT y AIoT. Por un lado, enfoques modulares como el descrito en \cite{alduaij2024} permiten transformar pastilleros convencionales en sistemas inteligentes mediante la incorporación de módulos de procesamiento y comunicación, favoreciendo la supervisión remota y la extensibilidad del sistema. Por otro, soluciones más avanzadas integran procesamiento en el borde y análisis inteligente de datos, como se expone en \cite{aiot2022}, incrementando el grado de automatización y control terapéutico (véase Figura \ref{fig:arquitectura_dispensador}).\\
 
-\
-
-\section{mPillBox: An Open Framework for a Smarter Pillbox}
-\label{sec:mPillBox}
-
-En el trabajo presentado por \cite{alduaij2024} se introduce \textit{mPillBox}, un \textit{framework} abierto diseñado para transformar un pastillero convencional en un sistema inteligente mediante la incorporación de tecnologías \textit{IoT}. Esta propuesta, en comparación con otros sistemas que sugerían una reestructuración total del aparato físico, se fundamentó en una arquitectura modular, la cual posibilitó incorporar funcionalidades de avanzada a estructuras ya existentes.\\
-
-El sistema se puso en marcha sobre una \textit{Raspberry Pi 4 Model B}, la cual actuó como unidad de coordinación y procesamiento central. La arquitectura incorporó módulos de comunicación para enlazarse con dispositivos externos y aplicaciones móviles, además de sensores ambientales para monitorizar situaciones como la humedad y la temperatura. Además incluyó funciones como la programación de horarios para la medicación, la verificación de fechas de vencimiento y el chequeo automático de posibles interacciones entre medicamentos.\\
-
-Como se puede observar en la Figura \ref{fig:mpillbox}, el prototipo integró físicamente la unidad de procesamiento, el módulo de visualización LCD y los elementos de conexión necesarios para la comunicación con los compartimentos del pastillero, conformando una arquitectura modular basada en componentes de bajo coste.\\
-
-\begin{figure} [H]
-  \begin{center}
-    \includegraphics[width=\textwidth]{figs/mPillBox.png}
-  \end{center}
-  \caption{Prototipo del sistema mPillBox basado en Raspberry Pi y módulos \textit{IoT}. Adaptado de \cite{alduaij2024}.}
-  \label{fig:mpillbox}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figs/mPillBox.png}
+    \caption{Arquitectura conceptual de un sistema inteligente de dispensación basado en IoT. Adaptado de \cite{alduaij2024}.}
+    \label{fig:arquitectura_dispensador}
 \end{figure}
 
-Una de las características distintivas del sistema fue su perspectiva amplia y abierta. \textit{mPillBox} se diseñó como una plataforma adaptable que simplificó la incorporación de nuevos módulos y servicios, lo cual posibilitó su ajuste a diversas necesidades y contextos. Asimismo, no estaba directamente vinculado con instalaciones hospitalarias ni con servicios de suscripción, lo que disminuyó los costos y mejoró su accesibilidad.\\
 
-El sistema también contempló el envío de alertas mediante dispositivos \textit{IoT} conectados, como notificaciones visuales o sonoras en el entorno doméstico, así como la sincronización con una aplicación móvil para la supervisión remota del tratamiento.\\
+De igual manera, algunos trabajos incorporan mecanisos de seguridad adicionales, como autenticación biométrica basada en redes neuronales profundas \cite{intelligent2023}, con el objetivo de reducir accesos no autorizados y mejorar la fiabilidad del proceso de dispensación.\\
 
-\
+Con el fin de comparar las principales características técnicas de las propuestas analizadas, la Tabla \ref{tab:comparativa_dispensadores} resume los elementos más relevantes en términos de conectividad, integración de inteligencia artificial, mecanismos de autenticación y supervisión remota.
 
-\
+\begin{table}[H]
+\centering
+\caption{Comparativa de sistemas inteligentes de dispensación analizados}
+\label{tab:comparativa_dispensadores}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Trabajo} & \textbf{IoT} & \textbf{IA} & \textbf{Autenticación} & \textbf{Supervisión} \\ \hline
+Gargioni et al. (2024) & Parcial & No & No & Sí \\ \hline
+AlDuaij (2024) & Sí & No & No & Sí \\ \hline
+Sivakumar et al. (2023) & Sí & Parcial (DNN) & Huella & Sí \\ \hline
+Zhang et al. (2022) & Sí & Sí & Sí & Sí \\ \hline
+\end{tabular}
+\end{table}
 
-\
-
-\
-
-\
-
-Las ventajas de este sistema fueron las siguientes:
-
-\begin{itemize}
-    \item Arquitectura \textit{open-source} y modular.
-    \item Bajo coste en comparación con soluciones comerciales cerradas.
-    \item Flexibilidad para integrar sensores adicionales.
-    \item Incorporación de verificación de interacciones entre medicamentos.
-    \item Independencia de infraestructuras hospitalarias externas.\\
-\end{itemize}
-
-Las desventajas de este sistema fueron las siguientes:
-
-\begin{itemize}
-    \item Requería conocimientos técnicos para su instalación y mantenimiento.
-    \item No incorporó un mecanismo avanzado de dispensación física automática.
-    \item Validación limitada a entorno experimental.
-    \item Dependencia de conectividad para algunas funcionalidades \textit{IoT}.
-\end{itemize}
-
-\
-
-\section{Intelligent and Assisted Medicine Dispensing Machine}
-\label{sec:intelligent_and_assisted}
-
-En el trabajo presentado por \cite{intelligent2023} se creó y diseñó una máquina dispensadora de medicamentos inteligente, enfocada en pacientes con problemas para manejar tratamientos complejos y personas mayores. La finalidad del sistema consistió en optimizar la adherencia terapéutica a través de la automatización de la dispensación y de la inclusión de mecanismos extra de seguridad.\\
-
-La arquitectura del dispositivo se basó en un microcontrolador encargado de gestionar los compartimentos de medicación y controlar el mecanismo de liberación mediante actuadores eléctricos. El sistema permitió programar horarios específicos para cada toma, activando la dispensación de forma automática en los intervalos establecidos.\\
-
-\begin{figure} [H]
-  \begin{center}
-    \includegraphics[width=\textwidth]{figs/mdm.png}
-  \end{center}
-  \caption{Arquitectura propuesta del sistema. Adaptado de \cite{intelligent2023}.}
-  \label{fig:mdm_architecture}
-\end{figure}
-
-Como se muestra en la Figura \ref{fig:mdm_architecture}, el sistema integra los distintos módulos de control, sensores y elementos de comunicación que permiten coordinar la autenticación del usuario, la apertura de los compartimentos y la monitorización remota mediante el sistema central.\\
-
-Un sistema de autenticación biométrica a través de un sensor de huella dactilar fue uno de los componentes distintivos del proyecto. Al permitir la validación de la identidad del usuario antes de dar el visto bueno a la dispensación, este mecanismo disminuyó el peligro de que se cometieran errores en la administración del fármaco o de que se accediera indebidamente.\\
-
-Además, el sistema incorporó conectividad IoT para el envío de notificaciones y alertas a familiares o cuidadores en caso de omisión de la toma. La interfaz de usuario se diseñó con una pantalla LCD y botones físicos, buscando simplicidad y facilidad de uso para población de edad avanzada. Por último, el prototipo fue validado experimentalmente en un entorno controlado, demostrando la viabilidad técnica de la arquitectura propuesta.\\
-
-Las ventajas de este sistema son las siguientes:
-
-\begin{itemize}
-    \item Integración de autenticación biométrica mediante huella dactilar.
-    \item Reducción del riesgo de uso indebido del dispositivo.
-    \item Automatización de la dispensación en horarios programados.
-    \item Incorporación de conectividad IoT para monitorización remota.
-    \item Enfoque orientado a población mayor.
-\end{itemize}
-
-Las desventajas de este sistema son las siguientes:
-
-\begin{itemize}
-    \item Incremento del coste debido a la incorporación de sensores biométricos.
-    \item Mayor complejidad técnica respecto a soluciones básicas.
-    \item Dependencia de conectividad para funcionalidades remotas.
-    \item Validación limitada a entorno experimental.
-\end{itemize}
- 
-\section{Metodología}
-\label{sec:metodologia}
-
-Qué paradigma de desarrollo software has seguido para alcanzar tus objetivos.
-
-\section{Plan de trabajo}
-\label{sec:plantrabajo}
-
-Qué agenda has seguido. Si has ido manteniendo reuniones semanales, cumplimentando objetivos parciales, si has ido afinando poco a poco un producto final completo, etc.
+Como puede observarse, aunque la mayoría de los sistemas actuales incorporan conectividad y supervisión remota, existen diferencias significativas en el grado de integración de inteligencia artificial, automatización y mecanismos de seguridad. Este evidencia que todavía persisten oportunidades de mejora en la integración equilibrada de usabilidad, accesibilidad, monitorización biomédica y bajo coste, elementos clave en el diseño del sistema propuesto en este trabajo.\\
