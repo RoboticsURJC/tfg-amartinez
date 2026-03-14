@@ -15,7 +15,7 @@ Como se muestra en la Figura \ref{fig:ia_robotica_salud}, la integración de int
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{figs/ia_robotica_salud.png}
-    \caption{Ámbitos de aplicación de la inteligencia artificial y la robótica en los sectores farmacéutico y médico. Adaptado de \cite{airobotics2023} bajo licencia CC BY 4.0.}
+    \caption{Ámbitos de aplicación de la inteligencia artificial y la robótica en los sectores farmacéutico y médico. Adaptado de \cite{airobotics2023}.}
     \label{fig:ia_robotica_salud}
 \end{figure}
 
@@ -23,7 +23,7 @@ En el ámbito farmacéutico, la incorporación de sistemas automatizados para la
 
 Paralelamente, el desarrollo del paradigma \textit{Internet of Things} (IoT) en salud ha favorecido la aparición del denominado \textit{Internet of Medical Things} (IoMT), donde dispositivos embebidos, sensores biomédicos y aplicaciones móviles interactúan de forma coordinada para proporcionar monitorización remota y asistencia distribuida. Según se expone en \cite{iot2022}, este modelo facilita la transición desde un sistema sanitario centrado exclusivamente en el entorno hospitalario hacia esquemas híbridos que combinan atención presencial y seguimiento domiciliario.\\
 
-En este contexto, la convergencia entre robótica, inteligencia artificial y sistemas IoT constituye uno de los pilares fundamentales de la medicina digital contemporánea. Según se describe en \cite{aiot2022}, la aplicación de enfoques AIoT en sistemas de dispensación permite integrar conectividad, procesamiento en el borde y análisis inteligente, incrementando la seguridad y eficiencia en la administración terapéutica. Estas bases tecnológicas establecen el marco conceptual para el desarrollo de dispositivos inteligentes de asistencia farmacológica como el propuesto en este proyecto.\\
+En este contexto, la convergencia entre robótica, inteligencia artificial y sistemas IoT constituye uno de los pilares fundamentales de la medicina digital contemporánea. En este contexto, la convergencia entre inteligencia artificial y sistemas IoT constituye uno de los pilares de la medicina digital contemporánea. Tal como señalan revisiones recientes \cite{alsabah2025}, la integración de IA sobre infraestructuras IoT permite combinar conectividad, procesamiento en el borde y análisis inteligente de datos clínicos, mejorando la eficiencia y seguridad en la administración terapéutica.\\
 
 \section{Sistemas inteligentes de dispensación y adherencia terapéutica}
 \label{sec:dispensacion_adherencia}
@@ -32,19 +32,17 @@ En el tratamiento de personas de edad avanzada y pacientes crónicos, la adhesi�
 
 Las revisiones recientes, como la presentada en \cite{gargioni2024}, evidencian que la mayoría de los dispensadores actuales incorporan programación horaria y sistemas de alerta, aunque todavía existen limitaciones en términos de usabilidad avanzada, integración con aplicaciones móviles y personalización del seguimiento clínico.\\
 
-En respuesta a estas limitaciones, diversas propuestas han evolucionado hacia arquitecturas conectadas basadas en IoT y AIoT. Por un lado, enfoques modulares como el descrito en \cite{alduaij2024} permiten transformar pastilleros convencionales en sistemas inteligentes mediante la incorporación de módulos de procesamiento y comunicación, favoreciendo la supervisión remota y la extensibilidad del sistema. Por otro, soluciones más avanzadas integran procesamiento en el borde y análisis inteligente de datos, como se expone en \cite{aiot2022}, incrementando el grado de automatización y control terapéutico (véase Figura \ref{fig:arquitectura_dispensador}).\\
+En respuesta a estas limitaciones, diversas propuestas han evolucionado hacia arquitecturas conectadas basadas en IoT y AIoT. Por un lado, enfoques modulares como el descrito en \cite{alduaij2024} permiten transformar pastilleros convencionales en sistemas inteligentes mediante la incorporación de módulos de procesamiento y comunicación, favoreciendo la supervisión remota y la extensibilidad del sistema. Por otro lado, propuestas más recientes integran técnicas de inteligencia artificial sobre infraestructuras IoT, incorporando procesamiento local y análisis inteligente de datos clínicos. Tal como señalan revisiones recientes en el ámbito sanitario \cite{alsabah2025,iot2022}, esta convergencia permite incrementar el grado de automatización y mejorar el control terapéutico en dispositivos conectados lo cual se puede ver en la Figura \ref{fig:arquitectura_dispensador}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{figs/mPillBox.png}
-    \caption{Arquitectura conceptual de un sistema inteligente de dispensación basado en IoT. Adaptado de \cite{alduaij2024}.}
+    \includegraphics[width=0.7\textwidth]{figs/mPillBox.png}
+    \caption{Arquitectura conceptual de sistema de dispensación basado en IoT. Adaptado de \cite{alduaij2024}.}
     \label{fig:arquitectura_dispensador}
 \end{figure}
 
 
-De igual manera, algunos trabajos incorporan mecanisos de seguridad adicionales, como autenticación biométrica basada en redes neuronales profundas \cite{intelligent2023}, con el objetivo de reducir accesos no autorizados y mejorar la fiabilidad del proceso de dispensación.\\
-
-Con el fin de comparar las principales características técnicas de las propuestas analizadas, la Tabla \ref{tab:comparativa_dispensadores} resume los elementos más relevantes en términos de conectividad, integración de inteligencia artificial, mecanismos de autenticación y supervisión remota.
+De igual manera, algunos trabajos incorporan mecanismos de seguridad adicionales, como autenticación biométrica basada en redes neuronales profundas \cite{intelligent2023}, con el objetivo de reducir accesos no autorizados y mejorar la fiabilidad del proceso de dispensación. Con el fin de comparar las principales características técnicas de las propuestas analizadas, la Tabla \ref{tab:comparativa_dispensadores} resume los elementos más relevantes en términos de conectividad, integración de inteligencia artificial, mecanismos de autenticación y supervisión remota.
 
 \begin{table}[H]
 \centering
@@ -56,8 +54,91 @@ Con el fin de comparar las principales características técnicas de las propues
 Gargioni et al. (2024) & Parcial & No & No & Sí \\ \hline
 AlDuaij (2024) & Sí & No & No & Sí \\ \hline
 Sivakumar et al. (2023) & Sí & Parcial (DNN) & Huella & Sí \\ \hline
-Zhang et al. (2022) & Sí & Sí & Sí & Sí \\ \hline
+Alsabah et al. (2025) & Sí & Sí (conceptual) & No especifica & Sí \\ \hline
 \end{tabular}
 \end{table}
 
 Como puede observarse, aunque la mayoría de los sistemas actuales incorporan conectividad y supervisión remota, existen diferencias significativas en el grado de integración de inteligencia artificial, automatización y mecanismos de seguridad. Este evidencia que todavía persisten oportunidades de mejora en la integración equilibrada de usabilidad, accesibilidad, monitorización biomédica y bajo coste, elementos clave en el diseño del sistema propuesto en este trabajo.\\
+
+\section{Dispensadores automáticos y diseño hardware/software integrado}
+\label{sec:hardware_software_integrado}
+
+Los dispensadores de medicamentos automatizados técnicamente están compuestos por tres elementos fundamentales: un subsistema mecánico que almacena y libera los medicamentos, una electrónica embedida para el control del sistema y por último, un software que dirige y controla la programación del tratamiento.\\
+
+En términos de mecánica, se presentan diferentes configuraciones que tienen comportamientos rotativos, bandejas deslizantes y servomotores o motores paso a paso para generar impulsos. En el estudio presentado en \cite{design2022} se examinan los estándares de diseño y fabricación que deben seguir este tipo de dispositivos médicos, dando gran importancia a ser precisos en la liberación de los fármacos y a validar experimentalmente su eficiencia.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figs/mdm.png}
+    \caption{Arquitectura hardware del dispensador inteligente con microcontrolador y sistema de autenticación biométrica. Adaptado de \cite{intelligent2023}.}
+    \label{fig:intelligent2023_d}
+\end{figure}
+
+A nivel electrónico, todos incluyen en su mayoría microcontroladores para gestionar los tiempos, la lectura de sensores  y la activación de los actuadores a través de un firmware diseñado para el control en tiempo real. La propuesta de \cite{intelligent2023} en la Figura~\ref{fig:intelligent2023_d}, aporta una mayor seguridad al dispositivo mediante un sistema de autenticación biométrica para permitir la dispensación, mientras que el descrito el \cite{iot2020} incluye la posibilidad de supervisión a distancia usando conectividad inalámbrica.\\
+
+En conjunto, todos estos métodos demuestran que no solo es importante el diseño mecánico para un buen desempeño, sino que también se necesita una arquitectura embedida para organizar y controlar sensores, actuadores y comunicaciones. Actualmente hay una inclinación hacia las soluciones que se basan en microcontroladores programables y plataformas modulares, lo cual posibilita ajustar el sistema según el uso, disminuir los gastos y añadir sencillez a la hora de aumentar las funciones del dispositivo mediante actualizaciones del firmware o extensiones de los módulos del hardware.\\
+
+\
+
+En proyectos académicos o de investigación experimental, es un aproximación significativa, ya que permite ajustar el funcionamiento del dispositivo e incorporar nuevas características sin tener que modificar de manera integral la estructura física, todo gracias al uso de arquitecturas abiertas y entornos de programación adaptables.\\
+
+\subsection{Implementaciones open-source basadas en microcontroladores}
+\label{subsec:open_source_microcontroladores}
+
+En entornos académicos y experimentales se ha apoyado de forma creciente el desarrollo de dispensadores automáticos basados en plataformas abiertas como Arduino y Raspberry-Pi, debido a su bajo coste, amplitud de librerías disponibles y facilidad en la integración con módulos de comunicación y sistemas de control. Propuestas como \cite{iot2020,intelligent2023} demuestran la viabilidad de este tipo de arquitecturas embebidas basadas en firmware programable, las cuales se implementa sobre hardware accesible y ampliamente documentado.\\
+
+Conjuntamente, el enfoque modular descrito en \cite{alduaij2024} refuerza la tendencia hacia sistemas reconfigurables, en los que la capa de control puede adaptarse a diferentes configuraciones físicas sin rediseñar completamente el dispositivo. Este modelo favorece la escalabilidad y la expansión de su funcionalidad, aspectos especialmente relevantes en desarrollos experimentales.\\
+
+De igual forma, más allá de las propuestas que se publican de manera científica, existen implementaciones en plataformas colaborativas como GitHub con soluciones completas basadas en microcontroladores y conectividad inalámbrica. Es el caso del repositorio base empleado en el presente proyecto \cite{repo_github}, el cual ofrece una arquitectura \textit{open-source} que integra desde control de actuadores hasta comunicación remota, permitiendo de esta manera su adaptación y ampliación según los requisitos específicos necesarios.\\
+
+Finalmente, todas estas iniciativas demuestran que las plataformas \textit{open-source} constituyen una base tecnológica flexible para la experimentación en dispensación automática, facilitando su replicación, la personalización del sistema y la evolución progresiva de sus funcionalidades sin depender de soluciones propietarias en el ámbito más comercial.\\
+
+\section{Monitorización biomédica en dispositivos domésticos conectados}
+\label{sec:monitorizacion_biomedica}
+
+La digitalización en el ámbito sanitario ha mejorado la integración de sensores fisiológicos en dispositivos adaptados para operar fuera del ámbito hospitalario. El \textit{Internet of Medical Things} (IoMT) define un ecosistema formado por dispositivos médicos inteligentes, sensores biomédicos y plataformas para la comunicación que permiten obtener y analizar datos clínicos de los pacientes, como se muestra en \cite{iomt2023}. En este ámbito, la monitorización remota de parámetros como la frecuencia cardiaca o la saturación de oxígeno, se consideran clave para el seguimiento de paciente crónicos y pacientes de avanzada edad, facilitando así modelos asistenciales preventivos y distribuidos como se tratan en \cite{iot2022}.\\
+
+La Figura \ref{fig:clasificacion_ehealth} muestra la evolución conceptual de los sistemas \textit{e-health}, diferenciando entre WBAN, IoMT y el paradigma Healthcare 4.0, y evidenciando cómo la monitorización biomédica distribuida se integra progresivamente en arquitecturas conectadas e inteligentes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figs/iomt.png}
+    \caption{Clasificación de los sistemas \textit{e-health} y su evolución hacia IoMT y Healthcare 4.0. Adaptado de \cite{iomt2023}.}
+    \label{fig:clasificacion_ehealth}
+\end{figure}
+
+Recientemente estas arquitecturas han comenzado a incorporar técnicas como la inteligencia artificial y el \textit{edge computing}, lo que permite procesar de forma parcial los datos biomédicos cerca del punto de adquisición. Tal como se expone en \cite{edgehealthcare2024,alsabah2025}, este tipo de enfoque ayuda a reducir latencias, optimizar los recursos de red y mejorar la capacidad de detección temprana de anomalías clínicas en pacientes mediante el análisis inteligente de series fisiológicas.
+
+En este ámbito tecnológico, la integración de módulos de monitorización biomédica en sistemas domésticos de dispensación automática representa una extensión hacia soluciones más completas, capaces de relacionar la adherencia terapéutica con indicadores fisiológicos objetivos y proporcionar un soporte sanitario más integral.\\
+
+\section{Interacción humano-dispositivo en población vulnerable}
+\label{sec:interaccion_usuario}
+
+De cara a implementar dispositivos médicos en el entorno domiciliario se debe tener en cuenta la interacción humano-dispositivo, especialmente cuando se trata de población vulnerable como personas mayores o pacientes crónicos. Teniendo esto en cuenta, la capacidad de uso, la accesibilidad y la simplicidad de uso son factores determinantes para garantizar la aceptación de la tecnología y la adherencia terapéutica.\\
+
+Los enfoques basados en \textit{Human-Centered Design} (HCD) expuestos en  \cite{hcd2024} promueven la participación del usuario en el proceso de desarrollo, permitiendo adaptar el diseño de la interfaz a sus capacidades cognitivas y sensoriales. Estudios sobre digitalización en atención domiciliaria con en \cite{olderhomecare2023}, destacan que la percepción de utilidad, la confianza y el soporte técnico influyen directamente en la adopción de tecnologías IoMT por parte de personas mayores.\\
+
+Asimismo, sistemas basados en aplicaciones para móviles, tal y como se ve en \cite{smartphone2013}, han demostrado que recordatorios automatizados y notificaciones claras pueden mejorar la adherencia, siempre que el diseño sea intuitivo y no incremente la complejidad de uso. En consecuencia, el desarrollo de dispensadores automáticos debe integrar criterios de diseño inclusivo que equilibren funcionalidad avanzada y facilidad de interacción.\\
+
+\subsection{Consideraciones éticas, de seguridad y privacidad}
+\label{sec:eticas}
+
+El uso cada vez más amplio de dispositivos conectados dentro del ámbito sanitario supone importantes retos relacionados con la seguridad de la información, la protección de datos y las implicaciones éticas que derivan del uso de estas tecnologías digitales en el seguimiento de pacientes.
+
+Como se analiza en \cite{iot_privacy2022}, dentro de los \textit{Internet of Medical Things} (IoMT), los sistemas para monitorización y los dispositivos inteligentes manejan información altamente sensible, como pueden ser datos clínicos, patrones de comportamiento información biométrica del paciente, lo que exige implementar en estas tecnologías mecanismos robustos de protección y control de acceso.\\
+
+Desde el punto de vista de la seguridad informática, existen diversos estudios donde se señalan que los dispositivos IoMT pueden presentar ciertas vulnerabilidades relacionadas con la autenticación , la trasmisión de datos o la gestión de las actualizaciones de software. Esto es un aspecto que puede facilitar ataques como accesos no autorizados, manipulación de datos o interrupciones del servicio, comprometiendo así tanto la privacidad como el funcionamiento del sistema, algo que se describe en \cite{adil2024}. Por ello, se recomienda la adopción de arquitecturas seguras que incorporen cifrado de comunicaciones, autenticación robusta y políticas de gestión segura de dispositivos.\\
+
+Asimismo, el desarrollo de sistemas médicos inteligentes debe considerar principios éticos relacionados con la transparencia del sistema, la protección de la autonomía del paciente y el uso responsable de los datos recopilados. En este sentido, en \cite{alsabah2025} señalan que la integración de inteligencia artificial en entornos sanitarios requiere que los sistemas sean comprensibles, auditables y diseñados de forma que minimicen posibles sesgos o decisiones automatizadas inapropiadas.\\
+
+Por otro lado, \textit{Edge computing} se presenta como una estrategia relevante para mejorar la privacidad en sistemas de salud conectados. Tal como se describe en \cite{edgehealthcare2024}, el procesamiento local de los datos permite reducir la necesidad de transmitir información sensible a infraestructuras externas, disminuyendo así los riesgos asociados a la exposición de datos clínicos. En consecuencia, el diseño de sistemas de dispensación inteligente debe incorporar desde su concepción mecanismos adecuados de seguridad, privacidad y control de acceso para garantizar la protección de la información médica.\\
+
+\
+
+\
+
+\
+
+\
+
+En este capítulo se han analizado distintos trabajos y propuestas relacionadas con los sistemas inteligentes de dispensación de medicamentos, así como diversas tecnologías asociadas al \textit{Internet of Medical Things}, arquitecturas embebidas y enfoques de diseño centrado en el usuario. Este análisis ha permitido identificar las principales soluciones existentes y las limitaciones actuales en términos de integración tecnológica, usabilidad y seguridad. A partir de estas consideraciones, en el siguiente capítulo se presentan los objetivos de este trabajo, que guiarán el desarrollo del sistema de dispensación inteligente propuesto.
