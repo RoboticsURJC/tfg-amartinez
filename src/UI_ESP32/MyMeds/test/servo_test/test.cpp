@@ -11,7 +11,7 @@ uint16_t pos0  = SERVOMIN;
 uint16_t pos90 = (SERVOMIN + SERVOMAX) / 2;
 uint16_t pos45 = (pos0 + pos90) / 2;
 
-void setup()
+void setup1()
 {
     Serial.begin(115200);
 
@@ -23,7 +23,7 @@ void setup()
     delay(1000);
 }
 
-void loop()
+void loop1()
 {
     Serial.println("0°");
     pwm.setPWM(0, 0, pos0);

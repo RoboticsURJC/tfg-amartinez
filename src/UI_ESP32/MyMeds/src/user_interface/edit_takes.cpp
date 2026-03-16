@@ -11,6 +11,9 @@ static lv_obj_t *days_warning;
 static lv_obj_t *sw_recordatory;
 static lv_obj_t *btn_rep_days;
 
+static bool creating_new = false;
+static TakeConfig temp_take;
+
 static int right_x(int width)
 {
     return 320 - width - 10;
@@ -27,8 +30,26 @@ void set_rollers_init(int index)
 
 void edit_takes_screen(int index)
 {
-    edit_index = index;
+    //edit_index = index;
 
+    creating_new = (index == -1);
+
+    if (creating_new) {
+        memset(&temp_take, 0, sizeof(TakeConfig));
+        strcpy(temp_take.hour, "00:00");
+
+        edit_index = total_takes;
+    } else {
+        edit_index = index;
+    }
+
+    TakeConfig *cfg;
+
+    if (creating_new)
+        cfg = &temp_take;
+    else
+        cfg = &takes[index];
+        
     lv_obj_t *scr = lv_obj_create(NULL);
     lv_scr_load(scr);
     lv_obj_set_style_bg_color(scr, lv_color_make(48, 25, 52), LV_PART_MAIN);
@@ -116,7 +137,7 @@ void edit_takes_screen(int index)
     lv_obj_set_style_pad_all(roller_minutes, 0, LV_PART_SELECTED);
     lv_obj_set_style_text_color(roller_minutes, lv_color_black(), LV_PART_SELECTED);
 
-    set_rollers_init(index);
+    set_rollers_init(cfg->hour);
 
     //----------- REPETITION -------------------------------------------
     const int rep_row_y = 120;
@@ -280,11 +301,27 @@ void edit_takes_screen(int index)
     {
         int hh = lv_roller_get_selected(roller_hours);
         int mm = lv_roller_get_selected(roller_minutes);
-        sprintf(takes[edit_index].hour, "%02d:%02d", hh, mm);
 
-        takes[edit_index].recordatory = lv_obj_has_state(sw_recordatory, LV_STATE_CHECKED);
-        takes[edit_index].warning_time = lv_dropdown_get_selected(days_warning)*5;
+        TakeConfig *cfg;
 
+        if (creating_new) {
+            cfg = &temp_take;
+        } else {
+            cfg = &takes[edit_index];
+        }
+
+        sprintf(cfg->hour, "%02d:%02d", hh, mm);
+
+        cfg->recordatory = lv_obj_has_state(sw_recordatory, LV_STATE_CHECKED);
+        cfg->warning_time = lv_dropdown_get_selected(days_warning)*5;
+
+        if (creating_new) {
+            if (total_takes < MAX_TAKES) {
+                takes[total_takes] = temp_take;
+                total_takes++;
+            }
+        }
+        
         saveTakes();
         takes_list_screen();
     }, LV_EVENT_CLICKED, NULL);

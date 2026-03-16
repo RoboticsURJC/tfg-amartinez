@@ -60,3 +60,20 @@ void uploadTakes()
         takes[i].warning_time = prefs.getInt(key, 0);
     }
 }
+
+void delete_take(int index)
+{
+    if (index < 0 || index >= total_takes)
+        return;
+
+    for (int i = index; i < total_takes - 1; i++)
+    {
+        takes[i] = takes[i + 1];
+    }
+
+    total_takes--;
+
+    saveTakes();
+
+    takes_list_screen();
+}
