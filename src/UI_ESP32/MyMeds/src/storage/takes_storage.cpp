@@ -5,7 +5,7 @@
 
 void initNVS()
 {
-    prefs.begin("takes", total_takes);
+    prefs.begin("takes", false);
 }
 
 void saveTakes()
@@ -32,6 +32,8 @@ void saveTakes()
         sprintf(key, "warning%d", i);
         prefs.putInt(key, takes[i].warning_time);
     }
+
+    prefs.end();
 }
 
 void uploadTakes()
@@ -59,6 +61,8 @@ void uploadTakes()
         sprintf(key, "warning%d", i);
         takes[i].warning_time = prefs.getInt(key, 0);
     }
+
+    prefs.end();
 }
 
 void delete_take(int index)
@@ -74,6 +78,5 @@ void delete_take(int index)
     total_takes--;
 
     saveTakes();
-
-    takes_list_screen();
+    //takes_list_screen();
 }

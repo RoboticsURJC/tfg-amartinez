@@ -3,6 +3,8 @@
 #include "user_interface/pill_takes.h"
 #include "user_interface/home_mod.h"
 
+static lv_obj_t *current_screen = NULL;
+
 static void btn_event_cb(lv_event_t *e)
 {
     lv_obj_t *btn = lv_event_get_target(e);
@@ -14,10 +16,20 @@ static void btn_event_cb(lv_event_t *e)
     }
 }
 
+static void load_screen(lv_obj_t *scr)
+{
+    if (current_screen)
+        lv_obj_del_async(current_screen);
+
+    current_screen = scr;
+
+    lv_scr_load(scr);
+}
+
 void show_home_screen()
 {
     lv_obj_t * scr = lv_obj_create(NULL);
-    lv_scr_load(scr);
+    load_screen(scr);
     lv_obj_set_style_bg_color(scr, lv_color_make(48, 25, 52), LV_PART_MAIN);
 
     lv_obj_t *btn1 = lv_btn_create(scr);

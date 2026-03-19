@@ -6,7 +6,6 @@
 typedef struct {
     char hour[6];
     bool repeat[7];
-    bool personalized;
     bool recordatory;
     int warning_time;
 } TakeConfig;

@@ -7,88 +7,92 @@ TakeConfig takes[MAX_TAKES];
 int total_takes = 0;
 static lv_obj_t *takes_list;
 
-static lv_obj_t *popup_bg = NULL;
-static lv_obj_t *popup_win = NULL;
 static int delete_index = -1;
 
-static void popup_close(lv_event_t *e)
-{
-    if (popup_bg)
-    {
-        lv_obj_del(popup_bg);
-        popup_bg = NULL;
-        popup_win = NULL;
-    }
-}
+static lv_obj_t *current_screen = NULL;
 
-static void popup_delete(lv_event_t *e)
+static void load_screen(lv_obj_t *scr)
 {
-    delete_take(delete_index);
+    if (current_screen)
+        lv_obj_del_async(current_screen);
 
-    if (popup_bg)
-    {
-        lv_obj_del(popup_bg);
-        popup_bg = NULL;
-        popup_win = NULL;
-    }
+    current_screen = scr;
+
+    lv_scr_load(scr);
 }
 
 void confirm_delete(int index)
 {
     delete_index = index;
 
-    // Fondo
-    popup_bg = lv_obj_create(lv_scr_act());
-    lv_obj_set_size(popup_bg, 320, 240);
-    lv_obj_center(popup_bg);
+    lv_obj_t *scr = lv_obj_create(NULL);
+    load_screen(scr);
 
-    lv_obj_set_style_bg_color(popup_bg, lv_color_black(), 0);
-    lv_obj_set_style_bg_opa(popup_bg, LV_OPA_50, 0);
-    lv_obj_clear_flag(popup_bg, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_set_style_bg_color(scr, lv_color_make(48,25,52), LV_PART_MAIN);
 
-    // Ventana
-    popup_win = lv_obj_create(popup_bg);
-    lv_obj_set_size(popup_win, 280, 150);
-    lv_obj_center(popup_win);
+    // TEXT
 
-    lv_obj_set_style_radius(popup_win, 15, 0);
-    lv_obj_set_style_bg_color(popup_win, lv_color_make(48, 25, 52), 0);
-    lv_obj_clear_flag(popup_win, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_t *lbl = lv_label_create(scr);
 
-    // Texto
-    lv_obj_t *lbl = lv_label_create(popup_win);
-    lv_label_set_text(lbl, "Confirme eliminar");
-    lv_obj_set_style_text_color(lbl, lv_color_white(), 0);
-    lv_obj_set_style_text_font(lbl, &lv_font_montserrat_24, LV_PART_MAIN);
-    lv_obj_align(lbl, LV_ALIGN_TOP_MID, 0, 10);
+    lv_label_set_text(lbl, "Eliminar toma?");
+    lv_obj_set_style_text_color(lbl, lv_color_white(), LV_PART_MAIN);
 
-    // Botón Cancelar
-    lv_obj_t *btn_cancel = lv_obj_create(popup_win);
-    lv_obj_set_size(btn_cancel, 130, 60);
-    lv_obj_align(btn_cancel, LV_ALIGN_BOTTOM_LEFT, 5, -10);
-    lv_obj_set_style_bg_color(btn_cancel, lv_color_make(209, 209, 209), 0);
-    lv_obj_add_event_cb(btn_cancel, popup_close, LV_EVENT_CLICKED, NULL);
-    lv_obj_t * lbl1 = lv_label_create(btn_cancel);
-    lv_label_set_text(lbl1, "Cancelar");
-    lv_obj_set_style_text_font(lbl1, &lv_font_montserrat_22, LV_PART_MAIN);
-    lv_obj_center(lbl1);
+    lv_obj_align(lbl, LV_ALIGN_TOP_MID, 0, 20);
 
-    // Botón Borrar
-    lv_obj_t *btn_del = lv_obj_create(popup_win);
-    lv_obj_set_size(btn_del, 80, 60);
-    lv_obj_align(btn_del, LV_ALIGN_BOTTOM_RIGHT, -5, -10);
-    lv_obj_set_style_bg_color(btn_del, lv_color_make(255, 38, 0), 0);
-    lv_obj_add_event_cb(btn_del, popup_delete, LV_EVENT_CLICKED, NULL);
-    lv_obj_t * lbl2 = lv_label_create(btn_del);
-    lv_label_set_text(lbl2, LV_SYMBOL_TRASH);
-    lv_obj_set_style_text_font(lbl2, &lv_font_montserrat_24, LV_PART_MAIN);
-    lv_obj_center(lbl2);
+    // CANCEL
+
+    lv_obj_t *btn_cancel = lv_btn_create(scr);
+
+    lv_obj_set_size(btn_cancel,240,55);
+    lv_obj_set_style_bg_color(btn_cancel, lv_color_make(170, 170, 170), LV_PART_MAIN);
+
+    lv_obj_align(btn_cancel, LV_ALIGN_BOTTOM_MID, 0, -30);
+
+    lv_obj_t *l1 = lv_label_create(btn_cancel);
+
+    lv_label_set_text(l1,"Cancelar");
+
+    lv_obj_center(l1);
+
+    lv_obj_add_event_cb(btn_cancel,
+    [](lv_event_t *e)
+    {
+        takes_list_screen();
+    },
+    LV_EVENT_CLICKED,
+    NULL);
+
+
+
+    // DELETE
+
+    lv_obj_t *btn_del = lv_btn_create(scr);
+
+    lv_obj_set_size(btn_del,240,55);
+    lv_obj_set_style_bg_color(btn_del, lv_color_make(255, 38, 0), LV_PART_MAIN);
+
+    lv_obj_align(btn_del, LV_ALIGN_TOP_MID, 0, 80);
+
+    lv_obj_t *l2 = lv_label_create(btn_del);
+
+    lv_label_set_text(l2,"Borrar");
+
+    lv_obj_center(l2);
+
+    lv_obj_add_event_cb(btn_del,
+    [](lv_event_t *e)
+    {
+        delete_take(delete_index);
+        takes_list_screen();
+    },
+    LV_EVENT_CLICKED,
+    NULL);
 }
 
 void takes_list_screen()
 {
     lv_obj_t *scr = lv_obj_create(NULL);
-    lv_scr_load(scr);
+    load_screen(scr);
     lv_obj_set_style_bg_color(scr, lv_color_make(48, 25, 52), LV_PART_MAIN);
     lv_obj_set_style_bg_opa(scr, LV_OPA_COVER, LV_PART_MAIN);
 
@@ -164,10 +168,15 @@ void takes_list_screen()
         lv_obj_set_style_text_font(lbl_edit, &lv_font_montserrat_16, 0);
         lv_obj_center(lbl_edit);
 
-        lv_obj_set_user_data(btn_edit, (void*)i);
+        lv_obj_set_user_data(btn_edit, (void*)(intptr_t)i);
 
         lv_obj_add_event_cb(btn_edit, [](lv_event_t *e){
-            int index = (int)lv_obj_get_user_data(lv_event_get_target(e));
+            lv_obj_t *btn = lv_event_get_target(e);
+
+            lv_obj_t *row = lv_obj_get_parent(btn);
+
+            int index = lv_obj_get_index(row);
+
             edit_takes_screen(index);
         }, LV_EVENT_CLICKED, NULL);
 
@@ -180,11 +189,21 @@ void takes_list_screen()
         lv_obj_set_style_text_font(lbl_del, &lv_font_montserrat_16, 0);
         lv_obj_center(lbl_del);
 
-        lv_obj_set_user_data(btn_del, (void*)i);
+        lv_obj_set_user_data(btn_del, (void*)(intptr_t)i);
 
         lv_obj_add_event_cb(btn_del, [](lv_event_t *e){
-            int index = (int)lv_obj_get_user_data(lv_event_get_target(e));
+            
+            lv_obj_t *btn = lv_event_get_target(e);
+
+            lv_obj_t *row = lv_obj_get_parent(btn);
+
+            int index = lv_obj_get_index(row);
+
             confirm_delete(index);
+
+            // delete_take(index);
+
+            // takes_list_screen();
         }, LV_EVENT_CLICKED, NULL);
     }
 
