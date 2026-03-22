@@ -138,14 +138,17 @@ void takes_list_screen()
     lv_obj_set_size(takes_list, 300, 150);
     //lv_obj_align(takes_list, LV_ALIGN_TOP_MID, 0, 100);
     lv_obj_set_pos(takes_list, 5, 100);
+    lv_obj_clear_flag(takes_list, LV_OBJ_FLAG_SCROLL_ELASTIC);
+    lv_obj_set_scrollbar_mode(takes_list, LV_SCROLLBAR_MODE_AUTO);
     lv_obj_set_scroll_dir(takes_list, LV_DIR_VER);
     lv_obj_set_flex_flow(takes_list, LV_FLEX_FLOW_COLUMN);
 
     for (int i=0; i < total_takes; i++){
         lv_obj_t *row = lv_obj_create(takes_list);
         lv_obj_set_size(row, 280, 45);
+        lv_obj_clear_flag(row, LV_OBJ_FLAG_SCROLLABLE);
+        lv_obj_set_scrollbar_mode(row, LV_SCROLLBAR_MODE_OFF);
         lv_obj_set_flex_flow(row, LV_FLEX_FLOW_ROW);
-        //lv_obj_set_style_pad_all(row, 5, LV_PART_MAIN);
         lv_obj_set_flex_align(row, LV_FLEX_ALIGN_SPACE_BETWEEN, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 
         char lbl_text[20];

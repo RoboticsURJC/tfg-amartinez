@@ -14,6 +14,11 @@ static void btn_event_cb(lv_event_t *e)
         takes_list_screen();
         return;
     }
+
+    if (!strcmp(txt, "Tomas hoy")){
+        today_takes_screen();
+        return;
+    }
 }
 
 static void load_screen(lv_obj_t *scr)

@@ -16,5 +16,10 @@ extern TakeConfig takes[MAX_TAKES];
 void takes_list_screen();
 void edit_takes_screen(int index);
 void repetition_screen(int index);
-void show_home_screen();
 void delete_take(int index);
+
+void show_home_screen();
+
+void today_takes_screen();
+int get_today_index();
+bool is_take_today(int index);

@@ -10,6 +10,7 @@ void initNVS()
 
 void saveTakes()
 {
+    prefs.begin("takes", false);
     prefs.putInt("total", total_takes);
 
     for (int i = 0; i < total_takes; i++){
@@ -38,6 +39,8 @@ void saveTakes()
 
 void uploadTakes()
 {
+    prefs.begin("takes", false);
+    
     total_takes = prefs.getInt("total", 0);
     if (total_takes <= 0){
         return;
