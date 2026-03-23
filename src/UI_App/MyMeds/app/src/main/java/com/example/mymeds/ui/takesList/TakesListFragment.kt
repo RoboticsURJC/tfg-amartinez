@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import com.example.mymeds.R
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymeds.databinding.FragmentTakesListBinding
 import com.example.mymeds.data.repository.TakeRepository
 
 class TakesListFragment : Fragment() {
     private var _binding: FragmentTakesListBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: TakesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,14 +35,20 @@ class TakesListFragment : Fragment() {
             findNavController().navigate(R.id.takesConfigFragment)
         }
 
-        binding.buttonEditTake.setOnClickListener(){
-            findNavController().navigate(R.id.takesConfigFragment)
-        }
-        binding.buttonDeleteTake.setOnClickListener(){
-            showDeleteConfirmation(0)
-        }
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val takes = TakeRepository.getTakes()
+
+        adapter = TakesAdapter(takes,
+            onEditClick = {position -> findNavController().navigate(R.id.takesConfigFragment)},
+            onDeleteClick = {position -> showDeleteConfirmation(position)})
+
+        binding.takesRecycler.adapter = adapter
+        binding.takesRecycler.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onResume() {
@@ -57,6 +65,8 @@ class TakesListFragment : Fragment() {
         } else {
             binding.emptyState.visibility = View.GONE
             binding.takesState.visibility = View.VISIBLE
+
+            adapter.notifyDataSetChanged()
         }
     }
 
