@@ -79,75 +79,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/takesRecycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="12dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <!--Hour-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🕒 08:30"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
-
-                <!--Medicine-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Paracetamol 500mg\nIbuprofeno 400mg"
-                    android:textSize="10dp"/>
-
-                <!--Days-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="L M X J V"
-                    android:textSize="10dp"/>
-
-                <!--Recordatory-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🔔 Recordatorio activado"
-                    android:textSize="10dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="end"
-                    android:layout_marginTop="16dp">
-
-                    <!--Edit button-->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/buttonEditTake"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Editar"
-                        style="?attr/materialButtonOutlinedStyle"/>
-
-                    <!--Delete button-->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/buttonDeleteTake"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Eliminar"
-                        android:layout_marginStart="8dp"
-                        android:backgroundTint="@android:color/holo_red_dark"/>
-                </LinearLayout>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <!--Add take button-->
         <com.google.android.material.button.MaterialButton

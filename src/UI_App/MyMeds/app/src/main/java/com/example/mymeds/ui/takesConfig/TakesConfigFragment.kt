@@ -15,6 +15,10 @@ import com.example.mymeds.data.model.Medicine
 import com.example.mymeds.databinding.FragmentTakesConfigBinding
 import com.google.android.material.chip.Chip
 import java.util.Calendar
+import com.example.mymeds.data.model.DayOfWeek
+import com.example.mymeds.data.model.Take
+import com.example.mymeds.data.repository.TakeRepository
+
 
 class TakesConfigFragment : Fragment() {
 
@@ -39,25 +43,41 @@ class TakesConfigFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        // Guardar toma
         binding.buttonSave.setOnClickListener {
 
-            // Hora
-            if (binding.timeInput.text.isNullOrBlank()) {
+            val time = binding.timeInput.text.toString()
+
+            // --- Validación hora ---
+            if (time.isBlank()) {
                 binding.timeLayout.error = "Selecciona una hora"
                 return@setOnClickListener
             } else {
                 binding.timeLayout.error = null
             }
 
-            // Días
-            val selectedDays = chips.filter { it.isChecked }
+            // --- Días seleccionados ---
+            val selectedDays = chips
+                .filter { it.isChecked }
+                .map { chip ->
+                    when (chip.id) {
+                        R.id.chipMonday -> DayOfWeek.MONDAY
+                        R.id.chipTuesday -> DayOfWeek.TUESDAY
+                        R.id.chipWednesday -> DayOfWeek.WEDNESDAY
+                        R.id.chipThursday -> DayOfWeek.THURSDAY
+                        R.id.chipFriday -> DayOfWeek.FRIDAY
+                        R.id.chipSaturday -> DayOfWeek.SATURDAY
+                        R.id.chipSunday -> DayOfWeek.SUNDAY
+                        else -> null
+                    }
+                }
+                .filterNotNull()
+
             if (selectedDays.isEmpty()) {
                 Toast.makeText(requireContext(), "Selecciona al menos un día", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Medicamentos
+            // --- Medicamentos ---
             if (medicines.isEmpty()) {
                 Toast.makeText(requireContext(), "Añade al menos un medicamento", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -68,12 +88,35 @@ class TakesConfigFragment : Fragment() {
             }
 
             if (invalidMedicine) {
-                Toast.makeText(requireContext(), "Completa al menos un medicamento", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Completa todos los medicamentos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Simulación guardado
-            Toast.makeText(requireContext(), "Toma guardada (simulado)", Toast.LENGTH_SHORT).show()
+            // --- Recordatorio ---
+            val reminderEnabled = binding.reminderSwitch.isChecked
+
+            val advanceWarningMinutes = if (binding.warningDropdown.text.isNullOrBlank()) {
+                null
+            } else {
+                binding.warningDropdown.text.toString()
+                    .substringBefore(" ")
+                    .toIntOrNull()
+            }
+
+            // --- Crear objeto Take ---
+            val take = Take(
+                time = time,
+                days = selectedDays,
+                medicines = medicines.toList(),
+                reminderEnabled = reminderEnabled,
+                advanceWarningMinutes = advanceWarningMinutes
+            )
+
+            // --- Guardar en repositorio ---
+            TakeRepository.addTake(take)
+
+            Toast.makeText(requireContext(), "Toma guardada correctamente", Toast.LENGTH_SHORT).show()
+
             findNavController().popBackStack()
         }
 

@@ -89,7 +89,7 @@
             app:singleSelection="false">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_monday"
+                android:id="@+id/chipMonday"
                 android:layout_width="52dp"
                 android:layout_height="48dp"
                 android:text="L"
@@ -107,7 +107,7 @@
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_tuesday"
+                android:id="@+id/chipTuesday"
                 android:layout_width="50dp"
                 android:layout_height="48dp"
                 android:text="M"
@@ -125,7 +125,7 @@
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_wednesday"
+                android:id="@+id/chipWednesday"
                 android:layout_width="52dp"
                 android:layout_height="48dp"
                 android:text="X"
@@ -143,7 +143,7 @@
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_thursday"
+                android:id="@+id/chipThursday"
                 android:layout_width="52dp"
                 android:layout_height="48dp"
                 android:text="J"
@@ -161,7 +161,7 @@
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_friday"
+                android:id="@+id/chipFriday"
                 android:layout_width="52dp"
                 android:layout_height="48dp"
                 android:text="V"
@@ -179,7 +179,7 @@
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_saturday"
+                android:id="@+id/chipSaturday"
                 android:layout_width="52dp"
                 android:layout_height="48dp"
                 android:text="S"
@@ -197,7 +197,7 @@
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_sunday"
+                android:id="@+id/chipSunday"
                 android:layout_width="52dp"
                 android:layout_height="48dp"
                 android:text="D"
