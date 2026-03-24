@@ -25,15 +25,29 @@ class TakesAdapter (
     override fun onBindViewHolder(holder: TakeViewHolder, position: Int) {
         val take = takes[position]
 
-        holder.binding.textTime.text = take.time
+        holder.binding.textTime.text = "🕒 ${take.time}"
 
-        holder.binding.textDays.text = take.days.joinToString(" ") { it.label }
+        holder.binding.textDays.text = "📅 " + take.days.joinToString(" ") { it.label }
 
-        holder.binding.textReminder.text =
-            if (take.reminderEnabled)
-                "Recordatorio activado"
-            else
-                "Recordatorio desactivado"
+        holder.binding.textMedicines.text = "💊 " + take.medicines.joinToString("\n") {
+                "${it.name} - ${it.quantity}"
+            }
+
+        if (take.reminderEnabled) {
+
+            val warningText =
+                take.advanceWarningMinutes?.let {
+                    "Aviso previo: $it min"
+                } ?: "Sin aviso previo"
+
+            holder.binding.textReminder.text =
+                "🔔 Recordatorio activado\n$warningText"
+
+        } else {
+
+            holder.binding.textReminder.text =
+                "🔕 Recordatorio desactivado"
+        }
 
         holder.binding.buttonEdit.setOnClickListener {
             onEditClick(position)

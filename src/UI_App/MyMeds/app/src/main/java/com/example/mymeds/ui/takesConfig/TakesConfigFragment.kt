@@ -31,6 +31,8 @@ class TakesConfigFragment : Fragment() {
     private val medicines = mutableListOf<Medicine>()
     private lateinit var medicineAdapter: MedicineAdapter
 
+    private var editPosition: Int = -1
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -113,9 +115,23 @@ class TakesConfigFragment : Fragment() {
             )
 
             // --- Guardar en repositorio ---
-            TakeRepository.addTake(take)
+            if (editPosition == -1) {
 
-            Toast.makeText(requireContext(), "Toma guardada correctamente", Toast.LENGTH_SHORT).show()
+                TakeRepository.addTake(take)
+
+            } else {
+
+                TakeRepository.updateTake(
+                    editPosition,
+                    take
+                )
+            }
+
+            Toast.makeText(
+                requireContext(),
+                "Toma guardada correctamente",
+                Toast.LENGTH_SHORT
+            ).show()
 
             findNavController().popBackStack()
         }
@@ -139,6 +155,15 @@ class TakesConfigFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (arguments != null && requireArguments().containsKey("position")) {
+
+            editPosition = requireArguments().getInt("position")
+
+        } else {
+
+            editPosition = -1
+        }
 
         // Chips días
         chips = listOf(
@@ -184,6 +209,37 @@ class TakesConfigFragment : Fragment() {
         val options = listOf("5 minutos", "10 minutos", "15 minutos", "20 minutos", "30 minutos")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, options)
         binding.warningDropdown.setAdapter(adapter)
+
+        if (editPosition != -1) {
+
+            val take = TakeRepository.getTakes()[editPosition]
+
+            // Hora
+            binding.timeInput.setText(take.time)
+
+            // Días
+            chips.forEach { chip ->
+                chip.isChecked =
+                    take.days.any { it.label == chip.text.toString() }
+            }
+
+            // Medicamentos
+            medicines.clear()
+            medicines.addAll(take.medicines)
+            medicineAdapter.notifyDataSetChanged()
+
+            // Recordatorio
+            binding.reminderSwitch.isChecked =
+                take.reminderEnabled
+
+            // Warning
+            take.advanceWarningMinutes?.let {
+                binding.warningDropdown.setText(
+                    "$it minutos",
+                    false
+                )
+            }
+        }
     }
 
     override fun onDestroyView() {

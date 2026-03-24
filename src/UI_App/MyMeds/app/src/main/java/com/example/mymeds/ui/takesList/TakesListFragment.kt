@@ -44,7 +44,13 @@ class TakesListFragment : Fragment() {
         val takes = TakeRepository.getTakes()
 
         adapter = TakesAdapter(takes,
-            onEditClick = {position -> findNavController().navigate(R.id.takesConfigFragment)},
+            onEditClick = {position ->
+                val bundle = Bundle()
+                bundle.putInt("position", position)
+
+                findNavController().navigate(
+                    R.id.takesConfigFragment,
+                    bundle)},
             onDeleteClick = {position -> showDeleteConfirmation(position)})
 
         binding.takesRecycler.adapter = adapter

@@ -3,7 +3,7 @@ package com.example.mymeds.data.model
 enum class DayOfWeek(val label: String) {
     MONDAY("L"),
     TUESDAY("M"),
-    WEDNESDAY("x"),
+    WEDNESDAY("X"),
     THURSDAY("J"),
     FRIDAY("V"),
     SATURDAY("S"),
