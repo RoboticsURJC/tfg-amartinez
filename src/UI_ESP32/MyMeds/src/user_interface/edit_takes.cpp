@@ -286,6 +286,21 @@ void edit_takes_screen(int index)
     else
         lv_dropdown_set_selected(days_repeat,2);
 
+    int sel = lv_dropdown_get_selected(days_repeat);
+
+    if (sel == 0) {
+        for (int i = 0; i < 7; i++) {
+            current_cfg->repeat[i] = true;
+        }
+    } else if (sel == 1) {
+        for (int i = 0; i < 5; i++) {
+            current_cfg->repeat[i] = true;
+        }
+
+        current_cfg->repeat[5] = false;
+        current_cfg->repeat[6] = false;
+    }
+
     lv_obj_add_event_cb(days_repeat, [](lv_event_t *e)
     {
         lv_event_code_t code = lv_event_get_code(e);

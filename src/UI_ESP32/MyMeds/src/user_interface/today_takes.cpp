@@ -82,7 +82,7 @@ today_takes_screen()
 
 
     lv_obj_t *list = lv_obj_create(scr);
-    lv_obj_set_size(list, 300, 150);
+    lv_obj_set_size(list, 300, 180);
     lv_obj_set_pos(list, 10, 60);
     lv_obj_set_scroll_dir(list, LV_DIR_VER);
     lv_obj_set_scrollbar_mode(list, LV_SCROLLBAR_MODE_OFF);
@@ -91,7 +91,7 @@ today_takes_screen()
 
     lv_obj_clear_flag(list, LV_OBJ_FLAG_SCROLL_ELASTIC);
     lv_obj_clear_flag(list, LV_OBJ_FLAG_SCROLL_MOMENTUM);
-    // lv_obj_set_flex_flow(list, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_flow(list, LV_FLEX_FLOW_COLUMN);
 
     for (int i = 0; i < total_takes; i++)
     {
