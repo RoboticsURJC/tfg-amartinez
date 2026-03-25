@@ -89,7 +89,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Escana el código QR que aparece en el pastillero para iniciar la configuración"
+            android:text="Escanea el código QR que aparece en el pastillero para iniciar la configuración"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"

@@ -12,6 +12,7 @@ import com.example.mymeds.databinding.FragmentWifiConfigBinding
 import android.view.inputmethod.InputMethodManager
 import android.content.Context
 import com.example.mymeds.R
+import com.example.mymeds.data.repository.EspConfig
 
 class WifiConfigFragment : Fragment() {
 
@@ -30,13 +31,57 @@ class WifiConfigFragment : Fragment() {
         }
 
         binding.buttonSendWifi.setOnClickListener {
-            Toast.makeText(
-                requireContext(),
-                "Configuración WiFi enviada (simulado)",
-                Toast.LENGTH_SHORT
-            ).show()
+            val ssid = binding.ssidInput.text.toString()
+            val pass = binding.passwordInput.text.toString()
 
-            findNavController().navigate(R.id.takesListFragment)
+            if (ssid.isBlank() || pass.isBlank()) {
+
+                Toast.makeText(
+                    requireContext(),
+                    "Introduce SSID y contraseña",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                return@setOnClickListener
+            }
+
+            Thread {
+                try {
+                    val url = java.net.URL(EspConfig.baseUrl + "/save")
+                    val conn = url.openConnection() as java.net.HttpURLConnection
+
+                    conn.requestMethod = "POST"
+                    conn.doOutput = true
+
+                    val data = "ssid=" + ssid + "&password=" + pass
+                    val out = conn.outputStream
+
+                    out.write(data.toByteArray())
+                    out.flush()
+                    out.close()
+
+                    conn.responseCode
+
+                    requireActivity().runOnUiThread {
+                        Toast.makeText(
+                            requireContext(),
+                            "WiFi enviado al ESP",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        findNavController().navigate(R.id.takesListFragment)
+                    }
+
+                } catch (e: Exception) {
+                    requireActivity().runOnUiThread {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error enviando WiFi",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }.start()
         }
 
         return binding.root
@@ -45,6 +90,12 @@ class WifiConfigFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Toast.makeText(
+            requireContext(),
+            EspConfig.baseUrl,
+            Toast.LENGTH_LONG
+        ).show()
+        
         // Forzar foco y teclado en SSID
         binding.ssidInput.requestFocus()
         binding.ssidInput.post {

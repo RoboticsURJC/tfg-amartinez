@@ -18,7 +18,8 @@ import java.util.Calendar
 import com.example.mymeds.data.model.DayOfWeek
 import com.example.mymeds.data.model.Take
 import com.example.mymeds.data.repository.TakeRepository
-
+import com.example.mymeds.data.util.JsonUtils
+import android.util.Log
 
 class TakesConfigFragment : Fragment() {
 
@@ -113,6 +114,10 @@ class TakesConfigFragment : Fragment() {
                 reminderEnabled = reminderEnabled,
                 advanceWarningMinutes = advanceWarningMinutes
             )
+
+            val json = JsonUtils.takeToJson(take)
+
+            Log.d("JSON_TAKE", json)
 
             // --- Guardar en repositorio ---
             if (editPosition == -1) {
