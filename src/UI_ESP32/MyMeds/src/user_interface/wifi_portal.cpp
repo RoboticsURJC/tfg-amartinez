@@ -76,9 +76,23 @@ void handle_save()
     ESP.restart();
 }
 
+void handle_takes()
+{
+    String body = server.arg("plain");
+
+    Serial.println("Takes received");
+    Serial.println(body);
+
+    Preferences p;
+    p.begin("takes", false);
+    p.putString("data", body);
+    p.end();
+
+    server.send(200, "application/jason", "{\"status\":\"ok\"}");
+}
+
 void wifi_portal_init()
 {
-    //WiFi.mode(WIFI_AP);
     IPAddress local_ip(192,168,4,1);
     IPAddress gateway(192,168,4,1);
     IPAddress subnet(255,255,255,0);
@@ -91,6 +105,7 @@ void wifi_portal_init()
 
     server.on("/", handle_web_root);
     server.on("/save", HTTP_POST, handle_save);
+    server.on("/takes", HTTP_POST, handle_takes);
     server.begin();
 
     Serial.println((uint32_t)&server);

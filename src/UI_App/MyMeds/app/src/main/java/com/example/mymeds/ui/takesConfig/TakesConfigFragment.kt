@@ -132,6 +132,8 @@ class TakesConfigFragment : Fragment() {
                 )
             }
 
+            sendTakesToEsp()
+
             Toast.makeText(
                 requireContext(),
                 "Toma guardada correctamente",
@@ -245,6 +247,65 @@ class TakesConfigFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun sendTakesToEsp() {
+
+        val takes = TakeRepository.getTakes()
+
+        Thread {
+
+            try {
+
+                val url = java.net.URL(
+                    com.example.mymeds.data.repository.EspConfig.baseUrl + "/takes"
+                )
+
+                val conn =
+                    url.openConnection() as java.net.HttpURLConnection
+
+                conn.requestMethod = "POST"
+                conn.doOutput = true
+                conn.setRequestProperty(
+                    "Content-Type",
+                    "application/json"
+                )
+
+                val json = JsonUtils.takesToJson(takes)
+
+                Log.d("SEND_TAKES", json)
+
+                val out = conn.outputStream
+                out.write(json.toByteArray())
+                out.flush()
+                out.close()
+
+                conn.responseCode
+
+                requireActivity().runOnUiThread {
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Tomas sincronizadas",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            } catch (e: Exception) {
+
+                e.printStackTrace()
+
+                requireActivity().runOnUiThread {
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Error enviando tomas",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+
+        }.start()
     }
 
     override fun onDestroyView() {

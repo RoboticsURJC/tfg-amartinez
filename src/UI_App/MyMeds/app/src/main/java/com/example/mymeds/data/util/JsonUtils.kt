@@ -12,6 +12,7 @@ object JsonUtils {
     }
 
     fun takesToJson(takes: List<Take>): String {
-        return gson.toJson(takes)
+        val map = mapOf("takes" to takes)
+        return gson.toJson(map)
     }
 }
