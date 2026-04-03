@@ -76,6 +76,22 @@ void handle_save()
     ESP.restart();
 }
 
+void handle_takes()
+{
+    String body = server.arg("plain");  // JSON recibido
+
+    Serial.println("Takes received:");
+    Serial.println(body);
+
+    // Guardar en memoria (temporal por ahora)
+    Preferences p;
+    p.begin("takes", false);
+    p.putString("data", body);
+    p.end();
+
+    server.send(200, "application/json", "{\"status\":\"ok\"}");
+}
+
 void wifi_portal_init()
 {
     //WiFi.mode(WIFI_AP);
@@ -91,6 +107,7 @@ void wifi_portal_init()
 
     server.on("/", handle_web_root);
     server.on("/save", HTTP_POST, handle_save);
+    server.on("/takes", HTTP_POST, handle_takes);
     server.begin();
 
     Serial.println((uint32_t)&server);

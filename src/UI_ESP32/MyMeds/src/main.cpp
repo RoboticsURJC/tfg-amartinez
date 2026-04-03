@@ -77,6 +77,14 @@ void setup()
         if (WiFi.status() == WL_CONNECTED){
             wifi_connected = true;
 
+            Serial.println("\nConectado al WiFi!");
+            Serial.println(WiFi.localIP());
+
+            
+            server.on("/", handle_web_root);
+            server.on("/takes", HTTP_POST, handle_takes);
+            server.begin();
+
             lv_obj_clean(lv_scr_act());
             show_clock_screen(lv_scr_act());
             lv_timer_create(update_clock_task, 1000, NULL);
@@ -96,9 +104,7 @@ void loop(){
     lv_timer_handler();
     delay(5);
 
-    if (portal_running) {
-        server.handleClient();
-    }
+    server.handleClient();
 
     if (!wifi_connected && WiFi.status() == WL_CONNECTED){
 
@@ -106,8 +112,6 @@ void loop(){
 
         if (portal_running) {
             server.stop();
-            //WiFi.softAPdisconnect(true);
-            portal_running = false;
         }
 
         lv_obj_clean(lv_scr_act());
