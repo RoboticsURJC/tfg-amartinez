@@ -5,6 +5,8 @@
 
 Preferences prefs;
 extern WebServer server;
+extern bool device_linked;
+
 static String new_ssid = "";
 static String new_password = "";
 
@@ -90,6 +92,7 @@ void handle_takes()
     p.end();
 
     server.send(200, "application/json", "{\"status\":\"ok\"}");
+    device_linked = true;
 }
 
 void wifi_portal_init()

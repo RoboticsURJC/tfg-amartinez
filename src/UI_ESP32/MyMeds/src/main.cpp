@@ -21,6 +21,8 @@ static const int LOGO_TIME_MS = 4000;
 static bool wifi_connected = false;
 static bool portal_running = false;
 
+bool device_linked = false;
+
 static lv_timer_t *clock_timer = nullptr;
 
 void setup()
@@ -80,22 +82,25 @@ void setup()
             Serial.println("\nConectado al WiFi!");
             Serial.println(WiFi.localIP());
 
-            
             server.on("/", handle_web_root);
             server.on("/takes", HTTP_POST, handle_takes);
             server.begin();
 
+            String ip = WiFi.localIP().toString();
+            String url = "http://" + ip;
+
+            Serial.print("Device URL: ");
+            Serial.println(url);
+
             lv_obj_clean(lv_scr_act());
-            show_clock_screen(lv_scr_act());
-            lv_timer_create(update_clock_task, 1000, NULL);
-            clock_sync();
+            show_wifi_screen(lv_scr_act(), url.c_str());
             
             return;
         }
     }
 
     lv_obj_clean(lv_scr_act());
-    show_wifi_screen(lv_scr_act());
+    show_wifi_screen(lv_scr_act(), "http://192.168.4.1");
     wifi_portal_init();
     portal_running = true;
 }
@@ -113,6 +118,29 @@ void loop(){
         if (portal_running) {
             server.stop();
         }
+
+        Serial.println("\nConectado al WiFi!");
+        Serial.println(WiFi.localIP());
+
+        server.on("/", handle_web_root);
+        server.on("/takes", HTTP_POST, handle_takes);
+        server.begin();
+
+        String ip = WiFi.localIP().toString();
+        String url = "http://" + ip;
+
+        Serial.print("Device URL: ");
+        Serial.println(url);
+
+        lv_obj_clean(lv_scr_act());
+        show_wifi_screen(lv_scr_act(), url.c_str());
+    }
+
+    if (device_linked) {
+
+        device_linked = false;
+
+        Serial.println("App sincronizada → mostrando reloj");
 
         lv_obj_clean(lv_scr_act());
         show_clock_screen(lv_scr_act());

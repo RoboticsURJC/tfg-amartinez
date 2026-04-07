@@ -62,10 +62,7 @@ void confirm_delete(int index)
     LV_EVENT_CLICKED,
     NULL);
 
-
-
     // DELETE
-
     lv_obj_t *btn_del = lv_btn_create(scr);
 
     lv_obj_set_size(btn_del,240,55);

@@ -7,10 +7,8 @@ static lv_obj_t *qr_img = nullptr;
 static uint8_t qr_data[qrcodegen_BUFFER_LEN_MAX];
 static uint8_t temp[qrcodegen_BUFFER_LEN_MAX];
 
-static void generate_wifi_qr(lv_obj_t *parent)
+static void generate_wifi_qr(lv_obj_t *parent, const char *text)
 {
-    const char *text = "http://192.168.4.1";
-
     qrcodegen_encodeText(
         text,
         temp,
@@ -77,7 +75,7 @@ static void generate_wifi_qr(lv_obj_t *parent)
     lv_obj_align(qr_img, LV_ALIGN_CENTER, 0, 10);
 }
 
-void show_wifi_screen(lv_obj_t *parent)
+void show_wifi_screen(lv_obj_t *parent, const char *text)
 {
     lv_obj_clean(parent);
 
@@ -86,5 +84,5 @@ void show_wifi_screen(lv_obj_t *parent)
     lv_obj_set_style_text_font(label, &lv_font_montserrat_32, LV_PART_MAIN);
     lv_obj_align(label, LV_ALIGN_TOP_MID, 0, 20);
 
-    generate_wifi_qr(parent);
+    generate_wifi_qr(parent, text);
 }
