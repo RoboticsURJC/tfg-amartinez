@@ -18,10 +18,14 @@ import com.example.mymeds.data.repository.EspConfig
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 
+import android.content.Context
+
 class QrScannerFragment : Fragment() {
 
     private var _binding: FragmentQrScannerBinding? = null
     private val binding get() = _binding!!
+
+    private var scanned = false
 
     private val cameraPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()
@@ -93,10 +97,32 @@ class QrScannerFragment : Fragment() {
                     result: BarcodeResult?
                 ) {
 
-                    result?.text?.let { qr ->
-                        EspConfig.baseUrl = qr
-                        binding.barcodeScanner.pause()
-                        findNavController().navigate(R.id.wifiConfigFragment)
+                    if (!scanned) {
+                        scanned = true
+                        result?.text?.let { qr ->
+                            binding.barcodeScanner.pause()
+
+                            if (qr.contains("192.168.4.1")) {
+                                EspConfig.baseUrl = qr
+
+                                findNavController().navigate(
+                                    R.id.wifiConfigFragment
+                                )
+
+                            } else {
+                                EspConfig.baseUrl = qr
+                                val prefs = requireContext()
+                                    .getSharedPreferences("app", Context.MODE_PRIVATE)
+
+                                prefs.edit()
+                                    .putString("esp_url", qr)
+                                    .apply()
+
+                                findNavController().navigate(
+                                    R.id.takesListFragment
+                                )
+                            }
+                        }
                     }
                 }
             }

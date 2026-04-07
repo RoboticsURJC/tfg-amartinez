@@ -260,8 +260,7 @@ class TakesConfigFragment : Fragment() {
             try {
 
                 val url = java.net.URL(
-                    "http://192.168.1.18/takes"
-                    //EspConfig.baseUrl + "/takes"
+                    EspConfig.baseUrl + "/takes"
                 )
 
                 val conn =

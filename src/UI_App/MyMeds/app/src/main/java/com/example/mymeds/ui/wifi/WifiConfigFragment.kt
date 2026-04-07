@@ -47,6 +47,10 @@ class WifiConfigFragment : Fragment() {
 
             Thread {
                 try {
+                    if (EspConfig.baseUrl.isEmpty()) {
+                        return@Thread
+                    }
+                    
                     val url = java.net.URL(EspConfig.baseUrl + "/save")
                     val conn = url.openConnection() as java.net.HttpURLConnection
 
@@ -69,7 +73,13 @@ class WifiConfigFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        findNavController().navigate(R.id.takesListFragment)
+                        Toast.makeText(
+                            requireContext(),
+                            "Ahora escanea el QR del dispositivo conectado",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                        findNavController().navigate(R.id.qrScannerFragment)
                     }
 
                 } catch (e: Exception) {

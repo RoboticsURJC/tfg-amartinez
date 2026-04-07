@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mymeds.R
 import com.example.mymeds.databinding.FragmentConfigPillsBinding
+import com.example.mymeds.data.repository.EspConfig
+import android.content.Context
 
 class ConfigFragment : Fragment() {
 
@@ -25,8 +27,6 @@ class ConfigFragment : Fragment() {
 
         _binding = FragmentConfigPillsBinding.inflate(inflater, container, false)
 
-        updateUI()
-
         binding.buttonConf.setOnClickListener {
             findNavController().navigate(R.id.qrScannerFragment)
         }
@@ -34,6 +34,20 @@ class ConfigFragment : Fragment() {
         binding.buttonBack.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        val prefs = requireContext()
+            .getSharedPreferences("app", Context.MODE_PRIVATE)
+
+        val savedUrl = prefs.getString("esp_url", null)
+
+        if (savedUrl != null) {
+            EspConfig.baseUrl = savedUrl
+            deviceDetected = true
+        } else {
+            deviceDetected = false
+        }
+
+        updateUI()
 
         return binding.root
     }
