@@ -78,30 +78,18 @@ void handle_save()
 
 void handle_takes()
 {
-<<<<<<< HEAD
-    String body = server.arg("plain");
-
-    Serial.println("Takes received");
-    Serial.println(body);
-
-=======
     String body = server.arg("plain");  // JSON recibido
 
     Serial.println("Takes received:");
     Serial.println(body);
 
     // Guardar en memoria (temporal por ahora)
->>>>>>> 1c05874f85ac9a2c4cd76fc9df093a9627002264
     Preferences p;
     p.begin("takes", false);
     p.putString("data", body);
     p.end();
 
-<<<<<<< HEAD
-    server.send(200, "application/jason", "{\"status\":\"ok\"}");
-=======
     server.send(200, "application/json", "{\"status\":\"ok\"}");
->>>>>>> 1c05874f85ac9a2c4cd76fc9df093a9627002264
 }
 
 void wifi_portal_init()

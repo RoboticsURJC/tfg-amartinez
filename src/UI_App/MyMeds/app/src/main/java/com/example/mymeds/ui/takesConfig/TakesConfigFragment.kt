@@ -18,6 +18,7 @@ import java.util.Calendar
 import com.example.mymeds.data.model.DayOfWeek
 import com.example.mymeds.data.model.Take
 import com.example.mymeds.data.repository.TakeRepository
+import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.util.JsonUtils
 import android.util.Log
 
@@ -251,6 +252,7 @@ class TakesConfigFragment : Fragment() {
 
     private fun sendTakesToEsp() {
 
+        Log.d("ESP_URL", EspConfig.baseUrl)
         val takes = TakeRepository.getTakes()
 
         Thread {
@@ -258,7 +260,8 @@ class TakesConfigFragment : Fragment() {
             try {
 
                 val url = java.net.URL(
-                    com.example.mymeds.data.repository.EspConfig.baseUrl + "/takes"
+                    "http://192.168.1.39/takes"
+                    //EspConfig.baseUrl + "/takes"
                 )
 
                 val conn =
@@ -273,8 +276,6 @@ class TakesConfigFragment : Fragment() {
 
                 val json = JsonUtils.takesToJson(takes)
 
-                Log.d("SEND_TAKES", json)
-
                 val out = conn.outputStream
                 out.write(json.toByteArray())
                 out.flush()
@@ -282,27 +283,8 @@ class TakesConfigFragment : Fragment() {
 
                 conn.responseCode
 
-                requireActivity().runOnUiThread {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Tomas sincronizadas",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
             } catch (e: Exception) {
-
                 e.printStackTrace()
-
-                requireActivity().runOnUiThread {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Error enviando tomas",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
             }
 
         }.start()
