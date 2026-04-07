@@ -95,6 +95,15 @@ void handle_takes()
     device_linked = true;
 }
 
+void handle_link()
+{
+    Serial.println("Device linked with app");
+
+    device_linked = true;
+
+    server.send(200, "application/json", "{\"status\":\"linked\"}");
+}
+
 void wifi_portal_init()
 {
     IPAddress local_ip(192,168,4,1);
@@ -110,6 +119,7 @@ void wifi_portal_init()
     server.on("/", handle_web_root);
     server.on("/save", HTTP_POST, handle_save);
     server.on("/takes", HTTP_POST, handle_takes);
+    server.on("/link", HTTP_GET, handle_link);
     server.begin();
 
     Serial.println((uint32_t)&server);

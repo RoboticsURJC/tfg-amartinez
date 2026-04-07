@@ -35,19 +35,16 @@ void setup()
     Preferences p;
     p.begin("sys", false);
     bool skipLogo = p.getBool("skip_logo", false);
-    p.putBool("skip_logo", false);   // Resetearla inmediatamente
+    p.putBool("skip_logo", false);
     p.end();
 
     if (!skipLogo){   //Show logo only on first boot
         lv_obj_t *logo_screen = lv_obj_create(NULL);
         lv_scr_load(logo_screen);
 
-        //lv_obj_set_style_bg_color(logo_screen, lv_color_white(), LV_PART_MAIN);
-        //lv_obj_set_style_bg_opa(logo_screen, LV_OPA_COVER, LV_PART_MAIN);
-
         lv_obj_t *img = lv_img_create(logo_screen);
         lv_img_set_src(img, &logo_mymeds_blanco);
-        lv_img_set_zoom(img, 250);  // ajusta si quieres
+        lv_img_set_zoom(img, 250);
         lv_obj_center(img);
 
         unsigned long start = millis();
@@ -84,6 +81,7 @@ void setup()
 
             server.on("/", handle_web_root);
             server.on("/takes", HTTP_POST, handle_takes);
+            server.on("/link", HTTP_GET, handle_link);
             server.begin();
 
             String ip = WiFi.localIP().toString();
@@ -124,6 +122,7 @@ void loop(){
 
         server.on("/", handle_web_root);
         server.on("/takes", HTTP_POST, handle_takes);
+        server.on("/link", HTTP_GET, handle_link);
         server.begin();
 
         String ip = WiFi.localIP().toString();

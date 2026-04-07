@@ -7,6 +7,7 @@ extern Preferences prefs;
 void handle_web_root();
 void handle_save();
 void handle_takes();
+void handle_link();
 void wifi_portal_init();
 bool wifi_credentials_exists();
 void wifi_load_credentials(String &ssid, String &password);
