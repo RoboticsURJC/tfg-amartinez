@@ -16,7 +16,6 @@ class ConfigFragment : Fragment() {
     private var _binding: FragmentConfigPillsBinding? = null
     private val binding get() = _binding!!
 
-    // Simulación hasta usar ESP32 real
     private var deviceDetected = false
 
     override fun onCreateView(
@@ -26,10 +25,6 @@ class ConfigFragment : Fragment() {
     ): View {
 
         _binding = FragmentConfigPillsBinding.inflate(inflater, container, false)
-
-        binding.buttonConf.setOnClickListener {
-            findNavController().navigate(R.id.qrScannerFragment)
-        }
 
         binding.buttonBack.setOnClickListener {
             findNavController().popBackStack()
@@ -41,29 +36,66 @@ class ConfigFragment : Fragment() {
         val savedUrl = prefs.getString("esp_url", null)
 
         if (savedUrl != null) {
+
             EspConfig.baseUrl = savedUrl
-            deviceDetected = true
+
+            Thread {
+                try {
+                    val url = java.net.URL(savedUrl)
+                    val conn = url.openConnection() as java.net.HttpURLConnection
+                    conn.connectTimeout = 2000
+                    conn.connect()
+
+                    deviceDetected = conn.responseCode == 200
+
+                } catch (e: Exception) {
+                    deviceDetected = false
+                }
+
+                activity?.runOnUiThread {
+                    updateUI()
+                }
+
+            }.start()
+
         } else {
             deviceDetected = false
+            updateUI()
         }
 
-        updateUI()
-
         return binding.root
+    }
+
+    private fun updateUI() {
+
+        if (!deviceDetected) {
+
+            binding.textStatus.text = "No hay ningún dispensador configurado"
+            binding.buttonConf.text = "Escanear QR"
+
+        } else {
+
+            binding.textStatus.text = "Dispensador conectado"
+            binding.buttonConf.text = "Gestionar tomas"
+        }
+
+        binding.buttonConf.visibility = View.VISIBLE
+
+        binding.buttonConf.setOnClickListener {
+
+            if (!deviceDetected) {
+
+                findNavController().navigate(R.id.qrScannerFragment)
+
+            } else {
+
+                findNavController().navigate(R.id.takesListFragment)
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun updateUI() {
-        if (!deviceDetected) {
-            binding.textStatus.text = "No hay ningún dispensador configurado"
-            binding.buttonConf.visibility = View.VISIBLE
-        } else {
-            binding.textStatus.text = "Dispensador detectado correctamente"
-            binding.buttonConf.visibility = View.GONE
-        }
     }
 }

@@ -73,13 +73,12 @@ class WifiConfigFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
 
+                        findNavController().navigate(R.id.qrScannerFragment)
                         Toast.makeText(
                             requireContext(),
                             "Ahora escanea el QR del dispositivo conectado",
                             Toast.LENGTH_LONG
                         ).show()
-
-                        findNavController().navigate(R.id.qrScannerFragment)
                     }
 
                 } catch (e: Exception) {

@@ -71,18 +71,16 @@ class QrScannerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        scanned = false
 
-        if (
-            ContextCompat.checkSelfPermission(
+        if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-
+            ) == PackageManager.PERMISSION_GRANTED)
+        {
             startScanner()
 
         } else {
-
             cameraPermissionLauncher.launch(
                 Manifest.permission.CAMERA
             )
@@ -118,9 +116,22 @@ class QrScannerFragment : Fragment() {
                                     .putString("esp_url", qr)
                                     .apply()
 
-                                findNavController().navigate(
-                                    R.id.takesListFragment
-                                )
+                                Thread {
+                                    try {
+                                        val url = java.net.URL(qr + "/link")
+                                        val conn = url.openConnection() as java.net.HttpURLConnection
+
+                                        conn.requestMethod = "GET"
+                                        conn.connect()
+
+                                        conn.responseCode
+
+                                    } catch (e: Exception) {
+                                        e.printStackTrace()
+                                    }
+                                }.start()
+
+                                findNavController().navigate(R.id.takesListFragment)
                             }
                         }
                     }

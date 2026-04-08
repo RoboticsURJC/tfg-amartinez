@@ -258,7 +258,7 @@ class TakesConfigFragment : Fragment() {
         Thread {
 
             try {
-
+                if (EspConfig.baseUrl.isEmpty()) return@Thread
                 val url = java.net.URL(
                     EspConfig.baseUrl + "/takes"
                 )
