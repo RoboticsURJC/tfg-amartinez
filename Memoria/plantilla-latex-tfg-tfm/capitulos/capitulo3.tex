@@ -10,7 +10,7 @@ En este capítulo se describe el problema abordado, así como los objetivos que 
 
 La administración adecuada de la medicación y el monitoreo de parámetros fisiológicos básicos representan un reto importante en el contexto de la asistencia sanitaria a domicilio, sobre todo en pacientes crónicos o ancianos. Los sistemas existentes suelen presentar un coste elevado o una complejidad de uso que dificulta su adopción en entornos domésticos. Esto puede resultar en errores al tomar medicamentos o en una inadecuada supervisión de la salud del paciente. En este contexto, resulta de interés el desarrollo de soluciones accesibles y de bajo coste que posibiliten automatizar estas tareas, facilitando la autonomía del usuario y mejorando la seguridad en el seguimiento de los tratamientos.\\
 
-Con esta finalidad, el objetivo principal del presente trabajo es la creación y elaboración de un sistema robótico de bajo coste, orientado a la asistencia sanitaria en el hogar, basado en sensores, un microcontrolador con pantalla táctil y una aplicación móvil de supervisión. El sistema se compone de un pastillero automatizado que puede manejar la gestión de medicamentos a través de alertas acústicas y visuales, además de registrar parámetros fisiológicos como la saturación de oxígeno en sangre y el ritmo cardíaco.\\
+Con esta finalidad, el objetivo principal del presente trabajo es la creación y elaboración de un sistema robótico de bajo coste, orientado a la asistencia sanitaria en el hogar, basado en sensores, un microcontrolador con pantalla táctil y una aplicación móvil de supervisión. El sistema propuesto se compone de un pastillero automatizado que puede manejar la gestión de medicamentos a través de alertas acústicas y visuales, además de registrar parámetros fisiológicos como la saturación de oxígeno en sangre y el ritmo cardíaco.\\
 
 Para alcanzar este objetivo general, se plantean los siguientes subobjetivos:
 
@@ -48,7 +48,7 @@ Con el fin de cumplir los objetivos propuestos, se han establecido los siguiente
 
 \item El diseño mecánico del dispositivo deberá realizarse mediante modelado 3D, de forma que las piezas puedan fabricarse mediante impresión 3D utilizando material PLA.
 
-\item El coste total del prototipo deberá mantenerse dentro de un rango reducido, no superando aproximadamente los 50 €, con el fin de garantizar su accesibilidad.
+\item El coste total del prototipo deberá mantenerse dentro de un rango reducido, no superando los \euro {50} aproximadamente, con el fin de garantizar su accesibilidad.
 
 \item El sistema deberá permitir el almacenamiento de datos relacionados con las tomas de medicación y las mediciones fisiológicas, accesibles desde la aplicación móvil.
 
@@ -95,7 +95,14 @@ Las competencias adquiridas con el desarrollo del presente trabajo fin de grado 
 
 Para el desarrollo de este trabajo se ha seguido una metodología basada en el diseño e implementación progresiva del sistema. En una primera fase, se llevó a cabo el análisis del problema y de las tecnologías necesarias, lo que permitió definir la arquitectura del sistema y seleccionar los componentes hardware y software más adecuados. A partir de este punto, se desarrollaron de forma paralela los distintos módulos, incluyendo el diseño del dispositivo, la programación del microcontrolador, la integración de sensores y el desarrollo de la aplicación móvil, realizando pruebas parciales para validar cada componente.\\
 
-El proceso de desarrollo se ha apoyado en un enfoque iterativo basado en el ciclo Plan–Do–Check–Act (PDCA), que ha permitido la mejora continua del sistema mediante la implementación, verificación y optimización de sus funcionalidades. Este enfoque se ha complementado con reuniones periódicas con el tutor, en las que se han revisado los avances, resuelto dudas y planificado las siguientes etapas del proyecto, facilitando un desarrollo estructurado y progresivo.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figs/PDCA_esquema.png}
+    \caption{Ciclo de mejora continua Plan--Do--Check--Act (PDCA)}
+    \label{fig:PDCA}
+\end{figure}
+
+El proceso de desarrollo se ha apoyado en un enfoque iterativo basado en el ciclo Plan–Do–Check–Act (PDCA), representado en la Figura ~\ref{fig:PDCA}, que ha permitido la mejora continua del sistema mediante la implementación, verificación y optimización de sus funcionalidades. Este enfoque se ha complementado con reuniones periódicas con el tutor, generalmente con una frecuencia semanal, en las que se han revisado los avances, resuelto dudas y definido nuevos objetivos. El trabajo se ha basado en la consecución de objetivos parciales y en la mejora progresiva del sistema, permitiendo alcanzar una solución final completa y funcional.\\
 
 \section{Plan de trabajo}
 \label{sec:plantrabajo}
@@ -118,10 +125,8 @@ El desarrollo del presente trabajo fin de grado se ha dividido en las siguientes
     \item \textbf{Redacción de la memoria:} Documentación del proceso seguido y de los resultados obtenidos.
 \end{enumerate}
 
-A lo largo del desarrollo del proyecto se han mantenido reuniones periódicas con el tutor, generalmente con una frecuencia semanal, en las que se han revisado los avances, resuelto dudas y definido nuevos objetivos. El trabajo se ha basado en la consecución de objetivos parciales y en la mejora progresiva del sistema, permitiendo alcanzar una solución final completa y funcional.\\
-
-Todo el contenido del proyecto se encuentra disponible en un repositorio público de GitHub\footnote{\url{https://github.com/RoboticsURJC/tfg-amartinez}}, donde se incluye el código desarrollado y los recursos empleados durante la realización del trabajo. Además, en la wiki del repositorio se recoge el desarrollo del proyecto de forma progresiva, documentando las distintas etapas, decisiones tomadas y avances realizados a lo largo del mismo.\\
+Todo el contenido del proyecto se encuentra disponible en un repositorio público de GitHub\footnote{\url{https://github.com/RoboticsURJC/tfg-amartinez}}, donde se incluye el código desarrollado y los recursos empleados durante la realización del trabajo. Además, en la wiki del repositorio se recoge de forma detallada el desarrollo del proyecto; en esta se han ido documentando de forma progresiva las distintas etapas, las decisiones tomadas y los avances realizados a lo largo del proyecto.\\
 
 \
 
-Tras haber definido los objetivos, requisitos, competencias, metodología y plan de trabajo del proyecto, en los siguientes capítulos se detallan las herramientas, tecnologías y plataformas empleadas para el desarrollo del sistema.
+Tras haber definido los objetivos, requisitos, competencias, metodología y plan de trabajo del proyecto, en el siguiente capítulo se detallan las herramientas, tecnologías y plataformas empleadas para el desarrollo del sistema.
