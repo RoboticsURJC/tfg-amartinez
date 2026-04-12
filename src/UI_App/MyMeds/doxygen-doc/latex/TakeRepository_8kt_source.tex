@@ -1,0 +1,36 @@
+\doxysection{Take\+Repository.\+kt}
+\hypertarget{TakeRepository_8kt_source}{}\label{TakeRepository_8kt_source}\index{app/src/main/java/com/example/mymeds/data/repository/TakeRepository.kt@{app/src/main/java/com/example/mymeds/data/repository/TakeRepository.kt}}
+\mbox{\hyperlink{TakeRepository_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00001}00001\ package\ com.example.mymeds.data.repository}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00002}00002\ import\ com.example.mymeds.data.model.Take}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00004}00004\ object\ TakeRepository\ \{}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00005}00005\ \ \ \ \ private\ val\ takes\ =\ mutableListOf<Take>()}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00007}00007\ \ \ \ \ fun\ getTakes():\ List<Take>\ \{}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00008}00008\ \ \ \ \ \ \ \ \ return\ takes}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00009}00009\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00011}00011\ \ \ \ \ fun\ addTake(take:\ Take)\ \{}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00012}00012\ \ \ \ \ \ \ \ \ takes.add(take)}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00013}00013\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00015}00015\ \ \ \ \ fun\ removeTake(index:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00016}00016\ \ \ \ \ \ \ \ \ if\ (index\ in\ takes.indices)\ \{}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ takes.removeAt(index)}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00018}00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00021}00021\ \ \ \ \ fun\ updateTake(index:\ Int,\ take:\ Take)\ \{}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00022}00022\ \ \ \ \ \ \ \ \ if\ (index\ in\ takes.indices)\ \{}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ takes[index]\ =\ take}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00027}00027\ \ \ \ \ fun\ clear()\ \{}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ takes.clear()}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakeRepository_8kt_source_l00030}00030\ \}}
+
+\end{DoxyCode}

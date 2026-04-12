@@ -1,0 +1,8 @@
+<map id="lvgl_touch_init" name="lvgl_touch_init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,123,56"/>
+<area shape="rect" id="Node000002" href="$lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157" title=" " alt="" coords="171,5,287,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,32,157,26,158,32,123,37"/>
+<area shape="rect" id="Node000003" href="$lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b" title=" " alt="" coords="335,31,373,56"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="123,41,321,41,321,46,123,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="288,27,322,34,321,39,286,32"/>
+</map>

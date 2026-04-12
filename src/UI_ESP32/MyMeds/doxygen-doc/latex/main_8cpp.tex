@@ -1,0 +1,309 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Wi\+Fi.\+h$>$}\newline
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+{\ttfamily \#include $<$TFT\+\_\+e\+SPI.\+h$>$}\newline
+{\ttfamily \#include $<$Web\+Server.\+h$>$}\newline
+{\ttfamily \#include "{}lvgl\+\_\+display.\+h"{}}\newline
+{\ttfamily \#include "{}lvgl\+\_\+touch.\+h"{}}\newline
+{\ttfamily \#include "{}user\+\_\+interface/wifi\+\_\+mod.\+h"{}}\newline
+{\ttfamily \#include "{}user\+\_\+interface/wifi\+\_\+portal.\+h"{}}\newline
+{\ttfamily \#include "{}user\+\_\+interface/clock\+\_\+mod.\+h"{}}\newline
+{\ttfamily \#include "{}logo\+\_\+mymeds.\+h"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Web\+Server \mbox{\hyperlink{main_8cpp_a48f3f185be3ea2d153c347a157b38d42}{server}} (80)
+\item 
+void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+TFT\+\_\+e\+SPI \mbox{\hyperlink{main_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}
+\item 
+static const int \mbox{\hyperlink{main_8cpp_a5f86071887b0483aa1d70fb56c00f2c9}{LOGO\+\_\+\+TIME\+\_\+\+MS}} = 4000
+\item 
+static bool \mbox{\hyperlink{main_8cpp_a36071d51503ca8b42c5c0be8294995da}{wifi\+\_\+connected}} = false
+\item 
+static bool \mbox{\hyperlink{main_8cpp_a0cbf2013315bbee01a52aadb6a454c68}{portal\+\_\+running}} = false
+\item 
+bool \mbox{\hyperlink{main_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\+\_\+linked}} = false
+\item 
+static lv\+\_\+timer\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}{clock\+\_\+timer}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\label{main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00106}{106}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ lv\_timer\_handler();}
+\DoxyCodeLine{00108\ \ \ \ \ delay(5);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.handleClient();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{main_8cpp_a36071d51503ca8b42c5c0be8294995da}{wifi\_connected}}\ \&\&\ WiFi.status()\ ==\ WL\_CONNECTED)\{}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a36071d51503ca8b42c5c0be8294995da}{wifi\_connected}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8cpp_a0cbf2013315bbee01a52aadb6a454c68}{portal\_running}})\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.stop();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\(\backslash\)nConectado\ al\ WiFi!"{}});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ Serial.println(WiFi.localIP());}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/"{}},\ \mbox{\hyperlink{wifi__portal_8h_af5e9b018d143ba1174cd9fcec21c0543}{handle\_web\_root}});}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/takes"{}},\ HTTP\_POST,\ \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\_takes}});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/link"{}},\ HTTP\_GET,\ \mbox{\hyperlink{wifi__portal_8h_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\_link}});}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.begin();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ String\ ip\ =\ WiFi.localIP().toString();}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ String\ url\ =\ \textcolor{stringliteral}{"{}http://"{}}\ +\ ip;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Device\ URL:\ "{}});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ Serial.println(url);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ lv\_obj\_clean(lv\_scr\_act());}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df}{show\_wifi\_screen}}(lv\_scr\_act(),\ url.c\_str());}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\_linked}})\ \{}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\_linked}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}App\ sincronizada\ →\ mostrando\ reloj"{}});}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ lv\_obj\_clean(lv\_scr\_act());}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clock__mod_8h_a199e69d3e99f6122e7d30966d5377636}{show\_clock\_screen}}(lv\_scr\_act());}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ lv\_timer\_create(\mbox{\hyperlink{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d}{update\_clock\_task}},\ 1000,\ NULL);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clock__mod_8h_a0560780ed0fa14ae31b096e24fce8004}{clock\_sync}}();}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{clock__mod_8h_a0560780ed0fa14ae31b096e24fce8004}{clock\+\_\+sync()}}, \mbox{\hyperlink{main_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\+\_\+linked}}, \mbox{\hyperlink{wifi__portal_8h_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\+\_\+link()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_af5e9b018d143ba1174cd9fcec21c0543}{handle\+\_\+web\+\_\+root()}}, \mbox{\hyperlink{main_8cpp_a0cbf2013315bbee01a52aadb6a454c68}{portal\+\_\+running}}, \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}, \mbox{\hyperlink{clock__mod_8h_a199e69d3e99f6122e7d30966d5377636}{show\+\_\+clock\+\_\+screen()}}, \mbox{\hyperlink{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df}{show\+\_\+wifi\+\_\+screen()}}, \mbox{\hyperlink{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d}{update\+\_\+clock\+\_\+task()}}, and \mbox{\hyperlink{main_8cpp_a36071d51503ca8b42c5c0be8294995da}{wifi\+\_\+connected}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8cpp_a48f3f185be3ea2d153c347a157b38d42}\label{main_8cpp_a48f3f185be3ea2d153c347a157b38d42} 
+\index{main.cpp@{main.cpp}!server@{server}}
+\index{server@{server}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{server()}{server()}}
+{\footnotesize\ttfamily Web\+Server server (\begin{DoxyParamCaption}\item[{80}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ Serial.begin(115200);}
+\DoxyCodeLine{00031\ \ \ \ \ delay(200);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17}{lvgl\_begin}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ Preferences\ p;}
+\DoxyCodeLine{00036\ \ \ \ \ p.begin(\textcolor{stringliteral}{"{}sys"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ skipLogo\ =\ p.getBool(\textcolor{stringliteral}{"{}skip\_logo"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00038\ \ \ \ \ p.putBool(\textcolor{stringliteral}{"{}skip\_logo"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00039\ \ \ \ \ p.end();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!skipLogo)\{\ \ \ \textcolor{comment}{//Show\ logo\ only\ on\ first\ boot}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *logo\_screen\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ lv\_scr\_load(logo\_screen);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *img\ =\ lv\_img\_create(logo\_screen);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ lv\_img\_set\_src(img,\ \&\mbox{\hyperlink{logo__mymeds_8h_a58e4feba6d004d8c9355005d65023f7c}{logo\_mymeds\_blanco}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ lv\_img\_set\_zoom(img,\ 250);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ lv\_obj\_center(img);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ start\ =\ millis();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (millis()\ -\/\ start\ <\ \mbox{\hyperlink{main_8cpp_a5f86071887b0483aa1d70fb56c00f2c9}{LOGO\_TIME\_MS}})\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_timer\_handler();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ delay(5);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}LOGO\ END"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ WiFi.mode(WIFI\_AP\_STA);}
+\DoxyCodeLine{00060\ \ \ \ \ WiFi.disconnect(\textcolor{keyword}{true});}
+\DoxyCodeLine{00061\ \ \ \ \ delay(100);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{wifi__portal_8h_ac14469359b9116886e50651e6302c6a6}{wifi\_credentials\_exists}}())\{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ String\ ssid,\ password;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a03c0fb46ecde2d884545fbd378f6fb46}{wifi\_load\_credentials}}(ssid,\ password);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ WiFi.begin(ssid.c\_str(),\ password.c\_str());}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ start\ =\ millis();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (WiFi.status()\ !=\ WL\_CONNECTED\ \&\&\ millis()\ -\/\ start\ <\ 10000)\{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ delay(100);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ Serial.println(WiFi.status());}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ ==\ WL\_CONNECTED)\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a36071d51503ca8b42c5c0be8294995da}{wifi\_connected}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\(\backslash\)nConectado\ al\ WiFi!"{}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(WiFi.localIP());}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/"{}},\ \mbox{\hyperlink{wifi__portal_8h_af5e9b018d143ba1174cd9fcec21c0543}{handle\_web\_root}});}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/takes"{}},\ HTTP\_POST,\ \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\_takes}});}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/link"{}},\ HTTP\_GET,\ \mbox{\hyperlink{wifi__portal_8h_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\_link}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.begin();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ String\ ip\ =\ WiFi.localIP().toString();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ String\ url\ =\ \textcolor{stringliteral}{"{}http://"{}}\ +\ ip;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Device\ URL:\ "{}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(url);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_clean(lv\_scr\_act());}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df}{show\_wifi\_screen}}(lv\_scr\_act(),\ url.c\_str());}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ lv\_obj\_clean(lv\_scr\_act());}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df}{show\_wifi\_screen}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}http://192.168.4.1"{}});}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_acea97721c016346078a369b33d2603fa}{wifi\_portal\_init}}();}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{main_8cpp_a0cbf2013315bbee01a52aadb6a454c68}{portal\_running}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00104\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{wifi__portal_8h_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\+\_\+link()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_af5e9b018d143ba1174cd9fcec21c0543}{handle\+\_\+web\+\_\+root()}}, \mbox{\hyperlink{logo__mymeds_8h_a58e4feba6d004d8c9355005d65023f7c}{logo\+\_\+mymeds\+\_\+blanco}}, \mbox{\hyperlink{main_8cpp_a5f86071887b0483aa1d70fb56c00f2c9}{LOGO\+\_\+\+TIME\+\_\+\+MS}}, \mbox{\hyperlink{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17}{lvgl\+\_\+begin()}}, \mbox{\hyperlink{main_8cpp_a0cbf2013315bbee01a52aadb6a454c68}{portal\+\_\+running}}, \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}, \mbox{\hyperlink{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df}{show\+\_\+wifi\+\_\+screen()}}, \mbox{\hyperlink{main_8cpp_a36071d51503ca8b42c5c0be8294995da}{wifi\+\_\+connected}}, \mbox{\hyperlink{wifi__portal_8h_ac14469359b9116886e50651e6302c6a6}{wifi\+\_\+credentials\+\_\+exists()}}, \mbox{\hyperlink{wifi__portal_8h_a03c0fb46ecde2d884545fbd378f6fb46}{wifi\+\_\+load\+\_\+credentials()}}, and \mbox{\hyperlink{wifi__portal_8h_acea97721c016346078a369b33d2603fa}{wifi\+\_\+portal\+\_\+init()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}\label{main_8cpp_a832d8f246f38cf0995c02a8e8b5d00de} 
+\index{main.cpp@{main.cpp}!clock\_timer@{clock\_timer}}
+\index{clock\_timer@{clock\_timer}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{clock\_timer}{clock\_timer}}
+{\footnotesize\ttfamily lv\+\_\+timer\+\_\+t\texorpdfstring{$\ast$}{*} clock\+\_\+timer = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_ab1520aef63438245fa91cce71f9ffcc2}\label{main_8cpp_ab1520aef63438245fa91cce71f9ffcc2} 
+\index{main.cpp@{main.cpp}!device\_linked@{device\_linked}}
+\index{device\_linked@{device\_linked}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{device\_linked}{device\_linked}}
+{\footnotesize\ttfamily bool device\+\_\+linked = false}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\+\_\+link()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, and \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}.
+
+\Hypertarget{main_8cpp_a5f86071887b0483aa1d70fb56c00f2c9}\label{main_8cpp_a5f86071887b0483aa1d70fb56c00f2c9} 
+\index{main.cpp@{main.cpp}!LOGO\_TIME\_MS@{LOGO\_TIME\_MS}}
+\index{LOGO\_TIME\_MS@{LOGO\_TIME\_MS}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{LOGO\_TIME\_MS}{LOGO\_TIME\_MS}}
+{\footnotesize\ttfamily const int LOGO\+\_\+\+TIME\+\_\+\+MS = 4000\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+\Hypertarget{main_8cpp_a0cbf2013315bbee01a52aadb6a454c68}\label{main_8cpp_a0cbf2013315bbee01a52aadb6a454c68} 
+\index{main.cpp@{main.cpp}!portal\_running@{portal\_running}}
+\index{portal\_running@{portal\_running}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{portal\_running}{portal\_running}}
+{\footnotesize\ttfamily bool portal\+\_\+running = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, and \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+\Hypertarget{main_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}\label{main_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1} 
+\index{main.cpp@{main.cpp}!tft@{tft}}
+\index{tft@{tft}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{tft}{tft}}
+{\footnotesize\ttfamily TFT\+\_\+e\+SPI tft\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{lvgl__display_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{lvgl__display_8cpp_source}{lvgl\+\_\+display.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17}{lvgl\+\_\+begin()}}, and \mbox{\hyperlink{lvgl__display_8cpp_a4911b62a05c52c43fabb6747033f82b9}{my\+\_\+disp\+\_\+flush()}}.
+
+\Hypertarget{main_8cpp_a36071d51503ca8b42c5c0be8294995da}\label{main_8cpp_a36071d51503ca8b42c5c0be8294995da} 
+\index{main.cpp@{main.cpp}!wifi\_connected@{wifi\_connected}}
+\index{wifi\_connected@{wifi\_connected}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{wifi\_connected}{wifi\_connected}}
+{\footnotesize\ttfamily bool wifi\+\_\+connected = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, and \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+

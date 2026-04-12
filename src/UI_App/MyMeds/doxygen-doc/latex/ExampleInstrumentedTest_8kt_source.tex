@@ -1,0 +1,30 @@
+\doxysection{Example\+Instrumented\+Test.\+kt}
+\hypertarget{ExampleInstrumentedTest_8kt_source}{}\label{ExampleInstrumentedTest_8kt_source}\index{app/src/androidTest/java/com/example/mymeds/ExampleInstrumentedTest.kt@{app/src/androidTest/java/com/example/mymeds/ExampleInstrumentedTest.kt}}
+\mbox{\hyperlink{ExampleInstrumentedTest_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00001}00001\ package\ com.example.mymeds}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00003}00003\ import\ androidx.test.platform.app.InstrumentationRegistry}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00004}00004\ import\ androidx.test.ext.junit.runners.AndroidJUnit4}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00006}00006\ import\ org.junit.Test}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00007}00007\ import\ org.junit.runner.RunWith}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00009}00009\ import\ org.junit.Assert.*}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00011}00011\ /**}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00012}00012\ \ *\ Instrumented\ test,\ which\ will\ execute\ on\ an\ Android\ device.}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00013}00013\ \ *}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00014}00014\ \ *\ See\ [testing\ documentation](http://d.android.com/tools/testing).}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00015}00015\ \ */}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00016}00016\ @RunWith(AndroidJUnit4::class)}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00017}00017\ class\ ExampleInstrumentedTest\ \{}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00018}00018\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00019}00019\ \ \ \ \ fun\ useAppContext()\ \{}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ //\ Context\ of\ the\ app\ under\ test.}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ val\ appContext\ =\ InstrumentationRegistry.getInstrumentation().targetContext}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00022}00022\ \ \ \ \ \ \ \ \ assertEquals("{}com.example.mymeds"{},\ appContext.packageName)}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ExampleInstrumentedTest_8kt_source_l00024}00024\ \}}
+
+\end{DoxyCode}

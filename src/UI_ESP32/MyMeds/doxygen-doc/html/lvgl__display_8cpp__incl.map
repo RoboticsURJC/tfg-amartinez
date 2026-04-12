@@ -1,0 +1,10 @@
+<map id="src/lvgl_display.cpp" name="src/lvgl_display.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,153,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="69,152,127,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,33,46,47,30,64,21,83,23,103,40,126,63,143,60,147,37,129,18,105,15,82,25,61,42,43,60,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="33,79,125,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="82,31,82,65,77,65,77,31"/>
+<area shape="rect" id="Node000004" href="$lvgl__touch_8h.html" title=" " alt="" coords="150,79,251,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="100,28,171,69,168,74,97,33"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="186,106,128,146,125,142,183,102"/>
+</map>

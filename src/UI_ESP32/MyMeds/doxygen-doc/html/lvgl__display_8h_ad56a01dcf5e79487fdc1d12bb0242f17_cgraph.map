@@ -1,0 +1,12 @@
+<map id="lvgl_begin" name="lvgl_begin">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,95,81"/>
+<area shape="rect" id="Node000002" href="$lvgl__touch_8cpp.html#a77505c2b918dec6cea21b12e13657c5b" title=" " alt="" coords="143,31,260,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,59,129,53,130,58,95,64"/>
+<area shape="rect" id="Node000005" href="$lvgl__display_8cpp.html#a4911b62a05c52c43fabb6747033f82b9" title=" " alt="" coords="144,80,259,105"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="95,73,130,79,130,84,94,78"/>
+<area shape="rect" id="Node000003" href="$lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157" title=" " alt="" coords="308,5,424,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="260,32,294,26,295,32,261,37"/>
+<area shape="rect" id="Node000004" href="$lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b" title=" " alt="" coords="472,31,511,56"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="260,41,458,41,458,46,260,46"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="425,27,459,34,458,39,424,32"/>
+</map>

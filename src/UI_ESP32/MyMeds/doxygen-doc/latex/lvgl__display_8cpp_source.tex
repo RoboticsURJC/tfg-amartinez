@@ -1,0 +1,53 @@
+\doxysection{lvgl\+\_\+display.\+cpp}
+\hypertarget{lvgl__display_8cpp_source}{}\label{lvgl__display_8cpp_source}\index{src/lvgl\_display.cpp@{src/lvgl\_display.cpp}}
+\mbox{\hyperlink{lvgl__display_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <lvgl.h>}}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <TFT\_eSPI.h>}}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lvgl__touch_8h}{lvgl\_touch.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00005}\mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{00005}}\ TFT\_eSPI\ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}};}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00006}\mbox{\hyperlink{lvgl__display_8cpp_ad7e0ff2e01cd163f72fac07f0e70c950}{00006}}\ \textcolor{keyword}{static}\ lv\_disp\_draw\_buf\_t\ \mbox{\hyperlink{lvgl__display_8cpp_ad7e0ff2e01cd163f72fac07f0e70c950}{draw\_buf}};}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00007}\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{00007}}\ \textcolor{keyword}{static}\ lv\_color\_t\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[320*20];}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00009}\mbox{\hyperlink{lvgl__display_8cpp_a4911b62a05c52c43fabb6747033f82b9}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lvgl__display_8cpp_a4911b62a05c52c43fabb6747033f82b9}{my\_disp\_flush}}(lv\_disp\_drv\_t\ *drv,\ \textcolor{keyword}{const}\ lv\_area\_t\ *area,\ lv\_color\_t\ *color\_p)}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00011}00011\ \ \ \ \ uint32\_t\ w\ =\ (area-\/>x2\ -\/\ area-\/>x1\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00012}00012\ \ \ \ \ uint32\_t\ h\ =\ (area-\/>y2\ -\/\ area-\/>y1\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.startWrite();}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00015}00015\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.setAddrWindow(area-\/>x1,\ area-\/>y1,\ w,\ h);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.pushColors((uint16\_t\ *)\&color\_p-\/>full,\ w\ *\ h,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.endWrite();}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00019}00019\ \ \ \ \ lv\_disp\_flush\_ready(drv);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00022}\mbox{\hyperlink{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17}{00022}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lvgl__display_8cpp_ad56a01dcf5e79487fdc1d12bb0242f17}{lvgl\_begin}}()}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00024}00024\ \ \ \ \ lv\_init();}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.begin();}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.setRotation(3);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00029}00029\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ TFT\_BL}}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ pinMode(\mbox{\hyperlink{User__Setup_8h_a541b5fc642dbcc81f373d4b866c88f80}{TFT\_BL}},\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ digitalWrite(\mbox{\hyperlink{User__Setup_8h_a541b5fc642dbcc81f373d4b866c88f80}{TFT\_BL}},\ HIGH);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00034}00034\ \ \ \ \ lv\_disp\_draw\_buf\_init(\&\mbox{\hyperlink{lvgl__display_8cpp_ad7e0ff2e01cd163f72fac07f0e70c950}{draw\_buf}},\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ NULL,\ 320*20);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{static}\ lv\_disp\_drv\_t\ disp\_drv;}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00037}00037\ \ \ \ \ lv\_disp\_drv\_init(\&disp\_drv);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00038}00038\ \ \ \ \ disp\_drv.hor\_res\ =\ 320;}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00039}00039\ \ \ \ \ disp\_drv.ver\_res\ =\ 240;}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00040}00040\ \ \ \ \ disp\_drv.flush\_cb\ =\ \mbox{\hyperlink{lvgl__display_8cpp_a4911b62a05c52c43fabb6747033f82b9}{my\_disp\_flush}};}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00041}00041\ \ \ \ \ disp\_drv.draw\_buf\ =\ \&\mbox{\hyperlink{lvgl__display_8cpp_ad7e0ff2e01cd163f72fac07f0e70c950}{draw\_buf}};}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00042}00042\ \ \ \ \ disp\_drv.full\_refresh\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00043}00043\ \ \ \ \ lv\_disp\_drv\_register(\&disp\_drv);}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00045}00045\ \ \ \ \ \mbox{\hyperlink{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b}{lvgl\_touch\_init}}();}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00046}00046\ \}}
+\DoxyCodeLine{\Hypertarget{lvgl__display_8cpp_source_l00047}00047\ }
+
+\end{DoxyCode}

@@ -1,0 +1,124 @@
+\doxysection{include/user\+\_\+interface/home\+\_\+mod.h File Reference}
+\hypertarget{home__mod_8h}{}\label{home__mod_8h}\index{include/user\_interface/home\_mod.h@{include/user\_interface/home\_mod.h}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+Include dependency graph for home\+\_\+mod.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{home__mod_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{home__mod_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\+\_\+home\+\_\+screen}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}\label{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13} 
+\index{home\_mod.h@{home\_mod.h}!show\_home\_screen@{show\_home\_screen}}
+\index{show\_home\_screen@{show\_home\_screen}!home\_mod.h@{home\_mod.h}}
+\doxysubsubsection{\texorpdfstring{show\_home\_screen()}{show\_home\_screen()}}
+{\footnotesize\ttfamily void show\+\_\+home\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{home__mod_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{home__mod_8cpp_source}{home\+\_\+mod.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ lv\_obj\_t\ *\ scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(scr);}
+\DoxyCodeLine{00038\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ lv\_obj\_t\ *btn1\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00041\ \ \ \ \ lv\_obj\_set\_size(btn1,\ 265,\ 70);}
+\DoxyCodeLine{00042\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn1,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00043\ \ \ \ \ lv\_obj\_align(btn1,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 40);}
+\DoxyCodeLine{00044\ \ \ \ \ lv\_obj\_add\_event\_cb(btn1,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Tomas\ hoy"{}});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ lv\_obj\_t\ *lbl1\ =\ lv\_label\_create(btn1);}
+\DoxyCodeLine{00047\ \ \ \ \ lv\_label\_set\_text(lbl1,\ \textcolor{stringliteral}{"{}Tomas\ hoy"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl1,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00049\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl1,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00050\ \ \ \ \ lv\_obj\_center(lbl1);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ lv\_obj\_t\ *btn2\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00055\ \ \ \ \ lv\_obj\_set\_size(btn2,\ 265,\ 70);}
+\DoxyCodeLine{00056\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn2,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00057\ \ \ \ \ lv\_obj\_align(btn2,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 130);}
+\DoxyCodeLine{00058\ \ \ \ \ lv\_obj\_add\_event\_cb(btn2,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Historial"{}});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ lv\_obj\_t\ *lbl2\ =\ lv\_label\_create(btn2);}
+\DoxyCodeLine{00061\ \ \ \ \ lv\_label\_set\_text(lbl2,\ \textcolor{stringliteral}{"{}Historial"{}});}
+\DoxyCodeLine{00062\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl2,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00063\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl2,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00064\ \ \ \ \ lv\_obj\_center(lbl2);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ lv\_obj\_t\ *btn3\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00069\ \ \ \ \ lv\_obj\_set\_size(btn3,\ 265,\ 70);}
+\DoxyCodeLine{00070\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn3,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00071\ \ \ \ \ lv\_obj\_align(btn3,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 220);}
+\DoxyCodeLine{00072\ \ \ \ \ lv\_obj\_add\_event\_cb(btn3,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Pulsómetro"{}});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ lv\_obj\_t\ *lbl3\ =\ lv\_label\_create(btn3);}
+\DoxyCodeLine{00075\ \ \ \ \ lv\_label\_set\_text(lbl3,\ \textcolor{stringliteral}{"{}Pulsómetro"{}});}
+\DoxyCodeLine{00076\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl3,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00077\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl3,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00078\ \ \ \ \ lv\_obj\_center(lbl3);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ lv\_obj\_t\ *btn4\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00083\ \ \ \ \ lv\_obj\_set\_size(btn4,\ 265,\ 150);}
+\DoxyCodeLine{00084\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn4,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00085\ \ \ \ \ lv\_obj\_align(btn4,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 310);}
+\DoxyCodeLine{00086\ \ \ \ \ lv\_obj\_add\_event\_cb(btn4,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Configuración\ de\ tomas"{}});}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ lv\_obj\_t\ *lbl4\ =\ lv\_label\_create(btn4);}
+\DoxyCodeLine{00089\ \ \ \ \ lv\_label\_set\_text(lbl4,\ \textcolor{stringliteral}{"{}Configuración\(\backslash\)n\ \ \ \ \ \ \ \ \ \ \ de\(\backslash\)n\ \ \ \ \ \ \ \ tomas"{}});}
+\DoxyCodeLine{00090\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl4,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00091\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl4,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00092\ \ \ \ \ lv\_obj\_center(lbl4);}
+\DoxyCodeLine{00093\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\+\_\+screen()}}, and \mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\+\_\+34\+\_\+regular}}.
+
+
+
+Referenced by \mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen()}}, and \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\+\_\+takes\+\_\+screen()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_icgraph}
+\end{center}
+\end{figure}

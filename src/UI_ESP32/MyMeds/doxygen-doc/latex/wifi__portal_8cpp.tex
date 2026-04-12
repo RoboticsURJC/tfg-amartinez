@@ -1,0 +1,428 @@
+\doxysection{src/user\+\_\+interface/wifi\+\_\+portal.cpp File Reference}
+\hypertarget{wifi__portal_8cpp}{}\label{wifi__portal_8cpp}\index{src/user\_interface/wifi\_portal.cpp@{src/user\_interface/wifi\_portal.cpp}}
+{\ttfamily \#include "{}user\+\_\+interface/wifi\+\_\+portal.\+h"{}}\newline
+{\ttfamily \#include $<$Wi\+Fi.\+h$>$}\newline
+{\ttfamily \#include $<$Web\+Server.\+h$>$}\newline
+{\ttfamily \#include $<$Preferences.\+h$>$}\newline
+Include dependency graph for wifi\+\_\+portal.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__portal_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{wifi__portal_8cpp_ac14469359b9116886e50651e6302c6a6}{wifi\+\_\+credentials\+\_\+exists}} ()
+\item 
+void \mbox{\hyperlink{wifi__portal_8cpp_a03c0fb46ecde2d884545fbd378f6fb46}{wifi\+\_\+load\+\_\+credentials}} (String \&ssid, String \&password)
+\item 
+void \mbox{\hyperlink{wifi__portal_8cpp_af5e9b018d143ba1174cd9fcec21c0543}{handle\+\_\+web\+\_\+root}} ()
+\item 
+void \mbox{\hyperlink{wifi__portal_8cpp_a56a42abadde7879918d1cd7ae9d07a05}{handle\+\_\+save}} ()
+\item 
+void \mbox{\hyperlink{wifi__portal_8cpp_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes}} ()
+\item 
+void \mbox{\hyperlink{wifi__portal_8cpp_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\+\_\+link}} ()
+\item 
+void \mbox{\hyperlink{wifi__portal_8cpp_acea97721c016346078a369b33d2603fa}{wifi\+\_\+portal\+\_\+init}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Preferences \mbox{\hyperlink{wifi__portal_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}
+\item 
+Web\+Server \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}
+\item 
+bool \mbox{\hyperlink{wifi__portal_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\+\_\+linked}}
+\item 
+static String \mbox{\hyperlink{wifi__portal_8cpp_a30d801a3a8782a14aa41ce03b3720e4b}{new\+\_\+ssid}} = "{}"{}
+\item 
+static String \mbox{\hyperlink{wifi__portal_8cpp_acbc0c13d1e579770bb2dfbf1369ba3f8}{new\+\_\+password}} = "{}"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{wifi__portal_8cpp_affa2625e0a0e8aacfbf2c6016cd2c015}\label{wifi__portal_8cpp_affa2625e0a0e8aacfbf2c6016cd2c015} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!handle\_link@{handle\_link}}
+\index{handle\_link@{handle\_link}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{handle\_link()}{handle\_link()}}
+{\footnotesize\ttfamily void handle\+\_\+link (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Device\ linked\ with\ app"{}});}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\_linked}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.send(200,\ \textcolor{stringliteral}{"{}application/json"{}},\ \textcolor{stringliteral}{"{}\{\(\backslash\)"{}status\(\backslash\)"{}:\(\backslash\)"{}linked\(\backslash\)"{}\}"{}});}
+\DoxyCodeLine{00105\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{wifi__portal_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\+\_\+linked}}, and \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}, and \mbox{\hyperlink{wifi__portal_8h_acea97721c016346078a369b33d2603fa}{wifi\+\_\+portal\+\_\+init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__portal_8cpp_affa2625e0a0e8aacfbf2c6016cd2c015_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wifi__portal_8cpp_a56a42abadde7879918d1cd7ae9d07a05}\label{wifi__portal_8cpp_a56a42abadde7879918d1cd7ae9d07a05} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!handle\_save@{handle\_save}}
+\index{handle\_save@{handle\_save}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{handle\_save()}{handle\_save()}}
+{\footnotesize\ttfamily void handle\+\_\+save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_a30d801a3a8782a14aa41ce03b3720e4b}{new\_ssid}}\ =\ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.arg(\textcolor{stringliteral}{"{}ssid"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_acbc0c13d1e579770bb2dfbf1369ba3f8}{new\_password}}\ =\ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.arg(\textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Saved\ SSID:\ "{}});}
+\DoxyCodeLine{00059\ \ \ \ \ Serial.println(\mbox{\hyperlink{wifi__portal_8cpp_a30d801a3a8782a14aa41ce03b3720e4b}{new\_ssid}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ Preferences\ p;}
+\DoxyCodeLine{00062\ \ \ \ \ p.begin(\textcolor{stringliteral}{"{}wifi"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00063\ \ \ \ \ p.putString(\textcolor{stringliteral}{"{}ssid"{}},\ \mbox{\hyperlink{wifi__portal_8cpp_a30d801a3a8782a14aa41ce03b3720e4b}{new\_ssid}});}
+\DoxyCodeLine{00064\ \ \ \ \ p.putString(\textcolor{stringliteral}{"{}password"{}},\ \mbox{\hyperlink{wifi__portal_8cpp_acbc0c13d1e579770bb2dfbf1369ba3f8}{new\_password}});}
+\DoxyCodeLine{00065\ \ \ \ \ p.end();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.send(200,\ \textcolor{stringliteral}{"{}text/html"{}},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<html><body><h2>Guardado\ correctamente.\ Reiniciando...</h2></body></html>"{}});}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ delay(2000);\ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.stop();}
+\DoxyCodeLine{00072\ \ \ \ \ delay(200);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ p.begin(\textcolor{stringliteral}{"{}sys"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00075\ \ \ \ \ p.putBool(\textcolor{stringliteral}{"{}skip\_logo"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00076\ \ \ \ \ p.end();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ ESP.restart();}
+\DoxyCodeLine{00079\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{wifi__portal_8cpp_acbc0c13d1e579770bb2dfbf1369ba3f8}{new\+\_\+password}}, \mbox{\hyperlink{wifi__portal_8cpp_a30d801a3a8782a14aa41ce03b3720e4b}{new\+\_\+ssid}}, and \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_acea97721c016346078a369b33d2603fa}{wifi\+\_\+portal\+\_\+init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__portal_8cpp_a56a42abadde7879918d1cd7ae9d07a05_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wifi__portal_8cpp_a79d6ac99b4b3fb43de8b45fbf780068f}\label{wifi__portal_8cpp_a79d6ac99b4b3fb43de8b45fbf780068f} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!handle\_takes@{handle\_takes}}
+\index{handle\_takes@{handle\_takes}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{handle\_takes()}{handle\_takes()}}
+{\footnotesize\ttfamily void handle\+\_\+takes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00081}{81}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ String\ body\ =\ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.arg(\textcolor{stringliteral}{"{}plain"{}});\ \ \textcolor{comment}{//\ JSON\ recibido}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Takes\ received:"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ Serial.println(body);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Guardar\ en\ memoria\ (temporal\ por\ ahora)}}
+\DoxyCodeLine{00089\ \ \ \ \ Preferences\ p;}
+\DoxyCodeLine{00090\ \ \ \ \ p.begin(\textcolor{stringliteral}{"{}takes"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00091\ \ \ \ \ p.putString(\textcolor{stringliteral}{"{}data"{}},\ body);}
+\DoxyCodeLine{00092\ \ \ \ \ p.end();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.send(200,\ \textcolor{stringliteral}{"{}application/json"{}},\ \textcolor{stringliteral}{"{}\{\(\backslash\)"{}status\(\backslash\)"{}:\(\backslash\)"{}ok\(\backslash\)"{}\}"{}});}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\_linked}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{wifi__portal_8cpp_ab1520aef63438245fa91cce71f9ffcc2}{device\+\_\+linked}}, and \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}, and \mbox{\hyperlink{wifi__portal_8h_acea97721c016346078a369b33d2603fa}{wifi\+\_\+portal\+\_\+init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__portal_8cpp_a79d6ac99b4b3fb43de8b45fbf780068f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wifi__portal_8cpp_af5e9b018d143ba1174cd9fcec21c0543}\label{wifi__portal_8cpp_af5e9b018d143ba1174cd9fcec21c0543} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!handle\_web\_root@{handle\_web\_root}}
+\index{handle\_web\_root@{handle\_web\_root}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{handle\_web\_root()}{handle\_web\_root()}}
+{\footnotesize\ttfamily void handle\+\_\+web\+\_\+root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ String\ page\ =\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{00038\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <html><body\ style="{}font-\/family:Arial;"{}>}}
+\DoxyCodeLine{00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <h2>Configuración\ WiFi\ -\/\ MyMeds</h2>}}
+\DoxyCodeLine{00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ <form\ action="{}/save"{}\ method="{}POST"{}>}}
+\DoxyCodeLine{00041\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <label>NOMBRE\_WIFI:</label><br>}}
+\DoxyCodeLine{00042\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ name="{}ssid"{}\ /><br><br>}}
+\DoxyCodeLine{00043\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <label>CONTRASEÑA:</label><br>}}
+\DoxyCodeLine{00044\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ name="{}password"{}\ type="{}password"{}/><br><br>}}
+\DoxyCodeLine{00045\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}submit"{}\ value="{}Guardar"{}/>}}
+\DoxyCodeLine{00046\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ </form>}}
+\DoxyCodeLine{00047\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ </body><html>}}
+\DoxyCodeLine{00048\ \textcolor{stringliteral}{\ \ \ \ )"{};}}
+\DoxyCodeLine{00049\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00050\ \textcolor{stringliteral}{\ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.send(200,\ }\textcolor{stringliteral}{"{}text/html"{}},\ page);}
+\DoxyCodeLine{00051\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}, and \mbox{\hyperlink{wifi__portal_8h_acea97721c016346078a369b33d2603fa}{wifi\+\_\+portal\+\_\+init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__portal_8cpp_af5e9b018d143ba1174cd9fcec21c0543_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wifi__portal_8cpp_ac14469359b9116886e50651e6302c6a6}\label{wifi__portal_8cpp_ac14469359b9116886e50651e6302c6a6} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!wifi\_credentials\_exists@{wifi\_credentials\_exists}}
+\index{wifi\_credentials\_exists@{wifi\_credentials\_exists}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{wifi\_credentials\_exists()}{wifi\_credentials\_exists()}}
+{\footnotesize\ttfamily bool wifi\+\_\+credentials\+\_\+exists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ Preferences\ p;}
+\DoxyCodeLine{00016\ \ \ \ \ p.begin(\textcolor{stringliteral}{"{}wifi"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ String\ ssid\ =\ p.getString(\textcolor{stringliteral}{"{}ssid"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00019\ \ \ \ \ String\ password\ =\ p.getString(\textcolor{stringliteral}{"{}password"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ p.end();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ (ssid.length()\ >\ 0\ \&\&\ password.length()\ >\ 0);}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{wifi__portal_8cpp_ac14469359b9116886e50651e6302c6a6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wifi__portal_8cpp_a03c0fb46ecde2d884545fbd378f6fb46}\label{wifi__portal_8cpp_a03c0fb46ecde2d884545fbd378f6fb46} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!wifi\_load\_credentials@{wifi\_load\_credentials}}
+\index{wifi\_load\_credentials@{wifi\_load\_credentials}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{wifi\_load\_credentials()}{wifi\_load\_credentials()}}
+{\footnotesize\ttfamily void wifi\+\_\+load\+\_\+credentials (\begin{DoxyParamCaption}\item[{String \&}]{ssid,  }\item[{String \&}]{password }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ Preferences\ p;}
+\DoxyCodeLine{00029\ \ \ \ \ p.begin(\textcolor{stringliteral}{"{}wifi"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00030\ \ \ \ \ ssid\ =\ p.getString(\textcolor{stringliteral}{"{}ssid"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ password\ =\ p.getString(\textcolor{stringliteral}{"{}password"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00032\ \ \ \ \ p.end();}
+\DoxyCodeLine{00033\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{wifi__portal_8cpp_a03c0fb46ecde2d884545fbd378f6fb46_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wifi__portal_8cpp_acea97721c016346078a369b33d2603fa}\label{wifi__portal_8cpp_acea97721c016346078a369b33d2603fa} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!wifi\_portal\_init@{wifi\_portal\_init}}
+\index{wifi\_portal\_init@{wifi\_portal\_init}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{wifi\_portal\_init()}{wifi\_portal\_init()}}
+{\footnotesize\ttfamily void wifi\+\_\+portal\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00107}{107}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ IPAddress\ local\_ip(192,168,4,1);}
+\DoxyCodeLine{00110\ \ \ \ \ IPAddress\ gateway(192,168,4,1);}
+\DoxyCodeLine{00111\ \ \ \ \ IPAddress\ subnet(255,255,255,0);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ WiFi.softAPConfig(local\_ip,\ gateway,\ subnet);}
+\DoxyCodeLine{00114\ \ \ \ \ WiFi.softAP(\textcolor{stringliteral}{"{}MyMeds-\/Setup"{}});}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}AP\ IP:\ "{}});}
+\DoxyCodeLine{00117\ \ \ \ \ Serial.println(WiFi.softAPIP());}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/"{}},\ \mbox{\hyperlink{wifi__portal_8cpp_af5e9b018d143ba1174cd9fcec21c0543}{handle\_web\_root}});}
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/save"{}},\ HTTP\_POST,\ \mbox{\hyperlink{wifi__portal_8cpp_a56a42abadde7879918d1cd7ae9d07a05}{handle\_save}});}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/takes"{}},\ HTTP\_POST,\ \mbox{\hyperlink{wifi__portal_8cpp_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\_takes}});}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.on(\textcolor{stringliteral}{"{}/link"{}},\ HTTP\_GET,\ \mbox{\hyperlink{wifi__portal_8cpp_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\_link}});}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.begin();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ Serial.println((uint32\_t)\&\mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}});}
+\DoxyCodeLine{00126\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Server\ started"{}});}
+\DoxyCodeLine{00127\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{wifi__portal_8cpp_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\+\_\+link()}}, \mbox{\hyperlink{wifi__portal_8cpp_a56a42abadde7879918d1cd7ae9d07a05}{handle\+\_\+save()}}, \mbox{\hyperlink{wifi__portal_8cpp_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8cpp_af5e9b018d143ba1174cd9fcec21c0543}{handle\+\_\+web\+\_\+root()}}, and \mbox{\hyperlink{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}{server}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{wifi__portal_8cpp_acea97721c016346078a369b33d2603fa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{wifi__portal_8cpp_acea97721c016346078a369b33d2603fa_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{wifi__portal_8cpp_ab1520aef63438245fa91cce71f9ffcc2}\label{wifi__portal_8cpp_ab1520aef63438245fa91cce71f9ffcc2} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!device\_linked@{device\_linked}}
+\index{device\_linked@{device\_linked}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{device\_linked}{device\_linked}}
+{\footnotesize\ttfamily bool device\+\_\+linked\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\+\_\+link()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, and \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}.
+
+\Hypertarget{wifi__portal_8cpp_acbc0c13d1e579770bb2dfbf1369ba3f8}\label{wifi__portal_8cpp_acbc0c13d1e579770bb2dfbf1369ba3f8} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!new\_password@{new\_password}}
+\index{new\_password@{new\_password}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{new\_password}{new\_password}}
+{\footnotesize\ttfamily String new\+\_\+password = "{}"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_a56a42abadde7879918d1cd7ae9d07a05}{handle\+\_\+save()}}.
+
+\Hypertarget{wifi__portal_8cpp_a30d801a3a8782a14aa41ce03b3720e4b}\label{wifi__portal_8cpp_a30d801a3a8782a14aa41ce03b3720e4b} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!new\_ssid@{new\_ssid}}
+\index{new\_ssid@{new\_ssid}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{new\_ssid}{new\_ssid}}
+{\footnotesize\ttfamily String new\+\_\+ssid = "{}"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_a56a42abadde7879918d1cd7ae9d07a05}{handle\+\_\+save()}}.
+
+\Hypertarget{wifi__portal_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}\label{wifi__portal_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!prefs@{prefs}}
+\index{prefs@{prefs}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{prefs}{prefs}}
+{\footnotesize\ttfamily Preferences prefs}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__portal_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{wifi__portal_8cpp_source}{wifi\+\_\+portal.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{takes__storage_8h_ac57e5c9dc34d76103eb88ee17fe72e51}{init\+NVS()}}, \mbox{\hyperlink{takes__storage_8h_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes()}}, and \mbox{\hyperlink{takes__storage_8h_ab1b6c8b803c156d0a5b4918b8cb77bde}{upload\+Takes()}}.
+
+\Hypertarget{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0}\label{wifi__portal_8cpp_ac223f3cd27b784b7d95b18d6e3184ee0} 
+\index{wifi\_portal.cpp@{wifi\_portal.cpp}!server@{server}}
+\index{server@{server}!wifi\_portal.cpp@{wifi\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{server}{server}}
+{\footnotesize\ttfamily Web\+Server server\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_affa2625e0a0e8aacfbf2c6016cd2c015}{handle\+\_\+link()}}, \mbox{\hyperlink{wifi__portal_8h_a56a42abadde7879918d1cd7ae9d07a05}{handle\+\_\+save()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_af5e9b018d143ba1174cd9fcec21c0543}{handle\+\_\+web\+\_\+root()}}, \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}, and \mbox{\hyperlink{wifi__portal_8h_acea97721c016346078a369b33d2603fa}{wifi\+\_\+portal\+\_\+init()}}.
+

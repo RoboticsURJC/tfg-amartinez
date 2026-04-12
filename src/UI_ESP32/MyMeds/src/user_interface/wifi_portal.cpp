@@ -97,7 +97,7 @@ void handle_takes()
 
 void handle_link()
 {
-    Serial.println("Device linked with app");
+    Serial.println("App sincronizada (link)");
 
     device_linked = true;
 

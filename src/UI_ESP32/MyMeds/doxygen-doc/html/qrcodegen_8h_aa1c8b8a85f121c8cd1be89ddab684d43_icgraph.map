@@ -1,0 +1,13 @@
+<map id="qrcodegen_makeNumeric" name="qrcodegen_makeNumeric">
+<area shape="rect" id="Node000001" title=" " alt="" coords="693,31,881,56"/>
+<area shape="rect" id="Node000002" href="$qrcodegen_8c.html#a2eb79247b6f8bed92514c1815fe0079c" title=" " alt="" coords="475,31,645,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="680,46,646,46,646,41,680,41"/>
+<area shape="rect" id="Node000003" href="$wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41" title=" " alt="" coords="296,31,427,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="461,46,427,46,427,41,461,41"/>
+<area shape="rect" id="Node000004" href="$wifi__mod_8cpp.html#a47793befeb6bd8738a1e6b7b8ddb38df" title=" " alt="" coords="112,31,248,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="282,46,248,46,248,41,282,41"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,5,60,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="98,32,60,25,61,20,99,26"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,55,64,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="99,59,65,65,64,60,98,54"/>
+</map>

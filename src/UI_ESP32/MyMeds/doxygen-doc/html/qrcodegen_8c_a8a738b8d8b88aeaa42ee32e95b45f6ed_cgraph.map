@@ -1,0 +1,9 @@
+<map id="drawFormatBits" name="drawFormatBits">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,131,80"/>
+<area shape="rect" id="Node000002" href="$qrcodegen_8c.html#aa38afb84462cf1264ffc63fa5e60c62b" title=" " alt="" coords="221,5,283,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,52,207,27,209,32,117,57"/>
+<area shape="rect" id="Node000003" href="$qrcodegen_8c.html#afe30b8ff2b6218f37a2945871e6f11b8" title=" " alt="" coords="179,55,325,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,65,166,65,166,70,131,70"/>
+<area shape="rect" id="Node000004" href="$qrcodegen_8c.html#a15c31cc3974d3162b6804fc4a1f6c14a" title=" " alt="" coords="179,104,325,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="117,77,191,98,190,103,115,83"/>
+</map>

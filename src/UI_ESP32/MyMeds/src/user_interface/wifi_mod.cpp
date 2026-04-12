@@ -7,10 +7,10 @@ static lv_obj_t *qr_img = nullptr;
 static uint8_t qr_data[qrcodegen_BUFFER_LEN_MAX];
 static uint8_t temp[qrcodegen_BUFFER_LEN_MAX];
 
-static void generate_wifi_qr(lv_obj_t *parent, const char *text)
+static void generate_wifi_qr(lv_obj_t *parent, const char *qr_text)
 {
     qrcodegen_encodeText(
-        text,
+        qr_text,
         temp,
         qr_data,
         qrcodegen_Ecc_LOW,
@@ -22,11 +22,11 @@ static void generate_wifi_qr(lv_obj_t *parent, const char *text)
 
     int size = qrcodegen_getSize(qr_data);
     int scale = 4;
-    int out_size = size*scale;
+    int out_size = size * scale;
 
     static lv_color_t *buf = nullptr;
     if (!buf){
-        buf = (lv_color_t *) malloc(out_size*out_size*sizeof(lv_color_t));
+        buf = (lv_color_t *) malloc(out_size * out_size * sizeof(lv_color_t));
     }
 
     if (!buf){
@@ -64,7 +64,7 @@ static void generate_wifi_qr(lv_obj_t *parent, const char *text)
 
     img_desc.header.w = out_size;
     img_desc.header.h = out_size;
-    img_desc.data_size = out_size*out_size*sizeof(lv_color_t);
+    img_desc.data_size = out_size * out_size * sizeof(lv_color_t);
     img_desc.data = (const uint8_t *) buf;
 
     if (!qr_img){
@@ -72,17 +72,19 @@ static void generate_wifi_qr(lv_obj_t *parent, const char *text)
     }
 
     lv_img_set_src(qr_img, &img_desc);
-    lv_obj_align(qr_img, LV_ALIGN_CENTER, 0, 10);
+    lv_obj_align(qr_img, LV_ALIGN_CENTER, 0, 20);
 }
 
-void show_wifi_screen(lv_obj_t *parent, const char *text)
+void show_wifi_screen(lv_obj_t *parent, const char *label_text, const char *qr_text)
 {
     lv_obj_clean(parent);
 
+    // --- TEXTO ---
     lv_obj_t *label = lv_label_create(parent);
-    lv_label_set_text(label, "Escanear QR");
+    lv_label_set_text(label, label_text);
     lv_obj_set_style_text_font(label, &lv_font_montserrat_32, LV_PART_MAIN);
     lv_obj_align(label, LV_ALIGN_TOP_MID, 0, 20);
 
-    generate_wifi_qr(parent, text);
+    // --- QR ---
+    generate_wifi_qr(parent, qr_text);
 }

@@ -1,0 +1,109 @@
+\doxysection{clock\+\_\+mod.\+cpp}
+\hypertarget{clock__mod_8cpp_source}{}\label{clock__mod_8cpp_source}\index{src/user\_interface/clock\_mod.cpp@{src/user\_interface/clock\_mod.cpp}}
+\mbox{\hyperlink{clock__mod_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <WiFi.h>}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{home__mod_8h}{user\_interface/home\_mod.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{clock__mod_8h}{user\_interface/clock\_mod.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{montserrat__100__bold_8h}{fonts/montserrat\_100\_bold.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{montserrat__46__bold_8h}{fonts/montserrat\_46\_bold.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00009}\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{00009}}\ lv\_obj\_t\ *\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00010}\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{00010}}\ lv\_obj\_t\ *\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00011}\mbox{\hyperlink{clock__mod_8cpp_afb00ba22e25756548622d42ffff8477e}{00011}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{clock__mod_8cpp_afb00ba22e25756548622d42ffff8477e}{msg\_lbl}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00013}\mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{00013}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{stringliteral}{"{}Domingo"{}},\ \textcolor{stringliteral}{"{}Lunes"{}},\ \textcolor{stringliteral}{"{}Martes"{}},\ \textcolor{stringliteral}{"{}Miércoles"{}},}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{stringliteral}{"{}Jueves"{}},\ \textcolor{stringliteral}{"{}Viernes"{}},\ \textcolor{stringliteral}{"{}Sábado"{}}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00016}00016\ \};}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00018}\mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{00018}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}}(lv\_event\_t\ *e)}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00023}\mbox{\hyperlink{clock__mod_8h_a199e69d3e99f6122e7d30966d5377636}{00023}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clock__mod_8cpp_a199e69d3e99f6122e7d30966d5377636}{show\_clock\_screen}}(lv\_obj\_t\ *parent)}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00025}00025\ \ \ \ \ lv\_obj\_clean(parent);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00026}00026\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(parent,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_ac2ee8840b2945f52b9e866e0bd4be081}{clock\_init}}(parent);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00030}00030\ \ \ \ \ lv\_obj\_t\ *btn\_init\ =\ lv\_btn\_create(parent);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00031}00031\ \ \ \ \ lv\_obj\_set\_size(btn\_init,\ 300,\ 90);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00032}00032\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_init,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00033}00033\ \ \ \ \ lv\_obj\_set\_style\_radius(btn\_init,\ 20,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00034}00034\ \ \ \ \ lv\_obj\_align(btn\_init,\ LV\_ALIGN\_BOTTOM\_MID,\ 0,\ -\/10);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00036}00036\ \ \ \ \ lv\_obj\_t\ *lbl\_init\ =\ lv\_label\_create(btn\_init);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00037}00037\ \ \ \ \ lv\_label\_set\_text(lbl\_init,\ \textcolor{stringliteral}{"{}INICIO"{}});}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00038}00038\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_init,\ \&lv\_font\_montserrat\_40,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00039}00039\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_init,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00040}00040\ \ \ \ \ lv\_obj\_center(lbl\_init);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00042}00042\ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_init,\ \mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00043}00043\ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00045}\mbox{\hyperlink{clock__mod_8h_a0560780ed0fa14ae31b096e24fce8004}{00045}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clock__mod_8cpp_a0560780ed0fa14ae31b096e24fce8004}{clock\_sync}}()}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00046}00046\ \{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00047}00047\ \ \ \ \ configTzTime(\textcolor{stringliteral}{"{}CET-\/1CEST,M3.5.0/02:00,M10.5.0/03:00"{}},\ \textcolor{stringliteral}{"{}pool.ntp.org"{}});}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ info;}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ start\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ timeout\ =\ 10000;}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{while}\ (!getLocalTime(\&info))\{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((millis()-\/start)\ >\ timeout)\{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}[WARN]\ NTP\ timeout\ -\/\ hora\ no\ sincronizada"{}});}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ delay(500);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00062}00062\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}[OK]\ Hora\ sincronizada"{}});}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00065}\mbox{\hyperlink{clock__mod_8h_ac2ee8840b2945f52b9e866e0bd4be081}{00065}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clock__mod_8cpp_ac2ee8840b2945f52b9e866e0bd4be081}{clock\_init}}(lv\_obj\_t\ *parent)\{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/\ HOUR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00067}00067\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}}\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00068}00068\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ \&\mbox{\hyperlink{montserrat__100__bold_8c_adc57c87d186e9d4e5e4c5bad5f093186}{montserrat\_100\_bold}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00069}00069\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ lv\_color\_make(188,\ 135,\ 197),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00070}00070\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ LV\_ALIGN\_TOP\_MID,\ 0,\ -\/10);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/\ DAY\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00073}00073\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}}\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00074}00074\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ \&\mbox{\hyperlink{montserrat__46__bold_8c_a8f0593c8d515fc1746613a83664ced00}{montserrat\_46\_bold}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00075}00075\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00076}00076\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ LV\_ALIGN\_TOP\_MID,\ 5,\ 85);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00077}00077\ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00079}\mbox{\hyperlink{clock__mod_8h_a3858320e789f5154bf2030598829b1a4}{00079}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clock__mod_8cpp_a3858320e789f5154bf2030598829b1a4}{clock\_update}}()}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00080}00080\ \{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}}\ ||\ !\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}})\{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ info;}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&info))\{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{char}\ hour\_buf[16];}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00091}00091\ \ \ \ \ snprintf(hour\_buf,\ \textcolor{keyword}{sizeof}(hour\_buf),\ \textcolor{stringliteral}{"{}\%02d:\%02d"{}},\ info.tm\_hour,\ info.tm\_min);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00092}00092\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ hour\_buf);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{keywordtype}{char}\ day\_buf[16];}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00095}00095\ \ \ \ \ snprintf(day\_buf,\ \textcolor{keyword}{sizeof}(day\_buf),\ \textcolor{stringliteral}{"{}\%s"{}},\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[info.tm\_wday]);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00096}00096\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ day\_buf);}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00097}00097\ \}}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00099}\mbox{\hyperlink{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d}{00099}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clock__mod_8cpp_adff04a727b74bd5b4cca55e438a4010d}{update\_clock\_task}}(lv\_timer\_t\ *timer)}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00100}00100\ \{}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00101}00101\ \ \ \ \ (void)\ timer;}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00102}00102\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_a3858320e789f5154bf2030598829b1a4}{clock\_update}}();}
+\DoxyCodeLine{\Hypertarget{clock__mod_8cpp_source_l00103}00103\ \}}
+
+\end{DoxyCode}

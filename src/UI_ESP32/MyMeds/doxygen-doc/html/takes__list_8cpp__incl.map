@@ -1,0 +1,12 @@
+<map id="src/user_interface/takes_list.cpp" name="src/user_interface/takes_list.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="65,5,204,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="65,181,124,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,48,40,67,26,80,14,95,8,113,14,132,33,155,57,173,54,177,29,159,10,135,3,113,10,92,22,76,37,63,70,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="25,101,109,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,47,86,91,82,88,117,44"/>
+<area shape="rect" id="Node000004" href="$pill__takes_8h.html" title=" " alt="" coords="133,93,272,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="152,44,181,81,177,84,148,47"/>
+<area shape="rect" id="Node000005" href="$takes__storage_8h.html" title=" " alt="" coords="296,101,475,126"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="190,43,340,94,338,99,189,48"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="178,136,124,175,120,171,175,131"/>
+</map>

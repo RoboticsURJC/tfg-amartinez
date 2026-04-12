@@ -1,0 +1,56 @@
+\doxysection{src/fonts/montserrat\+\_\+24\+\_\+regular.h File Reference}
+\hypertarget{montserrat__24__regular_8h}{}\label{montserrat__24__regular_8h}\index{src/fonts/montserrat\_24\_regular.h@{src/fonts/montserrat\_24\_regular.h}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+Include dependency graph for montserrat\+\_\+24\+\_\+regular.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{montserrat__24__regular_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const lv\+\_\+font\+\_\+t \mbox{\hyperlink{montserrat__24__regular_8h_aa0bf4acb1100b89bfcc74a4f24cb41d8}{montserrat\+\_\+24\+\_\+regular}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{montserrat__24__regular_8h_aa0bf4acb1100b89bfcc74a4f24cb41d8}\label{montserrat__24__regular_8h_aa0bf4acb1100b89bfcc74a4f24cb41d8} 
+\index{montserrat\_24\_regular.h@{montserrat\_24\_regular.h}!montserrat\_24\_regular@{montserrat\_24\_regular}}
+\index{montserrat\_24\_regular@{montserrat\_24\_regular}!montserrat\_24\_regular.h@{montserrat\_24\_regular.h}}
+\doxysubsubsection{\texorpdfstring{montserrat\_24\_regular}{montserrat\_24\_regular}}
+{\footnotesize\ttfamily const lv\+\_\+font\+\_\+t montserrat\+\_\+24\+\_\+regular\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{montserrat__24__regular_8c_source_l01045}{1045}} of file \mbox{\hyperlink{montserrat__24__regular_8c_source}{montserrat\+\_\+24\+\_\+regular.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01047\ \ \ \ \ .get\_glyph\_dsc\ =\ lv\_font\_get\_glyph\_dsc\_fmt\_txt,\ \ \ \ \textcolor{comment}{/*Function\ pointer\ to\ get\ glyph's\ data*/}}
+\DoxyCodeLine{01048\ \ \ \ \ .get\_glyph\_bitmap\ =\ lv\_font\_get\_bitmap\_fmt\_txt,\ \ \ \ \textcolor{comment}{/*Function\ pointer\ to\ get\ glyph's\ bitmap*/}}
+\DoxyCodeLine{01049\ \ \ \ \ .line\_height\ =\ 27,\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*The\ maximum\ line\ height\ required\ by\ the\ font*/}}
+\DoxyCodeLine{01050\ \ \ \ \ .base\_line\ =\ 5,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*Baseline\ measured\ from\ the\ bottom\ of\ the\ line*/}}
+\DoxyCodeLine{01051\ \textcolor{preprocessor}{\#if\ !(LVGL\_VERSION\_MAJOR\ ==\ 6\ \&\&\ LVGL\_VERSION\_MINOR\ ==\ 0)}}
+\DoxyCodeLine{01052\ \ \ \ \ .subpx\ =\ LV\_FONT\_SUBPX\_NONE,}
+\DoxyCodeLine{01053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01054\ \textcolor{preprocessor}{\#if\ LV\_VERSION\_CHECK(7,\ 4,\ 0)\ ||\ LVGL\_VERSION\_MAJOR\ >=\ 8}}
+\DoxyCodeLine{01055\ \ \ \ \ .underline\_position\ =\ -\/2,}
+\DoxyCodeLine{01056\ \ \ \ \ .underline\_thickness\ =\ 1,}
+\DoxyCodeLine{01057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01058\ \ \ \ \ .dsc\ =\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a91eb1ede9d32223e5e6e0285b6716e2a}{font\_dsc}},\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*The\ custom\ font\ data.\ Will\ be\ accessed\ by\ \`{}get\_glyph\_bitmap/dsc`\ */}}
+\DoxyCodeLine{01059\ \textcolor{preprocessor}{\#if\ LV\_VERSION\_CHECK(8,\ 2,\ 0)\ ||\ LVGL\_VERSION\_MAJOR\ >=\ 9}}
+\DoxyCodeLine{01060\ \ \ \ \ .fallback\ =\ NULL,}
+\DoxyCodeLine{01061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01062\ \ \ \ \ .user\_data\ =\ NULL,}
+\DoxyCodeLine{01063\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen()}}, and \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\+\_\+takes\+\_\+screen()}}.
+

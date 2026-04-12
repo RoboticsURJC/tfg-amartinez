@@ -1,0 +1,1220 @@
+\begin{theindex}
+
+  \item {addEccAndInterleave}
+    \subitem {qrcodegen.c}, \hyperpage{62}
+  \item {ALPHANUMERIC\_CHARSET}
+    \subitem {qrcodegen.c}, \hyperpage{94}
+  \item {appendBitsToBuffer}
+    \subitem {qrcodegen.c}, \hyperpage{63}
+  \item {applyMask}
+    \subitem {qrcodegen.c}, \hyperpage{63}
+
+  \indexspace
+
+  \item {bitLength}
+    \subitem {qrcodegen\_Segment}, \hyperpage{6}
+  \item {btn\_back}
+    \subitem {edit\_takes.cpp}, \hyperpage{1623}
+  \item {btn\_days}
+    \subitem {edit\_takes.cpp}, \hyperpage{1623}
+    \subitem {repetition.cpp}, \hyperpage{1639}
+  \item {btn\_event\_cb}
+    \subitem {clock\_mod.cpp}, \hyperpage{1606}
+    \subitem {clock\_mod.h}, \hyperpage{24}
+    \subitem {home\_mod.cpp}, \hyperpage{1633}
+  \item {btn\_rep\_days}
+    \subitem {edit\_takes.cpp}, \hyperpage{1623}
+  \item {btn\_save}
+    \subitem {edit\_takes.cpp}, \hyperpage{1623}
+  \item {buf}
+    \subitem {lvgl\_display.cpp}, \hyperpage{1589}
+
+  \indexspace
+
+  \item {calcSegmentBitLength}
+    \subitem {qrcodegen.c}, \hyperpage{64}
+  \item {chackTakes}
+    \subitem {takes\_logic.h}, \hyperpage{9}
+  \item {checkTakes}
+    \subitem {takes\_logic.cpp}, \hyperpage{638}
+  \item {clock\_init}
+    \subitem {clock\_mod.cpp}, \hyperpage{1607}
+    \subitem {clock\_mod.h}, \hyperpage{24}
+  \item {clock\_mod.cpp}
+    \subitem {btn\_event\_cb}, \hyperpage{1606}
+    \subitem {clock\_init}, \hyperpage{1607}
+    \subitem {clock\_sync}, \hyperpage{1607}
+    \subitem {clock\_update}, \hyperpage{1608}
+    \subitem {days}, \hyperpage{1611}
+    \subitem {lbl\_day}, \hyperpage{1611}
+    \subitem {lbl\_time}, \hyperpage{1611}
+    \subitem {msg\_lbl}, \hyperpage{1611}
+    \subitem {show\_clock\_screen}, \hyperpage{1609}
+    \subitem {update\_clock\_task}, \hyperpage{1610}
+  \item {clock\_mod.h}
+    \subitem {btn\_event\_cb}, \hyperpage{24}
+    \subitem {clock\_init}, \hyperpage{24}
+    \subitem {clock\_sync}, \hyperpage{25}
+    \subitem {clock\_update}, \hyperpage{25}
+    \subitem {show\_clock\_screen}, \hyperpage{26}
+    \subitem {update\_clock\_task}, \hyperpage{27}
+  \item {clock\_sync}
+    \subitem {clock\_mod.cpp}, \hyperpage{1607}
+    \subitem {clock\_mod.h}, \hyperpage{25}
+  \item {clock\_timer}
+    \subitem {main.cpp}, \hyperpage{1598}
+  \item {clock\_update}
+    \subitem {clock\_mod.cpp}, \hyperpage{1608}
+    \subitem {clock\_mod.h}, \hyperpage{25}
+  \item {cmaps}
+    \subitem {montserrat\_100\_bold.c}, \hyperpage{131}
+    \subitem {montserrat\_24\_regular.c}, \hyperpage{263}
+    \subitem {montserrat\_30\_regular.c}, \hyperpage{291}
+    \subitem {montserrat\_34\_regular.c}, \hyperpage{325}
+    \subitem {montserrat\_46\_bold.c}, \hyperpage{364}
+    \subitem {montserrat\_50\_bold.c}, \hyperpage{420}
+    \subitem {montserrat\_60\_bold.c}, \hyperpage{479}
+    \subitem {montserrat\_70\_bold.c}, \hyperpage{552}
+  \item {confirm\_delete}
+    \subitem {takes\_list.cpp}, \hyperpage{1642}
+  \item {current\_cfg}
+    \subitem {edit\_takes.cpp}, \hyperpage{1623}
+    \subitem {repetition.cpp}, \hyperpage{1639}
+  \item {current\_index}
+    \subitem {edit\_takes.cpp}, \hyperpage{1624}
+    \subitem {repetition.cpp}, \hyperpage{1639}
+  \item {current\_screen}
+    \subitem {edit\_takes.cpp}, \hyperpage{1624}
+    \subitem {home\_mod.cpp}, \hyperpage{1636}
+    \subitem {takes\_list.cpp}, \hyperpage{1647}
+    \subitem {today\_takes.cpp}, \hyperpage{1656}
+
+  \indexspace
+
+  \item {data}
+    \subitem {qrcodegen\_Segment}, \hyperpage{6}
+  \item {days}
+    \subitem {clock\_mod.cpp}, \hyperpage{1611}
+  \item {days\_repeat}
+    \subitem {edit\_takes.cpp}, \hyperpage{1624}
+  \item {days\_text\_repeat}
+    \subitem {today\_takes.cpp}, \hyperpage{1652}
+  \item {days\_warning}
+    \subitem {edit\_takes.cpp}, \hyperpage{1624}
+  \item {delete\_index}
+    \subitem {takes\_list.cpp}, \hyperpage{1647}
+  \item {delete\_take}
+    \subitem {pill\_takes.h}, \hyperpage{32}
+    \subitem {takes\_storage.cpp}, \hyperpage{1602}
+  \item {deleteTakes}
+    \subitem {takes\_storage.h}, \hyperpage{22}
+  \item {device\_linked}
+    \subitem {main.cpp}, \hyperpage{1598}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1670}
+  \item {draw\_buf}
+    \subitem {lvgl\_display.cpp}, \hyperpage{1589}
+  \item {drawCodewords}
+    \subitem {qrcodegen.c}, \hyperpage{65}
+  \item {drawFormatBits}
+    \subitem {qrcodegen.c}, \hyperpage{66}
+  \item {drawLightFunctionModules}
+    \subitem {qrcodegen.c}, \hyperpage{67}
+
+  \indexspace
+
+  \item {ECC\_CODEWORDS\_PER\_BLOCK}
+    \subitem {qrcodegen.c}, \hyperpage{94}
+  \item {edit\_takes.cpp}
+    \subitem {btn\_back}, \hyperpage{1623}
+    \subitem {btn\_days}, \hyperpage{1623}
+    \subitem {btn\_rep\_days}, \hyperpage{1623}
+    \subitem {btn\_save}, \hyperpage{1623}
+    \subitem {current\_cfg}, \hyperpage{1623}
+    \subitem {current\_index}, \hyperpage{1624}
+    \subitem {current\_screen}, \hyperpage{1624}
+    \subitem {days\_repeat}, \hyperpage{1624}
+    \subitem {days\_warning}, \hyperpage{1624}
+    \subitem {edit\_takes\_screen}, \hyperpage{1614}
+    \subitem {editing\_existing}, \hyperpage{1624}
+    \subitem {lbl\_recordatory}, \hyperpage{1624}
+    \subitem {lbl\_warning}, \hyperpage{1625}
+    \subitem {load\_screen}, \hyperpage{1620}
+    \subitem {refresh\_days\_buttons}, \hyperpage{1620}
+    \subitem {right\_x}, \hyperpage{1620}
+    \subitem {roller\_hours}, \hyperpage{1625}
+    \subitem {roller\_minutes}, \hyperpage{1625}
+    \subitem {set\_rollers\_init}, \hyperpage{1621}
+    \subitem {sw\_recordatory}, \hyperpage{1625}
+    \subitem {temp\_take}, \hyperpage{1625}
+    \subitem {update\_days\_visibility}, \hyperpage{1621}
+    \subitem {update\_layout\_positions}, \hyperpage{1622}
+  \item {edit\_takes\_screen}
+    \subitem {edit\_takes.cpp}, \hyperpage{1614}
+    \subitem {pill\_takes.h}, \hyperpage{32}
+  \item {editing\_existing}
+    \subitem {edit\_takes.cpp}, \hyperpage{1624}
+    \subitem {repetition.cpp}, \hyperpage{1639}
+  \item {executeTake}
+    \subitem {takes\_logic.cpp}, \hyperpage{638}
+  \item {executeTakes}
+    \subitem {takes\_logic.h}, \hyperpage{9}
+
+  \indexspace
+
+  \item {fillRectangle}
+    \subitem {qrcodegen.c}, \hyperpage{69}
+  \item {finderPenaltyAddHistory}
+    \subitem {qrcodegen.c}, \hyperpage{69}
+  \item {finderPenaltyCountPatterns}
+    \subitem {qrcodegen.c}, \hyperpage{70}
+  \item {finderPenaltyTerminateAndCount}
+    \subitem {qrcodegen.c}, \hyperpage{70}
+  \item {font\_dsc}
+    \subitem {montserrat\_100\_bold.c}, \hyperpage{131}
+    \subitem {montserrat\_24\_regular.c}, \hyperpage{264}
+    \subitem {montserrat\_30\_regular.c}, \hyperpage{292}
+    \subitem {montserrat\_34\_regular.c}, \hyperpage{326}
+    \subitem {montserrat\_46\_bold.c}, \hyperpage{365}
+    \subitem {montserrat\_50\_bold.c}, \hyperpage{420}
+    \subitem {montserrat\_60\_bold.c}, \hyperpage{480}
+    \subitem {montserrat\_70\_bold.c}, \hyperpage{552}
+
+  \indexspace
+
+  \item {generate\_wifi\_qr}
+    \subitem {wifi\_mod.cpp}, \hyperpage{1659}
+  \item {get\_today\_index}
+    \subitem {pill\_takes.h}, \hyperpage{38}
+    \subitem {today\_takes.cpp}, \hyperpage{1652}
+  \item {getAlignmentPatternPositions}
+    \subitem {qrcodegen.c}, \hyperpage{71}
+  \item {getBit}
+    \subitem {qrcodegen.c}, \hyperpage{72}
+  \item {getModuleBounded}
+    \subitem {qrcodegen.c}, \hyperpage{72}
+  \item {getNumDataCodewords}
+    \subitem {qrcodegen.c}, \hyperpage{73}
+  \item {getNumRawDataModules}
+    \subitem {qrcodegen.c}, \hyperpage{73}
+  \item {getPenaltyScore}
+    \subitem {qrcodegen.c}, \hyperpage{74}
+  \item {getTotalBits}
+    \subitem {qrcodegen.c}, \hyperpage{76}
+  \item {glyph\_bitmap}
+    \subitem {montserrat\_100\_bold.c}, \hyperpage{132}
+    \subitem {montserrat\_24\_regular.c}, \hyperpage{264}
+    \subitem {montserrat\_30\_regular.c}, \hyperpage{292}
+    \subitem {montserrat\_34\_regular.c}, \hyperpage{326}
+    \subitem {montserrat\_46\_bold.c}, \hyperpage{365}
+    \subitem {montserrat\_50\_bold.c}, \hyperpage{421}
+    \subitem {montserrat\_60\_bold.c}, \hyperpage{480}
+    \subitem {montserrat\_70\_bold.c}, \hyperpage{553}
+  \item {glyph\_dsc}
+    \subitem {montserrat\_100\_bold.c}, \hyperpage{194}
+    \subitem {montserrat\_24\_regular.c}, \hyperpage{274}
+    \subitem {montserrat\_30\_regular.c}, \hyperpage{305}
+    \subitem {montserrat\_34\_regular.c}, \hyperpage{342}
+    \subitem {montserrat\_46\_bold.c}, \hyperpage{389}
+    \subitem {montserrat\_50\_bold.c}, \hyperpage{447}
+    \subitem {montserrat\_60\_bold.c}, \hyperpage{513}
+    \subitem {montserrat\_70\_bold.c}, \hyperpage{592}
+
+  \indexspace
+
+  \item {handle\_link}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1665}
+    \subitem {wifi\_portal.h}, \hyperpage{51}
+  \item {handle\_save}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1665}
+    \subitem {wifi\_portal.h}, \hyperpage{51}
+  \item {handle\_takes}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1666}
+    \subitem {wifi\_portal.h}, \hyperpage{52}
+  \item {handle\_web\_root}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1667}
+    \subitem {wifi\_portal.h}, \hyperpage{52}
+  \item {home\_mod.cpp}
+    \subitem {btn\_event\_cb}, \hyperpage{1633}
+    \subitem {current\_screen}, \hyperpage{1636}
+    \subitem {load\_screen}, \hyperpage{1633}
+    \subitem {show\_home\_screen}, \hyperpage{1634}
+  \item {home\_mod.h}
+    \subitem {show\_home\_screen}, \hyperpage{29}
+  \item {hour}
+    \subitem {TakeConfig}, \hyperpage{7}
+
+  \indexspace
+
+  \item {ILI9341\_DRIVER}
+    \subitem {User\_Setup.h}, \hyperpage{57}
+  \item {include/logic/takes\_logic.h}, \hyperpage{9, 10}
+  \item {include/lv\_conf.h}, \hyperpage{10}, \hyperpage{16}
+  \item {include/lvgl\_display.h}, \hyperpage{17}, \hyperpage{19}
+  \item {include/lvgl\_touch.h}, \hyperpage{19}, \hyperpage{21}
+  \item {include/storage/takes\_storage.h}, \hyperpage{21}, 
+		\hyperpage{23}
+  \item {include/user\_interface/clock\_mod.h}, \hyperpage{23}, 
+		\hyperpage{28}
+  \item {include/user\_interface/home\_mod.h}, \hyperpage{28}, 
+		\hyperpage{30}
+  \item {include/user\_interface/pill\_takes.h}, \hyperpage{31}, 
+		\hyperpage{47}
+  \item {include/user\_interface/wifi\_mod.h}, \hyperpage{47}, 
+		\hyperpage{49}
+  \item {include/user\_interface/wifi\_portal.h}, \hyperpage{49}, 
+		\hyperpage{56}
+  \item {include/User\_Setup.h}, \hyperpage{56}, \hyperpage{60}
+  \item {indev\_touch}
+    \subitem {lvgl\_touch.cpp}, \hyperpage{1594}
+  \item {initializeFunctionModules}
+    \subitem {qrcodegen.c}, \hyperpage{76}
+  \item {initNVS}
+    \subitem {takes\_storage.cpp}, \hyperpage{1602}
+    \subitem {takes\_storage.h}, \hyperpage{22}
+  \item {is\_take\_today}
+    \subitem {pill\_takes.h}, \hyperpage{39}
+    \subitem {today\_takes.cpp}, \hyperpage{1652}
+
+  \indexspace
+
+  \item {lbl\_day}
+    \subitem {clock\_mod.cpp}, \hyperpage{1611}
+  \item {lbl\_recordatory}
+    \subitem {edit\_takes.cpp}, \hyperpage{1624}
+  \item {lbl\_time}
+    \subitem {clock\_mod.cpp}, \hyperpage{1611}
+  \item {lbl\_warning}
+    \subitem {edit\_takes.cpp}, \hyperpage{1625}
+  \item {LENGTH\_OVERFLOW}
+    \subitem {qrcodegen.c}, \hyperpage{62}
+  \item {lib/qrcodegen/qrcodegen.c}, \hyperpage{60}, \hyperpage{96}
+  \item {lib/qrcodegen/qrcodegen.h}, \hyperpage{109}, \hyperpage{125}
+  \item {load\_screen}
+    \subitem {edit\_takes.cpp}, \hyperpage{1620}
+    \subitem {home\_mod.cpp}, \hyperpage{1633}
+    \subitem {takes\_list.cpp}, \hyperpage{1644}
+    \subitem {today\_takes.cpp}, \hyperpage{1653}
+  \item {logo\_mymeds.h}
+    \subitem {logo\_mymeds\_blanco}, \hyperpage{640}
+  \item {logo\_mymeds\_blanco}
+    \subitem {logo\_mymeds.h}, \hyperpage{640}
+    \subitem {logo\_mymeds\_blanco.c}, \hyperpage{642}
+  \item {logo\_mymeds\_blanco.c}
+    \subitem {logo\_mymeds\_blanco}, \hyperpage{642}
+    \subitem {logo\_mymeds\_blanco\_map}, \hyperpage{642}
+    \subitem {LV\_ATTRIBUTE\_IMG\_LOGO\_MYMEDS\_BLANCO}, 
+		\hyperpage{641}
+    \subitem {LV\_ATTRIBUTE\_MEM\_ALIGN}, \hyperpage{641}
+  \item {logo\_mymeds\_blanco\_map}
+    \subitem {logo\_mymeds\_blanco.c}, \hyperpage{642}
+  \item {LOGO\_TIME\_MS}
+    \subitem {main.cpp}, \hyperpage{1598}
+  \item {loop}
+    \subitem {main.cpp}, \hyperpage{1595}
+  \item {loop1}
+    \subitem {test.cpp}, \hyperpage{1673}
+  \item {LV\_ATTRIBUTE\_IMG\_LOGO\_MYMEDS\_BLANCO}
+    \subitem {logo\_mymeds\_blanco.c}, \hyperpage{641}
+  \item {LV\_ATTRIBUTE\_MEM\_ALIGN}
+    \subitem {logo\_mymeds\_blanco.c}, \hyperpage{641}
+  \item {LV\_COLOR\_16\_SWAP}
+    \subitem {lv\_conf.h}, \hyperpage{11}
+  \item {LV\_COLOR\_DEPTH}
+    \subitem {lv\_conf.h}, \hyperpage{11}
+  \item {lv\_conf.h}
+    \subitem {LV\_COLOR\_16\_SWAP}, \hyperpage{11}
+    \subitem {LV\_COLOR\_DEPTH}, \hyperpage{11}
+    \subitem {LV\_ENABLE\_GC}, \hyperpage{11}
+    \subitem {LV\_FONT\_CUSTOM\_DECLARE}, \hyperpage{11}
+    \subitem {LV\_FONT\_DEFAULT}, \hyperpage{11}
+    \subitem {LV\_FONT\_FMT\_TXT\_LARGE}, \hyperpage{11}
+    \subitem {LV\_FONT\_MONTSERRAT\_14}, \hyperpage{11}
+    \subitem {LV\_FONT\_MONTSERRAT\_16}, \hyperpage{12}
+    \subitem {LV\_FONT\_MONTSERRAT\_22}, \hyperpage{12}
+    \subitem {LV\_FONT\_MONTSERRAT\_24}, \hyperpage{12}
+    \subitem {LV\_FONT\_MONTSERRAT\_32}, \hyperpage{12}
+    \subitem {LV\_FONT\_MONTSERRAT\_40}, \hyperpage{12}
+    \subitem {LV\_FONT\_UNSCII\_8}, \hyperpage{12}
+    \subitem {LV\_MEM\_CUSTOM}, \hyperpage{12}
+    \subitem {LV\_MEM\_SIZE}, \hyperpage{12}
+    \subitem {LV\_TICK\_CUSTOM}, \hyperpage{13}
+    \subitem {LV\_TICK\_CUSTOM\_INCLUDE}, \hyperpage{13}
+    \subitem {LV\_TICK\_CUSTOM\_SYS\_TIME\_EXPR}, \hyperpage{13}
+    \subitem {LV\_TXT\_BREAK\_CHARS}, \hyperpage{13}
+    \subitem {LV\_TXT\_LINE\_BREAK\_LONG\_LEN}, \hyperpage{13}
+    \subitem {LV\_USE\_\_USER\_DATA}, \hyperpage{13}
+    \subitem {LV\_USE\_ARC}, \hyperpage{13}
+    \subitem {LV\_USE\_BAR}, \hyperpage{13}
+    \subitem {LV\_USE\_BTN}, \hyperpage{14}
+    \subitem {LV\_USE\_FONT\_COMPRESSED}, \hyperpage{14}
+    \subitem {LV\_USE\_FONT\_SYMBOLS}, \hyperpage{14}
+    \subitem {LV\_USE\_FS\_IF}, \hyperpage{14}
+    \subitem {LV\_USE\_FS\_POSIX}, \hyperpage{14}
+    \subitem {LV\_USE\_GPU\_NXP\_PXP}, \hyperpage{14}
+    \subitem {LV\_USE\_GPU\_NXP\_VG\_LITE}, \hyperpage{14}
+    \subitem {LV\_USE\_GPU\_STM32\_DNA2D}, \hyperpage{14}
+    \subitem {LV\_USE\_IMG}, \hyperpage{15}
+    \subitem {LV\_USE\_INDEV}, \hyperpage{15}
+    \subitem {LV\_USE\_LABEL}, \hyperpage{15}
+    \subitem {LV\_USE\_LED}, \hyperpage{15}
+    \subitem {LV\_USE\_LINE}, \hyperpage{15}
+    \subitem {LV\_USE\_LOG}, \hyperpage{15}
+    \subitem {LV\_USE\_OBJ\_REALIGN}, \hyperpage{15}
+    \subitem {LV\_USE\_PERF\_MONITOR}, \hyperpage{15}
+    \subitem {LV\_USE\_ROLLER}, \hyperpage{16}
+    \subitem {LV\_USE\_SLIDER}, \hyperpage{16}
+    \subitem {LV\_USE\_SNAPSHOT}, \hyperpage{16}
+    \subitem {LV\_USE\_SWITCH}, \hyperpage{16}
+  \item {LV\_ENABLE\_GC}
+    \subitem {lv\_conf.h}, \hyperpage{11}
+  \item {LV\_FONT\_CUSTOM\_DECLARE}
+    \subitem {lv\_conf.h}, \hyperpage{11}
+  \item {LV\_FONT\_DEFAULT}
+    \subitem {lv\_conf.h}, \hyperpage{11}
+  \item {LV\_FONT\_FMT\_TXT\_LARGE}
+    \subitem {lv\_conf.h}, \hyperpage{11}
+  \item {LV\_FONT\_MONTSERRAT\_14}
+    \subitem {lv\_conf.h}, \hyperpage{11}
+  \item {LV\_FONT\_MONTSERRAT\_16}
+    \subitem {lv\_conf.h}, \hyperpage{12}
+  \item {LV\_FONT\_MONTSERRAT\_22}
+    \subitem {lv\_conf.h}, \hyperpage{12}
+  \item {LV\_FONT\_MONTSERRAT\_24}
+    \subitem {lv\_conf.h}, \hyperpage{12}
+  \item {LV\_FONT\_MONTSERRAT\_32}
+    \subitem {lv\_conf.h}, \hyperpage{12}
+  \item {LV\_FONT\_MONTSERRAT\_40}
+    \subitem {lv\_conf.h}, \hyperpage{12}
+  \item {LV\_FONT\_UNSCII\_8}
+    \subitem {lv\_conf.h}, \hyperpage{12}
+  \item {LV\_MEM\_CUSTOM}
+    \subitem {lv\_conf.h}, \hyperpage{12}
+  \item {LV\_MEM\_SIZE}
+    \subitem {lv\_conf.h}, \hyperpage{12}
+  \item {LV\_TICK\_CUSTOM}
+    \subitem {lv\_conf.h}, \hyperpage{13}
+  \item {LV\_TICK\_CUSTOM\_INCLUDE}
+    \subitem {lv\_conf.h}, \hyperpage{13}
+  \item {LV\_TICK\_CUSTOM\_SYS\_TIME\_EXPR}
+    \subitem {lv\_conf.h}, \hyperpage{13}
+  \item {LV\_TXT\_BREAK\_CHARS}
+    \subitem {lv\_conf.h}, \hyperpage{13}
+  \item {LV\_TXT\_LINE\_BREAK\_LONG\_LEN}
+    \subitem {lv\_conf.h}, \hyperpage{13}
+  \item {LV\_USE\_\_USER\_DATA}
+    \subitem {lv\_conf.h}, \hyperpage{13}
+  \item {LV\_USE\_ARC}
+    \subitem {lv\_conf.h}, \hyperpage{13}
+  \item {LV\_USE\_BAR}
+    \subitem {lv\_conf.h}, \hyperpage{13}
+  \item {LV\_USE\_BTN}
+    \subitem {lv\_conf.h}, \hyperpage{14}
+  \item {LV\_USE\_FONT\_COMPRESSED}
+    \subitem {lv\_conf.h}, \hyperpage{14}
+  \item {LV\_USE\_FONT\_SYMBOLS}
+    \subitem {lv\_conf.h}, \hyperpage{14}
+  \item {LV\_USE\_FS\_IF}
+    \subitem {lv\_conf.h}, \hyperpage{14}
+  \item {LV\_USE\_FS\_POSIX}
+    \subitem {lv\_conf.h}, \hyperpage{14}
+  \item {LV\_USE\_GPU\_NXP\_PXP}
+    \subitem {lv\_conf.h}, \hyperpage{14}
+  \item {LV\_USE\_GPU\_NXP\_VG\_LITE}
+    \subitem {lv\_conf.h}, \hyperpage{14}
+  \item {LV\_USE\_GPU\_STM32\_DNA2D}
+    \subitem {lv\_conf.h}, \hyperpage{14}
+  \item {LV\_USE\_IMG}
+    \subitem {lv\_conf.h}, \hyperpage{15}
+  \item {LV\_USE\_INDEV}
+    \subitem {lv\_conf.h}, \hyperpage{15}
+  \item {LV\_USE\_LABEL}
+    \subitem {lv\_conf.h}, \hyperpage{15}
+  \item {LV\_USE\_LED}
+    \subitem {lv\_conf.h}, \hyperpage{15}
+  \item {LV\_USE\_LINE}
+    \subitem {lv\_conf.h}, \hyperpage{15}
+  \item {LV\_USE\_LOG}
+    \subitem {lv\_conf.h}, \hyperpage{15}
+  \item {LV\_USE\_OBJ\_REALIGN}
+    \subitem {lv\_conf.h}, \hyperpage{15}
+  \item {LV\_USE\_PERF\_MONITOR}
+    \subitem {lv\_conf.h}, \hyperpage{15}
+  \item {LV\_USE\_ROLLER}
+    \subitem {lv\_conf.h}, \hyperpage{16}
+  \item {LV\_USE\_SLIDER}
+    \subitem {lv\_conf.h}, \hyperpage{16}
+  \item {LV\_USE\_SNAPSHOT}
+    \subitem {lv\_conf.h}, \hyperpage{16}
+  \item {LV\_USE\_SWITCH}
+    \subitem {lv\_conf.h}, \hyperpage{16}
+  \item {lvgl\_begin}
+    \subitem {lvgl\_display.cpp}, \hyperpage{1587}
+    \subitem {lvgl\_display.h}, \hyperpage{18}
+  \item {lvgl\_display.cpp}
+    \subitem {buf}, \hyperpage{1589}
+    \subitem {draw\_buf}, \hyperpage{1589}
+    \subitem {lvgl\_begin}, \hyperpage{1587}
+    \subitem {my\_disp\_flush}, \hyperpage{1588}
+    \subitem {tft}, \hyperpage{1589}
+  \item {lvgl\_display.h}
+    \subitem {lvgl\_begin}, \hyperpage{18}
+  \item {lvgl\_touch.cpp}
+    \subitem {indev\_touch}, \hyperpage{1594}
+    \subitem {lvgl\_touch\_init}, \hyperpage{1592}
+    \subitem {T\_CLK}, \hyperpage{1591}
+    \subitem {T\_CS}, \hyperpage{1591}
+    \subitem {T\_MISO}, \hyperpage{1591}
+    \subitem {T\_MOSI}, \hyperpage{1592}
+    \subitem {touch\_read\_cb}, \hyperpage{1592}
+    \subitem {ts}, \hyperpage{1593}
+  \item {lvgl\_touch.h}
+    \subitem {lvgl\_touch\_init}, \hyperpage{20}
+    \subitem {lvgl\_touch\_read}, \hyperpage{21}
+  \item {lvgl\_touch\_init}
+    \subitem {lvgl\_touch.cpp}, \hyperpage{1592}
+    \subitem {lvgl\_touch.h}, \hyperpage{20}
+  \item {lvgl\_touch\_read}
+    \subitem {lvgl\_touch.h}, \hyperpage{21}
+
+  \indexspace
+
+  \item {main.cpp}
+    \subitem {clock\_timer}, \hyperpage{1598}
+    \subitem {device\_linked}, \hyperpage{1598}
+    \subitem {LOGO\_TIME\_MS}, \hyperpage{1598}
+    \subitem {loop}, \hyperpage{1595}
+    \subitem {portal\_running}, \hyperpage{1598}
+    \subitem {server}, \hyperpage{1596}
+    \subitem {setup}, \hyperpage{1596}
+    \subitem {tft}, \hyperpage{1599}
+    \subitem {wifi\_connected}, \hyperpage{1599}
+  \item {MAX\_TAKES}
+    \subitem {pill\_takes.h}, \hyperpage{32}
+  \item {mode}
+    \subitem {qrcodegen\_Segment}, \hyperpage{6}
+  \item {MONTSERRAT\_100\_BOLD}
+    \subitem {montserrat\_100\_bold.c}, \hyperpage{130}
+  \item {montserrat\_100\_bold}
+    \subitem {montserrat\_100\_bold.c}, \hyperpage{195}
+    \subitem {montserrat\_100\_bold.h}, \hyperpage{261}
+  \item {montserrat\_100\_bold.c}
+    \subitem {cmaps}, \hyperpage{131}
+    \subitem {font\_dsc}, \hyperpage{131}
+    \subitem {glyph\_bitmap}, \hyperpage{132}
+    \subitem {glyph\_dsc}, \hyperpage{194}
+    \subitem {MONTSERRAT\_100\_BOLD}, \hyperpage{130}
+    \subitem {montserrat\_100\_bold}, \hyperpage{195}
+    \subitem {unicode\_list\_0}, \hyperpage{195}
+    \subitem {unicode\_list\_4}, \hyperpage{196}
+  \item {montserrat\_100\_bold.h}
+    \subitem {montserrat\_100\_bold}, \hyperpage{261}
+  \item {MONTSERRAT\_24\_REGULAR}
+    \subitem {montserrat\_24\_regular.c}, \hyperpage{263}
+  \item {montserrat\_24\_regular}
+    \subitem {montserrat\_24\_regular.c}, \hyperpage{275}
+    \subitem {montserrat\_24\_regular.h}, \hyperpage{290}
+  \item {montserrat\_24\_regular.c}
+    \subitem {cmaps}, \hyperpage{263}
+    \subitem {font\_dsc}, \hyperpage{264}
+    \subitem {glyph\_bitmap}, \hyperpage{264}
+    \subitem {glyph\_dsc}, \hyperpage{274}
+    \subitem {MONTSERRAT\_24\_REGULAR}, \hyperpage{263}
+    \subitem {montserrat\_24\_regular}, \hyperpage{275}
+    \subitem {unicode\_list\_0}, \hyperpage{276}
+    \subitem {unicode\_list\_4}, \hyperpage{276}
+  \item {montserrat\_24\_regular.h}
+    \subitem {montserrat\_24\_regular}, \hyperpage{290}
+  \item {MONTSERRAT\_30\_REGULAR}
+    \subitem {montserrat\_30\_regular.c}, \hyperpage{291}
+  \item {montserrat\_30\_regular}
+    \subitem {montserrat\_30\_regular.c}, \hyperpage{306}
+    \subitem {montserrat\_30\_regular.h}, \hyperpage{324}
+  \item {montserrat\_30\_regular.c}
+    \subitem {cmaps}, \hyperpage{291}
+    \subitem {font\_dsc}, \hyperpage{292}
+    \subitem {glyph\_bitmap}, \hyperpage{292}
+    \subitem {glyph\_dsc}, \hyperpage{305}
+    \subitem {MONTSERRAT\_30\_REGULAR}, \hyperpage{291}
+    \subitem {montserrat\_30\_regular}, \hyperpage{306}
+    \subitem {unicode\_list\_0}, \hyperpage{307}
+    \subitem {unicode\_list\_4}, \hyperpage{307}
+  \item {montserrat\_30\_regular.h}
+    \subitem {montserrat\_30\_regular}, \hyperpage{324}
+  \item {MONTSERRAT\_34\_REGULAR}
+    \subitem {montserrat\_34\_regular.c}, \hyperpage{325}
+  \item {montserrat\_34\_regular}
+    \subitem {montserrat\_34\_regular.c}, \hyperpage{343}
+    \subitem {montserrat\_34\_regular.h}, \hyperpage{363}
+  \item {montserrat\_34\_regular.c}
+    \subitem {cmaps}, \hyperpage{325}
+    \subitem {font\_dsc}, \hyperpage{326}
+    \subitem {glyph\_bitmap}, \hyperpage{326}
+    \subitem {glyph\_dsc}, \hyperpage{342}
+    \subitem {MONTSERRAT\_34\_REGULAR}, \hyperpage{325}
+    \subitem {montserrat\_34\_regular}, \hyperpage{343}
+    \subitem {unicode\_list\_0}, \hyperpage{343}
+    \subitem {unicode\_list\_4}, \hyperpage{344}
+  \item {montserrat\_34\_regular.h}
+    \subitem {montserrat\_34\_regular}, \hyperpage{363}
+  \item {MONTSERRAT\_46\_BOLD}
+    \subitem {montserrat\_46\_bold.c}, \hyperpage{364}
+  \item {montserrat\_46\_bold}
+    \subitem {montserrat\_46\_bold.c}, \hyperpage{390}
+    \subitem {montserrat\_46\_bold.h}, \hyperpage{418}
+  \item {montserrat\_46\_bold.c}
+    \subitem {cmaps}, \hyperpage{364}
+    \subitem {font\_dsc}, \hyperpage{365}
+    \subitem {glyph\_bitmap}, \hyperpage{365}
+    \subitem {glyph\_dsc}, \hyperpage{389}
+    \subitem {MONTSERRAT\_46\_BOLD}, \hyperpage{364}
+    \subitem {montserrat\_46\_bold}, \hyperpage{390}
+    \subitem {unicode\_list\_0}, \hyperpage{390}
+    \subitem {unicode\_list\_4}, \hyperpage{391}
+  \item {montserrat\_46\_bold.h}
+    \subitem {montserrat\_46\_bold}, \hyperpage{418}
+  \item {MONTSERRAT\_50\_BOLD}
+    \subitem {montserrat\_50\_bold.c}, \hyperpage{419}
+  \item {montserrat\_50\_bold}
+    \subitem {montserrat\_50\_bold.c}, \hyperpage{448}
+    \subitem {montserrat\_50\_bold.h}, \hyperpage{478}
+  \item {montserrat\_50\_bold.c}
+    \subitem {cmaps}, \hyperpage{420}
+    \subitem {font\_dsc}, \hyperpage{420}
+    \subitem {glyph\_bitmap}, \hyperpage{421}
+    \subitem {glyph\_dsc}, \hyperpage{447}
+    \subitem {MONTSERRAT\_50\_BOLD}, \hyperpage{419}
+    \subitem {montserrat\_50\_bold}, \hyperpage{448}
+    \subitem {unicode\_list\_0}, \hyperpage{448}
+    \subitem {unicode\_list\_4}, \hyperpage{448}
+  \item {montserrat\_50\_bold.h}
+    \subitem {montserrat\_50\_bold}, \hyperpage{478}
+  \item {MONTSERRAT\_60\_BOLD}
+    \subitem {montserrat\_60\_bold.c}, \hyperpage{479}
+  \item {montserrat\_60\_bold}
+    \subitem {montserrat\_60\_bold.c}, \hyperpage{514}
+    \subitem {montserrat\_60\_bold.h}, \hyperpage{550}
+  \item {montserrat\_60\_bold.c}
+    \subitem {cmaps}, \hyperpage{479}
+    \subitem {font\_dsc}, \hyperpage{480}
+    \subitem {glyph\_bitmap}, \hyperpage{480}
+    \subitem {glyph\_dsc}, \hyperpage{513}
+    \subitem {MONTSERRAT\_60\_BOLD}, \hyperpage{479}
+    \subitem {montserrat\_60\_bold}, \hyperpage{514}
+    \subitem {unicode\_list\_0}, \hyperpage{514}
+    \subitem {unicode\_list\_4}, \hyperpage{514}
+  \item {montserrat\_60\_bold.h}
+    \subitem {montserrat\_60\_bold}, \hyperpage{550}
+  \item {MONTSERRAT\_70\_BOLD}
+    \subitem {montserrat\_70\_bold.c}, \hyperpage{551}
+  \item {montserrat\_70\_bold}
+    \subitem {montserrat\_70\_bold.c}, \hyperpage{593}
+    \subitem {montserrat\_70\_bold.h}, \hyperpage{636}
+  \item {montserrat\_70\_bold.c}
+    \subitem {cmaps}, \hyperpage{552}
+    \subitem {font\_dsc}, \hyperpage{552}
+    \subitem {glyph\_bitmap}, \hyperpage{553}
+    \subitem {glyph\_dsc}, \hyperpage{592}
+    \subitem {MONTSERRAT\_70\_BOLD}, \hyperpage{551}
+    \subitem {montserrat\_70\_bold}, \hyperpage{593}
+    \subitem {unicode\_list\_0}, \hyperpage{594}
+    \subitem {unicode\_list\_4}, \hyperpage{594}
+  \item {montserrat\_70\_bold.h}
+    \subitem {montserrat\_70\_bold}, \hyperpage{636}
+  \item {msg\_lbl}
+    \subitem {clock\_mod.cpp}, \hyperpage{1611}
+  \item {my\_disp\_flush}
+    \subitem {lvgl\_display.cpp}, \hyperpage{1588}
+
+  \indexspace
+
+  \item {new\_password}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1670}
+  \item {new\_ssid}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1670}
+  \item {NUM\_ERROR\_CORRECTION\_BLOCKS}
+    \subitem {qrcodegen.c}, \hyperpage{95}
+  \item {numCharCountBits}
+    \subitem {qrcodegen.c}, \hyperpage{77}
+  \item {numChars}
+    \subitem {qrcodegen\_Segment}, \hyperpage{6}
+
+  \indexspace
+
+  \item {PENALTY\_N1}
+    \subitem {qrcodegen.c}, \hyperpage{95}
+  \item {PENALTY\_N2}
+    \subitem {qrcodegen.c}, \hyperpage{96}
+  \item {PENALTY\_N3}
+    \subitem {qrcodegen.c}, \hyperpage{96}
+  \item {PENALTY\_N4}
+    \subitem {qrcodegen.c}, \hyperpage{96}
+  \item {pill\_takes.h}
+    \subitem {delete\_take}, \hyperpage{32}
+    \subitem {edit\_takes\_screen}, \hyperpage{32}
+    \subitem {get\_today\_index}, \hyperpage{38}
+    \subitem {is\_take\_today}, \hyperpage{39}
+    \subitem {MAX\_TAKES}, \hyperpage{32}
+    \subitem {repetition\_screen}, \hyperpage{39}
+    \subitem {show\_home\_screen}, \hyperpage{41}
+    \subitem {takes}, \hyperpage{46}
+    \subitem {takes\_list\_screen}, \hyperpage{42}
+    \subitem {today\_takes\_screen}, \hyperpage{44}
+    \subitem {total\_takes}, \hyperpage{46}
+  \item {portal\_running}
+    \subitem {main.cpp}, \hyperpage{1598}
+  \item {pos0}
+    \subitem {test.cpp}, \hyperpage{1674}
+  \item {pos45}
+    \subitem {test.cpp}, \hyperpage{1674}
+  \item {pos90}
+    \subitem {test.cpp}, \hyperpage{1674}
+  \item {prefs}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1670}
+    \subitem {wifi\_portal.h}, \hyperpage{55}
+  \item {pwm}
+    \subitem {test.cpp}, \hyperpage{1674}
+
+  \indexspace
+
+  \item {qr\_data}
+    \subitem {wifi\_mod.cpp}, \hyperpage{1662}
+  \item {qr\_img}
+    \subitem {wifi\_mod.cpp}, \hyperpage{1662}
+  \item {qrcodegen.c}
+    \subitem {addEccAndInterleave}, \hyperpage{62}
+    \subitem {ALPHANUMERIC\_CHARSET}, \hyperpage{94}
+    \subitem {appendBitsToBuffer}, \hyperpage{63}
+    \subitem {applyMask}, \hyperpage{63}
+    \subitem {calcSegmentBitLength}, \hyperpage{64}
+    \subitem {drawCodewords}, \hyperpage{65}
+    \subitem {drawFormatBits}, \hyperpage{66}
+    \subitem {drawLightFunctionModules}, \hyperpage{67}
+    \subitem {ECC\_CODEWORDS\_PER\_BLOCK}, \hyperpage{94}
+    \subitem {fillRectangle}, \hyperpage{69}
+    \subitem {finderPenaltyAddHistory}, \hyperpage{69}
+    \subitem {finderPenaltyCountPatterns}, \hyperpage{70}
+    \subitem {finderPenaltyTerminateAndCount}, \hyperpage{70}
+    \subitem {getAlignmentPatternPositions}, \hyperpage{71}
+    \subitem {getBit}, \hyperpage{72}
+    \subitem {getModuleBounded}, \hyperpage{72}
+    \subitem {getNumDataCodewords}, \hyperpage{73}
+    \subitem {getNumRawDataModules}, \hyperpage{73}
+    \subitem {getPenaltyScore}, \hyperpage{74}
+    \subitem {getTotalBits}, \hyperpage{76}
+    \subitem {initializeFunctionModules}, \hyperpage{76}
+    \subitem {LENGTH\_OVERFLOW}, \hyperpage{62}
+    \subitem {NUM\_ERROR\_CORRECTION\_BLOCKS}, \hyperpage{95}
+    \subitem {numCharCountBits}, \hyperpage{77}
+    \subitem {PENALTY\_N1}, \hyperpage{95}
+    \subitem {PENALTY\_N2}, \hyperpage{96}
+    \subitem {PENALTY\_N3}, \hyperpage{96}
+    \subitem {PENALTY\_N4}, \hyperpage{96}
+    \subitem {qrcodegen\_calcSegmentBufferSize}, \hyperpage{78}
+    \subitem {qrcodegen\_encodeBinary}, \hyperpage{79}
+    \subitem {qrcodegen\_encodeSegments}, \hyperpage{80}
+    \subitem {qrcodegen\_encodeSegmentsAdvanced}, \hyperpage{81}
+    \subitem {qrcodegen\_encodeText}, \hyperpage{83}
+    \subitem {qrcodegen\_getModule}, \hyperpage{85}
+    \subitem {qrcodegen\_getSize}, \hyperpage{86}
+    \subitem {qrcodegen\_isAlphanumeric}, \hyperpage{86}
+    \subitem {qrcodegen\_isNumeric}, \hyperpage{87}
+    \subitem {qrcodegen\_makeAlphanumeric}, \hyperpage{87}
+    \subitem {qrcodegen\_makeBytes}, \hyperpage{88}
+    \subitem {qrcodegen\_makeEci}, \hyperpage{89}
+    \subitem {qrcodegen\_makeNumeric}, \hyperpage{90}
+    \subitem {qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}, \hyperpage{62}
+    \subitem {reedSolomonComputeDivisor}, \hyperpage{91}
+    \subitem {reedSolomonComputeRemainder}, \hyperpage{92}
+    \subitem {reedSolomonMultiply}, \hyperpage{93}
+    \subitem {setModuleBounded}, \hyperpage{93}
+    \subitem {setModuleUnbounded}, \hyperpage{94}
+    \subitem {testable}, \hyperpage{62}
+  \item {qrcodegen.h}
+    \subitem {qrcodegen\_BUFFER\_LEN\_FOR\_VERSION}, \hyperpage{110}
+    \subitem {qrcodegen\_BUFFER\_LEN\_MAX}, \hyperpage{110}
+    \subitem {qrcodegen\_calcSegmentBufferSize}, \hyperpage{112}
+    \subitem {qrcodegen\_Ecc}, \hyperpage{111}
+    \subitem {qrcodegen\_Ecc\_HIGH}, \hyperpage{111}
+    \subitem {qrcodegen\_Ecc\_LOW}, \hyperpage{111}
+    \subitem {qrcodegen\_Ecc\_MEDIUM}, \hyperpage{111}
+    \subitem {qrcodegen\_Ecc\_QUARTILE}, \hyperpage{111}
+    \subitem {qrcodegen\_encodeBinary}, \hyperpage{113}
+    \subitem {qrcodegen\_encodeSegments}, \hyperpage{114}
+    \subitem {qrcodegen\_encodeSegmentsAdvanced}, \hyperpage{115}
+    \subitem {qrcodegen\_encodeText}, \hyperpage{117}
+    \subitem {qrcodegen\_getModule}, \hyperpage{119}
+    \subitem {qrcodegen\_getSize}, \hyperpage{120}
+    \subitem {qrcodegen\_isAlphanumeric}, \hyperpage{120}
+    \subitem {qrcodegen\_isNumeric}, \hyperpage{121}
+    \subitem {qrcodegen\_makeAlphanumeric}, \hyperpage{121}
+    \subitem {qrcodegen\_makeBytes}, \hyperpage{122}
+    \subitem {qrcodegen\_makeEci}, \hyperpage{123}
+    \subitem {qrcodegen\_makeNumeric}, \hyperpage{124}
+    \subitem {qrcodegen\_Mask}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_0}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_1}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_2}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_3}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_4}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_5}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_6}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_7}, \hyperpage{111}
+    \subitem {qrcodegen\_Mask\_AUTO}, \hyperpage{111}
+    \subitem {qrcodegen\_Mode}, \hyperpage{112}
+    \subitem {qrcodegen\_Mode\_ALPHANUMERIC}, \hyperpage{112}
+    \subitem {qrcodegen\_Mode\_BYTE}, \hyperpage{112}
+    \subitem {qrcodegen\_Mode\_ECI}, \hyperpage{112}
+    \subitem {qrcodegen\_Mode\_KANJI}, \hyperpage{112}
+    \subitem {qrcodegen\_Mode\_NUMERIC}, \hyperpage{112}
+    \subitem {qrcodegen\_VERSION\_MAX}, \hyperpage{110}
+    \subitem {qrcodegen\_VERSION\_MIN}, \hyperpage{111}
+  \item {qrcodegen\_BUFFER\_LEN\_FOR\_VERSION}
+    \subitem {qrcodegen.h}, \hyperpage{110}
+  \item {qrcodegen\_BUFFER\_LEN\_MAX}
+    \subitem {qrcodegen.h}, \hyperpage{110}
+  \item {qrcodegen\_calcSegmentBufferSize}
+    \subitem {qrcodegen.c}, \hyperpage{78}
+    \subitem {qrcodegen.h}, \hyperpage{112}
+  \item {qrcodegen\_Ecc}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Ecc\_HIGH}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Ecc\_LOW}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Ecc\_MEDIUM}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Ecc\_QUARTILE}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_encodeBinary}
+    \subitem {qrcodegen.c}, \hyperpage{79}
+    \subitem {qrcodegen.h}, \hyperpage{113}
+  \item {qrcodegen\_encodeSegments}
+    \subitem {qrcodegen.c}, \hyperpage{80}
+    \subitem {qrcodegen.h}, \hyperpage{114}
+  \item {qrcodegen\_encodeSegmentsAdvanced}
+    \subitem {qrcodegen.c}, \hyperpage{81}
+    \subitem {qrcodegen.h}, \hyperpage{115}
+  \item {qrcodegen\_encodeText}
+    \subitem {qrcodegen.c}, \hyperpage{83}
+    \subitem {qrcodegen.h}, \hyperpage{117}
+  \item {qrcodegen\_getModule}
+    \subitem {qrcodegen.c}, \hyperpage{85}
+    \subitem {qrcodegen.h}, \hyperpage{119}
+  \item {qrcodegen\_getSize}
+    \subitem {qrcodegen.c}, \hyperpage{86}
+    \subitem {qrcodegen.h}, \hyperpage{120}
+  \item {qrcodegen\_isAlphanumeric}
+    \subitem {qrcodegen.c}, \hyperpage{86}
+    \subitem {qrcodegen.h}, \hyperpage{120}
+  \item {qrcodegen\_isNumeric}
+    \subitem {qrcodegen.c}, \hyperpage{87}
+    \subitem {qrcodegen.h}, \hyperpage{121}
+  \item {qrcodegen\_makeAlphanumeric}
+    \subitem {qrcodegen.c}, \hyperpage{87}
+    \subitem {qrcodegen.h}, \hyperpage{121}
+  \item {qrcodegen\_makeBytes}
+    \subitem {qrcodegen.c}, \hyperpage{88}
+    \subitem {qrcodegen.h}, \hyperpage{122}
+  \item {qrcodegen\_makeEci}
+    \subitem {qrcodegen.c}, \hyperpage{89}
+    \subitem {qrcodegen.h}, \hyperpage{123}
+  \item {qrcodegen\_makeNumeric}
+    \subitem {qrcodegen.c}, \hyperpage{90}
+    \subitem {qrcodegen.h}, \hyperpage{124}
+  \item {qrcodegen\_Mask}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_0}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_1}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_2}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_3}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_4}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_5}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_6}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_7}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mask\_AUTO}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+  \item {qrcodegen\_Mode}
+    \subitem {qrcodegen.h}, \hyperpage{112}
+  \item {qrcodegen\_Mode\_ALPHANUMERIC}
+    \subitem {qrcodegen.h}, \hyperpage{112}
+  \item {qrcodegen\_Mode\_BYTE}
+    \subitem {qrcodegen.h}, \hyperpage{112}
+  \item {qrcodegen\_Mode\_ECI}
+    \subitem {qrcodegen.h}, \hyperpage{112}
+  \item {qrcodegen\_Mode\_KANJI}
+    \subitem {qrcodegen.h}, \hyperpage{112}
+  \item {qrcodegen\_Mode\_NUMERIC}
+    \subitem {qrcodegen.h}, \hyperpage{112}
+  \item {qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}
+    \subitem {qrcodegen.c}, \hyperpage{62}
+  \item {qrcodegen\_Segment}, \hyperpage{5}
+    \subitem {bitLength}, \hyperpage{6}
+    \subitem {data}, \hyperpage{6}
+    \subitem {mode}, \hyperpage{6}
+    \subitem {numChars}, \hyperpage{6}
+  \item {qrcodegen\_VERSION\_MAX}
+    \subitem {qrcodegen.h}, \hyperpage{110}
+  \item {qrcodegen\_VERSION\_MIN}
+    \subitem {qrcodegen.h}, \hyperpage{111}
+
+  \indexspace
+
+  \item {recordatory}
+    \subitem {TakeConfig}, \hyperpage{7}
+  \item {reedSolomonComputeDivisor}
+    \subitem {qrcodegen.c}, \hyperpage{91}
+  \item {reedSolomonComputeRemainder}
+    \subitem {qrcodegen.c}, \hyperpage{92}
+  \item {reedSolomonMultiply}
+    \subitem {qrcodegen.c}, \hyperpage{93}
+  \item {refresh\_days\_buttons}
+    \subitem {edit\_takes.cpp}, \hyperpage{1620}
+  \item {repeat}
+    \subitem {TakeConfig}, \hyperpage{7}
+  \item {repetition.cpp}
+    \subitem {btn\_days}, \hyperpage{1639}
+    \subitem {current\_cfg}, \hyperpage{1639}
+    \subitem {current\_index}, \hyperpage{1639}
+    \subitem {editing\_existing}, \hyperpage{1639}
+    \subitem {repetition\_index}, \hyperpage{1640}
+    \subitem {repetition\_screen}, \hyperpage{1638}
+    \subitem {takes}, \hyperpage{1640}
+    \subitem {temp\_repeat}, \hyperpage{1640}
+    \subitem {temp\_take}, \hyperpage{1640}
+  \item {repetition\_index}
+    \subitem {repetition.cpp}, \hyperpage{1640}
+  \item {repetition\_screen}
+    \subitem {pill\_takes.h}, \hyperpage{39}
+    \subitem {repetition.cpp}, \hyperpage{1638}
+  \item {right\_x}
+    \subitem {edit\_takes.cpp}, \hyperpage{1620}
+  \item {roller\_hours}
+    \subitem {edit\_takes.cpp}, \hyperpage{1625}
+  \item {roller\_minutes}
+    \subitem {edit\_takes.cpp}, \hyperpage{1625}
+
+  \indexspace
+
+  \item {saveTakes}
+    \subitem {takes\_storage.cpp}, \hyperpage{1602}
+    \subitem {takes\_storage.h}, \hyperpage{22}
+  \item {server}
+    \subitem {main.cpp}, \hyperpage{1596}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1670}
+  \item {SERVOMAX}
+    \subitem {test.cpp}, \hyperpage{1673}
+  \item {SERVOMIN}
+    \subitem {test.cpp}, \hyperpage{1673}
+  \item {set\_rollers\_init}
+    \subitem {edit\_takes.cpp}, \hyperpage{1621}
+  \item {setModuleBounded}
+    \subitem {qrcodegen.c}, \hyperpage{93}
+  \item {setModuleUnbounded}
+    \subitem {qrcodegen.c}, \hyperpage{94}
+  \item {setup}
+    \subitem {main.cpp}, \hyperpage{1596}
+  \item {setup1}
+    \subitem {test.cpp}, \hyperpage{1673}
+  \item {show\_clock\_screen}
+    \subitem {clock\_mod.cpp}, \hyperpage{1609}
+    \subitem {clock\_mod.h}, \hyperpage{26}
+  \item {show\_home\_screen}
+    \subitem {home\_mod.cpp}, \hyperpage{1634}
+    \subitem {home\_mod.h}, \hyperpage{29}
+    \subitem {pill\_takes.h}, \hyperpage{41}
+  \item {show\_wifi\_screen}
+    \subitem {wifi\_mod.cpp}, \hyperpage{1661}
+    \subitem {wifi\_mod.h}, \hyperpage{48}
+  \item {SPI\_FREQUENCY}
+    \subitem {User\_Setup.h}, \hyperpage{57}
+  \item {SPI\_READ\_FREQUENCY}
+    \subitem {User\_Setup.h}, \hyperpage{57}
+  \item {SPI\_TOUCH\_FREQUENCY}
+    \subitem {User\_Setup.h}, \hyperpage{57}
+  \item {src/fonts/montserrat\_100\_bold.c}, \hyperpage{130}, 
+		\hyperpage{196}
+  \item {src/fonts/montserrat\_100\_bold.h}, \hyperpage{261, 262}
+  \item {src/fonts/montserrat\_24\_regular.c}, \hyperpage{262}, 
+		\hyperpage{277}
+  \item {src/fonts/montserrat\_24\_regular.h}, \hyperpage{289, 290}
+  \item {src/fonts/montserrat\_30\_regular.c}, \hyperpage{290}, 
+		\hyperpage{308}
+  \item {src/fonts/montserrat\_30\_regular.h}, \hyperpage{323, 324}
+  \item {src/fonts/montserrat\_34\_regular.c}, \hyperpage{324}, 
+		\hyperpage{344}
+  \item {src/fonts/montserrat\_34\_regular.h}, \hyperpage{362, 363}
+  \item {src/fonts/montserrat\_46\_bold.c}, \hyperpage{363}, 
+		\hyperpage{391}
+  \item {src/fonts/montserrat\_46\_bold.h}, \hyperpage{417, 418}
+  \item {src/fonts/montserrat\_50\_bold.c}, \hyperpage{419}, 
+		\hyperpage{449}
+  \item {src/fonts/montserrat\_50\_bold.h}, \hyperpage{477, 478}
+  \item {src/fonts/montserrat\_60\_bold.c}, \hyperpage{478}, 
+		\hyperpage{515}
+  \item {src/fonts/montserrat\_60\_bold.h}, \hyperpage{550, 551}
+  \item {src/fonts/montserrat\_70\_bold.c}, \hyperpage{551}, 
+		\hyperpage{594}
+  \item {src/fonts/montserrat\_70\_bold.h}, \hyperpage{636, 637}
+  \item {src/logic/takes\_logic.cpp}, \hyperpage{637}, \hyperpage{639}
+  \item {src/logo\_mymeds.h}, \hyperpage{639, 640}
+  \item {src/logo\_mymeds\_blanco.c}, \hyperpage{641}, \hyperpage{1114}
+  \item {src/lvgl\_display.cpp}, \hyperpage{1586}, \hyperpage{1590}
+  \item {src/lvgl\_touch.cpp}, \hyperpage{1590}, \hyperpage{1594}
+  \item {src/main.cpp}, \hyperpage{1594}, \hyperpage{1599}
+  \item {src/storage/takes\_storage.cpp}, \hyperpage{1601}, 
+		\hyperpage{1604}
+  \item {src/TFT\_eSPI\_setup.h}, \hyperpage{1605}
+  \item {src/user\_interface/clock\_mod.cpp}, \hyperpage{1606}, 
+		\hyperpage{1612}
+  \item {src/user\_interface/edit\_takes.cpp}, \hyperpage{1613}, 
+		\hyperpage{1626}
+  \item {src/user\_interface/home\_mod.cpp}, \hyperpage{1632}, 
+		\hyperpage{1636}
+  \item {src/user\_interface/repetition.cpp}, \hyperpage{1637}, 
+		\hyperpage{1641}
+  \item {src/user\_interface/takes\_list.cpp}, \hyperpage{1642}, 
+		\hyperpage{1648}
+  \item {src/user\_interface/today\_takes.cpp}, \hyperpage{1651}, 
+		\hyperpage{1656}
+  \item {src/user\_interface/wifi\_mod.cpp}, \hyperpage{1659}, 
+		\hyperpage{1663}
+  \item {src/user\_interface/wifi\_portal.cpp}, \hyperpage{1664}, 
+		\hyperpage{1671}
+  \item {sw\_recordatory}
+    \subitem {edit\_takes.cpp}, \hyperpage{1625}
+
+  \indexspace
+
+  \item {T\_CLK}
+    \subitem {lvgl\_touch.cpp}, \hyperpage{1591}
+  \item {T\_CS}
+    \subitem {lvgl\_touch.cpp}, \hyperpage{1591}
+  \item {T\_MISO}
+    \subitem {lvgl\_touch.cpp}, \hyperpage{1591}
+  \item {T\_MOSI}
+    \subitem {lvgl\_touch.cpp}, \hyperpage{1592}
+  \item {TakeConfig}, \hyperpage{7}
+    \subitem {hour}, \hyperpage{7}
+    \subitem {recordatory}, \hyperpage{7}
+    \subitem {repeat}, \hyperpage{7}
+    \subitem {warning\_time}, \hyperpage{8}
+  \item {takes}
+    \subitem {pill\_takes.h}, \hyperpage{46}
+    \subitem {repetition.cpp}, \hyperpage{1640}
+    \subitem {takes\_list.cpp}, \hyperpage{1647}
+  \item {takes\_list}
+    \subitem {takes\_list.cpp}, \hyperpage{1648}
+  \item {takes\_list.cpp}
+    \subitem {confirm\_delete}, \hyperpage{1642}
+    \subitem {current\_screen}, \hyperpage{1647}
+    \subitem {delete\_index}, \hyperpage{1647}
+    \subitem {load\_screen}, \hyperpage{1644}
+    \subitem {takes}, \hyperpage{1647}
+    \subitem {takes\_list}, \hyperpage{1648}
+    \subitem {takes\_list\_screen}, \hyperpage{1644}
+    \subitem {total\_takes}, \hyperpage{1648}
+  \item {takes\_list\_screen}
+    \subitem {pill\_takes.h}, \hyperpage{42}
+    \subitem {takes\_list.cpp}, \hyperpage{1644}
+  \item {takes\_logic.cpp}
+    \subitem {checkTakes}, \hyperpage{638}
+    \subitem {executeTake}, \hyperpage{638}
+  \item {takes\_logic.h}
+    \subitem {chackTakes}, \hyperpage{9}
+    \subitem {executeTakes}, \hyperpage{9}
+  \item {takes\_storage.cpp}
+    \subitem {delete\_take}, \hyperpage{1602}
+    \subitem {initNVS}, \hyperpage{1602}
+    \subitem {saveTakes}, \hyperpage{1602}
+    \subitem {uploadTakes}, \hyperpage{1603}
+  \item {takes\_storage.h}
+    \subitem {deleteTakes}, \hyperpage{22}
+    \subitem {initNVS}, \hyperpage{22}
+    \subitem {saveTakes}, \hyperpage{22}
+    \subitem {uploadTakes}, \hyperpage{22}
+  \item {TDT\_HEIGHT}
+    \subitem {User\_Setup.h}, \hyperpage{57}
+  \item {temp}
+    \subitem {wifi\_mod.cpp}, \hyperpage{1663}
+  \item {temp\_repeat}
+    \subitem {repetition.cpp}, \hyperpage{1640}
+  \item {temp\_take}
+    \subitem {edit\_takes.cpp}, \hyperpage{1625}
+    \subitem {repetition.cpp}, \hyperpage{1640}
+  \item {test.cpp}
+    \subitem {loop1}, \hyperpage{1673}
+    \subitem {pos0}, \hyperpage{1674}
+    \subitem {pos45}, \hyperpage{1674}
+    \subitem {pos90}, \hyperpage{1674}
+    \subitem {pwm}, \hyperpage{1674}
+    \subitem {SERVOMAX}, \hyperpage{1673}
+    \subitem {SERVOMIN}, \hyperpage{1673}
+    \subitem {setup1}, \hyperpage{1673}
+  \item {test/servo\_test/test.cpp}, \hyperpage{1672}, \hyperpage{1675}
+  \item {testable}
+    \subitem {qrcodegen.c}, \hyperpage{62}
+  \item {tft}
+    \subitem {lvgl\_display.cpp}, \hyperpage{1589}
+    \subitem {main.cpp}, \hyperpage{1599}
+  \item {TFT\_BL}
+    \subitem {User\_Setup.h}, \hyperpage{57}
+  \item {TFT\_BLACKLIGHT\_ON}
+    \subitem {User\_Setup.h}, \hyperpage{57}
+  \item {TFT\_CS}
+    \subitem {User\_Setup.h}, \hyperpage{57}
+  \item {TFT\_DC}
+    \subitem {User\_Setup.h}, \hyperpage{58}
+  \item {TFT\_eSPI\_setup.h}
+    \subitem {USER\_SETUP\_LOADED}, \hyperpage{1605}
+  \item {TFT\_MISO}
+    \subitem {User\_Setup.h}, \hyperpage{58}
+  \item {TFT\_MOSI}
+    \subitem {User\_Setup.h}, \hyperpage{58}
+  \item {TFT\_OFFSET\_ROTATION}
+    \subitem {User\_Setup.h}, \hyperpage{58}
+  \item {TFT\_OFFSET\_X}
+    \subitem {User\_Setup.h}, \hyperpage{58}
+  \item {TFT\_OFFSET\_Y}
+    \subitem {User\_Setup.h}, \hyperpage{58}
+  \item {TFT\_RGB\_ORFER\_TFT\_BGR}
+    \subitem {User\_Setup.h}, \hyperpage{58}
+  \item {TFT\_RST}
+    \subitem {User\_Setup.h}, \hyperpage{58}
+  \item {TFT\_SCLK}
+    \subitem {User\_Setup.h}, \hyperpage{59}
+  \item {TFT\_WIDTH}
+    \subitem {User\_Setup.h}, \hyperpage{59}
+  \item {today\_takes.cpp}
+    \subitem {current\_screen}, \hyperpage{1656}
+    \subitem {days\_text\_repeat}, \hyperpage{1652}
+    \subitem {get\_today\_index}, \hyperpage{1652}
+    \subitem {is\_take\_today}, \hyperpage{1652}
+    \subitem {load\_screen}, \hyperpage{1653}
+    \subitem {today\_takes\_screen}, \hyperpage{1654}
+  \item {today\_takes\_screen}
+    \subitem {pill\_takes.h}, \hyperpage{44}
+    \subitem {today\_takes.cpp}, \hyperpage{1654}
+  \item {total\_takes}
+    \subitem {pill\_takes.h}, \hyperpage{46}
+    \subitem {takes\_list.cpp}, \hyperpage{1648}
+  \item {TOUCH\_CS}
+    \subitem {User\_Setup.h}, \hyperpage{59}
+  \item {TOUCH\_IRQ}
+    \subitem {User\_Setup.h}, \hyperpage{59}
+  \item {touch\_read\_cb}
+    \subitem {lvgl\_touch.cpp}, \hyperpage{1592}
+  \item {ts}
+    \subitem {lvgl\_touch.cpp}, \hyperpage{1593}
+
+  \indexspace
+
+  \item {unicode\_list\_0}
+    \subitem {montserrat\_100\_bold.c}, \hyperpage{195}
+    \subitem {montserrat\_24\_regular.c}, \hyperpage{276}
+    \subitem {montserrat\_30\_regular.c}, \hyperpage{307}
+    \subitem {montserrat\_34\_regular.c}, \hyperpage{343}
+    \subitem {montserrat\_46\_bold.c}, \hyperpage{390}
+    \subitem {montserrat\_50\_bold.c}, \hyperpage{448}
+    \subitem {montserrat\_60\_bold.c}, \hyperpage{514}
+    \subitem {montserrat\_70\_bold.c}, \hyperpage{594}
+  \item {unicode\_list\_4}
+    \subitem {montserrat\_100\_bold.c}, \hyperpage{196}
+    \subitem {montserrat\_24\_regular.c}, \hyperpage{276}
+    \subitem {montserrat\_30\_regular.c}, \hyperpage{307}
+    \subitem {montserrat\_34\_regular.c}, \hyperpage{344}
+    \subitem {montserrat\_46\_bold.c}, \hyperpage{391}
+    \subitem {montserrat\_50\_bold.c}, \hyperpage{448}
+    \subitem {montserrat\_60\_bold.c}, \hyperpage{514}
+    \subitem {montserrat\_70\_bold.c}, \hyperpage{594}
+  \item {update\_clock\_task}
+    \subitem {clock\_mod.cpp}, \hyperpage{1610}
+    \subitem {clock\_mod.h}, \hyperpage{27}
+  \item {update\_days\_visibility}
+    \subitem {edit\_takes.cpp}, \hyperpage{1621}
+  \item {update\_layout\_positions}
+    \subitem {edit\_takes.cpp}, \hyperpage{1622}
+  \item {uploadTakes}
+    \subitem {takes\_storage.cpp}, \hyperpage{1603}
+    \subitem {takes\_storage.h}, \hyperpage{22}
+  \item {USER\_SETUP}
+    \subitem {User\_Setup.h}, \hyperpage{59}
+  \item {User\_Setup.h}
+    \subitem {ILI9341\_DRIVER}, \hyperpage{57}
+    \subitem {SPI\_FREQUENCY}, \hyperpage{57}
+    \subitem {SPI\_READ\_FREQUENCY}, \hyperpage{57}
+    \subitem {SPI\_TOUCH\_FREQUENCY}, \hyperpage{57}
+    \subitem {TDT\_HEIGHT}, \hyperpage{57}
+    \subitem {TFT\_BL}, \hyperpage{57}
+    \subitem {TFT\_BLACKLIGHT\_ON}, \hyperpage{57}
+    \subitem {TFT\_CS}, \hyperpage{57}
+    \subitem {TFT\_DC}, \hyperpage{58}
+    \subitem {TFT\_MISO}, \hyperpage{58}
+    \subitem {TFT\_MOSI}, \hyperpage{58}
+    \subitem {TFT\_OFFSET\_ROTATION}, \hyperpage{58}
+    \subitem {TFT\_OFFSET\_X}, \hyperpage{58}
+    \subitem {TFT\_OFFSET\_Y}, \hyperpage{58}
+    \subitem {TFT\_RGB\_ORFER\_TFT\_BGR}, \hyperpage{58}
+    \subitem {TFT\_RST}, \hyperpage{58}
+    \subitem {TFT\_SCLK}, \hyperpage{59}
+    \subitem {TFT\_WIDTH}, \hyperpage{59}
+    \subitem {TOUCH\_CS}, \hyperpage{59}
+    \subitem {TOUCH\_IRQ}, \hyperpage{59}
+    \subitem {USER\_SETUP}, \hyperpage{59}
+  \item {USER\_SETUP\_LOADED}
+    \subitem {TFT\_eSPI\_setup.h}, \hyperpage{1605}
+
+  \indexspace
+
+  \item {warning\_time}
+    \subitem {TakeConfig}, \hyperpage{8}
+  \item {wifi\_connected}
+    \subitem {main.cpp}, \hyperpage{1599}
+  \item {wifi\_credentials\_exists}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1667}
+    \subitem {wifi\_portal.h}, \hyperpage{53}
+  \item {wifi\_load\_credentials}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1668}
+    \subitem {wifi\_portal.h}, \hyperpage{54}
+  \item {wifi\_mod.cpp}
+    \subitem {generate\_wifi\_qr}, \hyperpage{1659}
+    \subitem {qr\_data}, \hyperpage{1662}
+    \subitem {qr\_img}, \hyperpage{1662}
+    \subitem {show\_wifi\_screen}, \hyperpage{1661}
+    \subitem {temp}, \hyperpage{1663}
+  \item {wifi\_mod.h}
+    \subitem {show\_wifi\_screen}, \hyperpage{48}
+  \item {wifi\_portal.cpp}
+    \subitem {device\_linked}, \hyperpage{1670}
+    \subitem {handle\_link}, \hyperpage{1665}
+    \subitem {handle\_save}, \hyperpage{1665}
+    \subitem {handle\_takes}, \hyperpage{1666}
+    \subitem {handle\_web\_root}, \hyperpage{1667}
+    \subitem {new\_password}, \hyperpage{1670}
+    \subitem {new\_ssid}, \hyperpage{1670}
+    \subitem {prefs}, \hyperpage{1670}
+    \subitem {server}, \hyperpage{1670}
+    \subitem {wifi\_credentials\_exists}, \hyperpage{1667}
+    \subitem {wifi\_load\_credentials}, \hyperpage{1668}
+    \subitem {wifi\_portal\_init}, \hyperpage{1668}
+  \item {wifi\_portal.h}
+    \subitem {handle\_link}, \hyperpage{51}
+    \subitem {handle\_save}, \hyperpage{51}
+    \subitem {handle\_takes}, \hyperpage{52}
+    \subitem {handle\_web\_root}, \hyperpage{52}
+    \subitem {prefs}, \hyperpage{55}
+    \subitem {wifi\_credentials\_exists}, \hyperpage{53}
+    \subitem {wifi\_load\_credentials}, \hyperpage{54}
+    \subitem {wifi\_portal\_init}, \hyperpage{54}
+  \item {wifi\_portal\_init}
+    \subitem {wifi\_portal.cpp}, \hyperpage{1668}
+    \subitem {wifi\_portal.h}, \hyperpage{54}
+
+\end{theindex}

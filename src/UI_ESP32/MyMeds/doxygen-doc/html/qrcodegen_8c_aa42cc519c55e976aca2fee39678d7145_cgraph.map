@@ -1,0 +1,12 @@
+<map id="drawLightFunctionModules" name="drawLightFunctionModules">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,201,105"/>
+<area shape="rect" id="Node000002" href="$qrcodegen_8c.html#a7a7938db5bdc0a2abae8ff2ec0ad1fee" title=" " alt="" coords="249,5,464,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,77,249,39,280,31,281,36,250,45,139,82"/>
+<area shape="rect" id="Node000003" href="$qrcodegen_8c.html#afe30b8ff2b6218f37a2945871e6f11b8" title=" " alt="" coords="284,55,429,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,80,270,73,271,79,202,86"/>
+<area shape="rect" id="Node000004" href="$qrcodegen_8c.html#a15c31cc3974d3162b6804fc4a1f6c14a" title=" " alt="" coords="512,131,659,156"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="202,100,499,132,498,137,201,106"/>
+<area shape="rect" id="Node000005" href="$qrcodegen_8c.html#ae0b2fcd2ff740612ce23157eaacb7fb1" title=" " alt="" coords="275,156,439,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="147,103,250,134,301,149,299,154,249,139,146,108"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="439,157,498,150,499,156,439,162"/>
+</map>

@@ -1,0 +1,103 @@
+\doxysection{Takes\+List\+Fragment.\+kt}
+\hypertarget{TakesListFragment_8kt_source}{}\label{TakesListFragment_8kt_source}\index{app/src/main/java/com/example/mymeds/ui/takesList/TakesListFragment.kt@{app/src/main/java/com/example/mymeds/ui/takesList/TakesListFragment.kt}}
+\mbox{\hyperlink{TakesListFragment_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00001}00001\ package\ com.example.mymeds.ui.takesList}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00003}00003\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00004}00004\ import\ androidx.fragment.app.Fragment}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00005}00005\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00006}00006\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00007}00007\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00008}00008\ import\ com.example.mymeds.R}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00009}00009\ import\ androidx.appcompat.app.AlertDialog}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00010}00010\ import\ androidx.navigation.fragment.findNavController}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00011}00011\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00012}00012\ import\ com.example.mymeds.databinding.FragmentTakesListBinding}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00013}00013\ import\ com.example.mymeds.data.repository.TakeRepository}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00015}00015\ class\ TakesListFragment\ :\ Fragment()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00016}00016\ \ \ \ \ private\ var\ \_binding:\ FragmentTakesListBinding?\ =\ null}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00017}00017\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00018}00018\ \ \ \ \ private\ lateinit\ var\ adapter:\ TakesAdapter}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00020}00020\ \ \ \ \ override\ fun\ onCreateView(}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,\ container:\ ViewGroup?,}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00022}00022\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00023}00023\ \ \ \ \ ):\ View?\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentTakesListBinding.inflate(inflater,\ container,\ false)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ binding.buttonBack.setOnClickListener()\{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().popBackStack()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ binding.buttonAddFirstTake.setOnClickListener()\{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.takesConfigFragment)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ binding.buttonAddTake.setOnClickListener()\{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.takesConfigFragment)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ return\ binding.root}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00041}00041\ \ \ \ \ override\ fun\ onViewCreated(view:\ View,\ savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ super.onViewCreated(view,\ savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ val\ takes\ =\ TakeRepository.getTakes()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ adapter\ =\ TakesAdapter(takes,}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ onEditClick\ =\ \{position\ -\/>}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ bundle\ =\ Bundle()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bundle.putInt("{}position"{},\ position)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R.id.takesConfigFragment,}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bundle)\},}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ onDeleteClick\ =\ \{position\ -\/>\ showDeleteConfirmation(position)\})}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ binding.takesRecycler.adapter\ =\ adapter}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ binding.takesRecycler.layoutManager\ =\ LinearLayoutManager(requireContext())}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00060}00060\ \ \ \ \ override\ fun\ onResume()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ super.onResume()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00065}00065\ \ \ \ \ private\ fun\ updateUI()\{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ val\ takes\ =\ TakeRepository.getTakes()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ if(takes.isEmpty())\{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ binding.emptyState.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ binding.takesState.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ binding.emptyState.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ binding.takesState.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ adapter.notifyDataSetChanged()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00079}00079\ \ \ \ \ private\ fun\ showDeleteConfirmation(position:\ Int)\{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ AlertDialog.Builder(requireContext())}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ .setTitle("{}Eliminar\ toma"{})}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ .setMessage("{}¿Estás\ seguro\ de\ que\ quieres\ eliminar\ esta\ toma?\(\backslash\)nEsta\ acción\ no\ se\ puede\ deshacer."{})}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ .setPositiveButton("{}Eliminar"{})\{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_,\_-\/>}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.removeTake(position)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ .setNegativeButton("{}Cancelar"{},\ null)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ .show()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00093}00093\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ super.onDestroyView()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00097}00097\ \}}
+
+\end{DoxyCode}

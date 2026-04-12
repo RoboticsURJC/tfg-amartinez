@@ -1,0 +1,1026 @@
+\doxysection{src/user\+\_\+interface/edit\+\_\+takes.cpp File Reference}
+\hypertarget{edit__takes_8cpp}{}\label{edit__takes_8cpp}\index{src/user\_interface/edit\_takes.cpp@{src/user\_interface/edit\_takes.cpp}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}user\+\_\+interface/pill\+\_\+takes.\+h"{}}\newline
+{\ttfamily \#include "{}storage/takes\+\_\+storage.\+h"{}}\newline
+Include dependency graph for edit\+\_\+takes.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\+\_\+screen}} (lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}scr)
+\item 
+static int \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\+\_\+x}} (int width)
+\item 
+static void \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions}} ()
+\item 
+void \mbox{\hyperlink{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402}{set\+\_\+rollers\+\_\+init}} (const char \texorpdfstring{$\ast$}{*}hour\+\_\+str)
+\item 
+static void \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\+\_\+days\+\_\+visibility}} ()
+\item 
+static void \mbox{\hyperlink{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}{refresh\+\_\+days\+\_\+buttons}} ()
+\item 
+void \mbox{\hyperlink{edit__takes_8cpp_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen}} (int index)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\+\_\+hours}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\+\_\+minutes}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\+\_\+repeat}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\+\_\+warning}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\+\_\+recordatory}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_a121ee6d553523b6db91933317d4812e9}{btn\+\_\+rep\+\_\+days}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\+\_\+days}} \mbox{[}7\mbox{]}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\+\_\+screen}} = NULL
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\+\_\+recordatory}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\+\_\+warning}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\+\_\+save}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\+\_\+back}}
+\item 
+\mbox{\hyperlink{structTakeConfig}{Take\+Config}} \mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\+\_\+take}}
+\item 
+\mbox{\hyperlink{structTakeConfig}{Take\+Config}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\+\_\+cfg}} = NULL
+\item 
+bool \mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\+\_\+existing}} = false
+\item 
+int \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\+\_\+index}} = -\/1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{edit__takes_8cpp_a8e5cbca5436158cde9e16681693d1d6d}\label{edit__takes_8cpp_a8e5cbca5436158cde9e16681693d1d6d} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!edit\_takes\_screen@{edit\_takes\_screen}}
+\index{edit\_takes\_screen@{edit\_takes\_screen}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{edit\_takes\_screen()}{edit\_takes\_screen()}}
+{\footnotesize\ttfamily void edit\+\_\+takes\+\_\+screen (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00120}{120}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i]\ =\ NULL;}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}}\ =\ NULL;}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}}\ =\ NULL;}
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}}\ =\ NULL;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ ==\ -\/1)}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ memset(\&\mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTakeConfig}{TakeConfig}}));}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ strcpy(\mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}}.\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{hour}},\ \textcolor{stringliteral}{"{}00:00"{}});}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}}.\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}\ =\ \&\mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\_index}}\ =\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};}
+\DoxyCodeLine{00142\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}\ =\ \&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[index];}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\_index}}\ =\ index;}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ lv\_obj\_t\ *scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(scr);}
+\DoxyCodeLine{00150\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00151\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(scr,\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{char}\ txt\_tittle[32];}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}})\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ sprintf(txt\_tittle,\ \textcolor{stringliteral}{"{}Editar\ Toma\ \%d"{}},\ \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\_index}}\ +\ 1);}
+\DoxyCodeLine{00157\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ sprintf(txt\_tittle,\ \textcolor{stringliteral}{"{}Nueva\ toma"{}});}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ lv\_obj\_t\ *lbl\_tittle\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00162\ \ \ \ \ lv\_label\_set\_text(lbl\_tittle,\ txt\_tittle);}
+\DoxyCodeLine{00163\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_tittle,\ \&\mbox{\hyperlink{montserrat__30__regular_8c_a53988053adb3570fce4c666dd13c0bce}{montserrat\_30\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00164\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_tittle,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00165\ \ \ \ \ lv\_obj\_align(lbl\_tittle,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 5);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ HORA\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00168\ \ \ \ \ lv\_obj\_t\ *lbl\_hour\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00169\ \ \ \ \ lv\_label\_set\_text(lbl\_hour,\ \textcolor{stringliteral}{"{}Hora"{}});}
+\DoxyCodeLine{00170\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_hour,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00171\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_hour,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00172\ \ \ \ \ lv\_obj\_set\_pos(lbl\_hour,\ 10,\ 50);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roller\_w\ =\ 70;}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roller\_h\ =\ 60;}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roller\_gap\ =\ 10;}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ group\_w\ =\ roller\_w*2\ +\ roller\_gap;}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ lv\_obj\_t\ *hour\_group\ =\ lv\_obj\_create(scr);}
+\DoxyCodeLine{00180\ \ \ \ \ lv\_obj\_set\_size(hour\_group,\ group\_w,\ roller\_h);}
+\DoxyCodeLine{00181\ \ \ \ \ lv\_obj\_set\_pos(hour\_group,\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(group\_w),\ 45);}
+\DoxyCodeLine{00182\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(hour\_group,\ LV\_OPA\_TRANSP,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00183\ \ \ \ \ lv\_obj\_set\_style\_border\_width(hour\_group,\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00184\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(hour\_group,\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00185\ \ \ \ \ lv\_obj\_clear\_flag(hour\_group,\ LV\_OBJ\_FLAG\_SCROLLABLE);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//****ROLLER\ HOURS****}}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}}\ =\ lv\_roller\_create(hour\_group);}
+\DoxyCodeLine{00189\ \ \ \ \ lv\_roller\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}00\(\backslash\)n01\(\backslash\)n02\(\backslash\)n03\(\backslash\)n04\(\backslash\)n05\(\backslash\)n06\(\backslash\)n07\(\backslash\)n08\(\backslash\)n09\(\backslash\)n10\(\backslash\)n11\(\backslash\)n"{}}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}12\(\backslash\)n13\(\backslash\)n14\(\backslash\)n15\(\backslash\)n16\(\backslash\)n17\(\backslash\)n18\(\backslash\)n19\(\backslash\)n20\(\backslash\)n21\(\backslash\)n22\(\backslash\)n23"{}},}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ LV\_ROLLER\_MODE\_NORMAL);}
+\DoxyCodeLine{00193\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ roller\_w,\ roller\_h);}
+\DoxyCodeLine{00194\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ 0);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{//Normal}}
+\DoxyCodeLine{00197\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ LV\_OPA\_TRANSP,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00198\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00199\ \ \ \ \ lv\_obj\_set\_style\_clip\_corner(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ \textcolor{keyword}{true},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00200\ \ \ \ \ lv\_obj\_set\_style\_border\_width(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00201\ \ \ \ \ lv\_obj\_set\_style\_shadow\_width(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00202\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00203\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{//Selected}}
+\DoxyCodeLine{00206\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ lv\_color\_make(238,\ 173,\ 253),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00207\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ LV\_OPA\_COVER,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00208\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 10,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00209\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00210\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ lv\_color\_black(),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//****ROLLER\ MINUTES****}}
+\DoxyCodeLine{00213\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}}\ =\ lv\_roller\_create(hour\_group);}
+\DoxyCodeLine{00214\ \ \ \ \ lv\_roller\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}00\(\backslash\)n01\(\backslash\)n02\(\backslash\)n03\(\backslash\)n04\(\backslash\)n05\(\backslash\)n06\(\backslash\)n07\(\backslash\)n08\(\backslash\)n09\(\backslash\)n"{}}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}10\(\backslash\)n11\(\backslash\)n12\(\backslash\)n13\(\backslash\)n14\(\backslash\)n15\(\backslash\)n16\(\backslash\)n17\(\backslash\)n18\(\backslash\)n19\(\backslash\)n"{}}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}20\(\backslash\)n21\(\backslash\)n22\(\backslash\)n23\(\backslash\)n24\(\backslash\)n25\(\backslash\)n26\(\backslash\)n27\(\backslash\)n28\(\backslash\)n29\(\backslash\)n"{}}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}30\(\backslash\)n31\(\backslash\)n32\(\backslash\)n33\(\backslash\)n34\(\backslash\)n35\(\backslash\)n36\(\backslash\)n37\(\backslash\)n38\(\backslash\)n39\(\backslash\)n"{}}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}40\(\backslash\)n41\(\backslash\)n42\(\backslash\)n43\(\backslash\)n44\(\backslash\)n45\(\backslash\)n46\(\backslash\)n47\(\backslash\)n48\(\backslash\)n49\(\backslash\)n"{}}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}50\(\backslash\)n51\(\backslash\)n52\(\backslash\)n53\(\backslash\)n54\(\backslash\)n55\(\backslash\)n56\(\backslash\)n57\(\backslash\)n58\(\backslash\)n59"{}},}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ LV\_ROLLER\_MODE\_NORMAL);}
+\DoxyCodeLine{00222\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ roller\_w,\ roller\_h);}
+\DoxyCodeLine{00223\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ roller\_w+roller\_gap,\ 0);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{comment}{//Normal}}
+\DoxyCodeLine{00226\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ LV\_OPA\_TRANSP,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00227\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00228\ \ \ \ \ lv\_obj\_set\_style\_clip\_corner(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ \textcolor{keyword}{true},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00229\ \ \ \ \ lv\_obj\_set\_style\_border\_width(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00230\ \ \ \ \ lv\_obj\_set\_style\_shadow\_width(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00231\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00232\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{comment}{//Selected}}
+\DoxyCodeLine{00235\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ lv\_color\_make(238,\ 173,\ 253),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00236\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ LV\_OPA\_COVER,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00237\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 10,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00238\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 0,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00239\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ lv\_color\_black(),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402}{set\_rollers\_init}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{hour}});}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ REPETITION\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rep\_row\_y\ =\ 120;}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rep\_dd\_w\ =\ 190;}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rep\_dd\_h\ =\ 40;}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{int}\ dd\_x\ =\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(rep\_dd\_w);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ lv\_obj\_t\ *lbl\_repeat\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00250\ \ \ \ \ lv\_label\_set\_text(lbl\_repeat,\ \textcolor{stringliteral}{"{}Repetir"{}});}
+\DoxyCodeLine{00251\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_repeat,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00252\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_repeat,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00253\ \ \ \ \ lv\_obj\_set\_pos(lbl\_repeat,\ 10,\ rep\_row\_y);}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}}\ =\ lv\_dropdown\_create(scr);}
+\DoxyCodeLine{00256\ \ \ \ \ lv\_dropdown\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Todos\ los\ días\(\backslash\)n"{}}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Entre\ semana\(\backslash\)n"{}}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Personalizar"{}});}
+\DoxyCodeLine{00260\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ rep\_dd\_w,\ rep\_dd\_h);}
+\DoxyCodeLine{00261\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ dd\_x,\ rep\_row\_y-\/5);\ }
+\DoxyCodeLine{00262\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00263\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00264\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00265\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00266\ \ \ \ \ lv\_dropdown\_set\_symbol(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ NULL);}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordtype}{bool}\ all\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordtype}{bool}\ week\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;i<7;i++)}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i])}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ all\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;i<5;i++)}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i])}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[5])\ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[6])\ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordflow}{if}\ (all)}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},0);}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (week)}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},1);}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},2);}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordtype}{int}\ sel\ =\ lv\_dropdown\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}});}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{if}\ (sel\ ==\ 0)\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sel\ ==\ 1)\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ i++)\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[5]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[6]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00305\ \ \ \ \ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ lv\_event\_code\_t\ code\ =\ lv\_event\_get\_code(e);}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *obj\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_READY)}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *list\ =\ lv\_dropdown\_get\_list(obj);}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(list,\ 180,\ 120);}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(list,}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_color\_white(),}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN);}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(list,}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_color\_black(),}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN);}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(list,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(obj,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_ITEMS);}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_VALUE\_CHANGED)}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sel\ =\ lv\_dropdown\_get\_selected(obj);}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sel\ ==\ 0)}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sel\ ==\ 1)\ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ i++)}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[5]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[6]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00345\ \ }
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sel\ ==\ 2)\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ all\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ week\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i])}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ all\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ i++)}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i])}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[5])\ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[6])\ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ venimos\ de\ TODOS\ o\ SEMANA\ →\ limpiar}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (all\ ||\ week)}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}{refresh\_days\_buttons}}();}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\_days\_visibility}}();}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\_layout\_positions}}();}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \},\ LV\_EVENT\_ALL,\ NULL);}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ DAYS\ REPEAT\ BUTTONS-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[7]\ =\ \{\textcolor{stringliteral}{"{}L"{}},\textcolor{stringliteral}{"{}M"{}},\textcolor{stringliteral}{"{}X"{}},\textcolor{stringliteral}{"{}J"{}},\textcolor{stringliteral}{"{}V"{}},\textcolor{stringliteral}{"{}S"{}},\textcolor{stringliteral}{"{}D"{}}\};}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i\ <\ 7;\ i++)\{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ 5)\ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 40\ +\ i*45;}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ rep\_row\_y\ +\ 45;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 110\ +\ (i-\/5)*45;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ rep\_row\_y\ +\ 90;}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i]\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ 36,\ 36);}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_ALIGN\_TOP\_LEFT,\ x,\ y);}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *\ lbl\_btn\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i]);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl\_btn,\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[i]);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ lv\_obj\_center(lbl\_btn);}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i])\ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ lv\_obj\_set\_user\_data(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ (\textcolor{keywordtype}{void}*)(intptr\_t)i);}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ [](lv\_event\_t\ *e)\{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *obj\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ day\ =\ (int)(intptr\_t)lv\_obj\_get\_user\_data(obj);}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[day]\ =\ !\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[day];}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[day])\{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(lv\_event\_get\_target(e),\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_clear\_state(lv\_event\_get\_target(e),\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\_days\_visibility}}();}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ RECORDATORY\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rec\_row\_y\ =\ 260;}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ sw\_rec\_w\ =\ 60;}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ sw\_rec\_h\ =\ 30;}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00427\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ \textcolor{stringliteral}{"{}Recordatorio"{}});}
+\DoxyCodeLine{00428\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00429\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00430\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ 10,\ rec\_row\_y);}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}}\ =\ lv\_switch\_create(scr);}
+\DoxyCodeLine{00433\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ sw\_rec\_w,\ sw\_rec\_h);}
+\DoxyCodeLine{00434\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(sw\_rec\_w),\ rec\_row\_y-\/5);}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{recordatory}})\{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00437\ \ \ \ \ \}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ EARLIER\ WARNING\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ warn\_row\_y\ =\ 305;}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ warn\_dd\_w\ =\ 110;}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ warn\_dd\_h\ =\ 40;}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00445\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ \textcolor{stringliteral}{"{}Avisar\ antes"{}});}
+\DoxyCodeLine{00446\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00447\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00448\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ 10,\ warn\_row\_y);}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}}\ =\ lv\_dropdown\_create(scr);}
+\DoxyCodeLine{00451\ \ \ \ \ lv\_dropdown\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}0\ min\(\backslash\)n5\ min\(\backslash\)n10\ min\(\backslash\)n15\ min\(\backslash\)n20\ min"{}});}
+\DoxyCodeLine{00453\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ warn\_dd\_w,\ warn\_dd\_h);}
+\DoxyCodeLine{00454\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(warn\_dd\_w),\ warn\_row\_y-\/5);}
+\DoxyCodeLine{00455\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00456\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00457\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00458\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00459\ \ \ \ \ lv\_dropdown\_set\_symbol(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ NULL);}
+\DoxyCodeLine{00460\ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_ab7b0568726dc2e0623041bd86f8d0fe7}{warning\_time}}/5);}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00463\ \ \ \ \ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ lv\_event\_code\_t\ code\ =\ lv\_event\_get\_code(e);}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *obj\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_READY)\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *list\ =\ lv\_dropdown\_get\_list(obj);}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(list,\ warn\_dd\_w,\ 160);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(list,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(list,\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(list,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(list,\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(obj,\ lv\_color\_hex(0xDDDDDD),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(obj,\ LV\_OPA\_COVER,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(obj,\ lv\_color\_black(),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(obj,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_ITEMS);}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(obj,\ lv\_color\_black(),\ LV\_PART\_ITEMS);}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_VALUE\_CHANGED)\ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}})\ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ sel\ =\ lv\_dropdown\_get\_selected(obj);}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_ab7b0568726dc2e0623041bd86f8d0fe7}{warning\_time}}\ =\ sel*5;}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \},\ LV\_EVENT\_ALL,\ NULL);}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SAVE\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00493\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}}\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00494\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ 150,\ 45);}
+\DoxyCodeLine{00495\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00496\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00497\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00498\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(150),\ 350);}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \ \ \ \ lv\_obj\_t\ *lbl\_save\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}});}
+\DoxyCodeLine{00501\ \ \ \ \ lv\_label\_set\_text(lbl\_save,\ \textcolor{stringliteral}{"{}Guardar"{}});}
+\DoxyCodeLine{00502\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_save,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00503\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_save,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00504\ \ \ \ \ lv\_obj\_center(lbl\_save);}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00507\ \ \ \ \ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hh\ =\ lv\_roller\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}});}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mm\ =\ lv\_roller\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}});}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ sprintf(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{hour}},\ \textcolor{stringliteral}{"{}\%02d:\%02d"{}},\ hh,\ mm);}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{recordatory}}\ =\ lv\_obj\_has\_state(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_ab7b0568726dc2e0623041bd86f8d0fe7}{warning\_time}}\ =\ lv\_dropdown\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}})*5;}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}})\ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}\ <\ \mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\_TAKES}})\ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[\mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}]\ =\ \mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}};}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}++;}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}MAX\_TAKES\ reached"{}});}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__storage_8h_a230495ec724f6295941efc6a5cabd1a0}{saveTakes}}();}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
+\DoxyCodeLine{00527\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ GO\ BACK\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00530\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}}\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00531\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 150,\ 45);}
+\DoxyCodeLine{00532\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00533\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00534\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00535\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 5,\ 350);}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \ \ \ \ lv\_obj\_t\ *lbl\_back\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}});}
+\DoxyCodeLine{00538\ \ \ \ \ lv\_label\_set\_text(lbl\_back,\ \textcolor{stringliteral}{"{}Atrás"{}});}
+\DoxyCodeLine{00539\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_back,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00540\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_back,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00541\ \ \ \ \ lv\_obj\_center(lbl\_back);}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00544\ \ \ \ \ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
+\DoxyCodeLine{00546\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\_days\_visibility}}();}
+\DoxyCodeLine{00549\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\_layout\_positions}}();}
+\DoxyCodeLine{00550\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\+\_\+back}}, \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\+\_\+days}}, \mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\+\_\+save}}, \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\+\_\+cfg}}, \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\+\_\+index}}, \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}, \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\+\_\+repeat}}, \mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\+\_\+warning}}, \mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\+\_\+existing}}, \mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{Take\+Config\+::hour}}, \mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\+\_\+recordatory}}, \mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\+\_\+warning}}, \mbox{\hyperlink{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\+\_\+\+TAKES}}, \mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\+\_\+24\+\_\+regular}}, \mbox{\hyperlink{montserrat__30__regular_8c_a53988053adb3570fce4c666dd13c0bce}{montserrat\+\_\+30\+\_\+regular}}, \mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{Take\+Config\+::recordatory}}, \mbox{\hyperlink{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}{refresh\+\_\+days\+\_\+buttons()}}, \mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{Take\+Config\+::repeat}}, \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\+\_\+x()}}, \mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\+\_\+hours}}, \mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\+\_\+minutes}}, \mbox{\hyperlink{takes__storage_8h_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes()}}, \mbox{\hyperlink{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402}{set\+\_\+rollers\+\_\+init()}}, \mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\+\_\+recordatory}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen()}}, \mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\+\_\+take}}, \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}, \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\+\_\+days\+\_\+visibility()}}, \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}, and \mbox{\hyperlink{structTakeConfig_ab7b0568726dc2e0623041bd86f8d0fe7}{Take\+Config\+::warning\+\_\+time}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}, and \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp_a8e5cbca5436158cde9e16681693d1d6d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp_a8e5cbca5436158cde9e16681693d1d6d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}\label{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!load\_screen@{load\_screen}}
+\index{load\_screen@{load\_screen}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{load\_screen()}{load\_screen()}}
+{\footnotesize\ttfamily static void load\+\_\+screen (\begin{DoxyParamCaption}\item[{lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}}]{scr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}})}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ lv\_obj\_del\_async(\mbox{\hyperlink{edit__takes_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}});}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}}\ =\ scr;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ lv\_scr\_load(scr);}
+\DoxyCodeLine{00034\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\+\_\+screen}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}\label{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!refresh\_days\_buttons@{refresh\_days\_buttons}}
+\index{refresh\_days\_buttons@{refresh\_days\_buttons}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{refresh\_days\_buttons()}{refresh\_days\_buttons()}}
+{\footnotesize\ttfamily static void refresh\+\_\+days\+\_\+buttons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00105}{105}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00106\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i])\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{repeat}}[i])}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_clear\_state(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\+\_\+days}}, \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\+\_\+cfg}}, and \mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{Take\+Config\+::repeat}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}\label{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!right\_x@{right\_x}}
+\index{right\_x@{right\_x}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{right\_x()}{right\_x()}}
+{\footnotesize\ttfamily static int right\+\_\+x (\begin{DoxyParamCaption}\item[{int}]{width }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ 320\ -\/\ width\ -\/\ 10;}
+\DoxyCodeLine{00039\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402}\label{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!set\_rollers\_init@{set\_rollers\_init}}
+\index{set\_rollers\_init@{set\_rollers\_init}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{set\_rollers\_init()}{set\_rollers\_init()}}
+{\footnotesize\ttfamily void set\+\_\+rollers\+\_\+init (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{hour\+\_\+str }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ hh\ =\ 0,\ mm\ =\ 0;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (hour\_str)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ sscanf(hour\_str,\ \textcolor{stringliteral}{"{}\%d:\%d"{}},\ \&hh,\ \&mm);}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (hh\ <\ 0\ ||\ hh\ >\ 23)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ hh\ =\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (mm\ <\ 0\ ||\ mm\ >\ 59)\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ mm\ =\ 0;}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ lv\_roller\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ hh,\ LV\_ANIM\_OFF);}
+\DoxyCodeLine{00083\ \ \ \ \ lv\_roller\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ mm,\ LV\_ANIM\_OFF);}
+\DoxyCodeLine{00084\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\+\_\+hours}}, and \mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\+\_\+minutes}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}\label{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!update\_days\_visibility@{update\_days\_visibility}}
+\index{update\_days\_visibility@{update\_days\_visibility}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_days\_visibility()}{update\_days\_visibility()}}
+{\footnotesize\ttfamily static void update\+\_\+days\+\_\+visibility (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{int}\ sel\ =\ lv\_dropdown\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{bool}\ show\ =\ (sel\ ==\ 2);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i])\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (show)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_clear\_flag(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_OBJ\_FLAG\_HIDDEN);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_flag(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_OBJ\_FLAG\_HIDDEN);}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\+\_\+days}}, and \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\+\_\+repeat}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}\label{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!update\_layout\_positions@{update\_layout\_positions}}
+\index{update\_layout\_positions@{update\_layout\_positions}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_layout\_positions()}{update\_layout\_positions()}}
+{\footnotesize\ttfamily static void update\+\_\+layout\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ sel\ =\ lv\_dropdown\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}});}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ base\_y\ =\ 180;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (sel\ ==\ 2)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ base\_y\ =\ 260;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ base\_y\ =\ 185;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ 10,\ base\_y);}
+\DoxyCodeLine{00053\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(60),\ base\_y\ -\/\ 5);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{int}\ warn\_y\ =\ base\_y\ +\ 45;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ 10,\ warn\_y);}
+\DoxyCodeLine{00058\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(110),\ warn\_y\ -\/\ 5);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ btn\_y\ =\ warn\_y\ +\ 45;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(150),\ btn\_y);}
+\DoxyCodeLine{00063\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 5,\ btn\_y);}
+\DoxyCodeLine{00064\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\+\_\+back}}, \mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\+\_\+save}}, \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\+\_\+repeat}}, \mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\+\_\+warning}}, \mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\+\_\+recordatory}}, \mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\+\_\+warning}}, \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\+\_\+x()}}, and \mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\+\_\+recordatory}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}\label{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!btn\_back@{btn\_back}}
+\index{btn\_back@{btn\_back}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{btn\_back}{btn\_back}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} btn\+\_\+back\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}.
+
+\Hypertarget{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}\label{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!btn\_days@{btn\_days}}
+\index{btn\_days@{btn\_days}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{btn\_days}{btn\_days}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} btn\+\_\+days\mbox{[}7\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}{refresh\+\_\+days\+\_\+buttons()}}, and \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\+\_\+days\+\_\+visibility()}}.
+
+\Hypertarget{edit__takes_8cpp_a121ee6d553523b6db91933317d4812e9}\label{edit__takes_8cpp_a121ee6d553523b6db91933317d4812e9} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!btn\_rep\_days@{btn\_rep\_days}}
+\index{btn\_rep\_days@{btn\_rep\_days}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{btn\_rep\_days}{btn\_rep\_days}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} btn\+\_\+rep\+\_\+days\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+\Hypertarget{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}\label{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!btn\_save@{btn\_save}}
+\index{btn\_save@{btn\_save}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{btn\_save}{btn\_save}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} btn\+\_\+save\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}.
+
+\Hypertarget{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}\label{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!current\_cfg@{current\_cfg}}
+\index{current\_cfg@{current\_cfg}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{current\_cfg}{current\_cfg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTakeConfig}{Take\+Config}}\texorpdfstring{$\ast$}{*} current\+\_\+cfg = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}{refresh\+\_\+days\+\_\+buttons()}}, and \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}.
+
+\Hypertarget{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}\label{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!current\_index@{current\_index}}
+\index{current\_index@{current\_index}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{current\_index}{current\_index}}
+{\footnotesize\ttfamily int current\+\_\+index = -\/1}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}.
+
+\Hypertarget{edit__takes_8cpp_adbf1ac300b0a4276bf7524cb23fad107}\label{edit__takes_8cpp_adbf1ac300b0a4276bf7524cb23fad107} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!current\_screen@{current\_screen}}
+\index{current\_screen@{current\_screen}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{current\_screen}{current\_screen}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} current\+\_\+screen = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\+\_\+screen()}}.
+
+\Hypertarget{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}\label{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!days\_repeat@{days\_repeat}}
+\index{days\_repeat@{days\_repeat}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{days\_repeat}{days\_repeat}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} days\+\_\+repeat\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\+\_\+days\+\_\+visibility()}}, and \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}.
+
+\Hypertarget{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}\label{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!days\_warning@{days\_warning}}
+\index{days\_warning@{days\_warning}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{days\_warning}{days\_warning}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} days\+\_\+warning\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}.
+
+\Hypertarget{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}\label{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!editing\_existing@{editing\_existing}}
+\index{editing\_existing@{editing\_existing}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{editing\_existing}{editing\_existing}}
+{\footnotesize\ttfamily bool editing\+\_\+existing = false}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}.
+
+\Hypertarget{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}\label{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!lbl\_recordatory@{lbl\_recordatory}}
+\index{lbl\_recordatory@{lbl\_recordatory}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{lbl\_recordatory}{lbl\_recordatory}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} lbl\+\_\+recordatory\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}.
+
+\Hypertarget{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}\label{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!lbl\_warning@{lbl\_warning}}
+\index{lbl\_warning@{lbl\_warning}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{lbl\_warning}{lbl\_warning}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} lbl\+\_\+warning\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}.
+
+\Hypertarget{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}\label{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!roller\_hours@{roller\_hours}}
+\index{roller\_hours@{roller\_hours}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{roller\_hours}{roller\_hours}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} roller\+\_\+hours\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402}{set\+\_\+rollers\+\_\+init()}}.
+
+\Hypertarget{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}\label{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!roller\_minutes@{roller\_minutes}}
+\index{roller\_minutes@{roller\_minutes}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{roller\_minutes}{roller\_minutes}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} roller\+\_\+minutes\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402}{set\+\_\+rollers\+\_\+init()}}.
+
+\Hypertarget{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}\label{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!sw\_recordatory@{sw\_recordatory}}
+\index{sw\_recordatory@{sw\_recordatory}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{sw\_recordatory}{sw\_recordatory}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} sw\+\_\+recordatory\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}.
+
+\Hypertarget{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}\label{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9} 
+\index{edit\_takes.cpp@{edit\_takes.cpp}!temp\_take@{temp\_take}}
+\index{temp\_take@{temp\_take}!edit\_takes.cpp@{edit\_takes.cpp}}
+\doxysubsubsection{\texorpdfstring{temp\_take}{temp\_take}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTakeConfig}{Take\+Config}} temp\+\_\+take}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}.
+

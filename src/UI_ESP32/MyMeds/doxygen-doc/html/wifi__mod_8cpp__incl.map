@@ -1,0 +1,18 @@
+<map id="src/user_interface/wifi_mod.cpp" name="src/user_interface/wifi_mod.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="55,5,194,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="34,181,93,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,48,38,67,14,95,8,113,14,132,25,153,41,170,37,174,21,156,9,134,3,113,9,92,35,63,67,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="24,101,95,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="112,47,79,91,75,88,108,44"/>
+<area shape="rect" id="Node000004" href="$qrcodegen_8h.html" title=" " alt="" coords="285,101,388,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,43,297,93,295,98,170,48"/>
+<area shape="rect" id="Node000008" href="$wifi__mod_8h.html" title=" " alt="" coords="119,93,261,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="141,44,169,81,165,84,137,47"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="193,181,275,207"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="323,128,262,175,259,171,320,124"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="299,181,374,207"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="339,126,339,167,334,167,334,126"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="399,181,469,207"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="353,124,411,171,407,175,349,128"/>
+<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="161,136,95,176,92,172,158,131"/>
+</map>

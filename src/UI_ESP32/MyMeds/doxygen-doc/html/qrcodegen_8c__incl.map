@@ -1,0 +1,19 @@
+<map id="lib/qrcodegen/qrcodegen.c" name="lib/qrcodegen/qrcodegen.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="138,5,331,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,80,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,33,88,76,86,71,203,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="105,79,175,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,33,168,72,165,68,218,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="199,79,270,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="237,31,237,65,232,65,232,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="294,79,365,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="251,29,304,68,301,72,248,33"/>
+<area shape="rect" id="Node000006" href="$qrcodegen_8h.html" title=" " alt="" coords="389,79,491,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="269,28,395,72,393,77,267,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="296,152,379,177"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="425,106,367,146,364,142,422,102"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="403,152,477,177"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="443,104,443,138,437,138,437,104"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="502,152,573,177"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="457,102,512,141,509,146,454,106"/>
+</map>

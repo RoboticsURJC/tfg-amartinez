@@ -1,0 +1,48 @@
+\doxysection{lvgl\+\_\+touch.\+cpp}
+\hypertarget{lvgl__touch_8cpp_source}{}\label{lvgl__touch_8cpp_source}\index{src/lvgl\_touch.cpp@{src/lvgl\_touch.cpp}}
+\mbox{\hyperlink{lvgl__touch_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lvgl__touch_8h}{lvgl\_touch.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <SPI.h>}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <XPT2046\_Touchscreen.h>}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00005}\mbox{\hyperlink{lvgl__touch_8cpp_a234ef1d69dd84e7134072c05c5b87eaf}{00005}}\ \textcolor{preprocessor}{\#define\ T\_CS\ 33}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00006}\mbox{\hyperlink{lvgl__touch_8cpp_a830e716db81333e7dc058f7373c48d6b}{00006}}\ \textcolor{preprocessor}{\#define\ T\_CLK\ 25}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00007}\mbox{\hyperlink{lvgl__touch_8cpp_a09b57adf03bb34ea1281d762abf9a0f2}{00007}}\ \textcolor{preprocessor}{\#define\ T\_MISO\ 39}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00008}\mbox{\hyperlink{lvgl__touch_8cpp_acf4775705647aae50c55ab3f71b83d09}{00008}}\ \textcolor{preprocessor}{\#define\ T\_MOSI\ 32}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00010}\mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{00010}}\ XPT2046\_Touchscreen\ \mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{ts}}(\mbox{\hyperlink{lvgl__touch_8cpp_a234ef1d69dd84e7134072c05c5b87eaf}{T\_CS}});}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00011}\mbox{\hyperlink{lvgl__touch_8cpp_ad24b29315aa8baa7d61bf2084bcbcdc4}{00011}}\ \textcolor{keyword}{static}\ lv\_indev\_t\ *\mbox{\hyperlink{lvgl__touch_8cpp_ad24b29315aa8baa7d61bf2084bcbcdc4}{indev\_touch}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00013}\mbox{\hyperlink{lvgl__touch_8cpp_a7c86d5ac28d219b55d2c94aacb139157}{00013}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lvgl__touch_8cpp_a7c86d5ac28d219b55d2c94aacb139157}{touch\_read\_cb}}(lv\_indev\_drv\_t\ *drv,\ lv\_indev\_data\_t\ *data)}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{ts}}.touched())\{}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ data-\/>state\ =\ LV\_INDEV\_STATE\_REL;}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00020}00020\ \ \ \ \ TS\_Point\ p\ =\ \mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{ts}}.getPoint();}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00022}00022\ \ \ \ \ uint16\_t\ x\ =\ map(p.x,\ 3800,\ 300,\ 0,\ 320);}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00023}00023\ \ \ \ \ uint16\_t\ y\ =\ map(p.y,\ 3685,\ 148,\ 0,\ 240);}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00025}00025\ \ \ \ \ data-\/>state\ =\ LV\_INDEV\_STATE\_PR;}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00026}00026\ \ \ \ \ data-\/>point.x\ =\ x;}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00027}00027\ \ \ \ \ data-\/>point.y\ =\ y;}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00030}\mbox{\hyperlink{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b}{00030}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lvgl__touch_8cpp_a77505c2b918dec6cea21b12e13657c5b}{lvgl\_touch\_init}}()}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00032}00032\ \ \ \ \ SPI.begin(\mbox{\hyperlink{lvgl__touch_8cpp_a830e716db81333e7dc058f7373c48d6b}{T\_CLK}},\ \mbox{\hyperlink{lvgl__touch_8cpp_a09b57adf03bb34ea1281d762abf9a0f2}{T\_MISO}},\ \mbox{\hyperlink{lvgl__touch_8cpp_acf4775705647aae50c55ab3f71b83d09}{T\_MOSI}});}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{ts}}.begin();}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{ts}}.setRotation(1);}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{static}\ lv\_indev\_drv\_t\ indev\_drv;}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00037}00037\ \ \ \ \ lv\_indev\_drv\_init(\&indev\_drv);}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00038}00038\ \ \ \ \ indev\_drv.type\ =\ LV\_INDEV\_TYPE\_POINTER;}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00039}00039\ \ \ \ \ indev\_drv.read\_cb\ =\ \mbox{\hyperlink{lvgl__touch_8cpp_a7c86d5ac28d219b55d2c94aacb139157}{touch\_read\_cb}};}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{lvgl__touch_8cpp_ad24b29315aa8baa7d61bf2084bcbcdc4}{indev\_touch}}\ =\ lv\_indev\_drv\_register(\&indev\_drv);}
+\DoxyCodeLine{\Hypertarget{lvgl__touch_8cpp_source_l00042}00042\ \}}
+
+\end{DoxyCode}

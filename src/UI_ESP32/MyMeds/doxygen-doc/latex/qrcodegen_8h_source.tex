@@ -1,0 +1,391 @@
+\doxysection{qrcodegen.\+h}
+\hypertarget{qrcodegen_8h_source}{}\label{qrcodegen_8h_source}\index{lib/qrcodegen/qrcodegen.h@{lib/qrcodegen/qrcodegen.h}}
+\mbox{\hyperlink{qrcodegen_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00001}00001\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00002}00002\ \textcolor{comment}{\ *\ QR\ Code\ generator\ library\ (C)}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00003}00003\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00004}00004\ \textcolor{comment}{\ *\ Copyright\ (c)\ Project\ Nayuki.\ (MIT\ License)}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00005}00005\ \textcolor{comment}{\ *\ https://www.nayuki.io/page/qr-\/code-\/generator-\/library}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00006}00006\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00007}00007\ \textcolor{comment}{\ *\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy\ of}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00008}00008\ \textcolor{comment}{\ *\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal\ in}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00009}00009\ \textcolor{comment}{\ *\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights\ to}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00010}00010\ \textcolor{comment}{\ *\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell\ copies\ of}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00011}00011\ \textcolor{comment}{\ *\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is\ furnished\ to\ do\ so,}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00012}00012\ \textcolor{comment}{\ *\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00013}00013\ \textcolor{comment}{\ *\ -\/\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00014}00014\ \textcolor{comment}{\ *\ \ \ all\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00015}00015\ \textcolor{comment}{\ *\ -\/\ The\ Software\ is\ provided\ "{}as\ is"{},\ without\ warranty\ of\ any\ kind,\ express\ or}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00016}00016\ \textcolor{comment}{\ *\ \ \ implied,\ including\ but\ not\ limited\ to\ the\ warranties\ of\ merchantability,}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00017}00017\ \textcolor{comment}{\ *\ \ \ fitness\ for\ a\ particular\ purpose\ and\ noninfringement.\ In\ no\ event\ shall\ the}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00018}00018\ \textcolor{comment}{\ *\ \ \ authors\ or\ copyright\ holders\ be\ liable\ for\ any\ claim,\ damages\ or\ other}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00019}00019\ \textcolor{comment}{\ *\ \ \ liability,\ whether\ in\ an\ action\ of\ contract,\ tort\ or\ otherwise,\ arising\ from,}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00020}00020\ \textcolor{comment}{\ *\ \ \ out\ of\ or\ in\ connection\ with\ the\ Software\ or\ the\ use\ or\ other\ dealings\ in\ the}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00021}00021\ \textcolor{comment}{\ *\ \ \ Software.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00022}00022\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00024}00024\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00028}00028\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00031}00031\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00032}00032\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00033}00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00036}00036\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00037}00037\ \textcolor{comment}{\ *\ This\ library\ creates\ QR\ Code\ symbols,\ which\ is\ a\ type\ of\ two-\/dimension\ barcode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00038}00038\ \textcolor{comment}{\ *\ Invented\ by\ Denso\ Wave\ and\ described\ in\ the\ ISO/IEC\ 18004\ standard.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00039}00039\ \textcolor{comment}{\ *\ A\ QR\ Code\ structure\ is\ an\ immutable\ square\ grid\ of\ dark\ and\ light\ cells.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00040}00040\ \textcolor{comment}{\ *\ The\ library\ provides\ functions\ to\ create\ a\ QR\ Code\ from\ text\ or\ binary\ data.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00041}00041\ \textcolor{comment}{\ *\ The\ library\ covers\ the\ QR\ Code\ Model\ 2\ specification,\ supporting\ all\ versions\ (sizes)}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00042}00042\ \textcolor{comment}{\ *\ from\ 1\ to\ 40,\ all\ 4\ error\ correction\ levels,\ and\ 4\ character\ encoding\ modes.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00043}00043\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00044}00044\ \textcolor{comment}{\ *\ Ways\ to\ create\ a\ QR\ Code\ object:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00045}00045\ \textcolor{comment}{\ *\ -\/\ High\ level:\ Take\ the\ payload\ data\ and\ call\ qrcodegen\_encodeText()\ or\ qrcodegen\_encodeBinary().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00046}00046\ \textcolor{comment}{\ *\ -\/\ Low\ level:\ Custom-\/make\ the\ list\ of\ segments\ and\ call}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00047}00047\ \textcolor{comment}{\ *\ \ \ qrcodegen\_encodeSegments()\ or\ qrcodegen\_encodeSegmentsAdvanced().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00048}00048\ \textcolor{comment}{\ *\ (Note\ that\ all\ ways\ require\ supplying\ the\ desired\ error\ correction\ level\ and\ various\ byte\ buffers.)}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00049}00049\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00052}00052\ \textcolor{comment}{/*-\/-\/-\/-\/\ Enum\ and\ struct\ types-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00054}00054\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00055}00055\ \textcolor{comment}{\ *\ The\ error\ correction\ level\ in\ a\ QR\ Code\ symbol.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00056}00056\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00057}\mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{00057}}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\_Ecc}}\ \{}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Must\ be\ declared\ in\ ascending\ order\ of\ error\ protection}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//\ so\ that\ an\ internal\ qrcodegen\ function\ works\ properly}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00060}\mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65caa6f4e3ad3cd16ee38110410f1d14e18a}{00060}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65caa6f4e3ad3cd16ee38110410f1d14e18a}{qrcodegen\_Ecc\_LOW}}\ =\ 0\ ,\ \ \textcolor{comment}{//\ The\ QR\ Code\ can\ tolerate\ about\ \ 7\%\ erroneous\ codewords}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00061}\mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca09d959a0d2081c1f9bf679d0b2aae62a}{00061}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca09d959a0d2081c1f9bf679d0b2aae62a}{qrcodegen\_Ecc\_MEDIUM}}\ \ ,\ \ \textcolor{comment}{//\ The\ QR\ Code\ can\ tolerate\ about\ 15\%\ erroneous\ codewords}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00062}\mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca5f04fea8990526759c2014f9b65cd6b3}{00062}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca5f04fea8990526759c2014f9b65cd6b3}{qrcodegen\_Ecc\_QUARTILE}},\ \ \textcolor{comment}{//\ The\ QR\ Code\ can\ tolerate\ about\ 25\%\ erroneous\ codewords}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00063}\mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca0fc0cef57fd9214dc450fb3ad4762501}{00063}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca0fc0cef57fd9214dc450fb3ad4762501}{qrcodegen\_Ecc\_HIGH}}\ \ \ \ ,\ \ \textcolor{comment}{//\ The\ QR\ Code\ can\ tolerate\ about\ 30\%\ erroneous\ codewords}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00064}00064\ \};}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00067}00067\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00068}00068\ \textcolor{comment}{\ *\ The\ mask\ pattern\ used\ in\ a\ QR\ Code\ symbol.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00069}00069\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00070}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{00070}}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\_Mask}}\ \{}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00071}00071\ \ \ \ \ \textcolor{comment}{//\ A\ special\ value\ to\ tell\ the\ QR\ Code\ encoder\ to}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ automatically\ select\ an\ appropriate\ mask\ pattern}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00073}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841}{00073}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841}{qrcodegen\_Mask\_AUTO}}\ =\ -\/1,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00074}00074\ \ \ \ \ \textcolor{comment}{//\ The\ eight\ actual\ mask\ patterns}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00075}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ea432c7c933d09d790868926d1d0bca9f6}{00075}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ea432c7c933d09d790868926d1d0bca9f6}{qrcodegen\_Mask\_0}}\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00076}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ea12f7a153833c932ae55ae43f590d68bf}{00076}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ea12f7a153833c932ae55ae43f590d68bf}{qrcodegen\_Mask\_1}},}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00077}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ea490f43ad946e38be19b6f4d7af0412d0}{00077}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ea490f43ad946e38be19b6f4d7af0412d0}{qrcodegen\_Mask\_2}},}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00078}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ead0cf7acb420259a09a04d7ea5825736d}{00078}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ead0cf7acb420259a09a04d7ea5825736d}{qrcodegen\_Mask\_3}},}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00079}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eac73781e3dd5f9eede287feef45445284}{00079}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eac73781e3dd5f9eede287feef45445284}{qrcodegen\_Mask\_4}},}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00080}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eace0ab4d89746779385f68bec68f7eacc}{00080}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eace0ab4d89746779385f68bec68f7eacc}{qrcodegen\_Mask\_5}},}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00081}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ea5c6558779e1906cd16ef4a51434fd614}{00081}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952ea5c6558779e1906cd16ef4a51434fd614}{qrcodegen\_Mask\_6}},}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00082}\mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eab511af9acf2dde5af0e9734bbba989ad}{00082}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eab511af9acf2dde5af0e9734bbba989ad}{qrcodegen\_Mask\_7}},}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00083}00083\ \};}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00086}00086\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00087}00087\ \textcolor{comment}{\ *\ Describes\ how\ a\ segment's\ data\ bits\ are\ interpreted.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00088}00088\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00089}\mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{00089}}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\_Mode}}\ \{}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00090}\mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{00090}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\_Mode\_NUMERIC}}\ \ \ \ \ \ =\ 0x1,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00091}\mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{00091}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\_Mode\_ALPHANUMERIC}}\ =\ 0x2,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00092}\mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{00092}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\_Mode\_BYTE}}\ \ \ \ \ \ \ \ \ =\ 0x4,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00093}\mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097badc5fad762df1a0dff0462be08dbdb99f}{00093}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097badc5fad762df1a0dff0462be08dbdb99f}{qrcodegen\_Mode\_KANJI}}\ \ \ \ \ \ \ \ =\ 0x8,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00094}\mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baeb08ea4e31c49946cfbf032946fea4e5}{00094}}\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baeb08ea4e31c49946cfbf032946fea4e5}{qrcodegen\_Mode\_ECI}}\ \ \ \ \ \ \ \ \ \ =\ 0x7,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00095}00095\ \};}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00098}00098\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00099}00099\ \textcolor{comment}{\ *\ A\ segment\ of\ character/binary/control\ data\ in\ a\ QR\ Code\ symbol.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00100}00100\ \textcolor{comment}{\ *\ The\ mid-\/level\ way\ to\ create\ a\ segment\ is\ to\ take\ the\ payload\ data}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00101}00101\ \textcolor{comment}{\ *\ and\ call\ a\ factory\ function\ such\ as\ qrcodegen\_makeNumeric().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00102}00102\ \textcolor{comment}{\ *\ The\ low-\/level\ way\ to\ create\ a\ segment\ is\ to\ custom-\/make\ the\ bit\ buffer}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00103}00103\ \textcolor{comment}{\ *\ and\ initialize\ a\ qrcodegen\_Segment\ struct\ with\ appropriate\ values.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00104}00104\ \textcolor{comment}{\ *\ Even\ in\ the\ most\ favorable\ conditions,\ a\ QR\ Code\ can\ only\ hold\ 7089\ characters\ of\ data.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00105}00105\ \textcolor{comment}{\ *\ Any\ segment\ longer\ than\ this\ is\ meaningless\ for\ the\ purpose\ of\ generating\ QR\ Codes.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00106}00106\ \textcolor{comment}{\ *\ Moreover,\ the\ maximum\ allowed\ bit\ length\ is\ 32767\ because}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00107}00107\ \textcolor{comment}{\ *\ the\ largest\ QR\ Code\ (version\ 40)\ has\ 31329\ modules.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00108}00108\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00109}\mbox{\hyperlink{structqrcodegen__Segment}{00109}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ \{}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00110}00110\ \ \ \ \ \textcolor{comment}{//\ The\ mode\ indicator\ of\ this\ segment.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00111}\mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{00111}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\_Mode}}\ \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{mode}};}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00112}00112\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00113}00113\ \ \ \ \ \textcolor{comment}{//\ The\ length\ of\ this\ segment's\ unencoded\ data.\ Measured\ in\ characters\ for}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00114}00114\ \ \ \ \ \textcolor{comment}{//\ numeric/alphanumeric/kanji\ mode,\ bytes\ for\ byte\ mode,\ and\ 0\ for\ ECI\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00115}00115\ \ \ \ \ \textcolor{comment}{//\ Always\ zero\ or\ positive.\ Not\ the\ same\ as\ the\ data's\ bit\ length.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00116}\mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{00116}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{numChars}};}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00117}00117\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00118}00118\ \ \ \ \ \textcolor{comment}{//\ The\ data\ bits\ of\ this\ segment,\ packed\ in\ bitwise\ big\ endian.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00119}00119\ \ \ \ \ \textcolor{comment}{//\ Can\ be\ null\ if\ the\ bit\ length\ is\ zero.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00120}\mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{00120}}\ \ \ \ \ uint8\_t\ *\mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{data}};}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00121}00121\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00122}00122\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ valid\ data\ bits\ used\ in\ the\ buffer.\ Requires}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00123}00123\ \ \ \ \ \textcolor{comment}{//\ 0\ <=\ bitLength\ <=\ 32767,\ and\ bitLength\ <=\ (capacity\ of\ data\ array)\ *\ 8.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00124}00124\ \ \ \ \ \textcolor{comment}{//\ The\ character\ count\ (numChars)\ must\ agree\ with\ the\ mode\ and\ the\ bit\ buffer\ length.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00125}\mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{00125}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{bitLength}};}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00126}00126\ \};}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00130}00130\ \textcolor{comment}{/*-\/-\/-\/-\/\ Macro\ constants\ and\ functions\ -\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00132}\mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{00132}}\ \textcolor{preprocessor}{\#define\ qrcodegen\_VERSION\_MIN\ \ \ 1\ \ }\textcolor{comment}{//\ The\ minimum\ version\ number\ supported\ in\ the\ QR\ Code\ Model\ 2\ standard}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00133}\mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{00133}}\ \textcolor{preprocessor}{\#define\ qrcodegen\_VERSION\_MAX\ \ 40\ \ }\textcolor{comment}{//\ The\ maximum\ version\ number\ supported\ in\ the\ QR\ Code\ Model\ 2\ standard}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00135}00135\ \textcolor{comment}{//\ Calculates\ the\ number\ of\ bytes\ needed\ to\ store\ any\ QR\ Code\ up\ to\ and\ including\ the\ given\ version\ number,}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00136}00136\ \textcolor{comment}{//\ as\ a\ compile-\/time\ constant.\ For\ example,\ 'uint8\_t\ buffer[qrcodegen\_BUFFER\_LEN\_FOR\_VERSION(25)];'}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00137}00137\ \textcolor{comment}{//\ can\ store\ any\ single\ QR\ Code\ from\ version\ 1\ to\ 25\ (inclusive).\ The\ result\ fits\ in\ an\ int\ (or\ int16).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00138}00138\ \textcolor{comment}{//\ Requires\ qrcodegen\_VERSION\_MIN\ <=\ n\ <=\ qrcodegen\_VERSION\_MAX.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00139}\mbox{\hyperlink{qrcodegen_8h_a44e02d707085c5157c9a4d1293786aaf}{00139}}\ \textcolor{preprocessor}{\#define\ qrcodegen\_BUFFER\_LEN\_FOR\_VERSION(n)\ \ ((((n)\ *\ 4\ +\ 17)\ *\ ((n)\ *\ 4\ +\ 17)\ +\ 7)\ /\ 8\ +\ 1)}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00141}00141\ \textcolor{comment}{//\ The\ worst-\/case\ number\ of\ bytes\ needed\ to\ store\ one\ QR\ Code,\ up\ to\ and\ including}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00142}00142\ \textcolor{comment}{//\ version\ 40.\ This\ value\ equals\ 3918,\ which\ is\ just\ under\ 4\ kilobytes.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00143}00143\ \textcolor{comment}{//\ Use\ this\ more\ convenient\ value\ to\ avoid\ calculating\ tighter\ memory\ bounds\ for\ buffers.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00144}\mbox{\hyperlink{qrcodegen_8h_a82257a23d67f51b04926c4fd64bc4fa5}{00144}}\ \textcolor{preprocessor}{\#define\ qrcodegen\_BUFFER\_LEN\_MAX\ \ qrcodegen\_BUFFER\_LEN\_FOR\_VERSION(qrcodegen\_VERSION\_MAX)}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00148}00148\ \textcolor{comment}{/*-\/-\/-\/-\/\ Functions\ (high\ level)\ to\ generate\ QR\ Codes\ -\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00150}00150\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00151}00151\ \textcolor{comment}{\ *\ Encodes\ the\ given\ text\ string\ to\ a\ QR\ Code,\ returning\ true\ if\ successful.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00152}00152\ \textcolor{comment}{\ *\ If\ the\ data\ is\ too\ long\ to\ fit\ in\ any\ version\ in\ the\ given\ range}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00153}00153\ \textcolor{comment}{\ *\ at\ the\ given\ ECC\ level,\ then\ false\ is\ returned.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00154}00154\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00155}00155\ \textcolor{comment}{\ *\ The\ input\ text\ must\ be\ encoded\ in\ UTF-\/8\ and\ contain\ no\ NULs.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00156}00156\ \textcolor{comment}{\ *\ Requires\ 1\ <=\ minVersion\ <=\ maxVersion\ <=\ 40.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00157}00157\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00158}00158\ \textcolor{comment}{\ *\ The\ smallest\ possible\ QR\ Code\ version\ within\ the\ given\ range\ is\ automatically}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00159}00159\ \textcolor{comment}{\ *\ chosen\ for\ the\ output.\ Iff\ boostEcl\ is\ true,\ then\ the\ ECC\ level\ of\ the\ result}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00160}00160\ \textcolor{comment}{\ *\ may\ be\ higher\ than\ the\ ecl\ argument\ if\ it\ can\ be\ done\ without\ increasing\ the}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00161}00161\ \textcolor{comment}{\ *\ version.\ The\ mask\ is\ either\ between\ qrcodegen\_Mask\_0\ to\ 7\ to\ force\ that\ mask,\ or}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00162}00162\ \textcolor{comment}{\ *\ qrcodegen\_Mask\_AUTO\ to\ automatically\ choose\ an\ appropriate\ mask\ (which\ may\ be\ slow).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00163}00163\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00164}00164\ \textcolor{comment}{\ *\ About\ the\ arrays,\ letting\ len\ =\ qrcodegen\_BUFFER\_LEN\_FOR\_VERSION(maxVersion):}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00165}00165\ \textcolor{comment}{\ *\ -\/\ Before\ calling\ the\ function:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00166}00166\ \textcolor{comment}{\ *\ \ \ -\/\ The\ array\ ranges\ tempBuffer[0\ :\ len]\ and\ qrcode[0\ :\ len]\ must\ allow}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00167}00167\ \textcolor{comment}{\ *\ \ \ \ \ reading\ and\ writing;\ hence\ each\ array\ must\ have\ a\ length\ of\ at\ least\ len.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00168}00168\ \textcolor{comment}{\ *\ \ \ -\/\ The\ two\ ranges\ must\ not\ overlap\ (aliasing).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00169}00169\ \textcolor{comment}{\ *\ \ \ -\/\ The\ initial\ state\ of\ both\ ranges\ can\ be\ uninitialized}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00170}00170\ \textcolor{comment}{\ *\ \ \ \ \ because\ the\ function\ always\ writes\ before\ reading.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00171}00171\ \textcolor{comment}{\ *\ -\/\ After\ the\ function\ returns:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00172}00172\ \textcolor{comment}{\ *\ \ \ -\/\ Both\ ranges\ have\ no\ guarantee\ on\ which\ elements\ are\ initialized\ and\ what\ values\ are\ stored.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00173}00173\ \textcolor{comment}{\ *\ \ \ -\/\ tempBuffer\ contains\ no\ useful\ data\ and\ should\ be\ treated\ as\ entirely\ uninitialized.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00174}00174\ \textcolor{comment}{\ *\ \ \ -\/\ If\ successful,\ qrcode\ can\ be\ passed\ into\ qrcodegen\_getSize()\ and\ qrcodegen\_getModule().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00175}00175\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00176}00176\ \textcolor{comment}{\ *\ If\ successful,\ the\ resulting\ QR\ Code\ may\ use\ numeric,}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00177}00177\ \textcolor{comment}{\ *\ alphanumeric,\ or\ byte\ mode\ to\ encode\ the\ text.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00178}00178\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00179}00179\ \textcolor{comment}{\ *\ In\ the\ most\ optimistic\ case,\ a\ QR\ Code\ at\ version\ 40\ with\ low\ ECC}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00180}00180\ \textcolor{comment}{\ *\ can\ hold\ any\ UTF-\/8\ string\ up\ to\ 2953\ bytes,\ or\ any\ alphanumeric\ string}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00181}00181\ \textcolor{comment}{\ *\ up\ to\ 4296\ characters,\ or\ any\ digit\ string\ up\ to\ 7089\ characters.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00182}00182\ \textcolor{comment}{\ *\ These\ numbers\ represent\ the\ hard\ upper\ limit\ of\ the\ QR\ Code\ standard.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00183}00183\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00184}00184\ \textcolor{comment}{\ *\ Please\ consult\ the\ QR\ Code\ specification\ for\ information\ on}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00185}00185\ \textcolor{comment}{\ *\ data\ capacities\ per\ version,\ ECC\ level,\ and\ text\ encoding\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00186}00186\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00187}00187\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{qrcodegen_8h_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\_encodeText}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ uint8\_t\ tempBuffer[],\ uint8\_t\ qrcode[],}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00188}00188\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\_Ecc}}\ ecl,\ \textcolor{keywordtype}{int}\ minVersion,\ \textcolor{keywordtype}{int}\ maxVersion,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\_Mask}}\ mask,\ \textcolor{keywordtype}{bool}\ boostEcl);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00191}00191\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00192}00192\ \textcolor{comment}{\ *\ Encodes\ the\ given\ binary\ data\ to\ a\ QR\ Code,\ returning\ true\ if\ successful.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00193}00193\ \textcolor{comment}{\ *\ If\ the\ data\ is\ too\ long\ to\ fit\ in\ any\ version\ in\ the\ given\ range}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00194}00194\ \textcolor{comment}{\ *\ at\ the\ given\ ECC\ level,\ then\ false\ is\ returned.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00195}00195\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00196}00196\ \textcolor{comment}{\ *\ Requires\ 1\ <=\ minVersion\ <=\ maxVersion\ <=\ 40.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00197}00197\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00198}00198\ \textcolor{comment}{\ *\ The\ smallest\ possible\ QR\ Code\ version\ within\ the\ given\ range\ is\ automatically}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00199}00199\ \textcolor{comment}{\ *\ chosen\ for\ the\ output.\ Iff\ boostEcl\ is\ true,\ then\ the\ ECC\ level\ of\ the\ result}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00200}00200\ \textcolor{comment}{\ *\ may\ be\ higher\ than\ the\ ecl\ argument\ if\ it\ can\ be\ done\ without\ increasing\ the}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00201}00201\ \textcolor{comment}{\ *\ version.\ The\ mask\ is\ either\ between\ qrcodegen\_Mask\_0\ to\ 7\ to\ force\ that\ mask,\ or}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00202}00202\ \textcolor{comment}{\ *\ qrcodegen\_Mask\_AUTO\ to\ automatically\ choose\ an\ appropriate\ mask\ (which\ may\ be\ slow).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00203}00203\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00204}00204\ \textcolor{comment}{\ *\ About\ the\ arrays,\ letting\ len\ =\ qrcodegen\_BUFFER\_LEN\_FOR\_VERSION(maxVersion):}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00205}00205\ \textcolor{comment}{\ *\ -\/\ Before\ calling\ the\ function:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00206}00206\ \textcolor{comment}{\ *\ \ \ -\/\ The\ array\ ranges\ dataAndTemp[0\ :\ len]\ and\ qrcode[0\ :\ len]\ must\ allow}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00207}00207\ \textcolor{comment}{\ *\ \ \ \ \ reading\ and\ writing;\ hence\ each\ array\ must\ have\ a\ length\ of\ at\ least\ len.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00208}00208\ \textcolor{comment}{\ *\ \ \ -\/\ The\ two\ ranges\ must\ not\ overlap\ (aliasing).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00209}00209\ \textcolor{comment}{\ *\ \ \ -\/\ The\ input\ array\ range\ dataAndTemp[0\ :\ dataLen]\ should\ normally\ be}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00210}00210\ \textcolor{comment}{\ *\ \ \ \ \ valid\ UTF-\/8\ text,\ but\ is\ not\ required\ by\ the\ QR\ Code\ standard.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00211}00211\ \textcolor{comment}{\ *\ \ \ -\/\ The\ initial\ state\ of\ dataAndTemp[dataLen\ :\ len]\ and\ qrcode[0\ :\ len]}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00212}00212\ \textcolor{comment}{\ *\ \ \ \ \ can\ be\ uninitialized\ because\ the\ function\ always\ writes\ before\ reading.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00213}00213\ \textcolor{comment}{\ *\ -\/\ After\ the\ function\ returns:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00214}00214\ \textcolor{comment}{\ *\ \ \ -\/\ Both\ ranges\ have\ no\ guarantee\ on\ which\ elements\ are\ initialized\ and\ what\ values\ are\ stored.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00215}00215\ \textcolor{comment}{\ *\ \ \ -\/\ dataAndTemp\ contains\ no\ useful\ data\ and\ should\ be\ treated\ as\ entirely\ uninitialized.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00216}00216\ \textcolor{comment}{\ *\ \ \ -\/\ If\ successful,\ qrcode\ can\ be\ passed\ into\ qrcodegen\_getSize()\ and\ qrcodegen\_getModule().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00217}00217\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00218}00218\ \textcolor{comment}{\ *\ If\ successful,\ the\ resulting\ QR\ Code\ will\ use\ byte\ mode\ to\ encode\ the\ data.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00219}00219\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00220}00220\ \textcolor{comment}{\ *\ In\ the\ most\ optimistic\ case,\ a\ QR\ Code\ at\ version\ 40\ with\ low\ ECC\ can\ hold\ any\ byte}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00221}00221\ \textcolor{comment}{\ *\ sequence\ up\ to\ length\ 2953.\ This\ is\ the\ hard\ upper\ limit\ of\ the\ QR\ Code\ standard.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00222}00222\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00223}00223\ \textcolor{comment}{\ *\ Please\ consult\ the\ QR\ Code\ specification\ for\ information\ on}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00224}00224\ \textcolor{comment}{\ *\ data\ capacities\ per\ version,\ ECC\ level,\ and\ text\ encoding\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00225}00225\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00226}00226\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{qrcodegen_8h_a1cc45de66046354d5aad2ee1cc6b2581}{qrcodegen\_encodeBinary}}(uint8\_t\ dataAndTemp[],\ \textcolor{keywordtype}{size\_t}\ dataLen,\ uint8\_t\ qrcode[],}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00227}00227\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\_Ecc}}\ ecl,\ \textcolor{keywordtype}{int}\ minVersion,\ \textcolor{keywordtype}{int}\ maxVersion,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\_Mask}}\ mask,\ \textcolor{keywordtype}{bool}\ boostEcl);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00230}00230\ \textcolor{comment}{/*-\/-\/-\/-\/\ Functions\ (low\ level)\ to\ generate\ QR\ Codes\ -\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00232}00232\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00233}00233\ \textcolor{comment}{\ *\ Encodes\ the\ given\ segments\ to\ a\ QR\ Code,\ returning\ true\ if\ successful.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00234}00234\ \textcolor{comment}{\ *\ If\ the\ data\ is\ too\ long\ to\ fit\ in\ any\ version\ at\ the\ given\ ECC\ level,}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00235}00235\ \textcolor{comment}{\ *\ then\ false\ is\ returned.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00236}00236\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00237}00237\ \textcolor{comment}{\ *\ The\ smallest\ possible\ QR\ Code\ version\ is\ automatically\ chosen\ for}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00238}00238\ \textcolor{comment}{\ *\ the\ output.\ The\ ECC\ level\ of\ the\ result\ may\ be\ higher\ than\ the}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00239}00239\ \textcolor{comment}{\ *\ ecl\ argument\ if\ it\ can\ be\ done\ without\ increasing\ the\ version.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00240}00240\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00241}00241\ \textcolor{comment}{\ *\ About\ the\ byte\ arrays,\ letting\ len\ =\ qrcodegen\_BUFFER\_LEN\_FOR\_VERSION(qrcodegen\_VERSION\_MAX):}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00242}00242\ \textcolor{comment}{\ *\ -\/\ Before\ calling\ the\ function:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00243}00243\ \textcolor{comment}{\ *\ \ \ -\/\ The\ array\ ranges\ tempBuffer[0\ :\ len]\ and\ qrcode[0\ :\ len]\ must\ allow}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00244}00244\ \textcolor{comment}{\ *\ \ \ \ \ reading\ and\ writing;\ hence\ each\ array\ must\ have\ a\ length\ of\ at\ least\ len.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00245}00245\ \textcolor{comment}{\ *\ \ \ -\/\ The\ two\ ranges\ must\ not\ overlap\ (aliasing).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00246}00246\ \textcolor{comment}{\ *\ \ \ -\/\ The\ initial\ state\ of\ both\ ranges\ can\ be\ uninitialized}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00247}00247\ \textcolor{comment}{\ *\ \ \ \ \ because\ the\ function\ always\ writes\ before\ reading.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00248}00248\ \textcolor{comment}{\ *\ \ \ -\/\ The\ input\ array\ segs\ can\ contain\ segments\ whose\ data\ buffers\ overlap\ with\ tempBuffer.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00249}00249\ \textcolor{comment}{\ *\ -\/\ After\ the\ function\ returns:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00250}00250\ \textcolor{comment}{\ *\ \ \ -\/\ Both\ ranges\ have\ no\ guarantee\ on\ which\ elements\ are\ initialized\ and\ what\ values\ are\ stored.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00251}00251\ \textcolor{comment}{\ *\ \ \ -\/\ tempBuffer\ contains\ no\ useful\ data\ and\ should\ be\ treated\ as\ entirely\ uninitialized.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00252}00252\ \textcolor{comment}{\ *\ \ \ -\/\ Any\ segment\ whose\ data\ buffer\ overlaps\ with\ tempBuffer[0\ :\ len]}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00253}00253\ \textcolor{comment}{\ *\ \ \ \ \ must\ be\ treated\ as\ having\ invalid\ values\ in\ that\ array.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00254}00254\ \textcolor{comment}{\ *\ \ \ -\/\ If\ successful,\ qrcode\ can\ be\ passed\ into\ qrcodegen\_getSize()\ and\ qrcodegen\_getModule().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00255}00255\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00256}00256\ \textcolor{comment}{\ *\ Please\ consult\ the\ QR\ Code\ specification\ for\ information\ on}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00257}00257\ \textcolor{comment}{\ *\ data\ capacities\ per\ version,\ ECC\ level,\ and\ text\ encoding\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00258}00258\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00259}00259\ \textcolor{comment}{\ *\ This\ function\ allows\ the\ user\ to\ create\ a\ custom\ sequence\ of\ segments\ that\ switches}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00260}00260\ \textcolor{comment}{\ *\ between\ modes\ (such\ as\ alphanumeric\ and\ byte)\ to\ encode\ text\ in\ less\ space.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00261}00261\ \textcolor{comment}{\ *\ This\ is\ a\ low-\/level\ API;\ the\ high-\/level\ API\ is\ qrcodegen\_encodeText()\ and\ qrcodegen\_encodeBinary().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00262}00262\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00263}00263\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{qrcodegen_8h_a41164e2a41efb324b919395ffde14fa7}{qrcodegen\_encodeSegments}}(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ segs[],\ \textcolor{keywordtype}{size\_t}\ len,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00264}00264\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\_Ecc}}\ ecl,\ uint8\_t\ tempBuffer[],\ uint8\_t\ qrcode[]);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00267}00267\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00268}00268\ \textcolor{comment}{\ *\ Encodes\ the\ given\ segments\ to\ a\ QR\ Code,\ returning\ true\ if\ successful.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00269}00269\ \textcolor{comment}{\ *\ If\ the\ data\ is\ too\ long\ to\ fit\ in\ any\ version\ in\ the\ given\ range}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00270}00270\ \textcolor{comment}{\ *\ at\ the\ given\ ECC\ level,\ then\ false\ is\ returned.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00271}00271\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00272}00272\ \textcolor{comment}{\ *\ Requires\ 1\ <=\ minVersion\ <=\ maxVersion\ <=\ 40.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00273}00273\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00274}00274\ \textcolor{comment}{\ *\ The\ smallest\ possible\ QR\ Code\ version\ within\ the\ given\ range\ is\ automatically}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00275}00275\ \textcolor{comment}{\ *\ chosen\ for\ the\ output.\ Iff\ boostEcl\ is\ true,\ then\ the\ ECC\ level\ of\ the\ result}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00276}00276\ \textcolor{comment}{\ *\ may\ be\ higher\ than\ the\ ecl\ argument\ if\ it\ can\ be\ done\ without\ increasing\ the}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00277}00277\ \textcolor{comment}{\ *\ version.\ The\ mask\ is\ either\ between\ qrcodegen\_Mask\_0\ to\ 7\ to\ force\ that\ mask,\ or}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00278}00278\ \textcolor{comment}{\ *\ qrcodegen\_Mask\_AUTO\ to\ automatically\ choose\ an\ appropriate\ mask\ (which\ may\ be\ slow).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00279}00279\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00280}00280\ \textcolor{comment}{\ *\ About\ the\ byte\ arrays,\ letting\ len\ =\ qrcodegen\_BUFFER\_LEN\_FOR\_VERSION(qrcodegen\_VERSION\_MAX):}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00281}00281\ \textcolor{comment}{\ *\ -\/\ Before\ calling\ the\ function:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00282}00282\ \textcolor{comment}{\ *\ \ \ -\/\ The\ array\ ranges\ tempBuffer[0\ :\ len]\ and\ qrcode[0\ :\ len]\ must\ allow}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00283}00283\ \textcolor{comment}{\ *\ \ \ \ \ reading\ and\ writing;\ hence\ each\ array\ must\ have\ a\ length\ of\ at\ least\ len.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00284}00284\ \textcolor{comment}{\ *\ \ \ -\/\ The\ two\ ranges\ must\ not\ overlap\ (aliasing).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00285}00285\ \textcolor{comment}{\ *\ \ \ -\/\ The\ initial\ state\ of\ both\ ranges\ can\ be\ uninitialized}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00286}00286\ \textcolor{comment}{\ *\ \ \ \ \ because\ the\ function\ always\ writes\ before\ reading.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00287}00287\ \textcolor{comment}{\ *\ \ \ -\/\ The\ input\ array\ segs\ can\ contain\ segments\ whose\ data\ buffers\ overlap\ with\ tempBuffer.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00288}00288\ \textcolor{comment}{\ *\ -\/\ After\ the\ function\ returns:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00289}00289\ \textcolor{comment}{\ *\ \ \ -\/\ Both\ ranges\ have\ no\ guarantee\ on\ which\ elements\ are\ initialized\ and\ what\ values\ are\ stored.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00290}00290\ \textcolor{comment}{\ *\ \ \ -\/\ tempBuffer\ contains\ no\ useful\ data\ and\ should\ be\ treated\ as\ entirely\ uninitialized.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00291}00291\ \textcolor{comment}{\ *\ \ \ -\/\ Any\ segment\ whose\ data\ buffer\ overlaps\ with\ tempBuffer[0\ :\ len]}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00292}00292\ \textcolor{comment}{\ *\ \ \ \ \ must\ be\ treated\ as\ having\ invalid\ values\ in\ that\ array.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00293}00293\ \textcolor{comment}{\ *\ \ \ -\/\ If\ successful,\ qrcode\ can\ be\ passed\ into\ qrcodegen\_getSize()\ and\ qrcodegen\_getModule().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00294}00294\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00295}00295\ \textcolor{comment}{\ *\ Please\ consult\ the\ QR\ Code\ specification\ for\ information\ on}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00296}00296\ \textcolor{comment}{\ *\ data\ capacities\ per\ version,\ ECC\ level,\ and\ text\ encoding\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00297}00297\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00298}00298\ \textcolor{comment}{\ *\ This\ function\ allows\ the\ user\ to\ create\ a\ custom\ sequence\ of\ segments\ that\ switches}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00299}00299\ \textcolor{comment}{\ *\ between\ modes\ (such\ as\ alphanumeric\ and\ byte)\ to\ encode\ text\ in\ less\ space.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00300}00300\ \textcolor{comment}{\ *\ This\ is\ a\ low-\/level\ API;\ the\ high-\/level\ API\ is\ qrcodegen\_encodeText()\ and\ qrcodegen\_encodeBinary().}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00301}00301\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00302}00302\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{qrcodegen_8h_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\_encodeSegmentsAdvanced}}(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ segs[],\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\_Ecc}}\ ecl,}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00303}00303\ \ \ \ \ \textcolor{keywordtype}{int}\ minVersion,\ \textcolor{keywordtype}{int}\ maxVersion,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\_Mask}}\ mask,\ \textcolor{keywordtype}{bool}\ boostEcl,\ uint8\_t\ tempBuffer[],\ uint8\_t\ qrcode[]);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00306}00306\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00307}00307\ \textcolor{comment}{\ *\ Tests\ whether\ the\ given\ string\ can\ be\ encoded\ as\ a\ segment\ in\ numeric\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00308}00308\ \textcolor{comment}{\ *\ A\ string\ is\ encodable\ iff\ each\ character\ is\ in\ the\ range\ 0\ to\ 9.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00309}00309\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00310}00310\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{qrcodegen_8h_aa873e0a91056118719064ea4f2a15013}{qrcodegen\_isNumeric}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00313}00313\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00314}00314\ \textcolor{comment}{\ *\ Tests\ whether\ the\ given\ string\ can\ be\ encoded\ as\ a\ segment\ in\ alphanumeric\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00315}00315\ \textcolor{comment}{\ *\ A\ string\ is\ encodable\ iff\ each\ character\ is\ in\ the\ following\ set:\ 0\ to\ 9,\ A\ to\ Z}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00316}00316\ \textcolor{comment}{\ *\ (uppercase\ only),\ space,\ dollar,\ percent,\ asterisk,\ plus,\ hyphen,\ period,\ slash,\ colon.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00317}00317\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00318}00318\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{qrcodegen_8h_a25856a1d9c76851f8b83640ba3c6a3fc}{qrcodegen\_isAlphanumeric}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00321}00321\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00322}00322\ \textcolor{comment}{\ *\ Returns\ the\ number\ of\ bytes\ (uint8\_t)\ needed\ for\ the\ data\ buffer\ of\ a\ segment}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00323}00323\ \textcolor{comment}{\ *\ containing\ the\ given\ number\ of\ characters\ using\ the\ given\ mode.\ Notes:}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00324}00324\ \textcolor{comment}{\ *\ -\/\ Returns\ SIZE\_MAX\ on\ failure,\ i.e.\ numChars\ >\ INT16\_MAX\ or\ the\ internal}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00325}00325\ \textcolor{comment}{\ *\ \ \ calculation\ of\ the\ number\ of\ needed\ bits\ exceeds\ INT16\_MAX\ (i.e.\ 32767).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00326}00326\ \textcolor{comment}{\ *\ -\/\ Otherwise,\ all\ valid\ results\ are\ in\ the\ range\ [0,\ ceil(INT16\_MAX\ /\ 8)],\ i.e.\ at\ most\ 4096.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00327}00327\ \textcolor{comment}{\ *\ -\/\ It\ is\ okay\ for\ the\ user\ to\ allocate\ more\ bytes\ for\ the\ buffer\ than\ needed.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00328}00328\ \textcolor{comment}{\ *\ -\/\ For\ byte\ mode,\ numChars\ measures\ the\ number\ of\ bytes,\ not\ Unicode\ code\ points.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00329}00329\ \textcolor{comment}{\ *\ -\/\ For\ ECI\ mode,\ numChars\ must\ be\ 0,\ and\ the\ worst-\/case\ number\ of\ bytes\ is\ returned.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00330}00330\ \textcolor{comment}{\ *\ \ \ An\ actual\ ECI\ segment\ can\ have\ shorter\ data.\ For\ non-\/ECI\ modes,\ the\ result\ is\ exact.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00331}00331\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00332}00332\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{qrcodegen_8h_a15e9a13d5e49596089d6506558f6e506}{qrcodegen\_calcSegmentBufferSize}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\_Mode}}\ mode,\ \textcolor{keywordtype}{size\_t}\ numChars);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00333}00333\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00334}00334\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00335}00335\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00336}00336\ \textcolor{comment}{\ *\ Returns\ a\ segment\ representing\ the\ given\ binary\ data\ encoded\ in}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00337}00337\ \textcolor{comment}{\ *\ byte\ mode.\ All\ input\ byte\ arrays\ are\ acceptable.\ Any\ text\ string}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00338}00338\ \textcolor{comment}{\ *\ can\ be\ converted\ to\ UTF-\/8\ bytes\ and\ encoded\ as\ a\ byte\ mode\ segment.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00339}00339\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00340}00340\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ \mbox{\hyperlink{qrcodegen_8h_a5b28f0f89765839d8f4c8a803edc4ad4}{qrcodegen\_makeBytes}}(const\ uint8\_t\ \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{data}}[],\ size\_t\ len,\ uint8\_t\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[]);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00341}00341\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00343}00343\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00344}00344\ \textcolor{comment}{\ *\ Returns\ a\ segment\ representing\ the\ given\ string\ of\ decimal\ digits\ encoded\ in\ numeric\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00345}00345\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00346}00346\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ \mbox{\hyperlink{qrcodegen_8h_aa1c8b8a85f121c8cd1be89ddab684d43}{qrcodegen\_makeNumeric}}(const\ char\ *digits,\ uint8\_t\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[]);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00348}00348\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00349}00349\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00350}00350\ \textcolor{comment}{\ *\ Returns\ a\ segment\ representing\ the\ given\ text\ string\ encoded\ in\ alphanumeric\ mode.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00351}00351\ \textcolor{comment}{\ *\ The\ characters\ allowed\ are:\ 0\ to\ 9,\ A\ to\ Z\ (uppercase\ only),\ space,}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00352}00352\ \textcolor{comment}{\ *\ dollar,\ percent,\ asterisk,\ plus,\ hyphen,\ period,\ slash,\ colon.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00353}00353\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00354}00354\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ \mbox{\hyperlink{qrcodegen_8h_aaed32d45f095ce02e6718c8a48f4393d}{qrcodegen\_makeAlphanumeric}}(const\ char\ *text,\ uint8\_t\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[]);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00355}00355\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00356}00356\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00357}00357\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00358}00358\ \textcolor{comment}{\ *\ Returns\ a\ segment\ representing\ an\ Extended\ Channel\ Interpretation}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00359}00359\ \textcolor{comment}{\ *\ (ECI)\ designator\ with\ the\ given\ assignment\ value.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00360}00360\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00361}00361\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ \mbox{\hyperlink{qrcodegen_8h_a27c3b3d01e91f9532689adbb01c1ff2c}{qrcodegen\_makeEci}}(long\ assignVal,\ uint8\_t\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[]);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00362}00362\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00364}00364\ \textcolor{comment}{/*-\/-\/-\/-\/\ Functions\ to\ extract\ raw\ data\ from\ QR\ Codes\ -\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00365}00365\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00366}00366\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00367}00367\ \textcolor{comment}{\ *\ Returns\ the\ side\ length\ of\ the\ given\ QR\ Code,\ assuming\ that\ encoding\ succeeded.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00368}00368\ \textcolor{comment}{\ *\ The\ result\ is\ in\ the\ range\ [21,\ 177].\ Note\ that\ the\ length\ of\ the\ array\ buffer}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00369}00369\ \textcolor{comment}{\ *\ is\ related\ to\ the\ side\ length\ -\/\ every\ 'uint8\_t\ qrcode[]'\ must\ have\ length\ at\ least}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00370}00370\ \textcolor{comment}{\ *\ qrcodegen\_BUFFER\_LEN\_FOR\_VERSION(version),\ which\ equals\ ceil(size\string^2\ /\ 8\ +\ 1).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00371}00371\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00372}00372\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{qrcodegen_8h_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\_getSize}}(\textcolor{keyword}{const}\ uint8\_t\ qrcode[]);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00373}00373\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00375}00375\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00376}00376\ \textcolor{comment}{\ *\ Returns\ the\ color\ of\ the\ module\ (pixel)\ at\ the\ given\ coordinates,\ which\ is\ false}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00377}00377\ \textcolor{comment}{\ *\ for\ light\ or\ true\ for\ dark.\ The\ top\ left\ corner\ has\ the\ coordinates\ (x=0,\ y=0).}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00378}00378\ \textcolor{comment}{\ *\ If\ the\ given\ coordinates\ are\ out\ of\ bounds,\ then\ false\ (light)\ is\ returned.}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00379}00379\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00380}00380\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{qrcodegen_8h_a495cb24d97c9b90a9c1e8a62903debf5}{qrcodegen\_getModule}}(\textcolor{keyword}{const}\ uint8\_t\ qrcode[],\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00382}00382\ }
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00383}00383\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00384}00384\ \}}
+\DoxyCodeLine{\Hypertarget{qrcodegen_8h_source_l00385}00385\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

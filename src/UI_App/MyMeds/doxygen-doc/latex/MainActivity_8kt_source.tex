@@ -1,0 +1,35 @@
+\doxysection{Main\+Activity.\+kt}
+\hypertarget{MainActivity_8kt_source}{}\label{MainActivity_8kt_source}\index{app/src/main/java/com/example/mymeds/MainActivity.kt@{app/src/main/java/com/example/mymeds/MainActivity.kt}}
+\mbox{\hyperlink{MainActivity_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00001}00001\ package\ com.example.mymeds}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00003}00003\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00004}00004\ import\ android.os.Handler}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00005}00005\ import\ android.os.Looper}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00006}00006\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00007}00007\ import\ androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00008}00008\ import\ com.example.mymeds.databinding.ActivityMainBinding}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00010}00010\ class\ MainActivity\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00012}00012\ \ \ \ \ private\ lateinit\ var\ binding:\ ActivityMainBinding}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00013}00013\ \ \ \ \ private\ var\ keepSplash\ =\ true}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00015}00015\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00017}00017\ \ \ \ \ \ \ \ \ val\ splashScreen\ =\ installSplashScreen()}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00018}00018\ \ \ \ \ \ \ \ \ splashScreen.setKeepOnScreenCondition\ \{\ keepSplash\ \}}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ Handler(Looper.getMainLooper()).postDelayed(\{}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ keepSplash\ =\ false}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00022}00022\ \ \ \ \ \ \ \ \ \},\ 1500)}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ binding\ =\ ActivityMainBinding.inflate(layoutInflater)}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ setContentView(binding.root)}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MainActivity_8kt_source_l00029}00029\ \}}
+
+\end{DoxyCode}

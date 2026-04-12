@@ -1,0 +1,85 @@
+\doxysection{include/lvgl\+\_\+touch.h File Reference}
+\hypertarget{lvgl__touch_8h}{}\label{lvgl__touch_8h}\index{include/lvgl\_touch.h@{include/lvgl\_touch.h}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+Include dependency graph for lvgl\+\_\+touch.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{lvgl__touch_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lvgl__touch_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b}{lvgl\+\_\+touch\+\_\+init}} ()
+\item 
+void \mbox{\hyperlink{lvgl__touch_8h_a86078d0fafe0070405af22712c183c58}{lvgl\+\_\+touch\+\_\+read}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b}\label{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b} 
+\index{lvgl\_touch.h@{lvgl\_touch.h}!lvgl\_touch\_init@{lvgl\_touch\_init}}
+\index{lvgl\_touch\_init@{lvgl\_touch\_init}!lvgl\_touch.h@{lvgl\_touch.h}}
+\doxysubsubsection{\texorpdfstring{lvgl\_touch\_init()}{lvgl\_touch\_init()}}
+{\footnotesize\ttfamily void lvgl\+\_\+touch\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{lvgl__touch_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{lvgl__touch_8cpp_source}{lvgl\+\_\+touch.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ SPI.begin(\mbox{\hyperlink{lvgl__touch_8cpp_a830e716db81333e7dc058f7373c48d6b}{T\_CLK}},\ \mbox{\hyperlink{lvgl__touch_8cpp_a09b57adf03bb34ea1281d762abf9a0f2}{T\_MISO}},\ \mbox{\hyperlink{lvgl__touch_8cpp_acf4775705647aae50c55ab3f71b83d09}{T\_MOSI}});}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{ts}}.begin();}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{ts}}.setRotation(1);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ lv\_indev\_drv\_t\ indev\_drv;}
+\DoxyCodeLine{00037\ \ \ \ \ lv\_indev\_drv\_init(\&indev\_drv);}
+\DoxyCodeLine{00038\ \ \ \ \ indev\_drv.type\ =\ LV\_INDEV\_TYPE\_POINTER;}
+\DoxyCodeLine{00039\ \ \ \ \ indev\_drv.read\_cb\ =\ \mbox{\hyperlink{lvgl__touch_8cpp_a7c86d5ac28d219b55d2c94aacb139157}{touch\_read\_cb}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{lvgl__touch_8cpp_ad24b29315aa8baa7d61bf2084bcbcdc4}{indev\_touch}}\ =\ lv\_indev\_drv\_register(\&indev\_drv);}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{lvgl__touch_8cpp_ad24b29315aa8baa7d61bf2084bcbcdc4}{indev\+\_\+touch}}, \mbox{\hyperlink{lvgl__touch_8cpp_a830e716db81333e7dc058f7373c48d6b}{T\+\_\+\+CLK}}, \mbox{\hyperlink{lvgl__touch_8cpp_a09b57adf03bb34ea1281d762abf9a0f2}{T\+\_\+\+MISO}}, \mbox{\hyperlink{lvgl__touch_8cpp_acf4775705647aae50c55ab3f71b83d09}{T\+\_\+\+MOSI}}, \mbox{\hyperlink{lvgl__touch_8cpp_a7c86d5ac28d219b55d2c94aacb139157}{touch\+\_\+read\+\_\+cb()}}, and \mbox{\hyperlink{lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b}{ts()}}.
+
+
+
+Referenced by \mbox{\hyperlink{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17}{lvgl\+\_\+begin()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{lvgl__touch_8h_a86078d0fafe0070405af22712c183c58}\label{lvgl__touch_8h_a86078d0fafe0070405af22712c183c58} 
+\index{lvgl\_touch.h@{lvgl\_touch.h}!lvgl\_touch\_read@{lvgl\_touch\_read}}
+\index{lvgl\_touch\_read@{lvgl\_touch\_read}!lvgl\_touch.h@{lvgl\_touch.h}}
+\doxysubsubsection{\texorpdfstring{lvgl\_touch\_read()}{lvgl\_touch\_read()}}
+{\footnotesize\ttfamily void lvgl\+\_\+touch\+\_\+read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

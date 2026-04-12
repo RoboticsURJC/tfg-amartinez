@@ -1,0 +1,31 @@
+\doxysection{pill\+\_\+takes.\+h}
+\hypertarget{pill__takes_8h_source}{}\label{pill__takes_8h_source}\index{include/user\_interface/pill\_takes.h@{include/user\_interface/pill\_takes.h}}
+\mbox{\hyperlink{pill__takes_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <lvgl.h>}}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00004}\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{00004}}\ \textcolor{preprocessor}{\#define\ MAX\_TAKES\ 30}}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00006}\mbox{\hyperlink{structTakeConfig}{00006}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00007}\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{00007}}\ \ \ \ \ \textcolor{keywordtype}{char}\ hour[6];}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00008}\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{00008}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ repeat[7];}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00009}\mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{00009}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{recordatory}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00010}\mbox{\hyperlink{structTakeConfig_ab7b0568726dc2e0623041bd86f8d0fe7}{00010}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structTakeConfig_ab7b0568726dc2e0623041bd86f8d0fe7}{warning\_time}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00011}00011\ \}\ \mbox{\hyperlink{structTakeConfig}{TakeConfig}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00013}00013\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00014}00014\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structTakeConfig}{TakeConfig}}\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\_TAKES}}];}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00016}00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00017}00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\_takes\_screen}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00018}00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\_screen}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00019}00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a}{delete\_take}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00021}00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00023}00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\_takes\_screen}}();}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00024}00024\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{pill__takes_8h_a226f34b9f45999e9887df6ba5697af85}{get\_today\_index}}();}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00025}00025\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pill__takes_8h_a276e05999682cc809bd995a814059a4e}{is\_take\_today}}(\textcolor{keywordtype}{int}\ index);}
+
+\end{DoxyCode}

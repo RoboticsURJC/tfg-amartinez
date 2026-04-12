@@ -1,0 +1,48 @@
+\doxysection{Slideshow\+Fragment.\+kt}
+\hypertarget{SlideshowFragment_8kt_source}{}\label{SlideshowFragment_8kt_source}\index{app/src/main/java/com/example/mymeds/ui/slideshow/SlideshowFragment.kt@{app/src/main/java/com/example/mymeds/ui/slideshow/SlideshowFragment.kt}}
+\mbox{\hyperlink{SlideshowFragment_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00001}00001\ package\ com.example.mymeds.ui.slideshow}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00003}00003\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00004}00004\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00005}00005\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00006}00006\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00007}00007\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00008}00008\ import\ androidx.fragment.app.Fragment}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00009}00009\ import\ androidx.lifecycle.ViewModelProvider}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00010}00010\ import\ com.example.mymeds.databinding.FragmentSlideshowBinding}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00012}00012\ class\ SlideshowFragment\ :\ Fragment()\ \{}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00014}00014\ \ \ \ \ private\ var\ \_binding:\ FragmentSlideshowBinding?\ =\ null}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00016}00016\ \ \ \ \ //\ This\ property\ is\ only\ valid\ between\ onCreateView\ and}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00017}00017\ \ \ \ \ //\ onDestroyView.}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00018}00018\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00020}00020\ \ \ \ \ override\ fun\ onCreateView(}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00022}00022\ \ \ \ \ \ \ \ \ container:\ ViewGroup?,}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00023}00023\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00024}00024\ \ \ \ \ ):\ View\ \{}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ val\ slideshowViewModel\ =}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ ViewModelProvider(this).get(SlideshowViewModel::class.java)}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentSlideshowBinding.inflate(inflater,\ container,\ false)}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ val\ root:\ View\ =\ binding.root}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ val\ textView:\ TextView\ =\ binding.textSlideshow}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ slideshowViewModel.text.observe(viewLifecycleOwner)\ \{}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ textView.text\ =\ it}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ return\ root}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00038}00038\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ super.onDestroyView()}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00041}00041\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{SlideshowFragment_8kt_source_l00042}00042\ \}}
+
+\end{DoxyCode}

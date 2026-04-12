@@ -63,5 +63,119 @@ El modelado del dispositivo se ha realizado en 3D, lo que ha permitido definir c
 
 La fabricación de las piezas se ha llevado a cabo mediante impresión 3D utilizando filamento PLA, seleccionado por su bajo coste y facilidad de uso en prototipado. Para ello, se han empleado dos impresoras distintas: una Creality Ender 3 y una Bambu Lab P1S Combo. El uso de ambas ha permitido observar diferencias en la calidad de impresión, especialmente en la precisión dimensional y el acabado superficial, lo que influye en el ajuste entre piezas y en el resultado final del dispositivo.\\
 
+\
+
 Finalmente, el diseño se ha planteado de forma modular, permitiendo futuras modificaciones o ampliaciones del sistema sin necesidad de rediseñar completamente la estructura.
 
+\subsection{Sistema de actuación}
+
+El sistema de actuación del dispositivo es el encargado de realizar la dispensación de la medicación, permitiendo el avance controlado de los compartimentos del pastillero en función de las tomas programadas. Para ello, se ha empleado un servomotor modelo SG90 como el de la Figura ~\ref{fig:sg90}, seleccionado por su bajo coste, tamaño reducido y facilidad de control mediante señales PWM desde el microcontrolador.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figs/sg90.jpg}
+    \caption{Servomotor SG90 empleado como actuador del sistema.}
+    \label{fig:sg90}
+\end{figure}
+
+Para transformar el movimiento del servomotor en un desplazamiento discreto y preciso de los compartimentos, se ha planteado el uso de un mecanismo de Ginebra\footnote{\url{https://es.wikipedia.org/wiki/Rueda_de_Ginebra}}. Este tipo de mecanismo permite convertir un movimiento continuo o controlado en un movimiento intermitente por pasos, lo que resulta especialmente adecuado en aplicaciones de indexado como la presente.\\
+
+El sistema consiste en un disco principal que contiene los distintos compartimentos de medicación, junto con una rueda motriz acoplada al servomotor. Como se muestra en la Figura~\ref{fig:ginebra}, la rueda motriz engrana con una de las ranuras del disco, provocando su avance hasta la siguiente posición, donde queda bloqueado mecánicamente hasta el siguiente ciclo de actuación.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figs/ginebra.png}
+    \caption{Representación de ejemplo de un mecanismo de Ginebra.}
+    \label{fig:ginebra}
+\end{figure}
+
+Este enfoque permite garantizar un posicionamiento preciso de cada compartimento, evitando desplazamientos indeseados y asegurando la correcta dispensación de la medicación. Además, el bloqueo mecánico entre posiciones reduce la carga sobre el servomotor, mejorando la estabilidad y la fiabilidad del sistema.\\
+
+\
+
+\subsection{Sistema de aviso}
+
+El dispositivo incorpora un sistema de aviso sonoro con el objetivo de notificar al usuario la toma de medicación de forma clara e inmediata. Para ello, se ha utilizado un altavoz de 4~\si{\ohm} y 3~\si{\watt} como el de la Figura ~\ref{fig:altavoz}, conectado al microcontrolador.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figs/altavoz.png}
+    \caption{Altavoz empleado en el sistema para avisos sonoros.}
+    \label{fig:altavoz}
+\end{figure}
+
+\
+
+Este sistema permite complementar las alertas visuales mostradas en la pantalla táctil, mejorando la accesibilidad del dispositivo, especialmente en situaciones en las que el usuario no esté prestando atención directa a la interfaz o presente dificultades visuales.\\
+
+El control del altavoz se realiza desde el microcontrolador, que genera señales acústicas en los momentos programados para cada toma. De este modo, se garantiza que el usuario reciba un aviso tanto visual como sonoro, aumentando la fiabilidad del sistema.\\
+
+\subsection{Electrónica de integración}
+
+Para organizar de forma estructurada las conexiones entre el microcontrolador, los actuadores y los sensores, se ha diseñado una placa de circuito impreso específica. La PCB incorpora un controlador PWM basado en el circuito integrado PCA9685, el cual permite gestionar múltiples servomotores mediante comunicación I2C con el microcontrolador. Esto facilita el control simultáneo de varios actuadores, reduciendo la carga de procesamiento y simplificando la generación de señales PWM.\\
+
+Asimismo, la placa incluye los elementos necesarios para la correcta alimentación del sistema, como condensadores, destacando un condensador de \SI{1000}{\micro\farad} que contribuye a estabilizar la tensión de alimentación y evitar caídas de voltaje durante el funcionamiento de los servomotores.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figs/pcb.jpeg}
+    \caption{Placa de circuito impreso (PCB) utilizada para la integración del sistema.}
+    \label{fig:pcb}
+\end{figure}
+
+La comunicación con el microcontrolador se realiza mediante el protocolo I2C, utilizando las líneas SDA y SCL, junto con resistencias pull-up integradas en la propia PCB. Además, se han dispuesto las conexiones necesarias para la alimentación a \SI{5}{\volt} y \SI{3.3}{\volt}, así como las salidas correspondientes para el control de los actuadores.\\
+
+Como se muestra en la Figura~\ref{fig:pcb}, el diseño de la PCB permite una integración compacta y organizada de todos los elementos electrónicos, reduciendo el cableado y mejorando la fiabilidad del sistema.La alimentación se realiza a través de un conector USB tipo C integrado en la propia PCB, que proporciona una tensión de \SI{5}{\volt}, simplificando el diseño y reduciendo el número de conexiones externas.
+
+
+\section{Software}
+En este apartado se describen las herramientas software utilizadas para el desarrollo del sistema, abarcando tanto el firmware del microcontrolador como la aplicación móvil y el diseño de los componentes mecánicos.\\
+
+Cada una de estas herramientas ha sido empleada en un ámbito específico del proyecto, permitiendo implementar las distintas funcionalidades del sistema de forma estructurada. En concreto, se han utilizado PlatformIO para el desarrollo del firmware del dispositivo, Android Studio para la creación de la aplicación móvil y Sharp3D para el diseño de las piezas del sistema.\\
+
+\subsection{PlatformIO}
+
+Para el desarrollo del firmware del microcontrolador se ha utilizado PlatformIO como entorno de desarrollo, empleando el lenguaje de programación C++. Esta herramienta facilita la gestión de librerías, la compilación del código y su implementación de manera eficaz en el ESP32.\\
+
+Además, como se muestra en la Figura ~\ref{fig:platformio}, PlatformIO permite trabajar con múltiples dependencias de manera organizada, lo que resulta especialmente útil en proyectos de sistemas embebidos. En este caso, se ha utilizado junto con la librería LVGL (Light and Versatile Graphics Library) para el desarrollo de la interfaz gráfica en la pantalla táctil.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figs/platformio.png}
+    \caption{Entorno de desarrollo PlatformIO utilizado para la programación del microcontrolador.}
+    \label{fig:platformio}
+\end{figure}
+
+El firmware implementado se encarga del control de los servomotores, la lectura de datos del sensor biomédico y la gestión de la interfaz de usuario, garantizando un funcionamiento en tiempo real del sistema.\\
+
+\subsection{Android Studio}
+
+La aplicación móvil ha sido desarrollada utilizando Android Studio como entorno de desarrollo, empleando el lenguaje de programación Kotlin. Esta herramienta proporciona un entorno completo para el diseño, desarrollo y depuración de aplicaciones Android.\\
+
+La aplicación permite al usuario configurar el dispositivo, gestionar la medicación y consultar el historial de datos recogidos por el sensor biomédico. Para ello, se ha diseñado una interfaz sencilla e intuitiva, priorizando la accesibilidad y la facilidad de uso. Como se muestra en la Figura~\ref{fig:app}, la interfaz ha sido diseñada de forma sencilla e intuitiva.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figs/app.jpeg}
+    \caption{Aplicación móvil desarrollada en Android Studio.}
+    \label{fig:app}
+\end{figure}
+
+Además, Android Studio permite probar la aplicación tanto mediante emulación en un dispositivo virtual integrado en el propio entorno, como en un dispositivo móvil físico. Esto ha facilitado la validación del funcionamiento de la aplicación en distintas condiciones de uso.\\
+
+De esta forma, la aplicación actúa como complemento del sistema físico, permitiendo una interacción remota y mejorando la experiencia de usuario.
+
+\subsection{Sharp3D}
+
+Para el diseño de los componentes mecánicos del sistema se ha utilizado el software Sharp3D, una herramienta de modelado 3D que permite crear y modificar piezas de forma precisa.\\
+
+Mediante esta aplicación se han diseñado las distintas partes del pastillero, incluyendo la estructura principal y los elementos móviles necesarios para el funcionamiento del sistema. Como se muestra en la Figura~\ref{fig:sharp3d}, el modelo 3D permite visualizar y ajustar el diseño antes de su fabricación. Estos modelos han sido posteriormente exportados para su fabricación mediante impresión 3D.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figs/3d.jpeg}
+    \caption{Modelo 3D de la base del pastillero diseñado en Sharp3D.}
+    \label{fig:sharp3d}
+\end{figure}
+
+El uso de esta herramienta ha permitido adaptar el diseño del dispositivo a los requisitos del proyecto, facilitando la iteración y mejora de las piezas hasta obtener una solución funcional.

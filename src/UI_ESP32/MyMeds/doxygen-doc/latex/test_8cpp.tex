@@ -1,0 +1,182 @@
+\doxysection{test/servo\+\_\+test/test.cpp File Reference}
+\hypertarget{test_8cpp}{}\label{test_8cpp}\index{test/servo\_test/test.cpp@{test/servo\_test/test.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Wire.\+h$>$}\newline
+{\ttfamily \#include $<$Adafruit\+\_\+\+PWMServo\+Driver.\+h$>$}\newline
+Include dependency graph for test.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test_8cpp_a65ff49a6e78be84de6e478345b32b508}{SERVOMIN}}~150
+\item 
+\#define \mbox{\hyperlink{test_8cpp_a357a7e9fa4e4d8ed2f5ef82f37143836}{SERVOMAX}}~600
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{test_8cpp_ac764ee28e2916a7de10b22927e02d1a4}{setup1}} ()
+\item 
+void \mbox{\hyperlink{test_8cpp_a39ceba300a80e348e278539f57e0ca79}{loop1}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Adafruit\+\_\+\+PWMServo\+Driver \mbox{\hyperlink{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}{pwm}} = Adafruit\+\_\+\+PWMServo\+Driver(0x40)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{test_8cpp_a7e46f163d06ededa9d627a489b899200}{pos0}} = \mbox{\hyperlink{test_8cpp_a65ff49a6e78be84de6e478345b32b508}{SERVOMIN}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{test_8cpp_a47ff2d063618a7cca632381f92a3741f}{pos90}} = (\mbox{\hyperlink{test_8cpp_a65ff49a6e78be84de6e478345b32b508}{SERVOMIN}} + \mbox{\hyperlink{test_8cpp_a357a7e9fa4e4d8ed2f5ef82f37143836}{SERVOMAX}}) / 2
+\item 
+uint16\+\_\+t \mbox{\hyperlink{test_8cpp_a17b34e67b68bed136896a8d5b03a6cc0}{pos45}} = (\mbox{\hyperlink{test_8cpp_a7e46f163d06ededa9d627a489b899200}{pos0}} + \mbox{\hyperlink{test_8cpp_a47ff2d063618a7cca632381f92a3741f}{pos90}}) / 2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{test_8cpp_a357a7e9fa4e4d8ed2f5ef82f37143836}\label{test_8cpp_a357a7e9fa4e4d8ed2f5ef82f37143836} 
+\index{test.cpp@{test.cpp}!SERVOMAX@{SERVOMAX}}
+\index{SERVOMAX@{SERVOMAX}!test.cpp@{test.cpp}}
+\doxysubsubsection{\texorpdfstring{SERVOMAX}{SERVOMAX}}
+{\footnotesize\ttfamily \#define SERVOMAX~600}
+
+
+
+Definition at line \mbox{\hyperlink{test_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{test_8cpp_source}{test.\+cpp}}.
+
+\Hypertarget{test_8cpp_a65ff49a6e78be84de6e478345b32b508}\label{test_8cpp_a65ff49a6e78be84de6e478345b32b508} 
+\index{test.cpp@{test.cpp}!SERVOMIN@{SERVOMIN}}
+\index{SERVOMIN@{SERVOMIN}!test.cpp@{test.cpp}}
+\doxysubsubsection{\texorpdfstring{SERVOMIN}{SERVOMIN}}
+{\footnotesize\ttfamily \#define SERVOMIN~150}
+
+
+
+Definition at line \mbox{\hyperlink{test_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{test_8cpp_source}{test.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{test_8cpp_a39ceba300a80e348e278539f57e0ca79}\label{test_8cpp_a39ceba300a80e348e278539f57e0ca79} 
+\index{test.cpp@{test.cpp}!loop1@{loop1}}
+\index{loop1@{loop1}!test.cpp@{test.cpp}}
+\doxysubsubsection{\texorpdfstring{loop1()}{loop1()}}
+{\footnotesize\ttfamily void loop1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{test_8cpp_source}{test.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}0°"{}});}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}{pwm}}.setPWM(0,\ 0,\ \mbox{\hyperlink{test_8cpp_a7e46f163d06ededa9d627a489b899200}{pos0}});}
+\DoxyCodeLine{00030\ \ \ \ \ delay(2000);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}45"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}{pwm}}.setPWM(0,\ 0,\ \mbox{\hyperlink{test_8cpp_a17b34e67b68bed136896a8d5b03a6cc0}{pos45}});}
+\DoxyCodeLine{00034\ \ \ \ \ delay(2000);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}90"{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}{pwm}}.setPWM(0,\ 0,\ \mbox{\hyperlink{test_8cpp_a47ff2d063618a7cca632381f92a3741f}{pos90}});}
+\DoxyCodeLine{00038\ \ \ \ \ delay(2000);}
+\DoxyCodeLine{00039\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{test_8cpp_a7e46f163d06ededa9d627a489b899200}{pos0}}, \mbox{\hyperlink{test_8cpp_a17b34e67b68bed136896a8d5b03a6cc0}{pos45}}, \mbox{\hyperlink{test_8cpp_a47ff2d063618a7cca632381f92a3741f}{pos90}}, and \mbox{\hyperlink{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}{pwm}}.
+
+\Hypertarget{test_8cpp_ac764ee28e2916a7de10b22927e02d1a4}\label{test_8cpp_ac764ee28e2916a7de10b22927e02d1a4} 
+\index{test.cpp@{test.cpp}!setup1@{setup1}}
+\index{setup1@{setup1}!test.cpp@{test.cpp}}
+\doxysubsubsection{\texorpdfstring{setup1()}{setup1()}}
+{\footnotesize\ttfamily void setup1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{test_8cpp_source}{test.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ Serial.begin(115200);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ Wire.begin(22,27);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}{pwm}}.begin();}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}{pwm}}.setPWMFreq(50);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ delay(1000);}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}{pwm}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{test_8cpp_a7e46f163d06ededa9d627a489b899200}\label{test_8cpp_a7e46f163d06ededa9d627a489b899200} 
+\index{test.cpp@{test.cpp}!pos0@{pos0}}
+\index{pos0@{pos0}!test.cpp@{test.cpp}}
+\doxysubsubsection{\texorpdfstring{pos0}{pos0}}
+{\footnotesize\ttfamily uint16\+\_\+t pos0 = \mbox{\hyperlink{test_8cpp_a65ff49a6e78be84de6e478345b32b508}{SERVOMIN}}}
+
+
+
+Definition at line \mbox{\hyperlink{test_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{test_8cpp_source}{test.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{test_8cpp_a39ceba300a80e348e278539f57e0ca79}{loop1()}}.
+
+\Hypertarget{test_8cpp_a17b34e67b68bed136896a8d5b03a6cc0}\label{test_8cpp_a17b34e67b68bed136896a8d5b03a6cc0} 
+\index{test.cpp@{test.cpp}!pos45@{pos45}}
+\index{pos45@{pos45}!test.cpp@{test.cpp}}
+\doxysubsubsection{\texorpdfstring{pos45}{pos45}}
+{\footnotesize\ttfamily uint16\+\_\+t pos45 = (\mbox{\hyperlink{test_8cpp_a7e46f163d06ededa9d627a489b899200}{pos0}} + \mbox{\hyperlink{test_8cpp_a47ff2d063618a7cca632381f92a3741f}{pos90}}) / 2}
+
+
+
+Definition at line \mbox{\hyperlink{test_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{test_8cpp_source}{test.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{test_8cpp_a39ceba300a80e348e278539f57e0ca79}{loop1()}}.
+
+\Hypertarget{test_8cpp_a47ff2d063618a7cca632381f92a3741f}\label{test_8cpp_a47ff2d063618a7cca632381f92a3741f} 
+\index{test.cpp@{test.cpp}!pos90@{pos90}}
+\index{pos90@{pos90}!test.cpp@{test.cpp}}
+\doxysubsubsection{\texorpdfstring{pos90}{pos90}}
+{\footnotesize\ttfamily uint16\+\_\+t pos90 = (\mbox{\hyperlink{test_8cpp_a65ff49a6e78be84de6e478345b32b508}{SERVOMIN}} + \mbox{\hyperlink{test_8cpp_a357a7e9fa4e4d8ed2f5ef82f37143836}{SERVOMAX}}) / 2}
+
+
+
+Definition at line \mbox{\hyperlink{test_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{test_8cpp_source}{test.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{test_8cpp_a39ceba300a80e348e278539f57e0ca79}{loop1()}}.
+
+\Hypertarget{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54}\label{test_8cpp_a2c06cc8f85429bb0f7cb91917164dc54} 
+\index{test.cpp@{test.cpp}!pwm@{pwm}}
+\index{pwm@{pwm}!test.cpp@{test.cpp}}
+\doxysubsubsection{\texorpdfstring{pwm}{pwm}}
+{\footnotesize\ttfamily Adafruit\+\_\+\+PWMServo\+Driver pwm = Adafruit\+\_\+\+PWMServo\+Driver(0x40)}
+
+
+
+Definition at line \mbox{\hyperlink{test_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{test_8cpp_source}{test.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{test_8cpp_a39ceba300a80e348e278539f57e0ca79}{loop1()}}, and \mbox{\hyperlink{test_8cpp_ac764ee28e2916a7de10b22927e02d1a4}{setup1()}}.
+

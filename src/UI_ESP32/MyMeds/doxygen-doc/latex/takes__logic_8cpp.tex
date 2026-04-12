@@ -1,0 +1,95 @@
+\doxysection{src/logic/takes\+\_\+logic.cpp File Reference}
+\hypertarget{takes__logic_8cpp}{}\label{takes__logic_8cpp}\index{src/logic/takes\_logic.cpp@{src/logic/takes\_logic.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}logic/takes\+\_\+logic.\+h"{}}\newline
+{\ttfamily \#include "{}user\+\_\+interface/pill\+\_\+takes.\+h"{}}\newline
+Include dependency graph for takes\+\_\+logic.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{takes__logic_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{execute\+Take}} (int index)
+\item 
+void \mbox{\hyperlink{takes__logic_8cpp_a316d6941189851a072229370c65696bb}{check\+Takes}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{takes__logic_8cpp_a316d6941189851a072229370c65696bb}\label{takes__logic_8cpp_a316d6941189851a072229370c65696bb} 
+\index{takes\_logic.cpp@{takes\_logic.cpp}!checkTakes@{checkTakes}}
+\index{checkTakes@{checkTakes}!takes\_logic.cpp@{takes\_logic.cpp}}
+\doxysubsubsection{\texorpdfstring{checkTakes()}{checkTakes()}}
+{\footnotesize\ttfamily void check\+Takes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{takes__logic_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{takes__logic_8cpp_source}{takes\+\_\+logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ timeInfo;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&timeInfo))\{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i\ ++)\{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hh\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[0]);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mm\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[3]);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeInfo.tm\_hour\ ==\ hh\ \&\&\ timeInfo.tm\_min\ ==\ mm)\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].repeat[timeInfo.tm\_wday])\{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{executeTake}}(i);}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{execute\+Take()}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, and \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{takes__logic_8cpp_a316d6941189851a072229370c65696bb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}\label{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd} 
+\index{takes\_logic.cpp@{takes\_logic.cpp}!executeTake@{executeTake}}
+\index{executeTake@{executeTake}!takes\_logic.cpp@{takes\_logic.cpp}}
+\doxysubsubsection{\texorpdfstring{executeTake()}{executeTake()}}
+{\footnotesize\ttfamily void execute\+Take (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{takes__logic_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{takes__logic_8cpp_source}{takes\+\_\+logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Ejecutando\ toma\ \%d\(\backslash\)n"{}},\ index+1);}
+\DoxyCodeLine{00008\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8cpp_a316d6941189851a072229370c65696bb}{check\+Takes()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd_icgraph}
+\end{center}
+\end{figure}
