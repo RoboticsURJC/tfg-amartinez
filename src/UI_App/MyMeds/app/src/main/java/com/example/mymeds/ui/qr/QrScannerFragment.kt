@@ -128,20 +128,32 @@ class QrScannerFragment : Fragment() {
                                     .putString("esp_url", qr)
                                     .apply()
 
-                                // Opcional: link al ESP
                                 Thread {
                                     try {
                                         val url = java.net.URL(qr + "/link")
                                         val conn = url.openConnection() as java.net.HttpURLConnection
+
                                         conn.requestMethod = "GET"
                                         conn.connect()
+
                                         conn.responseCode
+
+                                        activity?.runOnUiThread {
+
+                                            val prefs = requireContext()
+                                                .getSharedPreferences("app", Context.MODE_PRIVATE)
+
+                                            prefs.edit()
+                                                .putString("esp_url", qr)
+                                                .apply()
+
+                                            findNavController().navigate(R.id.takesListFragment)
+                                        }
+
                                     } catch (e: Exception) {
                                         e.printStackTrace()
                                     }
                                 }.start()
-
-                                findNavController().navigate(R.id.takesListFragment)
                             }
                         }
                     }
