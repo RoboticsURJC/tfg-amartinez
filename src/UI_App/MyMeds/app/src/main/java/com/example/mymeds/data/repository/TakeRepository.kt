@@ -27,4 +27,9 @@ object TakeRepository {
     fun clear() {
         takes.clear()
     }
+
+    fun addAll(list: List<Take>) {
+        takes.clear()
+        takes.addAll(list)
+    }
 }

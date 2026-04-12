@@ -21,6 +21,7 @@ import com.example.mymeds.data.repository.TakeRepository
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.util.JsonUtils
 import android.util.Log
+import android.content.Context
 
 class TakesConfigFragment : Fragment() {
 
@@ -134,6 +135,7 @@ class TakesConfigFragment : Fragment() {
             }
 
             sendTakesToEsp()
+            saveTakesLocally()
 
             Toast.makeText(
                 requireContext(),
@@ -287,6 +289,18 @@ class TakesConfigFragment : Fragment() {
             }
 
         }.start()
+    }
+
+    private fun saveTakesLocally() {
+
+        val prefs = requireContext()
+            .getSharedPreferences("app", Context.MODE_PRIVATE)
+
+        val json = JsonUtils.takesToJson(TakeRepository.getTakes())
+
+        prefs.edit()
+            .putString("takes", json)
+            .apply()
     }
 
     override fun onDestroyView() {

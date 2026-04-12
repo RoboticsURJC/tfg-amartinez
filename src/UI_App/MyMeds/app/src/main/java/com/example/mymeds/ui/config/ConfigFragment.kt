@@ -84,8 +84,9 @@ class ConfigFragment : Fragment() {
         binding.buttonConf.setOnClickListener {
 
             if (!deviceDetected) {
-
-                findNavController().navigate(R.id.qrScannerFragment)
+                val bundle = Bundle()
+                bundle.putString("mode", "WIFI")
+                findNavController().navigate(R.id.qrScannerFragment, bundle)
 
             } else {
 

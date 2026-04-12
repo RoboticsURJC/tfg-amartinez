@@ -26,6 +26,7 @@ class QrScannerFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var scanned = false
+    private var mode: String = "WIFI"
 
     private val cameraPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()
@@ -44,6 +45,14 @@ class QrScannerFragment : Fragment() {
 
         binding.buttonBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        mode = arguments?.getString("mode") ?: "WIFI"
+
+        binding.textInstruction.text = when (mode) {
+            "WIFI" -> "Escanea el QR para configurar el WiFi"
+            "DEVICE" -> "Escanea el QR del dispositivo conectado"
+            else -> ""
         }
 
         return binding.root
@@ -100,7 +109,8 @@ class QrScannerFragment : Fragment() {
                         result?.text?.let { qr ->
                             binding.barcodeScanner.pause()
 
-                            if (qr.contains("192.168.4.1")) {
+                            if (mode == "WIFI") {
+
                                 EspConfig.baseUrl = qr
 
                                 findNavController().navigate(
@@ -108,7 +118,9 @@ class QrScannerFragment : Fragment() {
                                 )
 
                             } else {
+
                                 EspConfig.baseUrl = qr
+
                                 val prefs = requireContext()
                                     .getSharedPreferences("app", Context.MODE_PRIVATE)
 
@@ -116,16 +128,14 @@ class QrScannerFragment : Fragment() {
                                     .putString("esp_url", qr)
                                     .apply()
 
+                                // Opcional: link al ESP
                                 Thread {
                                     try {
                                         val url = java.net.URL(qr + "/link")
                                         val conn = url.openConnection() as java.net.HttpURLConnection
-
                                         conn.requestMethod = "GET"
                                         conn.connect()
-
                                         conn.responseCode
-
                                     } catch (e: Exception) {
                                         e.printStackTrace()
                                     }

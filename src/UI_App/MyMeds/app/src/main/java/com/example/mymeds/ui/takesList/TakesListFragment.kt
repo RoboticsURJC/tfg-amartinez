@@ -11,27 +11,32 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymeds.databinding.FragmentTakesListBinding
 import com.example.mymeds.data.repository.TakeRepository
+import com.example.mymeds.data.repository.EspConfig
+import com.example.mymeds.data.util.JsonUtils
+import android.content.Context
 
 class TakesListFragment : Fragment() {
+
     private var _binding: FragmentTakesListBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var adapter: TakesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTakesListBinding.inflate(inflater, container, false)
 
-        binding.buttonBack.setOnClickListener(){
+        binding.buttonBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        binding.buttonAddFirstTake.setOnClickListener(){
+        binding.buttonAddFirstTake.setOnClickListener {
             findNavController().navigate(R.id.takesConfigFragment)
         }
 
-        binding.buttonAddTake.setOnClickListener(){
+        binding.buttonAddTake.setOnClickListener {
             findNavController().navigate(R.id.takesConfigFragment)
         }
 
@@ -41,17 +46,25 @@ class TakesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loadTakesFromPrefs()
+
         val takes = TakeRepository.getTakes()
 
-        adapter = TakesAdapter(takes,
-            onEditClick = {position ->
+        adapter = TakesAdapter(
+            takes,
+            onEditClick = { position ->
                 val bundle = Bundle()
                 bundle.putInt("position", position)
 
                 findNavController().navigate(
                     R.id.takesConfigFragment,
-                    bundle)},
-            onDeleteClick = {position -> showDeleteConfirmation(position)})
+                    bundle
+                )
+            },
+            onDeleteClick = { position ->
+                showDeleteConfirmation(position)
+            }
+        )
 
         binding.takesRecycler.adapter = adapter
         binding.takesRecycler.layoutManager = LinearLayoutManager(requireContext())
@@ -62,10 +75,11 @@ class TakesListFragment : Fragment() {
         updateUI()
     }
 
-    private fun updateUI(){
+    private fun updateUI() {
+
         val takes = TakeRepository.getTakes()
 
-        if(takes.isEmpty()){
+        if (takes.isEmpty()) {
             binding.emptyState.visibility = View.VISIBLE
             binding.takesState.visibility = View.GONE
         } else {
@@ -76,14 +90,75 @@ class TakesListFragment : Fragment() {
         }
     }
 
-    private fun showDeleteConfirmation(position: Int){
+    private fun loadTakesFromPrefs() {
+
+        val prefs = requireContext()
+            .getSharedPreferences("app", Context.MODE_PRIVATE)
+
+        val json = prefs.getString("takes", null)
+
+        if (json != null) {
+
+            val takes = JsonUtils.jsonToTakes(json)
+
+            TakeRepository.addAll(takes)
+        }
+    }
+
+    private fun saveTakesLocally() {
+
+        val prefs = requireContext()
+            .getSharedPreferences("app", Context.MODE_PRIVATE)
+
+        val json = JsonUtils.takesToJson(TakeRepository.getTakes())
+
+        prefs.edit()
+            .putString("takes", json)
+            .apply()
+    }
+
+    private fun sendTakesToEsp() {
+
+        if (EspConfig.baseUrl.isEmpty()) return
+
+        val takes = TakeRepository.getTakes()
+
+        Thread {
+            try {
+                val url = java.net.URL(EspConfig.baseUrl + "/takes")
+
+                val conn = url.openConnection() as java.net.HttpURLConnection
+                conn.requestMethod = "POST"
+                conn.doOutput = true
+                conn.setRequestProperty("Content-Type", "application/json")
+
+                val json = JsonUtils.takesToJson(takes)
+
+                val out = conn.outputStream
+                out.write(json.toByteArray())
+                out.flush()
+                out.close()
+
+                conn.responseCode
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }.start()
+    }
+
+    private fun showDeleteConfirmation(position: Int) {
+
         AlertDialog.Builder(requireContext())
             .setTitle("Eliminar toma")
             .setMessage("¿Estás seguro de que quieres eliminar esta toma?\nEsta acción no se puede deshacer.")
-            .setPositiveButton("Eliminar"){
-                _,_->
+            .setPositiveButton("Eliminar") { _, _ ->
 
                 TakeRepository.removeTake(position)
+
+                saveTakesLocally()
+                sendTakesToEsp()
+
                 updateUI()
             }
             .setNegativeButton("Cancelar", null)
