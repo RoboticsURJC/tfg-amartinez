@@ -18,15 +18,12 @@ import com.example.mymeds.data.repository.EspConfig
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 
-import android.content.Context
-
 class QrScannerFragment : Fragment() {
 
     private var _binding: FragmentQrScannerBinding? = null
     private val binding get() = _binding!!
 
     private var scanned = false
-    private var mode: String = "WIFI"
 
     private val cameraPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()
@@ -47,116 +44,47 @@ class QrScannerFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        mode = arguments?.getString("mode") ?: "WIFI"
-
-        binding.textInstruction.text = when (mode) {
-            "WIFI" -> "Escanea el QR para configurar el WiFi"
-            "DEVICE" -> "Escanea el QR del dispositivo conectado"
-            else -> ""
-        }
+        binding.textInstruction.text = "Escanea el QR del dispensador"
 
         return binding.root
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(
-            requestCode,
-            permissions,
-            grantResults
-        )
-
-        if (requestCode == 100 &&
-            grantResults.isNotEmpty() &&
-            grantResults[0] == PackageManager.PERMISSION_GRANTED
-        ) {
-
-            binding.barcodeScanner.resume()
-        }
     }
 
     override fun onResume() {
         super.onResume()
         scanned = false
 
-        if (ContextCompat.checkSelfPermission(
+        if (
+            ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED)
-        {
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             startScanner()
-
         } else {
-            cameraPermissionLauncher.launch(
-                Manifest.permission.CAMERA
-            )
+            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
     }
 
     private fun startScanner() {
         binding.barcodeScanner.resume()
+
         binding.barcodeScanner.decodeContinuous(
             object : BarcodeCallback {
-                override fun barcodeResult(
-                    result: BarcodeResult?
-                ) {
+                override fun barcodeResult(result: BarcodeResult?) {
 
-                    if (!scanned) {
-                        scanned = true
-                        result?.text?.let { qr ->
-                            binding.barcodeScanner.pause()
+                    val qr = result?.text ?: return
 
-                            if (mode == "WIFI") {
+                    if (scanned) return
 
-                                EspConfig.baseUrl = qr
+                    scanned = true
 
-                                findNavController().navigate(
-                                    R.id.wifiConfigFragment
-                                )
+                    binding.barcodeScanner.pause()
 
-                            } else {
+                    EspConfig.baseUrl = qr
 
-                                EspConfig.baseUrl = qr
-
-                                val prefs = requireContext()
-                                    .getSharedPreferences("app", Context.MODE_PRIVATE)
-
-                                prefs.edit()
-                                    .putString("esp_url", qr)
-                                    .apply()
-
-                                Thread {
-                                    try {
-                                        val url = java.net.URL(qr + "/link")
-                                        val conn = url.openConnection() as java.net.HttpURLConnection
-
-                                        conn.requestMethod = "GET"
-                                        conn.connect()
-
-                                        conn.responseCode
-
-                                        activity?.runOnUiThread {
-
-                                            val prefs = requireContext()
-                                                .getSharedPreferences("app", Context.MODE_PRIVATE)
-
-                                            prefs.edit()
-                                                .putString("esp_url", qr)
-                                                .apply()
-
-                                            findNavController().navigate(R.id.takesListFragment)
-                                        }
-
-                                    } catch (e: Exception) {
-                                        e.printStackTrace()
-                                    }
-                                }.start()
-                            }
-                        }
-                    }
+                    findNavController().navigate(
+                        R.id.wifiConfigFragment
+                    )
                 }
             }
         )

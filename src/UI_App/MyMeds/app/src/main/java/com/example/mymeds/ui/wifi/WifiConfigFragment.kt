@@ -67,21 +67,14 @@ class WifiConfigFragment : Fragment() {
                     conn.responseCode
 
                     requireActivity().runOnUiThread {
-                        Toast.makeText(
-                            requireContext(),
-                            "WiFi enviado al ESP",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        val bundle = Bundle()
-                        bundle.putString("mode", "DEVICE")
-                        findNavController().navigate(R.id.qrScannerFragment, bundle)
 
                         Toast.makeText(
                             requireContext(),
-                            "Ahora escanea el QR del dispositivo conectado",
+                            "WiFi enviado. Conectando con el dispositivo...",
                             Toast.LENGTH_LONG
                         ).show()
+
+                        searchDeviceAndConnect()
                     }
 
                 } catch (e: Exception) {
@@ -119,6 +112,63 @@ class WifiConfigFragment : Fragment() {
                 InputMethodManager.SHOW_IMPLICIT
             )
         }
+    }
+
+    private fun searchDeviceAndConnect() {
+
+        Thread {
+            var found = false
+
+            for (i in 1..255) {
+                try {
+                    val ip = "http://192.168.1.$i"
+                    val url = java.net.URL(ip + "/link")
+
+                    val conn = url.openConnection() as java.net.HttpURLConnection
+                    conn.connectTimeout = 200
+                    conn.connect()
+
+                    if (conn.responseCode == 200) {
+
+                        found = true
+
+                        activity?.runOnUiThread {
+
+                            EspConfig.baseUrl = ip
+
+                            val prefs = requireContext()
+                                .getSharedPreferences("app", Context.MODE_PRIVATE)
+
+                            prefs.edit()
+                                .putString("esp_url", ip)
+                                .apply()
+
+                            Toast.makeText(
+                                requireContext(),
+                                "Dispositivo conectado",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            findNavController().navigate(R.id.takesListFragment)
+                        }
+
+                        break
+                    }
+
+                } catch (_: Exception) {}
+            }
+
+            if (!found) {
+                activity?.runOnUiThread {
+                    Toast.makeText(
+                        requireContext(),
+                        "No se encontró el dispositivo",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+
+        }.start()
     }
 
     override fun onResume() {

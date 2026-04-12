@@ -102,6 +102,7 @@ class TakesListFragment : Fragment() {
 
             val takes = JsonUtils.jsonToTakes(json)
 
+            TakeRepository.clear()
             TakeRepository.addAll(takes)
         }
     }
