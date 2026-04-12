@@ -14,6 +14,7 @@ import com.example.mymeds.data.repository.TakeRepository
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.util.JsonUtils
 import android.content.Context
+import android.util.Log
 
 class TakesListFragment : Fragment() {
 
@@ -125,6 +126,9 @@ class TakesListFragment : Fragment() {
 
         Thread {
             try {
+
+                if (EspConfig.baseUrl.isEmpty()) return@Thread
+
                 val url = java.net.URL(EspConfig.baseUrl + "/takes")
 
                 val conn = url.openConnection() as java.net.HttpURLConnection
@@ -132,17 +136,16 @@ class TakesListFragment : Fragment() {
                 conn.doOutput = true
                 conn.setRequestProperty("Content-Type", "application/json")
 
-                val json = JsonUtils.takesToJson(takes)
+                val json = JsonUtils.takesToJson(TakeRepository.getTakes())
 
-                val out = conn.outputStream
-                out.write(json.toByteArray())
-                out.flush()
-                out.close()
+                conn.outputStream.use {
+                    it.write(json.toByteArray())
+                }
 
                 conn.responseCode
 
             } catch (e: Exception) {
-                e.printStackTrace()
+                Log.e("ESP_SEND", "Error", e)
             }
         }.start()
     }

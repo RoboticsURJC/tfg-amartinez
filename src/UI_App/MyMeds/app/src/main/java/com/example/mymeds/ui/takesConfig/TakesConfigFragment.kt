@@ -134,8 +134,8 @@ class TakesConfigFragment : Fragment() {
                 )
             }
 
-            sendTakesToEsp()
             saveTakesLocally()
+            sendTakesToEsp()
 
             Toast.makeText(
                 requireContext(),
