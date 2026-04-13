@@ -23,7 +23,7 @@ static bool wifi_connected = false;
 static bool portal_running = false;
 
 bool device_linked = false;
-static bool clock_started = false;   // 🔥 control de pantalla
+static bool clock_started = false;
 
 static lv_timer_t *clock_timer = nullptr;
 
@@ -34,7 +34,7 @@ void setup()
 
     lvgl_begin();
 
-    // --- Control logo ---
+    // --- Logo ---
     Preferences p;
     p.begin("sys", false);
     bool skipLogo = p.getBool("skip_logo", false);
@@ -76,8 +76,6 @@ void setup()
             Serial.print(".");
         }
 
-        Serial.println(WiFi.status());
-
         if (WiFi.status() == WL_CONNECTED){
 
             wifi_connected = true;
@@ -91,29 +89,23 @@ void setup()
             server.on("/link", HTTP_GET, handle_link);
             server.begin();
 
-            // --- Mostrar QR con IP ---
-            String ip = WiFi.localIP().toString();
-            String url = "http://" + ip;
+            Serial.println("Esperando conexión de la app...");
 
-            Serial.print("Device URL: ");
-            Serial.println(url);
-
+            // Opcional: mensaje en pantalla
             lv_obj_clean(lv_scr_act());
-            show_wifi_screen(
-                lv_scr_act(),
-                "Escanea para vincular con la app",
-                url.c_str()
-            );
+            lv_obj_t *label = lv_label_create(lv_scr_act());
+            lv_label_set_text(label, "Conectando con la app...");
+            lv_obj_center(label);
 
             return;
         }
     }
 
-    // --- Modo AP ---
+    // --- Modo AP (único QR que queda) ---
     lv_obj_clean(lv_scr_act());
     show_wifi_screen(
         lv_scr_act(),
-        "Escanea para configurar WiFi",
+        "Configurar WiFi",
         "http://192.168.4.1"
     );
 
@@ -135,30 +127,26 @@ void loop()
 
         if (portal_running) {
             server.stop();
+            delay(200);
+            server.close();
+            delay(200);
         }
 
         Serial.println("\nConectado al WiFi!");
         Serial.println(WiFi.localIP());
 
-        // --- Servidor ---
         server.on("/", handle_web_root);
         server.on("/takes", HTTP_POST, handle_takes);
         server.on("/link", HTTP_GET, handle_link);
+
         server.begin();
 
-        // --- Mostrar QR con IP ---
-        String ip = WiFi.localIP().toString();
-        String url = "http://" + ip;
-
-        Serial.print("Device URL: ");
-        Serial.println(url);
+        Serial.println("Servidor HTTP listo");
 
         lv_obj_clean(lv_scr_act());
-        show_wifi_screen(
-            lv_scr_act(),
-            "Escanea para vincular con la app",
-            url.c_str()
-        );
+        lv_obj_t *label = lv_label_create(lv_scr_act());
+        lv_label_set_text(label, "Conectando con la app...");
+        lv_obj_center(label);
     }
 
     // --- SINCRONIZACIÓN CON APP ---
