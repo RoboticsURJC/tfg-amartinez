@@ -117,49 +117,77 @@ class WifiConfigFragment : Fragment() {
     private fun searchDeviceAndConnect() {
 
         Thread {
-            var found = false
 
-            for (i in 1..255) {
-                try {
+            var foundIp: String? = null
+
+            for (attempt in 1..5) {
+
+                for (i in 1..255) {
+
                     val ip = "http://192.168.1.$i"
-                    val url = java.net.URL(ip + "/link")
 
-                    val conn = url.openConnection() as java.net.HttpURLConnection
-                    conn.connectTimeout = 200
-                    conn.connect()
+                    try {
+                        android.util.Log.d("DISCOVERY", "Probando $ip")
 
-                    if (conn.responseCode == 200) {
+                        val url = java.net.URL("$ip/link")
+                        val conn = url.openConnection() as java.net.HttpURLConnection
 
-                        found = true
+                        conn.requestMethod = "GET"
+                        conn.connectTimeout = 1500
+                        conn.readTimeout = 1500
+                        conn.useCaches = false
+                        conn.instanceFollowRedirects = false
 
-                        activity?.runOnUiThread {
+                        conn.connect()
 
-                            EspConfig.baseUrl = ip
+                        val code = conn.responseCode
 
-                            val prefs = requireContext()
-                                .getSharedPreferences("app", Context.MODE_PRIVATE)
+                        android.util.Log.d("DISCOVERY", "Respuesta $ip → $code")
 
-                            prefs.edit()
-                                .putString("esp_url", ip)
-                                .apply()
-
-                            Toast.makeText(
-                                requireContext(),
-                                "Dispositivo conectado",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                            findNavController().navigate(R.id.takesListFragment)
+                        if (code == 200) {
+                            android.util.Log.d("DISCOVERY", "✅ ENCONTRADO: $ip")
+                            foundIp = ip
+                            break
                         }
 
-                        break
+                    } catch (e: Exception) {
+                        android.util.Log.d(
+                            "DISCOVERY",
+                            "❌ Error $ip → ${e.javaClass.simpleName}"
+                        )
                     }
 
-                } catch (_: Exception) {}
+                    Thread.sleep(10)
+                }
+
+                if (foundIp != null) break
+
+                Thread.sleep(2000)
             }
 
-            if (!found) {
-                activity?.runOnUiThread {
+            activity?.runOnUiThread {
+
+                foundIp?.let { ip ->
+
+                    EspConfig.baseUrl = ip
+
+                    val prefs = requireContext()
+                        .getSharedPreferences("app", Context.MODE_PRIVATE)
+
+                    prefs.edit()
+                        .putString("esp_url", ip)
+                        .apply()
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Dispositivo conectado ($ip)",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    findNavController().navigate(R.id.takesListFragment)
+
+                } ?: run {
+
                     Toast.makeText(
                         requireContext(),
                         "No se encontró el dispositivo",
