@@ -117,7 +117,7 @@ class WifiConfigFragment : Fragment() {
     private fun searchDeviceAndConnect() {
 
         Thread {
-
+            Thread.sleep(3000)
             var foundIp: String? = null
 
             for (attempt in 1..5) {
