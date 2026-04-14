@@ -119,20 +119,20 @@ class WifiConfigFragment : Fragment() {
 
             try {
 
-                Thread.sleep(3000)
+                Thread.sleep(4000)
 
                 var foundIp: String? = null
                 val lock = Object()
 
-                for (attempt in 1..5) {
+                for (attempt in 1..3) {
 
                     android.util.Log.d("DISCOVERY", "Intento $attempt")
 
-                    for (i in 1..255 step 3) {
+                    for (i in 1..255 step 10) {
 
                         val threads = mutableListOf<Thread>()
 
-                        for (j in i until i + 3) {
+                        for (j in i until i + 10) {
 
                             if (j > 255) break
 
@@ -145,8 +145,8 @@ class WifiConfigFragment : Fragment() {
                                     val conn = url.openConnection() as java.net.HttpURLConnection
 
                                     conn.requestMethod = "GET"
-                                    conn.connectTimeout = 1200
-                                    conn.readTimeout = 1200
+                                    conn.connectTimeout = 500
+                                    conn.readTimeout = 500
 
                                     val code = conn.responseCode
 

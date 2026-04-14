@@ -27,7 +27,7 @@ class ConfigFragment : Fragment() {
         _binding = FragmentConfigPillsBinding.inflate(inflater, container, false)
 
         binding.buttonBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.homeFragment)
         }
 
         val prefs = requireContext()
