@@ -30,7 +30,7 @@ class TakesListFragment : Fragment() {
         _binding = FragmentTakesListBinding.inflate(inflater, container, false)
 
         binding.buttonBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.configFragment)
         }
 
         binding.buttonAddFirstTake.setOnClickListener {

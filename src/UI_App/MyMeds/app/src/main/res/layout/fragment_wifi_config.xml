@@ -5,83 +5,104 @@
     android:layout_height="match_parent"
     android:padding="24dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_back"
-        android:layout_width="111dp"
-        android:layout_height="61dp"
-        android:layout_margin="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/purple_200"
-        android:text="ATRÁS"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        app:iconGravity="textStart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/title"
+    <!-- 🔹 FORMULARIO -->
+    <LinearLayout
+        android:id="@+id/layoutForm"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="Configurar WiFi del dispensador"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ssidLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Nombre de la red (SSID)"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back"
+            android:layout_width="111dp"
+            android:layout_height="61dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/purple_200"
+            android:text="ATRÁS"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ssidInput"
+        <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:importantForAutofill="no"
-            android:imeOptions="actionNext"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="40dp"
+            android:text="Configurar WiFi del dispensador"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Contraseña"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/ssidLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ssidLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Nombre de la red (SSID)"
+            android:layout_marginTop="24dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonSendWifi"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ssidInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:importantForAutofill="no"
+                android:imeOptions="actionNext"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSendWifi"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="Enviar configuración"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+
+    <!-- 🔹 LOADING -->
+    <LinearLayout
+        android:id="@+id/layoutLoading"
         android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:text="Enviar configuración"
-        app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ProgressBar
+            android:layout_width="64dp"
+            android:layout_height="64dp" />
+
+        <TextView
+            android:id="@+id/loadingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conectando con el dispositivo..."
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

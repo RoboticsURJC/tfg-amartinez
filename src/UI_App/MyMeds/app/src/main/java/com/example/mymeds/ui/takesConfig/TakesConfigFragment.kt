@@ -20,7 +20,6 @@ import com.example.mymeds.data.model.Take
 import com.example.mymeds.data.repository.TakeRepository
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.util.JsonUtils
-import com.example.mymeds.data.network.EspDiscovery
 import android.util.Log
 import android.content.Context
 
@@ -31,7 +30,6 @@ class TakesConfigFragment : Fragment() {
 
     private lateinit var chips: List<Chip>
 
-    // Medicamentos
     private val medicines = mutableListOf<Medicine>()
     private lateinit var medicineAdapter: MedicineAdapter
 
@@ -44,7 +42,6 @@ class TakesConfigFragment : Fragment() {
     ): View {
         _binding = FragmentTakesConfigBinding.inflate(inflater, container, false)
 
-        // Volver
         binding.buttonBack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -53,7 +50,6 @@ class TakesConfigFragment : Fragment() {
 
             val time = binding.timeInput.text.toString()
 
-            // --- Validación hora ---
             if (time.isBlank()) {
                 binding.timeLayout.error = "Selecciona una hora"
                 return@setOnClickListener
@@ -61,7 +57,6 @@ class TakesConfigFragment : Fragment() {
                 binding.timeLayout.error = null
             }
 
-            // --- Días seleccionados ---
             val selectedDays = chips
                 .filter { it.isChecked }
                 .map { chip ->
@@ -83,7 +78,6 @@ class TakesConfigFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            // --- Medicamentos ---
             if (medicines.isEmpty()) {
                 Toast.makeText(requireContext(), "Añade al menos un medicamento", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -98,7 +92,6 @@ class TakesConfigFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            // --- Recordatorio ---
             val reminderEnabled = binding.reminderSwitch.isChecked
 
             val advanceWarningMinutes = if (binding.warningDropdown.text.isNullOrBlank()) {
@@ -109,7 +102,6 @@ class TakesConfigFragment : Fragment() {
                     .toIntOrNull()
             }
 
-            // --- Crear objeto Take ---
             val take = Take(
                 time = time,
                 days = selectedDays,
@@ -119,43 +111,27 @@ class TakesConfigFragment : Fragment() {
             )
 
             val json = JsonUtils.takeToJson(take)
-
             Log.d("JSON_TAKE", json)
 
-            // --- Guardar en repositorio ---
             if (editPosition == -1) {
-
                 TakeRepository.addTake(take)
-
             } else {
-
-                TakeRepository.updateTake(
-                    editPosition,
-                    take
-                )
+                TakeRepository.updateTake(editPosition, take)
             }
 
             saveTakesLocally()
+
+            // ✅ SOLO ENVÍO (SIN DISCOVERY)
             if (EspConfig.baseUrl.isEmpty()) {
 
-                EspDiscovery.discover(requireContext()) { success ->
-
-                    requireActivity().runOnUiThread {
-
-                        if (success) {
-                            sendTakesToEsp()
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "No se pudo conectar con el ESP",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-
-                    }
-                }
+                Toast.makeText(
+                    requireContext(),
+                    "Dispositivo no conectado",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             } else {
+
                 sendTakesToEsp()
             }
 
@@ -168,7 +144,6 @@ class TakesConfigFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        // Selector hora
         binding.timeInput.setOnClickListener {
             val now = Calendar.getInstance()
             TimePickerDialog(
@@ -188,16 +163,12 @@ class TakesConfigFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments != null && requireArguments().containsKey("position")) {
-
-            editPosition = requireArguments().getInt("position")
-
+        editPosition = if (arguments != null && requireArguments().containsKey("position")) {
+            requireArguments().getInt("position")
         } else {
-
-            editPosition = -1
+            -1
         }
 
-        // Chips días
         chips = listOf(
             binding.chipMonday,
             binding.chipTuesday,
@@ -221,7 +192,6 @@ class TakesConfigFragment : Fragment() {
             }
         }
 
-        // Recycler medicamentos
         medicineAdapter = MedicineAdapter(medicines) { position ->
             medicines.removeAt(position)
             medicineAdapter.notifyItemRemoved(position)
@@ -232,12 +202,10 @@ class TakesConfigFragment : Fragment() {
             adapter = medicineAdapter
         }
 
-        // Añadir medicamento
         binding.buttonMedicine.setOnClickListener {
             medicineAdapter.addMedicine(Medicine())
         }
 
-        // Dropdown aviso previo
         val options = listOf("5 minutos", "10 minutos", "15 minutos", "20 minutos", "30 minutos")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, options)
         binding.warningDropdown.setAdapter(adapter)
@@ -246,59 +214,21 @@ class TakesConfigFragment : Fragment() {
 
             val take = TakeRepository.getTakes()[editPosition]
 
-            // Hora
             binding.timeInput.setText(take.time)
 
-            // Días
             chips.forEach { chip ->
                 chip.isChecked =
                     take.days.any { it.label == chip.text.toString() }
             }
 
-            // Medicamentos
             medicines.clear()
             medicines.addAll(take.medicines)
             medicineAdapter.notifyDataSetChanged()
 
-            // Recordatorio
-            binding.reminderSwitch.isChecked =
-                take.reminderEnabled
+            binding.reminderSwitch.isChecked = take.reminderEnabled
 
-            // Warning
             take.advanceWarningMinutes?.let {
-                binding.warningDropdown.setText(
-                    "$it minutos",
-                    false
-                )
-            }
-        }
-
-        EspDiscovery.discover(requireContext()) { success ->
-
-            requireActivity().runOnUiThread {
-
-                if (success) {
-
-                    Log.d("ESP_DISCOVERY", "IP encontrada: ${EspConfig.baseUrl}")
-
-                    Toast.makeText(
-                        requireContext(),
-                        "ESP encontrado: ${EspConfig.baseUrl}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                } else {
-
-                    Log.d("ESP_DISCOVERY", "ESP no encontrado")
-
-                    Toast.makeText(
-                        requireContext(),
-                        "No se encontró el ESP",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
-
+                binding.warningDropdown.setText("$it minutos", false)
             }
         }
     }
@@ -309,22 +239,15 @@ class TakesConfigFragment : Fragment() {
         val takes = TakeRepository.getTakes()
 
         Thread {
-
             try {
                 if (EspConfig.baseUrl.isEmpty()) return@Thread
-                val url = java.net.URL(
-                    EspConfig.baseUrl + "/takes"
-                )
 
-                val conn =
-                    url.openConnection() as java.net.HttpURLConnection
+                val url = java.net.URL(EspConfig.baseUrl + "/takes")
+                val conn = url.openConnection() as java.net.HttpURLConnection
 
                 conn.requestMethod = "POST"
                 conn.doOutput = true
-                conn.setRequestProperty(
-                    "Content-Type",
-                    "application/json"
-                )
+                conn.setRequestProperty("Content-Type", "application/json")
 
                 val json = JsonUtils.takesToJson(takes)
 
@@ -338,7 +261,6 @@ class TakesConfigFragment : Fragment() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }.start()
     }
 
