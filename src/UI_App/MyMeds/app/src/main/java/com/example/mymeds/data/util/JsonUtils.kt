@@ -18,9 +18,17 @@ object JsonUtils {
     }
 
     fun jsonToTakes(json: String): List<Take> {
-        val type = object : com.google.gson.reflect.TypeToken<List<Take>>() {}.type
-        val map: Map<String, List<Take>> = gson.fromJson(json, type)
-
-        return map["takes"] ?: emptyList()
+        android.util.Log.d("JSON_RAW", json)
+        return try {
+            val wrapper = gson.fromJson(json, TakesWrapper::class.java)
+            wrapper.takes
+        } catch (e: Exception) {
+            android.util.Log.e("JSON", "Error parsing takes", e)
+            emptyList()
+        }
     }
+
+    data class TakesWrapper(
+        val takes: List<Take> = emptyList()
+    )
 }

@@ -117,52 +117,50 @@ class WifiConfigFragment : Fragment() {
     private fun searchDeviceAndConnect() {
 
         Thread {
-            Thread.sleep(3000)
+
+            Thread.sleep(1000) // pequeño delay inicial
+
             var foundIp: String? = null
+            val lock = Object()
 
-            for (attempt in 1..5) {
+            val threads = mutableListOf<Thread>()
 
-                for (i in 1..255) {
+            for (i in 1..255) {
+
+                val thread = Thread {
 
                     val ip = "http://192.168.1.$i"
 
                     try {
-                        android.util.Log.d("DISCOVERY", "Probando $ip")
-
                         val url = java.net.URL("$ip/link")
                         val conn = url.openConnection() as java.net.HttpURLConnection
 
                         conn.requestMethod = "GET"
-                        conn.connectTimeout = 1500
-                        conn.readTimeout = 1500
-                        conn.useCaches = false
-                        conn.instanceFollowRedirects = false
-
-                        conn.connect()
+                        conn.connectTimeout = 800
+                        conn.readTimeout = 800
 
                         val code = conn.responseCode
 
-                        android.util.Log.d("DISCOVERY", "Respuesta $ip → $code")
-
                         if (code == 200) {
-                            android.util.Log.d("DISCOVERY", "✅ ENCONTRADO: $ip")
-                            foundIp = ip
-                            break
+                            synchronized(lock) {
+                                if (foundIp == null) {
+                                    foundIp = ip
+                                    android.util.Log.d("DISCOVERY", "✅ ENCONTRADO: $ip")
+                                }
+                            }
                         }
 
-                    } catch (e: Exception) {
-                        android.util.Log.d(
-                            "DISCOVERY",
-                            "❌ Error $ip → ${e.javaClass.simpleName}"
-                        )
-                    }
+                    } catch (_: Exception) {}
 
-                    Thread.sleep(10)
                 }
 
-                if (foundIp != null) break
+                thread.start()
+                threads.add(thread)
+            }
 
-                Thread.sleep(2000)
+            for (t in threads) {
+                t.join()
+                if (foundIp != null) break
             }
 
             activity?.runOnUiThread {

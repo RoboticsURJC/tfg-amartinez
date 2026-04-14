@@ -20,6 +20,7 @@ import com.example.mymeds.data.model.Take
 import com.example.mymeds.data.repository.TakeRepository
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.util.JsonUtils
+import com.example.mymeds.data.network.EspDiscovery
 import android.util.Log
 import android.content.Context
 
@@ -135,7 +136,28 @@ class TakesConfigFragment : Fragment() {
             }
 
             saveTakesLocally()
-            sendTakesToEsp()
+            if (EspConfig.baseUrl.isEmpty()) {
+
+                EspDiscovery.discover(requireContext()) { success ->
+
+                    requireActivity().runOnUiThread {
+
+                        if (success) {
+                            sendTakesToEsp()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "No se pudo conectar con el ESP",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+                }
+
+            } else {
+                sendTakesToEsp()
+            }
 
             Toast.makeText(
                 requireContext(),
@@ -248,6 +270,35 @@ class TakesConfigFragment : Fragment() {
                     "$it minutos",
                     false
                 )
+            }
+        }
+
+        EspDiscovery.discover(requireContext()) { success ->
+
+            requireActivity().runOnUiThread {
+
+                if (success) {
+
+                    Log.d("ESP_DISCOVERY", "IP encontrada: ${EspConfig.baseUrl}")
+
+                    Toast.makeText(
+                        requireContext(),
+                        "ESP encontrado: ${EspConfig.baseUrl}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                } else {
+
+                    Log.d("ESP_DISCOVERY", "ESP no encontrado")
+
+                    Toast.makeText(
+                        requireContext(),
+                        "No se encontró el ESP",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+
             }
         }
     }
