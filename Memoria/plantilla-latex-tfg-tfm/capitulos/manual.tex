@@ -1,0 +1,217 @@
+\chapter{Manual de usuario}
+\label{ap:manual}
+
+\section{Configuración inicial del dispositivo}
+
+La primera vez que se utiliza el dispositivo, es necesario realizar un proceso de configuración inicial que permite conectarlo a la red WiFi y vincularlo con la aplicación móvil.\\
+
+\textbf{Paso 1:} Conectar el teléfono móvil a la red WiFi generada por el dispositivo (\textit{MyMeds-Setup}).\\
+
+\textbf{Paso 2:} Abrir la aplicación móvil y acceder al apartado \textit{Configurar dispensador}.\\
+
+\textbf{Paso 3:} Pulsar el botón \textit{Escanear QR}.\\
+
+\textbf{Paso 4:} En la pantalla del dispositivo aparecerá un código QR que deberá ser escaneado desde la aplicación.\\%, como se muestra en la Figura~\ref{fig:manual_qr}.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.35\textwidth]{figs/manual_qr.jpg}
+%     \caption{Escaneo del código QR durante la configuración inicial}
+%     \label{fig:manual_qr}
+% \end{figure}
+
+\textbf{Paso 5:} Introducir las credenciales de la red WiFi (SSID y contraseña) donde se utilizará el dispositivo.\\
+
+\textit{Nota:} En caso de disponer de redes WiFi de 2.4 GHz y 5 GHz, se debe seleccionar la red de 2.4 GHz, ya que el dispositivo no es compatible con redes de 5 GHz.\\
+
+\textbf{Paso 6:} Confirmar el envío de las credenciales. Durante este proceso, tanto la aplicación como el dispositivo indicarán que se está realizando la sincronización.\\
+
+\
+
+\
+
+\
+
+\textbf{Paso 7:} Esperar a que finalice el proceso de sincronización.
+
+Una vez completada la configuración:
+
+\begin{itemize}
+    \item La aplicación mostrará la pantalla de configuración de tomas.
+    \item El dispositivo pasará a la pantalla principal, donde se muestra la hora y el día de la semana.
+\end{itemize}
+
+\section{Descripción del dispositivo}
+
+El dispositivo es un pastillero inteligente diseñado para facilitar la gestión diaria de la medicación.
+
+Incluye:
+
+\begin{itemize}
+\item Pantalla táctil para la interacción directa
+\item Sistema automático de dispensación
+\item Altavoz para avisos acústicos
+\item Conectividad WiFi
+\item Integración con aplicación móvil
+\end{itemize}
+
+\section{Uso del dispositivo}
+
+\subsection{Pantalla principal}
+
+Desde la pantalla principal puedes acceder a:
+
+\begin{itemize}
+\item Visualización de tomas del día
+\item Historial de mediciones
+\item Pulsómetro
+\item Configuración de tomas
+\end{itemize}
+
+La navegación se realiza mediante la pantalla táctil.
+
+\subsection{Dispensación de medicación}
+
+El dispositivo dispensa automáticamente la medicación en los horarios configurados.
+
+Cuando llega la hora y día de una toma:
+
+\begin{itemize}
+\item Se activa una señal sonora
+\item Se muestra un aviso en pantalla
+\item Se dispensa la medicación correspondiente
+\end{itemize}
+
+Cada compartimento del sistema corresponde a una toma concreta.
+
+\subsection{Avisos acústicos}
+
+El dispositivo incorpora un altavoz que emite un aviso cuando es necesario alertar al usuario.
+
+El sonido ha sido diseñado para ser:
+
+\begin{itemize}
+\item Claramente audible
+\item Suave y no molesto
+\item Adecuado para uso diario
+\end{itemize}
+
+\section{Aplicación móvil}
+
+La aplicación móvil permite configurar y gestionar el dispositivo de forma sencilla.
+
+En este prototipo, la aplicación se proporciona ya instalada en el dispositivo móvil.
+
+\subsection{Añadir una toma}
+
+Para crear una nueva toma:
+
+\begin{itemize}
+\item Pulsa en “Añadir toma”
+\item Selecciona la hora
+\item Elige los días de repetición
+\item Introduce la medicación
+\item Activa o desactiva el recordatorio
+\item En caso de quererlo, elige cuantos minutos antes quieres un aviso previo a la toma
+\item Guarda la configuración
+\end{itemize}
+
+\subsection{Editar una toma}
+
+Puedes modificar cualquier toma existente pulsando ``editar'' en la toma:
+
+\begin{itemize}
+\item Cambiar la hora
+\item Modificar los días
+\item Activar o desactivar el recordatorio
+\item Modificar el aviso previo
+\end{itemize}
+
+\subsection{Eliminar una toma}
+
+Para eliminar una toma, selecciona la opción ``Eliminar'' de la toma. Aparecerá un mensaje de confirmación para proceder con la eliminación.
+
+\subsection{Sincronización con el dispositivo}
+
+Cada vez que se realiza un cambio en la aplicación:
+
+\begin{itemize}
+\item Se envía la configuración completa al dispositivo
+\item Se actualizan todas las tomas almacenadas
+\end{itemize}
+
+El sistema no realiza actualizaciones parciales, sino que reemplaza la configuración anterior por la nueva.
+
+\section{Funcionamiento del sistema}
+
+El dispositivo almacena las tomas en su memoria interna y funciona de forma autónoma.\\
+
+El sistema comprueba continuamente la hora actual y determina si existe una toma programada.\\
+
+En caso afirmativo:
+
+\begin{itemize}
+\item Se activa el aviso acústico
+\item Se muestra la información en pantalla
+\item Se realiza la dispensación
+\end{itemize}
+
+\section{Funcionamiento sin conexión}
+
+Una vez configurado, el dispositivo no requiere conexión continua con la aplicación.
+
+\begin{itemize}
+\item Mantiene las tomas almacenadas
+\item Sigue funcionando con normalidad
+\item No recibe cambios hasta una nueva sincronización
+\end{itemize}
+
+Si el dispositivo se queda sin corriente, no será necesario volver a sincronizarlo con la aplicación.\\
+
+Solo será necesario hacerlo si se borra el caché o datos de la aplicación o si se borra la memoria del dispositivo.
+
+\section{Sensor biomédico}
+
+El dispositivo incluye un sensor para la medición de parámetros como la frecuencia cardíaca y la saturación de oxígeno.\\
+
+Para realizar una medición:
+
+\begin{itemize}
+\item Coloca el dedo sobre el sensor
+\item Mantén el dedo inmóvil durante unos segundos
+\item Espera a que aparezca el resultado en pantalla
+\end{itemize}
+
+\section{Recomendaciones de uso}
+
+Para un correcto funcionamiento:
+
+\begin{itemize}
+\item Mantén el dispositivo en un entorno limpio y seco
+\item Evita golpes o caídas
+\item Utiliza una fuente de alimentación adecuada 5V/3A
+\item Revisa periódicamente el estado del dispensador
+\end{itemize}
+
+\section{Problemas frecuentes}
+
+\textbf{El dispositivo no enciende}
+Comprueba la conexión del cable USB-C.
+
+\textbf{No aparecen las tomas}
+Realiza una modificación en la aplicación para forzar la sincronización.
+
+\textbf{El dispositivo no tiene configuración}
+Vuelve a sincronizar desde la aplicación móvil.
+
+\textbf{No se escucha el aviso}
+Verifica el funcionamiento del altavoz.
+
+\textbf{No conecta al WiFi}
+Reinicia el dispositivo e introduce de nuevo los datos de la red.
+
+\section{Información adicional}
+
+El sistema ha sido diseñado para ofrecer una experiencia sencilla, intuitiva y accesible, especialmente orientada a usuarios que requieren apoyo en la gestión de su medicación diaria.\\
+
+La combinación del dispositivo y la aplicación permite una gestión completa, automatizada y fiable de las tomas.

@@ -8,12 +8,19 @@ extern TFT_eSPI tft;
 #include <WebServer.h>
 WebServer server(80);
 
+#include <WiFiUdp.h>
+
+WiFiUDP udp;
+
 #include "lvgl_display.h"
 #include "lvgl_touch.h"
 
 #include "user_interface/wifi_mod.h"
 #include "user_interface/wifi_portal.h"
 #include "user_interface/clock_mod.h"
+#include "user_interface/pill_takes.h"
+
+#include "storage/takes_storage.h" 
 
 #include "logo_mymeds.h"
 
@@ -33,6 +40,8 @@ void setup()
     delay(200);
 
     lvgl_begin();
+
+    uploadTakes();
 
     // --- Logo ---
     Preferences p;
@@ -83,8 +92,16 @@ void setup()
             Serial.println("\nConectado al WiFi!");
             Serial.println(WiFi.localIP());
 
+            Serial.println("---- TAKES PARSED (WIFI CONNECT) ----");
+            Serial.print("Total takes: ");
+            Serial.println(total_takes);
+
+            udp.begin(8888);
+            Serial.println("UDP listo en puerto 8888");
+
             // --- Servidor ---
             server.on("/", handle_web_root);
+            server.on("/takes", HTTP_GET, handle_get_takes);
             server.on("/takes", HTTP_POST, handle_takes);
             server.on("/link", HTTP_GET, handle_link);
             server.begin();
@@ -94,7 +111,7 @@ void setup()
             // Opcional: mensaje en pantalla
             lv_obj_clean(lv_scr_act());
             lv_obj_t *label = lv_label_create(lv_scr_act());
-            lv_label_set_text(label, "Conectando con la app...");
+            lv_label_set_text(label, "Conectando\ncon la app...");
             lv_obj_center(label);
 
             return;
@@ -120,6 +137,34 @@ void loop()
 
     server.handleClient();
 
+    // DISCOVERY UDP
+    int packetSize = udp.parsePacket();
+
+    if (packetSize) {
+
+        char incoming[255];
+        int len = udp.read(incoming, 255);
+
+        if (len > 0) {
+            incoming[len] = 0;
+        }
+
+        String message = String(incoming);
+
+        Serial.print("UDP recibido: ");
+        Serial.println(message);
+
+        if (message == "DISCOVER_ESP") {
+
+            Serial.println("Respondiendo a la app...");
+
+            udp.beginPacket(udp.remoteIP(), udp.remotePort());
+            udp.write((const uint8_t*)"ESP_HERE", 8);
+            udp.endPacket();
+        }
+    }
+
+
     // --- Conexión WiFi desde AP ---
     if (!wifi_connected && WiFi.status() == WL_CONNECTED){
 
@@ -135,7 +180,15 @@ void loop()
         Serial.println("\nConectado al WiFi!");
         Serial.println(WiFi.localIP());
 
+        Serial.println("---- TAKES PARSED (AP → WIFI) ----");
+        Serial.print("Total takes: ");
+        Serial.println(total_takes);
+
+        udp.begin(8888);
+        Serial.println("UDP listo en puerto 8888");
+
         server.on("/", handle_web_root);
+        server.on("/takes", HTTP_GET, handle_get_takes);
         server.on("/takes", HTTP_POST, handle_takes);
         server.on("/link", HTTP_GET, handle_link);
 
@@ -145,7 +198,8 @@ void loop()
 
         lv_obj_clean(lv_scr_act());
         lv_obj_t *label = lv_label_create(lv_scr_act());
-        lv_label_set_text(label, "Conectando con la app...");
+        lv_label_set_text(label, "Conectando\ncon la app...");
+        lv_obj_set_style_text_font(label, &lv_font_montserrat_24, 0);
         lv_obj_center(label);
     }
 
