@@ -13,6 +13,7 @@ import com.example.mymeds.databinding.FragmentTakesListBinding
 import com.example.mymeds.data.repository.TakeRepository
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.util.JsonUtils
+import com.example.mymeds.data.network.EspApi
 import android.content.Context
 import android.util.Log
 
@@ -119,38 +120,6 @@ class TakesListFragment : Fragment() {
             .apply()
     }
 
-    private fun sendTakesToEsp() {
-
-        if (EspConfig.baseUrl.isEmpty()) return
-
-        val takes = TakeRepository.getTakes()
-
-        Thread {
-            try {
-
-                if (EspConfig.baseUrl.isEmpty()) return@Thread
-
-                val url = java.net.URL(EspConfig.baseUrl + "/takes")
-
-                val conn = url.openConnection() as java.net.HttpURLConnection
-                conn.requestMethod = "POST"
-                conn.doOutput = true
-                conn.setRequestProperty("Content-Type", "application/json")
-
-                val json = JsonUtils.takesToJson(TakeRepository.getTakes())
-
-                conn.outputStream.use {
-                    it.write(json.toByteArray())
-                }
-
-                conn.responseCode
-
-            } catch (e: Exception) {
-                Log.e("ESP_SEND", "Error", e)
-            }
-        }.start()
-    }
-
     private fun showDeleteConfirmation(position: Int) {
 
         AlertDialog.Builder(requireContext())
@@ -161,7 +130,7 @@ class TakesListFragment : Fragment() {
                 TakeRepository.removeTake(position)
 
                 saveTakesLocally()
-                sendTakesToEsp()
+                EspApi.sendTakes()
 
                 updateUI()
             }

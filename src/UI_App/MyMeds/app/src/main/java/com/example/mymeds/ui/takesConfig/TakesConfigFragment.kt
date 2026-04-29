@@ -20,6 +20,7 @@ import com.example.mymeds.data.model.Take
 import com.example.mymeds.data.repository.TakeRepository
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.util.JsonUtils
+import com.example.mymeds.data.network.EspApi
 import android.util.Log
 import android.content.Context
 
@@ -132,7 +133,7 @@ class TakesConfigFragment : Fragment() {
 
             } else {
 
-                sendTakesToEsp()
+                EspApi.sendTakes()
             }
 
             Toast.makeText(
