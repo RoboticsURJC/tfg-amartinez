@@ -110,6 +110,26 @@ class WifiConfigFragment : Fragment() {
         binding.layoutLoading.visibility = View.GONE
     }
 
+    private fun isConnectedToESP(): Boolean {
+        val wifiManager = requireContext().applicationContext
+            .getSystemService(Context.WIFI_SERVICE) as android.net.wifi.WifiManager
+
+        val ipInt = wifiManager.connectionInfo.ipAddress
+
+        val ip = java.net.InetAddress.getByAddress(
+            byteArrayOf(
+                (ipInt and 0xff).toByte(),
+                (ipInt shr 8 and 0xff).toByte(),
+                (ipInt shr 16 and 0xff).toByte(),
+                (ipInt shr 24 and 0xff).toByte()
+            )
+        )
+
+        val ipString = ip.hostAddress ?: return false
+
+        return ipString.startsWith("192.168.4.")
+    }
+
     private fun startConnectionProcess() {
 
         if (isSearching) return
@@ -119,62 +139,90 @@ class WifiConfigFragment : Fragment() {
 
             try {
 
-                Thread.sleep(4000)
+                // 🔥 ESPERAR A SALIR DE LA RED DE LA ESP (192.168.4.x)
+                var retries = 0
+
+                while (isConnectedToESP() && retries < 15) {
+                    android.util.Log.d("UDP", "Esperando salir de 192.168.4.x...")
+                    Thread.sleep(1000)
+                    retries++
+                }
+
+                // pequeño margen extra para asegurar conexión estable
+                Thread.sleep(2000)
+
+                val socket = java.net.DatagramSocket()
+                socket.broadcast = true
+                socket.soTimeout = 3000
+
+                val message = "DISCOVER_ESP".toByteArray()
+
+                // 1. Obtener IP local del móvil (YA en red correcta)
+                val wifiManager = requireContext().applicationContext
+                    .getSystemService(Context.WIFI_SERVICE) as android.net.wifi.WifiManager
+
+                val ipInt = wifiManager.connectionInfo.ipAddress
+                val ip = java.net.InetAddress.getByAddress(
+                    byteArrayOf(
+                        (ipInt and 0xff).toByte(),
+                        (ipInt shr 8 and 0xff).toByte(),
+                        (ipInt shr 16 and 0xff).toByte(),
+                        (ipInt shr 24 and 0xff).toByte()
+                    )
+                )
+
+                val ipString = ip.hostAddress
+                android.util.Log.d("UDP", "IP móvil: $ipString")
+
+                // 2. Broadcast local
+                val parts = ipString!!.split(".")
+                val localBroadcast = "${parts[0]}.${parts[1]}.${parts[2]}.255"
+
+                val targets = listOf(
+                    "255.255.255.255",
+                    localBroadcast
+                )
 
                 var foundIp: String? = null
-                val lock = Object()
 
-                for (attempt in 1..3) {
+                for (target in targets) {
 
-                    android.util.Log.d("DISCOVERY", "Intento $attempt")
+                    try {
 
-                    for (i in 1..255 step 10) {
+                        android.util.Log.d("UDP", "Enviando a $target")
 
-                        val threads = mutableListOf<Thread>()
+                        val address = java.net.InetAddress.getByName(target)
 
-                        for (j in i until i + 10) {
+                        val packet = java.net.DatagramPacket(
+                            message,
+                            message.size,
+                            address,
+                            8888
+                        )
 
-                            if (j > 255) break
+                        socket.send(packet)
 
-                            val thread = Thread {
+                        val buffer = ByteArray(1024)
+                        val response = java.net.DatagramPacket(buffer, buffer.size)
 
-                                val ip = "http://192.168.1.$j"
+                        socket.receive(response)
 
-                                try {
-                                    val url = java.net.URL("$ip/link")
-                                    val conn = url.openConnection() as java.net.HttpURLConnection
+                        val received = String(response.data, 0, response.length)
+                        val senderIp = response.address.hostAddress
 
-                                    conn.requestMethod = "GET"
-                                    conn.connectTimeout = 500
-                                    conn.readTimeout = 500
+                        android.util.Log.d("UDP", "Respuesta: $received desde $senderIp")
 
-                                    val code = conn.responseCode
-
-                                    if (code == 200) {
-                                        synchronized(lock) {
-                                            if (foundIp == null) {
-                                                foundIp = ip
-                                                android.util.Log.d("DISCOVERY", "✅ ENCONTRADO: $ip")
-                                            }
-                                        }
-                                    }
-
-                                } catch (_: Exception) {}
-                            }
-
-                            thread.start()
-                            threads.add(thread)
+                        if (received == "ESP_HERE") {
+                            foundIp = senderIp
+                            break
                         }
 
-                        threads.forEach { it.join() }
-
-                        if (foundIp != null) break
+                    } catch (e: Exception) {
+                        android.util.Log.d("UDP", "Falló intento en $target")
                     }
-
-                    if (foundIp != null) break
-
-                    Thread.sleep(1000)
                 }
+
+                socket.close()
 
                 activity?.runOnUiThread {
 
@@ -183,18 +231,20 @@ class WifiConfigFragment : Fragment() {
 
                     foundIp?.let { ip ->
 
-                        EspConfig.baseUrl = ip
+                        val url = "http://$ip"
+
+                        EspConfig.baseUrl = url
 
                         val prefs = requireContext()
                             .getSharedPreferences("app", Context.MODE_PRIVATE)
 
                         prefs.edit()
-                            .putString("esp_url", ip)
+                            .putString("esp_url", url)
                             .apply()
 
                         Toast.makeText(
                             requireContext(),
-                            "Dispositivo conectado ($ip)",
+                            "Dispositivo conectado ($url)",
                             Toast.LENGTH_SHORT
                         ).show()
 
@@ -213,8 +263,22 @@ class WifiConfigFragment : Fragment() {
                 }
 
             } catch (e: Exception) {
+
                 e.printStackTrace()
-                isSearching = false
+
+                activity?.runOnUiThread {
+
+                    isSearching = false
+                    binding.buttonSendWifi.isEnabled = true
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Error en búsqueda",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    showForm()
+                }
             }
 
         }.start()
