@@ -9,7 +9,6 @@ extern TFT_eSPI tft;
 WebServer server(80);
 
 #include <WiFiUdp.h>
-
 WiFiUDP udp;
 
 #include "lvgl_display.h"
@@ -23,6 +22,8 @@ WiFiUDP udp;
 #include "storage/takes_storage.h" 
 
 #include "logo_mymeds.h"
+
+#include <Preferences.h> // 🔥 NUEVO
 
 static const int LOGO_TIME_MS = 4000;
 
@@ -43,8 +44,12 @@ void setup()
 
     uploadTakes();
 
-    // --- Logo ---
     Preferences p;
+    p.begin("sys", true);
+    device_linked = p.getBool("linked", false);
+    p.end();
+
+    // --- Logo ---
     p.begin("sys", false);
     bool skipLogo = p.getBool("skip_logo", false);
     p.putBool("skip_logo", false);
@@ -73,7 +78,6 @@ void setup()
     WiFi.disconnect(true);
     delay(100);
 
-    // --- Intentar conexión guardada ---
     if (wifi_credentials_exists()){
         String ssid, password;
         wifi_load_credentials(ssid, password);
@@ -99,26 +103,41 @@ void setup()
             udp.begin(8888);
             Serial.println("UDP listo en puerto 8888");
 
-            // --- Servidor ---
             server.on("/", handle_web_root);
             server.on("/takes", HTTP_GET, handle_get_takes);
-            server.on("/takes", HTTP_POST, handle_takes);
+            server.on("/take", HTTP_POST, handle_add_take);
+            server.on("/take", HTTP_PUT, handle_update_take);
+            server.on("/take", HTTP_DELETE, handle_delete_take);
             server.on("/link", HTTP_GET, handle_link);
             server.begin();
 
-            Serial.println("Esperando conexión de la app...");
+            if (device_linked) {
 
-            // Opcional: mensaje en pantalla
-            lv_obj_clean(lv_scr_act());
-            lv_obj_t *label = lv_label_create(lv_scr_act());
-            lv_label_set_text(label, "Conectando\ncon la app...");
-            lv_obj_center(label);
+                Serial.println("Ya vinculado → cargando reloj");
+
+                lv_obj_clean(lv_scr_act());
+                show_clock_screen(lv_scr_act());
+
+                lv_timer_create(update_clock_task, 1000, NULL);
+                clock_sync();
+
+                clock_started = true;
+
+            } else {
+
+                Serial.println("Esperando conexión de la app...");
+
+                lv_obj_clean(lv_scr_act());
+                lv_obj_t *label = lv_label_create(lv_scr_act());
+                lv_label_set_text(label, "Conectando\ncon la app...");
+                lv_obj_center(label);
+            }
 
             return;
         }
     }
 
-    // --- Modo AP (único QR que queda) ---
+    // --- Modo AP ---
     lv_obj_clean(lv_scr_act());
     show_wifi_screen(
         lv_scr_act(),
@@ -137,7 +156,7 @@ void loop()
 
     server.handleClient();
 
-    // DISCOVERY UDP
+    // --- DISCOVERY UDP ---
     int packetSize = udp.parsePacket();
 
     if (packetSize) {
@@ -145,9 +164,7 @@ void loop()
         char incoming[255];
         int len = udp.read(incoming, 255);
 
-        if (len > 0) {
-            incoming[len] = 0;
-        }
+        if (len > 0) incoming[len] = 0;
 
         String message = String(incoming);
 
@@ -163,7 +180,6 @@ void loop()
             udp.endPacket();
         }
     }
-
 
     // --- Conexión WiFi desde AP ---
     if (!wifi_connected && WiFi.status() == WL_CONNECTED){
@@ -189,18 +205,35 @@ void loop()
 
         server.on("/", handle_web_root);
         server.on("/takes", HTTP_GET, handle_get_takes);
-        server.on("/takes", HTTP_POST, handle_takes);
+        server.on("/take", HTTP_POST, handle_add_take);
+        server.on("/take", HTTP_PUT, handle_update_take);
+        server.on("/take", HTTP_DELETE, handle_delete_take);
         server.on("/link", HTTP_GET, handle_link);
 
         server.begin();
 
         Serial.println("Servidor HTTP listo");
 
-        lv_obj_clean(lv_scr_act());
-        lv_obj_t *label = lv_label_create(lv_scr_act());
-        lv_label_set_text(label, "Conectando\ncon la app...");
-        lv_obj_set_style_text_font(label, &lv_font_montserrat_24, 0);
-        lv_obj_center(label);
+        if (device_linked) {
+
+            Serial.println("Ya vinculado → cargando reloj");
+
+            lv_obj_clean(lv_scr_act());
+            show_clock_screen(lv_scr_act());
+
+            lv_timer_create(update_clock_task, 1000, NULL);
+            clock_sync();
+
+            clock_started = true;
+
+        } else {
+
+            lv_obj_clean(lv_scr_act());
+            lv_obj_t *label = lv_label_create(lv_scr_act());
+            lv_label_set_text(label, "Conectando\ncon la app...");
+            lv_obj_set_style_text_font(label, &lv_font_montserrat_24, 0);
+            lv_obj_center(label);
+        }
     }
 
     // --- SINCRONIZACIÓN CON APP ---

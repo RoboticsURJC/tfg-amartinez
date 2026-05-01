@@ -11,10 +11,14 @@ void initNVS()
 void saveTakes()
 {
     prefs.begin("takes", false);
+    prefs.clear();
     prefs.putInt("total", total_takes);
 
     for (int i = 0; i < total_takes; i++){
         char key[20];
+        sprintf(key, "id%d", i);
+        prefs.putString(key, takes[i].id);
+        
         sprintf(key, "hour%d", i);
         prefs.putString(key, takes[i].hour);
 
@@ -43,11 +47,24 @@ void uploadTakes()
     
     total_takes = prefs.getInt("total", 0);
     if (total_takes <= 0){
+        prefs.end();
         return;
     }
 
+    bool needsSave = false;
+
     for ( int i = 0; i < total_takes; i++){
         char key[20];
+        sprintf(key, "id%d", i);
+        String id = prefs.getString(key, "");
+        strncpy(takes[i].id, id.c_str(), sizeof(takes[i].id));
+        takes[i].id[sizeof(takes[i].id) - 1] = '\0';
+
+        if (strlen(takes[i].id) == 0) {
+            sprintf(takes[i].id, "take_%d", i);
+            needsSave = true;
+        }
+
         sprintf(key, "hour%d", i);
         String h = prefs.getString(key, "00:00");
         strcpy(takes[i].hour, h.c_str());
@@ -66,6 +83,11 @@ void uploadTakes()
     }
 
     prefs.end();
+
+    if (needsSave) {
+        saveTakes();
+        Serial.println("IDs generados y guardados en NVS");
+    }
 }
 
 void delete_take(int index)
@@ -81,5 +103,4 @@ void delete_take(int index)
     total_takes--;
 
     saveTakes();
-    //takes_list_screen();
 }

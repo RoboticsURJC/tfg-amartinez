@@ -4,6 +4,7 @@
 #define MAX_TAKES 30
 
 typedef struct {
+    char id[20];
     char hour[6];
     bool repeat[7];
     bool recordatory;
