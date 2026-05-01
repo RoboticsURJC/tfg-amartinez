@@ -1,15 +1,19 @@
 package com.example.mymeds.ui.config
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mymeds.R
 import com.example.mymeds.databinding.FragmentConfigPillsBinding
 import com.example.mymeds.data.repository.EspConfig
-import android.content.Context
+import android.util.Log
 
 class ConfigFragment : Fragment() {
 
@@ -17,6 +21,10 @@ class ConfigFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var deviceDetected = false
+
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST = 1001
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,41 +38,190 @@ class ConfigFragment : Fragment() {
             findNavController().navigate(R.id.homeFragment)
         }
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        checkLocationPermissionAndStart()
+    }
+
+    // ---------------- PERMISOS ----------------
+
+    private fun checkLocationPermissionAndStart() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            startDeviceCheck()
+        } else {
+            requestPermissions(
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == LOCATION_PERMISSION_REQUEST) {
+            if (grantResults.isNotEmpty() &&
+                grantResults[0] == PackageManager.PERMISSION_GRANTED
+            ) {
+                startDeviceCheck()
+            } else {
+                deviceDetected = false
+                updateUI()
+            }
+        }
+    }
+
+    // ---------------- LÓGICA PRINCIPAL ----------------
+
+    private fun startDeviceCheck() {
+
         val prefs = requireContext()
             .getSharedPreferences("app", Context.MODE_PRIVATE)
 
         val savedUrl = prefs.getString("esp_url", null)
 
-        if (savedUrl != null) {
+        Thread {
 
-            EspConfig.baseUrl = savedUrl
+            var success = false
+            var finalUrl: String? = savedUrl
 
-            Thread {
-                try {
-                    val url = java.net.URL(savedUrl)
-                    val conn = url.openConnection() as java.net.HttpURLConnection
-                    conn.connectTimeout = 2000
-                    conn.connect()
+            // 🔹 1. Intentar con URL guardada
+            if (savedUrl != null) {
+                Log.d("CONFIG", "Probando URL guardada: $savedUrl")
+                success = checkConnection(savedUrl)
+            }
 
-                    deviceDetected = conn.responseCode == 200
+            // 🔥 2. SI FALLA → DISCOVERY UDP
+            if (!success) {
 
-                } catch (e: Exception) {
-                    deviceDetected = false
+                Log.d("CONFIG", "Fallback → buscando ESP por UDP")
+
+                val foundIp = discoverEsp()
+
+                if (foundIp != null) {
+
+                    finalUrl = "http://$foundIp"
+
+                    Log.d("CONFIG", "Nueva IP encontrada: $finalUrl")
+
+                    success = checkConnection(finalUrl)
+
+                    if (success) {
+                        prefs.edit().putString("esp_url", finalUrl).apply()
+                    }
                 }
+            }
 
-                activity?.runOnUiThread {
-                    updateUI()
-                }
+            deviceDetected = success
 
-            }.start()
+            if (success && finalUrl != null) {
+                EspConfig.baseUrl = finalUrl
+            }
 
-        } else {
-            deviceDetected = false
-            updateUI()
-        }
+            activity?.runOnUiThread {
+                updateUI()
+            }
 
-        return binding.root
+        }.start()
     }
+
+    // ---------------- CHECK HTTP ----------------
+
+    private fun checkConnection(urlBase: String): Boolean {
+        return try {
+
+            val url = java.net.URL("$urlBase/takes")
+            val conn = url.openConnection() as java.net.HttpURLConnection
+
+            conn.requestMethod = "GET"
+            conn.connectTimeout = 2000
+            conn.readTimeout = 2000
+
+            val code = conn.responseCode
+
+            Log.d("CONFIG", "Check $urlBase → $code")
+
+            code == 200
+
+        } catch (e: Exception) {
+            Log.d("CONFIG", "Check falló: $urlBase", e)
+            false
+        }
+    }
+
+    // ---------------- DISCOVERY UDP ----------------
+
+    private fun discoverEsp(): String? {
+
+        return try {
+
+            val socket = java.net.DatagramSocket()
+            socket.broadcast = true
+            socket.soTimeout = 2000
+
+            val message = "DISCOVER_ESP".toByteArray()
+
+            val wifiManager = requireContext().applicationContext
+                .getSystemService(Context.WIFI_SERVICE) as android.net.wifi.WifiManager
+
+            val ipInt = wifiManager.connectionInfo.ipAddress
+
+            val ip = java.net.InetAddress.getByAddress(
+                byteArrayOf(
+                    (ipInt and 0xff).toByte(),
+                    (ipInt shr 8 and 0xff).toByte(),
+                    (ipInt shr 16 and 0xff).toByte(),
+                    (ipInt shr 24 and 0xff).toByte()
+                )
+            )
+
+            val ipString = ip.hostAddress ?: return null
+            val parts = ipString.split(".")
+            val broadcast = "${parts[0]}.${parts[1]}.${parts[2]}.255"
+
+            val address = java.net.InetAddress.getByName(broadcast)
+
+            val packet = java.net.DatagramPacket(
+                message,
+                message.size,
+                address,
+                8888
+            )
+
+            socket.send(packet)
+
+            val buffer = ByteArray(1024)
+            val response = java.net.DatagramPacket(buffer, buffer.size)
+
+            socket.receive(response)
+
+            val received = String(response.data, 0, response.length)
+
+            if (received == "ESP_HERE") {
+                val foundIp = response.address.hostAddress
+                socket.close()
+                return foundIp
+            }
+
+            socket.close()
+            null
+
+        } catch (e: Exception) {
+            Log.d("CONFIG", "Discovery falló", e)
+            null
+        }
+    }
+
+    // ---------------- UI ----------------
 
     private fun updateUI() {
 

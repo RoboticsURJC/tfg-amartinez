@@ -38,13 +38,11 @@ class WifiConfigFragment : Fragment() {
             val pass = binding.passwordInput.text.toString()
 
             if (ssid.isBlank() || pass.isBlank()) {
-
                 Toast.makeText(
                     requireContext(),
                     "Introduce SSID y contraseña",
                     Toast.LENGTH_SHORT
                 ).show()
-
                 return@setOnClickListener
             }
 
@@ -52,9 +50,7 @@ class WifiConfigFragment : Fragment() {
 
             Thread {
                 try {
-                    if (EspConfig.baseUrl.isEmpty()) {
-                        return@Thread
-                    }
+                    if (EspConfig.baseUrl.isEmpty()) return@Thread
 
                     val url = java.net.URL(EspConfig.baseUrl + "/save")
                     val conn = url.openConnection() as java.net.HttpURLConnection
@@ -62,12 +58,11 @@ class WifiConfigFragment : Fragment() {
                     conn.requestMethod = "POST"
                     conn.doOutput = true
 
-                    val data = "ssid=" + ssid + "&password=" + pass
-                    val out = conn.outputStream
+                    val data = "ssid=$ssid&password=$pass"
 
-                    out.write(data.toByteArray())
-                    out.flush()
-                    out.close()
+                    conn.outputStream.use {
+                        it.write(data.toByteArray())
+                    }
 
                     conn.responseCode
 
@@ -75,7 +70,7 @@ class WifiConfigFragment : Fragment() {
 
                         Toast.makeText(
                             requireContext(),
-                            "WiFi enviado. Conectando con el dispositivo...",
+                            "WiFi enviado. Conectando...",
                             Toast.LENGTH_LONG
                         ).show()
 
@@ -101,6 +96,8 @@ class WifiConfigFragment : Fragment() {
         return binding.root
     }
 
+    // ---------------- UI ----------------
+
     private fun showLoading() {
         binding.layoutForm.visibility = View.GONE
         binding.layoutLoading.visibility = View.VISIBLE
@@ -111,25 +108,54 @@ class WifiConfigFragment : Fragment() {
         binding.layoutLoading.visibility = View.GONE
     }
 
-    private fun isConnectedToESP(): Boolean {
-        val wifiManager = requireContext().applicationContext
-            .getSystemService(Context.WIFI_SERVICE) as android.net.wifi.WifiManager
+    // ---------------- RECONNECT ----------------
 
-        val ipInt = wifiManager.connectionInfo.ipAddress
+    private fun tryReconnectSavedDevice(): Boolean {
 
-        val ip = java.net.InetAddress.getByAddress(
-            byteArrayOf(
-                (ipInt and 0xff).toByte(),
-                (ipInt shr 8 and 0xff).toByte(),
-                (ipInt shr 16 and 0xff).toByte(),
-                (ipInt shr 24 and 0xff).toByte()
-            )
-        )
+        val prefs = requireContext()
+            .getSharedPreferences("app", Context.MODE_PRIVATE)
 
-        val ipString = ip.hostAddress ?: return false
+        val savedUrl = prefs.getString("esp_url", null) ?: return false
 
-        return ipString.startsWith("192.168.4.")
+        EspConfig.baseUrl = savedUrl
+
+        return try {
+            val url = java.net.URL("$savedUrl/takes")
+            val conn = url.openConnection() as java.net.HttpURLConnection
+
+            conn.requestMethod = "GET"
+            conn.connectTimeout = 1500
+            conn.readTimeout = 1500
+
+            val code = conn.responseCode
+
+            if (code == 200) {
+
+                // 🔥 CONFIRMAR LINK
+                try {
+                    val linkUrl = java.net.URL("$savedUrl/link")
+                    val linkConn = linkUrl.openConnection() as java.net.HttpURLConnection
+
+                    linkConn.requestMethod = "GET"
+                    linkConn.connectTimeout = 1500
+                    linkConn.readTimeout = 1500
+
+                    linkConn.responseCode
+
+                } catch (e: Exception) {
+                    android.util.Log.d("RECONNECT", "Error en /link")
+                }
+
+                true
+
+            } else false
+
+        } catch (e: Exception) {
+            false
+        }
     }
+
+    // ---------------- DISCOVERY ----------------
 
     private fun startConnectionProcess() {
 
@@ -137,7 +163,6 @@ class WifiConfigFragment : Fragment() {
         isSearching = true
 
         Thread {
-
             try {
 
                 val socket = java.net.DatagramSocket()
@@ -150,13 +175,15 @@ class WifiConfigFragment : Fragment() {
 
                 for (attempt in 1..5) {
 
-                    android.util.Log.d("UDP", "Intento $attempt")
-
-                    // Obtener IP actual (puede cambiar entre intentos)
                     val wifiManager = requireContext().applicationContext
                         .getSystemService(Context.WIFI_SERVICE) as android.net.wifi.WifiManager
 
                     val ipInt = wifiManager.connectionInfo.ipAddress
+
+                    if (ipInt == 0) {
+                        Thread.sleep(1500)
+                        continue
+                    }
 
                     val ip = java.net.InetAddress.getByAddress(
                         byteArrayOf(
@@ -168,28 +195,13 @@ class WifiConfigFragment : Fragment() {
                     )
 
                     val ipString = ip.hostAddress ?: continue
-                    android.util.Log.d("UDP", "IP actual: $ipString")
-
-                    if (ipString == "0.0.0.0") {
-                        android.util.Log.d("UDP", "Sin red todavía, esperando...")
-                        Thread.sleep(1500)
-                        continue
-                    }
-
                     val parts = ipString.split(".")
                     val localBroadcast = "${parts[0]}.${parts[1]}.${parts[2]}.255"
 
-                    val targets = listOf(
-                        "255.255.255.255",
-                        localBroadcast
-                    )
+                    val targets = listOf("255.255.255.255", localBroadcast)
 
                     for (target in targets) {
-
                         try {
-
-                            android.util.Log.d("UDP", "Enviando a $target")
-
                             val address = java.net.InetAddress.getByName(target)
 
                             val packet = java.net.DatagramPacket(
@@ -209,20 +221,15 @@ class WifiConfigFragment : Fragment() {
                             val received = String(response.data, 0, response.length)
                             val senderIp = response.address.hostAddress
 
-                            android.util.Log.d("UDP", "Respuesta: $received desde $senderIp")
-
                             if (received == "ESP_HERE") {
                                 foundIp = senderIp
                                 break
                             }
 
-                        } catch (e: Exception) {
-                            android.util.Log.d("UDP", "Falló intento en $target")
-                        }
+                        } catch (_: Exception) {}
                     }
 
                     if (foundIp != null) break
-
                     Thread.sleep(2000)
                 }
 
@@ -236,65 +243,25 @@ class WifiConfigFragment : Fragment() {
                     foundIp?.let { ip ->
 
                         val url = "http://$ip"
-
                         EspConfig.baseUrl = url
 
                         val prefs = requireContext()
                             .getSharedPreferences("app", Context.MODE_PRIVATE)
 
-                        prefs.edit()
-                            .putString("esp_url", url)
-                            .apply()
+                        prefs.edit().putString("esp_url", url).apply()
 
+                        // 🔥 LINK + ENVÍO TAKES
                         Thread {
                             try {
+                                val linkUrl = java.net.URL("$url/link")
+                                val conn = linkUrl.openConnection() as java.net.HttpURLConnection
+                                conn.requestMethod = "GET"
+                                conn.responseCode
 
-                                var success = false
+                                Thread.sleep(300)
+                                EspApi.sendTakes()
 
-                                for (attempt in 1..5) {
-
-                                    try {
-
-                                        android.util.Log.d("LINK", "Intento $attempt")
-
-                                        val linkUrl = java.net.URL("$url/link")
-                                        val conn = linkUrl.openConnection() as java.net.HttpURLConnection
-
-                                        conn.requestMethod = "GET"
-                                        conn.connectTimeout = 2000
-                                        conn.readTimeout = 2000
-
-                                        val code = conn.responseCode
-
-                                        android.util.Log.d("LINK", "Respuesta /link: $code")
-
-                                        if (code == 200) {
-                                            success = true
-                                            break
-                                        }
-
-                                    } catch (e: Exception) {
-                                        android.util.Log.d("LINK", "Fallo intento $attempt")
-                                    }
-
-                                    Thread.sleep(1000)
-                                }
-
-                                if (success) {
-
-                                    Thread.sleep(500)
-
-                                    EspApi.sendTakes()
-
-                                } else {
-
-                                    android.util.Log.d("LINK", "No se pudo conectar al /link")
-
-                                }
-
-                            } catch (e: Exception) {
-                                android.util.Log.d("LINK", "Error general en /link")
-                            }
+                            } catch (_: Exception) {}
                         }.start()
 
                         Toast.makeText(
@@ -306,23 +273,17 @@ class WifiConfigFragment : Fragment() {
                         findNavController().navigate(R.id.takesListFragment)
 
                     } ?: run {
-
                         Toast.makeText(
                             requireContext(),
                             "No se encontró el dispositivo",
                             Toast.LENGTH_LONG
                         ).show()
-
                         showForm()
                     }
                 }
 
             } catch (e: Exception) {
-
-                e.printStackTrace()
-
                 activity?.runOnUiThread {
-
                     isSearching = false
                     binding.buttonSendWifi.isEnabled = true
 
@@ -335,29 +296,49 @@ class WifiConfigFragment : Fragment() {
                     showForm()
                 }
             }
-
         }.start()
     }
+
+    // ---------------- LIFECYCLE ----------------
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Toast.makeText(
-            requireContext(),
-            EspConfig.baseUrl,
-            Toast.LENGTH_LONG
-        ).show()
+        showLoading()
 
-        binding.ssidInput.requestFocus()
-        binding.ssidInput.post {
-            val imm = requireContext()
-                .getSystemService(Context.INPUT_METHOD_SERVICE)
-                    as InputMethodManager
-            imm.showSoftInput(
-                binding.ssidInput,
-                InputMethodManager.SHOW_IMPLICIT
-            )
-        }
+        Thread {
+
+            val success = tryReconnectSavedDevice()
+
+            activity?.runOnUiThread {
+
+                if (success) {
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Reconectado automáticamente",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    findNavController().navigate(R.id.takesListFragment)
+
+                } else {
+                    showForm()
+
+                    binding.ssidInput.requestFocus()
+                    binding.ssidInput.post {
+                        val imm = requireContext()
+                            .getSystemService(Context.INPUT_METHOD_SERVICE)
+                                as InputMethodManager
+                        imm.showSoftInput(
+                            binding.ssidInput,
+                            InputMethodManager.SHOW_IMPLICIT
+                        )
+                    }
+                }
+            }
+
+        }.start()
     }
 
     override fun onResume() {
