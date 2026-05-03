@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymeds.R
-import com.example.mymeds.data.model.Medicine
+import com.example.mymeds.data.model.TakeMedicine
 import com.example.mymeds.databinding.FragmentTakesConfigBinding
 import com.google.android.material.chip.Chip
 import java.util.Calendar
@@ -31,7 +31,7 @@ class TakesConfigFragment : Fragment() {
 
     private lateinit var chips: List<Chip>
 
-    private val medicines = mutableListOf<Medicine>()
+    private val medicines = mutableListOf<TakeMedicine>()
     private lateinit var medicineAdapter: MedicineAdapter
 
     private var editPosition: Int = -1
@@ -48,6 +48,8 @@ class TakesConfigFragment : Fragment() {
         }
 
         binding.buttonSave.setOnClickListener {
+
+            binding.medicinesRecycler.clearFocus()
 
             val time = binding.timeInput.text.toString()
 
@@ -103,10 +105,30 @@ class TakesConfigFragment : Fragment() {
                     .toIntOrNull()
             }
 
+            val finalMedicines = mutableListOf<TakeMedicine>()
+
+            for (i in 0 until binding.medicinesRecycler.childCount) {
+
+                val holder = binding.medicinesRecycler
+                    .findViewHolderForAdapterPosition(i)
+                        as? MedicineAdapter.MedicineViewHolder
+
+                holder?.let {
+                    val name = it.binding.nameInput.text.toString()
+                    val quantity = it.binding.quantityInput.text.toString()
+
+                    if (name.isNotBlank() || quantity.isNotBlank()) {
+                        finalMedicines.add(
+                            TakeMedicine(name = name, quantity = quantity)
+                        )
+                    }
+                }
+            }
+
             val take = Take(
                 time = time,
                 days = selectedDays,
-                medicines = medicines.toList(),
+                medicines = finalMedicines,
                 reminderEnabled = reminderEnabled,
                 advanceWarningMinutes = advanceWarningMinutes
             )
@@ -204,7 +226,7 @@ class TakesConfigFragment : Fragment() {
         }
 
         binding.buttonMedicine.setOnClickListener {
-            medicineAdapter.addMedicine(Medicine())
+            medicineAdapter.addMedicine(TakeMedicine())
         }
 
         val options = listOf("5 minutos", "10 minutos", "15 minutos", "20 minutos", "30 minutos")
@@ -213,7 +235,13 @@ class TakesConfigFragment : Fragment() {
 
         if (editPosition != -1) {
 
-            val take = TakeRepository.getTakes()[editPosition]
+            val originalTake = TakeRepository.getTakes()[editPosition]
+
+            val take = originalTake.copy(
+                id = if (originalTake.id.isBlank()) {
+                    "take_" + System.currentTimeMillis()
+                } else originalTake.id
+            )
 
             binding.timeInput.setText(take.time)
 
@@ -223,7 +251,7 @@ class TakesConfigFragment : Fragment() {
             }
 
             medicines.clear()
-            medicines.addAll(take.medicines)
+            medicines.addAll(take.medicines ?: emptyList())
             medicineAdapter.notifyDataSetChanged()
 
             binding.reminderSwitch.isChecked = take.reminderEnabled
@@ -232,37 +260,6 @@ class TakesConfigFragment : Fragment() {
                 binding.warningDropdown.setText("$it minutos", false)
             }
         }
-    }
-
-    private fun sendTakesToEsp() {
-
-        Log.d("ESP_URL", EspConfig.baseUrl)
-        val takes = TakeRepository.getTakes()
-
-        Thread {
-            try {
-                if (EspConfig.baseUrl.isEmpty()) return@Thread
-
-                val url = java.net.URL(EspConfig.baseUrl + "/takes")
-                val conn = url.openConnection() as java.net.HttpURLConnection
-
-                conn.requestMethod = "POST"
-                conn.doOutput = true
-                conn.setRequestProperty("Content-Type", "application/json")
-
-                val json = JsonUtils.takesToJson(takes)
-
-                val out = conn.outputStream
-                out.write(json.toByteArray())
-                out.flush()
-                out.close()
-
-                conn.responseCode
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }.start()
     }
 
     private fun saveTakesLocally() {

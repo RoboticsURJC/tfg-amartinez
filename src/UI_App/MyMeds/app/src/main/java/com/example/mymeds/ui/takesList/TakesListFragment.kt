@@ -50,6 +50,41 @@ class TakesListFragment : Fragment() {
 
         loadTakesFromPrefs()
 
+        if (EspConfig.baseUrl.isNotEmpty()) {
+
+            EspApi.getTakes { json ->
+
+                if (json != null) {
+
+                    val takes = JsonUtils.jsonToTakes(json)
+
+                    requireActivity().runOnUiThread {
+
+                        val current = TakeRepository.getTakes()
+
+                        val merged = takes.map { incoming ->
+
+                            val local = current.find { it.id == incoming.id }
+
+                            if (local != null && local.medicines.isNotEmpty()) {
+                                incoming.copy(
+                                    medicines = local.medicines   // 🔥 CONSERVA meds
+                                )
+                            } else {
+                                incoming
+                            }
+                        }
+
+                        TakeRepository.clear()
+                        TakeRepository.addAll(merged)
+
+                        saveTakesLocally()
+                        updateUI()
+                    }
+                }
+            }
+        }
+
         val takes = TakeRepository.getTakes()
 
         adapter = TakesAdapter(

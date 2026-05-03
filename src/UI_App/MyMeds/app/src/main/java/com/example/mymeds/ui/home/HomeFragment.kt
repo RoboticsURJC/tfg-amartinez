@@ -37,6 +37,11 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.pulse_oxigenFragment)
         }
 
+        // Configuración del botón con id button_medicine
+        binding.buttonMedicine.setOnClickListener {
+            findNavController().navigate(R.id.medicineListFragment)
+        }
+
         return binding.root
     }
 

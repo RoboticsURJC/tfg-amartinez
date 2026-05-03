@@ -6,6 +6,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.mymeds.databinding.ActivityMainBinding
+import com.example.mymeds.data.util.MedicineStorage
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         }, 1500)
 
         super.onCreate(savedInstanceState)
+
+        MedicineStorage.load(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

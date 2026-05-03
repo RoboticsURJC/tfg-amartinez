@@ -29,8 +29,15 @@ class TakesAdapter (
 
         holder.binding.textDays.text = "📅 " + take.days.joinToString(" ") { it.label }
 
-        holder.binding.textMedicines.text = "💊 " + take.medicines.joinToString("\n") {
-                "${it.name} - ${it.quantity}"
+        val meds = take.medicines ?: emptyList()
+
+        holder.binding.textMedicines.text =
+            if (meds.isNotEmpty()) {
+                "💊 " + meds.joinToString("\n") {
+                    "${it.name} - ${it.quantity}"
+                }
+            } else {
+                "💊 Sin medicamentos"
             }
 
         if (take.reminderEnabled) {

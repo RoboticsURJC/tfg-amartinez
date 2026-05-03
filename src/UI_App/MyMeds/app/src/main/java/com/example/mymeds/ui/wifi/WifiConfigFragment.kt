@@ -34,15 +34,18 @@ class WifiConfigFragment : Fragment() {
         }
 
         binding.buttonSendWifi.setOnClickListener {
+
             val ssid = binding.ssidInput.text.toString()
             val pass = binding.passwordInput.text.toString()
 
             if (ssid.isBlank() || pass.isBlank()) {
+
                 Toast.makeText(
                     requireContext(),
                     "Introduce SSID y contraseña",
                     Toast.LENGTH_SHORT
                 ).show()
+
                 return@setOnClickListener
             }
 
@@ -50,7 +53,10 @@ class WifiConfigFragment : Fragment() {
 
             Thread {
                 try {
-                    if (EspConfig.baseUrl.isEmpty()) return@Thread
+
+                    if (EspConfig.baseUrl.isEmpty()) {
+                        throw Exception("Base URL vacía")
+                    }
 
                     val url = java.net.URL(EspConfig.baseUrl + "/save")
                     val conn = url.openConnection() as java.net.HttpURLConnection
@@ -58,15 +64,24 @@ class WifiConfigFragment : Fragment() {
                     conn.requestMethod = "POST"
                     conn.doOutput = true
 
+                    conn.connectTimeout = 3000
+                    conn.readTimeout = 3000
+
                     val data = "ssid=$ssid&password=$pass"
 
                     conn.outputStream.use {
                         it.write(data.toByteArray())
                     }
 
-                    conn.responseCode
+                    try {
+                        conn.responseCode   // puede fallar si ESP reinicia
+                    } catch (_: Exception) {}
+
+                    conn.disconnect()
 
                     requireActivity().runOnUiThread {
+
+                        if (!isAdded) return@runOnUiThread
 
                         Toast.makeText(
                             requireContext(),
@@ -79,7 +94,13 @@ class WifiConfigFragment : Fragment() {
                     }
 
                 } catch (e: Exception) {
+
+                    e.printStackTrace()
+
                     requireActivity().runOnUiThread {
+
+                        if (!isAdded) return@runOnUiThread
+
                         Toast.makeText(
                             requireContext(),
                             "Error enviando WiFi",
@@ -90,6 +111,7 @@ class WifiConfigFragment : Fragment() {
                         showForm()
                     }
                 }
+
             }.start()
         }
 
@@ -106,53 +128,6 @@ class WifiConfigFragment : Fragment() {
     private fun showForm() {
         binding.layoutForm.visibility = View.VISIBLE
         binding.layoutLoading.visibility = View.GONE
-    }
-
-    // ---------------- RECONNECT ----------------
-
-    private fun tryReconnectSavedDevice(): Boolean {
-
-        val prefs = requireContext()
-            .getSharedPreferences("app", Context.MODE_PRIVATE)
-
-        val savedUrl = prefs.getString("esp_url", null) ?: return false
-
-        EspConfig.baseUrl = savedUrl
-
-        return try {
-            val url = java.net.URL("$savedUrl/takes")
-            val conn = url.openConnection() as java.net.HttpURLConnection
-
-            conn.requestMethod = "GET"
-            conn.connectTimeout = 1500
-            conn.readTimeout = 1500
-
-            val code = conn.responseCode
-
-            if (code == 200) {
-
-                // 🔥 CONFIRMAR LINK
-                try {
-                    val linkUrl = java.net.URL("$savedUrl/link")
-                    val linkConn = linkUrl.openConnection() as java.net.HttpURLConnection
-
-                    linkConn.requestMethod = "GET"
-                    linkConn.connectTimeout = 1500
-                    linkConn.readTimeout = 1500
-
-                    linkConn.responseCode
-
-                } catch (e: Exception) {
-                    android.util.Log.d("RECONNECT", "Error en /link")
-                }
-
-                true
-
-            } else false
-
-        } catch (e: Exception) {
-            false
-        }
     }
 
     // ---------------- DISCOVERY ----------------
@@ -235,7 +210,9 @@ class WifiConfigFragment : Fragment() {
 
                 socket.close()
 
-                activity?.runOnUiThread {
+                requireActivity().runOnUiThread {
+
+                    if (!isAdded) return@runOnUiThread
 
                     isSearching = false
                     binding.buttonSendWifi.isEnabled = true
@@ -250,7 +227,6 @@ class WifiConfigFragment : Fragment() {
 
                         prefs.edit().putString("esp_url", url).apply()
 
-                        // 🔥 LINK + ENVÍO TAKES
                         Thread {
                             try {
                                 val linkUrl = java.net.URL("$url/link")
@@ -283,16 +259,11 @@ class WifiConfigFragment : Fragment() {
                 }
 
             } catch (e: Exception) {
-                activity?.runOnUiThread {
-                    isSearching = false
+                requireActivity().runOnUiThread {
+
+                    if (!isAdded) return@runOnUiThread
+
                     binding.buttonSendWifi.isEnabled = true
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Error en búsqueda",
-                        Toast.LENGTH_LONG
-                    ).show()
-
                     showForm()
                 }
             }
@@ -304,41 +275,19 @@ class WifiConfigFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showLoading()
+        // 🔥 SOLO FORMULARIO (SIN AUTO-RECONEXIÓN)
+        showForm()
 
-        Thread {
-
-            val success = tryReconnectSavedDevice()
-
-            activity?.runOnUiThread {
-
-                if (success) {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Reconectado automáticamente",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    findNavController().navigate(R.id.takesListFragment)
-
-                } else {
-                    showForm()
-
-                    binding.ssidInput.requestFocus()
-                    binding.ssidInput.post {
-                        val imm = requireContext()
-                            .getSystemService(Context.INPUT_METHOD_SERVICE)
-                                as InputMethodManager
-                        imm.showSoftInput(
-                            binding.ssidInput,
-                            InputMethodManager.SHOW_IMPLICIT
-                        )
-                    }
-                }
-            }
-
-        }.start()
+        binding.ssidInput.requestFocus()
+        binding.ssidInput.post {
+            val imm = requireContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE)
+                    as InputMethodManager
+            imm.showSoftInput(
+                binding.ssidInput,
+                InputMethodManager.SHOW_IMPLICIT
+            )
+        }
     }
 
     override fun onResume() {

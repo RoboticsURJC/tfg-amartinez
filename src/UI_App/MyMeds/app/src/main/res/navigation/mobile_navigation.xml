@@ -48,8 +48,8 @@
         tools:layout="@layout/fragment_takes_config" />
 
     <fragment
-        android:id="@+id/connectingFragment"
-        android:name="com.example.mymeds.ui.connecting.ConnectingFragment"
-        android:label="Connecting" />
+        android:id="@+id/medicineListFragment"
+        android:name="com.example.mymeds.ui.medicine.MedicineListFragment"
+        android:label="Medicamentos" />
 
 </navigation>

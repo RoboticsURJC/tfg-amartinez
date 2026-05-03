@@ -19,9 +19,23 @@ object JsonUtils {
 
     fun jsonToTakes(json: String): List<Take> {
         android.util.Log.d("JSON_RAW", json)
+
         return try {
             val wrapper = gson.fromJson(json, TakesWrapper::class.java)
-            wrapper.takes
+
+            wrapper.takes.map { take ->
+
+                val safeId = if (take.id.isBlank()) {
+                    "take_" + System.currentTimeMillis()
+                } else take.id
+
+                take.copy(
+                    id = safeId,
+                    medicines = take.medicines ?: emptyList(),
+                    days = take.days ?: emptyList()
+                )
+            }
+
         } catch (e: Exception) {
             android.util.Log.e("JSON", "Error parsing takes", e)
             emptyList()
