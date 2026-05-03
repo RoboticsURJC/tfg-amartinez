@@ -333,6 +333,72 @@ void handle_delete_take()
     server.send(200, "application/json", "{\"status\":\"deleted\"}");
 }
 
+void handle_takes()
+{
+    String body = server.arg("plain");
+
+    Serial.println("Takes received:");
+    Serial.println(body);
+
+    if (body.length() == 0) {
+        server.send(400, "application/json", "{\"error\":\"empty body\"}");
+        return;
+    }
+
+    DynamicJsonDocument doc(4096);
+    DeserializationError error = deserializeJson(doc, body);
+
+    if (error) {
+        Serial.println("Error parsing JSON");
+        server.send(400, "application/json", "{\"error\":\"invalid json\"}");
+        return;
+    }
+
+    JsonArray takesJson = doc["takes"];
+
+    total_takes = 0;
+
+    for (JsonObject t : takesJson) {
+
+        if (total_takes >= MAX_TAKES) break;
+
+        String time = t["time"] | "00:00";
+        strncpy(takes[total_takes].hour, time.c_str(), 6);
+
+        for (int i = 0; i < 7; i++) {
+            takes[total_takes].repeat[i] = false;
+        }
+
+        JsonArray days = t["days"];
+        for (String d : days) {
+
+            if (d == "MONDAY") takes[total_takes].repeat[0] = true;
+            if (d == "TUESDAY") takes[total_takes].repeat[1] = true;
+            if (d == "WEDNESDAY") takes[total_takes].repeat[2] = true;
+            if (d == "THURSDAY") takes[total_takes].repeat[3] = true;
+            if (d == "FRIDAY") takes[total_takes].repeat[4] = true;
+            if (d == "SATURDAY") takes[total_takes].repeat[5] = true;
+            if (d == "SUNDAY") takes[total_takes].repeat[6] = true;
+        }
+
+        takes[total_takes].recordatory = t["reminderEnabled"] | false;
+        takes[total_takes].warning_time = t["advanceWarningMinutes"] | 0;
+
+        // 🔥 ID (importante)
+        if (strlen(takes[total_takes].id) == 0) {
+            sprintf(takes[total_takes].id, "take_%d", total_takes);
+        }
+
+        total_takes++;
+    }
+
+    saveTakes();
+
+    Serial.println("Takes saved correctly");
+
+    server.send(200, "application/json", body);
+}
+
 // ---------------- LINK ----------------
 
 void handle_link()

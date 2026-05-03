@@ -35,6 +35,29 @@ static bool clock_started = false;
 
 static lv_timer_t *clock_timer = nullptr;
 
+void handle_not_found() {
+    Serial.println("----- NOT FOUND -----");
+    Serial.print("URI: ");
+    Serial.println(server.uri());
+
+    Serial.print("Method: ");
+    Serial.println(server.method());
+
+    Serial.print("Args: ");
+    Serial.println(server.args());
+
+    for (uint8_t i = 0; i < server.args(); i++) {
+        Serial.print(" - ");
+        Serial.print(server.argName(i));
+        Serial.print(": ");
+        Serial.println(server.arg(i));
+    }
+
+    Serial.println("---------------------");
+
+    server.send(404, "text/plain", "Not found");
+}
+
 void setup()
 {
     Serial.begin(115200);
@@ -108,7 +131,10 @@ void setup()
             server.on("/take", HTTP_POST, handle_add_take);
             server.on("/take", HTTP_PUT, handle_update_take);
             server.on("/take", HTTP_DELETE, handle_delete_take);
+            server.on("/takes", HTTP_POST, handle_takes);
             server.on("/link", HTTP_GET, handle_link);
+
+            server.onNotFound(handle_not_found);
             server.begin();
 
             if (device_linked) {
@@ -208,8 +234,10 @@ void loop()
         server.on("/take", HTTP_POST, handle_add_take);
         server.on("/take", HTTP_PUT, handle_update_take);
         server.on("/take", HTTP_DELETE, handle_delete_take);
+        server.on("/takes", HTTP_POST, handle_takes);
         server.on("/link", HTTP_GET, handle_link);
 
+        server.onNotFound(handle_not_found);
         server.begin();
 
         Serial.println("Servidor HTTP listo");

@@ -10,6 +10,7 @@ void handle_get_takes();
 void handle_add_take();
 void handle_update_take();
 void handle_delete_take();
+void handle_takes();
 void handle_link();
 void wifi_portal_init();
 bool wifi_credentials_exists();
