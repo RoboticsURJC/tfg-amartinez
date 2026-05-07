@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "user_interface/pill_takes.h"
 #include "storage/takes_storage.h"
+#include "storage/medicines_storage.h"
 
 static lv_obj_t *roller_hours;
 static lv_obj_t *roller_minutes;
@@ -16,6 +17,10 @@ static lv_obj_t *lbl_recordatory;
 static lv_obj_t *lbl_warning;
 static lv_obj_t *btn_save;
 static lv_obj_t *btn_back;
+
+static lv_obj_t *lbl_med;
+static lv_obj_t *dd_medicine;
+static const char* med_names[MAX_CATALOG_MEDICINES + 1];
 
 TakeConfig temp_take;
 TakeConfig *current_cfg = NULL;
@@ -47,12 +52,17 @@ static void update_layout_positions()
     if (sel == 2)
         base_y = 260;
     else
-        base_y = 185;
+        base_y = 180;
 
-    lv_obj_set_pos(lbl_recordatory, 10, base_y);
-    lv_obj_set_pos(sw_recordatory, right_x(60), base_y - 5);
+    lv_obj_set_pos(lbl_med, 10, base_y);
+    lv_obj_set_pos(dd_medicine, right_x(170), base_y - 7);
 
-    int warn_y = base_y + 45;
+    int recordatory_y = base_y + 45;
+
+    lv_obj_set_pos(lbl_recordatory, 10, recordatory_y);
+    lv_obj_set_pos(sw_recordatory, right_x(60), recordatory_y - 5);
+
+    int warn_y = recordatory_y + 45;
 
     lv_obj_set_pos(lbl_warning, 10, warn_y);
     lv_obj_set_pos(days_warning, right_x(110), warn_y - 5);
@@ -110,7 +120,7 @@ static void refresh_days_buttons()
     {
         if (!btn_days[i]) continue;
 
-        if (current_cfg->repeat[i])
+        if (is_day_active(current_cfg->repeat_mask, i))
             lv_obj_add_state(btn_days[i], LV_STATE_CHECKED);
         else
             lv_obj_clear_state(btn_days[i], LV_STATE_CHECKED);
@@ -134,7 +144,7 @@ void edit_takes_screen(int index)
         strcpy(temp_take.hour, "00:00");
 
         for (int i = 0; i < 7; i++) {
-            temp_take.repeat[i] = true;
+            set_day(temp_take.repeat_mask, i, true);
         }
         
         current_cfg = &temp_take;
@@ -269,15 +279,15 @@ void edit_takes_screen(int index)
     bool week = true;
 
     for (int i=0;i<7;i++)
-        if (!current_cfg->repeat[i])
+        if (!is_day_active(current_cfg->repeat_mask, i))
             all = false;
 
     for (int i=0;i<5;i++)
-        if (!current_cfg->repeat[i])
+        if (!is_day_active(current_cfg->repeat_mask, i))
             week = false;
 
-    if (current_cfg->repeat[5]) week = false;
-    if (current_cfg->repeat[6]) week = false;
+    if (is_day_active(current_cfg->repeat_mask, 5)) week = false;
+    if (is_day_active(current_cfg->repeat_mask, 6)) week = false;
 
     if (all)
         lv_dropdown_set_selected(days_repeat,0);
@@ -290,15 +300,15 @@ void edit_takes_screen(int index)
 
     if (sel == 0) {
         for (int i = 0; i < 7; i++) {
-            current_cfg->repeat[i] = true;
+            set_day(current_cfg->repeat_mask, i, true);
         }
     } else if (sel == 1) {
         for (int i = 0; i < 5; i++) {
-            current_cfg->repeat[i] = true;
+            set_day(current_cfg->repeat_mask, i, true);
         }
 
-        current_cfg->repeat[5] = false;
-        current_cfg->repeat[6] = false;
+        set_day(current_cfg->repeat_mask, 5, false);
+        set_day(current_cfg->repeat_mask, 6, false);
     }
 
     lv_obj_add_event_cb(days_repeat, [](lv_event_t *e)
@@ -334,14 +344,14 @@ void edit_takes_screen(int index)
             if (sel == 0)
             {
                 for (int i = 0; i < 7; i++)
-                    current_cfg->repeat[i] = true;
+                    set_day(current_cfg->repeat_mask, i, true);
 
             } else if (sel == 1) {
                 for (int i = 0; i < 5; i++)
-                    current_cfg->repeat[i] = true;
+                    set_day(current_cfg->repeat_mask, i, true);
 
-                current_cfg->repeat[5] = false;
-                current_cfg->repeat[6] = false;
+                set_day(current_cfg->repeat_mask, 5, false);
+                set_day(current_cfg->repeat_mask, 6, false);
  
             } else if (sel == 2) {
                 bool all = true;
@@ -349,24 +359,24 @@ void edit_takes_screen(int index)
 
                 for (int i = 0; i < 7; i++)
                 {
-                    if (!current_cfg->repeat[i])
+                    if (!is_day_active(current_cfg->repeat_mask, i))
                         all = false;
                 }
 
                 for (int i = 0; i < 5; i++)
                 {
-                    if (!current_cfg->repeat[i])
+                    if (!is_day_active(current_cfg->repeat_mask, i))
                         week = false;
                 }
 
-                if (current_cfg->repeat[5]) week = false;
-                if (current_cfg->repeat[6]) week = false;
+                if (is_day_active(current_cfg->repeat_mask, 5)) week = false;
+                if (is_day_active(current_cfg->repeat_mask, 6)) week = false;
 
                 // Si venimos de TODOS o SEMANA → limpiar
                 if (all || week)
                 {
                     for (int i = 0; i < 7; i++)
-                        current_cfg->repeat[i] = false;
+                        set_day(current_cfg->repeat_mask, i, false);
                 }
             }
 
@@ -398,7 +408,7 @@ void edit_takes_screen(int index)
         lv_label_set_text(lbl_btn, days[i]);
         lv_obj_center(lbl_btn);
 
-        if (current_cfg->repeat[i]) {
+        if (is_day_active(current_cfg->repeat_mask, i)) {
             lv_obj_add_state(btn_days[i], LV_STATE_CHECKED);
         }
 
@@ -406,9 +416,10 @@ void edit_takes_screen(int index)
         lv_obj_add_event_cb(btn_days[i], [](lv_event_t *e){
             lv_obj_t *obj = lv_event_get_target(e);
             int day = (int)(intptr_t)lv_obj_get_user_data(obj);
-            current_cfg->repeat[day] = !current_cfg->repeat[day];
+            bool active = is_day_active(current_cfg->repeat_mask, day);
+            set_day(current_cfg->repeat_mask, day, !active);
 
-            if (current_cfg->repeat[day]){
+            if (is_day_active(current_cfg->repeat_mask, day)){
                 lv_obj_add_state(lv_event_get_target(e), LV_STATE_CHECKED);
             } else{
                 lv_obj_clear_state(lv_event_get_target(e), LV_STATE_CHECKED);
@@ -418,8 +429,148 @@ void edit_takes_screen(int index)
 
     update_days_visibility();
 
+    // ---------- MEDICAMENTO ----------
+
+lbl_med = lv_label_create(scr);
+lv_label_set_text(lbl_med, "Medicina");
+lv_obj_set_style_text_font(lbl_med, &lv_font_montserrat_22, LV_PART_MAIN);
+lv_obj_set_style_text_color(lbl_med, lv_color_white(), LV_PART_MAIN);
+lv_obj_set_pos(lbl_med, 10, 245);
+
+dd_medicine = lv_dropdown_create(scr);
+lv_obj_set_pos(dd_medicine, 120, 250);
+lv_obj_set_size(dd_medicine, 170, 40);
+
+// estilo dropdown
+lv_obj_set_style_text_font(
+    dd_medicine,
+    &lv_font_montserrat_22,
+    LV_PART_MAIN
+);
+
+lv_obj_set_style_text_color(
+    dd_medicine,
+    lv_color_black(),
+    LV_PART_MAIN
+);
+
+lv_obj_set_style_bg_color(
+    dd_medicine,
+    lv_color_white(),
+    LV_PART_MAIN
+);
+
+lv_obj_set_style_bg_opa(
+    dd_medicine,
+    LV_OPA_COVER,
+    LV_PART_MAIN
+);
+
+lv_dropdown_set_symbol(dd_medicine, NULL);
+
+// construir opciones
+static char med_options[256];
+med_options[0] = '\0';
+
+for (int i = 0; i < medicine_count; i++) {
+
+    strcat(med_options, medicineCatalog[i].name);
+
+    if (i < medicine_count - 1) {
+        strcat(med_options, "\n");
+    }
+}
+
+lv_dropdown_set_options(dd_medicine, med_options);
+
+// PRESELECCIÓN
+if (editing_existing && current_cfg->medicine_count > 0) {
+
+    for (int i = 0; i < medicine_count; i++) {
+
+        if (strcmp(
+            medicineCatalog[i].id,
+            current_cfg->medicines[0].id
+        ) == 0) {
+
+            lv_dropdown_set_selected(dd_medicine, i);
+            break;
+        }
+    }
+}
+
+// EVENTOS
+lv_obj_add_event_cb(dd_medicine, [](lv_event_t *e){
+
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t *obj = lv_event_get_target(e);
+
+    // estilo lista desplegable
+    if (code == LV_EVENT_READY)
+    {
+        lv_obj_t *list = lv_dropdown_get_list(obj);
+
+        lv_obj_set_size(list, 180, 120);
+
+        lv_obj_set_style_bg_color(
+            list,
+            lv_color_white(),
+            LV_PART_MAIN
+        );
+
+        lv_obj_set_style_text_color(
+            list,
+            lv_color_black(),
+            LV_PART_MAIN
+        );
+
+        lv_obj_set_style_text_font(
+            list,
+            &lv_font_montserrat_22,
+            LV_PART_MAIN
+        );
+
+        lv_obj_set_style_text_font(
+            obj,
+            &lv_font_montserrat_22,
+            LV_PART_ITEMS
+        );
+    }
+
+    // selección medicamento
+    if (code == LV_EVENT_VALUE_CHANGED)
+    {
+        int sel = lv_dropdown_get_selected(obj);
+
+        if (sel >= medicine_count) return;
+
+        // evitar overflow
+        if (current_cfg->medicine_count >= MAX_MEDICINES_PER_TAKE)
+            return;
+
+        int idx = current_cfg->medicine_count;
+
+        strcpy(
+            current_cfg->medicines[idx].id,
+            medicineCatalog[sel].id
+        );
+
+        // cantidad por defecto
+        strcpy(
+            current_cfg->medicines[idx].quantity,
+            "1"
+        );
+
+        current_cfg->medicine_count++;
+
+        Serial.print("Medicamento añadido: ");
+        Serial.println(medicineCatalog[sel].name);
+    }
+
+}, LV_EVENT_ALL, NULL);
+
     //----------- RECORDATORY -------------------------------------------
-    const int rec_row_y = 260;
+    const int rec_row_y = 305;
     const int sw_rec_w = 60;
     const int sw_rec_h = 30;
 
@@ -437,7 +588,7 @@ void edit_takes_screen(int index)
     }
 
     //----------- EARLIER WARNING -------------------------------------------
-    const int warn_row_y = 305;
+    const int warn_row_y = 350;
     const int warn_dd_w = 110;
     const int warn_dd_h = 40;
 
@@ -495,7 +646,7 @@ void edit_takes_screen(int index)
     lv_obj_set_style_bg_color(btn_save, lv_color_make(160, 50, 200), LV_PART_MAIN);
     lv_obj_set_style_bg_opa(btn_save, LV_OPA_COVER, LV_PART_MAIN);
     lv_obj_set_style_radius(btn_save, 10, LV_PART_MAIN);
-    lv_obj_set_pos(btn_save, right_x(150), 350);
+    lv_obj_set_pos(btn_save, right_x(150), 395);
 
     lv_obj_t *lbl_save = lv_label_create(btn_save);
     lv_label_set_text(lbl_save, "Guardar");
@@ -532,7 +683,7 @@ void edit_takes_screen(int index)
     lv_obj_set_style_bg_color(btn_back, lv_color_make(160, 50, 200), LV_PART_MAIN);
     lv_obj_set_style_bg_opa(btn_back, LV_OPA_COVER, LV_PART_MAIN);
     lv_obj_set_style_radius(btn_back, 10, LV_PART_MAIN);
-    lv_obj_set_pos(btn_back, 5, 350);
+    lv_obj_set_pos(btn_back, 5, 395);
 
     lv_obj_t *lbl_back = lv_label_create(btn_back);
     lv_label_set_text(lbl_back, "Atrás");

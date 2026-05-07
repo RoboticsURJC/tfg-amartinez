@@ -1,14 +1,28 @@
 #pragma once
 #include <lvgl.h>
 
-#define MAX_TAKES 30
+#define MAX_TAKES 7
+#define MAX_MEDICINES_PER_TAKE 3
 
 typedef struct {
     char id[20];
+    char quantity[10];
+} TakeMedicine;
+
+typedef struct {
+
+    char id[20];
     char hour[6];
-    bool repeat[7];
+
+    uint8_t repeat_mask;
+
     bool recordatory;
-    int warning_time;
+    uint8_t warning_time;
+
+    uint8_t medicine_count;
+
+    TakeMedicine medicines[MAX_MEDICINES_PER_TAKE];
+
 } TakeConfig;
 
 extern int total_takes;
@@ -24,3 +38,14 @@ void show_home_screen();
 void today_takes_screen();
 int get_today_index();
 bool is_take_today(int index);
+
+inline bool is_day_active(uint8_t mask, int day) {
+    return (mask & (1 << day)) != 0;
+}
+
+inline void set_day(uint8_t &mask, int day, bool value) {
+    if (value)
+        mask |= (1 << day);
+    else
+        mask &= ~(1 << day);
+}

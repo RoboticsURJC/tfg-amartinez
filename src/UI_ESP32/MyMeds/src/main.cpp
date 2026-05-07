@@ -20,10 +20,11 @@ WiFiUDP udp;
 #include "user_interface/pill_takes.h"
 
 #include "storage/takes_storage.h" 
+#include "storage/medicines_storage.h" 
 
 #include "logo_mymeds.h"
 
-#include <Preferences.h> // 🔥 NUEVO
+#include <Preferences.h>
 
 static const int LOGO_TIME_MS = 4000;
 
@@ -65,8 +66,9 @@ void setup()
 
     lvgl_begin();
 
+    loadMedicines();
     uploadTakes();
-
+    
     Preferences p;
     p.begin("sys", true);
     device_linked = p.getBool("linked", false);
@@ -127,11 +129,17 @@ void setup()
             Serial.println("UDP listo en puerto 8888");
 
             server.on("/", handle_web_root);
+
             server.on("/takes", HTTP_GET, handle_get_takes);
+            server.on("/takes", HTTP_POST, handle_takes);
+
             server.on("/take", HTTP_POST, handle_add_take);
             server.on("/take", HTTP_PUT, handle_update_take);
             server.on("/take", HTTP_DELETE, handle_delete_take);
-            server.on("/takes", HTTP_POST, handle_takes);
+
+            server.on("/medicines", HTTP_POST, handle_set_medicines);
+            server.on("/medicines", HTTP_GET, handle_get_medicines);
+
             server.on("/link", HTTP_GET, handle_link);
 
             server.onNotFound(handle_not_found);
@@ -230,11 +238,17 @@ void loop()
         Serial.println("UDP listo en puerto 8888");
 
         server.on("/", handle_web_root);
+
         server.on("/takes", HTTP_GET, handle_get_takes);
+        server.on("/takes", HTTP_POST, handle_takes);
+
         server.on("/take", HTTP_POST, handle_add_take);
         server.on("/take", HTTP_PUT, handle_update_take);
         server.on("/take", HTTP_DELETE, handle_delete_take);
-        server.on("/takes", HTTP_POST, handle_takes);
+
+        server.on("/medicines", HTTP_POST, handle_set_medicines);
+        server.on("/medicines", HTTP_GET, handle_get_medicines);
+
         server.on("/link", HTTP_GET, handle_link);
 
         server.onNotFound(handle_not_found);

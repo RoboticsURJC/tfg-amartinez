@@ -1,12 +1,22 @@
 #include "user_interface/wifi_portal.h"
 #include "storage/takes_storage.h"
+#include "storage/medicines_storage.h"
 #include "user_interface/pill_takes.h"
 #include <WiFi.h>
 #include <WebServer.h>
 #include <Preferences.h>
 #include <ArduinoJson.h>
 
-Preferences prefs;
+// ---------------- DAYS ----------------
+
+#define DAY_MONDAY    0
+#define DAY_TUESDAY   1
+#define DAY_WEDNESDAY 2
+#define DAY_THURSDAY  3
+#define DAY_FRIDAY    4
+#define DAY_SATURDAY  5
+#define DAY_SUNDAY    6
+
 extern WebServer server;
 extern bool device_linked;
 
@@ -45,13 +55,11 @@ void handle_web_root()
         <html><body style="font-family:Arial;">
         <h2>Configuración WiFi - MyMeds</h2>
         <form action="/save" method="POST">
-            <label>NOMBRE_WIFI:</label><br>
-            <input name="ssid" /><br><br>
-            <label>CONTRASEÑA:</label><br>
-            <input name="password" type="password"/><br><br>
+            <input name="ssid" placeholder="SSID"/><br><br>
+            <input name="password" type="password" placeholder="Password"/><br><br>
             <input type="submit" value="Guardar"/>
         </form>
-        </body><html>
+        </body></html>
     )";
 
     server.send(200, "text/html", page);
@@ -70,12 +78,10 @@ void handle_save()
     p.putString("password", new_password);
     p.end();
 
-    server.send(200, "text/html",
-        "<html><body><h2>Guardado correctamente. Reiniciando...</h2></body></html>");
+    server.send(200, "text/html", "Guardado. Reiniciando...");
 
-    delay(2000);   
+    delay(2000);
     server.stop();
-    delay(200);
 
     p.begin("sys", false);
     p.putBool("skip_logo", true);
@@ -88,7 +94,7 @@ void handle_save()
 
 void handle_get_takes()
 {
-    DynamicJsonDocument doc(4096);
+    DynamicJsonDocument doc(2048);
 
     JsonArray arr = doc.createNestedArray("takes");
 
@@ -99,24 +105,64 @@ void handle_get_takes()
         t["id"] = takes[i].id;
         t["time"] = takes[i].hour;
 
+        // ---------------- DAYS ----------------
+
         JsonArray days = t.createNestedArray("days");
 
-        if (takes[i].repeat[0]) days.add("MONDAY");
-        if (takes[i].repeat[1]) days.add("TUESDAY");
-        if (takes[i].repeat[2]) days.add("WEDNESDAY");
-        if (takes[i].repeat[3]) days.add("THURSDAY");
-        if (takes[i].repeat[4]) days.add("FRIDAY");
-        if (takes[i].repeat[5]) days.add("SATURDAY");
-        if (takes[i].repeat[6]) days.add("SUNDAY");
+        if (takes[i].repeat_mask & (1 << 0)) days.add("MONDAY");
+        if (takes[i].repeat_mask & (1 << 1)) days.add("TUESDAY");
+        if (takes[i].repeat_mask & (1 << 2)) days.add("WEDNESDAY");
+        if (takes[i].repeat_mask & (1 << 3)) days.add("THURSDAY");
+        if (takes[i].repeat_mask & (1 << 4)) days.add("FRIDAY");
+        if (takes[i].repeat_mask & (1 << 5)) days.add("SATURDAY");
+        if (takes[i].repeat_mask & (1 << 6)) days.add("SUNDAY");
 
-        t["reminderEnabled"] = takes[i].recordatory;
-        t["advanceWarningMinutes"] = takes[i].warning_time;
+        // ---------------- MEDICINES ----------------
+
+        JsonArray meds = t.createNestedArray("medicines");
+
+        Serial.println("===== ENVIANDO TAKE =====");
+
+        Serial.print("Take: ");
+        Serial.println(i);
+
+        Serial.print("Medicine count: ");
+        Serial.println(takes[i].medicine_count);
+
+        for (int j = 0; j < takes[i].medicine_count; j++) {
+
+            JsonObject med = meds.createNestedObject();
+
+            med["id"] =
+                takes[i].medicines[j].id;
+
+            med["quantity"] =
+                takes[i].medicines[j].quantity;
+
+            Serial.print("  ID: ");
+            Serial.println(
+                takes[i].medicines[j].id
+            );
+
+            Serial.print("  Quantity: ");
+            Serial.println(
+                takes[i].medicines[j].quantity
+            );
+        }
+
+        // ---------------- REMINDER ----------------
+
+        t["reminderEnabled"] =
+            takes[i].recordatory;
+
+        t["advanceWarningMinutes"] =
+            takes[i].warning_time;
     }
 
     String response;
     serializeJson(doc, response);
 
-    Serial.println("Sending takes:");
+    Serial.println("===== JSON ENVIADO =====");
     Serial.println(response);
 
     server.send(200, "application/json", response);
@@ -128,72 +174,55 @@ void handle_add_take()
 {
     String body = server.arg("plain");
 
-    if (body.length() == 0) {
-        server.send(400, "application/json", "{\"error\":\"empty body\"}");
-        return;
-    }
-
-    DynamicJsonDocument doc(1024);
-    DeserializationError error = deserializeJson(doc, body);
-
-    if (error) {
+    DynamicJsonDocument doc(512);
+    if (deserializeJson(doc, body)) {
         server.send(400, "application/json", "{\"error\":\"invalid json\"}");
         return;
     }
 
     if (total_takes >= MAX_TAKES) {
-        server.send(400, "application/json", "{\"error\":\"max takes reached\"}");
+        server.send(400, "application/json", "{\"error\":\"max takes\"}");
         return;
     }
 
     const char* id = doc["id"] | "";
 
-    if (strlen(id) == 0) {
-        server.send(400, "application/json", "{\"error\":\"missing id\"}");
-        return;
-    }
-
-    // evitar duplicados
     for (int i = 0; i < total_takes; i++) {
         if (strcmp(takes[i].id, id) == 0) {
-            server.send(409, "application/json", "{\"error\":\"duplicate id\"}");
+            server.send(409, "application/json", "{\"error\":\"duplicate\"}");
             return;
         }
     }
 
-    Serial.println("ADD TAKE VALID:");
-    Serial.println(body);
+    TakeConfig &t = takes[total_takes];
 
-    TakeConfig &newTake = takes[total_takes];
-
-    strncpy(newTake.id, id, sizeof(newTake.id));
-    newTake.id[sizeof(newTake.id) - 1] = '\0';
+    strncpy(t.id, id, sizeof(t.id));
+    t.id[sizeof(t.id)-1] = '\0';
 
     String time = doc["time"] | "00:00";
-    strncpy(newTake.hour, time.c_str(), sizeof(newTake.hour));
-    newTake.hour[sizeof(newTake.hour) - 1] = '\0';
+    strncpy(t.hour, time.c_str(), sizeof(t.hour));
+    t.hour[sizeof(t.hour)-1] = '\0';
 
-    for (int i = 0; i < 7; i++) newTake.repeat[i] = false;
+    t.repeat_mask = 0;
 
-    JsonArray days = doc["days"];
-    for (String d : days) {
-        if (d == "MONDAY") newTake.repeat[0] = true;
-        if (d == "TUESDAY") newTake.repeat[1] = true;
-        if (d == "WEDNESDAY") newTake.repeat[2] = true;
-        if (d == "THURSDAY") newTake.repeat[3] = true;
-        if (d == "FRIDAY") newTake.repeat[4] = true;
-        if (d == "SATURDAY") newTake.repeat[5] = true;
-        if (d == "SUNDAY") newTake.repeat[6] = true;
+    for (JsonVariant v : doc["days"].as<JsonArray>()) {
+        String d = v.as<String>();
+        if (d == "MONDAY")    t.repeat_mask |= (1 << 0);
+        if (d == "TUESDAY")   t.repeat_mask |= (1 << 1);
+        if (d == "WEDNESDAY") t.repeat_mask |= (1 << 2);
+        if (d == "THURSDAY")  t.repeat_mask |= (1 << 3);
+        if (d == "FRIDAY")    t.repeat_mask |= (1 << 4);
+        if (d == "SATURDAY")  t.repeat_mask |= (1 << 5);
+        if (d == "SUNDAY")    t.repeat_mask |= (1 << 6);
     }
 
-    newTake.recordatory = doc["reminderEnabled"] | false;
-    newTake.warning_time = doc["advanceWarningMinutes"] | 0;
+    t.recordatory = doc["reminderEnabled"] | false;
+    t.warning_time = doc["advanceWarningMinutes"] | 0;
 
     total_takes++;
-
     saveTakes();
 
-    server.send(200, "application/json", "{\"status\":\"ok\"}");
+    server.send(200, "application/json", "{\"ok\":true}");
 }
 
 // ---------------- UPDATE TAKE ----------------
@@ -202,29 +231,15 @@ void handle_update_take()
 {
     String body = server.arg("plain");
 
-    if (body.length() == 0) {
-        server.send(400, "application/json", "{\"error\":\"empty body\"}");
-        return;
-    }
-
-    DynamicJsonDocument doc(1024);
-    DeserializationError error = deserializeJson(doc, body);
-
-    if (error) {
+    DynamicJsonDocument doc(512);
+    if (deserializeJson(doc, body)) {
         server.send(400, "application/json", "{\"error\":\"invalid json\"}");
         return;
     }
 
     const char* id = doc["id"] | "";
 
-    if (strlen(id) == 0) {
-        server.send(400, "application/json", "{\"error\":\"missing id\"}");
-        return;
-    }
-
-    // BUSCAR TAKE
     int index = -1;
-
     for (int i = 0; i < total_takes; i++) {
         if (strcmp(takes[i].id, id) == 0) {
             index = i;
@@ -233,104 +248,133 @@ void handle_update_take()
     }
 
     if (index == -1) {
-        Serial.println("Update failed: ID not found");
         server.send(404, "application/json", "{\"error\":\"not found\"}");
         return;
     }
 
-    // LOG SOLO SI EXISTE
-    Serial.println("UPDATE TAKE:");
-    Serial.println(body);
-
     TakeConfig &t = takes[index];
 
-    // --- HORA ---
-    if (doc.containsKey("time")) {
+    if (doc["time"].is<String>()) {
         String time = doc["time"];
         strncpy(t.hour, time.c_str(), sizeof(t.hour));
-        t.hour[sizeof(t.hour) - 1] = '\0';
+        t.hour[sizeof(t.hour)-1] = '\0';
     }
 
-    // --- DÍAS ---
-    if (doc.containsKey("days")) {
+    if (doc["days"].is<JsonArray>()) {
 
-        // reset
-        for (int i = 0; i < 7; i++) t.repeat[i] = false;
+        t.repeat_mask = 0;
 
-        JsonArray days = doc["days"];
-        for (String d : days) {
-            if (d == "MONDAY") t.repeat[0] = true;
-            if (d == "TUESDAY") t.repeat[1] = true;
-            if (d == "WEDNESDAY") t.repeat[2] = true;
-            if (d == "THURSDAY") t.repeat[3] = true;
-            if (d == "FRIDAY") t.repeat[4] = true;
-            if (d == "SATURDAY") t.repeat[5] = true;
-            if (d == "SUNDAY") t.repeat[6] = true;
+        JsonArray days = doc["days"].as<JsonArray>();
+
+        for (int i = 0; i < days.size(); i++) {
+
+            String d = days[i].as<String>();
+
+            if (d == "MONDAY")    t.repeat_mask |= (1 << 0);
+            if (d == "TUESDAY")   t.repeat_mask |= (1 << 1);
+            if (d == "WEDNESDAY") t.repeat_mask |= (1 << 2);
+            if (d == "THURSDAY")  t.repeat_mask |= (1 << 3);
+            if (d == "FRIDAY")    t.repeat_mask |= (1 << 4);
+            if (d == "SATURDAY")  t.repeat_mask |= (1 << 5);
+            if (d == "SUNDAY")    t.repeat_mask |= (1 << 6);
         }
     }
 
-    // --- RECORDATORIO ---
-    if (doc.containsKey("reminderEnabled")) {
+    if (doc["reminderEnabled"].is<bool>())
         t.recordatory = doc["reminderEnabled"];
-    }
 
-    // --- WARNING ---
-    if (doc.containsKey("advanceWarningMinutes")) {
+    if (doc["advanceWarningMinutes"].is<int>())
         t.warning_time = doc["advanceWarningMinutes"];
-    }
 
     saveTakes();
-
-    server.send(200, "application/json", "{\"status\":\"updated\"}");
+    server.send(200, "application/json", "{\"updated\":true}");
 }
 
 // ---------------- DELETE TAKE ----------------
 
 void handle_delete_take()
 {
-    if (!server.hasArg("id")) {
-        server.send(400, "application/json", "{\"error\":\"missing id\"}");
-        return;
-    }
-
-    String idStr = server.arg("id");
-
-    if (idStr.length() == 0) {
-        server.send(400, "application/json", "{\"error\":\"empty id\"}");
-        return;
-    }
-
-    Serial.print("DELETE TAKE: ");
-    Serial.println(idStr);
+    String id = server.arg("id");
 
     int index = -1;
 
-    // 🔍 Buscar take
     for (int i = 0; i < total_takes; i++) {
-        if (strcmp(takes[i].id, idStr.c_str()) == 0) {
+        if (strcmp(takes[i].id, id.c_str()) == 0) {
             index = i;
             break;
         }
     }
 
     if (index == -1) {
-        Serial.println("Delete failed: ID not found");
         server.send(404, "application/json", "{\"error\":\"not found\"}");
         return;
     }
 
-    // 🔥 Compactar array (clave)
     for (int i = index; i < total_takes - 1; i++) {
         takes[i] = takes[i + 1];
     }
 
     total_takes--;
-
     saveTakes();
 
-    Serial.println("Take eliminada correctamente");
+    server.send(200, "application/json", "{\"deleted\":true}");
+}
 
-    server.send(200, "application/json", "{\"status\":\"deleted\"}");
+// ---------------- MEDICINES ----------------
+
+void handle_set_medicines()
+{
+    DynamicJsonDocument doc(512);
+    deserializeJson(doc, server.arg("plain"));
+
+    medicine_count = 0;
+
+    for (JsonObject obj : doc["medicines"].as<JsonArray>()) {
+
+        if (medicine_count >= MAX_CATALOG_MEDICINES) break;
+
+        strncpy(medicineCatalog[medicine_count].id, obj["id"] | "", sizeof(medicineCatalog[0].id));
+        strncpy(medicineCatalog[medicine_count].name, obj["name"] | "", sizeof(medicineCatalog[0].name));
+
+        medicine_count++;
+    }
+
+    saveMedicines();
+    server.send(200, "text/plain", "OK");
+}
+
+void handle_get_medicines()
+{
+    DynamicJsonDocument doc(512);
+    JsonArray arr = doc.createNestedArray("medicines");
+
+    for (int i = 0; i < medicine_count; i++) {
+        JsonObject obj = arr.createNestedObject();
+        obj["id"] = medicineCatalog[i].id;
+        obj["name"] = medicineCatalog[i].name;
+    }
+
+    String json;
+    serializeJson(doc, json);
+
+    Serial.println("===== MEDICINES ENVIADOS =====");
+    Serial.println(json);
+
+    server.send(200, "application/json", json);
+}
+
+void handle_link()
+{
+    Serial.println("App sincronizada (link)");
+
+    device_linked = true;
+
+    Preferences p;
+    p.begin("sys", false);
+    p.putBool("linked", true);
+    p.end();
+
+    server.send(200, "application/json", "{\"status\":\"linked\"}");
 }
 
 void handle_takes()
@@ -345,11 +389,9 @@ void handle_takes()
         return;
     }
 
-    DynamicJsonDocument doc(4096);
-    DeserializationError error = deserializeJson(doc, body);
+    DynamicJsonDocument doc(2048);
 
-    if (error) {
-        Serial.println("Error parsing JSON");
+    if (deserializeJson(doc, body)) {
         server.send(400, "application/json", "{\"error\":\"invalid json\"}");
         return;
     }
@@ -362,81 +404,165 @@ void handle_takes()
 
         if (total_takes >= MAX_TAKES) break;
 
+        // ID
+        const char* id = t["id"] | "";
+        strncpy(takes[total_takes].id, id, sizeof(takes[0].id));
+        takes[total_takes].id[sizeof(takes[0].id)-1] = '\0';
+
+        // TIME
         String time = t["time"] | "00:00";
-        strncpy(takes[total_takes].hour, time.c_str(), 6);
+        strncpy(takes[total_takes].hour, time.c_str(), sizeof(takes[0].hour));
+        takes[total_takes].hour[sizeof(takes[0].hour)-1] = '\0';
 
-        for (int i = 0; i < 7; i++) {
-            takes[total_takes].repeat[i] = false;
+        // DAYS
+        takes[total_takes].repeat_mask = 0;
+
+        JsonArray days = t["days"].as<JsonArray>();
+
+        for (int i = 0; i < days.size(); i++) {
+
+            String d = days[i].as<String>();
+
+            if (d == "MONDAY")    takes[total_takes].repeat_mask |= (1 << 0);
+            if (d == "TUESDAY")   takes[total_takes].repeat_mask |= (1 << 1);
+            if (d == "WEDNESDAY") takes[total_takes].repeat_mask |= (1 << 2);
+            if (d == "THURSDAY")  takes[total_takes].repeat_mask |= (1 << 3);
+            if (d == "FRIDAY")    takes[total_takes].repeat_mask |= (1 << 4);
+            if (d == "SATURDAY")  takes[total_takes].repeat_mask |= (1 << 5);
+            if (d == "SUNDAY")    takes[total_takes].repeat_mask |= (1 << 6);
         }
 
-        JsonArray days = t["days"];
-        for (String d : days) {
+        takes[total_takes].medicine_count = 0;
 
-            if (d == "MONDAY") takes[total_takes].repeat[0] = true;
-            if (d == "TUESDAY") takes[total_takes].repeat[1] = true;
-            if (d == "WEDNESDAY") takes[total_takes].repeat[2] = true;
-            if (d == "THURSDAY") takes[total_takes].repeat[3] = true;
-            if (d == "FRIDAY") takes[total_takes].repeat[4] = true;
-            if (d == "SATURDAY") takes[total_takes].repeat[5] = true;
-            if (d == "SUNDAY") takes[total_takes].repeat[6] = true;
+        JsonArray meds = t["medicines"].as<JsonArray>();
+
+        for (JsonObject med : meds) {
+
+            if (takes[total_takes].medicine_count >= MAX_MEDICINES_PER_TAKE)
+                break;
+
+            int idx = takes[total_takes].medicine_count;
+
+            // ID
+            strncpy(
+                takes[total_takes].medicines[idx].id,
+                med["id"] | "",
+                sizeof(takes[total_takes].medicines[idx].id)
+            );
+
+            takes[total_takes]
+                .medicines[idx]
+                .id[
+                    sizeof(
+                        takes[total_takes]
+                            .medicines[idx]
+                            .id
+                    ) - 1
+                ] = '\0';
+
+            // QUANTITY
+            strncpy(
+                takes[total_takes].medicines[idx].quantity,
+                med["quantity"] | "",
+                sizeof(
+                    takes[total_takes]
+                        .medicines[idx]
+                        .quantity
+                )
+            );
+
+            takes[total_takes]
+                .medicines[idx]
+                .quantity[
+                    sizeof(
+                        takes[total_takes]
+                            .medicines[idx]
+                            .quantity
+                    ) - 1
+                ] = '\0';
+
+            takes[total_takes].medicine_count++;
+
+            // DEBUG
+            Serial.println("---- MEDICAMENTO RECIBIDO ----");
+
+            Serial.print("Take: ");
+            Serial.println(total_takes);
+
+            Serial.print("Medicine ID: ");
+            Serial.println(
+                takes[total_takes]
+                    .medicines[idx]
+                    .id
+            );
+
+            Serial.print("Quantity: ");
+            Serial.println(
+                takes[total_takes]
+                    .medicines[idx]
+                    .quantity
+            );
+
+            Serial.println("------------------------------");
         }
 
+        // REMINDER
         takes[total_takes].recordatory = t["reminderEnabled"] | false;
+
+        // WARNING
         takes[total_takes].warning_time = t["advanceWarningMinutes"] | 0;
 
-        // 🔥 ID (importante)
-        if (strlen(takes[total_takes].id) == 0) {
-            sprintf(takes[total_takes].id, "take_%d", total_takes);
+        total_takes++;
+    }
+
+    Serial.println("===== TAKES EN RAM =====");
+
+    for (int i = 0; i < total_takes; i++) {
+
+        Serial.print("Take ");
+        Serial.println(i);
+
+        Serial.print("Hour: ");
+        Serial.println(takes[i].hour);
+
+        Serial.print("Medicine count: ");
+        Serial.println(takes[i].medicine_count);
+
+        for (int j = 0; j < takes[i].medicine_count; j++) {
+
+            Serial.print("  ID: ");
+            Serial.println(takes[i].medicines[j].id);
+
+            Serial.print("  Quantity: ");
+            Serial.println(takes[i].medicines[j].quantity);
         }
 
-        total_takes++;
+        Serial.println("----------------");
     }
 
     saveTakes();
 
     Serial.println("Takes saved correctly");
 
-    server.send(200, "application/json", body);
-}
-
-// ---------------- LINK ----------------
-
-void handle_link()
-{
-    Serial.println("App sincronizada (link)");
-
-    device_linked = true;
-
-    Preferences p;
-    p.begin("sys", false);
-    p.putBool("linked", true);  // GUARDAR ESTADO
-    p.end();
-
-    server.send(200, "application/json", "{\"status\":\"linked\"}");
+    server.send(200, "application/json", "{\"status\":\"ok\"}");
 }
 
 // ---------------- INIT ----------------
 
 void wifi_portal_init()
 {
-    IPAddress local_ip(192,168,4,1);
-    IPAddress gateway(192,168,4,1);
-    IPAddress subnet(255,255,255,0);
-
-    WiFi.softAPConfig(local_ip, gateway, subnet);
     WiFi.softAP("MyMeds-Setup");
-
-    Serial.println(WiFi.softAPIP());
 
     server.on("/", handle_web_root);
     server.on("/save", HTTP_POST, handle_save);
 
     server.on("/takes", HTTP_GET, handle_get_takes);
     server.on("/take", HTTP_POST, handle_add_take);
+    server.on("/take", HTTP_PUT, handle_update_take);
+    server.on("/take", HTTP_DELETE, handle_delete_take);
 
-    server.on("/link", HTTP_GET, handle_link);
+    server.on("/medicines", HTTP_POST, handle_set_medicines);
+    server.on("/medicines", HTTP_GET, handle_get_medicines);
 
     server.begin();
-
-    Serial.println("Server started");
 }

@@ -49,21 +49,31 @@ void repetition_screen(int index)
         lv_label_set_text(lbl_btn, days[i]);
         lv_obj_center(lbl_btn);
 
-        if (current_cfg->repeat[i]) {
+        // Estado inicial
+        if (is_day_active(current_cfg->repeat_mask, i)) {
             lv_obj_add_state(btn_days[i], LV_STATE_CHECKED);
         }
 
+        // Guardar índice del día
         lv_obj_set_user_data(btn_days[i], (void*)i);
-        lv_obj_add_event_cb(btn_days[i], [](lv_event_t *e){
-            lv_obj_t *obj = lv_event_get_target(e);
-            int day = (int)lv_obj_get_user_data(lv_event_get_target(e));
-            current_cfg->repeat[day] = !current_cfg->repeat[day];
 
-            if (current_cfg->repeat[day]){
-                lv_obj_add_state(lv_event_get_target(e), LV_STATE_CHECKED);
-            } else{
-                lv_obj_clear_state(lv_event_get_target(e), LV_STATE_CHECKED);
+        // Evento click
+        lv_obj_add_event_cb(btn_days[i], [](lv_event_t *e){
+
+            lv_obj_t *obj = lv_event_get_target(e);
+            int day = (int)lv_obj_get_user_data(obj);
+
+            bool active = is_day_active(current_cfg->repeat_mask, day);
+
+            // Toggle
+            set_day(current_cfg->repeat_mask, day, !active);
+
+            if (!active) {
+                lv_obj_add_state(obj, LV_STATE_CHECKED);
+            } else {
+                lv_obj_clear_state(obj, LV_STATE_CHECKED);
             }
+
         }, LV_EVENT_CLICKED, NULL);
     }
 

@@ -19,7 +19,7 @@ void checkTakes()
         int mm = atoi(&takes[i].hour[3]);
 
         if (timeInfo.tm_hour == hh && timeInfo.tm_min == mm){
-            if (takes[i].repeat[timeInfo.tm_wday]){
+            if (is_day_active(takes[i].repeat_mask, timeInfo.tm_wday)){
                 executeTake(i);
             }
         }

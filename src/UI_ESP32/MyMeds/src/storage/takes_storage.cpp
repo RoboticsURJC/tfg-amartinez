@@ -11,83 +11,165 @@ void initNVS()
 void saveTakes()
 {
     prefs.begin("takes", false);
+
     prefs.clear();
+
     prefs.putInt("total", total_takes);
 
-    for (int i = 0; i < total_takes; i++){
-        char key[20];
+    for (int i = 0; i < total_takes; i++) {
+
+        char key[32];
+
+        // ---------- ID ----------
         sprintf(key, "id%d", i);
         prefs.putString(key, takes[i].id);
-        
+
+        // ---------- HOUR ----------
         sprintf(key, "hour%d", i);
         prefs.putString(key, takes[i].hour);
 
+        // ---------- REPEAT ----------
         sprintf(key, "rep%d", i);
-        uint8_t bits = 0;
-        for (int day = 0; day < 7; day++){
-            if (takes[i].repeat[day]){
-                bits |= (1 << day);
-            }
-        }
-        prefs.putUChar(key, bits);
+        prefs.putUChar(key, takes[i].repeat_mask);
 
+        // ---------- REMINDER ----------
         sprintf(key, "rec%d", i);
         prefs.putBool(key, takes[i].recordatory);
 
-        sprintf(key, "warning%d", i);
-        prefs.putInt(key, takes[i].warning_time);
+        // ---------- WARNING ----------
+        sprintf(key, "warn%d", i);
+        prefs.putUChar(key, takes[i].warning_time);
+
+        // ---------- MED COUNT ----------
+        sprintf(key, "mcount%d", i);
+        prefs.putUChar(key, takes[i].medicine_count);
+
+        // ---------- MEDICINES ----------
+        for (int m = 0; m < takes[i].medicine_count; m++) {
+
+            sprintf(key, "mid%d_%d", i, m);
+            prefs.putString(key, takes[i].medicines[m].id);
+
+            sprintf(key, "mqty%d_%d", i, m);
+            prefs.putString(key, takes[i].medicines[m].quantity);
+        }
     }
 
     prefs.end();
+
+    Serial.println("Takes guardadas");
 }
 
 void uploadTakes()
 {
-    prefs.begin("takes", false);
-    
+    prefs.begin("takes", true);
+
     total_takes = prefs.getInt("total", 0);
-    if (total_takes <= 0){
-        prefs.end();
-        return;
-    }
 
-    bool needsSave = false;
+    if (total_takes > MAX_TAKES)
+        total_takes = MAX_TAKES;
 
-    for ( int i = 0; i < total_takes; i++){
-        char key[20];
+    for (int i = 0; i < total_takes; i++) {
+
+        char key[32];
+
+        // ---------- ID ----------
         sprintf(key, "id%d", i);
+
         String id = prefs.getString(key, "");
-        strncpy(takes[i].id, id.c_str(), sizeof(takes[i].id));
-        takes[i].id[sizeof(takes[i].id) - 1] = '\0';
 
-        if (strlen(takes[i].id) == 0) {
-            sprintf(takes[i].id, "take_%d", i);
-            needsSave = true;
-        }
+        strncpy(
+            takes[i].id,
+            id.c_str(),
+            sizeof(takes[i].id)
+        );
 
+        // ---------- HOUR ----------
         sprintf(key, "hour%d", i);
-        String h = prefs.getString(key, "00:00");
-        strcpy(takes[i].hour, h.c_str());
 
+        String hour = prefs.getString(key, "00:00");
+
+        strncpy(
+            takes[i].hour,
+            hour.c_str(),
+            sizeof(takes[i].hour)
+        );
+
+        // ---------- REPEAT ----------
         sprintf(key, "rep%d", i);
-        uint8_t bits = prefs.getUChar(key, 0X7F);
-        for (int day = 0; day < 7; day++){
-            takes[i].repeat[day] = bits & (1 << day);
+
+        takes[i].repeat_mask =
+            prefs.getUChar(key, 0x7F);
+
+        // ---------- REMINDER ----------
+        sprintf(key, "rec%d", i);
+
+        takes[i].recordatory =
+            prefs.getBool(key, false);
+
+        // ---------- WARNING ----------
+        sprintf(key, "warn%d", i);
+
+        takes[i].warning_time =
+            prefs.getUChar(key, 0);
+
+        // ---------- MED COUNT ----------
+        sprintf(key, "mcount%d", i);
+
+        takes[i].medicine_count =
+            prefs.getUChar(key, 0);
+
+        if (takes[i].medicine_count > MAX_MEDICINES_PER_TAKE)
+            takes[i].medicine_count = MAX_MEDICINES_PER_TAKE;
+
+        // ---------- MEDICINES ----------
+        for (int m = 0; m < takes[i].medicine_count; m++) {
+
+            sprintf(key, "mid%d_%d", i, m);
+
+            String medId = prefs.getString(key, "");
+
+            strncpy(
+                takes[i].medicines[m].id,
+                medId.c_str(),
+                sizeof(takes[i].medicines[m].id)
+            );
+
+            sprintf(key, "mqty%d_%d", i, m);
+
+            String qty = prefs.getString(key, "1");
+
+            strncpy(
+                takes[i].medicines[m].quantity,
+                qty.c_str(),
+                sizeof(takes[i].medicines[m].quantity)
+            );
         }
 
-        sprintf(key, "rec%d", i);
-        takes[i].recordatory = prefs.getBool(key, true);
+        Serial.println("------ TAKE LOADED ------");
 
-        sprintf(key, "warning%d", i);
-        takes[i].warning_time = prefs.getInt(key, 0);
+        Serial.print("ID: ");
+        Serial.println(takes[i].id);
+
+        Serial.print("Hour: ");
+        Serial.println(takes[i].hour);
+
+        Serial.print("Medicine count: ");
+        Serial.println(takes[i].medicine_count);
+
+        for (int m = 0; m < takes[i].medicine_count; m++) {
+
+            Serial.print("Medicine ID: ");
+            Serial.println(takes[i].medicines[m].id);
+
+            Serial.print("Quantity: ");
+            Serial.println(takes[i].medicines[m].quantity);
+        }
     }
 
     prefs.end();
 
-    if (needsSave) {
-        saveTakes();
-        Serial.println("IDs generados y guardados en NVS");
-    }
+    Serial.println("Takes cargadas");
 }
 
 void delete_take(int index)

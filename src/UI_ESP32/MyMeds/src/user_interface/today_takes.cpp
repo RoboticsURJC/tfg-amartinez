@@ -47,10 +47,10 @@ is_take_today(int index)
         return false;
     }
 
-    return takes[index].repeat[today];
+    return is_day_active(takes[index].repeat_mask, today);
 }
 
-void days_text_repeat(bool rep[7], char *buf)
+void days_text_repeat(uint8_t mask, char *buf)
 {
     const char *d[7] = {"L","M","X","J","V","S","D"};
 
@@ -58,7 +58,7 @@ void days_text_repeat(bool rep[7], char *buf)
 
     for (int i = 0; i < 7; i++)
     {
-        if (rep[i])
+        if (mask & (1 << i))
         {
             strcat(buf, d[i]);
             strcat(buf, " ");
@@ -138,7 +138,7 @@ today_takes_screen()
 
         char rep_txt[64] = "Días: ";
         char tmp[32];
-        days_text_repeat(takes[i].repeat, tmp);
+        days_text_repeat(takes[i].repeat_mask, tmp);
         strcat(rep_txt, tmp);
         lv_obj_t *l3 = lv_label_create(details);
         lv_obj_set_style_text_font(l3, &montserrat_24_regular, LV_PART_MAIN);
