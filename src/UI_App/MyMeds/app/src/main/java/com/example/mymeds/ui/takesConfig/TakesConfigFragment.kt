@@ -87,7 +87,7 @@ class TakesConfigFragment : Fragment() {
             }
 
             val invalidMedicine = medicines.any {
-                it.name.isBlank() || it.quantity.isBlank()
+                it.id.isBlank() || it.quantity.isBlank()
             }
 
             if (invalidMedicine) {
@@ -114,13 +114,36 @@ class TakesConfigFragment : Fragment() {
                         as? MedicineAdapter.MedicineViewHolder
 
                 holder?.let {
-                    val name = it.binding.nameInput.text.toString()
-                    val quantity = it.binding.quantityInput.text.toString()
 
-                    if (name.isNotBlank() || quantity.isNotBlank()) {
-                        finalMedicines.add(
-                            TakeMedicine(name = name, quantity = quantity)
-                        )
+                    val medName = it.binding.nameInput.text.toString().trim()
+                    val quantity = it.binding.quantityInput.text.toString().trim()
+
+                    if (medName.isNotBlank() || quantity.isNotBlank()) {
+
+                        val medicine =
+                            com.example.mymeds.data.repository.MedicineRepository
+                                .getAll()
+                                .find { med -> med.name == medName }
+
+                        if (medicine != null) {
+
+                            finalMedicines.add(
+                                TakeMedicine(
+                                    id = medicine.id,
+                                    quantity = quantity
+                                )
+                            )
+
+                        } else {
+
+                            Toast.makeText(
+                                requireContext(),
+                                "Medicamento no encontrado: $medName",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            return@setOnClickListener
+                        }
                     }
                 }
             }

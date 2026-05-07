@@ -33,10 +33,21 @@ class TakesAdapter (
 
         holder.binding.textMedicines.text =
             if (meds.isNotEmpty()) {
-                "💊 " + meds.joinToString("\n") {
-                    "${it.name} - ${it.quantity}"
+
+                "💊 " + meds.joinToString("\n") { med ->
+
+                    val realMedicine =
+                        com.example.mymeds.data.repository.MedicineRepository
+                            .findById(med.id)
+
+                    val medName =
+                        realMedicine?.name ?: "Desconocido"
+
+                    "$medName - ${med.quantity}"
                 }
+
             } else {
+
                 "💊 Sin medicamentos"
             }
 

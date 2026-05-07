@@ -19,11 +19,13 @@ class MedicineAdapter(
     ) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicineViewHolder {
+
         val binding = ItemMedicineBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
+
         return MedicineViewHolder(binding)
     }
 
@@ -32,44 +34,66 @@ class MedicineAdapter(
         val medicine = medicines[position]
         val context = holder.binding.root.context
 
-        // 🔥 Obtener catálogo
-        val catalog = MedicineRepository.getAll().map { it.name }
+        // -------- CATÁLOGO --------
+
+        val catalog = MedicineRepository.getAll()
+
+        val catalogNames = catalog.map { it.name }
 
         val dropdownAdapter = ArrayAdapter(
             context,
             android.R.layout.simple_list_item_1,
-            catalog
+            catalogNames
         )
 
         holder.binding.nameInput.setAdapter(dropdownAdapter)
 
-        // 🔥 SETEAR VALORES
-        holder.binding.nameInput.setText(medicine.name, false)
+        // -------- MOSTRAR NOMBRE DESDE ID --------
+
+        val selectedMedicine =
+            MedicineRepository.findById(medicine.id)
+
+        holder.binding.nameInput.setText(
+            selectedMedicine?.name ?: "",
+            false
+        )
+
         holder.binding.quantityInput.setText(medicine.quantity)
 
-        // 🔥 SOLO DESPLEGABLE (no editable)
+        // -------- SOLO DROPDOWN --------
+
         holder.binding.nameInput.inputType = 0
         holder.binding.nameInput.keyListener = null
         holder.binding.nameInput.isFocusable = false
         holder.binding.nameInput.isClickable = true
 
-        // 🔥 ABRIR DROPDOWN AL CLICK
         holder.binding.nameInput.setOnClickListener {
             holder.binding.nameInput.showDropDown()
         }
 
-        // 🔥 SELECCIÓN
+        // -------- SELECCIÓN --------
+
         holder.binding.nameInput.setOnItemClickListener { parent, _, pos, _ ->
-            val selected = parent.getItemAtPosition(pos) as String
-            medicine.name = selected
+
+            val selectedName =
+                parent.getItemAtPosition(pos) as String
+
+            val realMedicine =
+                catalog.find { it.name == selectedName }
+
+            if (realMedicine != null) {
+                medicine.id = realMedicine.id
+            }
         }
 
-        // 🔥 CANTIDAD
+        // -------- CANTIDAD --------
+
         holder.binding.quantityInput.doAfterTextChanged {
             medicine.quantity = it?.toString().orEmpty()
         }
 
-        // 🔥 ELIMINAR
+        // -------- ELIMINAR --------
+
         holder.binding.deleteButton.setOnClickListener {
             onDelete(holder.adapterPosition)
         }
@@ -78,7 +102,9 @@ class MedicineAdapter(
     override fun getItemCount(): Int = medicines.size
 
     fun addMedicine(medicine: TakeMedicine) {
+
         medicines.add(medicine)
+
         notifyItemInserted(medicines.size - 1)
     }
 }

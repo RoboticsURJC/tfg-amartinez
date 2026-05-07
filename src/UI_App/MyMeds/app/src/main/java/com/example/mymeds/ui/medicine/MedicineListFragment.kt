@@ -14,6 +14,7 @@ import com.example.mymeds.data.repository.MedicineRepository
 import com.example.mymeds.data.util.MedicineStorage
 import com.example.mymeds.databinding.FragmentMedicineListBinding
 import com.example.mymeds.R
+import com.example.mymeds.data.network.EspApi
 
 class MedicineListFragment : Fragment() {
 
@@ -55,6 +56,9 @@ class MedicineListFragment : Fragment() {
             onDelete = { position ->
                 MedicineRepository.removeAt(position)
                 MedicineStorage.save(requireContext())
+
+                android.util.Log.d("ESP_TEST", "VOY A ENVIAR MEDICINES")
+                EspApi.sendMedicines()
                 updateUI()
             }
         )
@@ -91,6 +95,9 @@ class MedicineListFragment : Fragment() {
 
                 MedicineRepository.add(med)
                 MedicineStorage.save(requireContext())
+
+                android.util.Log.d("ESP_TEST", "VOY A ENVIAR MEDICINES")
+                EspApi.sendMedicines()
 
                 updateUI()
             }
