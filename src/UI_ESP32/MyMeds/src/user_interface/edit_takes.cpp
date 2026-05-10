@@ -58,7 +58,11 @@ static void update_layout_positions()
     lv_obj_set_pos(lbl_med, 10, base_y);
     lv_obj_set_pos(dd_medicine, right_x(170), base_y - 7);
 
-    int recordatory_y = base_y + 45;
+    int meds_container_y = base_y + 45;
+
+    lv_obj_set_pos(meds_container, 20, meds_container_y);
+
+    int recordatory_y = meds_container_y + 110;
 
     lv_obj_set_pos(lbl_recordatory, 10, recordatory_y);
     lv_obj_set_pos(sw_recordatory, right_x(60), recordatory_y - 5);
@@ -138,24 +142,19 @@ static void refresh_medicines_list()
     for (int i = 0; i < current_cfg->medicine_count; i++) {
 
         lv_obj_t *row = lv_obj_create(meds_container);
-
         lv_obj_set_size(row, 260, 35);
-
         lv_obj_set_style_pad_all(row, 4, 0);
-
         lv_obj_clear_flag(row, LV_OBJ_FLAG_SCROLLABLE);
 
         // -------- NOMBRE --------
 
         const char* medName = "Desconocido";
-
         for (int k = 0; k < medicine_count; k++) {
 
             if (strcmp(
                 medicineCatalog[k].id,
                 current_cfg->medicines[i].id
             ) == 0) {
-
                 medName = medicineCatalog[k].name;
                 break;
             }
@@ -163,33 +162,29 @@ static void refresh_medicines_list()
 
         char txt[64];
 
-        sprintf(
-            txt,
-            "%s x%d",
-            medName,
-            current_cfg->medicines[i].quantity
-        );
-
+        sprintf(txt, "%s x%d", medName, current_cfg->medicines[i].quantity);
         lv_obj_t *lbl = lv_label_create(row);
-
         lv_label_set_text(lbl, txt);
-
+        lv_obj_set_style_text_font(lbl, &lv_font_montserrat_18, LV_PART_MAIN);
         lv_obj_align(lbl, LV_ALIGN_LEFT_MID, 5, 0);
 
         // -------- BOTÓN DELETE --------
 
         lv_obj_t *btn_del = lv_btn_create(row);
-
         lv_obj_set_size(btn_del, 28, 28);
-
         lv_obj_align(btn_del, LV_ALIGN_RIGHT_MID, 0, 0);
-
         lv_obj_set_user_data(btn_del, (void*)(intptr_t)i);
 
+        // BOTÓN ROJO
+        lv_obj_set_style_bg_color(btn_del, lv_color_make(220, 40, 40),LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(btn_del, LV_OPA_COVER, LV_PART_MAIN);
+        lv_obj_set_style_border_width(btn_del, 0, LV_PART_MAIN);
+        lv_obj_set_style_radius(btn_del, 8, LV_PART_MAIN);
+
+        // TEXTO X
         lv_obj_t *lbl_x = lv_label_create(btn_del);
-
         lv_label_set_text(lbl_x, "X");
-
+        lv_obj_set_style_text_color(lbl_x, lv_color_white(), LV_PART_MAIN);
         lv_obj_center(lbl_x);
 
         lv_obj_add_event_cb(btn_del, [](lv_event_t *e){
@@ -208,13 +203,9 @@ static void refresh_medicines_list()
             // reducir cantidad
 
             if (current_cfg->medicines[idx].quantity > 1) {
-
                 current_cfg->medicines[idx].quantity--;
-
             } else {
-
                 // eliminar medicamento
-
                 for (int j = idx;
                      j < current_cfg->medicine_count - 1;
                      j++) {
@@ -222,7 +213,6 @@ static void refresh_medicines_list()
                     current_cfg->medicines[j] =
                         current_cfg->medicines[j + 1];
                 }
-
                 current_cfg->medicine_count--;
             }
 
@@ -547,30 +537,10 @@ void edit_takes_screen(int index)
     lv_obj_set_size(dd_medicine, 170, 40);
 
     // estilo dropdown
-    lv_obj_set_style_text_font(
-        dd_medicine,
-        &lv_font_montserrat_22,
-        LV_PART_MAIN
-    );
-
-    lv_obj_set_style_text_color(
-        dd_medicine,
-        lv_color_black(),
-        LV_PART_MAIN
-    );
-
-    lv_obj_set_style_bg_color(
-        dd_medicine,
-        lv_color_white(),
-        LV_PART_MAIN
-    );
-
-    lv_obj_set_style_bg_opa(
-        dd_medicine,
-        LV_OPA_COVER,
-        LV_PART_MAIN
-    );
-
+    lv_obj_set_style_text_font(dd_medicine, &lv_font_montserrat_22, LV_PART_MAIN);
+    lv_obj_set_style_text_color(dd_medicine, lv_color_black(), LV_PART_MAIN);
+    lv_obj_set_style_bg_color(dd_medicine, lv_color_white(),LV_PART_MAIN);
+    lv_obj_set_style_bg_opa(dd_medicine, LV_OPA_COVER, LV_PART_MAIN);
     lv_dropdown_set_symbol(dd_medicine, NULL);
 
     // construir opciones
@@ -578,9 +548,7 @@ void edit_takes_screen(int index)
     med_options[0] = '\0';
 
     for (int i = 0; i < medicine_count; i++) {
-
         strcat(med_options, medicineCatalog[i].name);
-
         if (i < medicine_count - 1) {
             strcat(med_options, "\n");
         }
@@ -591,22 +559,13 @@ void edit_takes_screen(int index)
     // ---------- CONTENEDOR VISUAL ----------
 
     meds_container = lv_obj_create(scr);
-
     lv_obj_set_size(meds_container, 280, 90);
     lv_obj_set_pos(meds_container, 20, 300);
-
     lv_obj_set_style_pad_all(meds_container, 5, 0);
     lv_obj_set_style_pad_row(meds_container, 5, 0);
 
-    lv_obj_set_scroll_dir(
-        meds_container,
-        LV_DIR_VER
-    );
-
-    lv_obj_set_flex_flow(
-        meds_container,
-        LV_FLEX_FLOW_COLUMN
-    );
+    lv_obj_set_scroll_dir(meds_container, LV_DIR_VER);
+    lv_obj_set_flex_flow(meds_container, LV_FLEX_FLOW_COLUMN);
 
     // PRESELECCIÓN
     if (editing_existing && current_cfg->medicine_count > 0) {
