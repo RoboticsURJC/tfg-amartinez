@@ -279,9 +279,8 @@ void loop()
     }
 
     // --- SINCRONIZACIÓN CON APP ---
-    if (device_linked && !clock_started) {
+    if (device_linked && wifi_connected && !clock_started) {
 
-        device_linked = false;
         clock_started = true;
 
         Serial.println("App sincronizada → mostrando reloj");

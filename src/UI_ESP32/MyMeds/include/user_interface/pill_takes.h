@@ -6,7 +6,7 @@
 
 typedef struct {
     char id[20];
-    char quantity[10];
+    uint8_t quantity;
 } TakeMedicine;
 
 typedef struct {

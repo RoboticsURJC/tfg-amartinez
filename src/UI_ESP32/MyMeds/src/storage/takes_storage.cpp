@@ -51,7 +51,7 @@ void saveTakes()
             prefs.putString(key, takes[i].medicines[m].id);
 
             sprintf(key, "mqty%d_%d", i, m);
-            prefs.putString(key, takes[i].medicines[m].quantity);
+            prefs.putUChar(key, takes[i].medicines[m].quantity);
         }
     }
 
@@ -135,15 +135,15 @@ void uploadTakes()
                 sizeof(takes[i].medicines[m].id)
             );
 
+            takes[i].medicines[m]
+                .id[
+                    sizeof(takes[i].medicines[m].id) - 1
+                ] = '\0';
+
             sprintf(key, "mqty%d_%d", i, m);
 
-            String qty = prefs.getString(key, "1");
-
-            strncpy(
-                takes[i].medicines[m].quantity,
-                qty.c_str(),
-                sizeof(takes[i].medicines[m].quantity)
-            );
+            takes[i].medicines[m].quantity =
+                prefs.getUChar(key, 1);
         }
 
         Serial.println("------ TAKE LOADED ------");

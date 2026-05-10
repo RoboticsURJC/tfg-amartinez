@@ -20,6 +20,7 @@ static lv_obj_t *btn_back;
 
 static lv_obj_t *lbl_med;
 static lv_obj_t *dd_medicine;
+static lv_obj_t *meds_container;
 static const char* med_names[MAX_CATALOG_MEDICINES + 1];
 
 TakeConfig temp_take;
@@ -124,6 +125,110 @@ static void refresh_days_buttons()
             lv_obj_add_state(btn_days[i], LV_STATE_CHECKED);
         else
             lv_obj_clear_state(btn_days[i], LV_STATE_CHECKED);
+    }
+}
+
+static void refresh_medicines_list()
+{
+    if (!meds_container || !current_cfg)
+        return;
+
+    lv_obj_clean(meds_container);
+
+    for (int i = 0; i < current_cfg->medicine_count; i++) {
+
+        lv_obj_t *row = lv_obj_create(meds_container);
+
+        lv_obj_set_size(row, 260, 35);
+
+        lv_obj_set_style_pad_all(row, 4, 0);
+
+        lv_obj_clear_flag(row, LV_OBJ_FLAG_SCROLLABLE);
+
+        // -------- NOMBRE --------
+
+        const char* medName = "Desconocido";
+
+        for (int k = 0; k < medicine_count; k++) {
+
+            if (strcmp(
+                medicineCatalog[k].id,
+                current_cfg->medicines[i].id
+            ) == 0) {
+
+                medName = medicineCatalog[k].name;
+                break;
+            }
+        }
+
+        char txt[64];
+
+        sprintf(
+            txt,
+            "%s x%d",
+            medName,
+            current_cfg->medicines[i].quantity
+        );
+
+        lv_obj_t *lbl = lv_label_create(row);
+
+        lv_label_set_text(lbl, txt);
+
+        lv_obj_align(lbl, LV_ALIGN_LEFT_MID, 5, 0);
+
+        // -------- BOTÓN DELETE --------
+
+        lv_obj_t *btn_del = lv_btn_create(row);
+
+        lv_obj_set_size(btn_del, 28, 28);
+
+        lv_obj_align(btn_del, LV_ALIGN_RIGHT_MID, 0, 0);
+
+        lv_obj_set_user_data(btn_del, (void*)(intptr_t)i);
+
+        lv_obj_t *lbl_x = lv_label_create(btn_del);
+
+        lv_label_set_text(lbl_x, "X");
+
+        lv_obj_center(lbl_x);
+
+        lv_obj_add_event_cb(btn_del, [](lv_event_t *e){
+
+            int idx = (int)(intptr_t)
+                lv_obj_get_user_data(
+                    lv_event_get_target(e)
+                );
+
+            if (!current_cfg)
+                return;
+
+            if (idx >= current_cfg->medicine_count)
+                return;
+
+            // reducir cantidad
+
+            if (current_cfg->medicines[idx].quantity > 1) {
+
+                current_cfg->medicines[idx].quantity--;
+
+            } else {
+
+                // eliminar medicamento
+
+                for (int j = idx;
+                     j < current_cfg->medicine_count - 1;
+                     j++) {
+
+                    current_cfg->medicines[j] =
+                        current_cfg->medicines[j + 1];
+                }
+
+                current_cfg->medicine_count--;
+            }
+
+            refresh_medicines_list();
+
+        }, LV_EVENT_CLICKED, NULL);
     }
 }
 
@@ -431,144 +536,194 @@ void edit_takes_screen(int index)
 
     // ---------- MEDICAMENTO ----------
 
-lbl_med = lv_label_create(scr);
-lv_label_set_text(lbl_med, "Medicina");
-lv_obj_set_style_text_font(lbl_med, &lv_font_montserrat_22, LV_PART_MAIN);
-lv_obj_set_style_text_color(lbl_med, lv_color_white(), LV_PART_MAIN);
-lv_obj_set_pos(lbl_med, 10, 245);
+    lbl_med = lv_label_create(scr);
+    lv_label_set_text(lbl_med, "Medicina");
+    lv_obj_set_style_text_font(lbl_med, &lv_font_montserrat_22, LV_PART_MAIN);
+    lv_obj_set_style_text_color(lbl_med, lv_color_white(), LV_PART_MAIN);
+    lv_obj_set_pos(lbl_med, 10, 245);
 
-dd_medicine = lv_dropdown_create(scr);
-lv_obj_set_pos(dd_medicine, 120, 250);
-lv_obj_set_size(dd_medicine, 170, 40);
+    dd_medicine = lv_dropdown_create(scr);
+    lv_obj_set_pos(dd_medicine, 120, 250);
+    lv_obj_set_size(dd_medicine, 170, 40);
 
-// estilo dropdown
-lv_obj_set_style_text_font(
-    dd_medicine,
-    &lv_font_montserrat_22,
-    LV_PART_MAIN
-);
+    // estilo dropdown
+    lv_obj_set_style_text_font(
+        dd_medicine,
+        &lv_font_montserrat_22,
+        LV_PART_MAIN
+    );
 
-lv_obj_set_style_text_color(
-    dd_medicine,
-    lv_color_black(),
-    LV_PART_MAIN
-);
+    lv_obj_set_style_text_color(
+        dd_medicine,
+        lv_color_black(),
+        LV_PART_MAIN
+    );
 
-lv_obj_set_style_bg_color(
-    dd_medicine,
-    lv_color_white(),
-    LV_PART_MAIN
-);
+    lv_obj_set_style_bg_color(
+        dd_medicine,
+        lv_color_white(),
+        LV_PART_MAIN
+    );
 
-lv_obj_set_style_bg_opa(
-    dd_medicine,
-    LV_OPA_COVER,
-    LV_PART_MAIN
-);
+    lv_obj_set_style_bg_opa(
+        dd_medicine,
+        LV_OPA_COVER,
+        LV_PART_MAIN
+    );
 
-lv_dropdown_set_symbol(dd_medicine, NULL);
+    lv_dropdown_set_symbol(dd_medicine, NULL);
 
-// construir opciones
-static char med_options[256];
-med_options[0] = '\0';
-
-for (int i = 0; i < medicine_count; i++) {
-
-    strcat(med_options, medicineCatalog[i].name);
-
-    if (i < medicine_count - 1) {
-        strcat(med_options, "\n");
-    }
-}
-
-lv_dropdown_set_options(dd_medicine, med_options);
-
-// PRESELECCIÓN
-if (editing_existing && current_cfg->medicine_count > 0) {
+    // construir opciones
+    static char med_options[256];
+    med_options[0] = '\0';
 
     for (int i = 0; i < medicine_count; i++) {
 
-        if (strcmp(
-            medicineCatalog[i].id,
-            current_cfg->medicines[0].id
-        ) == 0) {
+        strcat(med_options, medicineCatalog[i].name);
 
-            lv_dropdown_set_selected(dd_medicine, i);
-            break;
+        if (i < medicine_count - 1) {
+            strcat(med_options, "\n");
         }
     }
-}
 
-// EVENTOS
-lv_obj_add_event_cb(dd_medicine, [](lv_event_t *e){
+    lv_dropdown_set_options(dd_medicine, med_options);
 
-    lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t *obj = lv_event_get_target(e);
+    // ---------- CONTENEDOR VISUAL ----------
 
-    // estilo lista desplegable
-    if (code == LV_EVENT_READY)
-    {
-        lv_obj_t *list = lv_dropdown_get_list(obj);
+    meds_container = lv_obj_create(scr);
 
-        lv_obj_set_size(list, 180, 120);
+    lv_obj_set_size(meds_container, 280, 90);
+    lv_obj_set_pos(meds_container, 20, 300);
 
-        lv_obj_set_style_bg_color(
-            list,
-            lv_color_white(),
-            LV_PART_MAIN
-        );
+    lv_obj_set_style_pad_all(meds_container, 5, 0);
+    lv_obj_set_style_pad_row(meds_container, 5, 0);
 
-        lv_obj_set_style_text_color(
-            list,
-            lv_color_black(),
-            LV_PART_MAIN
-        );
+    lv_obj_set_scroll_dir(
+        meds_container,
+        LV_DIR_VER
+    );
 
-        lv_obj_set_style_text_font(
-            list,
-            &lv_font_montserrat_22,
-            LV_PART_MAIN
-        );
+    lv_obj_set_flex_flow(
+        meds_container,
+        LV_FLEX_FLOW_COLUMN
+    );
 
-        lv_obj_set_style_text_font(
-            obj,
-            &lv_font_montserrat_22,
-            LV_PART_ITEMS
-        );
+    // PRESELECCIÓN
+    if (editing_existing && current_cfg->medicine_count > 0) {
+
+        for (int i = 0; i < medicine_count; i++) {
+
+            if (strcmp(
+                medicineCatalog[i].id,
+                current_cfg->medicines[0].id
+            ) == 0) {
+
+                lv_dropdown_set_selected(dd_medicine, i);
+                break;
+            }
+        }
     }
 
-    // selección medicamento
-    if (code == LV_EVENT_VALUE_CHANGED)
-    {
-        int sel = lv_dropdown_get_selected(obj);
+    // refrescar lista visual inicial
+    refresh_medicines_list();
 
-        if (sel >= medicine_count) return;
+    // EVENTOS
+    lv_obj_add_event_cb(dd_medicine, [](lv_event_t *e){
 
-        // evitar overflow
-        if (current_cfg->medicine_count >= MAX_MEDICINES_PER_TAKE)
-            return;
+        lv_event_code_t code = lv_event_get_code(e);
+        lv_obj_t *obj = lv_event_get_target(e);
 
-        int idx = current_cfg->medicine_count;
+        // estilo lista desplegable
+        if (code == LV_EVENT_READY)
+        {
+            lv_obj_t *list = lv_dropdown_get_list(obj);
 
-        strcpy(
-            current_cfg->medicines[idx].id,
-            medicineCatalog[sel].id
-        );
+            lv_obj_set_size(list, 180, 120);
 
-        // cantidad por defecto
-        strcpy(
-            current_cfg->medicines[idx].quantity,
-            "1"
-        );
+            lv_obj_set_style_bg_color(
+                list,
+                lv_color_white(),
+                LV_PART_MAIN
+            );
 
-        current_cfg->medicine_count++;
+            lv_obj_set_style_text_color(
+                list,
+                lv_color_black(),
+                LV_PART_MAIN
+            );
 
-        Serial.print("Medicamento añadido: ");
-        Serial.println(medicineCatalog[sel].name);
-    }
+            lv_obj_set_style_text_font(
+                list,
+                &lv_font_montserrat_18,
+                LV_PART_MAIN
+            );
 
-}, LV_EVENT_ALL, NULL);
+            lv_obj_set_style_text_font(
+                obj,
+                &lv_font_montserrat_18,
+                LV_PART_ITEMS
+            );
+        }
 
+        // selección medicamento
+        if (code == LV_EVENT_VALUE_CHANGED)
+        {
+            int sel = lv_dropdown_get_selected(obj);
+
+            if (sel >= medicine_count)
+                return;
+
+            const char* selectedId =
+                medicineCatalog[sel].id;
+
+            // buscar si ya existe
+            for (int i = 0;
+                i < current_cfg->medicine_count;
+                i++)
+            {
+                if (strcmp(
+                    current_cfg->medicines[i].id,
+                    selectedId
+                ) == 0)
+                {
+                    current_cfg->medicines[i].quantity++;
+
+                    refresh_medicines_list();
+
+                    Serial.print("Cantidad aumentada: ");
+                    Serial.println(
+                        medicineCatalog[sel].name
+                    );
+
+                    return;
+                }
+            }
+
+            // evitar overflow
+            if (current_cfg->medicine_count >=
+                MAX_MEDICINES_PER_TAKE)
+                return;
+
+            int idx = current_cfg->medicine_count;
+
+            strcpy(
+                current_cfg->medicines[idx].id,
+                selectedId
+            );
+
+            current_cfg->medicines[idx].quantity = 1;
+
+            current_cfg->medicine_count++;
+
+            refresh_medicines_list();
+
+            Serial.print("Medicamento añadido: ");
+            Serial.println(
+                medicineCatalog[sel].name
+            );
+        }
+
+    }, LV_EVENT_ALL, NULL);
     //----------- RECORDATORY -------------------------------------------
     const int rec_row_y = 305;
     const int sw_rec_w = 60;

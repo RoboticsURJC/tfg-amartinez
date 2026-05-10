@@ -136,6 +136,24 @@ void handle_get_takes()
             med["id"] =
                 takes[i].medicines[j].id;
 
+            const char* medName = "Desconocido";
+
+            for (int k = 0; k < medicine_count; k++) {
+
+                if (strcmp(
+                    medicineCatalog[k].id,
+                    takes[i].medicines[j].id
+                ) == 0) {
+
+                    medName =
+                        medicineCatalog[k].name;
+
+                    break;
+                }
+            }
+
+            med["name"] = medName;
+
             med["quantity"] =
                 takes[i].medicines[j].quantity;
 
@@ -143,6 +161,9 @@ void handle_get_takes()
             Serial.println(
                 takes[i].medicines[j].id
             );
+
+            Serial.print("  Name: ");
+            Serial.println(medName);
 
             Serial.print("  Quantity: ");
             Serial.println(
@@ -167,7 +188,6 @@ void handle_get_takes()
 
     server.send(200, "application/json", response);
 }
-
 // ---------------- ADD TAKE ----------------
 
 void handle_add_take()
@@ -460,26 +480,7 @@ void handle_takes()
                     ) - 1
                 ] = '\0';
 
-            // QUANTITY
-            strncpy(
-                takes[total_takes].medicines[idx].quantity,
-                med["quantity"] | "",
-                sizeof(
-                    takes[total_takes]
-                        .medicines[idx]
-                        .quantity
-                )
-            );
-
-            takes[total_takes]
-                .medicines[idx]
-                .quantity[
-                    sizeof(
-                        takes[total_takes]
-                            .medicines[idx]
-                            .quantity
-                    ) - 1
-                ] = '\0';
+            takes[total_takes].medicines[idx].quantity = med["quantity"] | 1;
 
             takes[total_takes].medicine_count++;
 
