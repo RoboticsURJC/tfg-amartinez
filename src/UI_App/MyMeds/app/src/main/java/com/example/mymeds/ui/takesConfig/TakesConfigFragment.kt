@@ -87,7 +87,7 @@ class TakesConfigFragment : Fragment() {
             }
 
             val invalidMedicine = medicines.any {
-                it.id.isBlank() || it.quantity.isBlank()
+                it.id.isBlank() || it.quantity <= 0
             }
 
             if (invalidMedicine) {
@@ -116,9 +116,9 @@ class TakesConfigFragment : Fragment() {
                 holder?.let {
 
                     val medName = it.binding.nameInput.text.toString().trim()
-                    val quantity = it.binding.quantityInput.text.toString().trim()
+                    val quantity = it.binding.quantityInput.text.toString().trim().toIntOrNull() ?: 1
 
-                    if (medName.isNotBlank() || quantity.isNotBlank()) {
+                    if (medName.isNotBlank()) {
 
                         val medicine =
                             com.example.mymeds.data.repository.MedicineRepository
@@ -274,7 +274,7 @@ class TakesConfigFragment : Fragment() {
             }
 
             medicines.clear()
-            medicines.addAll(take.medicines ?: emptyList())
+            medicines.addAll(take.medicines)
             medicineAdapter.notifyDataSetChanged()
 
             binding.reminderSwitch.isChecked = take.reminderEnabled

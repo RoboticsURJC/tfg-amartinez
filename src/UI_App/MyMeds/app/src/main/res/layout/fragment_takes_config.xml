@@ -291,7 +291,7 @@
                 android:hint="Selecciona"
                 android:inputType="none"
                 android:paddingStart="12dp"
-                android:paddingEnd="12dp"/>
+                android:paddingEnd="12dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Save -->

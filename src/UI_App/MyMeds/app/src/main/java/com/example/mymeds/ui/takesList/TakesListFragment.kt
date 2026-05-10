@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymeds.databinding.FragmentTakesListBinding
 import com.example.mymeds.data.repository.TakeRepository
+import com.example.mymeds.data.repository.MedicineRepository
+import com.example.mymeds.data.util.MedicineStorage
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.util.JsonUtils
 import com.example.mymeds.data.network.EspApi
@@ -68,7 +70,7 @@ class TakesListFragment : Fragment() {
 
                             if (local != null && local.medicines.isNotEmpty()) {
                                 incoming.copy(
-                                    medicines = local.medicines   // 🔥 CONSERVA meds
+                                    medicines = local.medicines
                                 )
                             } else {
                                 incoming
@@ -83,6 +85,27 @@ class TakesListFragment : Fragment() {
                     }
                 }
             }
+
+            //EspApi.getMedicines { json ->
+
+                //if (json != null) {
+
+                    //val meds =
+                        //JsonUtils.medicinesFromJson(json)
+
+                    //requireActivity().runOnUiThread {
+
+                        //MedicineRepository.setAll(meds)
+
+                        //MedicineStorage.save(requireContext())
+
+                        //Log.d(
+                            //"ESP_MED_SYNC",
+                            //"Medicamentos sincronizados: ${meds.size}"
+                        //)
+                    //}
+                //}
+            //}
         }
 
         val takes = TakeRepository.getTakes()

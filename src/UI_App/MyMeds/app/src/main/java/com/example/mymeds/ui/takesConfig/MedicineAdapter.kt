@@ -58,7 +58,7 @@ class MedicineAdapter(
             false
         )
 
-        holder.binding.quantityInput.setText(medicine.quantity)
+        holder.binding.quantityInput.setText(medicine.quantity.toString())
 
         // -------- SOLO DROPDOWN --------
 
@@ -89,7 +89,7 @@ class MedicineAdapter(
         // -------- CANTIDAD --------
 
         holder.binding.quantityInput.doAfterTextChanged {
-            medicine.quantity = it?.toString().orEmpty()
+            medicine.quantity = it?.toString()?.toIntOrNull() ?: 1
         }
 
         // -------- ELIMINAR --------

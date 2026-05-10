@@ -15,6 +15,8 @@ import com.example.mymeds.data.util.MedicineStorage
 import com.example.mymeds.databinding.FragmentMedicineListBinding
 import com.example.mymeds.R
 import com.example.mymeds.data.network.EspApi
+import com.example.mymeds.data.repository.EspConfig
+import com.example.mymeds.data.util.JsonUtils
 
 class MedicineListFragment : Fragment() {
 
@@ -41,6 +43,27 @@ class MedicineListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecycler()
+
+        //if (EspConfig.baseUrl.isNotEmpty()) {
+
+            //EspApi.getMedicines { json ->
+
+                //if (json != null) {
+
+                    //val meds =
+                        //JsonUtils.medicinesFromJson(json)
+
+                    //requireActivity().runOnUiThread {
+
+                        //MedicineRepository.setAll(meds)
+
+                        //MedicineStorage.save(requireContext())
+
+                        //updateUI()
+                    //}
+                //}
+            //}
+        //}
 
         binding.buttonAddMedicine.setOnClickListener {
             showAddDialog()

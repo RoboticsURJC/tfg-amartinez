@@ -2,6 +2,8 @@ package com.example.mymeds.data.util
 
 import com.example.mymeds.data.model.Take
 import com.google.gson.Gson
+import com.example.mymeds.data.model.Medicine
+import org.json.JSONObject
 
 object JsonUtils {
 
@@ -45,4 +47,34 @@ object JsonUtils {
     data class TakesWrapper(
         val takes: List<Take> = emptyList()
     )
+
+    fun medicinesFromJson(json: String): List<Medicine> {
+
+        return try {
+
+            val obj = JSONObject(json)
+
+            val arr = obj.getJSONArray("medicines")
+
+            val result = mutableListOf<Medicine>()
+
+            for (i in 0 until arr.length()) {
+
+                val med = arr.getJSONObject(i)
+
+                result.add(
+                    Medicine(
+                        id = med.getString("id"),
+                        name = med.getString("name")
+                    )
+                )
+            }
+
+            result
+
+        } catch (e: Exception) {
+
+            emptyList()
+        }
+    }
 }

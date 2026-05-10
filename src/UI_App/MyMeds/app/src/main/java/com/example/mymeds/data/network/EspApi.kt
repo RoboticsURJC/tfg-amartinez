@@ -135,4 +135,52 @@ object EspApi {
 
         }.start()
     }
+
+    fun getMedicines(onResult: (String?) -> Unit) {
+
+        if (EspConfig.baseUrl.isEmpty()) {
+            onResult(null)
+            return
+        }
+
+        Thread {
+            try {
+
+                val url =
+                    java.net.URL("${EspConfig.baseUrl}/medicines")
+
+                val conn =
+                    url.openConnection() as java.net.HttpURLConnection
+
+                conn.requestMethod = "GET"
+
+                conn.connectTimeout = 2000
+                conn.readTimeout = 2000
+
+                val code = conn.responseCode
+
+                if (code == 200) {
+
+                    val response =
+                        conn.inputStream
+                            .bufferedReader()
+                            .readText()
+
+                    Log.d("ESP_MED_GET", response)
+
+                    onResult(response)
+
+                } else {
+                    onResult(null)
+                }
+
+            } catch (e: Exception) {
+
+                Log.e("ESP_MED_GET", "Error", e)
+
+                onResult(null)
+            }
+
+        }.start()
+    }
 }
