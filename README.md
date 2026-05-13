@@ -2,7 +2,7 @@
 Welcome to My Final Degree Project (TFG)
 
 <div align="center">
-<img width="500" height="500" alt="logo_mymeds" src="https://github.com/user-attachments/assets/c84cf724-72fa-44b4-912c-d66986e3b526" />
+<img width="1080" height="500" alt="logo_mymeds _portada" src="https://github.com/user-attachments/assets/b4d6d643-5b58-44a3-b270-f34802af4ec5" />
 </div>
 
 My name is Ana Martínez Albendea and this repository contains the source code and materials associated with my Final Degree Project (TFG).
