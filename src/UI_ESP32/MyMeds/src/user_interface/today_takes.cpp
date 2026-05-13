@@ -4,6 +4,7 @@
 #include "user_interface/pill_takes.h"
 #include "user_interface/home_mod.h"
 #include <cstdio>
+#include <storage/medicines_storage.h>
 
 static lv_obj_t *current_screen = NULL;
 
@@ -64,6 +65,20 @@ void days_text_repeat(uint8_t mask, char *buf)
             strcat(buf, " ");
         }
     }
+}
+
+const char*
+get_medicine_name(const char* id)
+{
+    for (int i = 0; i < medicine_count; i++)
+    {
+        if (strcmp(medicineCatalog[i].id, id) == 0)
+        {
+            return medicineCatalog[i].name;
+        }
+    }
+
+    return "Desconocido";
 }
 
 void
@@ -143,6 +158,52 @@ today_takes_screen()
         lv_obj_t *l3 = lv_label_create(details);
         lv_obj_set_style_text_font(l3, &montserrat_24_regular, LV_PART_MAIN);
         lv_label_set_text(l3, rep_txt);
+
+        // -------- MEDICAMENTOS --------
+
+        lv_obj_t *med_title = lv_label_create(details);
+
+        lv_obj_set_style_text_font(
+            med_title,
+            &montserrat_24_regular,
+            LV_PART_MAIN
+        );
+
+        lv_label_set_text(
+            med_title,
+            "Medicamentos:"
+        );
+
+        for (int m = 0; m < takes[i].medicine_count; m++)
+        {
+            const char* medName =
+                get_medicine_name(
+                    takes[i].medicines[m].id
+                );
+
+            char med_txt[64];
+
+            sprintf(
+                med_txt,
+                "%s x%d",
+                medName,
+                takes[i].medicines[m].quantity
+            );
+
+            lv_obj_t *med_label =
+                lv_label_create(details);
+
+            lv_obj_set_style_text_font(
+                med_label,
+                &montserrat_24_regular,
+                LV_PART_MAIN
+            );
+
+            lv_label_set_text(
+                med_label,
+                med_txt
+            );
+        }
 
         lv_obj_set_user_data(btn, details);
 
