@@ -32,6 +32,11 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.configFragment)
         }
 
+        // Configuración del botón con id button_today_takes
+        binding.buttonTodayTakes.setOnClickListener {
+            findNavController().navigate(R.id.todayTakesFragment)
+        }
+
         // Configuración del botón con id button_pulse_oxigen
         binding.buttonPulse.setOnClickListener {
             findNavController().navigate(R.id.pulse_oxigenFragment)
