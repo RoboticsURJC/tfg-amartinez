@@ -14,6 +14,7 @@ import android.content.Context
 import com.example.mymeds.R
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.network.EspApi
+import org.json.JSONObject
 
 class WifiConfigFragment : Fragment() {
 
@@ -229,13 +230,23 @@ class WifiConfigFragment : Fragment() {
 
                         Thread {
                             try {
+                                Thread.sleep(1500)
                                 val linkUrl = java.net.URL("$url/link")
                                 val conn = linkUrl.openConnection() as java.net.HttpURLConnection
                                 conn.requestMethod = "GET"
-                                conn.responseCode
+                                val code = conn.responseCode
 
-                                Thread.sleep(300)
-                                EspApi.sendTakes()
+                                if (code == 200) {
+                                    val response = conn.inputStream.bufferedReader().readText()
+                                    val json = org.json.JSONObject(response)
+                                    val token = json.getString("token")
+
+                                    prefs.edit().putString("device_token", token).apply()
+
+                                    android.util.Log.d("LINK", "Token guardado: $token")
+                                    Thread.sleep(300)
+                                    EspApi.sendTakes()
+                                }
 
                             } catch (_: Exception) {}
                         }.start()

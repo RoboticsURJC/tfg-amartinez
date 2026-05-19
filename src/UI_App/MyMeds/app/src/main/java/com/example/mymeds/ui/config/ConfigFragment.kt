@@ -123,6 +123,15 @@ class ConfigFragment : Fragment() {
 
             deviceDetected = success
 
+            if (!success) {
+
+                prefs.edit()
+                    .remove("esp_url")
+                    .apply()
+
+                EspConfig.baseUrl = ""
+            }
+
             if (success && finalUrl != null) {
                 EspConfig.baseUrl = finalUrl
             }
@@ -139,10 +148,11 @@ class ConfigFragment : Fragment() {
     private fun checkConnection(urlBase: String): Boolean {
         return try {
 
-            val url = java.net.URL("$urlBase/takes")
+            val url = java.net.URL("$urlBase/ping")
             val conn = url.openConnection() as java.net.HttpURLConnection
 
             conn.requestMethod = "GET"
+            conn.setRequestProperty("X-DEVICE-TOKEN", "mymeds_secure_token")
             conn.connectTimeout = 2000
             conn.readTimeout = 2000
 
@@ -150,7 +160,19 @@ class ConfigFragment : Fragment() {
 
             Log.d("CONFIG", "Check $urlBase → $code")
 
-            code == 200
+            if (code == 200) {
+
+                val response =
+                    conn.inputStream
+                        .bufferedReader()
+                        .readText()
+
+                response == "MYMEDS_ESP_OK"
+
+            } else {
+
+                false
+            }
 
         } catch (e: Exception) {
             Log.d("CONFIG", "Check falló: $urlBase", e)

@@ -6,8 +6,25 @@ import com.example.mymeds.data.repository.TakeRepository
 import com.example.mymeds.data.util.JsonUtils
 import com.example.mymeds.data.repository.MedicineRepository
 import com.google.gson.Gson
+import android.content.Context
+import com.example.mymeds.MyMedsApplication
 
 object EspApi {
+
+    private fun getToken(): String {
+
+        val prefs =
+            MyMedsApplication.instance
+                .getSharedPreferences(
+                    "app",
+                    Context.MODE_PRIVATE
+                )
+
+        return prefs.getString(
+            "device_token",
+            ""
+        ) ?: ""
+    }
 
     fun sendTakes() {
 
@@ -24,6 +41,8 @@ object EspApi {
                 conn.requestMethod = "POST"
                 conn.doOutput = true
                 conn.setRequestProperty("Content-Type", "application/json")
+
+                conn.setRequestProperty("X-DEVICE-TOKEN", getToken())
 
                 val json = JsonUtils.takesToJson(takes)
 
@@ -55,6 +74,7 @@ object EspApi {
                 val conn = url.openConnection() as java.net.HttpURLConnection
 
                 conn.requestMethod = "GET"
+                conn.setRequestProperty("X-DEVICE-TOKEN", getToken())
                 conn.connectTimeout = 2000
                 conn.readTimeout = 2000
 
@@ -105,10 +125,8 @@ object EspApi {
                 conn.requestMethod = "POST"
                 conn.doOutput = true
 
-                conn.setRequestProperty(
-                    "Content-Type",
-                    "application/json"
-                )
+                conn.setRequestProperty("Content-Type", "application/json")
+                conn.setRequestProperty("X-DEVICE-TOKEN", getToken())
 
                 val json =
                     com.google.gson.Gson().toJson(
@@ -153,6 +171,7 @@ object EspApi {
                     url.openConnection() as java.net.HttpURLConnection
 
                 conn.requestMethod = "GET"
+                conn.setRequestProperty("X-DEVICE-TOKEN", getToken())
 
                 conn.connectTimeout = 2000
                 conn.readTimeout = 2000

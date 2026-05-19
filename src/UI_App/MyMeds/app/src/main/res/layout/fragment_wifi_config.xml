@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:padding="24dp">
 
-    <!-- 🔹 FORMULARIO -->
     <LinearLayout
         android:id="@+id/layoutForm"
         android:layout_width="0dp"
@@ -60,7 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contraseña"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordInput"
@@ -78,7 +78,6 @@
 
     </LinearLayout>
 
-    <!-- 🔹 LOADING -->
     <LinearLayout
         android:id="@+id/layoutLoading"
         android:layout_width="0dp"

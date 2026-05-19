@@ -1,6 +1,7 @@
 package com.example.mymeds
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -36,6 +37,20 @@ class MainActivity : AppCompatActivity() {
         }, 1500)
 
         super.onCreate(savedInstanceState)
+
+        if (!intent.getBooleanExtra("AUTH_OK", false)) {
+
+            startActivity(
+                Intent(
+                    this,
+                    PinActivity::class.java
+                )
+            )
+
+            finish()
+
+            return
+        }
 
         MedicineStorage.load(this)
 
