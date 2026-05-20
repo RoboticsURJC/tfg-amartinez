@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include <time.h>
 #include "user_interface/home_mod.h"
+#include "user_interface/pin_screen.h"
 #include "user_interface/clock_mod.h"
 
 #include "fonts/montserrat_100_bold.h"
@@ -17,7 +18,7 @@ const char *days[] = {
 
 static void btn_event_cb(lv_event_t *e)
 {
-    show_home_screen();
+    show_pin_screen();
 }
 
 void show_clock_screen(lv_obj_t *parent)

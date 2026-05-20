@@ -7,6 +7,8 @@ extern TFT_eSPI tft;
 
 #include <WebServer.h>
 WebServer server(80);
+extern String DEVICE_TOKEN;
+String DEVICE_TOKEN = "";
 
 #include <WiFiUdp.h>
 WiFiUDP udp;
@@ -36,6 +38,23 @@ static bool clock_started = false;
 
 static lv_timer_t *clock_timer = nullptr;
 
+String generateToken()
+{
+    const char charset[] =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    String token = "";
+
+    for (int i = 0; i < 16; i++) {
+
+        token += charset[
+            random(sizeof(charset) - 1)
+        ];
+    }
+
+    return token;
+}
+
 void handle_not_found() {
     Serial.println("----- NOT FOUND -----");
     Serial.print("URI: ");
@@ -59,6 +78,23 @@ void handle_not_found() {
     server.send(404, "text/plain", "Not found");
 }
 
+bool isAuthorized()
+{
+    String token = server.header("X-DEVICE-TOKEN");
+
+    if (token != DEVICE_TOKEN) {
+
+        Serial.println("Unauthorized request");
+        Serial.println(server.uri());
+
+        server.send(401, "text/plain", "Unauthorized");
+
+        return false;
+    }
+
+    return true;
+}
+
 void setup()
 {
     Serial.begin(115200);
@@ -70,8 +106,21 @@ void setup()
     uploadTakes();
     
     Preferences p;
-    p.begin("sys", true);
+    p.begin("sys", false);
     device_linked = p.getBool("linked", false);
+    String savedToken = p.getString("token", "");
+
+    if (savedToken.isEmpty()) {
+        DEVICE_TOKEN = generateToken();
+        p.putString("token", DEVICE_TOKEN);
+        Serial.println("Nuevo token generado:");
+
+    } else {
+        DEVICE_TOKEN = savedToken;
+        Serial.println("Token cargado:");
+    }
+
+    Serial.println(DEVICE_TOKEN);
     p.end();
 
     // --- Logo ---
@@ -130,15 +179,72 @@ void setup()
 
             server.on("/", handle_web_root);
 
-            server.on("/takes", HTTP_GET, handle_get_takes);
-            server.on("/takes", HTTP_POST, handle_takes);
+            server.on("/save", HTTP_POST, handle_save);
 
-            server.on("/take", HTTP_POST, handle_add_take);
-            server.on("/take", HTTP_PUT, handle_update_take);
-            server.on("/take", HTTP_DELETE, handle_delete_take);
+            server.on("/ping", HTTP_GET, [](){
 
-            server.on("/medicines", HTTP_POST, handle_set_medicines);
-            server.on("/medicines", HTTP_GET, handle_get_medicines);
+                server.send(
+                    200,
+                    "text/plain",
+                    "MYMEDS_ESP_OK"
+                );
+            });
+
+            server.on("/takes", HTTP_GET, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_get_takes();
+            });
+
+            server.on("/takes", HTTP_POST, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_takes();
+            });
+
+            server.on("/take", HTTP_POST, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_add_take();
+            });
+
+            server.on("/take", HTTP_PUT, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_update_take();
+            });
+
+            server.on("/take", HTTP_DELETE, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_delete_take();
+            });
+
+            server.on("/medicines", HTTP_POST, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_set_medicines();
+            });
+
+            server.on("/medicines", HTTP_GET, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_get_medicines();
+            });
 
             server.on("/link", HTTP_GET, handle_link);
 
@@ -239,15 +345,72 @@ void loop()
 
         server.on("/", handle_web_root);
 
-        server.on("/takes", HTTP_GET, handle_get_takes);
-        server.on("/takes", HTTP_POST, handle_takes);
+        server.on("/save", HTTP_POST, handle_save);
 
-        server.on("/take", HTTP_POST, handle_add_take);
-        server.on("/take", HTTP_PUT, handle_update_take);
-        server.on("/take", HTTP_DELETE, handle_delete_take);
+        server.on("/ping", HTTP_GET, [](){
 
-        server.on("/medicines", HTTP_POST, handle_set_medicines);
-        server.on("/medicines", HTTP_GET, handle_get_medicines);
+            server.send(
+                200,
+                "text/plain",
+                "MYMEDS_ESP_OK"
+            );
+        });
+
+        server.on("/takes", HTTP_GET, [](){
+
+            if (!isAuthorized())
+                return;
+
+            handle_get_takes();
+        });
+
+        server.on("/takes", HTTP_POST, [](){
+
+            if (!isAuthorized())
+                return;
+
+            handle_takes();
+        });
+
+        server.on("/take", HTTP_POST, [](){
+
+            if (!isAuthorized())
+                return;
+
+            handle_add_take();
+        });
+
+        server.on("/take", HTTP_PUT, [](){
+
+            if (!isAuthorized())
+                return;
+
+            handle_update_take();
+        });
+
+        server.on("/take", HTTP_DELETE, [](){
+
+            if (!isAuthorized())
+                return;
+
+            handle_delete_take();
+        });
+
+        server.on("/medicines", HTTP_POST, [](){
+
+            if (!isAuthorized())
+                return;
+
+            handle_set_medicines();
+        });
+
+        server.on("/medicines", HTTP_GET, [](){
+
+            if (!isAuthorized())
+                return;
+
+            handle_get_medicines();
+        });
 
         server.on("/link", HTTP_GET, handle_link);
 

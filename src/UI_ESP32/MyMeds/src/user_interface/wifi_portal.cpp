@@ -20,6 +20,8 @@
 extern WebServer server;
 extern bool device_linked;
 
+extern String DEVICE_TOKEN;
+
 static String new_ssid = "";
 static String new_password = "";
 
@@ -390,11 +392,25 @@ void handle_link()
     device_linked = true;
 
     Preferences p;
+
     p.begin("sys", false);
     p.putBool("linked", true);
     p.end();
 
-    server.send(200, "application/json", "{\"status\":\"linked\"}");
+    DynamicJsonDocument doc(128);
+
+    doc["status"] = "linked";
+    doc["token"] = DEVICE_TOKEN;
+
+    String response;
+
+    serializeJson(doc, response);
+
+    server.send(
+        200,
+        "application/json",
+        response
+    );
 }
 
 void handle_takes()
