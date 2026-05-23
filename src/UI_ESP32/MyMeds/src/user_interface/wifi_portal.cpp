@@ -21,6 +21,7 @@ extern WebServer server;
 extern bool device_linked;
 
 extern String DEVICE_TOKEN;
+extern String DEVICE_PIN;
 
 static String new_ssid = "";
 static String new_password = "";
@@ -383,6 +384,38 @@ void handle_get_medicines()
     Serial.println(json);
 
     server.send(200, "application/json", json);
+}
+
+void handle_set_pin()
+{
+    String newPin =
+        server.arg("plain");
+
+    Serial.print("PIN recibido: [");
+    Serial.print(newPin);
+    Serial.println("]");
+
+    Preferences p;
+
+    p.begin("sys", false);
+
+    p.putString(
+        "pin",
+        newPin
+    );
+
+    p.end();
+
+    DEVICE_PIN = newPin;
+
+    Serial.println("PIN actualizado:");
+    Serial.println(DEVICE_PIN);
+
+    server.send(
+        200,
+        "text/plain",
+        "OK"
+    );
 }
 
 void handle_link()

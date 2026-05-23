@@ -9,7 +9,7 @@ static String entered_pin = "";
 static lv_obj_t *label_pin;
 static lv_obj_t *label_error;
 
-static const char *REAL_PIN = "1234";
+extern String DEVICE_PIN;
 
 static void update_pin_label()
 {
@@ -52,24 +52,9 @@ void show_pin_screen()
         lv_label_set_text(label_error, "");
     }
 
-    lv_obj_set_style_text_color(
-        label_error,
-        lv_palette_main(LV_PALETTE_RED),
-        0
-    );
-
-    lv_obj_set_style_text_font(
-        label_error,
-        &lv_font_montserrat_24,
-        0
-    );
-
-    lv_obj_align(
-        label_error,
-        LV_ALIGN_TOP_MID,
-        0,
-        130
-    );
+    lv_obj_set_style_text_color(label_error, lv_palette_main(LV_PALETTE_RED),0);
+    lv_obj_set_style_text_font(label_error, &lv_font_montserrat_24, 0);
+    lv_obj_align(label_error, LV_ALIGN_TOP_MID, 0, 130);
 
     int num = 1;
 
@@ -166,7 +151,7 @@ void show_pin_screen()
     lv_obj_add_event_cb(btn_ok,
         [](lv_event_t *e)
     {
-        if (entered_pin == REAL_PIN)
+        if (entered_pin == DEVICE_PIN)
         {
             label_error = nullptr;
             label_pin = nullptr;

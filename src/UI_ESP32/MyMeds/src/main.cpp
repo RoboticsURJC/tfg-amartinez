@@ -10,6 +10,8 @@ WebServer server(80);
 extern String DEVICE_TOKEN;
 String DEVICE_TOKEN = "";
 
+String DEVICE_PIN = "1234";
+
 #include <WiFiUdp.h>
 WiFiUDP udp;
 
@@ -80,7 +82,29 @@ void handle_not_found() {
 
 bool isAuthorized()
 {
+    Serial.println("=== HEADERS ===");
+
+    for (int i = 0; i < server.headers(); i++)
+    {
+        Serial.print(server.headerName(i));
+        Serial.print(" = ");
+        Serial.println(server.header(i));
+    }
+
+    Serial.println("===============");
     String token = server.header("X-DEVICE-TOKEN");
+
+    Serial.print("TOKEN RECIBIDO [");
+    Serial.print(token.length());
+    Serial.println("]");
+
+    Serial.println(token);
+
+    Serial.print("TOKEN ESP [");
+    Serial.print(DEVICE_TOKEN.length());
+    Serial.println("]");
+
+    Serial.println(DEVICE_TOKEN);
 
     if (token != DEVICE_TOKEN) {
 
@@ -110,6 +134,8 @@ void setup()
     device_linked = p.getBool("linked", false);
     String savedToken = p.getString("token", "");
 
+    DEVICE_PIN = p.getString("pin", "1234");
+
     if (savedToken.isEmpty()) {
         DEVICE_TOKEN = generateToken();
         p.putString("token", DEVICE_TOKEN);
@@ -121,6 +147,8 @@ void setup()
     }
 
     Serial.println(DEVICE_TOKEN);
+    Serial.println("PIN cargado:");
+    Serial.println(DEVICE_PIN);
     p.end();
 
     // --- Logo ---
@@ -190,6 +218,14 @@ void setup()
                 );
             });
 
+            server.on("/pin", HTTP_POST, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_set_pin();
+            });
+
             server.on("/takes", HTTP_GET, [](){
 
                 if (!isAuthorized())
@@ -249,6 +285,16 @@ void setup()
             server.on("/link", HTTP_GET, handle_link);
 
             server.onNotFound(handle_not_found);
+
+            const char* headerKeys[] = {
+                "X-DEVICE-TOKEN"
+            };
+
+            server.collectHeaders(
+                headerKeys,
+                1
+            );
+
             server.begin();
 
             if (device_linked) {
@@ -356,6 +402,14 @@ void loop()
             );
         });
 
+        server.on("/pin", HTTP_POST, [](){
+
+            if (!isAuthorized())
+                return;
+
+            handle_set_pin();
+        });
+
         server.on("/takes", HTTP_GET, [](){
 
             if (!isAuthorized())
@@ -415,6 +469,16 @@ void loop()
         server.on("/link", HTTP_GET, handle_link);
 
         server.onNotFound(handle_not_found);
+
+        const char* headerKeys[] = {
+            "X-DEVICE-TOKEN"
+        };
+
+        server.collectHeaders(
+            headerKeys,
+            1
+        );
+
         server.begin();
 
         Serial.println("Servidor HTTP listo");
