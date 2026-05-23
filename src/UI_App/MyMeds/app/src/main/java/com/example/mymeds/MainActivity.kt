@@ -26,6 +26,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        Log.d(
+            "MAIN_DEBUG",
+            "MainActivity creada"
+        )
+
         val splashScreen = installSplashScreen()
 
         splashScreen.setKeepOnScreenCondition {
@@ -52,15 +57,43 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        val prefs =
+            getSharedPreferences(
+                "app",
+                Context.MODE_PRIVATE
+            )
+
+        // Cargar última URL conocida
+        EspConfig.baseUrl =
+            prefs.getString(
+                "esp_url",
+                ""
+            ) ?: ""
+
+        Log.d(
+            "ESP_URL",
+            "URL guardada: ${EspConfig.baseUrl}"
+        )
+
         MedicineStorage.load(this)
 
+        // Intentar redescubrir la ESP
         connectToEsp()
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding =
+            ActivityMainBinding.inflate(
+                layoutInflater
+            )
+
         setContentView(binding.root)
     }
 
     private fun connectToEsp() {
+
+        Log.d(
+            "ESP_CONNECT",
+            "connectToEsp iniciado"
+        )
 
         Thread {
 
@@ -102,7 +135,17 @@ class MainActivity : AppCompatActivity() {
 
                     val ip = responsePacket.address.hostAddress
 
+                    Log.d(
+                        "ESP_CONNECT",
+                        "IP encontrada: $ip"
+                    )
+
                     EspConfig.baseUrl = "http://$ip"
+
+                    Log.d(
+                        "ESP_CONNECT",
+                        "URL actualizada: ${EspConfig.baseUrl}"
+                    )
 
                     Log.d(
                         "ESP_CONNECT",
@@ -117,6 +160,19 @@ class MainActivity : AppCompatActivity() {
                     prefs.edit()
                         .putString("esp_url", EspConfig.baseUrl)
                         .apply()
+
+                    val currentPin =
+                        prefs.getString(
+                            "app_pin",
+                            "1234"
+                        ) ?: "1234"
+
+                    Log.d(
+                        "ESP_PIN",
+                        "Sincronizando PIN: $currentPin"
+                    )
+
+                    EspApi.sendPin(currentPin)
 
                     EspApi.getMedicines { json ->
 

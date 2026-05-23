@@ -3,6 +3,7 @@ package com.example.mymeds
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mymeds.databinding.ActivityPinBinding
@@ -60,6 +61,11 @@ class PinActivity : AppCompatActivity() {
                 intent.putExtra(
                     "AUTH_OK",
                     true
+                )
+
+                Log.d(
+                    "PIN_DEBUG",
+                    "PIN correcto, abriendo MainActivity"
                 )
 
                 startActivity(intent)

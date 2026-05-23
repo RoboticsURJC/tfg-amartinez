@@ -57,4 +57,14 @@
         android:name="com.example.mymeds.ui.todayTakes.TodayTakesFragment"
         android:label="TodayTakesFragment"/>
 
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.mymeds.ui.settings.SettingsFragment"
+        android:label="Ajustes" />
+
+    <fragment
+        android:id="@+id/navigation_change_pin"
+        android:name="com.example.mymeds.ui.settings.ChangePinFragment"
+        android:label="Cambiar PIN"/>
+
 </navigation>

@@ -20,10 +20,18 @@ object EspApi {
                     Context.MODE_PRIVATE
                 )
 
-        return prefs.getString(
-            "device_token",
-            ""
-        ) ?: ""
+        val token =
+            prefs.getString(
+                "device_token",
+                ""
+            ) ?: ""
+
+        Log.d(
+            "TOKEN_DEBUG",
+            "Token leído: '$token'"
+        )
+
+        return token
     }
 
     fun sendTakes() {
@@ -198,6 +206,90 @@ object EspApi {
                 Log.e("ESP_MED_GET", "Error", e)
 
                 onResult(null)
+            }
+
+        }.start()
+    }
+
+    fun sendPin(pin: String) {
+
+        Log.d(
+            "ESP_PIN",
+            "sendPin llamado con PIN: $pin"
+        )
+
+        if (EspConfig.baseUrl.isEmpty()) {
+
+            Log.e(
+                "ESP_PIN",
+                "baseUrl vacía"
+            )
+
+            return
+        }
+
+        Thread {
+
+            try {
+
+                Log.d(
+                    "ESP_PIN",
+                    "Enviando a ${EspConfig.baseUrl}/pin"
+                )
+
+                val url =
+                    java.net.URL(
+                        "${EspConfig.baseUrl}/pin"
+                    )
+
+                val conn =
+                    url.openConnection()
+                            as java.net.HttpURLConnection
+
+                conn.requestMethod = "POST"
+                conn.doOutput = true
+
+                conn.setRequestProperty(
+                    "Content-Type",
+                    "text/plain"
+                )
+
+                val token = getToken()
+
+                Log.d(
+                    "ESP_PIN",
+                    "Token enviado: '$token'"
+                )
+
+                conn.setRequestProperty(
+                    "X-DEVICE-TOKEN",
+                    token
+                )
+
+                Log.d(
+                    "ESP_PIN",
+                    conn.requestProperties.toString()
+                )
+
+                conn.outputStream.use {
+
+                    it.write(
+                        pin.toByteArray()
+                    )
+                }
+
+                Log.d(
+                    "ESP_PIN",
+                    "Código: ${conn.responseCode}"
+                )
+
+            } catch (e: Exception) {
+
+                Log.e(
+                    "ESP_PIN",
+                    "Error",
+                    e
+                )
             }
 
         }.start()
