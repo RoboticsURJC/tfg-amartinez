@@ -161,36 +161,39 @@ class MainActivity : AppCompatActivity() {
                         .putString("esp_url", EspConfig.baseUrl)
                         .apply()
 
-                    val currentPin =
-                        prefs.getString(
-                            "app_pin",
-                            "1234"
-                        ) ?: "1234"
+                    EspApi.refreshLink {
 
-                    Log.d(
-                        "ESP_PIN",
-                        "Sincronizando PIN: $currentPin"
-                    )
+                        val currentPin =
+                            prefs.getString(
+                                "app_pin",
+                                "1234"
+                            ) ?: "1234"
 
-                    EspApi.sendPin(currentPin)
+                        Log.d(
+                            "ESP_PIN",
+                            "Sincronizando PIN: $currentPin"
+                        )
 
-                    EspApi.getMedicines { json ->
+                        EspApi.sendPin(currentPin)
 
-                        if (json != null) {
+                        EspApi.getMedicines { json ->
 
-                            val meds =
-                                JsonUtils.medicinesFromJson(json)
+                            if (json != null) {
 
-                            runOnUiThread {
+                                val meds =
+                                    JsonUtils.medicinesFromJson(json)
 
-                                MedicineRepository.setAll(meds)
+                                runOnUiThread {
 
-                                MedicineStorage.save(this)
+                                    MedicineRepository.setAll(meds)
 
-                                Log.d(
-                                    "ESP_MED_SYNC",
-                                    "Medicamentos sincronizados: ${meds.size}"
-                                )
+                                    MedicineStorage.save(this)
+
+                                    Log.d(
+                                        "ESP_MED_SYNC",
+                                        "Medicamentos sincronizados: ${meds.size}"
+                                    )
+                                }
                             }
                         }
                     }

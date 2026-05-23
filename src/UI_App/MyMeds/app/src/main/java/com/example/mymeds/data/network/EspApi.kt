@@ -294,4 +294,72 @@ object EspApi {
 
         }.start()
     }
+
+    fun refreshLink(onSuccess: (() -> Unit)? = null) {
+
+        if (EspConfig.baseUrl.isEmpty()) {
+            return
+        }
+
+        Thread {
+
+            try {
+
+                val url =
+                    java.net.URL(
+                        "${EspConfig.baseUrl}/link"
+                    )
+
+                val conn =
+                    url.openConnection()
+                            as java.net.HttpURLConnection
+
+                conn.requestMethod = "GET"
+
+                if (conn.responseCode == 200) {
+
+                    val response =
+                        conn.inputStream
+                            .bufferedReader()
+                            .readText()
+
+                    val json =
+                        org.json.JSONObject(response)
+
+                    val token =
+                        json.getString("token")
+
+                    val prefs =
+                        MyMedsApplication.instance
+                            .getSharedPreferences(
+                                "app",
+                                Context.MODE_PRIVATE
+                            )
+
+                    prefs.edit()
+                        .putString(
+                            "device_token",
+                            token
+                        )
+                        .apply()
+
+                    Log.d(
+                        "LINK",
+                        "Token actualizado: $token"
+                    )
+
+                    onSuccess?.invoke()
+                }
+
+            } catch (e: Exception) {
+
+                Log.e(
+                    "LINK",
+                    "Error actualizando token",
+                    e
+                )
+            }
+
+        }.start()
+    }
 }

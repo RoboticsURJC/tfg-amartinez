@@ -137,6 +137,11 @@ class ConfigFragment : Fragment() {
             }
 
             activity?.runOnUiThread {
+
+                if (!isAdded || _binding == null) {
+                    return@runOnUiThread
+                }
+
                 updateUI()
             }
 
@@ -247,15 +252,25 @@ class ConfigFragment : Fragment() {
 
     private fun updateUI() {
 
+        if (_binding == null) {
+            return
+        }
+
         if (!deviceDetected) {
 
-            binding.textStatus.text = "No hay ningún dispensador configurado"
-            binding.buttonConf.text = "Escanear QR"
+            binding.textStatus.text =
+                "No hay ningún dispensador configurado"
+
+            binding.buttonConf.text =
+                "Escanear QR"
 
         } else {
 
-            binding.textStatus.text = "Dispensador conectado"
-            binding.buttonConf.text = "Gestionar tomas"
+            binding.textStatus.text =
+                "Dispensador conectado"
+
+            binding.buttonConf.text =
+                "Gestionar tomas"
         }
 
         binding.buttonConf.visibility = View.VISIBLE
@@ -265,13 +280,22 @@ class ConfigFragment : Fragment() {
             if (!deviceDetected) {
 
                 val bundle = Bundle()
-                bundle.putString("mode", "WIFI")
 
-                findNavController().navigate(R.id.qrScannerFragment, bundle)
+                bundle.putString(
+                    "mode",
+                    "WIFI"
+                )
+
+                findNavController().navigate(
+                    R.id.qrScannerFragment,
+                    bundle
+                )
 
             } else {
 
-                findNavController().navigate(R.id.takesListFragment)
+                findNavController().navigate(
+                    R.id.takesListFragment
+                )
             }
         }
     }

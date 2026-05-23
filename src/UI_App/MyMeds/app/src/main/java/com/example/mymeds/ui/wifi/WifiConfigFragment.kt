@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.mymeds.databinding.FragmentWifiConfigBinding
 import android.view.inputmethod.InputMethodManager
 import android.content.Context
+import android.util.Log
 import com.example.mymeds.R
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.network.EspApi
@@ -244,6 +245,20 @@ class WifiConfigFragment : Fragment() {
                                     prefs.edit().putString("device_token", token).apply()
 
                                     android.util.Log.d("LINK", "Token guardado: $token")
+
+                                    val currentPin =
+                                        prefs.getString(
+                                            "app_pin",
+                                            "1234"
+                                        ) ?: "1234"
+
+                                    Log.d(
+                                        "ESP_PIN",
+                                        "Sincronizando PIN tras LINK: $currentPin"
+                                    )
+
+                                    EspApi.sendPin(currentPin)
+
                                     Thread.sleep(300)
                                     EspApi.sendTakes()
                                 }
