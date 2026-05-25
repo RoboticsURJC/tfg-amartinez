@@ -418,6 +418,14 @@ void handle_set_pin()
     );
 }
 
+void handle_get_pin()
+{
+    Serial.println("PIN solicitado por la app:");
+    Serial.println(DEVICE_PIN);
+
+    server.send(200,"text/plain",DEVICE_PIN);
+}
+
 void handle_link()
 {
     Serial.println("App sincronizada (link)");

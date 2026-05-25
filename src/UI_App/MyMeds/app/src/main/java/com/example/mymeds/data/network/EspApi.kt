@@ -295,6 +295,97 @@ object EspApi {
         }.start()
     }
 
+    fun getPin(
+        onResult: (String?) -> Unit
+    )
+    {
+        if (EspConfig.baseUrl.isEmpty()) {
+            onResult(null)
+            return
+        }
+
+        Thread {
+
+            try {
+
+                val url =
+                    java.net.URL(
+                        "${EspConfig.baseUrl}/pin"
+                    )
+
+                val conn =
+                    url.openConnection()
+                            as java.net.HttpURLConnection
+
+                conn.requestMethod = "GET"
+
+                conn.setRequestProperty(
+                    "X-DEVICE-TOKEN",
+                    getToken()
+                )
+
+                val code =
+                    conn.responseCode
+
+                if (code == 200)
+                {
+                    val pin =
+                        conn.inputStream
+                            .bufferedReader()
+                            .readText()
+
+                    onResult(pin)
+                }
+                else
+                {
+                    onResult(null)
+                }
+
+            } catch (e: Exception)
+            {
+                onResult(null)
+            }
+
+        }.start()
+    }
+
+    fun syncPinFromEsp() {
+
+        EspApi.getPin { espPin ->
+
+            if (espPin == null)
+                return@getPin
+
+            val prefs =
+                MyMedsApplication.instance
+                    .getSharedPreferences(
+                        "app",
+                        Context.MODE_PRIVATE
+                    )
+
+            val localPin =
+                prefs.getString(
+                    "app_pin",
+                    "1234"
+                ) ?: "1234"
+
+            if (espPin != localPin)
+            {
+                prefs.edit()
+                    .putString(
+                        "app_pin",
+                        espPin
+                    )
+                    .apply()
+
+                Log.d(
+                    "PIN_SYNC",
+                    "PIN actualizado desde ESP: $espPin"
+                )
+            }
+        }
+    }
+
     fun refreshLink(onSuccess: (() -> Unit)? = null) {
 
         if (EspConfig.baseUrl.isEmpty()) {

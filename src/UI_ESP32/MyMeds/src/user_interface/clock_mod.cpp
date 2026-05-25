@@ -79,7 +79,13 @@ void clock_init(lv_obj_t *parent){
 
 void clock_update()
 {
-    if (!lbl_time || !lbl_day){
+    if (lbl_time == nullptr || lbl_day == nullptr)
+    {
+        return;
+    }
+
+    if (!lv_obj_is_valid(lbl_time) || !lv_obj_is_valid(lbl_day))
+    {
         return;
     }
 

@@ -163,18 +163,7 @@ class MainActivity : AppCompatActivity() {
 
                     EspApi.refreshLink {
 
-                        val currentPin =
-                            prefs.getString(
-                                "app_pin",
-                                "1234"
-                            ) ?: "1234"
-
-                        Log.d(
-                            "ESP_PIN",
-                            "Sincronizando PIN: $currentPin"
-                        )
-
-                        EspApi.sendPin(currentPin)
+                        EspApi.syncPinFromEsp()
 
                         EspApi.getMedicines { json ->
 

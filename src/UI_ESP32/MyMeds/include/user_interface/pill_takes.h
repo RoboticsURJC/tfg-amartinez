@@ -39,6 +39,7 @@ void today_takes_screen();
 int get_today_index();
 bool is_take_today(int index);
 
+
 inline bool is_day_active(uint8_t mask, int day) {
     return (mask & (1 << day)) != 0;
 }

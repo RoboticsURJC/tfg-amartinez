@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.mymeds.databinding.FragmentHomeBinding
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mymeds.R
+import com.example.mymeds.data.network.EspApi
 
 class HomeFragment : Fragment() {
 
@@ -59,6 +60,8 @@ class HomeFragment : Fragment() {
         super.onResume()
         (requireActivity() as AppCompatActivity)
             .supportActionBar?.show()
+
+        EspApi.syncPinFromEsp()
     }
 
     override fun onDestroyView() {

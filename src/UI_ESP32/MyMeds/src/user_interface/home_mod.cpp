@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "user_interface/pill_takes.h"
 #include "user_interface/home_mod.h"
+#include "user_interface/settings_screen.h"
 
 static lv_obj_t *current_screen = NULL;
 
@@ -17,6 +18,11 @@ static void btn_event_cb(lv_event_t *e)
 
     if (!strcmp(txt, "Tomas hoy")){
         today_takes_screen();
+        return;
+    }
+
+    if (!strcmp(txt, "Ajustes")){
+        show_settings_screen ();
         return;
     }
 }
@@ -90,4 +96,18 @@ void show_home_screen()
     lv_obj_set_style_text_font(lbl4, &montserrat_34_regular, LV_PART_MAIN);
     lv_obj_set_style_text_color(lbl4, lv_color_white(), LV_PART_MAIN);
     lv_obj_center(lbl4);
+
+    // ---------------------------------------------------------------
+
+    lv_obj_t *btn5 = lv_btn_create(scr);
+    lv_obj_set_size(btn5, 265, 70);
+    lv_obj_set_style_bg_color(btn5, lv_color_make(160, 50, 200), LV_PART_MAIN);
+    lv_obj_align(btn5, LV_ALIGN_TOP_MID, 0, 480);
+    lv_obj_add_event_cb(btn5, btn_event_cb, LV_EVENT_CLICKED, (void *)"Ajustes");
+
+    lv_obj_t *lbl5 = lv_label_create(btn5);
+    lv_label_set_text(lbl5, "Ajustes");
+    lv_obj_set_style_text_font(lbl5, &montserrat_34_regular, LV_PART_MAIN);
+    lv_obj_set_style_text_color(lbl5, lv_color_white(), LV_PART_MAIN);
+    lv_obj_center(lbl5);
 }

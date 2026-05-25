@@ -11,6 +11,7 @@ extern String DEVICE_TOKEN;
 String DEVICE_TOKEN = "";
 
 String DEVICE_PIN = "1234";
+int TIMEOUT = 60000;
 
 #include <WiFiUdp.h>
 WiFiUDP udp;
@@ -27,6 +28,7 @@ WiFiUDP udp;
 #include "storage/medicines_storage.h" 
 
 #include "logo_mymeds.h"
+#include "idle_manager.h"
 
 #include <Preferences.h>
 
@@ -226,6 +228,14 @@ void setup()
                 handle_set_pin();
             });
 
+            server.on("/pin", HTTP_GET, [](){
+
+                if (!isAuthorized())
+                    return;
+
+                handle_get_pin();
+            });
+
             server.on("/takes", HTTP_GET, [](){
 
                 if (!isAuthorized())
@@ -304,9 +314,12 @@ void setup()
                 lv_obj_clean(lv_scr_act());
                 show_clock_screen(lv_scr_act());
 
-                lv_timer_create(update_clock_task, 1000, NULL);
-                clock_sync();
+                if (clock_timer == nullptr)
+                {
+                    clock_timer = lv_timer_create(update_clock_task,1000,NULL);
+                }
 
+                clock_sync();
                 clock_started = true;
 
             } else {
@@ -333,6 +346,7 @@ void setup()
 
     wifi_portal_init();
     portal_running = true;
+    last_touch_time = millis();
 }
 
 void loop()
@@ -490,9 +504,12 @@ void loop()
             lv_obj_clean(lv_scr_act());
             show_clock_screen(lv_scr_act());
 
-            lv_timer_create(update_clock_task, 1000, NULL);
-            clock_sync();
+            if (clock_timer == nullptr)
+            {
+                clock_timer = lv_timer_create(update_clock_task,1000,NULL);
+            }
 
+            clock_sync();
             clock_started = true;
 
         } else {
@@ -515,7 +532,28 @@ void loop()
         lv_obj_clean(lv_scr_act());
         show_clock_screen(lv_scr_act());
 
-        lv_timer_create(update_clock_task, 1000, NULL);
+        if (clock_timer == nullptr)
+        {
+            clock_timer = lv_timer_create(update_clock_task,1000,NULL);
+        }
         clock_sync();
+    }
+
+    // --- TIMEOUT DE INACTIVIDAD ---
+
+    const uint32_t IDLE_TIMEOUT = TIMEOUT;
+
+    if (
+        clock_started &&
+        !idle_timeout_triggered &&
+        millis() - last_touch_time > IDLE_TIMEOUT
+    )
+    {
+        idle_timeout_triggered = true;
+
+        Serial.println("Timeout -> reloj");
+
+        lv_obj_clean(lv_scr_act());
+        show_clock_screen(lv_scr_act());
     }
 }

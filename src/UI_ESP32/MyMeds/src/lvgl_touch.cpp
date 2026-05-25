@@ -1,4 +1,5 @@
 #include "lvgl_touch.h"
+#include "idle_manager.h"
 #include <SPI.h>
 #include <XPT2046_Touchscreen.h>
 
@@ -16,6 +17,9 @@ static void touch_read_cb(lv_indev_drv_t *drv, lv_indev_data_t *data)
         data->state = LV_INDEV_STATE_REL;
         return;
     }
+
+    last_touch_time = millis();
+    idle_timeout_triggered = false;
 
     TS_Point p = ts.getPoint();
 

@@ -14,6 +14,7 @@ import com.example.mymeds.R
 import com.example.mymeds.databinding.FragmentConfigPillsBinding
 import com.example.mymeds.data.repository.EspConfig
 import android.util.Log
+import com.example.mymeds.data.network.EspApi
 
 class ConfigFragment : Fragment() {
 
@@ -44,6 +45,12 @@ class ConfigFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkLocationPermissionAndStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        EspApi.syncPinFromEsp()
     }
 
     // ---------------- PERMISOS ----------------
