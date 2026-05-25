@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mymeds.data.network.EspApi
+import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.databinding.ActivityPinBinding
 
 class PinActivity : AppCompatActivity() {
@@ -19,18 +21,49 @@ class PinActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        // Desactivar mientras sincronizamos
+        binding.buttonUnlock.isEnabled = false
+
+        val prefs =
+            getSharedPreferences(
+                "app",
+                Context.MODE_PRIVATE
+            )
+
+        EspConfig.baseUrl =
+            prefs.getString(
+                "esp_url",
+                ""
+            ) ?: ""
+
+        EspApi.getPin { espPin ->
+
+            if (espPin != null) {
+
+                prefs.edit()
+                    .putString(
+                        "app_pin",
+                        espPin
+                    )
+                    .apply()
+
+                Log.d(
+                    "PIN_SYNC",
+                    "PIN actualizado desde ESP: $espPin"
+                )
+            }
+
+            runOnUiThread {
+                binding.buttonUnlock.isEnabled = true
+            }
+        }
+
         binding.buttonUnlock.setOnClickListener {
 
             val enteredPin =
                 binding.pinInput.text
                     ?.toString()
                     ?.trim()
-
-            val prefs =
-                getSharedPreferences(
-                    "app",
-                    Context.MODE_PRIVATE
-                )
 
             val savedPin =
                 prefs.getString(
@@ -61,11 +94,6 @@ class PinActivity : AppCompatActivity() {
                 intent.putExtra(
                     "AUTH_OK",
                     true
-                )
-
-                Log.d(
-                    "PIN_DEBUG",
-                    "PIN correcto, abriendo MainActivity"
                 )
 
                 startActivity(intent)
