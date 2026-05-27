@@ -3,6 +3,7 @@
 #include "user_interface/pill_takes.h"
 #include "user_interface/home_mod.h"
 #include "user_interface/settings_screen.h"
+#include "user_interface/pulse_screen.h"
 
 static lv_obj_t *current_screen = NULL;
 
@@ -25,6 +26,12 @@ static void btn_event_cb(lv_event_t *e)
         show_settings_screen ();
         return;
     }
+
+    if (!strcmp(txt, "Pulsómetro")){
+        show_pulse_screen(lv_scr_act());
+        return;
+    }
+
 }
 
 static void load_screen(lv_obj_t *scr)

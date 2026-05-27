@@ -5,13 +5,29 @@
 
 MAX30105 particleSensor;
 
-const byte RATE_SIZE = 5; // promedio de 5 lecturas
+// ==============================
+// CONFIGURACIÓN
+// ==============================
+
+const byte RATE_SIZE = 10;
+
 byte rates[RATE_SIZE];
 byte rateSpot = 0;
+byte validSamples = 0;
 
 long lastBeat = 0;
-float beatsPerMinute;
-float beatAvg;
+
+float beatsPerMinute = 0;
+float beatAvg = 0;
+
+float filteredBpm = 0;
+bool firstMeasure = true;
+
+bool fingerDetected = false;
+
+// ==============================
+// SETUP
+// ==============================
 
 void setup()
 {
@@ -20,69 +36,168 @@ void setup()
 
     Serial.println("Inicializando MAX30102...");
 
-    Wire.begin(22, 27); // tus pines
+    Wire.begin(22, 27);
 
-    if (!particleSensor.begin(Wire, I2C_SPEED_STANDARD)) {
+    if (!particleSensor.begin(Wire, I2C_SPEED_STANDARD))
+    {
         Serial.println("❌ Sensor no detectado");
+
         while (1);
     }
 
     Serial.println("✅ Sensor detectado");
+    Serial.println("Coloca el dedo...");
 
-    // 🔥 CONFIGURACIÓN AJUSTADA (IMPORTANTE)
     particleSensor.setup(
-        0x3F,   // brillo (ajústalo si satura o se queda corto)
-        6,      // promedio
+        0x3F,   // brillo LED
+        6,      // promedio interno
         2,      // RED + IR
         100,    // sample rate
         411,    // pulse width
         4096    // ADC range
     );
-
-    Serial.println("Coloca el dedo...");
 }
+
+// ==============================
+// LOOP
+// ==============================
 
 void loop()
 {
     long irValue = particleSensor.getIR();
 
-    // 🔍 DEBUG SEÑAL
-    // Serial.print("IR: ");
-    // Serial.println(irValue);
+    // Detección de dedo
+    if (irValue < 30000)
+    {
+        if (fingerDetected)
+        {
+            Serial.println("❌ No hay dedo");
+        }
 
-    // detectar dedo
-    if (irValue < 30000) {
-        Serial.println("❌ No hay dedo");
-        delay(200);
+        fingerDetected = false;
+
+        validSamples = 0;
+        rateSpot = 0;
+
+        firstMeasure = true;
+        filteredBpm = 0;
+
+        delay(100);
         return;
     }
 
-    // ❤️ DETECCIÓN DE LATIDO
-    if (checkForBeat(irValue) == true)
+    if (!fingerDetected)
+    {
+        Serial.println("✅ Dedo detectado");
+
+        fingerDetected = true;
+    }
+
+    // Detección de latido
+    if (checkForBeat(irValue))
     {
         long delta = millis() - lastBeat;
         lastBeat = millis();
 
-        beatsPerMinute = 60 / (delta / 1000.0);
+        beatsPerMinute =
+            60.0 / (delta / 1000.0);
 
-        // filtro valores irreales
-        if (beatsPerMinute > 40 && beatsPerMinute < 150)
+        // Filtrar lecturas imposibles
+        if (beatsPerMinute > 40 &&
+            beatsPerMinute < 150)
         {
-            rates[rateSpot++] = (byte)beatsPerMinute;
+            rates[rateSpot++] =
+                (byte)beatsPerMinute;
+
+            if (validSamples < RATE_SIZE)
+            {
+                validSamples++;
+            }
+
             rateSpot %= RATE_SIZE;
 
-            // calcular promedio
+            // Esperar a llenar buffer
+            if (validSamples < RATE_SIZE)
+            {
+                return;
+            }
+
+            // Calcular promedio
             beatAvg = 0;
-            for (byte x = 0; x < RATE_SIZE; x++)
-                beatAvg += rates[x];
+
+            for (byte i = 0;
+                 i < RATE_SIZE;
+                 i++)
+            {
+                beatAvg += rates[i];
+            }
 
             beatAvg /= RATE_SIZE;
 
+            // Filtro exponencial
+            if (firstMeasure)
+            {
+                filteredBpm = beatAvg;
+                firstMeasure = false;
+            }
+            else
+            {
+                filteredBpm =
+                    0.9f * filteredBpm +
+                    0.1f * beatAvg;
+            }
+
             Serial.print("❤️ BPM: ");
-            Serial.print(beatAvg);
-            Serial.println();
+            Serial.println(filteredBpm, 0);
         }
     }
 
     delay(20);
 }
+
+// #include <Arduino.h>
+// #include <Wire.h>
+
+// void setup()
+// {
+//     Serial.begin(115200);
+//     delay(1000);
+
+//     Serial.println("Escaneando bus I2C...");
+
+//     Wire.begin(22, 27);
+
+//     byte count = 0;
+
+//     for (byte address = 1; address < 127; address++)
+//     {
+//         Wire.beginTransmission(address);
+
+//         byte error = Wire.endTransmission();
+
+//         if (error == 0)
+//         {
+//             Serial.print("Dispositivo encontrado en 0x");
+
+//             if (address < 16)
+//                 Serial.print("0");
+
+//             Serial.println(address, HEX);
+
+//             count++;
+//         }
+//     }
+
+//     if (count == 0)
+//     {
+//         Serial.println("No se encontraron dispositivos I2C");
+//     }
+//     else
+//     {
+//         Serial.println("Escaneo terminado");
+//     }
+// }
+
+// void loop()
+// {
+// }

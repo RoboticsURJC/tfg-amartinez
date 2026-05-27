@@ -27,6 +27,8 @@ WiFiUDP udp;
 #include "storage/takes_storage.h" 
 #include "storage/medicines_storage.h" 
 
+#include "sensors/pulse_sensor.h"
+
 #include "logo_mymeds.h"
 #include "idle_manager.h"
 
@@ -127,6 +129,8 @@ void setup()
     delay(200);
 
     lvgl_begin();
+
+    pulseSensorInit();
 
     loadMedicines();
     uploadTakes();
@@ -352,6 +356,7 @@ void setup()
 void loop()
 {
     lv_timer_handler();
+    pulseSensorUpdate();
     delay(5);
 
     server.handleClient();
@@ -545,6 +550,7 @@ void loop()
 
     if (
         clock_started &&
+        !block_idle_timeout &&
         !idle_timeout_triggered &&
         millis() - last_touch_time > IDLE_TIMEOUT
     )
