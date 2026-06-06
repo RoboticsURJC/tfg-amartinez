@@ -136,17 +136,89 @@
 // {
 // }
 
+// #include <Arduino.h>
+// #include <Wire.h>
+// #include <Adafruit_PWMServoDriver.h>
+
+// Adafruit_PWMServoDriver pwm(0x40);
+
+// void setup()
+// {
+//     Serial.begin(115200);
+
+//     Wire.begin(22,27);
+
+//     pwm.begin();
+//     pwm.setPWMFreq(50);
+
+//     delay(1000);
+
+//     //pwm.setPWM(0, 0, 300);
+// }
+// void loop()
+// {
+
+//     // for(int p = 300; p >= 90; p -= 20)
+//     // {
+//     //     Serial.println(p);
+//     //     pwm.setPWM(0, 0, p);
+//     //     delay(2000);
+//     // }
+//     Serial.println("300");
+//     pwm.setPWM(0,0,300);
+//     delay(6000);
+
+//     Serial.println("100");
+//     pwm.setPWM(0,0,100);
+//     delay(6000);
+
+//     // Serial.println("300");
+//     // pwm.setPWM(0,0,300);
+//     // delay(3000);
+
+//     // Serial.println("350");
+//     // pwm.setPWM(0,0,350);
+//     // delay(3000);
+
+//     // Serial.println("400");
+//     // pwm.setPWM(0,0,400);
+//     // delay(3000);
+// }
+
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
 
 Adafruit_PWMServoDriver pwm(0x40);
 
+const int POS_MAX = 200;
+const int POS_MIN = 100;
+
+void moverServo(int inicio, int fin, int velocidad_ms)
+{
+    if(inicio < fin)
+    {
+        for(int p = inicio; p <= fin; p++)
+        {
+            pwm.setPWM(0, 0, p);
+            delay(velocidad_ms);
+        }
+    }
+    else
+    {
+        for(int p = inicio; p >= fin; p--)
+        {
+            pwm.setPWM(0, 0, p);
+            delay(velocidad_ms);
+        }
+    }
+}
+
 void setup()
 {
     Serial.begin(115200);
 
-    Wire.begin(22,27);
+    Wire.begin(22, 27);
 
     pwm.begin();
     pwm.setPWMFreq(50);
@@ -158,30 +230,13 @@ void setup()
 
 void loop()
 {
+    Serial.println("300 -> 100");
+    moverServo(POS_MAX, POS_MIN, 5);
 
-    for(int p = 300; p >= 90; p -= 20)
-    {
-        Serial.println(p);
-        pwm.setPWM(0, 0, p);
-        delay(2000);
-    }
-    // Serial.println("200");
-    // pwm.setPWM(0,0,200);
-    // delay(3000);
+    delay(500);
 
-    // Serial.println("250");
-    // pwm.setPWM(0,0,250);
-    // delay(3000);
+    Serial.println("100 -> 300");
+    moverServo(POS_MIN, POS_MAX, 10);
 
-    // Serial.println("300");
-    // pwm.setPWM(0,0,300);
-    // delay(3000);
-
-    // Serial.println("350");
-    // pwm.setPWM(0,0,350);
-    // delay(3000);
-
-    // Serial.println("400");
-    // pwm.setPWM(0,0,400);
-    // delay(3000);
+    delay(500);
 }
