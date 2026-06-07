@@ -15,6 +15,7 @@ static bool measurementReady = false;
 static int currentBpm = 0;
 
 const byte RATE_SIZE = 10;
+const byte MIN_VALID_SAMPLES_TO_SHOW = 5;
 
 byte rates[RATE_SIZE];
 byte rateSpot = 0;
@@ -135,10 +136,11 @@ void pulseSensorUpdate()
 
             rateSpot %= RATE_SIZE;
 
-            // Esperar buffer lleno
+            // Esperar al menos 5 valores validos antes de mostrar pulso.
+            // El buffer sigue creciendo hasta 10 para estabilizar la media.
             if (
                 validSamples <
-                RATE_SIZE
+                MIN_VALID_SAMPLES_TO_SHOW
             )
             {
                 return;
@@ -148,14 +150,14 @@ void pulseSensorUpdate()
 
             for (
                 byte i = 0;
-                i < RATE_SIZE;
+                i < validSamples;
                 i++
             )
             {
                 beatAvg += rates[i];
             }
 
-            beatAvg /= RATE_SIZE;
+            beatAvg /= validSamples;
 
             if (firstMeasure)
             {
