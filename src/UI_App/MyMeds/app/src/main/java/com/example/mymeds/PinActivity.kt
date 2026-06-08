@@ -22,7 +22,7 @@ class PinActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Desactivar mientras sincronizamos
-        binding.buttonUnlock.isEnabled = false
+        //binding.buttonUnlock.isEnabled = false
 
         val prefs =
             getSharedPreferences(

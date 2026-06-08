@@ -48,7 +48,7 @@
         <Button
             android:id="@+id/button_today_takes"
             android:layout_width="330dp"
-            android:layout_height="99dp"
+            android:layout_height="100dp"
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/purple_200"
             android:text="Tomas de hoy"
@@ -63,10 +63,10 @@
         <Button
             android:id="@+id/button_pulse"
             android:layout_width="330dp"
-            android:layout_height="130dp"
+            android:layout_height="100dp"
             android:layout_marginTop="285dp"
             android:backgroundTint="@color/purple_200"
-            android:text="PULSO Y OXIGENACIÓN"
+            android:text="PULSÓMETRO"
             android:textSize="34sp"
             app:layout_constraintBottom_toTopOf="@+id/button_today_takes"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,16 +79,16 @@
             android:id="@+id/button_medicine"
             android:layout_width="330dp"
             android:layout_height="100dp"
-            android:layout_marginTop="418dp"
+            android:layout_marginTop="385dp"
             android:backgroundTint="@color/purple_200"
             android:text="MEDICAMENTOS"
             android:textSize="32sp"
             app:layout_constraintBottom_toTopOf="@+id/button_pulse"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.005" />
 
         <Button
             android:id="@+id/button_settings"
@@ -100,10 +100,10 @@
             android:textSize="32sp"
             app:layout_constraintBottom_toTopOf="@+id/button_medicine"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.156" />
 
         <ImageView
             android:id="@+id/logo"

@@ -453,4 +453,39 @@ object EspApi {
 
         }.start()
     }
+
+    fun getPulseHistory(onResult: (String?) -> Unit) {
+        if (EspConfig.baseUrl.isEmpty()) {
+            onResult(null)
+            return
+        }
+
+        Thread {
+
+            try {
+                val url = java.net.URL("${EspConfig.baseUrl}/pulse-history")
+                val conn = url.openConnection() as java.net.HttpURLConnection
+
+                conn.requestMethod = "GET"
+                conn.setRequestProperty(
+                    "X-DEVICE-TOKEN",
+                    getToken()
+                )
+
+                conn.connectTimeout = 2000
+                conn.readTimeout = 2000
+
+                if (conn.responseCode == 200) {
+                    val response = conn.inputStream.bufferedReader().readText()
+                    onResult(response)
+                } else {
+                    onResult(null)
+                }
+
+            } catch (e: Exception) {
+                onResult(null)
+            }
+
+        }.start()
+    }
 }

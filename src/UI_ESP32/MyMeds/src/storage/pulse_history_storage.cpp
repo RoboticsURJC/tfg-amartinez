@@ -20,117 +20,85 @@ static SPIClass sdSPI(HSPI);
 
 bool pulseHistoryBegin()
 {
-    if (sd_initialized)
-    {
+    if (sd_initialized) {
         return sd_available;
     }
 
     sd_initialized = true;
+    sdSPI.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
+    sd_available = SD.begin(SD_CS, sdSPI);
 
-    sdSPI.begin(
-        SD_SCK,
-        SD_MISO,
-        SD_MOSI,
-        SD_CS
-    );
-
-    sd_available = SD.begin(
-        SD_CS,
-        sdSPI
-    );
-
-    if (!sd_available)
-    {
+    if (!sd_available) {
         Serial.println("No se pudo inicializar la microSD");
         return false;
     }
 
     Serial.println("microSD inicializada");
-
     return true;
 }
 
-int loadPulseHistory(
-    PulseRecord records[],
-    int maxRecords
-)
+int loadPulseHistory(PulseRecord records[], int maxRecords)
 {
-    if (!pulseHistoryBegin())
-    {
+    if (!pulseHistoryBegin()) {
         return 0;
     }
 
-    if (!SD.exists(PULSE_HISTORY_FILE))
-    {
+    if (!SD.exists(PULSE_HISTORY_FILE)) {
         return 0;
     }
 
-    File file = SD.open(
-        PULSE_HISTORY_FILE,
-        FILE_READ
-    );
+    File file = SD.open(PULSE_HISTORY_FILE, FILE_READ);
 
-    if (!file)
-    {
+    if (!file) {
         return 0;
     }
 
     int count = 0;
+    bool firstLine = true;
 
-    while (
-        file.available() &&
-        count < maxRecords
-    )
-    {
-        String line =
-            file.readStringUntil('\n');
+    while (file.available() && count < maxRecords) {
+        String line = file.readStringUntil('\n');
+
+        if (firstLine) {
+            firstLine = false;
+            continue;
+        }
 
         line.trim();
 
-        if (line.length() == 0)
-        {
+        if (line.length() == 0) {
             continue;
         }
 
-        int firstSep =
-            line.indexOf(';');
+        int firstSep = line.indexOf(';');
+        int secondSep = line.indexOf(';', firstSep + 1);
 
-        int secondSep =
-            line.indexOf(
-                ';',
-                firstSep + 1
-            );
-
-        if (
-            firstSep < 0 ||
-            secondSep < 0
-        )
-        {
+        if (firstSep < 0 || secondSep < 0) {
             continue;
         }
 
-        records[count].date =
-            line.substring(
-                0,
-                firstSep
-            );
-
-        records[count].time =
-            line.substring(
-                firstSep + 1,
-                secondSep
-            );
-
-        records[count].bpm =
-            line.substring(
-                secondSep + 1
-            ).toInt();
-
+        records[count].date = line.substring(0, firstSep);
+        records[count].time = line.substring(firstSep + 1, secondSep);
+        records[count].bpm = line.substring(secondSep + 1).toInt();
         count++;
     }
 
-    file.close();
+    Serial.println("=== HISTORIAL LEIDO ===");
 
+    for (int i = 0; i < count; i++)
+    {
+        Serial.print(i);
+        Serial.print(": ");
+        Serial.print(records[i].date);
+        Serial.print(" ");
+        Serial.print(records[i].time);
+        Serial.print(" ");
+        Serial.println(records[i].bpm);
+    }
+
+    Serial.println("======================");
+
+    file.close();
     return count;
 }
 
@@ -138,38 +106,40 @@ bool savePulseAverage(int bpm)
 {
     Serial.println("Entrando en savePulseAverage");
 
-    if (bpm <= 0)
-    {
+    if (bpm <= 0) {
         Serial.println("BPM invalido");
         return false;
     }
 
-    if (!pulseHistoryBegin())
-    {
+    if (!pulseHistoryBegin()) {
         Serial.println("pulseHistoryBegin fallo");
         return false;
     }
 
     Serial.println("SD inicializada");
 
+    if (!SD.exists(PULSE_HISTORY_FILE)) {
+        File headerFile = SD.open(PULSE_HISTORY_FILE, FILE_WRITE);
+
+        if (headerFile) {
+            headerFile.println("Fecha,Hora,BPM");
+            headerFile.close();
+        }
+    }
+
     File file = SD.open(PULSE_HISTORY_FILE, FILE_APPEND);
 
-    if (!file)
-    {
+    if (!file) {
         Serial.println("No se pudo abrir el fichero");
         return false;
     }
 
     Serial.println("Fichero abierto");
-
     struct tm timeinfo;
 
-    if (!getLocalTime(&timeinfo))
-    {
+    if (!getLocalTime(&timeinfo)) {
         file.printf("SIN_FECHA;SIN_HORA;%d\n", bpm);
-    }
-    else
-    {
+    } else {
         file.printf(
             "%04d-%02d-%02d;%02d:%02d:%02d;%d\n",
             timeinfo.tm_year + 1900,

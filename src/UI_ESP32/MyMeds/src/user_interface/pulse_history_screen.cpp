@@ -13,6 +13,7 @@ static void back_btn_event_cb(lv_event_t *e)
 
 void show_pulse_history_screen(lv_obj_t *parent)
 {
+    Serial.println("Entrando en historial");
     lv_obj_clean(parent);
     lv_obj_set_style_bg_color(parent, lv_color_make(48, 25, 52), LV_PART_MAIN);
 
@@ -24,6 +25,20 @@ void show_pulse_history_screen(lv_obj_t *parent)
 
     PulseRecord records[PULSE_HISTORY_MAX];
     int count = loadPulseHistory( records, PULSE_HISTORY_MAX);
+    Serial.print("Count = ");
+    Serial.println(count);
+
+    for (int i = 0; i < count; i++)
+    {
+        Serial.print("Registro ");
+        Serial.print(i);
+        Serial.print(": ");
+        Serial.print(records[i].date);
+        Serial.print(" ");
+        Serial.print(records[i].time);
+        Serial.print(" ");
+        Serial.println(records[i].bpm);
+    }
 
     if (count == 0) {
         lv_obj_t *empty = lv_label_create(parent);

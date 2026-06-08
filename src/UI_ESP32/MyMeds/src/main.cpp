@@ -226,74 +226,92 @@ void setup()
 
             server.on("/pin", HTTP_POST, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_set_pin();
             });
 
             server.on("/pin", HTTP_GET, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_get_pin();
             });
 
             server.on("/takes", HTTP_GET, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_get_takes();
             });
 
             server.on("/takes", HTTP_POST, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_takes();
             });
 
             server.on("/take", HTTP_POST, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_add_take();
             });
 
             server.on("/take", HTTP_PUT, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_update_take();
             });
 
             server.on("/take", HTTP_DELETE, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_delete_take();
             });
 
             server.on("/medicines", HTTP_POST, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_set_medicines();
             });
 
             server.on("/medicines", HTTP_GET, [](){
 
-                if (!isAuthorized())
+                if (!isAuthorized()) {
                     return;
+                }
 
                 handle_get_medicines();
+            });
+
+            server.on("/pulse-history", HTTP_GET, [](){
+
+                if (!isAuthorized()) {
+                    return;
+                }
+                    
+                handle_get_pulse_history();
             });
 
             server.on("/link", HTTP_GET, handle_link);
@@ -483,6 +501,15 @@ void loop()
                 return;
 
             handle_get_medicines();
+        });
+
+        server.on("/pulse-history", HTTP_GET, [](){
+
+            if (!isAuthorized()) {
+                return;
+            }
+                
+            handle_get_pulse_history();
         });
 
         server.on("/link", HTTP_GET, handle_link);

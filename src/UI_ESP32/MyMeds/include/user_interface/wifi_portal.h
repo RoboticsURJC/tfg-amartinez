@@ -15,6 +15,7 @@ void handle_set_medicines();
 void handle_get_medicines();
 void handle_set_pin();
 void handle_get_pin();
+void handle_get_pulse_history();
 void handle_takes();
 void handle_link();
 void wifi_portal_init();

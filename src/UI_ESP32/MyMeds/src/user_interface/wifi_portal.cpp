@@ -1,6 +1,7 @@
 #include "user_interface/wifi_portal.h"
 #include "storage/takes_storage.h"
 #include "storage/medicines_storage.h"
+#include "storage/pulse_history_storage.h"
 #include "user_interface/pill_takes.h"
 #include <WiFi.h>
 #include <WebServer.h>
@@ -424,6 +425,30 @@ void handle_get_pin()
     Serial.println(DEVICE_PIN);
 
     server.send(200,"text/plain",DEVICE_PIN);
+}
+
+void handle_get_pulse_history()
+{
+    DynamicJsonDocument doc(4096);
+
+    JsonArray arr = doc.createNestedArray("measurements");
+
+    PulseRecord records[PULSE_HISTORY_MAX];
+    int count = loadPulseHistory(records, PULSE_HISTORY_MAX);
+
+    for(int i = 0; i < count; i++) {
+        JsonObject obj = arr.createNestedObject();
+        obj["date"] = records[i].date;
+        obj["time"] = records[i].time;
+        obj["bpm"] = records[i].bpm;
+    }
+
+    String json;
+
+    serializeJson(doc, json);
+    Serial.println("===== HISTORIAL ENVIADO =====");
+    Serial.println(json);
+    server.send(200, "application/json", json);
 }
 
 void handle_link()
