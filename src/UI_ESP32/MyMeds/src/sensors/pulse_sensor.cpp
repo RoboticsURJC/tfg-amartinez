@@ -11,8 +11,10 @@ static bool sensorRunning = false;
 
 static bool fingerDetected = false;
 static bool measurementReady = false;
+static bool fullMeasurementReady = false;
 
 static int currentBpm = 0;
+static int fullBufferBpm = 0;
 
 const byte RATE_SIZE = 10;
 const byte MIN_VALID_SAMPLES_TO_SHOW = 5;
@@ -183,6 +185,12 @@ void pulseSensorUpdate()
                 );
 
             measurementReady = true;
+
+            if (validSamples >= RATE_SIZE)
+            {
+                fullBufferBpm = currentBpm;
+                fullMeasurementReady = true;
+            }
         }
     }
 }
@@ -200,6 +208,16 @@ bool pulseMeasurementReady()
 int pulseGetBpm()
 {
     return currentBpm;
+}
+
+bool pulseFullMeasurementReady()
+{
+    return fullMeasurementReady;
+}
+
+int pulseGetFullBufferBpm()
+{
+    return fullBufferBpm;
 }
 
 int pulseGetSamples()
@@ -223,6 +241,9 @@ void pulseSensorStart()
 
     validSamples = 0;
     rateSpot = 0;
+    currentBpm = 0;
+    fullBufferBpm = 0;
+    fullMeasurementReady = false;
 
     firstMeasure = true;
 

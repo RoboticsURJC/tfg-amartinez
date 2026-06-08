@@ -1,6 +1,7 @@
 #include "user_interface/pulse_screen.h"
 #include "user_interface/home_mod.h"
 #include "sensors/pulse_sensor.h"
+#include "storage/pulse_history_storage.h"
 #include "idle_manager.h"
 #include <lvgl.h>
 #include <Arduino.h>
@@ -58,7 +59,31 @@ static void pulse_update_cb(lv_timer_t *timer)
 
     snprintf(bpmText,sizeof(bpmText),"%d BPM",pulseGetBpm());
     lv_label_set_text(bpm_label,bpmText);
-    lv_label_set_text(status_label,"");
+
+    if (
+        pulseGetSamples() <
+        pulseGetRequiredSamples()
+    )
+    {
+        char txt[32];
+
+        snprintf(
+            txt,
+            sizeof(txt),
+            "Midiendo %d:%d",
+            pulseGetSamples(),
+            pulseGetRequiredSamples()
+        );
+
+        lv_label_set_text(
+            status_label,
+            txt
+        );
+    }
+    else
+    {
+        lv_label_set_text(status_label,"");
+    }
 }
 
 static void back_btn_event_cb(lv_event_t *e)
@@ -77,8 +102,21 @@ static void back_btn_event_cb(lv_event_t *e)
     bpm_label = nullptr;
     status_label = nullptr;
 
+    if (pulseFullMeasurementReady()) {
+        int bpm = pulseGetFullBufferBpm();
+
+        Serial.print("Guardando media de pulso: ");
+        Serial.println(bpm);
+
+        bool ok = savePulseAverage(bpm);
+
+        Serial.print("Guardado SD: ");
+        Serial.println(ok ? "OK" : "ERROR");
+    }
+
     pulseSensorStop();
     show_home_screen();
+    Serial.println("Home cargado");
 }
 
 void show_pulse_screen(lv_obj_t *parent)

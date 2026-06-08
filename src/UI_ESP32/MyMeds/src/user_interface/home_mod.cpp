@@ -4,6 +4,7 @@
 #include "user_interface/home_mod.h"
 #include "user_interface/settings_screen.h"
 #include "user_interface/pulse_screen.h"
+#include "user_interface/pulse_history_screen.h"
 
 static lv_obj_t *current_screen = NULL;
 
@@ -19,6 +20,11 @@ static void btn_event_cb(lv_event_t *e)
 
     if (!strcmp(txt, "Tomas hoy")){
         today_takes_screen();
+        return;
+    }
+
+    if (!strcmp(txt, "Historial")){
+        show_pulse_history_screen(lv_scr_act());
         return;
     }
 

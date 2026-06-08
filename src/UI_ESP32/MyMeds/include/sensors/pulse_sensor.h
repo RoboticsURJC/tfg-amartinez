@@ -5,6 +5,8 @@ void pulseSensorUpdate();
 bool pulseFingerDetected();
 bool pulseMeasurementReady();
 int pulseGetBpm();
+bool pulseFullMeasurementReady();
+int pulseGetFullBufferBpm();
 int pulseGetSamples();
 int pulseGetRequiredSamples();
 void pulseSensorStart();

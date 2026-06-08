@@ -44,3 +44,10 @@ void lvgl_touch_init()
 
     indev_touch = lv_indev_drv_register(&indev_drv);
 }
+
+void lvgl_touch_reinit()
+{
+    SPI.begin(T_CLK, T_MISO, T_MOSI);
+    ts.begin();
+    ts.setRotation(1);
+}

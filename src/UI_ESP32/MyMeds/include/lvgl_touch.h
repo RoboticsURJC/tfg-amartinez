@@ -3,3 +3,4 @@
 
 void lvgl_touch_init();
 void lvgl_touch_read();
+void lvgl_touch_reinit();

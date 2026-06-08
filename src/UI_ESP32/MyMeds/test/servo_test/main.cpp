@@ -233,10 +233,58 @@ void loop()
     Serial.println("300 -> 100");
     moverServo(POS_MAX, POS_MIN, 5);
 
-    delay(500);
+    delay(2000);
 
     Serial.println("100 -> 300");
     moverServo(POS_MIN, POS_MAX, 10);
 
-    delay(500);
+    delay(2000);
 }
+
+// ESCANER
+// #include <Arduino.h>
+// #include <Wire.h>
+
+// void setup()
+// {
+//     Serial.begin(115200);
+//     delay(1000);
+
+//     Serial.println("Escaneando bus I2C...");
+
+//     Wire.begin(22, 27);
+
+//     byte count = 0;
+
+//     for (byte address = 1; address < 127; address++)
+//     {
+//         Wire.beginTransmission(address);
+
+//         byte error = Wire.endTransmission();
+
+//         if (error == 0)
+//         {
+//             Serial.print("Dispositivo encontrado en 0x");
+
+//             if (address < 16)
+//                 Serial.print("0");
+
+//             Serial.println(address, HEX);
+
+//             count++;
+//         }
+//     }
+
+//     if (count == 0)
+//     {
+//         Serial.println("No se encontraron dispositivos I2C");
+//     }
+//     else
+//     {
+//         Serial.println("Escaneo terminado");
+//     }
+// }
+
+// void loop()
+// {
+// }
