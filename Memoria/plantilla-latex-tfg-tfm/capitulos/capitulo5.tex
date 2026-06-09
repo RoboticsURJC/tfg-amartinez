@@ -41,7 +41,9 @@ El sistema se estructura en diferentes módulos funcionales que trabajan de form
 
     \item \textbf{Módulo de interfaz:} permite la interacción con el usuario y está compuesto por una pantalla táctil integrada y una aplicación móvil. Ambas interfaces ofrecen funcionalidades equivalentes, permitiendo configurar las tomas de medicación, consultar las tomas programadas para el día, activar el sensor biomédico y visualizar el historial de medidas registradas. Este módulo actúa como punto de entrada de información al sistema.
 
-    \item \textbf{Módulo de actuación:} encargado de la dispensación física de la medicación. A partir de las órdenes generadas por el módulo de control, acciona los servomotores que, mediante un mecanismo basado en una rueda de Ginebra, posicionan el compartimento correspondiente para liberar la dosis en el momento adecuado.
+    \item \textbf{Módulo de actuación:} encargado de la dispensación física de la medicación. A partir de las órdenes generadas por el módulo de control, acciona un servomotor acoplado a un mecanismo de trinquete con retorno mediante muelle.\\
+
+    El conjunto incorpora además un sistema de bloqueo que evita movimientos no deseados de la cama que porta las tomas de pastillas. Gracias a esta disposición, el sistema realiza avances discretos y controlados.
 
     \item \textbf{Módulo de sensado:} compuesto por el sensor biomédico MAX30102, se encarga de la adquisición de parámetros fisiológicos del usuario, como la frecuencia cardíaca y la saturación de oxígeno en sangre. Los datos obtenidos son procesados por el módulo de control y pueden ser visualizados a través de las interfaces del sistema.
 
@@ -55,18 +57,18 @@ El funcionamiento del sistema se basa en la comunicación coordinada entre los d
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figs/mod_coms_diagram.png}
+    \includegraphics[width=0.9\textwidth]{figs/mod_coms_diagram.png}
     \caption{Diagrama de comunicación entre los módulos del sistema (imagen generada por IA)}
     \label{fig:comunicacion_modulos}
 \end{figure}
 
-En la Figura~\ref{fig:comunicacion_modulos} se muestra un diagrama de bloques que representa las principales interacciones entre los módulos del sistema.
+En la Figura~\ref{fig:comunicacion_modulos} se muestra un diagrama de bloques que representa las principales interacciones entre los módulos del sistema.\\
 
 El módulo de control actúa como elemento central, gestionando la comunicación con el resto de módulos. En primer lugar, se comunica con el módulo de sensado mediante el protocolo I2C, a través del cual se obtienen las mediciones del sensor biomédico. Estas lecturas son procesadas y utilizadas por el sistema para su visualización y almacenamiento.\\
 
 Por otro lado, el módulo de control se encarga de gobernar el módulo de actuación mediante señales PWM, que permiten el control preciso de los servomotores responsables del movimiento del mecanismo que dispensa los medicamentos.\\
 
-Respecto a la interacción con el usuario, el módulo de control se comunica con la interfaz local por medio de la pantalla táctil que lleva incorporada la ESP32-2432S08, gestionando los eventos de entrada y actualiza los datos mostrados. Además, la comunicación con la aplicación móvil se lleva a cabo mediante conexión WiFi sin hilos, lo que posibilita no solo la puesta en marcha inicial del dispositivo, sino también la sincronización de datos mientras se está usando.
+Respecto a la interacción con el usuario, el módulo de control se comunica con la interfaz local por medio de la pantalla táctil que lleva incorporada la ESP32-2432S08, gestionando los eventos de entrada y actualiza los datos mostrados. Además, la comunicación con la aplicación móvil se lleva a cabo mediante conexión WiFi sin hilos, lo que posibilita no solo la puesta en marcha inicial del dispositivo, sino también la sincronización de datos mientras se está usando.\\
 
 \subsection{Consideraciones de diseño}
 \label{sec:consideraciones_diseno}
@@ -75,7 +77,17 @@ Durante el desarrollo del sistema se han tenido en cuenta diversos criterios de 
 
 En primer lugar, se ha priorizado el \textbf{bajo coste} del dispositivo, seleccionando componentes electrónicos asequibles y de fácil disponibilidad, sin comprometer las prestaciones necesarias para el correcto funcionamiento del sistema. Todos los componentes usado son adquiribles en páginas como Aliexpress donde los costes de cada componente han sido inferiores a 5\euro, de este modo el coste total del dispositivo no supera los 30\euro.\\
 
-Asimismo, se ha prestado especial atención a la \textbf{facilidad de uso}, diseñando una interfaz sencilla e intuitiva tanto en el dispositivo como en la aplicación móvil. Para ello, se han empleado elementos visuales de gran tamaño, una navegación clara y una estructura de menús accesible, orientada especialmente a usuarios de edad avanzada o con poca experiencia tecnológica. Se a priorizado el contraste claro de colores para facilitar la lectura y la delimitación de los elementos gráficos, además de reducir los pasos de uso lo máximo posible.
+\
+\
+\
+
+\
+
+\
+
+\
+
+Asimismo, se ha prestado especial atención a la \textbf{facilidad de uso}, diseñando una interfaz sencilla e intuitiva tanto en el dispositivo como en la aplicación móvil. Para ello, se han empleado elementos visuales de gran tamaño, una navegación clara y una estructura de menús accesible, orientada especialmente a usuarios de edad avanzada o con poca experiencia tecnológica. Se a priorizado el contraste claro de colores para facilitar la lectura y la delimitación de los elementos gráficos, además de reducir los pasos de uso lo máximo posible.\\
 
 Por otro lado, se ha considerado la \textbf{robustez del sistema}, tanto a nivel hardware como software. A nivel físico, se ha optado por un diseño mecánico estable y resistente con piezas impresas en PLA manteniendo un grosor mínimo robusto, mientras que a nivel software se han implementado mecanismos que permiten un funcionamiento continuo y fiable que tienen un soporte muy desarrollado que los hace más eficaces.\\
 
@@ -88,17 +100,17 @@ Como parte de la integración hardware, se ha optado por el uso del protocolo I2
     \label{fig:fritzing_sensor}
 \end{figure}
 
+\
+
 Este tipo de conexión simplifica el cableado del sistema y reduce la complejidad de la integración hardware.\\
 
 Finalmente, se han tenido en cuenta diversas \textbf{decisiones técnicas} orientadas a facilitar la integración del sistema, como el uso de comunicación inalámbrica mediante WiFi, la adopción de una arquitectura modular y la separación clara entre los distintos bloques funcionales del sistema.\\
 
-\
 
-\
+En el diseño del \textbf{sistema de dispensación} se evaluaron distintas soluciones mecánicas para garantizar un posicionamiento preciso de los compartimentos del pastillero. Entre las alternativas consideradas se encontraba un mecanismo basado en una rueda de Ginebra, ampliamente utilizado en aplicaciones que requieren movimientos intermitentes y posicionamientos discretos. Esta solución permitía obtener una elevada precisión angular y una separación clara entre posiciones consecutivas.\\
 
-En el diseño del \textbf{sistema de dispensación} se evaluaron distintas soluciones mecánicas para garantizar un posicionamiento preciso de los compartimentos del pastillero. Inicialmente, se planteó el uso de un mecanismo de trinquete, basado en un sistema de empuje lineal sobre los dientes de una rueda giratoria. Este diseño incorporaba un muelle de retorno y un sistema de retención con el objetivo de compensar la falta de precisión inherente a servomotores de bajo coste, como el modelo SG90 utilizado en el proyecto.\\
+No obstante, tras analizar los requisitos del proyecto y las características del prototipo desarrollado, se optó finalmente por un mecanismo de trinquete accionado mediante servomotor. El diseño incorpora un sistema de empuje, un muelle de retorno y un elemento de bloqueo que permite realizar avances controlados del carrusel, asegurando que cada compartimento quede correctamente posicionado tras cada actuación. Esta solución presenta una menor complejidad mecánica, resulta más sencilla de fabricar mediante impresión 3D y ofrece una fiabilidad adecuada para las necesidades del sistema.
 
-Sin embargo, tras analizar su comportamiento, se observó que este tipo de mecanismo podía introducir imprecisiones acumulativas y un desgaste mecánico mayor debido a los impactos repetidos durante el funcionamiento. Por este motivo, se optó finalmente por un mecanismo basado en una rueda de Ginebra, que permite un posicionamiento discreto y más preciso de los compartimentos mediante movimientos intermitentes controlados. Esta solución mejora la fiabilidad del sistema y reduce la dependencia de la precisión del servomotor, garantizando más consistencia a la hora de dispensar los medicamentos.\\
 
 \section{Desarrollo software}
 \label{sec:desarrollo_software}
@@ -111,8 +123,6 @@ Para ello, se ha estructurado el sistema en distintos bloques software que permi
 \label{sec:interfaz_dispositivo}
 
 La interfaz del dispositivo se ha desarrollado utilizando la librería LVGL, una herramienta ampliamente utilizada en sistemas embebidos para la creación de interfaces gráficas eficientes. Permite implementar una interfaz táctil fluida, optimizada para dispositivos con recursos limitados, como el microcontrolador utilizado en el sistema.\\
-
-\
 
 El diseño de la interfaz se ha realizado priorizando la simplicidad y la claridad visual, empleando botones de gran tamaño, un alto contraste de colores y una estructura de navegación intuitiva. Estas decisiones permiten facilitar el uso del dispositivo por parte de usuarios de edad avanzada o con poca experiencia tecnológica.\\
 
@@ -181,22 +191,33 @@ Entre las principales funcionalidades de la aplicación se encuentran:
 \begin{itemize}
     \item Configuración inicial del dispositivo mediante escaneo de código QR.
     \item Introducción de credenciales de red WiFi.
+    \item Vinculación segura con el dispositivo mediante token.
+    \item Autenticación mediante PIN.
     \item Gestión de las tomas de medicación.
     \item Consulta de las tomas programadas para el día.
     \item Visualización del historial de mediciones del sensor biomédico.
 \end{itemize}
 
-El funcionamiento de la aplicación sigue un flujo estructurado que comienza con la configuración inicial del dispositivo. En primer lugar, el usuario accede al apartado de configuración, donde se muestra un lector de códigos QR que permite escanear el código generado por el dispositivo. Este proceso sirve para comenzar a establecer la vinculación entre la aplicación y el sistema.\\
+Por motivos de seguridad, el acceso a la aplicación se encuentra protegido mediante un PIN configurable por el usuario. Este código debe introducirse al iniciar la aplicación y permite restringir el acceso a la información almacenada y a las opciones de configuración del sistema. El PIN se mantiene sincronizado con el dispositivo, garantizando que ambas plataformas compartan la misma configuración de autenticación.\\
+
+El funcionamiento de la aplicación sigue un flujo estructurado que comienza con la configuración inicial del dispositivo. En primer lugar, el usuario accede al apartado de configuración, donde se muestra un lector de códigos QR que permite escanear el código generado por el dispositivo. El código contiene un token único de vinculación que permite identificar el dispensador y asociarlo de forma segura con la aplicación móvil.\\
+
+\
+
+\
 
 A continuación, se solicita al usuario la introducción de las credenciales de la red WiFi, necesarias para que el dispositivo pueda conectarse a la red del entorno. Una vez enviadas estas credenciales, se inicia un proceso de sincronización entre la aplicación y el dispositivo, durante el cual ambos intercambian la información necesaria para su funcionamiento conjunto.\\
 
 Tras completar la configuración inicial, la aplicación permite acceder directamente a la gestión del sistema, donde el usuario puede consultar y modificar las tomas de medicación, así como visualizar la información registrada por el sensor biomédico.\\
 
-\
+No es necesario repetir la configuración en usos posteriores. La aplicación conserva la información necesaria para identificar el dispositivo y es capaz de localizarlo automáticamente cuando ambos se encuentran conectados a la misma red. De este modo, el usuario puede acceder directamente a las funcionalidades del sistema sin necesidad de realizar nuevamente el proceso de emparejamiento. Únicamente será necesario repetir la vinculación en situaciones excepcionales, como la eliminación de los datos almacenados en la aplicación o el restablecimiento de la configuración del dispositivo.\\
 
-\
-
-\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figs/flujo_app.png}
+    \caption{Esquema que representa el flujo de uso de la app (imagen generada por IA)}
+    \label{fig:app_movil}
+\end{figure}
 
 Desde el punto de vista del diseño, la interfaz de la aplicación se ha desarrollado siguiendo criterios de simplicidad y accesibilidad, utilizando elementos visuales claros, botones de gran tamaño y una navegación intuitiva. Estas decisiones permiten facilitar el uso de la aplicación por parte de usuarios con distintos niveles de experiencia tecnológica.\\
 
@@ -204,7 +225,7 @@ Durante el desarrollo, se ha hecho uso tanto de la simulación mediante emulador
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figs/collage_app.jpg}
+    \includegraphics[width=\textwidth]{figs/collage_app.png}
     \caption{Algunas pantallas de la aplicación móvil}
     \label{fig:app_movil}
 \end{figure}
@@ -216,11 +237,9 @@ Durante el desarrollo, se ha hecho uso tanto de la simulación mediante emulador
 
 La lógica de control del sistema se encarga de coordinar el funcionamiento de los distintos módulos, gestionando los eventos del sistema y garantizando la correcta ejecución de las tareas programadas. \\
 
-\
-
 El sistema se basa en un modelo orientado a eventos, en el que las distintas acciones se ejecutan en función del estado del sistema y de las interacciones del usuario. Entre estos eventos se incluyen la llegada de una hora programada para una toma, la interacción con la interfaz de usuario o la recepción de datos desde la aplicación móvil.\\
 
-Uno de los elementos fundamentales del sistema es la gestión de las tomas de medicación. Para ello, se utilizan estructuras de datos específicas que permiten almacenar la configuración asociada a cada toma. Cada toma incluye información como la hora programada, los días de repetición, la activación de recordatorios y el tiempo de aviso previo, permitiendo definir de forma flexible el comportamiento del sistema.\\
+Uno de los elementos fundamentales del sistema es la gestión de las tomas de medicación. Para ello, se utilizan estructuras de datos específicas que permiten almacenar la configuración asociada a cada toma. Cada toma incluye información como la hora programada, los días de repetición, la activación de recordatorios y el tiempo de aviso previo, permitiendo definir de forma flexible el comportamiento del sistema.
 
 Un ejemplo de esta estructura se muestra en el Código~\ref{cod:takeconfig}:
 
@@ -285,6 +304,8 @@ Este enfoque permite reducir el uso de memoria y facilita la recuperación de la
 La comunicación entre el dispositivo y la aplicación móvil se realiza mediante conexión WiFi, permitiendo tanto la configuración inicial del sistema como el intercambio de información durante su funcionamiento.\\
 
 El sistema implementa dos modos de operación diferenciados: modo punto de acceso (AP) y modo cliente. En la fase de configuración inicial, el dispositivo genera su propia red WiFi (denominada \texttt{MyMeds-Setup}), permitiendo que la aplicación se conecte directamente sin necesidad de utilizar una red WiFi externa.\\
+
+\
 
 \
 
@@ -398,33 +419,84 @@ Este flujo permite automatizar completamente el proceso de conexión entre ambos
 En este apartado se describe el diseño e integración de los componentes hardware del sistema, centrándose en el mecanismo de dispensación, la electrónica empleada y la relación entre los distintos elementos físicos y el software de control.
 
 \subsection{Sistema de dispensación}
-\label{sec:sistema_dispensacion}
+\label{sec}
 
-El sistema de dispensación es el núcleo funcional del dispositivo, siendo el encargado de liberar la medicación de forma controlada en los momentos programados.\\
+El sistema de dispensación constituye el núcleo funcional del dispositivo, siendo el encargado de liberar la medicación de forma controlada en los instantes programados por el sistema. Para ello, se ha desarrollado un mecanismo capaz de posicionar secuencialmente los compartimentos del carrusel y garantizar que la dosis correspondiente quede alineada con la zona de dispensación.\\
 
-El accionamiento del mecanismo de dispensación se realiza mediante un servomotor de bajo coste (modelo SG90), controlado por la unidad central. La elección de este tipo de motor responde a su simplicidad de uso, bajo consumo y disponibilidad, aunque presenta limitaciones en cuanto a precisión angular.\\
+El accionamiento del mecanismo se realiza mediante un servomotor SG90 controlado por la unidad central del sistema. La elección de este actuador responde a su bajo coste, reducido consumo energético y facilidad de integración con la plataforma hardware empleada.\\
 
-Para ello, se ha diseñado un mecanismo basado en una rueda de Ginebra, que permite transformar el movimiento continuo de un servomotor en un movimiento intermitente y discreto. Este tipo de mecanismo resulta especialmente adecuado para el sistema propuesto, ya que garantiza un posicionamiento preciso de los compartimentos del pastillero en cada activación, independientemente de pequeñas desviaciones en el movimiento del servo.\\
+El mecanismo implementado está compuesto por un elemento impulsor accionado por el servomotor, un sistema de trinquete encargado de producir el avance del carrusel y un mecanismo de bloqueo asistido por muelle que impide movimientos no deseados entre posiciones consecutivas. Gracias a esta configuración, cada actuación del servomotor provoca un avance controlado, mientras que el sistema de retención garantiza la estabilidad de la posición alcanzada.\\
 
-En la Figura~\ref{fig:dispensador} se muestra el sistema de dispensación diseñado, donde se puede observar la integración del servomotor con el mecanismo de rueda de Ginebra.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figs/mecanismo.png}
+\caption{Sistema de dispensación basado en mecanismo de trinquete}
+\label{fig}
+\end{figure}
+
+La Figura~\ref{fig} muestra el mecanismo de dispensación desarrollado y su integración dentro de la estructura del carrusel.\\
+
+Esta solución permite obtener un sistema de dispensación fiable utilizando componentes de bajo coste y elementos fabricados mediante impresión 3D, proporcionando un posicionamiento repetible de los compartimentos y una correcta dispensación de la medicación programada.
+
+\subsection{Sistema biomédico}
+
+Con el objetivo de complementar las funcionalidades del dispensador, se ha incorporado un sistema de monitorización biomédica basado en el sensor MAX30102.\\
+
+Este sensor integra emisores LED y un fotodiodo capaces de realizar mediciones ópticas mediante fotopletismografía (PPG), técnica ampliamente utilizada para estimar parámetros fisiológicos como la frecuencia cardíaca.\\
+
+La Figura~\ref{fig:max30102_flow} resume las diferentes etapas empleadas para obtener la frecuencia cardíaca a partir de la señal capturada por el sensor.\\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{figs/dispensador.png}
-    \caption{Sistema de dispensación basado en rueda de Ginebra}
-    \label{fig:dispensador}
+    \includegraphics[width=\textwidth]{figs/sensor_esquema.png}
+    \caption{Proceso de obtención de la frecuencia cardíaca mediante el sensor MAX30102 (imagen generada por IA)}
+    \label{fig:max30102_flow}
 \end{figure}
 
-Este enfoque permite obtener un sistema de dispensación fiable utilizando componentes de bajo coste, cumpliendo con los requisitos de precisión y repetibilidad necesarios para la aplicación.
+La obtención de la frecuencia cardíaca se basa en el análisis de la señal infrarroja capturada por el sensor. Para ello, el sistema realiza una lectura continua de la intensidad reflejada y emplea un algoritmo de detección de pulsos que identifica los máximos asociados a cada latido cardíaco.\\
+
+Una vez detectado un latido, se calcula el tiempo transcurrido desde el anterior y, a partir de este intervalo, se obtiene una estimación instantánea de la frecuencia cardíaca en pulsaciones por minuto (BPM).\\
+
+\begin{lstlisting}[language=C, caption={Cálculo instantáneo de la frecuencia cardíaca}]
+long delta = millis() - lastBeat;
+
+beatsPerMinute =
+60.0 / (delta / 1000.0);
+\end{lstlisting}
+
+\
+
+\
+
+\
+
+Debido a la presencia de ruido y pequeñas variaciones producidas por el movimiento del usuario o por las condiciones de adquisición de la señal, las mediciones instantáneas pueden presentar oscilaciones significativas. Para mejorar la estabilidad de los resultados, el sistema almacena las últimas medidas válidas en un buffer circular de diez muestras.\\
+
+Posteriormente, se calcula el valor medio de dichas muestras y se aplica un filtro exponencial que suaviza las variaciones entre medidas consecutivas.\\
+
+\begin{lstlisting}[language=C, caption={Filtrado de las mediciones obtenidas}]
+filteredBpm =
+0.9f * filteredBpm +
+0.1f * beatAvg;
+\end{lstlisting}
+
+Este procedimiento permite reducir la influencia del ruido presente en la señal y obtener una estimación más estable y representativa de la frecuencia cardíaca del usuario.
+
 
 \subsection{Integración electrónica}
 \label{sec:integracion_electronica}
 
-El sistema electrónico se basa en una arquitectura centralizada en torno al microcontrolador ESP32, encargado de la gestión del conjunto del dispositivo.\\
+El sistema electrónico se basa en un microcontrolador ESP32, encargado de la gestión del conjunto del dispositivo.\\
 
-Los distintos elementos hardware se conectan a esta unidad mediante interfaces específicas. El sensor biomédico se integra a través del protocolo I2C, lo que simplifica el cableado del sistema. Asimismo, el sistema se alimenta mediante una conexión USB-C, proporcionando una solución estándar y ampliamente compatible para su uso en entornos domésticos.\\
+Los distintos elementos hardware se conectan al microcontrolador mediante interfaces específicas. El sensor biomédico se integra a través del protocolo I2C, lo que simplifica el cableado del sistema. Asimismo, el sistema se alimenta mediante una conexión USB-C, proporcionando una solución estándar y ampliamente compatible para su uso en entornos domésticos.\\
 
-Para facilitar la integración y el montaje del dispositivo, se ha diseñado una placa de circuito impreso (PCB) que organiza las conexiones entre los distintos componentes, mejorando la estabilidad del sistema y reduciendo la complejidad del cableado respecto a soluciones basadas únicamente en prototipado.\\
+Para facilitar el montaje del dispositivo, se ha diseñado una placa de circuito impreso (PCB) que organiza las conexiones entre los distintos componentes.De esta forma, el sistema es más estable y se reduce la complejidad del cableado respecto a soluciones basadas únicamente en prototipado.\\
+
+\
+
+\
+
+\
 
 En la Figura~\ref{fig:montaje} se muestra la integración física de los distintos componentes electrónicos del sistema.
 

@@ -1,32 +1,57 @@
-\chapter{Conclusiones}
-\label{cap:capitulo5}
-
-\begin{flushright}
-\begin{minipage}[]{10cm}
-\emph{Quizás algún fragmento de libro inspirador...}\\
-\end{minipage}\\
-
-Autor, \textit{Título}\\
-\end{flushright}
+\chapter{experimentos}
+\label{cap:capitulo6}
 
 \vspace{1cm}
 
-Escribe aquí un párrafo explicando brevemente lo que vas a contar en este capítulo, que básicamente será una recapitulación de los problemas que has abordado, las soluciones que has prouesto, así como los experimentos llevados a cabo para validarlos. Y con esto, cierras la memoria.
+En este capítulo se presentan las diferentes pruebas realizadas para validar el funcionamiento de los distintos módulos del proyecto. Los experimentos realizados permiten evaluar el comportamiento del sistema de dispensación, la comunicación entre el dispositivo y la aplicación móvil, el funcionamiento del pulsómetro y los mecanismos de almacenamiento y seguridad implementados, verificando que el sistema cumple los requisitos establecidos durante las fases de diseño y desarrollo.\\
 
-\section{Conclusiones}
 
-Enumera los objetivos y cómo los has cumplido.\\
+\section{Sistema de dispensación}
 
-Enumera también los requisitos implícitos en la consecución de esos objetivos, y cómo se han satisfecho.\\
+El sistema de dispensación constituye uno de los elementos fundamentales del dispositivo, ya que es el encargado de posicionar los compartimentos del carrusel y garantizar la correcta liberación de las dosis programadas. Debido a su importancia dentro del funcionamiento global del sistema, se realizaron diferentes pruebas orientadas a validar el comportamiento del mecanismo y comprobar su fiabilidad durante el proceso de dispensación.\\
 
-No olvides dedicar un par de párrafos para hacer un balance global de qué has conseguido, y por qué es un avance respecto a lo que tenías inicialmente. Haz mención expresa de alguna limitación o peculiaridad de tu sistema y por qué es así. Y también, qué has aprendido desarrollando este trabajo.\\
+\subsection{Ajuste del mecanismo de dispensación}
 
-Por último, añade otro par de párrafos de líneas futuras; esto es, cómo se puede continuar tu trabajo para abarcar una solución más amplia, o qué otras ramas de la investigación podrían seguirse partiendo de este trabajo, o cómo se podría mejorar para conseguir una aplicación real de este desarrollo (si es que no se ha llegado a conseguir).
+\subsection{Validación del proceso de dispensación}
 
-\section{Corrector ortográfico}
+\section{Sincronización entre la aplicación móvil y el dispositivo}
 
-Una vez tengas todo, no olvides pasar el corrector ortográfico de \LaTeX a todos tus ficheros \textit{.tex}. En \texttt{Windows}, el propio editor \texttt{TeXworks} incluye el corrector. En \texttt{Linux}, usa \texttt{aspell} ejecutando el siguiente comando en tu terminal:
+La comunicación entre la aplicación móvil y el dispensador resulta esencial para mantener actualizada la configuración del sistema. Con el objetivo de verificar el correcto intercambio de información, se realizaron diferentes pruebas relacionadas con la sincronización de datos y el funcionamiento autónomo del dispositivo.\\
 
-\begin{verbatim}
-aspell --lang=es --mode=tex check capitulo1.tex
-\end{verbatim}
+\subsection{Sincronización de tomas y configuración}
+
+\subsection{Funcionamiento autónomo del dispositivo}
+
+\section{Evaluación del pulsómetro}
+
+El pulsómetro integrado constituye una de las funcionalidades complementarias incorporadas al dispositivo. Debido a la naturaleza de las señales biomédicas adquiridas y a la sensibilidad de este tipo de sensores a las condiciones de medida, se realizaron diferentes pruebas destinadas a evaluar la estabilidad, precisión y robustez en las mediciones.\\
+
+\subsection{Estabilización de la medida}
+
+\subsection{Influencia de las condiciones de medida}
+
+\subsection{Comparación con dispositivos de referencia}
+
+\section{Persistencia y almacenamiento de datos}
+
+Además de las funcionalidades de dispensación y monitorización biomédica, el sistema incorpora mecanismos de almacenamiento persistente que permiten conservar tanto la configuración del dispositivo como el histórico de mediciones realizadas. Con el fin de validar estos mecanismos, se llevaron a cabo diferentes pruebas relacionadas con la conservación y recuperación de la información almacenada.\\
+
+\subsection{Conservación de la configuración}
+
+\subsection{Almacenamiento del historial de mediciones}
+
+\section{Seguridad del sistema}
+
+Con el objetivo de restringir el acceso no autorizado y garantizar la correcta vinculación entre el dispositivo y la aplicación móvil, el sistema incorpora distintos mecanismos de seguridad. Entre ellos se incluyen un sistema de autenticación mediante PIN sincronizado entre ambos dispositivos y un mecanismo de vinculación basado en tokens únicos. Para validar su funcionamiento se realizaron diferentes pruebas relacionadas con la autenticación de usuarios y la sincronización segura de la información.
+
+\subsection{Validación del acceso mediante PIN}
+
+\subsection{Sincronización del PIN}
+
+\subsection{Sistema de vinculación mediante token}
+
+\section{Evaluación global del sistema}
+
+Finalmente, se realizó una evaluación integral del sistema reproduciendo un escenario de uso representativo. Esta prueba permitió verificar el funcionamiento conjunto de los distintos módulos desarrollados y comprobar la correcta integración entre los componentes hardware y software que conforman la solución propuesta.
+
+
