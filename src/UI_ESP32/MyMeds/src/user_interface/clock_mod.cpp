@@ -10,6 +10,7 @@
 lv_obj_t *lbl_time = nullptr;
 lv_obj_t *lbl_day = nullptr;
 static lv_obj_t *msg_lbl = nullptr;
+static lv_timer_t *clock_timer = nullptr;
 
 const char *days[] = {
     "Domingo", "Lunes", "Martes", "Miércoles",
@@ -18,6 +19,7 @@ const char *days[] = {
 
 static void btn_event_cb(lv_event_t *e)
 {
+    stop_clock_timer();
     show_pin_screen();
 }
 
@@ -107,4 +109,26 @@ void update_clock_task(lv_timer_t *timer)
 {
     (void) timer;
     clock_update();
+}
+
+void start_clock_timer()
+{
+    if (clock_timer == nullptr)
+    {
+        clock_timer =
+            lv_timer_create(
+                update_clock_task,
+                1000,
+                NULL
+            );
+    }
+}
+
+void stop_clock_timer()
+{
+    if (clock_timer != nullptr)
+    {
+        lv_timer_del(clock_timer);
+        clock_timer = nullptr;
+    }
 }

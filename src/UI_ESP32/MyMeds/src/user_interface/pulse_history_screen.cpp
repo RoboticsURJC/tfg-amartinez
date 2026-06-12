@@ -13,7 +13,7 @@ static void back_btn_event_cb(lv_event_t *e)
 
 void show_pulse_history_screen(lv_obj_t *parent)
 {
-    Serial.println("Entrando en historial");
+    Serial.println("Creando pantalla historial");
     lv_obj_clean(parent);
     lv_obj_set_style_bg_color(parent, lv_color_make(48, 25, 52), LV_PART_MAIN);
 
@@ -52,6 +52,14 @@ void show_pulse_history_screen(lv_obj_t *parent)
 
             const PulseRecord &record = records[count - 1 - i];
 
+            Serial.printf(
+                "Fila %d -> %s %s %d\n",
+                i,
+                record.date.c_str(),
+                record.time.c_str(),
+                record.bpm
+            );
+
             snprintf(
                 text,
                 sizeof(text),
@@ -69,9 +77,11 @@ void show_pulse_history_screen(lv_obj_t *parent)
         }
     }
 
+    int lastY = 80 + count * 70;
+
     lv_obj_t *btn = lv_btn_create(parent);
     lv_obj_set_size(btn, 180, 60);
-    lv_obj_align(btn, LV_ALIGN_TOP_MID, 0, 520);
+    lv_obj_align(btn,LV_ALIGN_TOP_MID,0,lastY + 20);    
     lv_obj_set_style_bg_color(btn, lv_color_make(160, 50, 200), LV_PART_MAIN);
     lv_obj_add_event_cb(btn, back_btn_event_cb, LV_EVENT_CLICKED, NULL);
 

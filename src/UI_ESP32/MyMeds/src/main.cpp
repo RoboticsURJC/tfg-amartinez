@@ -43,8 +43,6 @@ static bool portal_running = false;
 bool device_linked = false;
 static bool clock_started = false;
 
-static lv_timer_t *clock_timer = nullptr;
-
 String generateToken()
 {
     const char charset[] =
@@ -336,10 +334,7 @@ void setup()
                 lv_obj_clean(lv_scr_act());
                 show_clock_screen(lv_scr_act());
 
-                if (clock_timer == nullptr)
-                {
-                    clock_timer = lv_timer_create(update_clock_task,1000,NULL);
-                }
+                start_clock_timer();
 
                 clock_sync();
                 clock_started = true;
@@ -536,10 +531,7 @@ void loop()
             lv_obj_clean(lv_scr_act());
             show_clock_screen(lv_scr_act());
 
-            if (clock_timer == nullptr)
-            {
-                clock_timer = lv_timer_create(update_clock_task,1000,NULL);
-            }
+            start_clock_timer();
 
             clock_sync();
             clock_started = true;
@@ -564,10 +556,7 @@ void loop()
         lv_obj_clean(lv_scr_act());
         show_clock_screen(lv_scr_act());
 
-        if (clock_timer == nullptr)
-        {
-            clock_timer = lv_timer_create(update_clock_task,1000,NULL);
-        }
+        start_clock_timer();
         clock_sync();
     }
 
@@ -588,5 +577,7 @@ void loop()
 
         lv_obj_clean(lv_scr_act());
         show_clock_screen(lv_scr_act());
+
+        start_clock_timer();
     }
 }

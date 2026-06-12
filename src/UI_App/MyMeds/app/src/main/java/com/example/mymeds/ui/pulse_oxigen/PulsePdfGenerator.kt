@@ -1,7 +1,7 @@
 package com.example.mymeds.ui.pulse_oxigen
 
 import android.content.Context
-import android.graphics.Bitmap
+import android.graphics.Paint
 import android.os.Environment
 import android.graphics.pdf.PdfDocument
 import com.example.mymeds.data.PulseMeasurement
@@ -13,8 +13,7 @@ import java.util.Locale
 
 object PulsePdfGenerator {
 
-    fun generate(context: Context, measurements: List<PulseMeasurement>, chartBitmap: Bitmap?
-    ): File? {
+    fun generate(context: Context, measurements: List<PulseMeasurement>): File? {
         return try {
             val document = PdfDocument()
             val pageInfo =
@@ -30,8 +29,13 @@ object PulsePdfGenerator {
 
             var y = 50
 
-            paint.textSize = 24f
+            paint.textSize = 26f
             paint.isFakeBoldText = true
+            paint.color = android.graphics.Color.rgb(
+                120,
+                30,
+                170
+            )
 
             canvas.drawText(
                 "MyMeds - Historial de pulsaciones",
@@ -40,10 +44,11 @@ object PulsePdfGenerator {
                 paint
             )
 
-            y += 40
+            y += 30
 
             paint.textSize = 14f
             paint.isFakeBoldText = false
+            paint.color = android.graphics.Color.BLACK
 
             val now = SimpleDateFormat(
                     "dd/MM/yyyy HH:mm",
@@ -52,82 +57,369 @@ object PulsePdfGenerator {
 
             canvas.drawText("Generado: $now", 40f, y.toFloat(), paint)
 
-            y += 40
+            val purplePaint = Paint().apply {
+                color = android.graphics.Color.rgb(
+                    120,
+                    30,
+                    170
+                )
+                strokeWidth = 2f
+            }
+
+            canvas.drawLine(
+                40f,
+                y + 10f,
+                555f,
+                y + 10f,
+                purplePaint
+            )
+
+            y += 50
 
             if (measurements.isNotEmpty()) {
                 val min = measurements.minOf { it.bpm }
                 val max = measurements.maxOf { it.bpm }
                 val avg = measurements.map { it.bpm }.average()
 
-                canvas.drawText("Total mediciones: ${measurements.size}", 40f, y.toFloat(), paint)
+                paint.isFakeBoldText = true
+
+                canvas.drawText(
+                    "Total mediciones:",
+                    40f,
+                    y.toFloat(),
+                    paint
+                )
+
+                paint.isFakeBoldText = false
+
+                canvas.drawText(
+                    measurements.size.toString(),
+                    170f,
+                    y.toFloat(),
+                    paint
+                )
 
                 y += 25
 
-                canvas.drawText("BPM mínimo: $min", 40f, y.toFloat(), paint)
+                paint.isFakeBoldText = true
+                canvas.drawText("BPM mínimo:", 40f, y.toFloat(), paint)
+
+                paint.isFakeBoldText = false
+                canvas.drawText(min.toString(), 140f, y.toFloat(), paint)
 
                 y += 25
 
-                canvas.drawText("BPM máximo: $max", 40f, y.toFloat(), paint)
+                paint.isFakeBoldText = true
+                canvas.drawText("BPM máximo:", 40f, y.toFloat(), paint)
+
+                paint.isFakeBoldText = false
+                canvas.drawText(max.toString(), 145f, y.toFloat(), paint)
 
                 y += 25
 
-                canvas.drawText("BPM medio: %.1f".format(avg), 40f, y.toFloat(), paint)
+                paint.isFakeBoldText = true
+                canvas.drawText("BPM medio:", 40f, y.toFloat(), paint)
 
-                y += 50
+                paint.isFakeBoldText = false
+                canvas.drawText("%.1f".format(avg), 135f, y.toFloat(), paint)
 
-                if (chartBitmap != null) {
+                y += 80
 
-                    paint.isAntiAlias = true
-                    paint.isFilterBitmap = true
-                    paint.isDither = true
 
-                    val maxWidth = 500
+                if (measurements.size >= 2) {
 
-                    val ratio =
-                        chartBitmap.height.toFloat() /
-                                chartBitmap.width.toFloat()
+                    val graphLeft = 70f
+                    val graphTop = y.toFloat() + 20f
 
-                    val height =
-                        (maxWidth * ratio).toInt()
+                    val graphWidth = 480f
+                    val graphHeight = 220f
 
-                    val scaledBitmap =
-                        Bitmap.createScaledBitmap(
-                            chartBitmap,
-                            maxWidth,
-                            height,
-                            true
+                    val graphTitlePaint = Paint().apply {
+                        color = android.graphics.Color.rgb(
+                            120,
+                            30,
+                            170
                         )
+                        textSize = 18f
+                        isFakeBoldText = true
+                        isAntiAlias = true
+                    }
 
-                    canvas.drawBitmap(
-                        scaledBitmap,
-                        40f,
-                        y.toFloat(),
-                        paint
+                    canvas.drawText(
+                        "Evolución de pulsaciones",
+                        graphLeft - 30,
+                        graphTop - 45,
+                        graphTitlePaint
                     )
 
-                    y += height + 30
+                    val minBpm =
+                        measurements.minOf { it.bpm }
+
+                    val maxBpm =
+                        measurements.maxOf { it.bpm }
+
+                    val axisStep = 3
+
+                    val axisMin =
+                        ((minBpm / axisStep) * axisStep) - axisStep
+
+                    val axisMax =
+                        ((maxBpm + axisStep - 1) / axisStep) * axisStep
+
+                    val bpmRange =
+                        maxOf(1, axisMax - axisMin)
+
+                    val axisPaint = Paint().apply {
+                        color = android.graphics.Color.rgb(
+                            120,
+                            30,
+                            170
+                        )
+                        style = Paint.Style.STROKE
+                        strokeWidth = 1.5f
+                        isAntiAlias = true
+                    }
+
+                    val linePaint = Paint().apply {
+                        color = android.graphics.Color.rgb(
+                            160,
+                            50,
+                            200
+                        )
+                        strokeWidth = 4f
+                        isAntiAlias = true
+                    }
+
+                    val pointPaint = Paint().apply {
+                        color = android.graphics.Color.rgb(
+                            160,
+                            50,
+                            200
+                        )
+                        isAntiAlias = true
+                    }
+
+                    val textPaint = Paint().apply {
+                        color = android.graphics.Color.rgb(
+                            120,
+                            30,
+                            170
+                        )
+                        textSize = 15f
+                        isFakeBoldText = true
+                        isAntiAlias = true
+                    }
+
+                    val backgroundPaint = Paint().apply {
+                        color = android.graphics.Color.WHITE
+                        style = Paint.Style.FILL
+                    }
+
+                    canvas.drawText(
+                        "BPM",
+                        graphLeft - 30,
+                        graphTop - 20,
+                        graphTitlePaint
+                    )
+
+                    canvas.drawLine(
+                        graphLeft,
+                        graphTop + graphHeight,
+                        graphLeft + graphWidth,
+                        graphTop + graphHeight,
+                        axisPaint
+                    )
+
+                    canvas.drawLine(
+                        graphLeft,
+                        graphTop,
+                        graphLeft,
+                        graphTop + graphHeight,
+                        axisPaint
+                    )
+
+                    val gridPaint = Paint().apply {
+                        color = android.graphics.Color.rgb(
+                            220,
+                            220,
+                            220
+                        )
+                        strokeWidth = 1f
+                        isAntiAlias = true
+                    }
+
+                    var previousX = 0f
+                    var previousY = 0f
+
+                    measurements.forEachIndexed { index, measurement ->
+
+                        val graphInnerWidth = graphWidth - 40f
+
+                        val x =
+                            graphLeft + 20f +
+                                    (index.toFloat() /
+                                            (measurements.size - 1)) *
+                                    graphInnerWidth
+
+                        val yPoint =
+                            graphTop +
+                                    graphHeight -
+                                    ((measurement.bpm - axisMin).toFloat() /
+                                            bpmRange) *
+                                    graphHeight
+
+                        if (index > 0) {
+
+                            canvas.drawLine(
+                                previousX,
+                                previousY,
+                                x,
+                                yPoint,
+                                linePaint
+                            )
+                        }
+
+                        canvas.drawCircle(
+                            x,
+                            yPoint,
+                            6f,
+                            pointPaint
+                        )
+
+                        canvas.drawLine(
+                            x,
+                            graphTop + graphHeight - 5,
+                            x,
+                            graphTop + graphHeight + 5,
+                            axisPaint
+                        )
+
+                        canvas.drawText(
+                            measurement.bpm.toString(),
+                            x - 10,
+                            yPoint - 10,
+                            textPaint
+                        )
+
+                        previousX = x
+                        previousY = yPoint
+                    }
+
+                    var value = axisMin + axisStep
+
+                    while (value <= axisMax) {
+
+                        val ratio =
+                            (value - axisMin).toFloat() /
+                                    (axisMax - axisMin)
+
+                        val labelY =
+                            graphTop +
+                                    graphHeight -
+                                    ratio * graphHeight
+
+                        canvas.drawText(
+                            value.toString(),
+                            graphLeft - 30,
+                            labelY + 5,
+                            textPaint
+                        )
+
+                        canvas.drawLine(
+                            graphLeft - 5,
+                            labelY,
+                            graphLeft + 5,
+                            labelY,
+                            axisPaint
+                        )
+
+                        var dashX = graphLeft
+
+                        while (dashX < graphLeft + graphWidth) {
+
+                            canvas.drawLine(
+                                dashX,
+                                labelY,
+                                dashX + 8f,
+                                labelY,
+                                gridPaint
+                            )
+
+                            dashX += 16f
+                        }
+
+                        value += axisStep
+                    }
+
+                    y += graphHeight.toInt() + 80
                 }
             }
 
-            paint.isFakeBoldText = true
+            val TitlePaint = Paint().apply {
+                color = android.graphics.Color.rgb(
+                    120,
+                    30,
+                    170
+                )
+                textSize = 16f
+                isFakeBoldText = true
+                isAntiAlias = true
+            }
 
-            canvas.drawText("Historial", 40f, y.toFloat(), paint)
+            canvas.drawText("Historial", 40f, y.toFloat(), TitlePaint)
 
             y += 30
 
+            canvas.drawText("Fecha", 40f, y.toFloat(), TitlePaint)
+            canvas.drawText("Hora", 170f, y.toFloat(), TitlePaint)
+            canvas.drawText("BPM", 300f, y.toFloat(), TitlePaint
+            )
+
+            y += 25
+
             paint.isFakeBoldText = false
-            paint.textSize = 12f
+
+            val separatorPaint = Paint().apply {
+                color = android.graphics.Color.rgb(
+                    220,
+                    220,
+                    220
+                )
+                strokeWidth = 1f
+            }
 
             measurements.reversed().forEach {
 
-                canvas.drawText("${it.date} ${it.time}    ${it.bpm} BPM", 40f, y.toFloat(), paint)
+                canvas.drawText(
+                    it.date,
+                    40f,
+                    y.toFloat(),
+                    paint
+                )
 
-                y += 20
+                canvas.drawText(
+                    it.time,
+                    170f,
+                    y.toFloat(),
+                    paint
+                )
 
-                if (y > 780) {
-                    return@forEach
-                }
+                canvas.drawText(
+                    it.bpm.toString(),
+                    300f,
+                    y.toFloat(),
+                    paint
+                )
 
+                canvas.drawLine(
+                    40f,
+                    y + 8f,
+                    500f,
+                    y + 8f,
+                    separatorPaint
+                )
+
+                y += 25
             }
 
             document.finishPage(page)
@@ -138,6 +430,11 @@ object PulsePdfGenerator {
             }
 
             val file = File(dir, "PulseHistory.pdf")
+
+            document.writeTo(
+                FileOutputStream(file)
+            )
+
             android.util.Log.d(
                 "PDF_TEST",
                 "Ruta: ${file.absolutePath}"
@@ -152,7 +449,7 @@ object PulsePdfGenerator {
                 "PDF_TEST",
                 "Tamaño: ${file.length()}"
             )
-            document.writeTo(FileOutputStream(file))
+
             document.close()
             file
 

@@ -126,8 +126,7 @@ class Pulse_oxigenFragment : Fragment() {
             val file =
                 PulsePdfGenerator.generate(
                     requireContext(),
-                    allMeasurements,
-                    pdfBitmap
+                    allMeasurements
                 )
 
             if (file != null) {
