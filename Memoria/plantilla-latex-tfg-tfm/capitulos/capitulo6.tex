@@ -87,7 +87,7 @@ Se registraron oscilaciones importantes en la señal adquirida durante los prime
     \label{fig:estabilizacion_medida}
 \end{figure}
 
-La Figura~\ref{fig:estabilizacion_medida} muestra una captura correspondiente a uno de los ensayos realizados. El vídeo completo de la prueba puede consultarse en el Anexo~\ref{anexo:videos}.
+La Figura~\ref{fig:estabilizacion_medida} muestra una captura correspondiente a uno de los ensayos realizados. Con el fin de facilitar la reproducibilidad de los resultados obtenidos, el desarrollo completo de la prueba fue registrado en vídeo.\footnote{\url{https://github.com/RoboticsURJC/tfg-amartinez/blob/main/Imgs/videos_experiments/Estabilizacion_de_la_medida_pulsometro.mp4}}
 
 La diferencia que se ha notado entre los diferentes ensayos señala que el tiempo de estabilización depende de varios factores, incluyendo cómo está colocado el dedo, la calidad de la señal que capta el sensor y las características fisiológicas del usuario. Este comportamiento impulsó la realización de pruebas adicionales para investigar cómo influyen las condiciones de medida, cuyos resultados se exponen en el siguiente apartado.\\
 
@@ -99,7 +99,7 @@ Después de analizar el proceso de estabilización de la medida, se estudió có
 
 Para evaluar este comportamiento se realizaron dos rondas de pruebas utilizando cuatro configuraciones distintas: mano izquierda en orientación vertical, mano izquierda en orientación horizontal, mano derecha en orientación vertical y mano derecha en orientación horizontal. En cada ensayo se registró el tiempo transcurrido hasta la aparición de la primera lectura mostrada al usuario y el tiempo necesario para completar el buffer de medida.\\
 
-La Figura~\ref{fig:posiciones_pulso} muestra las diferentes configuraciones evaluadas durante las pruebas. Para que los resultados sean más fáciles de reproducir, se grabaron las dos rondas completas de ensayos. Los vídeos correspondientes pueden consultarse en el Anexo~\ref{anexo:videos}.
+La Figura~\ref{fig:posiciones_pulso} muestra las diferentes configuraciones evaluadas durante las pruebas. Para que los resultados sean más fáciles de reproducir, se grabaron las dos rondas completas de ensayos.\footnote{Vídeo correspondiente a la primera ronda de pruebas: \url{https://github.com/RoboticsURJC/tfg-amartinez/blob/main/Imgs/videos_experiments/Influencia_condiciones_de_medida_pulsometro_ronda1.mp4}}\footnote{Vídeo correspondiente a la segunda ronda de pruebas: \url{https://github.com/RoboticsURJC/tfg-amartinez/blob/main/Imgs/videos_experiments/Influencia_condiciones_de_medida_ronda2.mp4}}
 
 \begin{figure}[H]
 \centering
@@ -164,6 +164,40 @@ Sin embargo, a pesar de que las condiciones de medición afectaron en el tiempo 
 
 
 \subsection{Comparación con dispositivos de referencia}
+
+Se contrastaron los resultados conseguidos con los que suministró un pulsioxímetro comercial de dedo, empleado como aparato de referencia, con la finalidad de analizar la exactitud de las mediciones ejecutadas por el pulsómetro integrado. Se llevaron a cabo todas las mediciones en condiciones de reposo y empleando la mano izquierda en vertical. Para cada ensayo se registró la frecuencia cardíaca indicada por ambos dispositivos una vez que las mediciones alcanzaron un estado estable. Los resultados obtenidos se muestran en la Tabla~\ref{tab}.\\
+
+\begin{table}[H]
+\centering
+\caption{Comparación entre mediciones de MyMeds y el pulsioxímetro comercial.}
+\label{tab}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Ensayo} & \textbf{MyMeds (BPM)} & \textbf{Pulsioxímetro (BPM)} & \textbf{Error absoluto (BPM)} \\ \hline
+1 & 65 & 66 & 1 \\ \hline
+2 & 62 & 65 & 3 \\ \hline
+3 & 73 & 74 & 1 \\ \hline
+4 & 70 & 74 & 4 \\ \hline
+$\bar{x}$ & 67.5 & 69.75 & 2.25 \\ \hline
+\end{tabular}
+\end{table}
+
+Los resultados logrados muestran una concordancia notable entre las mediciones efectuadas por MyMeds y las proporcionadas por el pulsioxímetro de referencia. En tres de los cuatro ensayos llevados a cabo, se encontró una diferencia igual o menor a 3 BPM, con un error medio absoluto de 2.25 BPM. Se registró un error máximo de 4 BPM.\\
+
+La Figura~\ref{fig:comparacion_pulsometro} muestra una captura obtenida durante una de las pruebas de comparación realizadas. El desarrollo completo de los cuatro ensayos puede consultarse en el vídeo asociado.\footnote{\url{https://github.com/RoboticsURJC/tfg-amartinez/blob/main/Imgs/videos_experiments/Comparacion_con%20_dispositivos_pulsometro.mp4}}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figs/comparacion_pulsometro.jpeg}
+\caption{Comparación entre MyMeds y el pulsioxímetro comercial durante una de las pruebas realizadas.}
+\label{fig:comparacion_pulsometro}
+\end{figure}
+
+Las diferencias que se han observado pueden deberse a múltiples motivos, como el ruido en la señal fotopletismográfica, las fluctuaciones fisiológicas naturales que ocurren entre mediciones sucesivas y las discrepancias entre los algoritmos de procesamiento empleados por cada uno de los dispositivos.\\
+
+Los ensayos mostraron, además, que ambos sistemas se comportaban dinámicamentye de manera diferente. El pulsioxímetro comercial respondía de manera casi instantánea a alteraciones importantes en la frecuencia cardíaca, mientras que MyMeds modificaba el valor presentado de un modo más gradual.\\
+
+Como consecuencia, MyMeds muestra una estabilidad más alta en las lecturas mostradas, aunque a costa de un tiempo de respuesta un poco más largo cuando ocurren cambios rápidos en la frecuencia cardíaca. Sin embargo, los resultados obtenidos muestran que el sistema desarrollado ofrece estimaciones que se aproximan adecuadamente a las de un dispositivo comercial, lo cual valida su uso como herramienta de monitoreo orientativa en el marco del proyecto.
 
 \section{Persistencia y almacenamiento de datos}
 
