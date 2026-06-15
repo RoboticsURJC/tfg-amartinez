@@ -3,14 +3,40 @@
 
 \vspace{1cm}
 
-En este capítulo se presentan las diferentes pruebas realizadas para validar el funcionamiento de los distintos módulos del proyecto. Los experimentos realizados permiten evaluar el comportamiento del sistema de dispensación, la comunicación entre el dispositivo y la aplicación móvil, el funcionamiento del pulsómetro y los mecanismos de almacenamiento y seguridad implementados, verificando que el sistema cumple los requisitos establecidos durante las fases de diseño y desarrollo.\\
+En este capítulo se presentan las diferentes pruebas realizadas para validar el funcionamiento de los distintos módulos del proyecto. Los experimentos realizados permiten evaluar el comportamiento del sistema de dispensación, la comunicación entre el dispositivo y la aplicación móvil, el funcionamiento del pulsómetro y los mecanismos de almacenamiento y seguridad implementados, verificando que el sistema cumple los requisitos establecidos durante las fases de diseño y desarrollo.
 
 
 \section{Sistema de dispensación}
 
-El sistema de dispensación constituye uno de los elementos fundamentales del dispositivo, ya que es el encargado de posicionar los compartimentos del carrusel y garantizar la correcta liberación de las dosis programadas. Debido a su importancia dentro del funcionamiento global del sistema, se realizaron diferentes pruebas orientadas a validar el comportamiento del mecanismo y comprobar su fiabilidad durante el proceso de dispensación.\\
+El sistema de dispensación constituye uno de los elementos fundamentales del dispositivo, ya que es el encargado de posicionar los compartimentos del carrusel y garantizar la correcta liberación de las dosis programadas. Debido a su importancia dentro del funcionamiento global del sistema, se realizaron diferentes pruebas orientadas a validar el comportamiento del mecanismo y comprobar su fiabilidad durante el proceso de dispensación.
 
 \subsection{Ajuste del mecanismo de dispensación}
+
+Antes de validar el funcionamiento integral del sistema de dispensación, fue necesario calibrar y ajustar los elementos mecámicos responsables del movimiento del carrusel. El propósito de este paso fue asegurar que se alinease correctamente cada compartimento con la salida de dispensación en cada toma programada.\\
+
+Durante las primeras pruebas del mecanismo se observó que pequeños aspectos como la holgura en el movimiento del carrusel o la altura a la que el trinquete tenía contacto con el impulsor del servo, afectaban al correcto comportamiento del mecanismo de dispensación.\\
+
+Debido a ello se realizaron sucesivos ajustes como modificar la altura a la que se posicionaba el trinquete, y el diseño del impulsor del servo para mejorar la transmisión del movimiento. La Figura~\ref{fig:impulsores} muestra la evolución de los diferentes diseños desarrollados durante esta fase.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figs/collage_impulsores.png}
+    \caption{Evolución del diseño del impulsor del servomotor}
+    \label{fig:impulsores}
+\end{figure}
+
+Además, se incorporó un elemento de apoyo para a reducir la libertad de movimiento del carrusel durante la rotación y, se reajustó la posición del muelle de retorno para asegurar que el trinquete recuperase su posición de inicio adecuadamente tras cada accionamiento. Las principales modificaciones se pueden ver en la Figura~\ref{fig:modificaciones}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figs/modificaciones.png}
+    \caption{Principales modificaciones realizadas durante el ajuste del mecanismo de dispensación: Holgura observada, modificación de la posición del muelle del trinquete y configuración final del mecanismo.}
+    \label{fig:modificaciones}
+\end{figure}
+
+La metodología consistió en pobrar distintas combinaciones secuenciales de los cambios mencionados hasta dar con las combinación completa hasta verificar visualmente la alineación de los compartimentos con la salida de medicación y sin interferencias mecánicas en el movimiento.\\
+
+Una vez completado el ajuste, se establecieron las modificaciones posteriormente durante las pruebas de dispensación automática. Este método permitió que el sistema funcionara con una configuración mecánica estable antes de poner a prueba su desempeño en condiciones reales de uso.
 
 \subsection{Validación del proceso de dispensación}
 
@@ -28,7 +54,114 @@ El pulsómetro integrado constituye una de las funcionalidades complementarias i
 
 \subsection{Estabilización de la medida}
 
+Se consideró importante analizar el tiempo necesario para conseguir una medición estable de la frecuencia cardíaca antes de determinar la exactitud del pulsómetro integrado. El algoritmo implementado necesita acumular una cantidad mínima de latidos válidos antes de presentar al usuario una estimación, debido a las características de la señal fotopletismográfica obtenida por el sensor MAX30102.\\
+
+Para medir este comportamiento, se llevaron a cabo cinco pruebas independientes en estado de reposo. En cada prueba, se anotó el tiempo que pasó desde que el dedo fue colocado sobre el sensor hasta que la primera lectura fue mostrada al usuario. También se registró el momento en que el buffer de medida llegó a su máxima capacidad y la lectura pudo ser considerada totalmente estabilizada.\\
+
+Los resultados obtenidos se muestran en la Tabla~\ref{tab:estabilizacion_pulso}.
+
+\begin{table}[H]
+\centering
+\caption{Tiempo necesario para la obtención de una medición estable.}
+\label{tab:estabilizacion_pulso}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Ensayo} & \textbf{Primera lectura mostrada (s)} & \textbf{Buffer completo (s)} \\ \hline
+1 & 17.17 & 23.27 \\ \hline
+2 & 21.94 & 26.53 \\ \hline
+3 & 18.69 & 23.24 \\ \hline
+4 & 14.87 & 19.14 \\ \hline
+5 & 12.58 & 17.25 \\ \hline
+\textbf{Media} & \textbf{17.05} & \textbf{21.89} \\ \hline
+\end{tabular}
+\end{table}
+
+Los resultados indican que el sistema necesita un promedio de 17.05 segundos para ofrecer al usuario la primera estimación de la frecuencia cardíaca y cerca de 21.89 segundos para finalizar el proceso de estabilización del parámetro.\\
+
+Se registraron oscilaciones importantes en la señal adquirida durante los primeros segundos después de que se colocó el dedo. Este comportamiento es consecuencia de que el algoritmo requiere la detección de un número adecuado de latidos válidos para estimar una media representativa y la influencia del ruido presente en la señal fotopletismográfica. Cuando se llega a este umbral, la lectura tiende a estabilizarse progresivamente.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figs/estabilizacion_medida.jpeg}
+    \caption{Captura obtenida durante una de las pruebas de estabilización de la medida.}
+    \label{fig:estabilizacion_medida}
+\end{figure}
+
+La Figura~\ref{fig:estabilizacion_medida} muestra una captura correspondiente a uno de los ensayos realizados. El vídeo completo de la prueba puede consultarse en el Anexo~\ref{anexo:videos}.
+
+La diferencia que se ha notado entre los diferentes ensayos señala que el tiempo de estabilización depende de varios factores, incluyendo cómo está colocado el dedo, la calidad de la señal que capta el sensor y las características fisiológicas del usuario. Este comportamiento impulsó la realización de pruebas adicionales para investigar cómo influyen las condiciones de medida, cuyos resultados se exponen en el siguiente apartado.\\
+
+Por lo tanto, se puede concluir que el sistema desarrollado tiene la capacidad de ofrecer estimaciones estables de la frecuencia cardíaca, pero necesita un tiempo inicial para adquirir y procesar la señal antes de presentar una lectura confiable al usuario.
+
 \subsection{Influencia de las condiciones de medida}
+
+Después de analizar el proceso de estabilización de la medida, se estudió cómo la posición del dedo y la mano empleada afectan al comportamiento del pulsómetro. Como el sensor MAX30102 es óptico, la detección de latidos válidos y el tiempo requerido para conseguir una medición estable pueden verse alterados por factores como la presión que se ejerce sobre él, la calidad del contacto o la dirección del dedo.\\
+
+Para evaluar este comportamiento se realizaron dos rondas de pruebas utilizando cuatro configuraciones distintas: mano izquierda en orientación vertical, mano izquierda en orientación horizontal, mano derecha en orientación vertical y mano derecha en orientación horizontal. En cada ensayo se registró el tiempo transcurrido hasta la aparición de la primera lectura mostrada al usuario y el tiempo necesario para completar el buffer de medida.\\
+
+La Figura~\ref{fig:posiciones_pulso} muestra las diferentes configuraciones evaluadas durante las pruebas. Para que los resultados sean más fáciles de reproducir, se grabaron las dos rondas completas de ensayos. Los vídeos correspondientes pueden consultarse en el Anexo~\ref{anexo:videos}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figs/posiciones_pulso.png}
+\caption{Posiciones utilizadas durante las pruebas de influencia de las condiciones de medida.}
+\label{fig:posiciones_pulso}
+\end{figure}
+
+Los resultados obtenidos en la primera ronda de ensayos se muestran en la Tabla~\ref{tab:pulso_ronda1}.
+
+\begin{table}[H]
+\centering
+\caption{Resultados obtenidos durante la primera ronda de pruebas.}
+\label{tab:pulso_ronda1}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Configuración} & \textbf{Primera lectura (s)} & \textbf{Buffer completo (s)} \\ \hline
+Mano izquierda vertical & 41.12 & 49.12 \\ \hline
+Mano izquierda horizontal & 26.73 & 34.77 \\ \hline
+Mano derecha vertical & 16.92 & 21.46 \\ \hline
+Mano derecha horizontal & 35.05 & 42.89 \\ \hline
+\end{tabular}
+\end{table}
+
+La segunda ronda de ensayos se realizó con el mismo procedimiento, obteniéndose los resultados mostrados en la Tabla~\ref{tab:pulso_ronda2}.
+
+\begin{table}[H]
+\centering
+\caption{Resultados obtenidos durante la segunda ronda de pruebas.}
+\label{tab:pulso_ronda2}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Configuración} & \textbf{Primera lectura (s)} & \textbf{Buffer completo (s)} \\ \hline
+Mano izquierda vertical & 17.24 & 22.19 \\ \hline
+Mano izquierda horizontal & 33.76 & 38.26 \\ \hline
+Mano derecha vertical & 12.66 & 19.29 \\ \hline
+Mano derecha horizontal & 21.39 & 32.92 \\ \hline
+\end{tabular}
+\end{table}
+
+A partir de ambas rondas se calcularon los tiempos medios obtenidos para cada configuración, cuyos resultados se recogen en la Tabla~\ref{tab:condiciones_medida}.
+
+\begin{table}[H]
+\centering
+\caption{Tiempos medios obtenidos para cada configuración evaluada.}
+\label{tab:condiciones_medida}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Configuración} & \textbf{Primera lectura $\bar{x}$ (s)} & \textbf{Buffer completo $\bar{x}$ (s)} \\ \hline
+Mano izquierda vertical & 29.18 & 35.66 \\ \hline
+Mano izquierda horizontal & 30.25 & 36.52 \\ \hline
+Mano derecha vertical & 14.79 & 20.38 \\ \hline
+Mano derecha horizontal & 28.22 & 37.91 \\ \hline
+\end{tabular}
+\end{table}
+
+Los resultados que se han conseguido demuestran que el tiempo necesario para conseguir una lectura estable está significativamente influenciado por las condiciones de medición. En las configuraciones analizadas, la que corresponde a la mano derecha en orientación vertical mostró de manera consistente los tiempos más cortos, tanto para la primera lectura como para la estabilización completa de la medida.\\
+
+Por el contrario, las configuraciones restantes mostraron tiempos superiores y una mayor variabilidad entre ensayos. Estas diferencias pueden deberse a variaciones en la calidad de la señal fotopletismográfica captada por el sensor, producidas por cambios en la posición del dedo, la distribución del flujo sanguíneo o el grado de contacto entre la piel y los elementos ópticos del MAX30102.\\
+
+Sin embargo, a pesar de que las condiciones de medición afectaron en el tiempo necesario para obtener una lectura estable, el sistema logró ofrecer en todos los casos un cálculo preciso de la frecuencia cardíaca. En consecuencia, se puede determinar que el pulsómetro integrado tiene un rendimiento sólido ante diversas maneras de uso. Sin embargo, durante las pruebas realizadas, la colocación vertical del dedo sobre la mano derecha ofreció los resultados más óptimos.
+
 
 \subsection{Comparación con dispositivos de referencia}
 
