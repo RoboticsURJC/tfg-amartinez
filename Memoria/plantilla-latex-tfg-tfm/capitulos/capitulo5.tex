@@ -239,7 +239,7 @@ La lógica de control del sistema se encarga de coordinar el funcionamiento de l
 
 El sistema se basa en un modelo orientado a eventos, en el que las distintas acciones se ejecutan en función del estado del sistema y de las interacciones del usuario. Entre estos eventos se incluyen la llegada de una hora programada para una toma, la interacción con la interfaz de usuario o la recepción de datos desde la aplicación móvil.\\
 
-Uno de los elementos fundamentales del sistema es la gestión de las tomas de medicación. Para ello, se utilizan estructuras de datos específicas que permiten almacenar la configuración asociada a cada toma. Cada toma incluye información como la hora programada, los días de repetición, la activación de recordatorios y el tiempo de aviso previo, permitiendo definir de forma flexible el comportamiento del sistema.
+Uno de los elementos fundamentales del sistema es la gestión de las tomas de medicación. Para ello, se utilizan estructuras de datos específicas que permiten almacenar la configuración asociada a cada toma. Cada toma incluye información como la hora programada, los días de repetición, la activación de recordatorios y el tiempo de aviso previo, permitiendo definir de forma flexible el comportamiento del sistema.\\
 
 Un ejemplo de esta estructura se muestra en el Código~\ref{cod:takeconfig}:
 
@@ -261,6 +261,14 @@ Esta aproximación permite desacoplar la configuración de las tomas de la lógi
 Para garantizar la persistencia de la configuración, el sistema utiliza \textit{Non-Volatile Storage} (NVS), implementada mediante la librería \texttt{Preferences.h} del entorno de desarrollo de ESP32, lo que permite conservar los datos incluso tras reiniciar el dispositivo.\\
 
 La información de cada toma se serializa y almacena mediante claves específicas. Para optimizar el almacenamiento, los días de repetición se codifican en un único byte utilizando una representación binaria, donde cada bit corresponde a un día de la semana.\\
+
+\
+
+\
+
+\
+
+\
 
 \
 
@@ -429,7 +437,7 @@ El mecanismo implementado está compuesto por un elemento impulsor accionado por
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{figs/mecanismo.png}
+\includegraphics[width=0.65\textwidth]{figs/mecanismo.jpeg}
 \caption{Sistema de dispensación basado en mecanismo de trinquete}
 \label{fig}
 \end{figure}
@@ -442,9 +450,7 @@ Esta solución permite obtener un sistema de dispensación fiable utilizando com
 
 Con el objetivo de complementar las funcionalidades del dispensador, se ha incorporado un sistema de monitorización biomédica basado en el sensor MAX30102.\\
 
-Este sensor integra emisores LED y un fotodiodo capaces de realizar mediciones ópticas mediante fotopletismografía (PPG), técnica ampliamente utilizada para estimar parámetros fisiológicos como la frecuencia cardíaca.\\
-
-La Figura~\ref{fig:max30102_flow} resume las diferentes etapas empleadas para obtener la frecuencia cardíaca a partir de la señal capturada por el sensor.\\
+Este sensor integra emisores LED y un fotodiodo capaces de realizar mediciones ópticas mediante fotopletismografía (PPG), técnica ampliamente utilizada para estimar parámetros fisiológicos como la frecuencia cardíaca. La Figura~\ref{fig:max30102_flow} resume las diferentes etapas empleadas para obtener la frecuencia cardíaca a partir de la señal capturada por el sensor.\\
 
 \begin{figure}[H]
     \centering
@@ -466,10 +472,6 @@ beatsPerMinute =
 
 \
 
-\
-
-\
-
 Debido a la presencia de ruido y pequeñas variaciones producidas por el movimiento del usuario o por las condiciones de adquisición de la señal, las mediciones instantáneas pueden presentar oscilaciones significativas. Para mejorar la estabilidad de los resultados, el sistema almacena las últimas medidas válidas en un buffer circular de diez muestras.\\
 
 Posteriormente, se calcula el valor medio de dichas muestras y se aplica un filtro exponencial que suaviza las variaciones entre medidas consecutivas.\\
@@ -480,7 +482,13 @@ filteredBpm =
 0.1f * beatAvg;
 \end{lstlisting}
 
-Este procedimiento permite reducir la influencia del ruido presente en la señal y obtener una estimación más estable y representativa de la frecuencia cardíaca del usuario.
+\
+
+Este procedimiento permite reducir la influencia del ruido presente en la señal y obtener una estimación más estable y representativa de la frecuencia cardíaca del usuario.\\
+
+\
+
+\
 
 
 \subsection{Integración electrónica}
@@ -492,11 +500,6 @@ Los distintos elementos hardware se conectan al microcontrolador mediante interf
 
 Para facilitar el montaje del dispositivo, se ha diseñado una placa de circuito impreso (PCB) que organiza las conexiones entre los distintos componentes.De esta forma, el sistema es más estable y se reduce la complejidad del cableado respecto a soluciones basadas únicamente en prototipado.\\
 
-\
-
-\
-
-\
 
 En la Figura~\ref{fig:montaje} se muestra la integración física de los distintos componentes electrónicos del sistema.
 
