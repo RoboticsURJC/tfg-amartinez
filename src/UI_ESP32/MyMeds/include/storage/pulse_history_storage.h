@@ -11,6 +11,11 @@ struct PulseRecord
     int bpm;
 };
 
+typedef bool (*PulseHistoryVisitor)(
+    const PulseRecord &record,
+    void *context
+);
+
 int loadPulseHistory(
     PulseRecord records[],
     int maxRecords
@@ -18,3 +23,4 @@ int loadPulseHistory(
 
 bool pulseHistoryBegin();
 bool savePulseAverage(int bpm);
+bool visitPulseHistory(PulseHistoryVisitor visitor,void *context);

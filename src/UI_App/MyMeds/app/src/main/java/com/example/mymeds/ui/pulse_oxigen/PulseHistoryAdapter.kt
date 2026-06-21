@@ -1,5 +1,6 @@
 package com.example.mymeds.ui.pulse_oxigen
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -51,6 +52,10 @@ class PulseHistoryAdapter(
 
     override fun getItemCount(): Int
     {
+        Log.d(
+            "PULSE_HISTORY",
+            "Adapter tiene ${items.size} registros"
+        )
         return items.size
     }
 }

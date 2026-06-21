@@ -427,28 +427,56 @@ void handle_get_pin()
     server.send(200,"text/plain",DEVICE_PIN);
 }
 
-void handle_get_pulse_history()
+struct PulseHistoryResponseState
 {
-    DynamicJsonDocument doc(4096);
+    bool first;
+};
 
-    JsonArray arr = doc.createNestedArray("measurements");
+static bool send_pulse_history_record(
+    const PulseRecord &record,
+    void *context
+)
+{
+    PulseHistoryResponseState *state =
+        static_cast<PulseHistoryResponseState *>(context);
 
-    PulseRecord records[PULSE_HISTORY_MAX];
-    int count = loadPulseHistory(records, PULSE_HISTORY_MAX);
-
-    for(int i = 0; i < count; i++) {
-        JsonObject obj = arr.createNestedObject();
-        obj["date"] = records[i].date;
-        obj["time"] = records[i].time;
-        obj["bpm"] = records[i].bpm;
-    }
+    DynamicJsonDocument doc(128);
+    doc["date"] = record.date;
+    doc["time"] = record.time;
+    doc["bpm"] = record.bpm;
 
     String json;
-
     serializeJson(doc, json);
-    Serial.println("===== HISTORIAL ENVIADO =====");
-    Serial.println(json);
-    server.send(200, "application/json", json);
+
+    if (!state->first) {
+        server.sendContent(",");
+    }
+
+    server.sendContent(json);
+    state->first = false;
+    return true;
+}
+
+void handle_get_pulse_history()
+{
+    if (!pulseHistoryBegin()) {
+        server.send(
+            503,
+            "application/json",
+            "{\"error\":\"sd unavailable\"}"
+        );
+        return;
+    }
+
+    server.setContentLength(CONTENT_LENGTH_UNKNOWN);
+    server.send(200, "application/json", "");
+    server.sendContent("{\"measurements\":[");
+
+    PulseHistoryResponseState state = {true};
+    visitPulseHistory(send_pulse_history_record, &state);
+
+    server.sendContent("]}");
+    server.sendContent("");
 }
 
 void handle_link()

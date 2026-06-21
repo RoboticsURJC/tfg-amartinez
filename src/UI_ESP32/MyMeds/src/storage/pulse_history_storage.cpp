@@ -56,7 +56,7 @@ int loadPulseHistory(PulseRecord records[], int maxRecords)
     int count = 0;
     bool firstLine = true;
 
-    while (file.available() && count < maxRecords) {
+    while (file.available()) {
         String line = file.readStringUntil('\n');
 
         if (firstLine) {
@@ -77,10 +77,24 @@ int loadPulseHistory(PulseRecord records[], int maxRecords)
             continue;
         }
 
-        records[count].date = line.substring(0, firstSep);
-        records[count].time = line.substring(firstSep + 1, secondSep);
-        records[count].bpm = line.substring(secondSep + 1).toInt();
-        count++;
+        PulseRecord record;
+        record.date = line.substring(0, firstSep);
+        record.time = line.substring(firstSep + 1, secondSep);
+        record.bpm = line.substring(secondSep + 1).toInt();
+
+        if (record.bpm <= 0) {
+            continue;
+        }
+
+        if (count < maxRecords) {
+            records[count++] = record;
+        } else {
+            for (int i = 1; i < maxRecords; i++) {
+                records[i - 1] = records[i];
+            }
+
+            records[maxRecords - 1] = record;
+        }
     }
 
     Serial.println("=== HISTORIAL LEIDO ===");
@@ -100,6 +114,63 @@ int loadPulseHistory(PulseRecord records[], int maxRecords)
 
     file.close();
     return count;
+}
+
+bool visitPulseHistory(
+    PulseHistoryVisitor visitor,
+    void *context
+)
+{
+    if (!pulseHistoryBegin()) {
+        return false;
+    }
+
+    if (!SD.exists(PULSE_HISTORY_FILE)) {
+        return true;
+    }
+
+    File file = SD.open(PULSE_HISTORY_FILE, FILE_READ);
+
+    if (!file) {
+        return false;
+    }
+
+    bool firstLine = true;
+
+    while (file.available()) {
+        String line = file.readStringUntil('\n');
+
+        if (firstLine) {
+            firstLine = false;
+            continue;
+        }
+
+        line.trim();
+
+        int firstSep = line.indexOf(';');
+        int secondSep = line.indexOf(';', firstSep + 1);
+
+        if (firstSep < 0 || secondSep < 0) {
+            continue;
+        }
+
+        PulseRecord record;
+        record.date = line.substring(0, firstSep);
+        record.time = line.substring(firstSep + 1, secondSep);
+        record.bpm = line.substring(secondSep + 1).toInt();
+
+        if (record.bpm <= 0) {
+            continue;
+        }
+
+        if (!visitor(record, context)) {
+            file.close();
+            return false;
+        }
+    }
+
+    file.close();
+    return true;
 }
 
 bool savePulseAverage(int bpm)

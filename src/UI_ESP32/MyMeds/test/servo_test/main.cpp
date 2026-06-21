@@ -192,7 +192,7 @@
 Adafruit_PWMServoDriver pwm(0x40);
 
 const int POS_MAX = 220;
-const int POS_MIN = 100;
+const int POS_MIN = 30;
 
 void moverServo(int inicio, int fin, int velocidad_ms)
 {

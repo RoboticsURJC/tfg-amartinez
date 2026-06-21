@@ -26,6 +26,7 @@ import android.content.Intent
 import androidx.core.content.FileProvider
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import com.example.mymeds.repository.PulseStorage
 
 class Pulse_oxigenFragment : Fragment() {
 
@@ -98,8 +99,7 @@ class Pulse_oxigenFragment : Fragment() {
             binding.btnStartDate.text = "Desde"
             binding.btnEndDate.text = "Hasta"
 
-            binding.historyRecycler.adapter = PulseHistoryAdapter(allMeasurements.reversed())
-
+            binding.historyRecycler.adapter = PulseHistoryAdapter(allMeasurements.takeLast(20).reversed())
             updateChart(allMeasurements)
         }
 
@@ -161,6 +161,16 @@ class Pulse_oxigenFragment : Fragment() {
             }
         }
 
+        val cachedMeasurements = PulseStorage.load(requireContext())
+
+        allMeasurements = cachedMeasurements
+
+        binding.historyRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.historyRecycler.adapter = PulseHistoryAdapter(cachedMeasurements.takeLast(20).reversed())
+        binding.historyRecycler.isNestedScrollingEnabled = true
+
+        updateChart(cachedMeasurements)
+
         EspApi.getPulseHistory { response ->
             if (response == null) {
                 return@getPulseHistory
@@ -195,13 +205,19 @@ class Pulse_oxigenFragment : Fragment() {
 
                 PulseHistoryRepository.setMeasurements(measurements)
 
+                PulseStorage.save(requireContext(), measurements)
+
                 allMeasurements = measurements
 
                 activity?.runOnUiThread {
+                    Log.d(
+                        "PULSE_HISTORY",
+                        "Recycler recibe ${measurements.size} registros"
+                    )
 
                     binding.historyRecycler.layoutManager = LinearLayoutManager(requireContext())
-                    binding.historyRecycler.isNestedScrollingEnabled = false
-                    binding.historyRecycler.adapter = PulseHistoryAdapter(measurements.reversed())
+                    binding.historyRecycler.isNestedScrollingEnabled = true
+                    binding.historyRecycler.adapter = PulseHistoryAdapter(measurements.takeLast(20).reversed())
                     updateChart(measurements)
                 }
 

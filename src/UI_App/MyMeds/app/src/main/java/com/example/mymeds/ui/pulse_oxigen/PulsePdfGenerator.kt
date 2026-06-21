@@ -23,8 +23,8 @@ object PulsePdfGenerator {
                     1
                 ).create()
 
-            val page = document.startPage(pageInfo)
-            val canvas = page.canvas
+            var page = document.startPage(pageInfo)
+            var canvas = page.canvas
             val paint = android.graphics.Paint()
 
             var y = 50
@@ -372,8 +372,7 @@ object PulsePdfGenerator {
 
             canvas.drawText("Fecha", 40f, y.toFloat(), TitlePaint)
             canvas.drawText("Hora", 170f, y.toFloat(), TitlePaint)
-            canvas.drawText("BPM", 300f, y.toFloat(), TitlePaint
-            )
+            canvas.drawText("BPM", 300f, y.toFloat(), TitlePaint)
 
             y += 25
 
@@ -388,24 +387,69 @@ object PulsePdfGenerator {
                 strokeWidth = 1f
             }
 
-            measurements.reversed().forEach {
+            measurements.reversed().forEach { measurement ->
+
+                if (y > 780)
+                {
+                    document.finishPage(page)
+
+                    page =
+                        document.startPage(pageInfo)
+
+                    canvas =
+                        page.canvas
+
+                    y = 50
+                    
+                    canvas.drawText(
+                        "Historial (continuación)",
+                        40f,
+                        y.toFloat(),
+                        TitlePaint
+                    )
+
+                    y += 30
+
+                    canvas.drawText(
+                        "Fecha",
+                        40f,
+                        y.toFloat(),
+                        TitlePaint
+                    )
+
+                    canvas.drawText(
+                        "Hora",
+                        170f,
+                        y.toFloat(),
+                        TitlePaint
+                    )
+
+                    canvas.drawText(
+                        "BPM",
+                        300f,
+                        y.toFloat(),
+                        TitlePaint
+                    )
+
+                    y += 25
+                }
 
                 canvas.drawText(
-                    it.date,
+                    measurement.date,
                     40f,
                     y.toFloat(),
                     paint
                 )
 
                 canvas.drawText(
-                    it.time,
+                    measurement.time,
                     170f,
                     y.toFloat(),
                     paint
                 )
 
                 canvas.drawText(
-                    it.bpm.toString(),
+                    measurement.bpm.toString(),
                     300f,
                     y.toFloat(),
                     paint

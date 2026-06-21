@@ -31,6 +31,9 @@ float beatAvg = 0;
 float filteredBpm = 0;
 bool firstMeasure = true;
 
+// EXPERIMENTO
+unsigned long fingerStartTime = 0; 
+
 void pulseSensorInit()
 {
     Serial.println("Inicializando MAX30102...");
@@ -96,12 +99,20 @@ void pulseSensorUpdate()
 
         filteredBpm = 0;
 
+        // EXPERIMENTO
+        fingerStartTime = 0;
+
         return;
     }
 
     // ----------------------
     // DEDO PRESENTE
     // ----------------------
+
+    if (!fingerDetected)
+    {
+        fingerStartTime = millis();
+    }
 
     fingerDetected = true;
 
@@ -148,6 +159,15 @@ void pulseSensorUpdate()
                 return;
             }
 
+            if(validSamples == MIN_VALID_SAMPLES_TO_SHOW)
+            {
+                Serial.print("PRIMERA_LECTURA_MOSTRADA;");
+                Serial.println(
+                    (millis() - fingerStartTime) / 1000.0f,
+                    2
+                );
+            }
+
             beatAvg = 0;
 
             for (
@@ -178,13 +198,32 @@ void pulseSensorUpdate()
                     beatAvg;
             }
 
-            currentBpm =
-                (int)
-                round(
-                    filteredBpm
-                );
+            currentBpm =(int)round(filteredBpm);
+
+            // EXPERIMENTO
+            Serial.print("Tiempo(s): ");
+            Serial.print(
+                (millis() - fingerStartTime)
+                / 1000.0f,
+                2
+            );
+
+            Serial.print(" | Muestras: ");
+            Serial.print(validSamples);
+
+            Serial.print(" | BPM: ");
+            Serial.println(currentBpm);
 
             measurementReady = true;
+
+            if(validSamples == RATE_SIZE)
+            {
+                Serial.print("BUFFER_COMPLETO;");
+                Serial.println(
+                    (millis() - fingerStartTime) / 1000.0f,
+                    2
+                );
+            }
 
             if (validSamples >= RATE_SIZE)
             {
