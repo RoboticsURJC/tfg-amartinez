@@ -29,6 +29,8 @@ WiFiUDP udp;
 #include "storage/pulse_history_storage.h"
 
 #include "sensors/pulse_sensor.h"
+#include "actuators/dose_actuators.h"
+#include "logic/takes_logic.h"
 
 #include "logo_mymeds.h"
 #include "idle_manager.h"
@@ -129,6 +131,7 @@ void setup()
 
     lvgl_begin();
     pulseSensorInit();
+    doseActuatorsInit();
 
     loadMedicines();
     uploadTakes();
@@ -370,6 +373,8 @@ void loop()
 {
     lv_timer_handler();
     pulseSensorUpdate();
+    doseActuatorsUpdate();
+    checkTakes();
     delay(5);
 
     server.handleClient();

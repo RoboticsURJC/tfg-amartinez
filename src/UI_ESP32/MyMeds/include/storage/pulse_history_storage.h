@@ -23,4 +23,7 @@ int loadPulseHistory(
 
 bool pulseHistoryBegin();
 bool savePulseAverage(int bpm);
-bool visitPulseHistory(PulseHistoryVisitor visitor,void *context);
+bool visitPulseHistory(
+    PulseHistoryVisitor visitor,
+    void *context
+);

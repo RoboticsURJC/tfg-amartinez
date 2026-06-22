@@ -1,4 +1,4 @@
 #pragma once
 
-void chackTakes();
-void executeTakes(int index);
+void checkTakes();
+void executeTake(int index);
