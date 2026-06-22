@@ -47,7 +47,72 @@ La comunicación entre la aplicación móvil y el dispensador resulta esencial p
 
 \subsection{Sincronización de tomas y configuración}
 
+La correcta sincronización entre la aplicación móvil y el dispensador resulta fundamental para garantizar que la información utilizada por ambos sistemas sea coherente. Con el objetivo de validar esta funcionalidad, se realizaron diferentes pruebas destinadas a verificar el intercambio bidireccional de información relacionada con la configuración de las tomas programadas.\\
+
+La validación de la sincronización se realizó mediante dos conjuntos de pruebas complementarios. En primer lugar, se verificó la correcta sincronización del catálogo de medicamentos entre la aplicación móvil y el dispositivo. Posteriormente, se evaluó la sincronización bidireccional de las tomas programadas, comprobando que las modificaciones realizadas desde cualquiera de las dos interfaces eran transmitidas correctamente al otro sistema. De esta forma se verificó que la configuración podía gestionarse indistintamente desde cualquiera de las dos interfaces sin generar inconsistencias ni conflictos entre los datos almacenados.\\
+
+La Figura~\ref{fig:sync} muestra una captura correspondiente a ambas pruebas realizadas. El proceso de sincronización de medicamentos puede consultarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/uuppxkhh}}. La sincronización bidireccional de tomas puede consultarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/yeyz9pc4}}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figs/sincronizacion.png}
+\caption{Validación de la sincronización de medicamentos y tomas entre la aplicación móvil y el dispositivo.}
+\label{fig:sync}
+\end{figure}
+
+Los resultados obtenidos se resumen en la Tabla~\ref{tab}.
+
+\begin{table}[H]
+\centering
+\caption{Resultados de la validación de la sincronización bidireccional de tomas y configuración.}
+\label{tab:sincronizacion_tomas}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Prueba realizada} & \textbf{Resultado} \\ \hline
+Creación de tomas desde Android & Correcto \\ \hline
+Creación de tomas desde el dispositivo & Correcto \\ \hline
+Modificación de tomas desde Android & Correcto \\ \hline
+Modificación de tomas desde el dispositivo & Correcto \\ \hline
+Eliminación de tomas desde Android & Correcto \\ \hline
+Eliminación de tomas desde el dispositivo & Correcto \\ \hline
+Consistencia de la configuración sincronizada & Correcto \\ \hline
+\end{tabular}
+\end{table}
+
+Los ensayos realizados muestran que la sincronización bidireccional funciona correctamente, permitiendo gestionar la configuración desde cualquiera de los dos sistemas. Tras cada operación realizada, ambos componentes mantuvieron una representación idéntica de las tomas programadas, evitando inconsistencias y garantizando la coherencia de la información almacenada.
+
 \subsection{Funcionamiento autónomo del dispositivo}
+
+Una vez sincronizada la configuración, el dispensador debe ser capaz de funcionar de manera independiente sin requerir una conexión permanente con la aplicación móvil. Esta característica resulta esencial para garantizar la continuidad del servicio incluso cuando el dispositivo Android no se encuentra disponible.\\
+
+La validación experimental se realizará con un ensayo en el que, tras sincronizar la configuración desde la aplicación móvil, se desconectará completamente el dispositivo Android y se verificará que el dispensador continúa ejecutando de forma autónoma las tareas programadas utilizando únicamente la información almacenada localmente.\\
+
+La Figura~\ref{fig} mostrará una captura correspondiente a una de las pruebas realizadas. El desarrollo completo del experimento podrá consultarse en el vídeo asociado.\footnote{\url{https://...}}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{imagenes/funcionamiento_autonomo.jpeg}
+\caption{Funcionamiento autónomo del dispensador utilizando la configuración almacenada localmente.}
+\label{fig}
+\end{figure}
+
+Los resultados obtenidos se resumirán en la Tabla~\ref{tab}.
+
+\begin{table}[H]
+\centering
+\caption{Resultados de la validación del funcionamiento autónomo del dispositivo.}
+\label{tab}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Prueba realizada} & \textbf{Resultado} \\ \hline
+Funcionamiento sin conexión con Android & Correcto \\ \hline
+Disponibilidad de las tomas programadas & Correcto \\ \hline
+Activación de alarmas programadas & Correcto \\ \hline
+Uso de la configuración almacenada & Correcto \\ \hline
+\end{tabular}
+\end{table}
+
+Una vez completado el experimento, los resultados permitieron determinar el grado de autonomía alcanzado por el sistema y verificar que el dispensador puede continuar prestando sus funcionalidades esenciales sin depender de una conexión permanente con la aplicación móvil.
 
 \section{Evaluación del pulsómetro}
 
@@ -271,7 +336,7 @@ Una vez comprobada la recuperación local de los datos, se validó la sincroniza
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{figs/historial_android.jpeg}
+\includegraphics[width=0.4\textwidth]{figs/historial_android.jpg}
 \caption{Historial de pulsaciones recuperado desde la aplicación móvil.}
 \label{fig:historial_app}
 \end{figure}
@@ -280,7 +345,7 @@ Finalmente, se verificó la correcta generación de informes PDF a partir de los
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.55\textwidth]{figs/pdf_historial.jpeg}
+\includegraphics[width=0.85\textwidth]{figs/pdf_historial.png}
 \caption{Informe PDF generado a partir del historial de mediciones almacenado.}
 \label{fig:pdf}
 \end{figure}

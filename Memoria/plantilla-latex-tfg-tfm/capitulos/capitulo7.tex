@@ -1,32 +1,105 @@
 \chapter{Conclusiones}
 \label{cap:capitulo5}
 
-\begin{flushright}
-\begin{minipage}[]{10cm}
-\emph{Quizás algún fragmento de libro inspirador...}\\
-\end{minipage}\\
-
-Autor, \textit{Título}\\
-\end{flushright}
-
 \vspace{1cm}
 
-Escribe aquí un párrafo explicando brevemente lo que vas a contar en este capítulo, que básicamente será una recapitulación de los problemas que has abordado, las soluciones que has prouesto, así como los experimentos llevados a cabo para validarlos. Y con esto, cierras la memoria.
+En este último capítulo se presentan las conclusiones obtenidas durante el desarrollo del proyecto, detallando el grado de cumplimiento de los objetivos y requisitos establecidos inicialmente. Además, se presentan las habilidades y los conocimientos obtenidos a lo largo de la ejecución del trabajo, además de varios campos futuros que tienen el potencial de expandir las funciones del sistema creado.
 
-\section{Conclusiones}
+\section{Objetivos y requisitos cumplidos}
+\subsection{Objetivos}
 
-Enumera los objetivos y cómo los has cumplido.\\
+Se ha conseguido cumplir el objetivo principal, el cual consistía en el diseño y desarrollo de un sistema inteligente de asistencia sanitaria doméstico denominado MyMeds. El sistema desarrollado integra un dispositivo físico basado en un microcontrolador ESP32 con pantalla táctil y una aplicación móvil Android, permitiendo la gestión de la medicación, la monitorización biomédica básica y la sincronización de información entre ambos componentes.\\
 
-Enumera también los requisitos implícitos en la consecución de esos objetivos, y cómo se han satisfecho.\\
+Asimismo, se han alcanzado los objetivos planteados al inicio del proyecto:
 
-No olvides dedicar un par de párrafos para hacer un balance global de qué has conseguido, y por qué es un avance respecto a lo que tenías inicialmente. Haz mención expresa de alguna limitación o peculiaridad de tu sistema y por qué es así. Y también, qué has aprendido desarrollando este trabajo.\\
+\begin{enumerate}
 
-Por último, añade otro par de párrafos de líneas futuras; esto es, cómo se puede continuar tu trabajo para abarcar una solución más amplia, o qué otras ramas de la investigación podrían seguirse partiendo de este trabajo, o cómo se podría mejorar para conseguir una aplicación real de este desarrollo (si es que no se ha llegado a conseguir).
+\item Se ha diseñado la arquitectura general del sistema, definiendo los distintos módulos hardware y software necesarios para su funcionamiento e integración.
 
-\section{Corrector ortográfico}
+\item Se ha desarrollado el diseño mecánico del pastillero mediante herramientas de modelado 3D y fabricación mediante impresión 3D, obteniendo un prototipo funcional adaptado a los requisitos del proyecto.
 
-Una vez tengas todo, no olvides pasar el corrector ortográfico de \LaTeX a todos tus ficheros \textit{.tex}. En \texttt{Windows}, el propio editor \texttt{TeXworks} incluye el corrector. En \texttt{Linux}, usa \texttt{aspell} ejecutando el siguiente comando en tu terminal:
+\item Se ha seleccionado e integrado el microcontrolador ESP32 como núcleo principal del sistema, implementando la lógica de control necesaria para la gestión de sensores, almacenamiento, comunicaciones e interfaz de usuario.
 
-\begin{verbatim}
-aspell --lang=es --mode=tex check capitulo1.tex
-\end{verbatim}
+\item Se ha diseñado e implementado una interfaz táctil intuitiva que permite gestionar las funcionalidades principales del dispositivo de forma sencilla.
+
+\item Se ha integrado un sensor biomédico MAX30102 que permite la monitorización de la frecuencia cardíaca del usuario, incorporando además mecanismos para el almacenamiento y consulta de las mediciones realizadas.
+
+\item Se ha desarrollado una aplicación móvil Android destinada a la configuración, supervisión y gestión del sistema.
+
+\item Se ha implementado un sistema de comunicación inalámbrica mediante WiFi que permite el intercambio de información entre la aplicación móvil y el dispositivo, incluyendo mecanismos de sincronización bidireccional.
+
+\item Se han realizado diferentes pruebas funcionales destinadas a validar el correcto funcionamiento del sistema desarrollado, verificando aspectos relacionados con la sincronización, la monitorización biomédica, la persistencia de datos y la seguridad.
+
+\end{enumerate}
+
+\subsection{Requisitos}
+
+Además de los objetivos planteados inicialmente, también se han satisfecho los requisitos técnicos establecidos para el desarrollo del sistema:
+
+\begin{enumerate}
+
+\item Se ha utilizado el microcontrolador ESP32-2432S028 como plataforma principal para el desarrollo del dispositivo.
+
+\item El firmware del dispositivo ha sido implementado en lenguaje C++, mientras que la aplicación móvil ha sido desarrollada utilizando Kotlin y Android Studio.
+
+\item La comunicación entre el dispositivo y la aplicación móvil se realiza mediante conexión WiFi, permitiendo el intercambio bidireccional de información.
+
+\item El sistema desarrollado proporciona una respuesta fluida durante su utilización, permitiendo la actualización de información y la interacción con el usuario en tiempo real.
+
+\item El diseño mecánico ha sido realizado mediante herramientas de modelado 3D y fabricado utilizando impresión 3D con material PLA.
+
+\item Se ha mantenido la filosofía de bajo coste planteada durante la fase de diseño mediante el empleo de componentes electrónicos comerciales ampliamente disponibles.
+
+\item El sistema incorpora mecanismos de almacenamiento persistente para conservar tanto la configuración como el historial de mediciones biomédicas realizadas.
+
+\item El dispositivo dispone de avisos visuales y acústicos destinados a facilitar la correcta administración de la medicación y mejorar la experiencia de uso.
+
+\end{enumerate}
+
+\section{Competencias y conocimientos adquiridos}
+
+Además de las competencias definidas inicialmente en la Sección 3.3, el desarrollo de este Trabajo Fin de Grado ha permitido adquirir y reforzar conocimientos en diferentes áreas de la ingeniería, entre los que destacan:
+
+\begin{itemize}
+
+\item Desarrollo de sistemas embebidos basados en microcontroladores ESP32.
+
+\item Integración y utilización de sensores biomédicos para la monitorización de parámetros fisiológicos.
+
+\item Desarrollo de aplicaciones móviles Android mediante Kotlin y Android Studio.
+
+\item Implementación de comunicaciones inalámbricas mediante WiFi para el intercambio de información entre dispositivos.
+
+\item Gestión de almacenamiento persistente de datos en sistemas embebidos y aplicaciones móviles.
+
+\item Diseño mecánico asistido por ordenador mediante herramientas CAD y fabricación mediante impresión 3D.
+
+\item Integración conjunta de componentes hardware y software dentro de un único sistema funcional.
+
+\item Realización de pruebas experimentales y validación de prototipos tecnológicos.
+
+\item Elaboración de documentación técnica y científica mediante \LaTeX.
+
+\end{itemize}
+
+\section{Líneas futuras}
+
+Aunque los resultados obtenidos demuestran la viabilidad del sistema desarrollado, existen diversas líneas de trabajo que podrían abordarse en futuras versiones con el objetivo de ampliar sus funcionalidades y mejorar sus prestaciones.
+
+\begin{itemize}
+
+\item \textbf{Integración con sistemas sanitarios.} Integrar MyMeds con plataformas y sistemas de información sanitaria. Esto permitiría sincronizar automáticamente tratamientos prescritos por profesionales médicos, compartir historiales de medicación y facilitar el seguimiento remoto de pacientes por parte de centros sanitarios o personal autorizado.
+
+\item \textbf{Soporte multiusuario.} Actualmente el sistema está orientado a la gestión de la medicación de un único usuario. Como evolución futura, podría desarrollarse una arquitectura multiusuario que permitiera gestionar varios pacientes desde un mismo dispositivo. Para ello, cada compartimento o conjunto de compartimentos podría asociarse a un usuario diferente, permitiendo almacenar configuraciones, historiales y tratamientos independientes. De esta forma, el sistema podría utilizarse en entornos familiares o residencias de pequeño tamaño.
+
+\item \textbf{Ampliación de la monitorización biomédica.} El sistema podría complementarse con nuevos sensores capaces de registrar parámetros adicionales como la temperatura corporal o la presión arterial, ampliando así las capacidades de seguimiento de la salud del usuario.
+
+\item \textbf{Notificaciones remotas y seguimiento de cuidadores.} También resultaría interesante incorporar mecanismos de notificación dirigidos a familiares o cuidadores. Estas funcionalidades permitirían informar de olvidos en la medicación, incidencias detectadas o valores fisiológicos fuera de los rangos habituales.
+
+\item \textbf{Aplicación de técnicas de inteligencia artificial.} En futuras versiones podrían emplearse técnicas de inteligencia artificial para analizar patrones de comportamiento, detectar posibles incumplimientos terapéuticos y generar recomendaciones personalizadas destinadas a mejorar la adherencia a los tratamientos.
+
+\end{itemize}
+
+En conjunto, estas líneas futuras permitirían evolucionar MyMeds desde un prototipo funcional de asistencia sanitaria doméstico hacia un producto más completo, escalable y adaptado a entornos reales de uso.
+
+
