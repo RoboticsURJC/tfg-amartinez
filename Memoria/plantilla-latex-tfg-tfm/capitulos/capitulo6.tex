@@ -1,4 +1,4 @@
-\chapter{experimentos}
+\chapter{Experimentos}
 \label{cap:capitulo6}
 
 \vspace{1cm}
@@ -40,6 +40,19 @@ Una vez completado el ajuste, se establecieron las modificaciones posteriormente
 
 \subsection{Validación del proceso de dispensación}
 
+El objetivo de este experimento fue validar el funcionamiento completo del proceso de dispensación automática, verificando que las tomas programadas se ejecutan correctamente a la hora establecida.\\
+
+La metodología seguida consistió, en primer lugar, en programar una toma desde la aplicación móvil y comprobar que era sincronizada correctamente con el dispensador. Posteriormente, se esperó a la hora programada para verificar la activación del servomotor correspondiente y la correcta dispensación del medicamento. Una vez completada la primera dispensación, se programó una segunda toma directamente desde la interfaz del dispositivo.\\
+
+El desarrollo completo de la prueba puede observarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/XXXXXXXX}}.
+Los resultados obtenidos confirman el correcto funcionamiento del proceso de dispensación implementado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figs/validacion.jpeg}
+    \caption{Validación del proceso de dispensación.}
+    \label{fig:validacion_disp}
+\end{figure}
 
 \section{Sincronización entre la aplicación móvil y el dispositivo}
 
@@ -91,7 +104,7 @@ La Figura~\ref{fig} mostrará una captura correspondiente a una de las pruebas r
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{imagenes/funcionamiento_autonomo.jpeg}
+\includegraphics[width=0.5\textwidth]{figs/funcionamiento_autonomo.jpeg}
 \caption{Funcionamiento autónomo del dispensador utilizando la configuración almacenada localmente.}
 \label{fig}
 \end{figure}
@@ -111,6 +124,8 @@ Activación de alarmas programadas & Correcto \\ \hline
 Uso de la configuración almacenada & Correcto \\ \hline
 \end{tabular}
 \end{table}
+
+\
 
 Una vez completado el experimento, los resultados permitieron determinar el grado de autonomía alcanzado por el sistema y verificar que el dispensador puede continuar prestando sus funcionalidades esenciales sin depender de una conexión permanente con la aplicación móvil.
 
@@ -150,7 +165,7 @@ Se registraron oscilaciones importantes en la señal adquirida durante los prime
     \label{fig:estabilizacion_medida}
 \end{figure}
 
-La Figura~\ref{fig:estabilizacion_medida} muestra una captura correspondiente a uno de los ensayos realizados. Con el fin de facilitar la reproducibilidad de los resultados obtenidos, el desarrollo completo de la prueba fue registrado en vídeo.\footnote{\url{https://bit.ly/4oBEemg}}
+La Figura~\ref{fig:estabilizacion_medida} muestra una captura correspondiente a uno de los ensayos realizados. Con el fin de facilitar la reproducibilidad de los resultados obtenidos, el desarrollo completo de la prueba fue registrado en vídeo.\footnote{\url{https://bit.ly/4oBEemg}}\\
 
 La diferencia que se ha notado entre los diferentes ensayos señala que el tiempo de estabilización depende de varios factores, incluyendo cómo está colocado el dedo, la calidad de la señal que capta el sensor y las características fisiológicas del usuario. Este comportamiento impulsó la realización de pruebas adicionales para investigar cómo influyen las condiciones de medida, cuyos resultados se exponen en el siguiente apartado.\\
 
@@ -262,9 +277,11 @@ Las diferencias que se han observado pueden deberse a múltiples motivos, como e
 
 Los ensayos además mostraron que ambos sistemas se comportaban dinámicamente de manera diferente. El pulsioxímetro comercial respondía de manera casi instantánea a alteraciones importantes en la frecuencia cardíaca, mientras que MyMeds modificaba el valor presentado de un modo más gradual.\\
 
+Como consecuencia, MyMeds muestra una estabilidad más alta en las lecturas mostradas, aunque a costa de un tiempo de respuesta un poco más largo cuando ocurren cambios rápidos en la frecuencia cardíaca. Sin embargo, los resultados obtenidos muestran que el sistema desarrollado ofrece estimaciones que se aproximan adecuadamente a las de un dispositivo comercial, lo cual valida su uso como herramienta de monitoreo orientativa en el marco del proyecto.\\
+
 \
 
-Como consecuencia, MyMeds muestra una estabilidad más alta en las lecturas mostradas, aunque a costa de un tiempo de respuesta un poco más largo cuando ocurren cambios rápidos en la frecuencia cardíaca. Sin embargo, los resultados obtenidos muestran que el sistema desarrollado ofrece estimaciones que se aproximan adecuadamente a las de un dispositivo comercial, lo cual valida su uso como herramienta de monitoreo orientativa en el marco del proyecto.
+\
 
 \section{Persistencia y almacenamiento de datos}
 
@@ -278,7 +295,7 @@ En una primera prueba se configuraron varias tomas de medicación utilizando la 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.6\textwidth]{figs/persistencia_tomas.jpeg}
+\includegraphics[width=0.45\textwidth]{figs/persistencia_tomas.jpeg}
 \caption{Validación de la conservación de las tomas programadas tras reiniciar el dispositivo.}
 \label{fig}
 \end{figure}
@@ -318,7 +335,7 @@ Durante las pruebas se realizaron varias mediciones de frecuencia cardíaca que 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.65\textwidth]{figs/historial_csv.png}
+\includegraphics[width=0.5\textwidth]{figs/historial_csv.png}
 \caption{Archivo CSV utilizado para almacenar el historial de pulsaciones.}
 \label{fig:csv}
 \end{figure}
@@ -327,7 +344,7 @@ Posteriormente se verificó que las mediciones almacenadas podían recuperarse c
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.55\textwidth]{figs/historial_esp.jpeg}
+\includegraphics[width=0.45\textwidth]{figs/historial_esp.jpeg}
 \caption{Visualización del historial de pulsaciones desde el dispositivo.}
 \label{fig:historial_esp}
 \end{figure}
@@ -336,7 +353,7 @@ Una vez comprobada la recuperación local de los datos, se validó la sincroniza
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.4\textwidth]{figs/historial_android.jpg}
+\includegraphics[width=0.3\textwidth]{figs/historial_android.jpg}
 \caption{Historial de pulsaciones recuperado desde la aplicación móvil.}
 \label{fig:historial_app}
 \end{figure}
@@ -345,10 +362,12 @@ Finalmente, se verificó la correcta generación de informes PDF a partir de los
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{figs/pdf_historial.png}
+\includegraphics[width=0.6\textwidth]{figs/pdf_historial.png}
 \caption{Informe PDF generado a partir del historial de mediciones almacenado.}
 \label{fig:pdf}
 \end{figure}
+
+\
 
 El desarrollo completo del experimento fue registrado en vídeo y puede consultarse en el enlace.\footnote{\url{https://...}}. Los resultados se resumen en la Tabla~\ref{tab}.
 
@@ -374,11 +393,15 @@ La correcta generación del informe PDF confirma además que la información alm
 
 \section{Seguridad del sistema}
 
-Con el objetivo de restringir el acceso no autorizado y garantizar la correcta vinculación entre el dispositivo y la aplicación móvil, el sistema incorpora distintos mecanismos de seguridad. Entre ellos se incluyen un sistema de autenticación mediante PIN sincronizado entre ambos dispositivos y un mecanismo de vinculación basado en tokens únicos. Para validar su funcionamiento se realizaron diferentes pruebas relacionadas con la autenticación de usuarios y la sincronización segura de la información.
+Con el objetivo de restringir el acceso no autorizado y garantizar la correcta vinculación entre el dispositivo y la aplicación móvil, el sistema incorpora distintos mecanismos de seguridad. Entre ellos se incluyen un sistema de autenticación mediante PIN sincronizado entre ambos dispositivos y un mecanismo de vinculación basado en tokens únicos. Para validar su funcionamiento se realizaron diferentes pruebas relacionadas con la autenticación de usuarios y la sincronización segura de la información.\\
+
+\
+
+\
 
 \subsection{Validación del acceso mediante PIN}
 
-Se implementó un mecanismo de autenticación basado en un PIN configurable por el usuario. Para validar su funcionamiento se realizaron diferentes pruebas introduciendo tanto códigos correctos como incorrectos desde la aplicación móvil y desde el dispositivo.\\
+Se implementó un mecanismo de autenticación basado en un PIN configurable por el usuario. Para validarlo se realizaron diferentes pruebas introduciendo tanto códigos correctos como incorrectos desde la aplicación móvil y desde el dispositivo.\\
 
 Durante los ensayos se comprobó que el acceso únicamente era concedido cuando el PIN introducido coincidía con el almacenado en el sistema. En caso contrario, el acceso era denegado y el usuario permanecía en la pantalla de autenticación.\\
 
@@ -403,8 +426,6 @@ Introducción de PIN incorrecto & Acceso denegado \\ \hline
 \end{tabular}
 \end{table}
 
-Los resultados obtenidos confirman el correcto funcionamiento del mecanismo de autenticación implementado.
-
 \subsection{Sincronización del PIN}
 
 El PIN de acceso, además de emplearse como mecanismo de autenticación, debe conservarse sincronizado entre el dispositivo y la aplicación móvil para asegurar que el sistema funcione de manera coherente. Con el fin de validar esta funcionalidad, se realizaron diferentes pruebas destinadas a comprobar que los cambios realizados sobre el código de autenticación se transmitían correctamente.\\
@@ -417,10 +438,22 @@ La Figura~\ref{fig:sincronizacion_pin} muestra una captura correspondiente a una
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{figs/sincronizacion_pin.png}
+\includegraphics[width=0.8\textwidth]{figs/sincronizacion_pin.png}
 \caption{Validación de la sincronización del PIN entre app y dispositivo.}
 \label{fig:sincronizacion_pin}
 \end{figure}
+
+\
+
+\
+
+\
+
+\
+
+\
+
+\
 
 Los resultados obtenidos se resumen en la Tabla~\ref{tab:sincronizacion_pin}.
 
@@ -439,11 +472,7 @@ Persistencia tras reinicio & Correcto \\ \hline
 \end{tabular}
 \end{table}
 
-Los experimentos realizados demuestran que el PIN sincronizado entre el dispositivo y la aplicación móvil funciona de manera adecuada. El valor nuevo fue reemplazado y guardado de manera exitosa después de cada cambio, y además permaneció accesible tras reiniciar el sistema. Esto asegura la consistencia de la configuración de seguridad y previene contradicciones entre ambos componentes.\\
-
-\
-
-\
+Los experimentos realizados demuestran que el PIN sincronizado entre el dispositivo y la aplicación móvil funciona de manera adecuada. El valor nuevo fue reemplazado y guardado de manera exitosa después de cada cambio, y además permaneció accesible tras reiniciar el sistema. Esto asegura la consistencia de la configuración de seguridad y previene contradicciones entre ambos componentes.
 
 \subsection{Sistema de vinculación mediante token}
 
@@ -457,18 +486,10 @@ La Figura~\ref{fig:token_vinculacion} muestra una captura correspondiente a los 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{figs/token_vinculacion.png}
+\includegraphics[width=0.8\textwidth]{figs/token_vinculacion.png}
 \caption{Mensajes de generación y validación del token en el proceso de vinculación.}
 \label{fig:token_vinculacion}
 \end{figure}
-
-\
-
-\
-
-\
-
-\
 
 Los resultados obtenidos se resumen en la Tabla~\ref{tab:token_vinculacion}.
 
@@ -490,6 +511,46 @@ Los ensayos realizados muestran que el mecanismo de vinculación implementado fu
 
 \section{Evaluación global del sistema}
 
-Finalmente, se realizó una evaluación integral del sistema reproduciendo un escenario de uso representativo. Esta prueba permitió verificar el funcionamiento conjunto de los distintos módulos desarrollados y comprobar la correcta integración entre los componentes hardware y software que conforman la solución propuesta.
+Finalmente, se realizó una evaluación integral del sistema reproduciendo un escenario de uso representativo. Esta prueba permitió verificar el funcionamiento conjunto de los distintos módulos desarrollados y comprobar la correcta integración entre los componentes hardware y software que forman la solución propuesta.\\
+
+La prueba consistió en recorrer el flujo completo de utilización del sistema, comenzando por el proceso de autenticación mediante PIN, la gestión de medicamentos y tomas desde la aplicación móvil, la sincronización bidireccional de la información, la medición de la frecuencia cardíaca, la consulta del historial de medidas, la generación del informe en formato PDF y, la dispensación automática de una toma programada. Asimismo, se comprobó la persistencia de la configuración tras reiniciar el dispositivo y la correcta recuperación de su estado.\\
+
+El desarrollo completo de esta evaluación puede observarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/XXXXXXXX}}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figs/evaluacion_global.jpeg}
+    \caption{Evaluación global del sistema MyMeds.}
+    \label{fig:evaluacion_global}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Resultados de la evaluación global del sistema.}
+\label{tab:evaluacion_global}
+\begin{tabular}{|p{9cm}|c|}
+\hline
+\textbf{Funcionalidad evaluada} & \textbf{Resultado} \\
+\hline
+Autenticación mediante PIN & Correcto \\
+\hline
+Gestión de medicamentos y tomas & Correcto \\
+\hline
+Sincronización bidireccional entre aplicación y dispositivo & Correcto \\
+\hline
+Medición y almacenamiento de pulsaciones & Correcto \\
+\hline
+Generación del informe PDF & Correcto \\
+\hline
+Dispensación automática de tomas programadas & Correcto \\
+\hline
+Persistencia de la configuración tras reinicio & Correcto \\
+\hline
+Funcionamiento autónomo del dispositivo & Correcto \\
+\hline
+\end{tabular}
+\end{table}
+
+Los resultados obtenidos confirman que el sistema desarrollado integra correctamente todos los módulos hardware y software implementados, proporcionando un funcionamiento estable y coherente en un escenario de utilización real. Asimismo, las pruebas realizadas demuestran que MyMeds satisface los requisitos funcionales definidos para el proyecto y constituye una solución capaz de gestionar de forma autónoma la programación y dispensación de medicamentos, así como el registro y consulta de información biomédica.
 
 

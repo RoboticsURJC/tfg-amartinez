@@ -3,18 +3,23 @@
 
 \vspace{1cm}
 
-En este último capítulo se presentan las conclusiones obtenidas durante el desarrollo del proyecto, detallando el grado de cumplimiento de los objetivos y requisitos establecidos inicialmente. Además, se presentan las habilidades y los conocimientos obtenidos a lo largo de la ejecución del trabajo, además de varios campos futuros que tienen el potencial de expandir las funciones del sistema creado.
+En este último capítulo se presentan las conclusiones obtenidas durante el desarrollo del proyecto, detallando el grado de cumplimiento de los objetivos y requisitos establecidos inicialmente. Además, se presentan las habilidades y los conocimientos obtenidos a lo largo de la ejecución del trabajo, además de varias líneas futuras que permitirán expandir la funcionalidad del sistema creado.
 
 \section{Objetivos y requisitos cumplidos}
+
+En esta sección se analiza el grado de cumplimiento de los objetivos y requisitos definidos al inicio del proyecto. Para ello, se evalúan los resultados obtenidos durante el desarrollo y se comparan con las especificaciones planteadas.
+
 \subsection{Objetivos}
 
-Se ha conseguido cumplir el objetivo principal, el cual consistía en el diseño y desarrollo de un sistema inteligente de asistencia sanitaria doméstico denominado MyMeds. El sistema desarrollado integra un dispositivo físico basado en un microcontrolador ESP32 con pantalla táctil y una aplicación móvil Android, permitiendo la gestión de la medicación, la monitorización biomédica básica y la sincronización de información entre ambos componentes.\\
+Se ha conseguido cumplir el objetivo principal, descrito en la \autoref{sec:descripcion}, el cual consistía en el diseño y desarrollo de un sistema inteligente de asistencia sanitaria doméstico, denominado \textit{MyMeds}. El sistema desarrollado integra un dispositivo físico basado en un microcontrolador ESP32 con pantalla táctil y una aplicación móvil Android, permitiendo la gestión de la medicación, la monitorización biomédica básica y la sincronización de información entre ambos componentes.\\
 
-Asimismo, se han alcanzado los objetivos planteados al inicio del proyecto:
+Asimismo, se han alcanzado los distintos subobjetivos planteados al inicio del proyecto:
 
 \begin{enumerate}
 
-\item Se ha diseñado la arquitectura general del sistema, definiendo los distintos módulos hardware y software necesarios para su funcionamiento e integración.
+\item Se ha diseñado la arquitectura general del sistema, definiendo los distintos módulos hardware y software necesarios para su funcionamiento e integración.\\
+
+\
 
 \item Se ha desarrollado el diseño mecánico del pastillero mediante herramientas de modelado 3D y fabricación mediante impresión 3D, obteniendo un prototipo funcional adaptado a los requisitos del proyecto.
 
@@ -34,7 +39,7 @@ Asimismo, se han alcanzado los objetivos planteados al inicio del proyecto:
 
 \subsection{Requisitos}
 
-Además de los objetivos planteados inicialmente, también se han satisfecho los requisitos técnicos establecidos para el desarrollo del sistema:
+Además de los objetivos planteados inicialmente, también se han satisfecho los requisitos técnicos establecidos y descritos en la \autoref{sec:requisitos} para el desarrollo del sistema:
 
 \begin{enumerate}
 
@@ -58,7 +63,7 @@ Además de los objetivos planteados inicialmente, también se han satisfecho los
 
 \section{Competencias y conocimientos adquiridos}
 
-Además de las competencias definidas inicialmente en la Sección 3.3, el desarrollo de este Trabajo Fin de Grado ha permitido adquirir y reforzar conocimientos en diferentes áreas de la ingeniería, entre los que destacan:
+Además de las competencias empleadas(\autoref{sec:competencias}) para el desarrollo de este Trabajo Fin de Grado, en su transcurso se han adquirido y reforzado conocimientos en diferentes áreas de la ingeniería, entre los que destacan:
 
 \begin{itemize}
 
@@ -82,13 +87,23 @@ Además de las competencias definidas inicialmente en la Sección 3.3, el desarr
 
 \end{itemize}
 
+\section{Conclusiones personales}
+
+La realización de este Trabajo Fin de Grado ha supuesto una experiencia especialmente enriquecedora tanto a nivel académico como personal. \textit{MyMeds} ha requerido integrar conocimientos de diferentes áreas de la ingeniería, incluyendo programación embebida, desarrollo de aplicaciones móviles, diseño mecánico e impresión 3D, así como comunicaciones entre dispositivos.\\
+
+Uno de los aspectos más interesantes ha sido la posibilidad de desarrollar un sistema completo, desde el diseño físico del dispensador hasta la implementación de la aplicación móvil y la lógica de funcionamiento del dispositivo. Esta visión global me ha permitido comprender mejor los desafíos asociados al desarrollo de productos reales, donde hardware y software deben trabajar de forma coordinada.\\
+
+La parte más compleja del desarrollo ha sido la sincronización de la información entre la aplicación móvil y el ESP32. Garantizar la consistencia de los datos, evitar conflictos y asegurar el correcto funcionamiento tras reinicios del sistema requirió numerosas pruebas y modificaciones de la arquitectura inicial. Asimismo, la integración de nuevas funcionalidades durante el desarrollo obligó a replantear en varias ocasiones determinadas decisiones de diseño.\\
+
+A pesar de las dificultades encontradas, los resultados obtenidos han sido satisfactorios y han permitido materializar una solución funcional capaz de gestionar la dispensación de medicamentos y el registro de parámetros biomédicos. Además, el proyecto ha contribuido significativamente a ampliar mis conocimientos técnicos y mi capacidad para afrontar proyectos complejos de carácter multidisciplinar.
+
 \section{Líneas futuras}
 
 Aunque los resultados obtenidos demuestran la viabilidad del sistema desarrollado, existen diversas líneas de trabajo que podrían abordarse en futuras versiones con el objetivo de ampliar sus funcionalidades y mejorar sus prestaciones.
 
 \begin{itemize}
 
-\item \textbf{Integración con sistemas sanitarios.} Integrar MyMeds con plataformas y sistemas de información sanitaria. Esto permitiría sincronizar automáticamente tratamientos prescritos por profesionales médicos, compartir historiales de medicación y facilitar el seguimiento remoto de pacientes por parte de centros sanitarios o personal autorizado.
+\item \textbf{Integración con sistemas sanitarios.} Integrar \textit{MyMeds} con plataformas y sistemas de información sanitaria. Esto permitiría sincronizar automáticamente tratamientos prescritos por profesionales médicos, compartir historiales de medicación y facilitar el seguimiento remoto de pacientes por parte de centros sanitarios o personal autorizado.
 
 \item \textbf{Soporte multiusuario.} Actualmente el sistema está orientado a la gestión de la medicación de un único usuario. Como evolución futura, podría desarrollarse una arquitectura multiusuario que permitiera gestionar varios pacientes desde un mismo dispositivo. Para ello, cada compartimento o conjunto de compartimentos podría asociarse a un usuario diferente, permitiendo almacenar configuraciones, historiales y tratamientos independientes. De esta forma, el sistema podría utilizarse en entornos familiares o residencias de pequeño tamaño.
 
@@ -100,6 +115,6 @@ Aunque los resultados obtenidos demuestran la viabilidad del sistema desarrollad
 
 \end{itemize}
 
-En conjunto, estas líneas futuras permitirían evolucionar MyMeds desde un prototipo funcional de asistencia sanitaria doméstico hacia un producto más completo, escalable y adaptado a entornos reales de uso.
+En conjunto, estas líneas futuras permitirían evolucionar \textit{MyMeds} desde un prototipo funcional de asistencia sanitaria doméstico hacia un producto más completo, escalable y adaptado a entornos reales de uso.
 
 
