@@ -1,14 +1,28 @@
 <map id="src/user_interface/wifi_portal.cpp" name="src/user_interface/wifi_portal.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="151,5,290,45"/>
-<area shape="rect" id="Node000002" href="$wifi__portal_8h.html" title=" " alt="" coords="5,93,148,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,48,121,89,119,84,188,43"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="131,181,241,207"/>
-<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="219,46,194,168,189,167,214,45"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="224,101,287,126"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="231,45,248,87,243,89,226,47"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="311,101,413,126"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="253,43,333,91,330,96,250,48"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="23,181,107,207"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="76,134,71,168,66,167,71,133"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="105,131,160,171,157,175,102,136"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="661,5,799,45"/>
+<area shape="rect" id="Node000002" href="$wifi__portal_8h.html" title=" " alt="" coords="44,93,187,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="661,36,459,59,201,96,200,91,458,53,660,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,181,116,207"/>
+<area shape="poly" id="edge13_Node000001_Node000004" title=" " alt="" coords="660,31,497,36,299,48,124,67,64,80,45,87,33,95,26,112,27,131,35,151,46,169,41,172,30,153,22,132,20,111,29,92,42,83,63,75,123,62,298,42,497,31,660,25"/>
+<area shape="rect" id="Node000005" href="$takes__storage_8h.html" title=" " alt="" coords="211,101,390,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="661,43,372,100,371,95,660,38"/>
+<area shape="rect" id="Node000006" href="$medicines__storage_8h.html" title=" " alt="" coords="414,101,625,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="685,48,561,98,559,93,683,43"/>
+<area shape="rect" id="Node000007" href="$pulse__history__storage_8h.html" title=" " alt="" coords="649,93,811,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="733,46,733,79,727,79,727,46"/>
+<area shape="rect" id="Node000008" href="$pill__takes_8h.html" title=" " alt="" coords="835,93,974,133"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="770,43,855,85,853,90,767,48"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="999,101,1061,126"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="800,39,890,62,987,91,993,93,991,98,985,96,888,67,799,45"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1085,101,1188,126"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="800,35,928,59,1075,91,1088,94,1087,99,1073,96,927,64,799,41"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1212,101,1323,126"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="800,31,982,53,1092,70,1201,91,1217,95,1216,100,1200,96,1091,76,981,59,799,36"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="477,181,561,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="187,128,200,131,464,180,463,186,199,136,186,133"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="104,135,79,172,74,168,100,132"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="522,126,522,167,517,167,517,126"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="680,136,564,179,562,174,679,131"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="875,181,934,207"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="907,134,907,167,902,167,902,134"/>
 </map>

@@ -1,7 +1,9 @@
 <map id="include/user_interface/clock_mod.h" name="include/user_interface/clock_mod.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="48,5,215,45"/>
-<area shape="rect" id="Node000002" href="$main_8cpp.html" title=" " alt="" coords="5,101,111,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,58,70,102,66,98,104,54"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="121,5,288,45"/>
+<area shape="rect" id="Node000002" href="$src_2main_8cpp.html" title=" " alt="" coords="5,101,111,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,55,79,103,76,98,159,50"/>
 <area shape="rect" id="Node000003" href="$clock__mod_8cpp.html" title=" " alt="" coords="135,93,274,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,54,190,91,186,95,154,58"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,59,207,93,202,93,202,59"/>
+<area shape="rect" id="Node000004" href="$settings__screen_8cpp.html" title=" " alt="" coords="298,93,453,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="256,49,339,91,337,96,253,54"/>
 </map>

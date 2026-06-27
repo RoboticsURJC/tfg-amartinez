@@ -1,0 +1,346 @@
+\doxysection{src/user\+\_\+interface/pin\+\_\+screen.cpp File Reference}
+\hypertarget{pin__screen_8cpp}{}\label{pin__screen_8cpp}\index{src/user\_interface/pin\_screen.cpp@{src/user\_interface/pin\_screen.cpp}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include "{}user\+\_\+interface/home\+\_\+mod.\+h"{}}\newline
+Include dependency graph for pin\+\_\+screen.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pin__screen_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\+\_\+pin\+\_\+label}} ()
+\item 
+void \mbox{\hyperlink{pin__screen_8cpp_add9f292c0b900f35b88b16fc4b81be47}{show\+\_\+pin\+\_\+screen}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static String \mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\+\_\+pin}} = "{}"{}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\+\_\+pin}}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\+\_\+error}}
+\item 
+String \mbox{\hyperlink{pin__screen_8cpp_a1e8840a3dae85aab7a417604b4dff6c2}{DEVICE\+\_\+\+PIN}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pin__screen_8cpp_add9f292c0b900f35b88b16fc4b81be47}\label{pin__screen_8cpp_add9f292c0b900f35b88b16fc4b81be47} 
+\index{pin\_screen.cpp@{pin\_screen.cpp}!show\_pin\_screen@{show\_pin\_screen}}
+\index{show\_pin\_screen@{show\_pin\_screen}!pin\_screen.cpp@{pin\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{show\_pin\_screen()}{show\_pin\_screen()}}
+{\footnotesize\ttfamily void show\+\_\+pin\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pin__screen_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{pin__screen_8cpp_source}{pin\+\_\+screen.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ lv\_obj\_t\ *scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00033\ \ \ \ \ lv\_scr\_load(scr);}
+\DoxyCodeLine{00034\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ lv\_obj\_t\ *title\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00039\ \ \ \ \ lv\_label\_set\_text(title,\textcolor{stringliteral}{"{}Introducir\ PIN"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ lv\_obj\_set\_style\_text\_font(title,\&lv\_font\_montserrat\_24,0);}
+\DoxyCodeLine{00041\ \ \ \ \ lv\_obj\_set\_style\_text\_color(title,lv\_color\_white(),0);}
+\DoxyCodeLine{00042\ \ \ \ \ lv\_obj\_align(title,LV\_ALIGN\_TOP\_MID,0,20);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00045\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},\&lv\_font\_montserrat\_32,0);}
+\DoxyCodeLine{00047\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},lv\_color\_white(),0);}
+\DoxyCodeLine{00048\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},LV\_ALIGN\_TOP\_MID,0,80);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}})\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ lv\_palette\_main(LV\_PALETTE\_RED),0);}
+\DoxyCodeLine{00056\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ \&lv\_font\_montserrat\_24,\ 0);}
+\DoxyCodeLine{00057\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ LV\_ALIGN\_TOP\_MID,\ 0,\ 130);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ num\ =\ 1;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ 3;\ row++)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ 3;\ col++)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_radius(btn,15,LV\_PART\_MAIN);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(btn,\ 70,\ 70);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_align(btn,LV\_ALIGN\_TOP\_LEFT,35\ +\ col\ *\ 85,160\ +\ row\ *\ 85);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *lbl\ =\ lv\_label\_create(btn);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ txt[4];}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ snprintf(txt,\ \textcolor{keyword}{sizeof}(txt),\ \textcolor{stringliteral}{"{}\%d"{}},\ num);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl,\ txt);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl,lv\_color\_white(),0);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_center(lbl);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ digit\ =\ num;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_event\_cb(btn,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ digit\ =}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (int)(intptr\_t)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_event\_get\_user\_data(e);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length()\ >=\ 4)}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}})\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ +=\ String(digit);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}*)(intptr\_t)digit);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ num++;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ botón\ 0}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ lv\_obj\_t\ *btn0\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00111\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn0,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{00112\ \ \ \ \ lv\_obj\_set\_style\_radius(btn0,15,LV\_PART\_MAIN);}
+\DoxyCodeLine{00113\ \ \ \ \ lv\_obj\_set\_size(btn0,\ 70,\ 70);}
+\DoxyCodeLine{00114\ \ \ \ \ lv\_obj\_align(btn0,LV\_ALIGN\_TOP\_MID,0,415);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ lv\_obj\_t\ *lbl0\ =\ lv\_label\_create(btn0);}
+\DoxyCodeLine{00117\ \ \ \ \ lv\_label\_set\_text(lbl0,\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00118\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl0,lv\_color\_white(),0);}
+\DoxyCodeLine{00119\ \ \ \ \ lv\_obj\_center(lbl0);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ lv\_obj\_add\_event\_cb(btn0,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length()\ >=\ 4)}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}})\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ +=\ \textcolor{stringliteral}{"{}0"{}};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ botón\ OK}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ lv\_obj\_t\ *btn\_ok\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00140\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_ok,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{00141\ \ \ \ \ lv\_obj\_set\_style\_radius(btn\_ok,15,LV\_PART\_MAIN);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ lv\_obj\_set\_size(btn\_ok,\ 90,\ 55);}
+\DoxyCodeLine{00144\ \ \ \ \ lv\_obj\_set\_pos(btn\_ok,190,500);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ lv\_obj\_t\ *lbl\_ok\ =\ lv\_label\_create(btn\_ok);}
+\DoxyCodeLine{00147\ \ \ \ \ lv\_label\_set\_text(lbl\_ok,\ \textcolor{stringliteral}{"{}OK"{}});}
+\DoxyCodeLine{00148\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_ok,lv\_color\_white(),0);}
+\DoxyCodeLine{00149\ \ \ \ \ lv\_obj\_center(lbl\_ok);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_ok,}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ ==\ \mbox{\hyperlink{pin__screen_8cpp_a1e8840a3dae85aab7a417604b4dff6c2}{DEVICE\_PIN}})}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}})\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}PIN\ incorrecto"{}}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ borrar}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ lv\_obj\_t\ *btn\_del\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00178\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_del,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{00179\ \ \ \ \ lv\_obj\_set\_style\_radius(btn\_del,15,LV\_PART\_MAIN);}
+\DoxyCodeLine{00180\ \ \ \ \ lv\_obj\_set\_size(btn\_del,\ 140,\ 55);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ lv\_obj\_set\_pos(btn\_del,\ 25,\ 500);}
+\DoxyCodeLine{00183\ \ \ \ \ lv\_obj\_t\ *lbl\_del\ =\ lv\_label\_create(btn\_del);}
+\DoxyCodeLine{00184\ \ \ \ \ lv\_label\_set\_text(lbl\_del,\ \textcolor{stringliteral}{"{}Borrar"{}});}
+\DoxyCodeLine{00185\ \ \ \ \ lv\_obj\_center(lbl\_del);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_del,}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length()\ >\ 0)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ entered\_pin.remove(}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entered\_pin.length()\ -\/\ 1}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ update\_pin\_label();}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00200\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pin__screen_8cpp_a1e8840a3dae85aab7a417604b4dff6c2}{DEVICE\+\_\+\+PIN}}, \mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\+\_\+pin}}, \mbox{\hyperlink{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\+\_\+error}}, \mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\+\_\+pin}}, \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\+\_\+home\+\_\+screen()}}, and \mbox{\hyperlink{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\+\_\+pin\+\_\+label()}}.
+
+
+
+Referenced by \mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pin__screen_8cpp_add9f292c0b900f35b88b16fc4b81be47_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pin__screen_8cpp_add9f292c0b900f35b88b16fc4b81be47_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}\label{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7} 
+\index{pin\_screen.cpp@{pin\_screen.cpp}!update\_pin\_label@{update\_pin\_label}}
+\index{update\_pin\_label@{update\_pin\_label}!pin\_screen.cpp@{pin\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_pin\_label()}{update\_pin\_label()}}
+{\footnotesize\ttfamily static void update\+\_\+pin\+\_\+label (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pin__screen_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{pin__screen_8cpp_source}{pin\+\_\+screen.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ String\ stars\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length();\ i++)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ stars\ +=\ \textcolor{stringliteral}{"{}*"{}};}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}})\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ stars.c\_str()}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\+\_\+pin}}, and \mbox{\hyperlink{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\+\_\+pin}}.
+
+
+
+Referenced by \mbox{\hyperlink{pin__screen_8h_add9f292c0b900f35b88b16fc4b81be47}{show\+\_\+pin\+\_\+screen()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{pin__screen_8cpp_a1e8840a3dae85aab7a417604b4dff6c2}\label{pin__screen_8cpp_a1e8840a3dae85aab7a417604b4dff6c2} 
+\index{pin\_screen.cpp@{pin\_screen.cpp}!DEVICE\_PIN@{DEVICE\_PIN}}
+\index{DEVICE\_PIN@{DEVICE\_PIN}!pin\_screen.cpp@{pin\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_PIN}{DEVICE\_PIN}}
+{\footnotesize\ttfamily String DEVICE\+\_\+\+PIN\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{src_2main_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{src_2main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pin__screen_8h_add9f292c0b900f35b88b16fc4b81be47}{show\+\_\+pin\+\_\+screen()}}.
+
+\Hypertarget{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}\label{pin__screen_8cpp_a9db29425f4c71935798716696415e4a4} 
+\index{pin\_screen.cpp@{pin\_screen.cpp}!entered\_pin@{entered\_pin}}
+\index{entered\_pin@{entered\_pin}!pin\_screen.cpp@{pin\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{entered\_pin}{entered\_pin}}
+{\footnotesize\ttfamily String entered\+\_\+pin = "{}"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pin__screen_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{pin__screen_8cpp_source}{pin\+\_\+screen.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pin__screen_8h_add9f292c0b900f35b88b16fc4b81be47}{show\+\_\+pin\+\_\+screen()}}, and \mbox{\hyperlink{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\+\_\+pin\+\_\+label()}}.
+
+\Hypertarget{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}\label{pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba} 
+\index{pin\_screen.cpp@{pin\_screen.cpp}!label\_error@{label\_error}}
+\index{label\_error@{label\_error}!pin\_screen.cpp@{pin\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{label\_error}{label\_error}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} label\+\_\+error\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pin__screen_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{pin__screen_8cpp_source}{pin\+\_\+screen.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pin__screen_8h_add9f292c0b900f35b88b16fc4b81be47}{show\+\_\+pin\+\_\+screen()}}.
+
+\Hypertarget{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}\label{pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d} 
+\index{pin\_screen.cpp@{pin\_screen.cpp}!label\_pin@{label\_pin}}
+\index{label\_pin@{label\_pin}!pin\_screen.cpp@{pin\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{label\_pin}{label\_pin}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} label\+\_\+pin\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pin__screen_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{pin__screen_8cpp_source}{pin\+\_\+screen.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pin__screen_8h_add9f292c0b900f35b88b16fc4b81be47}{show\+\_\+pin\+\_\+screen()}}, and \mbox{\hyperlink{pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\+\_\+pin\+\_\+label()}}.
+

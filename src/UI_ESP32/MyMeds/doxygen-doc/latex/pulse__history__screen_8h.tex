@@ -1,0 +1,142 @@
+\doxysection{include/user\+\_\+interface/pulse\+\_\+history\+\_\+screen.h File Reference}
+\hypertarget{pulse__history__screen_8h}{}\label{pulse__history__screen_8h}\index{include/user\_interface/pulse\_history\_screen.h@{include/user\_interface/pulse\_history\_screen.h}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+Include dependency graph for pulse\+\_\+history\+\_\+screen.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{pulse__history__screen_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{pulse__history__screen_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pulse__history__screen_8h_ad1eaaad2198570756eba8847fab82ae9}{show\+\_\+pulse\+\_\+history\+\_\+screen}} (lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}parent)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pulse__history__screen_8h_ad1eaaad2198570756eba8847fab82ae9}\label{pulse__history__screen_8h_ad1eaaad2198570756eba8847fab82ae9} 
+\index{pulse\_history\_screen.h@{pulse\_history\_screen.h}!show\_pulse\_history\_screen@{show\_pulse\_history\_screen}}
+\index{show\_pulse\_history\_screen@{show\_pulse\_history\_screen}!pulse\_history\_screen.h@{pulse\_history\_screen.h}}
+\doxysubsubsection{\texorpdfstring{show\_pulse\_history\_screen()}{show\_pulse\_history\_screen()}}
+{\footnotesize\ttfamily void show\+\_\+pulse\+\_\+history\+\_\+screen (\begin{DoxyParamCaption}\item[{lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}}]{parent }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__screen_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{pulse__history__screen_8cpp_source}{pulse\+\_\+history\+\_\+screen.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Creando\ pantalla\ historial"{}});}
+\DoxyCodeLine{00017\ \ \ \ \ lv\_obj\_clean(parent);}
+\DoxyCodeLine{00018\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(parent,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ lv\_obj\_t\ *title\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00021\ \ \ \ \ lv\_label\_set\_text(title,\ \textcolor{stringliteral}{"{}Historial"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ lv\_obj\_set\_style\_text\_color(title,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00023\ \ \ \ \ lv\_obj\_set\_style\_text\_font(title,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00024\ \ \ \ \ lv\_obj\_align(title,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 20);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{structPulseRecord}{PulseRecord}}\ records[\mbox{\hyperlink{pulse__history__storage_8h_aaf094589bc53eef66438c32405b85665}{PULSE\_HISTORY\_MAX}}];}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ \mbox{\hyperlink{pulse__history__storage_8h_a0960402027fb0a22485861b189c94e40}{loadPulseHistory}}(\ records,\ \mbox{\hyperlink{pulse__history__storage_8h_aaf094589bc53eef66438c32405b85665}{PULSE\_HISTORY\_MAX}});}
+\DoxyCodeLine{00028\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Count\ =\ "{}});}
+\DoxyCodeLine{00029\ \ \ \ \ Serial.println(count);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Registro\ "{}});}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ Serial.print(i);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}:\ "{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Serial.print(records[i].date);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Serial.print(records[i].time);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Serial.println(records[i].bpm);}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ ==\ 0)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *empty\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(empty,\ \textcolor{stringliteral}{"{}Sin\ mediciones"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(empty,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(empty,\ \&lv\_font\_montserrat\_24,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ lv\_obj\_align(empty,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 110);}
+\DoxyCodeLine{00049\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ i++)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ text[96];}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structPulseRecord}{PulseRecord}}\ \&record\ =\ records[count\ -\/\ 1\ -\/\ i];}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.printf(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Fila\ \%d\ -\/>\ \%s\ \%s\ \%d\(\backslash\)n"{}},}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_ac6b074fe0fff7b1f81446e7a6618dfec}{date}}.c\_str(),}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_aeb8f373a6999d82e9986856fa52bcc20}{time}}.c\_str(),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{bpm}}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ snprintf(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(text),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\%s\ \%s\(\backslash\)n\%d\ BPM"{}},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_ac6b074fe0fff7b1f81446e7a6618dfec}{date}}.c\_str(),}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_aeb8f373a6999d82e9986856fa52bcc20}{time}}.c\_str(),}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{bpm}}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *row\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(row,\ text);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(row,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(row,\ \&lv\_font\_montserrat\_24,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_align(row,\ LV\_ALIGN\_TOP\_LEFT,\ 30,\ 80\ +\ i\ *\ 70);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ lastY\ =\ 80\ +\ count\ *\ 70;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_btn\_create(parent);}
+\DoxyCodeLine{00083\ \ \ \ \ lv\_obj\_set\_size(btn,\ 180,\ 60);}
+\DoxyCodeLine{00084\ \ \ \ \ lv\_obj\_align(btn,LV\_ALIGN\_TOP\_MID,0,lastY\ +\ 20);\ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00086\ \ \ \ \ lv\_obj\_add\_event\_cb(btn,\ \mbox{\hyperlink{pulse__history__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\_btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ lv\_obj\_t\ *lbl\ =\ lv\_label\_create(btn);}
+\DoxyCodeLine{00089\ \ \ \ \ lv\_label\_set\_text(lbl,\ \textcolor{stringliteral}{"{}Volver"{}});}
+\DoxyCodeLine{00090\ \ \ \ \ lv\_obj\_center(lbl);}
+\DoxyCodeLine{00091\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pulse__history__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{Pulse\+Record\+::bpm}}, \mbox{\hyperlink{structPulseRecord_ac6b074fe0fff7b1f81446e7a6618dfec}{Pulse\+Record\+::date}}, \mbox{\hyperlink{pulse__history__storage_8h_a0960402027fb0a22485861b189c94e40}{load\+Pulse\+History()}}, \mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\+\_\+34\+\_\+regular}}, \mbox{\hyperlink{pulse__history__storage_8h_aaf094589bc53eef66438c32405b85665}{PULSE\+\_\+\+HISTORY\+\_\+\+MAX}}, and \mbox{\hyperlink{structPulseRecord_aeb8f373a6999d82e9986856fa52bcc20}{Pulse\+Record\+::time}}.
+
+
+
+Referenced by \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__screen_8h_ad1eaaad2198570756eba8847fab82ae9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__screen_8h_ad1eaaad2198570756eba8847fab82ae9_icgraph}
+\end{center}
+\end{figure}

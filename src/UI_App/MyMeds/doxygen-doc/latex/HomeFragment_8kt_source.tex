@@ -14,46 +14,64 @@
 \DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00010}00010\ import\ com.example.mymeds.databinding.FragmentHomeBinding}
 \DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00011}00011\ import\ androidx.appcompat.app.AppCompatActivity}
 \DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00012}00012\ import\ com.example.mymeds.R}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00013}00013\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00014}00014\ class\ HomeFragment\ :\ Fragment()\ \{}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00015}00015\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00016}00016\ \ \ \ \ private\ var\ \_binding:\ FragmentHomeBinding?\ =\ null}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00017}00017\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00018}00018\ \ \ \ \ //\ This\ property\ is\ only\ valid\ between\ onCreateView\ and}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00019}00019\ \ \ \ \ //\ onDestroyView.}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00020}00020\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00022}00022\ \ \ \ \ override\ fun\ onCreateView(}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00023}00023\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ container:\ ViewGroup?,}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00026}00026\ \ \ \ \ ):\ View\ \{}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentHomeBinding.inflate(inflater,\ container,\ false)}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ val\ root:\ View\ =\ binding.root}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00029}00029\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ //\ Configuración\ del\ botón\ con\ id\ button\_config}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ binding.buttonConf.setOnClickListener\ \{}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.configFragment)}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00034}00034\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ //\ Configuración\ del\ botón\ con\ id\ button\_pulse\_oxigen}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ binding.buttonPulse.setOnClickListener\ \{}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.pulse\_oxigenFragment)}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00039}00039\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ return\ binding.root}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00041}00041\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00043}00043\ \ \ \ \ override\ fun\ onResume()\ \{}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ super.onResume()}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ (requireActivity()\ as\ AppCompatActivity)}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ .supportActionBar?.show()}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00047}00047\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00048}00048\ }
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00049}00049\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ super.onDestroyView()}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00052}00052\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00013}00013\ import\ com.example.mymeds.data.network.EspApi}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00015}00015\ class\ HomeFragment\ :\ Fragment()\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00017}00017\ \ \ \ \ private\ var\ \_binding:\ FragmentHomeBinding?\ =\ null}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00019}00019\ \ \ \ \ //\ This\ property\ is\ only\ valid\ between\ onCreateView\ and}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00020}00020\ \ \ \ \ //\ onDestroyView.}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00021}00021\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00023}00023\ \ \ \ \ override\ fun\ onCreateView(}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ container:\ ViewGroup?,}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00027}00027\ \ \ \ \ ):\ View\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentHomeBinding.inflate(inflater,\ container,\ false)}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ val\ root:\ View\ =\ binding.root}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ //\ Configuración\ del\ botón\ con\ id\ button\_config}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ binding.buttonConf.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.configFragment)}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ //\ Configuración\ del\ botón\ con\ id\ button\_today\_takes}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ binding.buttonTodayTakes.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.todayTakesFragment)}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ //\ Configuración\ del\ botón\ con\ id\ button\_pulse\_oxigen}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ binding.buttonPulse.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.pulse\_oxigenFragment)}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ //\ Configuración\ del\ botón\ con\ id\ button\_medicine}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ binding.buttonMedicine.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.medicineListFragment)}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ //\ Configuración\ del\ botón\ con\ id\ button\_settings}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ binding.buttonSettings.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.navigation\_settings)}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ return\ binding.root}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00059}00059\ \ \ \ \ override\ fun\ onResume()\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ super.onResume()}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ (requireActivity()\ as\ AppCompatActivity)}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ .supportActionBar?.show()}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ EspApi.syncPinFromEsp()}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00067}00067\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ super.onDestroyView()}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{HomeFragment_8kt_source_l00071}00071\ \}}
 
 \end{DoxyCode}

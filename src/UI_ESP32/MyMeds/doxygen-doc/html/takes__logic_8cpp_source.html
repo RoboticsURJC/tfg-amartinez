@@ -83,41 +83,86 @@ $(document).ready(function() { init_codefold(0); });
 </div><!--header-->
 <div class="contents">
 <a href="takes__logic_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="takes__logic_8h.html">logic/takes_logic.h</a>&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="pill__takes_8h.html">user_interface/pill_takes.h</a>&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="foldopen" id="foldopen00005" data-start="{" data-end="}">
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">    5</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a>(<span class="keywordtype">int</span> index)</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    Serial.printf(<span class="stringliteral">&quot;Ejecutando toma %d\n&quot;</span>, index+1);</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>}</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="dose__actuators_8h.html">actuators/dose_actuators.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="takes__logic_8h.html">logic/takes_logic.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="take__alert__screen_8h.html">user_interface/take_alert_screen.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="pill__takes_8h.html">user_interface/pill_takes.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">    7</a></span><span class="keyword">static</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">lastTriggeredMinute</a>[<a class="code hl_define" href="pill__takes_8h.html#a0e82c3990fe3ab5eaf26b64e93cd51a4">MAX_TAKES</a>] = {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    -1, -1, -1, -1, -1, -1, -1</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>};</div>
 </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="takes__logic_8cpp.html#a316d6941189851a072229370c65696bb">   10</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="takes__logic_8cpp.html#a316d6941189851a072229370c65696bb">checkTakes</a>()</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">struct </span>tm timeInfo;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">if</span> (!getLocalTime(&amp;timeInfo)){</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    }</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="pill__takes_8h.html#a53a81415a7b7e40473e9503dde963ff6">total_takes</a>; i ++){</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordtype">int</span> hh = atoi(&amp;<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].hour[0]);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordtype">int</span> mm = atoi(&amp;<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].hour[3]);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">if</span> (timeInfo.tm_hour == hh &amp;&amp; timeInfo.tm_min == mm){</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].repeat[timeInfo.tm_wday]){</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                <a class="code hl_function" href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a>(i);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            }</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        }</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">   11</a></span><span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">lastCheck</a> = 0;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="takes__logic_8h.html#a482ab07f300f81b1d70be416e5581dfd">   13</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a>(<span class="keywordtype">int</span> index)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    Serial.printf(<span class="stringliteral">&quot;Ejecutando toma %d\n&quot;</span>, index+1);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_function" href="take__alert__screen_8h.html#a7d4b85367414f994adf1f70eac9df88d">show_take_alert</a>(index);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_function" href="dose__actuators_8h.html#a0f1727521e693270353667af5028e01e">doseActuatorsStart</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
 </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="takes__logic_8h.html#a316d6941189851a072229370c65696bb">   20</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="takes__logic_8cpp.html#a316d6941189851a072229370c65696bb">checkTakes</a>()</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">if</span> (millis() - <a class="code hl_variable" href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">lastCheck</a> &lt; 500)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_variable" href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">lastCheck</a> = millis();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="dose__actuators_8h.html#a777492a883259b2cf3f213f70a0af356">doseActuatorsBusy</a>() || <a class="code hl_function" href="take__alert__screen_8h.html#af074c92aec3f5ff37fcfe738a0b70d78">takeAlertVisible</a>())</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">struct </span>tm timeInfo;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">if</span> (!getLocalTime(&amp;timeInfo)){</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> currentDay = (timeInfo.tm_wday + 6) % 7;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">long</span> minuteKey =</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        ((long)timeInfo.tm_year * 366L + timeInfo.tm_yday) * 1440L +</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        timeInfo.tm_hour * 60L +</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        timeInfo.tm_min;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="pill__takes_8h.html#a53a81415a7b7e40473e9503dde963ff6">total_takes</a>; i ++){</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordtype">int</span> hh = atoi(&amp;<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].hour[0]);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">int</span> mm = atoi(&amp;<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].hour[3]);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">if</span> (timeInfo.tm_hour == hh &amp;&amp; timeInfo.tm_min == mm){</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="keywordflow">if</span> (</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                <a class="code hl_function" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active</a>(<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].repeat_mask, currentDay) &amp;&amp;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                <a class="code hl_variable" href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">lastTriggeredMinute</a>[i] != minuteKey</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            ){</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                <a class="code hl_variable" href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">lastTriggeredMinute</a>[i] = minuteKey;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                <a class="code hl_function" href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a>(i);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
+</div>
+<div class="ttc" id="adose__actuators_8h_html"><div class="ttname"><a href="dose__actuators_8h.html">dose_actuators.h</a></div></div>
+<div class="ttc" id="adose__actuators_8h_html_a0f1727521e693270353667af5028e01e"><div class="ttname"><a href="dose__actuators_8h.html#a0f1727521e693270353667af5028e01e">doseActuatorsStart</a></div><div class="ttdeci">void doseActuatorsStart()</div><div class="ttdef"><b>Definition</b> <a href="dose__actuators_8cpp_source.html#l00079">dose_actuators.cpp:79</a></div></div>
+<div class="ttc" id="adose__actuators_8h_html_a777492a883259b2cf3f213f70a0af356"><div class="ttname"><a href="dose__actuators_8h.html#a777492a883259b2cf3f213f70a0af356">doseActuatorsBusy</a></div><div class="ttdeci">bool doseActuatorsBusy()</div><div class="ttdef"><b>Definition</b> <a href="dose__actuators_8cpp_source.html#l00255">dose_actuators.cpp:255</a></div></div>
 <div class="ttc" id="apill__takes_8h_html"><div class="ttname"><a href="pill__takes_8h.html">pill_takes.h</a></div></div>
+<div class="ttc" id="apill__takes_8h_html_a0e82c3990fe3ab5eaf26b64e93cd51a4"><div class="ttname"><a href="pill__takes_8h.html#a0e82c3990fe3ab5eaf26b64e93cd51a4">MAX_TAKES</a></div><div class="ttdeci">#define MAX_TAKES</div><div class="ttdef"><b>Definition</b> <a href="pill__takes_8h_source.html#l00004">pill_takes.h:4</a></div></div>
 <div class="ttc" id="apill__takes_8h_html_a53a81415a7b7e40473e9503dde963ff6"><div class="ttname"><a href="pill__takes_8h.html#a53a81415a7b7e40473e9503dde963ff6">total_takes</a></div><div class="ttdeci">int total_takes</div><div class="ttdef"><b>Definition</b> <a href="takes__list_8cpp_source.html#l00007">takes_list.cpp:7</a></div></div>
 <div class="ttc" id="apill__takes_8h_html_a6b1f77e3a939e4c8d37c90e9a6e7fc72"><div class="ttname"><a href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a></div><div class="ttdeci">TakeConfig takes[MAX_TAKES]</div><div class="ttdef"><b>Definition</b> <a href="takes__list_8cpp_source.html#l00006">takes_list.cpp:6</a></div></div>
-<div class="ttc" id="atakes__logic_8cpp_html_a316d6941189851a072229370c65696bb"><div class="ttname"><a href="takes__logic_8cpp.html#a316d6941189851a072229370c65696bb">checkTakes</a></div><div class="ttdeci">void checkTakes()</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00010">takes_logic.cpp:10</a></div></div>
-<div class="ttc" id="atakes__logic_8cpp_html_a482ab07f300f81b1d70be416e5581dfd"><div class="ttname"><a href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a></div><div class="ttdeci">void executeTake(int index)</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00005">takes_logic.cpp:5</a></div></div>
+<div class="ttc" id="apill__takes_8h_html_a75d0c2d8eda77edbff00929e20d48b81"><div class="ttname"><a href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active</a></div><div class="ttdeci">bool is_day_active(uint8_t mask, int day)</div><div class="ttdef"><b>Definition</b> <a href="pill__takes_8h_source.html#l00043">pill_takes.h:43</a></div></div>
+<div class="ttc" id="atake__alert__screen_8h_html"><div class="ttname"><a href="take__alert__screen_8h.html">take_alert_screen.h</a></div></div>
+<div class="ttc" id="atake__alert__screen_8h_html_a7d4b85367414f994adf1f70eac9df88d"><div class="ttname"><a href="take__alert__screen_8h.html#a7d4b85367414f994adf1f70eac9df88d">show_take_alert</a></div><div class="ttdeci">void show_take_alert(int takeIndex)</div><div class="ttdef"><b>Definition</b> <a href="take__alert__screen_8cpp_source.html#l00043">take_alert_screen.cpp:43</a></div></div>
+<div class="ttc" id="atake__alert__screen_8h_html_af074c92aec3f5ff37fcfe738a0b70d78"><div class="ttname"><a href="take__alert__screen_8h.html#af074c92aec3f5ff37fcfe738a0b70d78">takeAlertVisible</a></div><div class="ttdeci">bool takeAlertVisible()</div><div class="ttdef"><b>Definition</b> <a href="take__alert__screen_8cpp_source.html#l00097">take_alert_screen.cpp:97</a></div></div>
+<div class="ttc" id="atakes__logic_8cpp_html_a316d6941189851a072229370c65696bb"><div class="ttname"><a href="takes__logic_8cpp.html#a316d6941189851a072229370c65696bb">checkTakes</a></div><div class="ttdeci">void checkTakes()</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00020">takes_logic.cpp:20</a></div></div>
+<div class="ttc" id="atakes__logic_8cpp_html_a482ab07f300f81b1d70be416e5581dfd"><div class="ttname"><a href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a></div><div class="ttdeci">void executeTake(int index)</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00013">takes_logic.cpp:13</a></div></div>
+<div class="ttc" id="atakes__logic_8cpp_html_ad9b80b243bf6b056da95b4f1233017b9"><div class="ttname"><a href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">lastCheck</a></div><div class="ttdeci">static unsigned long lastCheck</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00011">takes_logic.cpp:11</a></div></div>
+<div class="ttc" id="atakes__logic_8cpp_html_ae2e6f354a1ada990aa165ded62e2d14e"><div class="ttname"><a href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">lastTriggeredMinute</a></div><div class="ttdeci">static long lastTriggeredMinute[MAX_TAKES]</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00007">takes_logic.cpp:7</a></div></div>
 <div class="ttc" id="atakes__logic_8h_html"><div class="ttname"><a href="takes__logic_8h.html">takes_logic.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

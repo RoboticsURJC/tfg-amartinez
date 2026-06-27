@@ -92,10 +92,10 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="wifi__mod_8cpp.html#a912020253c131df3b8e1471b8eec99ff">    8</a></span><span class="keyword">static</span> uint8_t <a class="code hl_variable" href="wifi__mod_8cpp.html#a912020253c131df3b8e1471b8eec99ff">temp</a>[<a class="code hl_define" href="qrcodegen_8h.html#a82257a23d67f51b04926c4fd64bc4fa5">qrcodegen_BUFFER_LEN_MAX</a>];</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">   10</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr</a>(lv_obj_t *parent, <span class="keyword">const</span> <span class="keywordtype">char</span> *text)</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">   10</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr</a>(lv_obj_t *parent, <span class="keyword">const</span> <span class="keywordtype">char</span> *qr_text)</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_function" href="qrcodegen_8c.html#a2eb79247b6f8bed92514c1815fe0079c">qrcodegen_encodeText</a>(</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        text,</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        qr_text,</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <a class="code hl_variable" href="wifi__mod_8cpp.html#a912020253c131df3b8e1471b8eec99ff">temp</a>,</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <a class="code hl_variable" href="wifi__mod_8cpp.html#a11b70750483ae203722784ad1da56628">qr_data</a>,</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <a class="code hl_enumvalue" href="qrcodegen_8h.html#a4823d2c403f1e1ae151939d14003b65caa6f4e3ad3cd16ee38110410f1d14e18a">qrcodegen_Ecc_LOW</a>,</div>
@@ -107,11 +107,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">int</span> size = <a class="code hl_function" href="qrcodegen_8c.html#afe30b8ff2b6218f37a2945871e6f11b8">qrcodegen_getSize</a>(<a class="code hl_variable" href="wifi__mod_8cpp.html#a11b70750483ae203722784ad1da56628">qr_data</a>);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span> scale = 4;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> out_size = size*scale;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> out_size = size * scale;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">static</span> lv_color_t *<a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a> = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a>){</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a> = (lv_color_t *) malloc(out_size*out_size*<span class="keyword">sizeof</span>(lv_color_t));</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a> = (lv_color_t *) malloc(out_size * out_size * <span class="keyword">sizeof</span>(lv_color_t));</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a>){</div>
@@ -149,7 +149,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    img_desc.header.w = out_size;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    img_desc.header.h = out_size;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    img_desc.data_size = out_size*out_size*<span class="keyword">sizeof</span>(lv_color_t);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    img_desc.data_size = out_size * out_size * <span class="keyword">sizeof</span>(lv_color_t);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    img_desc.data = (<span class="keyword">const</span> uint8_t *) <a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a>;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>){</div>
@@ -157,22 +157,24 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    lv_img_set_src(<a class="code hl_variable" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>, &amp;img_desc);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    lv_obj_align(<a class="code hl_variable" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>, LV_ALIGN_CENTER, 0, 10);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    lv_obj_align(<a class="code hl_variable" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>, LV_ALIGN_CENTER, 0, 20);</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
 </div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
 <div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="wifi__mod_8h.html#a47793befeb6bd8738a1e6b7b8ddb38df">   78</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="wifi__mod_8cpp.html#a47793befeb6bd8738a1e6b7b8ddb38df">show_wifi_screen</a>(lv_obj_t *parent, <span class="keyword">const</span> <span class="keywordtype">char</span> *text)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="wifi__mod_8h.html#a7e1affbbcf92e141e700ce5e36aaf9a4">   78</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="wifi__mod_8cpp.html#a974108b8928c5d565a6adc5af542fee7">show_wifi_screen</a>(lv_obj_t *parent, <span class="keyword">const</span> <span class="keywordtype">char</span> *label_text, <span class="keyword">const</span> <span class="keywordtype">char</span> *qr_text)</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    lv_obj_clean(parent);</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    lv_obj_t *label = lv_label_create(parent);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    lv_label_set_text(label, <span class="stringliteral">&quot;Escanear QR&quot;</span>);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    lv_obj_set_style_text_font(label, &amp;lv_font_montserrat_32, LV_PART_MAIN);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    lv_obj_align(label, LV_ALIGN_TOP_MID, 0, 20);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_function" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr</a>(parent, text);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// --- TEXTO ---</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    lv_obj_t *label = lv_label_create(parent);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    lv_label_set_text(label, label_text);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    lv_obj_set_style_text_font(label, &amp;lv_font_montserrat_32, LV_PART_MAIN);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    lv_obj_align(label, LV_ALIGN_TOP_MID, 0, 20);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// --- QR ---</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_function" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr</a>(parent, qr_text);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
 </div>
 <div class="ttc" id="alvgl__display_8cpp_html_aa2cf5a6cba232df3ea4033c2f5b9aa38"><div class="ttname"><a href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a></div><div class="ttdeci">static lv_color_t buf[320 *20]</div><div class="ttdef"><b>Definition</b> <a href="lvgl__display_8cpp_source.html#l00007">lvgl_display.cpp:7</a></div></div>
 <div class="ttc" id="aqrcodegen_8c_html_a2eb79247b6f8bed92514c1815fe0079c"><div class="ttname"><a href="qrcodegen_8c.html#a2eb79247b6f8bed92514c1815fe0079c">qrcodegen_encodeText</a></div><div class="ttdeci">bool qrcodegen_encodeText(const char *text, uint8_t tempBuffer[], uint8_t qrcode[], enum qrcodegen_Ecc ecl, int minVersion, int maxVersion, enum qrcodegen_Mask mask, bool boostEcl)</div><div class="ttdef"><b>Definition</b> <a href="qrcodegen_8c_source.html#l00132">qrcodegen.c:132</a></div></div>
@@ -184,11 +186,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aqrcodegen_8h_html_a82257a23d67f51b04926c4fd64bc4fa5"><div class="ttname"><a href="qrcodegen_8h.html#a82257a23d67f51b04926c4fd64bc4fa5">qrcodegen_BUFFER_LEN_MAX</a></div><div class="ttdeci">#define qrcodegen_BUFFER_LEN_MAX</div><div class="ttdef"><b>Definition</b> <a href="qrcodegen_8h_source.html#l00144">qrcodegen.h:144</a></div></div>
 <div class="ttc" id="aqrcodegen_8h_html_a8d1f6f0044dde26b3cda74b815be3f2c"><div class="ttname"><a href="qrcodegen_8h.html#a8d1f6f0044dde26b3cda74b815be3f2c">qrcodegen_VERSION_MIN</a></div><div class="ttdeci">#define qrcodegen_VERSION_MIN</div><div class="ttdef"><b>Definition</b> <a href="qrcodegen_8h_source.html#l00132">qrcodegen.h:132</a></div></div>
 <div class="ttc" id="aqrcodegen_8h_html_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841"><div class="ttname"><a href="qrcodegen_8h.html#ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841">qrcodegen_Mask_AUTO</a></div><div class="ttdeci">@ qrcodegen_Mask_AUTO</div><div class="ttdef"><b>Definition</b> <a href="qrcodegen_8h_source.html#l00073">qrcodegen.h:73</a></div></div>
-<div class="ttc" id="awifi__mod_8cpp_html_a09c269bd7818549a6214ddc1e772eb41"><div class="ttname"><a href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr</a></div><div class="ttdeci">static void generate_wifi_qr(lv_obj_t *parent, const char *text)</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00010">wifi_mod.cpp:10</a></div></div>
 <div class="ttc" id="awifi__mod_8cpp_html_a11b70750483ae203722784ad1da56628"><div class="ttname"><a href="wifi__mod_8cpp.html#a11b70750483ae203722784ad1da56628">qr_data</a></div><div class="ttdeci">static uint8_t qr_data[qrcodegen_BUFFER_LEN_MAX]</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00007">wifi_mod.cpp:7</a></div></div>
 <div class="ttc" id="awifi__mod_8cpp_html_a46edf81bb65df2d82f04cbe3ac7786ab"><div class="ttname"><a href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a></div><div class="ttdeci">static lv_obj_t * qr_img</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00006">wifi_mod.cpp:6</a></div></div>
-<div class="ttc" id="awifi__mod_8cpp_html_a47793befeb6bd8738a1e6b7b8ddb38df"><div class="ttname"><a href="wifi__mod_8cpp.html#a47793befeb6bd8738a1e6b7b8ddb38df">show_wifi_screen</a></div><div class="ttdeci">void show_wifi_screen(lv_obj_t *parent, const char *text)</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00078">wifi_mod.cpp:78</a></div></div>
 <div class="ttc" id="awifi__mod_8cpp_html_a912020253c131df3b8e1471b8eec99ff"><div class="ttname"><a href="wifi__mod_8cpp.html#a912020253c131df3b8e1471b8eec99ff">temp</a></div><div class="ttdeci">static uint8_t temp[qrcodegen_BUFFER_LEN_MAX]</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00008">wifi_mod.cpp:8</a></div></div>
+<div class="ttc" id="awifi__mod_8cpp_html_a9219a70f40e688dac2ed3a86d2dbdf5e"><div class="ttname"><a href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr</a></div><div class="ttdeci">static void generate_wifi_qr(lv_obj_t *parent, const char *qr_text)</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00010">wifi_mod.cpp:10</a></div></div>
+<div class="ttc" id="awifi__mod_8cpp_html_a974108b8928c5d565a6adc5af542fee7"><div class="ttname"><a href="wifi__mod_8cpp.html#a974108b8928c5d565a6adc5af542fee7">show_wifi_screen</a></div><div class="ttdeci">void show_wifi_screen(lv_obj_t *parent, const char *label_text, const char *qr_text)</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00078">wifi_mod.cpp:78</a></div></div>
 <div class="ttc" id="awifi__mod_8h_html"><div class="ttname"><a href="wifi__mod_8h.html">wifi_mod.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

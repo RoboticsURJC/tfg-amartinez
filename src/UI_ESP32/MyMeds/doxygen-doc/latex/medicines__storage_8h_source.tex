@@ -1,0 +1,22 @@
+\doxysection{medicines\+\_\+storage.\+h}
+\hypertarget{medicines__storage_8h_source}{}\label{medicines__storage_8h_source}\index{include/storage/medicines\_storage.h@{include/storage/medicines\_storage.h}}
+\mbox{\hyperlink{medicines__storage_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00005}\mbox{\hyperlink{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c}{00005}}\ \textcolor{preprocessor}{\#define\ MAX\_CATALOG\_MEDICINES\ 8}}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00007}\mbox{\hyperlink{structCatalogMedicine}{00007}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00008}\mbox{\hyperlink{structCatalogMedicine_aa92be97d7ed9222fea9bf46696af1313}{00008}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \textcolor{keywordtype}{id}[20];}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00009}\mbox{\hyperlink{structCatalogMedicine_a64f8648ea2608c724a38da8f79dee501}{00009}}\ \ \ \ \ \textcolor{keywordtype}{char}\ name[30];}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00010}00010\ \}\ \mbox{\hyperlink{structCatalogMedicine}{CatalogMedicine}};}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00012}00012\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structCatalogMedicine}{CatalogMedicine}}\ \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[\mbox{\hyperlink{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c}{MAX\_CATALOG\_MEDICINES}}];}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00013}00013\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}};}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00015}00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{medicines__storage_8h_aa3455ca297405ba55eda2b5f9f0d6b5f}{saveMedicines}}();}
+\DoxyCodeLine{\Hypertarget{medicines__storage_8h_source_l00016}00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{medicines__storage_8h_a0ca56924260f2bf1e6234157d4fc3f17}{loadMedicines}}();}
+
+\end{DoxyCode}

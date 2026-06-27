@@ -1,0 +1,9 @@
+<map id="send_pulse_history_record" name="send_pulse_history_record">
+<area shape="rect" id="Node000001" title=" " alt="" coords="348,23,495,63"/>
+<area shape="rect" id="Node000002" href="$wifi__portal_8cpp.html#a41d09bd70e40d7a7a73ef81541193e2d" title=" " alt="" coords="112,31,300,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="334,46,300,46,300,41,334,41"/>
+<area shape="rect" id="Node000003" href="$src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,5,60,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="106,31,60,24,61,19,107,26"/>
+<area shape="rect" id="Node000004" href="$src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,55,64,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="102,61,64,66,64,61,102,55"/>
+</map>

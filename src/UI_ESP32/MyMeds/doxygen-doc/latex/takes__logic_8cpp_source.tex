@@ -3,31 +3,64 @@
 \mbox{\hyperlink{takes__logic_8cpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{takes__logic_8h}{logic/takes\_logic.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pill__takes_8h}{user\_interface/pill\_takes.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00004}00004\ }
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00005}\mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{executeTake}}(\textcolor{keywordtype}{int}\ index)}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00006}00006\ \{}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00007}00007\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Ejecutando\ toma\ \%d\(\backslash\)n"{}},\ index+1);}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00008}00008\ \}}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00009}00009\ }
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00010}\mbox{\hyperlink{takes__logic_8cpp_a316d6941189851a072229370c65696bb}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{takes__logic_8cpp_a316d6941189851a072229370c65696bb}{checkTakes}}()}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00011}00011\ \{}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ timeInfo;}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&timeInfo))\{}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00015}00015\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00016}00016\ }
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i\ ++)\{}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hh\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[0]);}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mm\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[3]);}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00020}00020\ }
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeInfo.tm\_hour\ ==\ hh\ \&\&\ timeInfo.tm\_min\ ==\ mm)\{}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].repeat[timeInfo.tm\_wday])\{}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{executeTake}}(i);}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00026}00026\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dose__actuators_8h}{actuators/dose\_actuators.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{takes__logic_8h}{logic/takes\_logic.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{take__alert__screen_8h}{user\_interface/take\_alert\_screen.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pill__takes_8h}{user\_interface/pill\_takes.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00007}\mbox{\hyperlink{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}{00007}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}{lastTriggeredMinute}}[\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\_TAKES}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00008}00008\ \ \ \ \ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00009}00009\ \};}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00011}\mbox{\hyperlink{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}{00011}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}{lastCheck}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00013}\mbox{\hyperlink{takes__logic_8h_a482ab07f300f81b1d70be416e5581dfd}{00013}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{executeTake}}(\textcolor{keywordtype}{int}\ index)}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00015}00015\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Ejecutando\ toma\ \%d\(\backslash\)n"{}},\ index+1);}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{take__alert__screen_8h_a7d4b85367414f994adf1f70eac9df88d}{show\_take\_alert}}(index);}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8h_a0f1727521e693270353667af5028e01e}{doseActuatorsStart}}();}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00020}\mbox{\hyperlink{takes__logic_8h_a316d6941189851a072229370c65696bb}{00020}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{takes__logic_8cpp_a316d6941189851a072229370c65696bb}{checkTakes}}()}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (millis()\ -\/\ \mbox{\hyperlink{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}{lastCheck}}\ <\ 500)}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00023}00023\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}{lastCheck}}\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dose__actuators_8h_a777492a883259b2cf3f213f70a0af356}{doseActuatorsBusy}}()\ ||\ \mbox{\hyperlink{take__alert__screen_8h_af074c92aec3f5ff37fcfe738a0b70d78}{takeAlertVisible}}())}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ timeInfo;}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&timeInfo))\{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{int}\ currentDay\ =\ (timeInfo.tm\_wday\ +\ 6)\ \%\ 7;}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{long}\ minuteKey\ =}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ ((long)timeInfo.tm\_year\ *\ 366L\ +\ timeInfo.tm\_yday)\ *\ 1440L\ +}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ timeInfo.tm\_hour\ *\ 60L\ +}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ timeInfo.tm\_min;}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i\ ++)\{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hh\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[0]);}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mm\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[3]);}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeInfo.tm\_hour\ ==\ hh\ \&\&\ timeInfo.tm\_min\ ==\ mm)\{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].repeat\_mask,\ currentDay)\ \&\&}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}{lastTriggeredMinute}}[i]\ !=\ minuteKey}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ )\{}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}{lastTriggeredMinute}}[i]\ =\ minuteKey;}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{executeTake}}(i);}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{takes__logic_8cpp_source_l00060}00060\ \}}
 
 \end{DoxyCode}

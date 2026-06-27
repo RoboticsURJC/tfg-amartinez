@@ -1,0 +1,112 @@
+\doxysection{test.\+cpp}
+\hypertarget{speaker__test_2test_8cpp_source}{}\label{speaker__test_2test_8cpp_source}\index{test/speaker\_test/test.cpp@{test/speaker\_test/test.cpp}}
+\mbox{\hyperlink{speaker__test_2test_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00003}\mbox{\hyperlink{speaker__test_2test_8cpp_aa390e9c7204cc2275a144e51b788596b}{00003}}\ \textcolor{preprocessor}{\#define\ SPEAKER\_PIN\ 26}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00004}\mbox{\hyperlink{speaker__test_2test_8cpp_ace6a11e892466500d47d1f45f042bc53}{00004}}\ \textcolor{preprocessor}{\#define\ CHANNEL\ 0}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00006}\mbox{\hyperlink{speaker__test_2test_8cpp_afc0e145a384b0aa2767eaa7fd9ebe243}{00006}}\ \textcolor{preprocessor}{\#define\ VOL\_MAX\ 70}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00007}\mbox{\hyperlink{speaker__test_2test_8cpp_aef7a055a4b3e7309c9a955a54069dbf3}{00007}}\ \textcolor{preprocessor}{\#define\ VOL\_MIN\ 10}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00009}00009\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00010}00010\ \textcolor{comment}{//\ INIT}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00011}00011\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00012}\mbox{\hyperlink{speaker__test_2test_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{00012}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{max30102_2test_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}}()\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00013}00013\ \ \ \ \ Serial.begin(115200);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00015}00015\ \ \ \ \ ledcSetup(\mbox{\hyperlink{speaker__test_2test_8cpp_ace6a11e892466500d47d1f45f042bc53}{CHANNEL}},\ 1000,\ 8);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00016}00016\ \ \ \ \ ledcAttachPin(\mbox{\hyperlink{speaker__test_2test_8cpp_aa390e9c7204cc2275a144e51b788596b}{SPEAKER\_PIN}},\ \mbox{\hyperlink{speaker__test_2test_8cpp_ace6a11e892466500d47d1f45f042bc53}{CHANNEL}});}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00018}00018\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}===\ TEST\ ARMONIA\ ==="{}});}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00021}00021\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00022}00022\ \textcolor{comment}{//\ FADE}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00023}00023\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00024}\mbox{\hyperlink{speaker__test_2test_8cpp_aa7daae0aa205583770fd07d82a60bf89}{00024}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{speaker__test_2test_8cpp_aa7daae0aa205583770fd07d82a60bf89}{fadeIn}}()\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ d\ =\ \mbox{\hyperlink{speaker__test_2test_8cpp_aef7a055a4b3e7309c9a955a54069dbf3}{VOL\_MIN}};\ d\ <=\ \mbox{\hyperlink{speaker__test_2test_8cpp_afc0e145a384b0aa2767eaa7fd9ebe243}{VOL\_MAX}};\ d\ +=\ 5)\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ ledcWrite(\mbox{\hyperlink{speaker__test_2test_8cpp_ace6a11e892466500d47d1f45f042bc53}{CHANNEL}},\ d);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ delay(4);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00031}\mbox{\hyperlink{speaker__test_2test_8cpp_ad8f30ed47a24c9b191adae164180f6c5}{00031}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{speaker__test_2test_8cpp_ad8f30ed47a24c9b191adae164180f6c5}{fadeOut}}()\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ d\ =\ \mbox{\hyperlink{speaker__test_2test_8cpp_afc0e145a384b0aa2767eaa7fd9ebe243}{VOL\_MAX}};\ d\ >=\ 0;\ d\ -\/=\ 5)\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ ledcWrite(\mbox{\hyperlink{speaker__test_2test_8cpp_ace6a11e892466500d47d1f45f042bc53}{CHANNEL}},\ d);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ delay(4);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00038}00038\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00039}00039\ \textcolor{comment}{//\ NOTA}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00040}00040\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00041}\mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{00041}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(\textcolor{keywordtype}{int}\ freq,\ \textcolor{keywordtype}{int}\ duration)\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00042}00042\ \ \ \ \ ledcWriteTone(\mbox{\hyperlink{speaker__test_2test_8cpp_ace6a11e892466500d47d1f45f042bc53}{CHANNEL}},\ freq);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_aa7daae0aa205583770fd07d82a60bf89}{fadeIn}}();}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00044}00044\ \ \ \ \ delay(duration);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00045}00045\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_ad8f30ed47a24c9b191adae164180f6c5}{fadeOut}}();}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00046}00046\ \ \ \ \ ledcWriteTone(\mbox{\hyperlink{speaker__test_2test_8cpp_ace6a11e892466500d47d1f45f042bc53}{CHANNEL}},\ 0);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00047}00047\ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00049}00049\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00050}00050\ \textcolor{comment}{//\ SONIDOS}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00051}00051\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00053}00053\ \textcolor{comment}{//\ 🔔\ Aviso\ previo\ (muy\ suave)}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00054}\mbox{\hyperlink{speaker__test_2test_8cpp_aeb15e39e0c0830bef6a4bb4362e43d3f}{00054}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{speaker__test_2test_8cpp_aeb15e39e0c0830bef6a4bb4362e43d3f}{warning\_sound}}()\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00055}00055\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}WARNING"{}});}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00057}00057\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(523,\ 150);\ \textcolor{comment}{//\ DO}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00058}00058\ \ \ \ \ delay(80);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00059}00059\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(659,\ 150);\ \textcolor{comment}{//\ MI}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00060}00060\ \ \ \ \ delay(60);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(784,\ 220);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00065}00065\ \textcolor{comment}{//\ 💊\ Alarma\ agradable\ (armonía)}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00066}\mbox{\hyperlink{speaker__test_2test_8cpp_a622369264b5c99979b1bc36ec9be6ebf}{00066}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{speaker__test_2test_8cpp_a622369264b5c99979b1bc36ec9be6ebf}{alarm\_sound}}()\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00067}00067\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}ALARM"{}});}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ DO\ →\ MI\ →\ SOL}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00070}00070\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(523,\ 180);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00071}00071\ \ \ \ \ delay(60);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00073}00073\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(659,\ 180);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00074}00074\ \ \ \ \ delay(60);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00076}00076\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(784,\ 220);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00077}00077\ \ \ \ \ delay(60);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(659,\ 180);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00080}00080\ \ \ \ \ delay(30);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00082}00082\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a167362e167709fb1fb3512083e13bb0b}{playNote}}(784,\ 220);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00083}00083\ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00085}00085\ \textcolor{comment}{//\ 🔁\ ciclo\ completo}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00086}\mbox{\hyperlink{speaker__test_2test_8cpp_ae9feaf37ee5bb9c8c85b61c6b19ffc92}{00086}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{speaker__test_2test_8cpp_ae9feaf37ee5bb9c8c85b61c6b19ffc92}{alarm\_cycle}}()\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_a622369264b5c99979b1bc36ec9be6ebf}{alarm\_sound}}();}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ delay(2000);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00091}00091\ \}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00093}00093\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00094}00094\ \textcolor{comment}{//\ LOOP}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00095}00095\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00096}\mbox{\hyperlink{speaker__test_2test_8cpp_afe461d27b9c48d5921c00d521181f12f}{00096}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{max30102_2test_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}()\ \{}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00098}00098\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ CICLO\ -\/-\/-\/"{}});}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00100}00100\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_aeb15e39e0c0830bef6a4bb4362e43d3f}{warning\_sound}}();\ \ \ \textcolor{comment}{//\ aviso\ previo}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00101}00101\ \ \ \ \ delay(3000);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{speaker__test_2test_8cpp_ae9feaf37ee5bb9c8c85b61c6b19ffc92}{alarm\_cycle}}();\ \ \ \ \ \textcolor{comment}{//\ alarma\ real}}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00105}00105\ \ \ \ \ delay(8000);}
+\DoxyCodeLine{\Hypertarget{speaker__test_2test_8cpp_source_l00106}00106\ \}}
+
+\end{DoxyCode}

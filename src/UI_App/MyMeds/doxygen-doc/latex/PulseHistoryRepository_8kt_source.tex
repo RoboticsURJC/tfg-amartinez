@@ -1,0 +1,33 @@
+\doxysection{Pulse\+History\+Repository.\+kt}
+\hypertarget{PulseHistoryRepository_8kt_source}{}\label{PulseHistoryRepository_8kt_source}\index{app/src/main/java/com/example/mymeds/data/repository/PulseHistoryRepository.kt@{app/src/main/java/com/example/mymeds/data/repository/PulseHistoryRepository.kt}}
+\mbox{\hyperlink{PulseHistoryRepository_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00001}00001\ package\ com.example.mymeds.repository}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00003}00003\ import\ com.example.mymeds.data.PulseMeasurement}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00005}00005\ object\ PulseHistoryRepository\ \{}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00007}00007\ \ \ \ \ private\ val\ measurements\ =}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00008}00008\ \ \ \ \ \ \ \ \ mutableListOf<PulseMeasurement>()}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00010}00010\ \ \ \ \ fun\ setMeasurements(}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00011}00011\ \ \ \ \ \ \ \ \ newMeasurements:\ List<PulseMeasurement>}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00012}00012\ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00013}00013\ \ \ \ \ \ \ \ \ measurements.clear()}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00014}00014\ \ \ \ \ \ \ \ \ measurements.addAll(newMeasurements)}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00017}00017\ \ \ \ \ fun\ getMeasurements():}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ List<PulseMeasurement>}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00019}00019\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ return\ measurements}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00023}00023\ \ \ \ \ fun\ clear()}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ measurements.clear()}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00026}00026\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PulseHistoryRepository_8kt_source_l00027}00027\ \}}
+
+\end{DoxyCode}

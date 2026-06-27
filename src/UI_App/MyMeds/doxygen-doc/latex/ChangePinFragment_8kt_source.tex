@@ -1,0 +1,130 @@
+\doxysection{Change\+Pin\+Fragment.\+kt}
+\hypertarget{ChangePinFragment_8kt_source}{}\label{ChangePinFragment_8kt_source}\index{app/src/main/java/com/example/mymeds/ui/settings/ChangePinFragment.kt@{app/src/main/java/com/example/mymeds/ui/settings/ChangePinFragment.kt}}
+\mbox{\hyperlink{ChangePinFragment_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00001}00001\ package\ com.example.mymeds.ui.settings}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00003}00003\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00004}00004\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00005}00005\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00006}00006\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00007}00007\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00008}00008\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00009}00009\ import\ androidx.fragment.app.Fragment}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00010}00010\ import\ androidx.navigation.fragment.findNavController}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00011}00011\ import\ com.example.mymeds.data.network.EspApi}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00012}00012\ import\ com.example.mymeds.databinding.FragmentChangePinBinding}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00014}00014\ class\ ChangePinFragment\ :\ Fragment()\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00016}00016\ \ \ \ \ private\ var\ \_binding:\ FragmentChangePinBinding?\ =\ null}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00017}00017\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00019}00019\ \ \ \ \ override\ fun\ onCreateView(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ container:\ ViewGroup?,}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00022}00022\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00023}00023\ \ \ \ \ ):\ View\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ \_binding\ =}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ FragmentChangePinBinding.inflate(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inflater,}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ container,}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ false}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ return\ binding.root}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00035}00035\ \ \ \ \ override\ fun\ onViewCreated(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ view:\ View,}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00038}00038\ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ super.onViewCreated(view,\ savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ binding.buttonBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigateUp()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ binding.buttonSavePin.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ val\ currentPin\ =}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ binding.currentPinInput.text.toString()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ val\ newPin\ =}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ binding.newPinInput.text.toString()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ val\ confirmPin\ =}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ binding.confirmPinInput.text.toString()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ val\ prefs\ =}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext().getSharedPreferences(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}app"{},}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Context.MODE\_PRIVATE}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ val\ savedPin\ =}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefs.getString(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}app\_pin"{},}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}1234"{}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (currentPin\ !=\ savedPin)\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}PIN\ actual\ incorrecto"{},}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (newPin.length\ !=\ 4)\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}El\ PIN\ debe\ tener\ 4\ dígitos"{},}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (newPin\ !=\ confirmPin)\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Los\ PIN\ no\ coinciden"{},}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ prefs.edit()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .putString(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}app\_pin"{},}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newPin}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .apply()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ EspApi.sendPin(newPin)}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}PIN\ actualizado"{},}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigateUp()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00120}00120\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ super.onDestroyView()}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00123}00123\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChangePinFragment_8kt_source_l00124}00124\ \}}
+
+\end{DoxyCode}

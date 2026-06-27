@@ -1,0 +1,107 @@
+\doxysection{Today\+Takes\+Adapter.\+kt}
+\hypertarget{TodayTakesAdapter_8kt_source}{}\label{TodayTakesAdapter_8kt_source}\index{app/src/main/java/com/example/mymeds/ui/todayTakes/TodayTakesAdapter.kt@{app/src/main/java/com/example/mymeds/ui/todayTakes/TodayTakesAdapter.kt}}
+\mbox{\hyperlink{TodayTakesAdapter_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00001}00001\ package\ com.example.mymeds.ui.todayTakes}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00003}00003\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00004}00004\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00005}00005\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00006}00006\ import\ com.example.mymeds.data.model.Take}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00007}00007\ import\ com.example.mymeds.data.repository.MedicineRepository}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00008}00008\ import\ com.example.mymeds.databinding.ItemTodayTakeBinding}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00009}00009\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00011}00011\ class\ TodayTakesAdapter(}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00012}00012\ \ \ \ \ private\ val\ takes:\ List<Take>}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00013}00013\ )\ :\ RecyclerView.Adapter<TodayTakesAdapter.ViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00015}00015\ \ \ \ \ inner\ class\ ViewHolder(}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00016}00016\ \ \ \ \ \ \ \ \ val\ binding:\ ItemTodayTakeBinding}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00017}00017\ \ \ \ \ )\ :\ RecyclerView.ViewHolder(binding.root)}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00019}00019\ \ \ \ \ override\ fun\ onCreateViewHolder(}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ parent:\ ViewGroup,}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ viewType:\ Int}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00022}00022\ \ \ \ \ ):\ ViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ val\ binding\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ ItemTodayTakeBinding.inflate(}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayoutInflater.from(parent.context),}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parent,}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ false}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ return\ ViewHolder(binding)}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00034}00034\ \ \ \ \ override\ fun\ onBindViewHolder(}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ holder:\ ViewHolder,}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ position:\ Int}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00037}00037\ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ val\ take\ =\ takes[position]}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ if\ (position\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textNext.visibility\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textNext.visibility\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.GONE}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ holder.binding.textTime.text\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ take.time}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ holder.binding.textMedicines.text\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ take.medicines.joinToString("{}\(\backslash\)n"{})\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ med\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MedicineRepository.findById(it.id)}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\$\{med?.name\ ?:\ "{}Desconocido"{}\}\ x\$\{it.quantity\}"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ holder.binding.textReminder.text\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (take.reminderEnabled)}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}🔔\ Recordatorio\ activo"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ else}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}🔕\ Sin\ recordatorio"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ if\ ((take.advanceWarningMinutes\ ?:\ 0)\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textWarning.visibility\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textWarning.text\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}⏰\ Aviso\ previo:\ \$\{take.advanceWarningMinutes\ ?:\ 0\}\ min"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textWarning.visibility\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ View.GONE}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ holder.binding.textDays.text\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ "{}📅\ "{}\ +\ take.days.joinToString("{}\ "{})\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ when\ (it.name)\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}MONDAY"{}\ -\/>\ "{}L"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}TUESDAY"{}\ -\/>\ "{}M"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}WEDNESDAY"{}\ -\/>\ "{}X"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}THURSDAY"{}\ -\/>\ "{}J"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}FRIDAY"{}\ -\/>\ "{}V"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}SATURDAY"{}\ -\/>\ "{}S"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else\ -\/>\ "{}D"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00099}00099\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ takes.size}
+\DoxyCodeLine{\Hypertarget{TodayTakesAdapter_8kt_source_l00101}00101\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,7 @@
+<map id="start_clock_timer" name="start_clock_timer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,140,31"/>
+<area shape="rect" id="Node000002" href="$clock__mod_8cpp.html#adff04a727b74bd5b4cca55e438a4010d" title=" " alt="" coords="188,5,331,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,15,174,15,174,21,140,21"/>
+<area shape="rect" id="Node000003" href="$clock__mod_8cpp.html#a3858320e789f5154bf2030598829b1a4" title=" " alt="" coords="379,5,487,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="331,15,365,15,365,21,331,21"/>
+</map>

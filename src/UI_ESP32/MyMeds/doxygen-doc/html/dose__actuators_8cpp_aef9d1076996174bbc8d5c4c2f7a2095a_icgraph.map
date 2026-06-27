@@ -1,0 +1,13 @@
+<map id="doseActuatorsAcknowledge" name="doseActuatorsAcknowledge">
+<area shape="rect" id="Node000001" title=" " alt="" coords="709,5,912,31"/>
+<area shape="rect" id="Node000002" href="$take__alert__screen_8cpp.html#af88032e98c44388094b6f14afa28fd88" title=" " alt="" coords="575,5,661,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="696,21,662,21,662,15,696,15"/>
+<area shape="rect" id="Node000003" href="$take__alert__screen_8cpp.html#a7d4b85367414f994adf1f70eac9df88d" title=" " alt="" coords="399,5,527,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="561,21,527,21,527,15,561,15"/>
+<area shape="rect" id="Node000004" href="$takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd" title=" " alt="" coords="248,5,351,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="385,21,351,21,351,15,385,15"/>
+<area shape="rect" id="Node000005" href="$takes__logic_8cpp.html#a316d6941189851a072229370c65696bb" title=" " alt="" coords="104,5,200,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="234,21,200,21,200,15,234,15"/>
+<area shape="rect" id="Node000006" href="$src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,56,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="90,21,56,21,56,15,90,15"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="show_take_alert" name="show_take_alert">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,133,56"/>
+<area shape="rect" id="Node000002" href="$take__alert__screen_8cpp.html#af88032e98c44388094b6f14afa28fd88" title=" " alt="" coords="210,5,297,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,32,196,23,197,28,134,37"/>
+<area shape="rect" id="Node000004" href="$take__alert__screen_8cpp.html#a3208721ae1f62b424e99da3d3eddc7cf" title=" " alt="" coords="181,55,325,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="134,49,168,54,167,59,133,54"/>
+<area shape="rect" id="Node000003" href="$dose__actuators_8cpp.html#aef9d1076996174bbc8d5c4c2f7a2095a" title=" " alt="" coords="373,5,576,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="297,15,359,15,359,21,297,21"/>
+</map>

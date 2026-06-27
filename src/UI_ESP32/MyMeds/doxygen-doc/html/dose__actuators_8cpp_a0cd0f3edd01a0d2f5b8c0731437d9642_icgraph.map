@@ -1,0 +1,22 @@
+<map id="pwm" name="pwm">
+<area shape="rect" id="Node000001" title=" " alt="" coords="845,56,900,81"/>
+<area shape="rect" id="Node000002" href="$dose__actuators_8cpp.html#a90366f1dd5099976555f1bf89c2f6368" title=" " alt="" coords="657,7,793,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="832,58,796,46,763,35,765,29,798,41,833,53"/>
+<area shape="rect" id="Node000008" href="$dose__actuators_8cpp.html#a195951ef742e6c2e8000be600039b9be" title=" " alt="" coords="653,56,797,81"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="832,71,798,71,798,66,832,66"/>
+<area shape="rect" id="Node000009" href="$dose__actuators_8cpp.html#af6fc5ed8b0fac11e8b82485603c100ef" title=" " alt="" coords="673,105,777,131"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="833,84,798,97,765,108,763,103,796,91,832,79"/>
+<area shape="rect" id="Node000003" href="$dose__actuators_8cpp.html#a0f1727521e693270353667af5028e01e" title=" " alt="" coords="459,5,605,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="644,21,605,21,606,16,644,16"/>
+<area shape="rect" id="Node000007" href="$src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="503,55,561,80"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="661,38,562,63,561,58,660,33"/>
+<area shape="rect" id="Node000004" href="$takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd" title=" " alt="" coords="278,9,381,35"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="445,22,381,24,381,18,445,17"/>
+<area shape="rect" id="Node000005" href="$takes__logic_8cpp.html#a316d6941189851a072229370c65696bb" title=" " alt="" coords="104,12,200,37"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="264,26,200,27,200,21,264,20"/>
+<area shape="rect" id="Node000006" href="$src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,44,56,69"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="91,43,57,53,55,48,90,38"/>
+<area shape="rect" id="Node000010" href="$dose__actuators_8cpp.html#abe128edf1c216d13592f2978a73233d4" title=" " alt="" coords="248,81,411,107"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="659,117,411,102,411,96,660,111"/>
+<area shape="poly" id="edge10_Node000010_Node000006" title=" " alt="" coords="234,85,56,62,57,57,235,80"/>
+</map>

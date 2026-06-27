@@ -1,0 +1,20 @@
+<map id="src/user_interface/pulse_screen.cpp" name="src/user_interface/pulse_screen.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="432,5,571,45"/>
+<area shape="rect" id="Node000002" href="$pulse__screen_8h.html" title=" " alt="" coords="5,93,160,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="432,43,174,96,173,91,431,38"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="168,181,227,207"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="432,38,312,60,259,76,224,95,213,111,205,130,200,168,194,167,200,128,208,109,221,91,256,71,310,55,431,32"/>
+<area shape="rect" id="Node000004" href="$home__mod_8h.html" title=" " alt="" coords="235,93,391,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="461,48,368,90,366,85,459,43"/>
+<area shape="rect" id="Node000005" href="$pulse__sensor_8h.html" title=" " alt="" coords="415,101,587,126"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="504,46,504,87,499,87,499,46"/>
+<area shape="rect" id="Node000006" href="$pulse__history__storage_8h.html" title=" " alt="" coords="612,93,775,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="545,43,640,85,638,90,542,48"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="710,181,794,207"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="571,30,633,39,698,51,753,69,774,79,789,92,797,112,794,133,785,154,773,172,769,169,780,151,789,132,791,112,784,95,771,84,751,74,697,57,632,44,571,36"/>
+<area shape="rect" id="Node000008" href="$idle__manager_8h.html" title=" " alt="" coords="849,101,972,126"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="571,38,831,91,850,95,849,100,830,96,570,43"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="112,131,171,171,168,176,109,136"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="287,136,227,176,224,171,284,131"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="710,132,737,168,733,172,705,135"/>
+</map>

@@ -1,0 +1,57 @@
+\doxysection{Pulse\+Storage.\+kt}
+\hypertarget{PulseStorage_8kt_source}{}\label{PulseStorage_8kt_source}\index{app/src/main/java/com/example/mymeds/data/repository/PulseStorage.kt@{app/src/main/java/com/example/mymeds/data/repository/PulseStorage.kt}}
+\mbox{\hyperlink{PulseStorage_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00001}00001\ package\ com.example.mymeds.repository}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00003}00003\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00004}00004\ import\ com.example.mymeds.data.PulseMeasurement}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00005}00005\ import\ com.google.gson.Gson}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00006}00006\ import\ com.google.gson.reflect.TypeToken}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00008}00008\ object\ PulseStorage\ \{}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00010}00010\ \ \ \ \ private\ const\ val\ PREF\_NAME\ =\ "{}pulse\_history"{}}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00011}00011\ \ \ \ \ private\ const\ val\ KEY\_DATA\ =\ "{}measurements"{}}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00013}00013\ \ \ \ \ fun\ save(}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00014}00014\ \ \ \ \ \ \ \ \ context:\ Context,}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00015}00015\ \ \ \ \ \ \ \ \ measurements:\ List<PulseMeasurement>}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00016}00016\ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00017}00017\ \ \ \ \ \ \ \ \ val\ prefs\ =}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ context.getSharedPreferences(}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PREF\_NAME,}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Context.MODE\_PRIVATE}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00023}00023\ \ \ \ \ \ \ \ \ val\ json\ =}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ Gson().toJson(measurements)}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ prefs.edit()}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ .putString(KEY\_DATA,\ json)}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ .apply()}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00031}00031\ \ \ \ \ fun\ load(}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ context:\ Context}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00033}00033\ \ \ \ \ ):\ List<PulseMeasurement>\ \{}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ val\ prefs\ =}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ context.getSharedPreferences(}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PREF\_NAME,}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Context.MODE\_PRIVATE}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ val\ json\ =}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ prefs.getString(KEY\_DATA,\ null)}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?:\ return\ emptyList()}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ val\ type\ =}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ object\ :}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TypeToken<List<PulseMeasurement>>()\ \{\}.type}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ return\ Gson().fromJson(json,\ type)}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PulseStorage_8kt_source_l00051}00051\ \}}
+
+\end{DoxyCode}

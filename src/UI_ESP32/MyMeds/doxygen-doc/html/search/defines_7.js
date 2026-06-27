@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['t_5fclk_0',['T_CLK',['../lvgl__touch_8cpp.html#a830e716db81333e7dc058f7373c48d6b',1,'lvgl_touch.cpp']]],
+  ['t_5fcs_1',['T_CS',['../lvgl__touch_8cpp.html#a234ef1d69dd84e7134072c05c5b87eaf',1,'lvgl_touch.cpp']]],
+  ['t_5fmiso_2',['T_MISO',['../lvgl__touch_8cpp.html#a09b57adf03bb34ea1281d762abf9a0f2',1,'lvgl_touch.cpp']]],
+  ['t_5fmosi_3',['T_MOSI',['../lvgl__touch_8cpp.html#acf4775705647aae50c55ab3f71b83d09',1,'lvgl_touch.cpp']]],
+  ['tdt_5fheight_4',['TDT_HEIGHT',['../User__Setup_8h.html#a372bc691995c211e69ab12759c676540',1,'User_Setup.h']]],
+  ['testable_5',['testable',['../qrcodegen_8c.html#af133be2ddbf0cfabb0bb6b0d5f6c00b9',1,'qrcodegen.c']]],
+  ['tft_5fbl_6',['TFT_BL',['../User__Setup_8h.html#a541b5fc642dbcc81f373d4b866c88f80',1,'User_Setup.h']]],
+  ['tft_5fblacklight_5fon_7',['TFT_BLACKLIGHT_ON',['../User__Setup_8h.html#a914c2bbd8408776842cd8fb2b5158d6d',1,'User_Setup.h']]],
+  ['tft_5fcs_8',['TFT_CS',['../User__Setup_8h.html#a5f4d46ae101b77df78010c506601c87c',1,'User_Setup.h']]],
+  ['tft_5fdc_9',['TFT_DC',['../User__Setup_8h.html#a51529307207622c113ff0d584536be13',1,'User_Setup.h']]],
+  ['tft_5fmiso_10',['TFT_MISO',['../User__Setup_8h.html#ac108dd4310833bbb4afd1bce1090d55f',1,'User_Setup.h']]],
+  ['tft_5fmosi_11',['TFT_MOSI',['../User__Setup_8h.html#a4db639d2d88a53132a529677e6dd795c',1,'User_Setup.h']]],
+  ['tft_5foffset_5frotation_12',['TFT_OFFSET_ROTATION',['../User__Setup_8h.html#ab6e3c251053d039cfeb49bb7c2f72842',1,'User_Setup.h']]],
+  ['tft_5foffset_5fx_13',['TFT_OFFSET_X',['../User__Setup_8h.html#ac4378746a994ae905a7f5a615bac1664',1,'User_Setup.h']]],
+  ['tft_5foffset_5fy_14',['TFT_OFFSET_Y',['../User__Setup_8h.html#a216303c52277af5a3a85421893a4d193',1,'User_Setup.h']]],
+  ['tft_5frgb_5forfer_5ftft_5fbgr_15',['TFT_RGB_ORFER_TFT_BGR',['../User__Setup_8h.html#a604ea573c19ff63b29c730b4850f005a',1,'User_Setup.h']]],
+  ['tft_5frst_16',['TFT_RST',['../User__Setup_8h.html#ab40e9918d9141415a47e2a979292309c',1,'User_Setup.h']]],
+  ['tft_5fsclk_17',['TFT_SCLK',['../User__Setup_8h.html#a095a96cc6abc991346d7b6712f8576b5',1,'User_Setup.h']]],
+  ['tft_5fwidth_18',['TFT_WIDTH',['../User__Setup_8h.html#a83af0cb652728913ff58da7133c692ea',1,'User_Setup.h']]],
+  ['touch_5fcs_19',['TOUCH_CS',['../User__Setup_8h.html#a92804fe5b93ac51becd8aad14e32333e',1,'User_Setup.h']]],
+  ['touch_5firq_20',['TOUCH_IRQ',['../User__Setup_8h.html#af2f0e808c4cd03a720a0868af94391a4',1,'User_Setup.h']]]
+];

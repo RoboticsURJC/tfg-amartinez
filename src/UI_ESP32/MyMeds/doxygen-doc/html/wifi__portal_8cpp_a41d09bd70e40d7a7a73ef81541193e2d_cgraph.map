@@ -1,0 +1,12 @@
+<map id="handle_get_pulse_history" name="handle_get_pulse_history">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,193,56"/>
+<area shape="rect" id="Node000002" href="$pulse__history__storage_8cpp.html#a84dbd670475840c071fd20ee485ba132" title=" " alt="" coords="436,31,577,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,28,191,17,241,9,315,3,388,9,456,24,455,29,388,14,315,8,242,14,192,22,146,33"/>
+<area shape="rect" id="Node000004" href="$wifi__portal_8cpp.html#a01fcb13e8c0029fab3fb4d07efc77080" title=" " alt="" coords="241,23,388,63"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="194,41,228,41,228,46,194,46"/>
+<area shape="rect" id="Node000005" href="$pulse__history__storage_8cpp.html#ab5440ef4fdadade58a9c1676482fc51c" title=" " alt="" coords="249,88,381,113"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="149,54,254,82,252,87,147,59"/>
+<area shape="rect" id="Node000003" href="$pulse__history__storage_8cpp.html#afd8ec49707588593793c9e3a0c0e41e2" title=" " alt="" coords="625,31,683,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="577,41,612,41,612,46,577,46"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="357,86,450,58,451,63,359,91"/>
+</map>

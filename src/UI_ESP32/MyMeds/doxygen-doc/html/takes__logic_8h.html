@@ -84,9 +84,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="takes__logic_8h__dep__incl.png" border="0" usemap="#ainclude_2logic_2takes__logic_8hdep" alt=""/></div>
 <map name="ainclude_2logic_2takes__logic_8hdep" id="ainclude_2logic_2takes__logic_8hdep">
-<area shape="rect" title=" " alt="" coords="24,5,167,45"/>
+<area shape="rect" title=" " alt="" coords="107,5,249,45"/>
 <area shape="rect" href="takes__logic_8cpp.html" title=" " alt="" coords="5,93,185,119"/>
-<area shape="poly" title=" " alt="" coords="98,59,98,93,93,93,93,59"/>
+<area shape="poly" title=" " alt="" coords="150,57,110,95,106,91,146,53"/>
+<area shape="rect" href="src_2main_8cpp.html" title=" " alt="" coords="209,93,315,119"/>
+<area shape="poly" title=" " alt="" coords="210,53,251,91,248,95,206,57"/>
 </map>
 </div>
 </div>
@@ -94,20 +96,20 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4b7aff0a78916a8bdaf767896f1fcf13" id="r_a4b7aff0a78916a8bdaf767896f1fcf13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="takes__logic_8h.html#a4b7aff0a78916a8bdaf767896f1fcf13">chackTakes</a> ()</td></tr>
-<tr class="separator:a4b7aff0a78916a8bdaf767896f1fcf13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac55ec8c377e690a127820186997ad9b4" id="r_ac55ec8c377e690a127820186997ad9b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="takes__logic_8h.html#ac55ec8c377e690a127820186997ad9b4">executeTakes</a> (int index)</td></tr>
-<tr class="separator:ac55ec8c377e690a127820186997ad9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316d6941189851a072229370c65696bb" id="r_a316d6941189851a072229370c65696bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="takes__logic_8h.html#a316d6941189851a072229370c65696bb">checkTakes</a> ()</td></tr>
+<tr class="separator:a316d6941189851a072229370c65696bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a482ab07f300f81b1d70be416e5581dfd" id="r_a482ab07f300f81b1d70be416e5581dfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="takes__logic_8h.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a> (int index)</td></tr>
+<tr class="separator:a482ab07f300f81b1d70be416e5581dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a4b7aff0a78916a8bdaf767896f1fcf13" name="a4b7aff0a78916a8bdaf767896f1fcf13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b7aff0a78916a8bdaf767896f1fcf13">&#9670;&#160;</a></span>chackTakes()</h2>
+<a id="a316d6941189851a072229370c65696bb" name="a316d6941189851a072229370c65696bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a316d6941189851a072229370c65696bb">&#9670;&#160;</a></span>checkTakes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void chackTakes </td>
+          <td class="memname">void checkTakes </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -115,16 +117,112 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="takes__logic_8cpp_source.html#l00020">20</a> of file <a class="el" href="takes__logic_8cpp_source.html">takes_logic.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>{</div>
+<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">if</span> (millis() - <a class="code hl_variable" href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">lastCheck</a> &lt; 500)</div>
+<div class="line"><span class="lineno">   23</span>    {</div>
+<div class="line"><span class="lineno">   24</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   25</span>    }</div>
+<div class="line"><span class="lineno">   26</span> </div>
+<div class="line"><span class="lineno">   27</span>    <a class="code hl_variable" href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">lastCheck</a> = millis();</div>
+<div class="line"><span class="lineno">   28</span> </div>
+<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="dose__actuators_8h.html#a777492a883259b2cf3f213f70a0af356">doseActuatorsBusy</a>() || <a class="code hl_function" href="take__alert__screen_8h.html#af074c92aec3f5ff37fcfe738a0b70d78">takeAlertVisible</a>())</div>
+<div class="line"><span class="lineno">   30</span>    {</div>
+<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   32</span>    }</div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>    <span class="keyword">struct </span>tm timeInfo;</div>
+<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span> (!getLocalTime(&amp;timeInfo)){</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   37</span>    }</div>
+<div class="line"><span class="lineno">   38</span> </div>
+<div class="line"><span class="lineno">   39</span>    <span class="keywordtype">int</span> currentDay = (timeInfo.tm_wday + 6) % 7;</div>
+<div class="line"><span class="lineno">   40</span>    <span class="keywordtype">long</span> minuteKey =</div>
+<div class="line"><span class="lineno">   41</span>        ((long)timeInfo.tm_year * 366L + timeInfo.tm_yday) * 1440L +</div>
+<div class="line"><span class="lineno">   42</span>        timeInfo.tm_hour * 60L +</div>
+<div class="line"><span class="lineno">   43</span>        timeInfo.tm_min;</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="pill__takes_8h.html#a53a81415a7b7e40473e9503dde963ff6">total_takes</a>; i ++){</div>
+<div class="line"><span class="lineno">   46</span>        <span class="keywordtype">int</span> hh = atoi(&amp;<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].hour[0]);</div>
+<div class="line"><span class="lineno">   47</span>        <span class="keywordtype">int</span> mm = atoi(&amp;<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].hour[3]);</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>        <span class="keywordflow">if</span> (timeInfo.tm_hour == hh &amp;&amp; timeInfo.tm_min == mm){</div>
+<div class="line"><span class="lineno">   50</span>            <span class="keywordflow">if</span> (</div>
+<div class="line"><span class="lineno">   51</span>                <a class="code hl_function" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active</a>(<a class="code hl_variable" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>[i].repeat_mask, currentDay) &amp;&amp;</div>
+<div class="line"><span class="lineno">   52</span>                <a class="code hl_variable" href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">lastTriggeredMinute</a>[i] != minuteKey</div>
+<div class="line"><span class="lineno">   53</span>            ){</div>
+<div class="line"><span class="lineno">   54</span>                <a class="code hl_variable" href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">lastTriggeredMinute</a>[i] = minuteKey;</div>
+<div class="line"><span class="lineno">   55</span>                <a class="code hl_function" href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a>(i);</div>
+<div class="line"><span class="lineno">   56</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   57</span>            }</div>
+<div class="line"><span class="lineno">   58</span>        }</div>
+<div class="line"><span class="lineno">   59</span>    }</div>
+<div class="line"><span class="lineno">   60</span>}</div>
+<div class="ttc" id="adose__actuators_8h_html_a777492a883259b2cf3f213f70a0af356"><div class="ttname"><a href="dose__actuators_8h.html#a777492a883259b2cf3f213f70a0af356">doseActuatorsBusy</a></div><div class="ttdeci">bool doseActuatorsBusy()</div><div class="ttdef"><b>Definition</b> <a href="dose__actuators_8cpp_source.html#l00255">dose_actuators.cpp:255</a></div></div>
+<div class="ttc" id="apill__takes_8h_html_a53a81415a7b7e40473e9503dde963ff6"><div class="ttname"><a href="pill__takes_8h.html#a53a81415a7b7e40473e9503dde963ff6">total_takes</a></div><div class="ttdeci">int total_takes</div><div class="ttdef"><b>Definition</b> <a href="takes__list_8cpp_source.html#l00007">takes_list.cpp:7</a></div></div>
+<div class="ttc" id="apill__takes_8h_html_a6b1f77e3a939e4c8d37c90e9a6e7fc72"><div class="ttname"><a href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a></div><div class="ttdeci">TakeConfig takes[MAX_TAKES]</div><div class="ttdef"><b>Definition</b> <a href="takes__list_8cpp_source.html#l00006">takes_list.cpp:6</a></div></div>
+<div class="ttc" id="apill__takes_8h_html_a75d0c2d8eda77edbff00929e20d48b81"><div class="ttname"><a href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active</a></div><div class="ttdeci">bool is_day_active(uint8_t mask, int day)</div><div class="ttdef"><b>Definition</b> <a href="pill__takes_8h_source.html#l00043">pill_takes.h:43</a></div></div>
+<div class="ttc" id="atake__alert__screen_8h_html_af074c92aec3f5ff37fcfe738a0b70d78"><div class="ttname"><a href="take__alert__screen_8h.html#af074c92aec3f5ff37fcfe738a0b70d78">takeAlertVisible</a></div><div class="ttdeci">bool takeAlertVisible()</div><div class="ttdef"><b>Definition</b> <a href="take__alert__screen_8cpp_source.html#l00097">take_alert_screen.cpp:97</a></div></div>
+<div class="ttc" id="atakes__logic_8cpp_html_a482ab07f300f81b1d70be416e5581dfd"><div class="ttname"><a href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake</a></div><div class="ttdeci">void executeTake(int index)</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00013">takes_logic.cpp:13</a></div></div>
+<div class="ttc" id="atakes__logic_8cpp_html_ad9b80b243bf6b056da95b4f1233017b9"><div class="ttname"><a href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">lastCheck</a></div><div class="ttdeci">static unsigned long lastCheck</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00011">takes_logic.cpp:11</a></div></div>
+<div class="ttc" id="atakes__logic_8cpp_html_ae2e6f354a1ada990aa165ded62e2d14e"><div class="ttname"><a href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">lastTriggeredMinute</a></div><div class="ttdeci">static long lastTriggeredMinute[MAX_TAKES]</div><div class="ttdef"><b>Definition</b> <a href="takes__logic_8cpp_source.html#l00007">takes_logic.cpp:7</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="dose__actuators_8h.html#a777492a883259b2cf3f213f70a0af356">doseActuatorsBusy()</a>, <a class="el" href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd">executeTake()</a>, <a class="el" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active()</a>, <a class="el" href="takes__logic_8cpp.html#ad9b80b243bf6b056da95b4f1233017b9">lastCheck</a>, <a class="el" href="takes__logic_8cpp.html#ae2e6f354a1ada990aa165ded62e2d14e">lastTriggeredMinute</a>, <a class="el" href="take__alert__screen_8h.html#af074c92aec3f5ff37fcfe738a0b70d78">takeAlertVisible()</a>, <a class="el" href="pill__takes_8h.html#a6b1f77e3a939e4c8d37c90e9a6e7fc72">takes</a>, and <a class="el" href="pill__takes_8h.html#a53a81415a7b7e40473e9503dde963ff6">total_takes</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="takes__logic_8h_a316d6941189851a072229370c65696bb_cgraph.png" border="0" usemap="#atakes__logic_8h_a316d6941189851a072229370c65696bb_cgraph" alt=""/></div>
+<map name="atakes__logic_8h_a316d6941189851a072229370c65696bb_cgraph" id="atakes__logic_8h_a316d6941189851a072229370c65696bb_cgraph">
+<area shape="rect" title=" " alt="" coords="5,104,101,129"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a777492a883259b2cf3f213f70a0af356" title=" " alt="" coords="149,29,296,55"/>
+<area shape="poly" title=" " alt="" coords="75,102,148,64,165,57,167,62,150,68,77,106"/>
+<area shape="rect" href="takes__logic_8cpp.html#a482ab07f300f81b1d70be416e5581dfd" title=" " alt="" coords="171,79,274,104"/>
+<area shape="poly" title=" " alt="" coords="101,107,158,98,158,104,102,112"/>
+<area shape="rect" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81" title=" " alt="" coords="167,128,278,153"/>
+<area shape="poly" title=" " alt="" coords="102,121,154,128,154,134,101,126"/>
+<area shape="rect" href="take__alert__screen_8cpp.html#af074c92aec3f5ff37fcfe738a0b70d78" title=" " alt="" coords="160,177,285,203"/>
+<area shape="poly" title=" " alt="" coords="79,127,150,162,170,170,168,175,148,167,76,132"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a0f1727521e693270353667af5028e01e" title=" " alt="" coords="344,55,491,80"/>
+<area shape="poly" title=" " alt="" coords="274,82,330,75,330,81,275,88"/>
+<area shape="rect" href="take__alert__screen_8cpp.html#a7d4b85367414f994adf1f70eac9df88d" title=" " alt="" coords="353,104,481,129"/>
+<area shape="poly" title=" " alt="" coords="275,95,340,104,339,109,274,101"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a90366f1dd5099976555f1bf89c2f6368" title=" " alt="" coords="543,5,679,31"/>
+<area shape="poly" title=" " alt="" coords="467,52,546,32,547,37,468,57"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a8d2ce29f3592de821c40c5295dafe530" title=" " alt="" coords="543,55,678,80"/>
+<area shape="poly" title=" " alt="" coords="491,65,529,65,529,70,491,70"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a0cd0f3edd01a0d2f5b8c0731437d9642" title=" " alt="" coords="805,5,859,31"/>
+<area shape="poly" title=" " alt="" coords="679,15,791,15,791,21,679,21"/>
+<area shape="rect" href="take__alert__screen_8cpp.html#af88032e98c44388094b6f14afa28fd88" title=" " alt="" coords="567,104,654,129"/>
+<area shape="poly" title=" " alt="" coords="482,114,553,114,553,119,482,119"/>
+<area shape="rect" href="take__alert__screen_8cpp.html#a3208721ae1f62b424e99da3d3eddc7cf" title=" " alt="" coords="539,153,683,179"/>
+<area shape="poly" title=" " alt="" coords="468,127,547,147,546,152,467,132"/>
+<area shape="rect" href="dose__actuators_8cpp.html#aef9d1076996174bbc8d5c4c2f7a2095a" title=" " alt="" coords="731,104,933,129"/>
+<area shape="poly" title=" " alt="" coords="654,114,717,114,717,119,654,119"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="takes__logic_8h_a316d6941189851a072229370c65696bb_icgraph.png" border="0" usemap="#atakes__logic_8h_a316d6941189851a072229370c65696bb_icgraph" alt=""/></div>
+<map name="atakes__logic_8h_a316d6941189851a072229370c65696bb_icgraph" id="atakes__logic_8h_a316d6941189851a072229370c65696bb_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,200,31"/>
+<area shape="rect" href="src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,56,31"/>
+<area shape="poly" title=" " alt="" coords="90,21,56,21,56,15,90,15"/>
+</map>
+</div>
+
 </div>
 </div>
-<a id="ac55ec8c377e690a127820186997ad9b4" name="ac55ec8c377e690a127820186997ad9b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac55ec8c377e690a127820186997ad9b4">&#9670;&#160;</a></span>executeTakes()</h2>
+<a id="a482ab07f300f81b1d70be416e5581dfd" name="a482ab07f300f81b1d70be416e5581dfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a482ab07f300f81b1d70be416e5581dfd">&#9670;&#160;</a></span>executeTake()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void executeTakes </td>
+          <td class="memname">void executeTake </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -132,6 +230,55 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="takes__logic_8cpp_source.html#l00013">13</a> of file <a class="el" href="takes__logic_8cpp_source.html">takes_logic.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   14</span>{</div>
+<div class="line"><span class="lineno">   15</span>    Serial.printf(<span class="stringliteral">&quot;Ejecutando toma %d\n&quot;</span>, index+1);</div>
+<div class="line"><span class="lineno">   16</span>    <a class="code hl_function" href="take__alert__screen_8h.html#a7d4b85367414f994adf1f70eac9df88d">show_take_alert</a>(index);</div>
+<div class="line"><span class="lineno">   17</span>    <a class="code hl_function" href="dose__actuators_8h.html#a0f1727521e693270353667af5028e01e">doseActuatorsStart</a>();</div>
+<div class="line"><span class="lineno">   18</span>}</div>
+<div class="ttc" id="adose__actuators_8h_html_a0f1727521e693270353667af5028e01e"><div class="ttname"><a href="dose__actuators_8h.html#a0f1727521e693270353667af5028e01e">doseActuatorsStart</a></div><div class="ttdeci">void doseActuatorsStart()</div><div class="ttdef"><b>Definition</b> <a href="dose__actuators_8cpp_source.html#l00079">dose_actuators.cpp:79</a></div></div>
+<div class="ttc" id="atake__alert__screen_8h_html_a7d4b85367414f994adf1f70eac9df88d"><div class="ttname"><a href="take__alert__screen_8h.html#a7d4b85367414f994adf1f70eac9df88d">show_take_alert</a></div><div class="ttdeci">void show_take_alert(int takeIndex)</div><div class="ttdef"><b>Definition</b> <a href="take__alert__screen_8cpp_source.html#l00043">take_alert_screen.cpp:43</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="dose__actuators_8h.html#a0f1727521e693270353667af5028e01e">doseActuatorsStart()</a>, and <a class="el" href="take__alert__screen_8h.html#a7d4b85367414f994adf1f70eac9df88d">show_take_alert()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="takes__logic_8h.html#a316d6941189851a072229370c65696bb">checkTakes()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="takes__logic_8h_a482ab07f300f81b1d70be416e5581dfd_cgraph.png" border="0" usemap="#atakes__logic_8h_a482ab07f300f81b1d70be416e5581dfd_cgraph" alt=""/></div>
+<map name="atakes__logic_8h_a482ab07f300f81b1d70be416e5581dfd_cgraph" id="atakes__logic_8h_a482ab07f300f81b1d70be416e5581dfd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,80,108,105"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a0f1727521e693270353667af5028e01e" title=" " alt="" coords="156,55,303,80"/>
+<area shape="poly" title=" " alt="" coords="108,83,142,77,143,83,108,88"/>
+<area shape="rect" href="take__alert__screen_8cpp.html#a7d4b85367414f994adf1f70eac9df88d" title=" " alt="" coords="165,104,293,129"/>
+<area shape="poly" title=" " alt="" coords="108,97,152,103,151,109,108,102"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a90366f1dd5099976555f1bf89c2f6368" title=" " alt="" coords="355,5,491,31"/>
+<area shape="poly" title=" " alt="" coords="279,52,358,32,359,37,280,57"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a8d2ce29f3592de821c40c5295dafe530" title=" " alt="" coords="355,55,490,80"/>
+<area shape="poly" title=" " alt="" coords="303,65,341,65,341,70,303,70"/>
+<area shape="rect" href="dose__actuators_8cpp.html#a0cd0f3edd01a0d2f5b8c0731437d9642" title=" " alt="" coords="617,5,671,31"/>
+<area shape="poly" title=" " alt="" coords="491,15,603,15,603,21,491,21"/>
+<area shape="rect" href="take__alert__screen_8cpp.html#af88032e98c44388094b6f14afa28fd88" title=" " alt="" coords="379,104,466,129"/>
+<area shape="poly" title=" " alt="" coords="294,114,365,114,365,119,294,119"/>
+<area shape="rect" href="take__alert__screen_8cpp.html#a3208721ae1f62b424e99da3d3eddc7cf" title=" " alt="" coords="351,153,495,179"/>
+<area shape="poly" title=" " alt="" coords="280,127,359,147,358,152,279,132"/>
+<area shape="rect" href="dose__actuators_8cpp.html#aef9d1076996174bbc8d5c4c2f7a2095a" title=" " alt="" coords="543,104,745,129"/>
+<area shape="poly" title=" " alt="" coords="466,114,529,114,529,119,466,119"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="takes__logic_8h_a482ab07f300f81b1d70be416e5581dfd_icgraph.png" border="0" usemap="#atakes__logic_8h_a482ab07f300f81b1d70be416e5581dfd_icgraph" alt=""/></div>
+<map name="atakes__logic_8h_a482ab07f300f81b1d70be416e5581dfd_icgraph" id="atakes__logic_8h_a482ab07f300f81b1d70be416e5581dfd_icgraph">
+<area shape="rect" title=" " alt="" coords="248,5,351,31"/>
+<area shape="rect" href="takes__logic_8cpp.html#a316d6941189851a072229370c65696bb" title=" " alt="" coords="104,5,200,31"/>
+<area shape="poly" title=" " alt="" coords="234,21,200,21,200,15,234,15"/>
+<area shape="rect" href="src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,56,31"/>
+<area shape="poly" title=" " alt="" coords="90,21,56,21,56,15,90,15"/>
+</map>
+</div>
 
 </div>
 </div>

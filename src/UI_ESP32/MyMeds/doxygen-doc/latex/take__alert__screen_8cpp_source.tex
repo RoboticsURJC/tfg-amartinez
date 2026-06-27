@@ -1,0 +1,106 @@
+\doxysection{take\+\_\+alert\+\_\+screen.\+cpp}
+\hypertarget{take__alert__screen_8cpp_source}{}\label{take__alert__screen_8cpp_source}\index{src/user\_interface/take\_alert\_screen.cpp@{src/user\_interface/take\_alert\_screen.cpp}}
+\mbox{\hyperlink{take__alert__screen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{take__alert__screen_8h}{user\_interface/take\_alert\_screen.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <lvgl.h>}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dose__actuators_8h}{actuators/dose\_actuators.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{idle__manager_8h}{idle\_manager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{medicines__storage_8h}{storage/medicines\_storage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pill__takes_8h}{user\_interface/pill\_takes.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00011}\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{00011}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00012}\mbox{\hyperlink{take__alert__screen_8cpp_ac9e0a061622c432fe63571da69c9e8c4}{00012}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{take__alert__screen_8cpp_ac9e0a061622c432fe63571da69c9e8c4}{previousIdleBlock}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00014}\mbox{\hyperlink{take__alert__screen_8cpp_a3208721ae1f62b424e99da3d3eddc7cf}{00014}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{take__alert__screen_8cpp_a3208721ae1f62b424e99da3d3eddc7cf}{findMedicineName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}};\ i++)}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00017}00017\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(\mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[i].\textcolor{keywordtype}{id},\ \textcolor{keywordtype}{id})\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[i].\mbox{\hyperlink{structCatalogMedicine_a64f8648ea2608c724a38da8f79dee501}{name}};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Medicamento"{}};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00025}00025\ \}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00027}\mbox{\hyperlink{take__alert__screen_8cpp_af88032e98c44388094b6f14afa28fd88}{00027}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{take__alert__screen_8cpp_af88032e98c44388094b6f14afa28fd88}{closeAlert}}(lv\_event\_t\ *event)}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00029}00029\ \ \ \ \ (void)\ event;}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8h_aef9d1076996174bbc8d5c4c2f7a2095a}{doseActuatorsAcknowledge}}();}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\_idle\_timeout}}\ =\ \mbox{\hyperlink{take__alert__screen_8cpp_ac9e0a061622c432fe63571da69c9e8c4}{previousIdleBlock}};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_adaf9d8edb551c08d362d712d8d1357e2}{last\_touch\_time}}\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_a24fc9786d6fce7521eeef5a7c971f0ac}{idle\_timeout\_triggered}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}}\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00037}00037\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ lv\_obj\_del(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}});}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00043}\mbox{\hyperlink{take__alert__screen_8h_a7d4b85367414f994adf1f70eac9df88d}{00043}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{take__alert__screen_8cpp_a7d4b85367414f994adf1f70eac9df88d}{show\_take\_alert}}(\textcolor{keywordtype}{int}\ takeIndex)}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (takeIndex\ <\ 0\ ||\ takeIndex\ >=\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}\ ||\ \mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}}\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{take__alert__screen_8cpp_ac9e0a061622c432fe63571da69c9e8c4}{previousIdleBlock}}\ =\ \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\_idle\_timeout}};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00051}00051\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\_idle\_timeout}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}}\ =\ lv\_obj\_create(lv\_layer\_top());}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00054}00054\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}},\ 320,\ 240);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00055}00055\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}},\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00056}00056\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}},\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00057}00057\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00058}00058\ \ \ \ \ lv\_obj\_set\_style\_border\_width(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00059}00059\ \ \ \ \ lv\_obj\_clear\_flag(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}},\ LV\_OBJ\_FLAG\_SCROLLABLE);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00061}00061\ \ \ \ \ lv\_obj\_t\ *title\ =\ lv\_label\_create(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}});}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00062}00062\ \ \ \ \ lv\_label\_set\_text(title,\ \textcolor{stringliteral}{"{}Hora\ de\ la\ toma"{}});}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00063}00063\ \ \ \ \ lv\_obj\_set\_style\_text\_color(title,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00064}00064\ \ \ \ \ lv\_obj\_set\_style\_text\_font(title,\ \&lv\_font\_montserrat\_24,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00065}00065\ \ \ \ \ lv\_obj\_align(title,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 8);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00067}00067\ \ \ \ \ String\ details\ =\ String(\textcolor{stringliteral}{"{}Programada:\ "{}})\ +\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[takeIndex].\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{hour}};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[takeIndex].\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}};\ i++)}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00070}00070\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ details\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ details\ +=\ \mbox{\hyperlink{take__alert__screen_8cpp_a3208721ae1f62b424e99da3d3eddc7cf}{findMedicineName}}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[takeIndex].medicines[i].\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ details\ +=\ \textcolor{stringliteral}{"{}\ x"{}};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ details\ +=\ (int)\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[takeIndex].medicines[i].quantity;}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00077}00077\ \ \ \ \ lv\_obj\_t\ *detailLabel\ =\ lv\_label\_create(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}});}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00078}00078\ \ \ \ \ lv\_label\_set\_text(detailLabel,\ details.c\_str());}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00079}00079\ \ \ \ \ lv\_obj\_set\_width(detailLabel,\ 280);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00080}00080\ \ \ \ \ lv\_obj\_set\_style\_text\_align(detailLabel,\ LV\_TEXT\_ALIGN\_CENTER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00081}00081\ \ \ \ \ lv\_obj\_set\_style\_text\_color(detailLabel,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00082}00082\ \ \ \ \ lv\_obj\_set\_style\_text\_font(detailLabel,\ \&lv\_font\_montserrat\_18,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00083}00083\ \ \ \ \ lv\_obj\_align(detailLabel,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 50);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00085}00085\ \ \ \ \ lv\_obj\_t\ *button\ =\ lv\_btn\_create(\mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}});}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00086}00086\ \ \ \ \ lv\_obj\_set\_size(button,\ 220,\ 52);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00087}00087\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(button,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00088}00088\ \ \ \ \ lv\_obj\_align(button,\ LV\_ALIGN\_BOTTOM\_MID,\ 0,\ -\/12);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00089}00089\ \ \ \ \ lv\_obj\_add\_event\_cb(button,\ \mbox{\hyperlink{take__alert__screen_8cpp_af88032e98c44388094b6f14afa28fd88}{closeAlert}},\ LV\_EVENT\_CLICKED,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00091}00091\ \ \ \ \ lv\_obj\_t\ *buttonLabel\ =\ lv\_label\_create(button);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00092}00092\ \ \ \ \ lv\_label\_set\_text(buttonLabel,\ \textcolor{stringliteral}{"{}Aceptar"{}});}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00093}00093\ \ \ \ \ lv\_obj\_set\_style\_text\_font(buttonLabel,\ \&lv\_font\_montserrat\_24,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00094}00094\ \ \ \ \ lv\_obj\_center(buttonLabel);}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00095}00095\ \}}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00097}\mbox{\hyperlink{take__alert__screen_8h_af074c92aec3f5ff37fcfe738a0b70d78}{00097}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{take__alert__screen_8cpp_af074c92aec3f5ff37fcfe738a0b70d78}{takeAlertVisible}}()}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00098}00098\ \{}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{take__alert__screen_8cpp_a3acf5d1a2196507dcd17437dd1805f87}{alertOverlay}}\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{take__alert__screen_8cpp_source_l00100}00100\ \}}
+
+\end{DoxyCode}

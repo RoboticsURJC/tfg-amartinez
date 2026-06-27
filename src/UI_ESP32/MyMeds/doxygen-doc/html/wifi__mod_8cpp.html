@@ -112,10 +112,10 @@ Include dependency graph for wifi_mod.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a09c269bd7818549a6214ddc1e772eb41" id="r_a09c269bd7818549a6214ddc1e772eb41"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr</a> (lv_obj_t *parent, const char *text)</td></tr>
-<tr class="separator:a09c269bd7818549a6214ddc1e772eb41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47793befeb6bd8738a1e6b7b8ddb38df" id="r_a47793befeb6bd8738a1e6b7b8ddb38df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wifi__mod_8cpp.html#a47793befeb6bd8738a1e6b7b8ddb38df">show_wifi_screen</a> (lv_obj_t *parent, const char *text)</td></tr>
-<tr class="separator:a47793befeb6bd8738a1e6b7b8ddb38df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9219a70f40e688dac2ed3a86d2dbdf5e" id="r_a9219a70f40e688dac2ed3a86d2dbdf5e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr</a> (lv_obj_t *parent, const char *qr_text)</td></tr>
+<tr class="separator:a9219a70f40e688dac2ed3a86d2dbdf5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974108b8928c5d565a6adc5af542fee7" id="r_a974108b8928c5d565a6adc5af542fee7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wifi__mod_8cpp.html#a974108b8928c5d565a6adc5af542fee7">show_wifi_screen</a> (lv_obj_t *parent, const char *label_text, const char *qr_text)</td></tr>
+<tr class="separator:a974108b8928c5d565a6adc5af542fee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -127,8 +127,8 @@ Variables</h2></td></tr>
 <tr class="separator:a912020253c131df3b8e1471b8eec99ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a09c269bd7818549a6214ddc1e772eb41" name="a09c269bd7818549a6214ddc1e772eb41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09c269bd7818549a6214ddc1e772eb41">&#9670;&#160;</a></span>generate_wifi_qr()</h2>
+<a id="a9219a70f40e688dac2ed3a86d2dbdf5e" name="a9219a70f40e688dac2ed3a86d2dbdf5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9219a70f40e688dac2ed3a86d2dbdf5e">&#9670;&#160;</a></span>generate_wifi_qr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -146,7 +146,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>text</em>&#160;</td>
+          <td class="paramname"><em>qr_text</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -164,7 +164,7 @@ Variables</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="wifi__mod_8cpp_source.html#l00010">10</a> of file <a class="el" href="wifi__mod_8cpp_source.html">wifi_mod.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   11</span>{</div>
 <div class="line"><span class="lineno">   12</span>    <a class="code hl_function" href="qrcodegen_8c.html#a2eb79247b6f8bed92514c1815fe0079c">qrcodegen_encodeText</a>(</div>
-<div class="line"><span class="lineno">   13</span>        text,</div>
+<div class="line"><span class="lineno">   13</span>        qr_text,</div>
 <div class="line"><span class="lineno">   14</span>        <a class="code hl_variable" href="wifi__mod_8cpp.html#a912020253c131df3b8e1471b8eec99ff">temp</a>,</div>
 <div class="line"><span class="lineno">   15</span>        <a class="code hl_variable" href="wifi__mod_8cpp.html#a11b70750483ae203722784ad1da56628">qr_data</a>,</div>
 <div class="line"><span class="lineno">   16</span>        <a class="code hl_enumvalue" href="qrcodegen_8h.html#a4823d2c403f1e1ae151939d14003b65caa6f4e3ad3cd16ee38110410f1d14e18a">qrcodegen_Ecc_LOW</a>,</div>
@@ -176,11 +176,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   22</span> </div>
 <div class="line"><span class="lineno">   23</span>    <span class="keywordtype">int</span> size = <a class="code hl_function" href="qrcodegen_8c.html#afe30b8ff2b6218f37a2945871e6f11b8">qrcodegen_getSize</a>(<a class="code hl_variable" href="wifi__mod_8cpp.html#a11b70750483ae203722784ad1da56628">qr_data</a>);</div>
 <div class="line"><span class="lineno">   24</span>    <span class="keywordtype">int</span> scale = 4;</div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordtype">int</span> out_size = size*scale;</div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordtype">int</span> out_size = size * scale;</div>
 <div class="line"><span class="lineno">   26</span> </div>
 <div class="line"><span class="lineno">   27</span>    <span class="keyword">static</span> lv_color_t *<a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a> = <span class="keyword">nullptr</span>;</div>
 <div class="line"><span class="lineno">   28</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a>){</div>
-<div class="line"><span class="lineno">   29</span>        <a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a> = (lv_color_t *) malloc(out_size*out_size*<span class="keyword">sizeof</span>(lv_color_t));</div>
+<div class="line"><span class="lineno">   29</span>        <a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a> = (lv_color_t *) malloc(out_size * out_size * <span class="keyword">sizeof</span>(lv_color_t));</div>
 <div class="line"><span class="lineno">   30</span>    }</div>
 <div class="line"><span class="lineno">   31</span> </div>
 <div class="line"><span class="lineno">   32</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a>){</div>
@@ -218,7 +218,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   64</span> </div>
 <div class="line"><span class="lineno">   65</span>    img_desc.header.w = out_size;</div>
 <div class="line"><span class="lineno">   66</span>    img_desc.header.h = out_size;</div>
-<div class="line"><span class="lineno">   67</span>    img_desc.data_size = out_size*out_size*<span class="keyword">sizeof</span>(lv_color_t);</div>
+<div class="line"><span class="lineno">   67</span>    img_desc.data_size = out_size * out_size * <span class="keyword">sizeof</span>(lv_color_t);</div>
 <div class="line"><span class="lineno">   68</span>    img_desc.data = (<span class="keyword">const</span> uint8_t *) <a class="code hl_variable" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a>;</div>
 <div class="line"><span class="lineno">   69</span> </div>
 <div class="line"><span class="lineno">   70</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>){</div>
@@ -226,7 +226,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   72</span>    }</div>
 <div class="line"><span class="lineno">   73</span> </div>
 <div class="line"><span class="lineno">   74</span>    lv_img_set_src(<a class="code hl_variable" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>, &amp;img_desc);</div>
-<div class="line"><span class="lineno">   75</span>    lv_obj_align(<a class="code hl_variable" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>, LV_ALIGN_CENTER, 0, 10);</div>
+<div class="line"><span class="lineno">   75</span>    lv_obj_align(<a class="code hl_variable" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>, LV_ALIGN_CENTER, 0, 20);</div>
 <div class="line"><span class="lineno">   76</span>}</div>
 <div class="ttc" id="alvgl__display_8cpp_html_aa2cf5a6cba232df3ea4033c2f5b9aa38"><div class="ttname"><a href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a></div><div class="ttdeci">static lv_color_t buf[320 *20]</div><div class="ttdef"><b>Definition</b> <a href="lvgl__display_8cpp_source.html#l00007">lvgl_display.cpp:7</a></div></div>
 <div class="ttc" id="aqrcodegen_8c_html_a2eb79247b6f8bed92514c1815fe0079c"><div class="ttname"><a href="qrcodegen_8c.html#a2eb79247b6f8bed92514c1815fe0079c">qrcodegen_encodeText</a></div><div class="ttdeci">bool qrcodegen_encodeText(const char *text, uint8_t tempBuffer[], uint8_t qrcode[], enum qrcodegen_Ecc ecl, int minVersion, int maxVersion, enum qrcodegen_Mask mask, bool boostEcl)</div><div class="ttdef"><b>Definition</b> <a href="qrcodegen_8c_source.html#l00132">qrcodegen.c:132</a></div></div>
@@ -242,12 +242,12 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="lvgl__display_8cpp.html#aa2cf5a6cba232df3ea4033c2f5b9aa38">buf</a>, <a class="el" href="wifi__mod_8cpp.html#a11b70750483ae203722784ad1da56628">qr_data</a>, <a class="el" href="wifi__mod_8cpp.html#a46edf81bb65df2d82f04cbe3ac7786ab">qr_img</a>, <a class="el" href="qrcodegen_8h.html#a4823d2c403f1e1ae151939d14003b65caa6f4e3ad3cd16ee38110410f1d14e18a">qrcodegen_Ecc_LOW</a>, <a class="el" href="qrcodegen_8c.html#a2eb79247b6f8bed92514c1815fe0079c">qrcodegen_encodeText()</a>, <a class="el" href="qrcodegen_8c.html#a495cb24d97c9b90a9c1e8a62903debf5">qrcodegen_getModule()</a>, <a class="el" href="qrcodegen_8c.html#afe30b8ff2b6218f37a2945871e6f11b8">qrcodegen_getSize()</a>, <a class="el" href="qrcodegen_8h.html#ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841">qrcodegen_Mask_AUTO</a>, <a class="el" href="qrcodegen_8h.html#a347f93227050ed89e6f70f0b1cfb64fe">qrcodegen_VERSION_MAX</a>, <a class="el" href="qrcodegen_8h.html#a8d1f6f0044dde26b3cda74b815be3f2c">qrcodegen_VERSION_MIN</a>, and <a class="el" href="wifi__mod_8cpp.html#a912020253c131df3b8e1471b8eec99ff">temp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="wifi__mod_8h.html#a47793befeb6bd8738a1e6b7b8ddb38df">show_wifi_screen()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="wifi__mod_8h.html#a7e1affbbcf92e141e700ce5e36aaf9a4">show_wifi_screen()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="wifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41_cgraph.png" border="0" usemap="#awifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41_cgraph" alt=""/></div>
-<map name="awifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41_cgraph" id="awifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41_cgraph">
+<div class="center"><img src="wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_cgraph.png" border="0" usemap="#awifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_cgraph" alt=""/></div>
+<map name="awifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_cgraph" id="awifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_cgraph">
 <area shape="rect" title=" " alt="" coords="5,907,136,932"/>
 <area shape="rect" href="qrcodegen_8c.html#a2eb79247b6f8bed92514c1815fe0079c" title=" " alt="" coords="184,180,355,205"/>
 <area shape="poly" title=" " alt="" coords="73,905,258,218,264,219,78,907"/>
@@ -350,22 +350,20 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="wifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41_icgraph.png" border="0" usemap="#awifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41_icgraph" alt=""/></div>
-<map name="awifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41_icgraph" id="awifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41_icgraph">
-<area shape="rect" title=" " alt="" coords="296,31,427,56"/>
-<area shape="rect" href="wifi__mod_8cpp.html#a47793befeb6bd8738a1e6b7b8ddb38df" title=" " alt="" coords="112,31,248,56"/>
-<area shape="poly" title=" " alt="" coords="282,46,248,46,248,41,282,41"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,5,60,31"/>
-<area shape="poly" title=" " alt="" coords="98,32,60,25,61,20,99,26"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,55,64,80"/>
-<area shape="poly" title=" " alt="" coords="99,59,65,65,64,60,98,54"/>
+<div class="center"><img src="wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_icgraph.png" border="0" usemap="#awifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_icgraph" alt=""/></div>
+<map name="awifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_icgraph" id="awifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_icgraph">
+<area shape="rect" title=" " alt="" coords="296,5,427,31"/>
+<area shape="rect" href="wifi__mod_8cpp.html#a974108b8928c5d565a6adc5af542fee7" title=" " alt="" coords="112,5,248,31"/>
+<area shape="poly" title=" " alt="" coords="282,21,248,21,248,15,282,15"/>
+<area shape="rect" href="src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,64,31"/>
+<area shape="poly" title=" " alt="" coords="99,21,64,21,64,15,99,15"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a47793befeb6bd8738a1e6b7b8ddb38df" name="a47793befeb6bd8738a1e6b7b8ddb38df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47793befeb6bd8738a1e6b7b8ddb38df">&#9670;&#160;</a></span>show_wifi_screen()</h2>
+<a id="a974108b8928c5d565a6adc5af542fee7" name="a974108b8928c5d565a6adc5af542fee7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a974108b8928c5d565a6adc5af542fee7">&#9670;&#160;</a></span>show_wifi_screen()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,7 +378,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>text</em>&#160;</td>
+          <td class="paramname"><em>label_text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>qr_text</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -394,25 +398,27 @@ Here is the caller graph for this function:</div>
 <div class="fragment"><div class="line"><span class="lineno">   79</span>{</div>
 <div class="line"><span class="lineno">   80</span>    lv_obj_clean(parent);</div>
 <div class="line"><span class="lineno">   81</span> </div>
-<div class="line"><span class="lineno">   82</span>    lv_obj_t *label = lv_label_create(parent);</div>
-<div class="line"><span class="lineno">   83</span>    lv_label_set_text(label, <span class="stringliteral">&quot;Escanear QR&quot;</span>);</div>
-<div class="line"><span class="lineno">   84</span>    lv_obj_set_style_text_font(label, &amp;lv_font_montserrat_32, LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   85</span>    lv_obj_align(label, LV_ALIGN_TOP_MID, 0, 20);</div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>    <a class="code hl_function" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr</a>(parent, text);</div>
-<div class="line"><span class="lineno">   88</span>}</div>
-<div class="ttc" id="awifi__mod_8cpp_html_a09c269bd7818549a6214ddc1e772eb41"><div class="ttname"><a href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr</a></div><div class="ttdeci">static void generate_wifi_qr(lv_obj_t *parent, const char *text)</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00010">wifi_mod.cpp:10</a></div></div>
+<div class="line"><span class="lineno">   82</span>    <span class="comment">// --- TEXTO ---</span></div>
+<div class="line"><span class="lineno">   83</span>    lv_obj_t *label = lv_label_create(parent);</div>
+<div class="line"><span class="lineno">   84</span>    lv_label_set_text(label, label_text);</div>
+<div class="line"><span class="lineno">   85</span>    lv_obj_set_style_text_font(label, &amp;lv_font_montserrat_32, LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   86</span>    lv_obj_align(label, LV_ALIGN_TOP_MID, 0, 20);</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>    <span class="comment">// --- QR ---</span></div>
+<div class="line"><span class="lineno">   89</span>    <a class="code hl_function" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr</a>(parent, qr_text);</div>
+<div class="line"><span class="lineno">   90</span>}</div>
+<div class="ttc" id="awifi__mod_8cpp_html_a9219a70f40e688dac2ed3a86d2dbdf5e"><div class="ttname"><a href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr</a></div><div class="ttdeci">static void generate_wifi_qr(lv_obj_t *parent, const char *qr_text)</div><div class="ttdef"><b>Definition</b> <a href="wifi__mod_8cpp_source.html#l00010">wifi_mod.cpp:10</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr()</a>.</p>
+<p class="reference">References <a class="el" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop()</a>, and <a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="wifi__mod_8cpp_a47793befeb6bd8738a1e6b7b8ddb38df_cgraph.png" border="0" usemap="#awifi__mod_8cpp_a47793befeb6bd8738a1e6b7b8ddb38df_cgraph" alt=""/></div>
-<map name="awifi__mod_8cpp_a47793befeb6bd8738a1e6b7b8ddb38df_cgraph" id="awifi__mod_8cpp_a47793befeb6bd8738a1e6b7b8ddb38df_cgraph">
+<div class="center"><img src="wifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_cgraph.png" border="0" usemap="#awifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_cgraph" alt=""/></div>
+<map name="awifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_cgraph" id="awifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_cgraph">
 <area shape="rect" title=" " alt="" coords="5,907,141,932"/>
-<area shape="rect" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41" title=" " alt="" coords="189,907,320,932"/>
+<area shape="rect" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e" title=" " alt="" coords="189,907,320,932"/>
 <area shape="poly" title=" " alt="" coords="142,917,175,917,175,922,142,922"/>
 <area shape="rect" href="qrcodegen_8c.html#a2eb79247b6f8bed92514c1815fe0079c" title=" " alt="" coords="368,180,539,205"/>
 <area shape="poly" title=" " alt="" coords="257,905,442,218,448,219,262,907"/>
@@ -515,13 +521,11 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="wifi__mod_8cpp_a47793befeb6bd8738a1e6b7b8ddb38df_icgraph.png" border="0" usemap="#awifi__mod_8cpp_a47793befeb6bd8738a1e6b7b8ddb38df_icgraph" alt=""/></div>
-<map name="awifi__mod_8cpp_a47793befeb6bd8738a1e6b7b8ddb38df_icgraph" id="awifi__mod_8cpp_a47793befeb6bd8738a1e6b7b8ddb38df_icgraph">
-<area shape="rect" title=" " alt="" coords="112,31,248,56"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,5,60,31"/>
-<area shape="poly" title=" " alt="" coords="98,32,60,25,61,20,99,26"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,55,64,80"/>
-<area shape="poly" title=" " alt="" coords="99,59,65,65,64,60,98,54"/>
+<div class="center"><img src="wifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_icgraph.png" border="0" usemap="#awifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_icgraph" alt=""/></div>
+<map name="awifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_icgraph" id="awifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_icgraph">
+<area shape="rect" title=" " alt="" coords="112,5,248,31"/>
+<area shape="rect" href="src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,64,31"/>
+<area shape="poly" title=" " alt="" coords="99,21,64,21,64,15,99,15"/>
 </map>
 </div>
 
@@ -550,7 +554,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="wifi__mod_8cpp_source.html#l00007">7</a> of file <a class="el" href="wifi__mod_8cpp_source.html">wifi_mod.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr()</a>.</p>
 
 </div>
 </div>
@@ -576,7 +580,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="wifi__mod_8cpp_source.html#l00006">6</a> of file <a class="el" href="wifi__mod_8cpp_source.html">wifi_mod.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr()</a>.</p>
 
 </div>
 </div>
@@ -602,7 +606,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="wifi__mod_8cpp_source.html#l00008">8</a> of file <a class="el" href="wifi__mod_8cpp_source.html">wifi_mod.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="wifi__mod_8cpp.html#a09c269bd7818549a6214ddc1e772eb41">generate_wifi_qr()</a>, <a class="el" href="qrcodegen_8c.html#a16a720d755035eac84bf4c110935aadb">numCharCountBits()</a>, <a class="el" href="qrcodegen_8c.html#a15e9a13d5e49596089d6506558f6e506">qrcodegen_calcSegmentBufferSize()</a>, and <a class="el" href="qrcodegen_8c.html#aaed32d45f095ce02e6718c8a48f4393d">qrcodegen_makeAlphanumeric()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="wifi__mod_8cpp.html#a9219a70f40e688dac2ed3a86d2dbdf5e">generate_wifi_qr()</a>, <a class="el" href="qrcodegen_8c.html#a16a720d755035eac84bf4c110935aadb">numCharCountBits()</a>, <a class="el" href="qrcodegen_8c.html#a15e9a13d5e49596089d6506558f6e506">qrcodegen_calcSegmentBufferSize()</a>, and <a class="el" href="qrcodegen_8c.html#aaed32d45f095ce02e6718c8a48f4393d">qrcodegen_makeAlphanumeric()</a>.</p>
 
 </div>
 </div>

@@ -33,36 +33,54 @@
 \DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00029}00029\ }
 \DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ holder.binding.textDays.text\ =\ "{}📅\ "{}\ +\ take.days.joinToString("{}\ "{})\ \{\ it.label\ \}}
 \DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ holder.binding.textMedicines.text\ =\ "{}💊\ "{}\ +\ take.medicines.joinToString("{}\(\backslash\)n"{})\ \{}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\$\{it.name\}\ -\/\ \$\{it.quantity\}"{}}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ if\ (take.reminderEnabled)\ \{}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00037}00037\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ val\ warningText\ =}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ take.advanceWarningMinutes?.let\ \{}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Aviso\ previo:\ \$it\ min"{}}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ ?:\ "{}Sin\ aviso\ previo"{}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ val\ meds\ =\ take.medicines\ ?:\ emptyList()}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ holder.binding.textMedicines.text\ =}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (meds.isNotEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}💊\ "{}\ +\ meds.joinToString("{}\(\backslash\)n"{})\ \{\ med\ -\/>}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ realMedicine\ =}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ com.example.mymeds.data.repository.MedicineRepository}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .findById(med.id)}
 \DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textReminder.text\ =}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}🔔\ Recordatorio\ activado\(\backslash\)n\$warningText"{}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ medName\ =}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ realMedicine?.name\ ?:\ "{}Desconocido"{}}
 \DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00045}00045\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \}\ else\ \{}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00047}00047\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textReminder.text\ =}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}🔕\ Recordatorio\ desactivado"{}}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00051}00051\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ holder.binding.buttonEdit.setOnClickListener\ \{}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ onEditClick(position)}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\$medName\ -\/\ \$\{med.quantity\}"{}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}💊\ Sin\ medicamentos"{}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ if\ (take.reminderEnabled)\ \{}
 \DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00055}00055\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ holder.binding.buttonDelete.setOnClickListener\ \{}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ onDeleteClick(position)}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ val\ warningText\ =}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ take.advanceWarningMinutes?.let\ \{}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Aviso\ previo:\ \$it\ min"{}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ ?:\ "{}Sin\ aviso\ previo"{}}
 \DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00060}00060\ }
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00061}00061\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ takes.size}
-\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textReminder.text\ =}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}🔔\ Recordatorio\ activado\(\backslash\)n\$warningText"{}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.textReminder.text\ =}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}🔕\ Recordatorio\ desactivado"{}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ holder.binding.buttonEdit.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ onEditClick(position)}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ holder.binding.buttonDelete.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ onDeleteClick(position)}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00079}00079\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ takes.size}
+\DoxyCodeLine{\Hypertarget{TakesAdapter_8kt_source_l00080}00080\ \}}
 
 \end{DoxyCode}

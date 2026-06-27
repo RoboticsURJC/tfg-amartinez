@@ -1,5 +1,28 @@
 var searchData=
 [
-  ['server_0',['server',['../wifi__portal_8cpp.html#ac223f3cd27b784b7d95b18d6e3184ee0',1,'wifi_portal.cpp']]],
-  ['sw_5frecordatory_1',['sw_recordatory',['../edit__takes_8cpp.html#a5ccd636898f858539e37844b2decea34',1,'edit_takes.cpp']]]
+  ['sd_5favailable_0',['sd_available',['../pulse__history__storage_8cpp.html#a5f775c506cdb65289c8e8363cea4065e',1,'pulse_history_storage.cpp']]],
+  ['sd_5fcs_1',['SD_CS',['../pulse__history__storage_8cpp.html#a7436b3f1ea366c2125bc301486c9acc4',1,'pulse_history_storage.cpp']]],
+  ['sd_5finitialized_2',['sd_initialized',['../pulse__history__storage_8cpp.html#a1af6eebc2debc23c1362fda0a6dd072a',1,'pulse_history_storage.cpp']]],
+  ['sd_5fmiso_3',['SD_MISO',['../pulse__history__storage_8cpp.html#af01e1bb2c0509f4e35a7ae16eaee545f',1,'pulse_history_storage.cpp']]],
+  ['sd_5fmosi_4',['SD_MOSI',['../pulse__history__storage_8cpp.html#aed461b01f19060beb50b62e2c60116da',1,'pulse_history_storage.cpp']]],
+  ['sd_5fsck_5',['SD_SCK',['../pulse__history__storage_8cpp.html#a32bd43d7e7de1b34f382477ceda2a61d',1,'pulse_history_storage.cpp']]],
+  ['sensorrunning_6',['sensorRunning',['../pulse__sensor_8cpp.html#ac0f03931f19b36c58ed5e6d39876091e',1,'pulse_sensor.cpp']]],
+  ['server_7',['server',['../wifi__portal_8cpp.html#ac223f3cd27b784b7d95b18d6e3184ee0',1,'wifi_portal.cpp']]],
+  ['servo_5factions_8',['SERVO_ACTIONS',['../dose__actuators_8cpp.html#aefb29388729ad62055195b0a1da81a83',1,'dose_actuators.cpp']]],
+  ['servo_5fchannel_9',['SERVO_CHANNEL',['../dose__actuators_8cpp.html#a373cc323be319444a900646df5450865',1,'dose_actuators.cpp']]],
+  ['servo_5fpos_5fmax_10',['SERVO_POS_MAX',['../dose__actuators_8cpp.html#aa62f9d3d5f202b89068f61793389ecb8',1,'dose_actuators.cpp']]],
+  ['servo_5fpos_5fmin_11',['SERVO_POS_MIN',['../dose__actuators_8cpp.html#a7364b20ce608288520e2c7ed759d27a2',1,'dose_actuators.cpp']]],
+  ['servoactioncount_12',['servoActionCount',['../dose__actuators_8cpp.html#a3a277f7e2b45c548d3190ad7fe3da02e',1,'dose_actuators.cpp']]],
+  ['servonextupdate_13',['servoNextUpdate',['../dose__actuators_8cpp.html#aba6fbe7455050f3c8e1acc5bf94108b7',1,'dose_actuators.cpp']]],
+  ['servophase_14',['servoPhase',['../dose__actuators_8cpp.html#a2d00833ed2d6cfd049d75779db3d1887',1,'dose_actuators.cpp']]],
+  ['servoposition_15',['servoPosition',['../dose__actuators_8cpp.html#aea38528c28b9fce58b59a4873048a328',1,'dose_actuators.cpp']]],
+  ['speaker_5fchannel_16',['SPEAKER_CHANNEL',['../dose__actuators_8cpp.html#ae7b41e96c8837bde2159a540363c796c',1,'dose_actuators.cpp']]],
+  ['speaker_5fpin_17',['SPEAKER_PIN',['../dose__actuators_8cpp.html#a57526ed712025c1ba18dcbbc365f1021',1,'dose_actuators.cpp']]],
+  ['speaker_5fvolume_18',['SPEAKER_VOLUME',['../dose__actuators_8cpp.html#a17e0987b8f8f8236f21c0b9f285b564c',1,'dose_actuators.cpp']]],
+  ['speakercycle_19',['speakerCycle',['../dose__actuators_8cpp.html#a89dbf28494ce5bf281a63ba03366c1ee',1,'dose_actuators.cpp']]],
+  ['speakernextupdate_20',['speakerNextUpdate',['../dose__actuators_8cpp.html#a1549d35bd0a706c0cd5d90c6490a51b3',1,'dose_actuators.cpp']]],
+  ['speakernote_21',['speakerNote',['../dose__actuators_8cpp.html#a415a52e7b4ca79431a8bb2183fe558b2',1,'dose_actuators.cpp']]],
+  ['speakerphase_22',['speakerPhase',['../dose__actuators_8cpp.html#ac5565dd80cb3b5e90c19fa43d92c0355',1,'dose_actuators.cpp']]],
+  ['status_5flabel_23',['status_label',['../pulse__screen_8cpp.html#ac4b382b229c227a83d418b45c2db03f0',1,'pulse_screen.cpp']]],
+  ['sw_5frecordatory_24',['sw_recordatory',['../edit__takes_8cpp.html#a5ccd636898f858539e37844b2decea34',1,'edit_takes.cpp']]]
 ];

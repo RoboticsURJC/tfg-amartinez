@@ -1,0 +1,218 @@
+\doxysection{include/storage/medicines\+\_\+storage.h File Reference}
+\hypertarget{medicines__storage_8h}{}\label{medicines__storage_8h}\index{include/storage/medicines\_storage.h@{include/storage/medicines\_storage.h}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+Include dependency graph for medicines\+\_\+storage.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{medicines__storage_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{medicines__storage_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCatalogMedicine}{Catalog\+Medicine}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c}{MAX\+\_\+\+CATALOG\+\_\+\+MEDICINES}}~8
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{medicines__storage_8h_aa3455ca297405ba55eda2b5f9f0d6b5f}{save\+Medicines}} ()
+\item 
+void \mbox{\hyperlink{medicines__storage_8h_a0ca56924260f2bf1e6234157d4fc3f17}{load\+Medicines}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCatalogMedicine}{Catalog\+Medicine}} \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicine\+Catalog}} \mbox{[}\mbox{\hyperlink{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c}{MAX\+\_\+\+CATALOG\+\_\+\+MEDICINES}}\mbox{]}
+\item 
+int \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\+\_\+count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c}\label{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c} 
+\index{medicines\_storage.h@{medicines\_storage.h}!MAX\_CATALOG\_MEDICINES@{MAX\_CATALOG\_MEDICINES}}
+\index{MAX\_CATALOG\_MEDICINES@{MAX\_CATALOG\_MEDICINES}!medicines\_storage.h@{medicines\_storage.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_CATALOG\_MEDICINES}{MAX\_CATALOG\_MEDICINES}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+CATALOG\+\_\+\+MEDICINES~8}
+
+
+
+Definition at line \mbox{\hyperlink{medicines__storage_8h_source_l00005}{5}} of file \mbox{\hyperlink{medicines__storage_8h_source}{medicines\+\_\+storage.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{medicines__storage_8h_a0ca56924260f2bf1e6234157d4fc3f17}\label{medicines__storage_8h_a0ca56924260f2bf1e6234157d4fc3f17} 
+\index{medicines\_storage.h@{medicines\_storage.h}!loadMedicines@{loadMedicines}}
+\index{loadMedicines@{loadMedicines}!medicines\_storage.h@{medicines\_storage.h}}
+\doxysubsubsection{\texorpdfstring{loadMedicines()}{loadMedicines()}}
+{\footnotesize\ttfamily void load\+Medicines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{medicines__storage_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{medicines__storage_8cpp_source}{medicines\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.begin(\textcolor{stringliteral}{"{}meds"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ String\ json\ =\ \mbox{\hyperlink{medicines__storage_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getString(\textcolor{stringliteral}{"{}catalog"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.end();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (json.isEmpty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ DynamicJsonDocument\ doc(512);}
+\DoxyCodeLine{00048\ \ \ \ \ DeserializationError\ error\ =\ deserializeJson(doc,\ json);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (error)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Error\ parsing\ medicines\ JSON"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}\ =\ 0;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ JsonArray\ arr\ =\ doc[\textcolor{stringliteral}{"{}medicines"{}}].as<JsonArray>();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{for}\ (JsonObject\ obj\ :\ arr)\ \{}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}\ >=\ \mbox{\hyperlink{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c}{MAX\_CATALOG\_MEDICINES}})\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ strncpy(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[\mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}].\textcolor{keywordtype}{id},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ obj[\textcolor{stringliteral}{"{}id"{}}]\ |\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[\mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}].\textcolor{keywordtype}{id})}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ strncpy(}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[\mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}].name,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ obj[\textcolor{stringliteral}{"{}name"{}}]\ |\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[\mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}].name)}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}++;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Medicines\ cargados:"{}});}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}};\ i++)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ Serial.println(\mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[i].name);}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c}{MAX\+\_\+\+CATALOG\+\_\+\+MEDICINES}}, \mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\+\_\+count}}, \mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicine\+Catalog}}, and \mbox{\hyperlink{medicines__storage_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.
+
+
+
+Referenced by \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{medicines__storage_8h_a0ca56924260f2bf1e6234157d4fc3f17_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{medicines__storage_8h_aa3455ca297405ba55eda2b5f9f0d6b5f}\label{medicines__storage_8h_aa3455ca297405ba55eda2b5f9f0d6b5f} 
+\index{medicines\_storage.h@{medicines\_storage.h}!saveMedicines@{saveMedicines}}
+\index{saveMedicines@{saveMedicines}!medicines\_storage.h@{medicines\_storage.h}}
+\doxysubsubsection{\texorpdfstring{saveMedicines()}{saveMedicines()}}
+{\footnotesize\ttfamily void save\+Medicines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{medicines__storage_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{medicines__storage_8cpp_source}{medicines\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.begin(\textcolor{stringliteral}{"{}meds"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ DynamicJsonDocument\ doc(512);}
+\DoxyCodeLine{00017\ \ \ \ \ JsonArray\ arr\ =\ doc.createNestedArray(\textcolor{stringliteral}{"{}medicines"{}});}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}};\ i++)\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ JsonObject\ obj\ =\ arr.createNestedObject();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ obj[\textcolor{stringliteral}{"{}id"{}}]\ =\ \mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[i].\mbox{\hyperlink{structCatalogMedicine_aa92be97d7ed9222fea9bf46696af1313}{id}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ obj[\textcolor{stringliteral}{"{}name"{}}]\ =\ \mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[i].\mbox{\hyperlink{structCatalogMedicine_a64f8648ea2608c724a38da8f79dee501}{name}};}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ String\ json;}
+\DoxyCodeLine{00028\ \ \ \ \ serializeJson(doc,\ json);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putString(\textcolor{stringliteral}{"{}catalog"{}},\ json);}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{medicines__storage_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.end();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Medicines\ guardados\ en\ ESP"{}});}
+\DoxyCodeLine{00034\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structCatalogMedicine_aa92be97d7ed9222fea9bf46696af1313}{Catalog\+Medicine\+::id}}, \mbox{\hyperlink{medicines__storage_8cpp_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\+\_\+count}}, \mbox{\hyperlink{medicines__storage_8cpp_a43003cc9158ddb82784559ced6132c05}{medicine\+Catalog}}, \mbox{\hyperlink{structCatalogMedicine_a64f8648ea2608c724a38da8f79dee501}{Catalog\+Medicine\+::name}}, and \mbox{\hyperlink{medicines__storage_8cpp_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_a955c1c31d397355ec56d70ff4059df2d}{handle\+\_\+set\+\_\+medicines()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{medicines__storage_8h_aa3455ca297405ba55eda2b5f9f0d6b5f_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}\label{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f} 
+\index{medicines\_storage.h@{medicines\_storage.h}!medicine\_count@{medicine\_count}}
+\index{medicine\_count@{medicine\_count}!medicines\_storage.h@{medicines\_storage.h}}
+\doxysubsubsection{\texorpdfstring{medicine\_count}{medicine\_count}}
+{\footnotesize\ttfamily int medicine\+\_\+count\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{medicines__storage_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{medicines__storage_8cpp_source}{medicines\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{take__alert__screen_8cpp_a3208721ae1f62b424e99da3d3eddc7cf}{find\+Medicine\+Name()}}, \mbox{\hyperlink{today__takes_8cpp_ad7a30a2621259f647ab1fd6204be924f}{get\+\_\+medicine\+\_\+name()}}, \mbox{\hyperlink{wifi__portal_8h_ab899f5d39c805aa6237418298c4d13b2}{handle\+\_\+get\+\_\+medicines()}}, \mbox{\hyperlink{wifi__portal_8h_ae38a5eed23fccbea213858100fc7768a}{handle\+\_\+get\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_a955c1c31d397355ec56d70ff4059df2d}{handle\+\_\+set\+\_\+medicines()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, \mbox{\hyperlink{medicines__storage_8h_a0ca56924260f2bf1e6234157d4fc3f17}{load\+Medicines()}}, \mbox{\hyperlink{edit__takes_8cpp_ae4651fbe523abcc40959dd080499f6b2}{refresh\+\_\+medicines\+\_\+list()}}, \mbox{\hyperlink{medicines__storage_8h_aa3455ca297405ba55eda2b5f9f0d6b5f}{save\+Medicines()}}, \mbox{\hyperlink{takes__storage_8h_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes()}}, and \mbox{\hyperlink{takes__storage_8h_ab1b6c8b803c156d0a5b4918b8cb77bde}{upload\+Takes()}}.
+
+\Hypertarget{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}\label{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05} 
+\index{medicines\_storage.h@{medicines\_storage.h}!medicineCatalog@{medicineCatalog}}
+\index{medicineCatalog@{medicineCatalog}!medicines\_storage.h@{medicines\_storage.h}}
+\doxysubsubsection{\texorpdfstring{medicineCatalog}{medicineCatalog}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCatalogMedicine}{Catalog\+Medicine}} medicine\+Catalog\mbox{[}\mbox{\hyperlink{medicines__storage_8h_ad63659932f73002702aec25e2c283b9c}{MAX\+\_\+\+CATALOG\+\_\+\+MEDICINES}}\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{medicines__storage_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{medicines__storage_8cpp_source}{medicines\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{take__alert__screen_8cpp_a3208721ae1f62b424e99da3d3eddc7cf}{find\+Medicine\+Name()}}, \mbox{\hyperlink{today__takes_8cpp_ad7a30a2621259f647ab1fd6204be924f}{get\+\_\+medicine\+\_\+name()}}, \mbox{\hyperlink{wifi__portal_8h_ab899f5d39c805aa6237418298c4d13b2}{handle\+\_\+get\+\_\+medicines()}}, \mbox{\hyperlink{wifi__portal_8h_ae38a5eed23fccbea213858100fc7768a}{handle\+\_\+get\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_a955c1c31d397355ec56d70ff4059df2d}{handle\+\_\+set\+\_\+medicines()}}, \mbox{\hyperlink{medicines__storage_8h_a0ca56924260f2bf1e6234157d4fc3f17}{load\+Medicines()}}, \mbox{\hyperlink{edit__takes_8cpp_ae4651fbe523abcc40959dd080499f6b2}{refresh\+\_\+medicines\+\_\+list()}}, and \mbox{\hyperlink{medicines__storage_8h_aa3455ca297405ba55eda2b5f9f0d6b5f}{save\+Medicines()}}.
+

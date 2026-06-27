@@ -1,10 +1,24 @@
 var searchData=
 [
-  ['handle_5flink_0',['handle_link',['../wifi__portal_8h.html#affa2625e0a0e8aacfbf2c6016cd2c015',1,'handle_link():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#affa2625e0a0e8aacfbf2c6016cd2c015',1,'handle_link():&#160;wifi_portal.cpp']]],
-  ['handle_5fsave_1',['handle_save',['../wifi__portal_8h.html#a56a42abadde7879918d1cd7ae9d07a05',1,'handle_save():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a56a42abadde7879918d1cd7ae9d07a05',1,'handle_save():&#160;wifi_portal.cpp']]],
-  ['handle_5ftakes_2',['handle_takes',['../wifi__portal_8h.html#a79d6ac99b4b3fb43de8b45fbf780068f',1,'handle_takes():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a79d6ac99b4b3fb43de8b45fbf780068f',1,'handle_takes():&#160;wifi_portal.cpp']]],
-  ['handle_5fweb_5froot_3',['handle_web_root',['../wifi__portal_8h.html#af5e9b018d143ba1174cd9fcec21c0543',1,'handle_web_root():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#af5e9b018d143ba1174cd9fcec21c0543',1,'handle_web_root():&#160;wifi_portal.cpp']]],
-  ['home_5fmod_2ecpp_4',['home_mod.cpp',['../home__mod_8cpp.html',1,'']]],
-  ['home_5fmod_2eh_5',['home_mod.h',['../home__mod_8h.html',1,'']]],
-  ['hour_6',['hour',['../structTakeConfig.html#add75ebc697182f02403162747aa7c7df',1,'TakeConfig']]]
+  ['handle_5fadd_5ftake_0',['handle_add_take',['../wifi__portal_8h.html#a01b0c3c0f9209a1c0333f7e3a411bd00',1,'handle_add_take():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a01b0c3c0f9209a1c0333f7e3a411bd00',1,'handle_add_take():&#160;wifi_portal.cpp']]],
+  ['handle_5fdelete_5ftake_1',['handle_delete_take',['../wifi__portal_8h.html#aed7f7c07dec43bffcda8d8d26828b210',1,'handle_delete_take():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#aed7f7c07dec43bffcda8d8d26828b210',1,'handle_delete_take():&#160;wifi_portal.cpp']]],
+  ['handle_5fget_5fmedicines_2',['handle_get_medicines',['../wifi__portal_8h.html#ab899f5d39c805aa6237418298c4d13b2',1,'handle_get_medicines():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#ab899f5d39c805aa6237418298c4d13b2',1,'handle_get_medicines():&#160;wifi_portal.cpp']]],
+  ['handle_5fget_5fpin_3',['handle_get_pin',['../wifi__portal_8h.html#a24f7fa44c842c64cb927021f8c9854a3',1,'handle_get_pin():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a24f7fa44c842c64cb927021f8c9854a3',1,'handle_get_pin():&#160;wifi_portal.cpp']]],
+  ['handle_5fget_5fpulse_5fhistory_4',['handle_get_pulse_history',['../wifi__portal_8h.html#a41d09bd70e40d7a7a73ef81541193e2d',1,'handle_get_pulse_history():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a41d09bd70e40d7a7a73ef81541193e2d',1,'handle_get_pulse_history():&#160;wifi_portal.cpp']]],
+  ['handle_5fget_5ftakes_5',['handle_get_takes',['../wifi__portal_8cpp.html#ae38a5eed23fccbea213858100fc7768a',1,'handle_get_takes():&#160;wifi_portal.cpp'],['../wifi__portal_8h.html#ae38a5eed23fccbea213858100fc7768a',1,'handle_get_takes():&#160;wifi_portal.cpp']]],
+  ['handle_5flink_6',['handle_link',['../wifi__portal_8cpp.html#affa2625e0a0e8aacfbf2c6016cd2c015',1,'handle_link():&#160;wifi_portal.cpp'],['../wifi__portal_8h.html#affa2625e0a0e8aacfbf2c6016cd2c015',1,'handle_link():&#160;wifi_portal.cpp']]],
+  ['handle_5fnot_5ffound_7',['handle_not_found',['../src_2main_8cpp.html#abbb2c8533d3382aff50c25132e42be24',1,'main.cpp']]],
+  ['handle_5fsave_8',['handle_save',['../wifi__portal_8h.html#a56a42abadde7879918d1cd7ae9d07a05',1,'handle_save():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a56a42abadde7879918d1cd7ae9d07a05',1,'handle_save():&#160;wifi_portal.cpp']]],
+  ['handle_5fset_5fmedicines_9',['handle_set_medicines',['../wifi__portal_8h.html#a955c1c31d397355ec56d70ff4059df2d',1,'handle_set_medicines():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a955c1c31d397355ec56d70ff4059df2d',1,'handle_set_medicines():&#160;wifi_portal.cpp']]],
+  ['handle_5fset_5fpin_10',['handle_set_pin',['../wifi__portal_8h.html#a8783f9f8d422071bbd6cfde4bc9b373c',1,'handle_set_pin():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a8783f9f8d422071bbd6cfde4bc9b373c',1,'handle_set_pin():&#160;wifi_portal.cpp']]],
+  ['handle_5ftakes_11',['handle_takes',['../wifi__portal_8h.html#a79d6ac99b4b3fb43de8b45fbf780068f',1,'handle_takes():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#a79d6ac99b4b3fb43de8b45fbf780068f',1,'handle_takes():&#160;wifi_portal.cpp']]],
+  ['handle_5fupdate_5ftake_12',['handle_update_take',['../wifi__portal_8h.html#aac63c9ecd3547ed69fa236e0fcfe8e34',1,'handle_update_take():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#aac63c9ecd3547ed69fa236e0fcfe8e34',1,'handle_update_take():&#160;wifi_portal.cpp']]],
+  ['handle_5fweb_5froot_13',['handle_web_root',['../wifi__portal_8h.html#af5e9b018d143ba1174cd9fcec21c0543',1,'handle_web_root():&#160;wifi_portal.cpp'],['../wifi__portal_8cpp.html#af5e9b018d143ba1174cd9fcec21c0543',1,'handle_web_root():&#160;wifi_portal.cpp']]],
+  ['heart_14',['heart',['../heart_8c.html#a3119341481da7b8bf32d04c669ca4637',1,'heart:&#160;heart.c'],['../heart_8h.html#a3119341481da7b8bf32d04c669ca4637',1,'heart:&#160;heart.c']]],
+  ['heart_2ec_15',['heart.c',['../heart_8c.html',1,'']]],
+  ['heart_2eh_16',['heart.h',['../heart_8h.html',1,'']]],
+  ['heart_5fmap_17',['heart_map',['../heart_8c.html#a21e02e23943df485eb37534a77c5e7b1',1,'heart.c']]],
+  ['home_5fmod_2ecpp_18',['home_mod.cpp',['../home__mod_8cpp.html',1,'']]],
+  ['home_5fmod_2eh_19',['home_mod.h',['../home__mod_8h.html',1,'']]],
+  ['hour_20',['hour',['../structTakeConfig.html#add75ebc697182f02403162747aa7c7df',1,'TakeConfig']]]
 ];

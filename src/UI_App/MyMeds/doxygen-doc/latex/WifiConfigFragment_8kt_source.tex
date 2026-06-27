@@ -15,122 +15,320 @@
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00011}00011\ import\ com.example.mymeds.databinding.FragmentWifiConfigBinding}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00012}00012\ import\ android.view.inputmethod.InputMethodManager}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00013}00013\ import\ android.content.Context}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00014}00014\ import\ com.example.mymeds.R}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00015}00015\ import\ com.example.mymeds.data.repository.EspConfig}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00016}00016\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00017}00017\ class\ WifiConfigFragment\ :\ Fragment()\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00018}00018\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00019}00019\ \ \ \ \ private\ var\ \_binding:\ FragmentWifiConfigBinding?\ =\ null}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00020}00020\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00014}00014\ import\ android.util.Log}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00015}00015\ import\ com.example.mymeds.R}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00016}00016\ import\ com.example.mymeds.data.repository.EspConfig}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00017}00017\ import\ com.example.mymeds.data.network.EspApi}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00018}00018\ import\ org.json.JSONObject}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00020}00020\ class\ WifiConfigFragment\ :\ Fragment()\ \{}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00022}00022\ \ \ \ \ override\ fun\ onCreateView(}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00023}00023\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ container:\ ViewGroup?,}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00026}00026\ \ \ \ \ ):\ View\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentWifiConfigBinding.inflate(inflater,\ container,\ false)}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00028}00028\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ binding.buttonBack.setOnClickListener\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().popBackStack()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00032}00032\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ binding.buttonSendWifi.setOnClickListener\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ val\ ssid\ =\ binding.ssidInput.text.toString()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ val\ pass\ =\ binding.passwordInput.text.toString()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00036}00036\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (ssid.isBlank()\ ||\ pass.isBlank())\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00038}00038\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Introduce\ SSID\ y\ contraseña"{},}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00022}00022\ \ \ \ \ private\ var\ isSearching\ =\ false}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00024}00024\ \ \ \ \ private\ var\ \_binding:\ FragmentWifiConfigBinding?\ =\ null}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00025}00025\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00027}00027\ \ \ \ \ override\ fun\ onCreateView(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ container:\ ViewGroup?,}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00031}00031\ \ \ \ \ ):\ View\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentWifiConfigBinding.inflate(inflater,\ container,\ false)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ binding.buttonBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.configFragment)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ binding.buttonSendWifi.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ val\ ssid\ =\ binding.ssidInput.text.toString()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ val\ pass\ =\ binding.passwordInput.text.toString()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (ssid.isBlank()\ ||\ pass.isBlank())\ \{}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00044}00044\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00047}00047\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ Thread\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (EspConfig.baseUrl.isEmpty())\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@Thread}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ url\ =\ java.net.URL(EspConfig.baseUrl\ +\ "{}/save"{})}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ conn\ =\ url.openConnection()\ as\ java.net.HttpURLConnection}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00056}00056\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.requestMethod\ =\ "{}POST"{}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.doOutput\ =\ true}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00059}00059\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ data\ =\ "{}ssid="{}\ +\ ssid\ +\ "{}\&password="{}\ +\ pass}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ out\ =\ conn.outputStream}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Introduce\ SSID\ y\ contraseña"{},}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ binding.buttonSendWifi.isEnabled\ =\ false}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ Thread\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (EspConfig.baseUrl.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ Exception("{}Base\ URL\ vacía"{})}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00062}00062\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.write(data.toByteArray())}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.flush()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.close()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00066}00066\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.responseCode}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ url\ =\ java.net.URL(EspConfig.baseUrl\ +\ "{}/save"{})}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ conn\ =\ url.openConnection()\ as\ java.net.HttpURLConnection}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.requestMethod\ =\ "{}POST"{}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.doOutput\ =\ true}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00068}00068\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireActivity().runOnUiThread\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}WiFi\ enviado\ al\ ESP"{},}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00075}00075\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.qrScannerFragment)}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Ahora\ escanea\ el\ QR\ del\ dispositivo\ conectado"{},}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_LONG}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.connectTimeout\ =\ 3000}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.readTimeout\ =\ 3000}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ data\ =\ "{}ssid=\$ssid\&password=\$pass"{}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.outputStream.use\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it.write(data.toByteArray())}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.responseCode\ \ \ //\ puede\ fallar\ si\ ESP\ reinicia}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (\_:\ Exception)\ \{\}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.disconnect()}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00083}00083\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireActivity().runOnUiThread\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Error\ enviando\ WiFi"{},}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_LONG}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}.start()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00095}00095\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ return\ binding.root}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00097}00097\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00098}00098\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00099}00099\ \ \ \ \ override\ fun\ onViewCreated(view:\ View,\ savedInstanceState:\ Bundle?)\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ super.onViewCreated(view,\ savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireActivity().runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!isAdded)\ return@runOnUiThread}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}WiFi\ enviado.\ Conectando..."{},}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_LONG}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ showLoading()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startConnectionProcess()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace()}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00101}00101\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ Toast.makeText(}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ EspConfig.baseUrl,}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_LONG}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ ).show()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ //\ Forzar\ foco\ y\ teclado\ en\ SSID}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ binding.ssidInput.requestFocus()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ binding.ssidInput.post\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ val\ imm\ =\ requireContext()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .getSystemService(Context.INPUT\_METHOD\_SERVICE)}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ as\ InputMethodManager}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ imm.showSoftInput(}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ binding.ssidInput,}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InputMethodManager.SHOW\_IMPLICIT}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireActivity().runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!isAdded)\ return@runOnUiThread}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Error\ enviando\ WiFi"{},}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_LONG}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ binding.buttonSendWifi.isEnabled\ =\ true}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ showForm()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}.start()}
 \DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00119}00119\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00120}00120\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00121}00121\ \ \ \ \ override\ fun\ onResume()\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ super.onResume()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ (requireActivity()\ as\ AppCompatActivity).supportActionBar?.show()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00124}00124\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00125}00125\ }
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00126}00126\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ super.onDestroyView()}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00129}00129\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00130}00130\ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ return\ binding.root}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00123}00123\ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ UI\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00125}00125\ \ \ \ \ private\ fun\ showLoading()\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ binding.layoutForm.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ binding.layoutLoading.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00130}00130\ \ \ \ \ private\ fun\ showForm()\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ binding.layoutForm.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ binding.layoutLoading.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00133}00133\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00135}00135\ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ DISCOVERY\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00137}00137\ \ \ \ \ private\ fun\ startConnectionProcess()\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00139}00139\ \ \ \ \ \ \ \ \ if\ (isSearching)\ return}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00140}00140\ \ \ \ \ \ \ \ \ isSearching\ =\ true}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ Thread\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ socket\ =\ java.net.DatagramSocket()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socket.broadcast\ =\ true}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socket.soTimeout\ =\ 2000}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ message\ =\ "{}DISCOVER\_ESP"{}.toByteArray()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ foundIp:\ String?\ =\ null}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ (attempt\ in\ 1..5)\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ wifiManager\ =\ requireContext().applicationContext}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .getSystemService(Context.WIFI\_SERVICE)\ as\ android.net.wifi.WifiManager}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ ipInt\ =\ wifiManager.connectionInfo.ipAddress}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (ipInt\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thread.sleep(1500)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ ip\ =\ java.net.InetAddress.getByAddress(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ byteArrayOf(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (ipInt\ and\ 0xff).toByte(),}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (ipInt\ shr\ 8\ and\ 0xff).toByte(),}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (ipInt\ shr\ 16\ and\ 0xff).toByte(),}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (ipInt\ shr\ 24\ and\ 0xff).toByte()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ ipString\ =\ ip.hostAddress\ ?:\ continue}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ parts\ =\ ipString.split("{}."{})}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ localBroadcast\ =\ "{}\$\{parts[0]\}.\$\{parts[1]\}.\$\{parts[2]\}.255"{}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ targets\ =\ listOf("{}255.255.255.255"{},\ localBroadcast)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ (target\ in\ targets)\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ address\ =\ java.net.InetAddress.getByName(target)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ packet\ =\ java.net.DatagramPacket(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message,}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message.size,}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ address,}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8888}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socket.send(packet)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ buffer\ =\ ByteArray(1024)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ response\ =\ java.net.DatagramPacket(buffer,\ buffer.size)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socket.receive(response)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ received\ =\ String(response.data,\ 0,\ response.length)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ senderIp\ =\ response.address.hostAddress}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (received\ ==\ "{}ESP\_HERE"{})\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ foundIp\ =\ senderIp}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ break}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (\_:\ Exception)\ \{\}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (foundIp\ !=\ null)\ break}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thread.sleep(2000)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socket.close()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireActivity().runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!isAdded)\ return@runOnUiThread}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSearching\ =\ false}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ binding.buttonSendWifi.isEnabled\ =\ true}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ foundIp?.let\ \{\ ip\ -\/>}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ url\ =\ "{}http://\$ip"{}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EspConfig.baseUrl\ =\ url}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ prefs\ =\ requireContext()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .getSharedPreferences("{}app"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefs.edit().putString("{}esp\_url"{},\ url).apply()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thread\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thread.sleep(1500)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ linkUrl\ =\ java.net.URL("{}\$url/link"{})}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ conn\ =\ linkUrl.openConnection()\ as\ java.net.HttpURLConnection}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.requestMethod\ =\ "{}GET"{}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ code\ =\ conn.responseCode}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (code\ ==\ 200)\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ response\ =\ conn.inputStream.bufferedReader().readText()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ json\ =\ org.json.JSONObject(response)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ token\ =\ json.getString("{}token"{})}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefs.edit().putString("{}device\_token"{},\ token).apply()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.util.Log.d("{}LINK"{},\ "{}Token\ guardado:\ \$token"{})}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ currentPin\ =}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefs.getString(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}app\_pin"{},}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}1234"{}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ ?:\ "{}1234"{}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}ESP\_PIN"{},}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Sincronizando\ PIN\ tras\ LINK:\ \$currentPin"{}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EspApi.sendPin(currentPin)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thread.sleep(300)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EspApi.sendTakes()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (\_:\ Exception)\ \{\}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}.start()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Dispositivo\ conectado\ (\$url)"{},}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.takesListFragment)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ ?:\ run\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}No\ se\ encontró\ el\ dispositivo"{},}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_LONG}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ showForm()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireActivity().runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!isAdded)\ return@runOnUiThread}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ binding.buttonSendWifi.isEnabled\ =\ true}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ showForm()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00296}00296\ \ \ \ \ \ \ \ \ \}.start()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00297}00297\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00299}00299\ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ LIFECYCLE\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00301}00301\ \ \ \ \ override\ fun\ onViewCreated(view:\ View,\ savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00302}00302\ \ \ \ \ \ \ \ \ super.onViewCreated(view,\ savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00304}00304\ \ \ \ \ \ \ \ \ //\ 🔥\ SOLO\ FORMULARIO\ (SIN\ AUTO-\/RECONEXIÓN)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00305}00305\ \ \ \ \ \ \ \ \ showForm()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00307}00307\ \ \ \ \ \ \ \ \ binding.ssidInput.requestFocus()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00308}00308\ \ \ \ \ \ \ \ \ binding.ssidInput.post\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ val\ imm\ =\ requireContext()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .getSystemService(Context.INPUT\_METHOD\_SERVICE)}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ as\ InputMethodManager}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ imm.showSoftInput(}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ binding.ssidInput,}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InputMethodManager.SHOW\_IMPLICIT}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00316}00316\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00317}00317\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00319}00319\ \ \ \ \ override\ fun\ onResume()\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00320}00320\ \ \ \ \ \ \ \ \ super.onResume()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00321}00321\ \ \ \ \ \ \ \ \ (requireActivity()\ as\ AppCompatActivity).supportActionBar?.show()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00322}00322\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00324}00324\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00325}00325\ \ \ \ \ \ \ \ \ super.onDestroyView()}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00326}00326\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00327}00327\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{WifiConfigFragment_8kt_source_l00328}00328\ \}}
 
 \end{DoxyCode}

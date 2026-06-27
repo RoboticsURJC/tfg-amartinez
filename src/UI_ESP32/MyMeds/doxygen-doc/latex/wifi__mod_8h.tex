@@ -1,8 +1,7 @@
 \doxysection{include/user\+\_\+interface/wifi\+\_\+mod.h File Reference}
 \hypertarget{wifi__mod_8h}{}\label{wifi__mod_8h}\index{include/user\_interface/wifi\_mod.h@{include/user\_interface/wifi\_mod.h}}
 {\ttfamily \#include $<$lvgl.\+h$>$}\newline
-Include dependency graph for wifi\+\_\+mod.\+h\+:
-\nopagebreak
+Include dependency graph for wifi\+\_\+mod.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,16 +19,16 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df}{show\+\_\+wifi\+\_\+screen}} (lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}parent, const char \texorpdfstring{$\ast$}{*}text)
+void \mbox{\hyperlink{wifi__mod_8h_a7e1affbbcf92e141e700ce5e36aaf9a4}{show\+\_\+wifi\+\_\+screen}} (lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}parent, const char \texorpdfstring{$\ast$}{*}text, const char \texorpdfstring{$\ast$}{*}qr\+\_\+text)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df}\label{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df} 
+\Hypertarget{wifi__mod_8h_a7e1affbbcf92e141e700ce5e36aaf9a4}\label{wifi__mod_8h_a7e1affbbcf92e141e700ce5e36aaf9a4} 
 \index{wifi\_mod.h@{wifi\_mod.h}!show\_wifi\_screen@{show\_wifi\_screen}}
 \index{show\_wifi\_screen@{show\_wifi\_screen}!wifi\_mod.h@{wifi\_mod.h}}
 \doxysubsubsection{\texorpdfstring{show\_wifi\_screen()}{show\_wifi\_screen()}}
-{\footnotesize\ttfamily void show\+\_\+wifi\+\_\+screen (\begin{DoxyParamCaption}\item[{lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}}]{parent,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{text }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void show\+\_\+wifi\+\_\+screen (\begin{DoxyParamCaption}\item[{lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}}]{parent,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{text,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{qr\+\_\+text }\end{DoxyParamCaption})}
 
 
 
@@ -40,29 +39,31 @@ Definition at line \mbox{\hyperlink{wifi__mod_8cpp_source_l00078}{78}} of file \
 \DoxyCodeLine{00079\ \{}
 \DoxyCodeLine{00080\ \ \ \ \ lv\_obj\_clean(parent);}
 \DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ lv\_obj\_t\ *label\ =\ lv\_label\_create(parent);}
-\DoxyCodeLine{00083\ \ \ \ \ lv\_label\_set\_text(label,\ \textcolor{stringliteral}{"{}Escanear\ QR"{}});}
-\DoxyCodeLine{00084\ \ \ \ \ lv\_obj\_set\_style\_text\_font(label,\ \&lv\_font\_montserrat\_32,\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00085\ \ \ \ \ lv\_obj\_align(label,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 20);}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{wifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41}{generate\_wifi\_qr}}(parent,\ text);}
-\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ TEXTO\ -\/-\/-\/}}
+\DoxyCodeLine{00083\ \ \ \ \ lv\_obj\_t\ *label\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00084\ \ \ \ \ lv\_label\_set\_text(label,\ label\_text);}
+\DoxyCodeLine{00085\ \ \ \ \ lv\_obj\_set\_style\_text\_font(label,\ \&lv\_font\_montserrat\_32,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00086\ \ \ \ \ lv\_obj\_align(label,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 20);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ QR\ -\/-\/-\/}}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\_wifi\_qr}}(parent,\ qr\_text);}
+\DoxyCodeLine{00090\ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{wifi__mod_8cpp_a09c269bd7818549a6214ddc1e772eb41}{generate\+\_\+wifi\+\_\+qr()}}.
+References \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr()}}.
 
 
 
-Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, and \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+Referenced by \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
 
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df_cgraph}
+\includegraphics[width=350pt]{wifi__mod_8h_a7e1affbbcf92e141e700ce5e36aaf9a4_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:
@@ -70,6 +71,6 @@ Here is the caller graph for this function\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=262pt]{wifi__mod_8h_a47793befeb6bd8738a1e6b7b8ddb38df_icgraph}
+\includegraphics[width=262pt]{wifi__mod_8h_a7e1affbbcf92e141e700ce5e36aaf9a4_icgraph}
 \end{center}
 \end{figure}

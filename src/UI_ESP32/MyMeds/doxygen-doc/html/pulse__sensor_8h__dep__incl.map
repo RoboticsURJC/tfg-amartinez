@@ -1,0 +1,9 @@
+<map id="include/sensors/pulse_sensor.h" name="include/sensors/pulse_sensor.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="158,5,321,45"/>
+<area shape="rect" id="Node000002" href="$src_2main_8cpp.html" title=" " alt="" coords="5,101,111,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,54,83,103,81,98,186,49"/>
+<area shape="rect" id="Node000003" href="$pulse__sensor_8cpp.html" title=" " alt="" coords="134,101,345,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,59,242,100,237,100,237,59"/>
+<area shape="rect" id="Node000004" href="$pulse__screen_8cpp.html" title=" " alt="" coords="369,93,507,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="297,48,396,91,393,96,294,53"/>
+</map>

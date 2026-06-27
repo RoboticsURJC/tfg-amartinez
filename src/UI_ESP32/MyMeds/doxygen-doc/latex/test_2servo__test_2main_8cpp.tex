@@ -1,0 +1,182 @@
+\doxysection{test/servo\+\_\+test/main.cpp File Reference}
+\hypertarget{test_2servo__test_2main_8cpp}{}\label{test_2servo__test_2main_8cpp}\index{test/servo\_test/main.cpp@{test/servo\_test/main.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Wire.\+h$>$}\newline
+{\ttfamily \#include $<$Adafruit\+\_\+\+PWMServo\+Driver.\+h$>$}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test_2servo__test_2main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Adafruit\+\_\+\+PWMServo\+Driver \mbox{\hyperlink{test_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838}{pwm}} (0x40)
+\item 
+void \mbox{\hyperlink{test_2servo__test_2main_8cpp_a0c59f47fc9b340ebf74717d842a046d0}{mover\+Servo}} (int inicio, int fin, int velocidad\+\_\+ms)
+\item 
+void \mbox{\hyperlink{test_2servo__test_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\item 
+void \mbox{\hyperlink{test_2servo__test_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{test_2servo__test_2main_8cpp_a1c93807ae2cf8290885d6a1bcf40c11d}{POS\+\_\+\+MAX}} = 220
+\item 
+const int \mbox{\hyperlink{test_2servo__test_2main_8cpp_a6962a094fe65154aed58b220cffac0f3}{POS\+\_\+\+MIN}} = 100
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{test_2servo__test_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}\label{test_2servo__test_2main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test_2servo__test_2main_8cpp_source_l00231}{231}} of file \mbox{\hyperlink{test_2servo__test_2main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00232\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}300\ -\/>\ 100"{}});}
+\DoxyCodeLine{00234\ \ \ \ \ \mbox{\hyperlink{src_2servo__test_2main_8cpp_a0c59f47fc9b340ebf74717d842a046d0}{moverServo}}(\mbox{\hyperlink{src_2servo__test_2main_8cpp_a1c93807ae2cf8290885d6a1bcf40c11d}{POS\_MAX}},\ \mbox{\hyperlink{src_2servo__test_2main_8cpp_a6962a094fe65154aed58b220cffac0f3}{POS\_MIN}},\ 5);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ delay(2000);}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}100\ -\/>\ 300"{}});}
+\DoxyCodeLine{00239\ \ \ \ \ \mbox{\hyperlink{src_2servo__test_2main_8cpp_a0c59f47fc9b340ebf74717d842a046d0}{moverServo}}(\mbox{\hyperlink{src_2servo__test_2main_8cpp_a6962a094fe65154aed58b220cffac0f3}{POS\_MIN}},\ \mbox{\hyperlink{src_2servo__test_2main_8cpp_a1c93807ae2cf8290885d6a1bcf40c11d}{POS\_MAX}},\ 10);}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ delay(2000);}
+\DoxyCodeLine{00242\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{src_2servo__test_2main_8cpp_a0c59f47fc9b340ebf74717d842a046d0}{mover\+Servo()}}, \mbox{\hyperlink{src_2servo__test_2main_8cpp_a1c93807ae2cf8290885d6a1bcf40c11d}{POS\+\_\+\+MAX}}, and \mbox{\hyperlink{src_2servo__test_2main_8cpp_a6962a094fe65154aed58b220cffac0f3}{POS\+\_\+\+MIN}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{test_2servo__test_2main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{test_2servo__test_2main_8cpp_a0c59f47fc9b340ebf74717d842a046d0}\label{test_2servo__test_2main_8cpp_a0c59f47fc9b340ebf74717d842a046d0} 
+\index{main.cpp@{main.cpp}!moverServo@{moverServo}}
+\index{moverServo@{moverServo}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{moverServo()}{moverServo()}}
+{\footnotesize\ttfamily void mover\+Servo (\begin{DoxyParamCaption}\item[{int}]{inicio,  }\item[{int}]{fin,  }\item[{int}]{velocidad\+\_\+ms }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test_2servo__test_2main_8cpp_source_l00197}{197}} of file \mbox{\hyperlink{test_2servo__test_2main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{if}(inicio\ <\ fin)}
+\DoxyCodeLine{00200\ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ p\ =\ inicio;\ p\ <=\ fin;\ p++)}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{src_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838}{pwm}}.setPWM(0,\ 0,\ p);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ delay(velocidad\_ms);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ p\ =\ inicio;\ p\ >=\ fin;\ p-\/-\/)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{src_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838}{pwm}}.setPWM(0,\ 0,\ p);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ delay(velocidad\_ms);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{src_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838}{pwm()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{test_2servo__test_2main_8cpp_a0c59f47fc9b340ebf74717d842a046d0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{test_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838}\label{test_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838} 
+\index{main.cpp@{main.cpp}!pwm@{pwm}}
+\index{pwm@{pwm}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{pwm()}{pwm()}}
+{\footnotesize\ttfamily Adafruit\+\_\+\+PWMServo\+Driver pwm (\begin{DoxyParamCaption}\item[{0x40}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{test_2servo__test_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\label{test_2servo__test_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test_2servo__test_2main_8cpp_source_l00217}{217}} of file \mbox{\hyperlink{test_2servo__test_2main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00218\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ Serial.begin(115200);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ Wire.begin(22,\ 27);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \mbox{\hyperlink{src_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838}{pwm}}.begin();}
+\DoxyCodeLine{00224\ \ \ \ \ \mbox{\hyperlink{src_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838}{pwm}}.setPWMFreq(50);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ delay(1000);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//pwm.setPWM(0,\ 0,\ 300);}}
+\DoxyCodeLine{00229\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{src_2servo__test_2main_8cpp_a65abeed8ea6faf799a51b969ebd49838}{pwm()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{test_2servo__test_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{test_2servo__test_2main_8cpp_a1c93807ae2cf8290885d6a1bcf40c11d}\label{test_2servo__test_2main_8cpp_a1c93807ae2cf8290885d6a1bcf40c11d} 
+\index{main.cpp@{main.cpp}!POS\_MAX@{POS\_MAX}}
+\index{POS\_MAX@{POS\_MAX}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{POS\_MAX}{POS\_MAX}}
+{\footnotesize\ttfamily const int POS\+\_\+\+MAX = 220}
+
+
+
+Definition at line \mbox{\hyperlink{test_2servo__test_2main_8cpp_source_l00194}{194}} of file \mbox{\hyperlink{test_2servo__test_2main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{test_2servo__test_2main_8cpp_a6962a094fe65154aed58b220cffac0f3}\label{test_2servo__test_2main_8cpp_a6962a094fe65154aed58b220cffac0f3} 
+\index{main.cpp@{main.cpp}!POS\_MIN@{POS\_MIN}}
+\index{POS\_MIN@{POS\_MIN}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{POS\_MIN}{POS\_MIN}}
+{\footnotesize\ttfamily const int POS\+\_\+\+MIN = 100}
+
+
+
+Definition at line \mbox{\hyperlink{test_2servo__test_2main_8cpp_source_l00195}{195}} of file \mbox{\hyperlink{test_2servo__test_2main_8cpp_source}{main.\+cpp}}.
+

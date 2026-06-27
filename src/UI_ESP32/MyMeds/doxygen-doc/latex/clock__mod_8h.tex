@@ -1,8 +1,7 @@
 \doxysection{include/user\+\_\+interface/clock\+\_\+mod.h File Reference}
 \hypertarget{clock__mod_8h}{}\label{clock__mod_8h}\index{include/user\_interface/clock\_mod.h@{include/user\_interface/clock\_mod.h}}
 {\ttfamily \#include $<$lvgl.\+h$>$}\newline
-Include dependency graph for clock\+\_\+mod.\+h\+:
-\nopagebreak
+Include dependency graph for clock\+\_\+mod.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -14,7 +13,7 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=282pt]{clock__mod_8h__dep__incl}
+\includegraphics[width=350pt]{clock__mod_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Functions}
@@ -31,6 +30,10 @@ void \mbox{\hyperlink{clock__mod_8h_a199e69d3e99f6122e7d30966d5377636}{show\+\_\
 static void \mbox{\hyperlink{clock__mod_8h_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb}} (lv\+\_\+event\+\_\+t \texorpdfstring{$\ast$}{*}e)
 \item 
 void \mbox{\hyperlink{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d}{update\+\_\+clock\+\_\+task}} (lv\+\_\+timer\+\_\+t \texorpdfstring{$\ast$}{*}timer)
+\item 
+void \mbox{\hyperlink{clock__mod_8h_a64d48f6b24c06258cf71f9097b9272a0}{start\+\_\+clock\+\_\+timer}} ()
+\item 
+void \mbox{\hyperlink{clock__mod_8h_a8f1849fb2a25626ff009b0ec7e193745}{stop\+\_\+clock\+\_\+timer}} ()
 \end{DoxyCompactItemize}
 
 
@@ -49,23 +52,23 @@ void \mbox{\hyperlink{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d}{update\+\
 
 
 
-Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
+Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00068}{68}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/\ HOUR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}}\ =\ lv\_label\_create(parent);}
-\DoxyCodeLine{00068\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ \&\mbox{\hyperlink{montserrat__100__bold_8c_adc57c87d186e9d4e5e4c5bad5f093186}{montserrat\_100\_bold}},\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00069\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ lv\_color\_make(188,\ 135,\ 197),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00070\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ LV\_ALIGN\_TOP\_MID,\ 0,\ -\/10);}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/\ DAY\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}}\ =\ lv\_label\_create(parent);}
-\DoxyCodeLine{00074\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ \&\mbox{\hyperlink{montserrat__46__bold_8c_a8f0593c8d515fc1746613a83664ced00}{montserrat\_46\_bold}},\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00075\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00076\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ LV\_ALIGN\_TOP\_MID,\ 5,\ 85);}
-\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/\ HOUR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}}\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00071\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ \&\mbox{\hyperlink{montserrat__100__bold_8c_adc57c87d186e9d4e5e4c5bad5f093186}{montserrat\_100\_bold}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00072\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ lv\_color\_make(188,\ 135,\ 197),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00073\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ LV\_ALIGN\_TOP\_MID,\ 0,\ -\/10);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/\ DAY\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}}\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00077\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ \&\mbox{\hyperlink{montserrat__46__bold_8c_a8f0593c8d515fc1746613a83664ced00}{montserrat\_46\_bold}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00078\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00079\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ LV\_ALIGN\_TOP\_MID,\ 5,\ 85);}
+\DoxyCodeLine{00080\ \}}
 
 \end{DoxyCode}
 
@@ -92,40 +95,40 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
+Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00046\ \{}
-\DoxyCodeLine{00047\ \ \ \ \ configTzTime(\textcolor{stringliteral}{"{}CET-\/1CEST,M3.5.0/02:00,M10.5.0/03:00"{}},\ \textcolor{stringliteral}{"{}pool.ntp.org"{}});}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ info;}
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ start\ =\ millis();}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ timeout\ =\ 10000;}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{while}\ (!getLocalTime(\&info))\{}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((millis()-\/start)\ >\ timeout)\{}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}[WARN]\ NTP\ timeout\ -\/\ hora\ no\ sincronizada"{}});}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}."{}});}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ delay(500);}
-\DoxyCodeLine{00060\ \ \ \ \ \}}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}[OK]\ Hora\ sincronizada"{}});}
-\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ configTzTime(\textcolor{stringliteral}{"{}CET-\/1CEST,M3.5.0/02:00,M10.5.0/03:00"{}},\ \textcolor{stringliteral}{"{}pool.ntp.org"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ info;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ start\ =\ millis();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ timeout\ =\ 10000;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{while}\ (!getLocalTime(\&info))\{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((millis()-\/start)\ >\ timeout)\{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}[WARN]\ NTP\ timeout\ -\/\ hora\ no\ sincronizada"{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ delay(500);}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}[OK]\ Hora\ sincronizada"{}});}
+\DoxyCodeLine{00066\ \}}
 
 \end{DoxyCode}
 
 
-Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}.
+Referenced by \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}, and \mbox{\hyperlink{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9}{show\+\_\+settings\+\_\+screen()}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{clock__mod_8h_a0560780ed0fa14ae31b096e24fce8004_icgraph}
+\includegraphics[width=350pt]{clock__mod_8h_a0560780ed0fa14ae31b096e24fce8004_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{clock__mod_8h_a3858320e789f5154bf2030598829b1a4}\label{clock__mod_8h_a3858320e789f5154bf2030598829b1a4} 
@@ -136,28 +139,34 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00079}{79}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
+Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00082}{82}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00080\ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}}\ ||\ !\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}})\{}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00083\ \ \ \ \ \}}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ info;}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&info))\{}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00088\ \ \ \ \ \}}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{char}\ hour\_buf[16];}
-\DoxyCodeLine{00091\ \ \ \ \ snprintf(hour\_buf,\ \textcolor{keyword}{sizeof}(hour\_buf),\ \textcolor{stringliteral}{"{}\%02d:\%02d"{}},\ info.tm\_hour,\ info.tm\_min);}
-\DoxyCodeLine{00092\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ hour\_buf);}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}}\ ==\ \textcolor{keyword}{nullptr}\ ||\ \mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (!lv\_obj\_is\_valid(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}})\ ||\ !lv\_obj\_is\_valid(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}}))}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
 \DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{char}\ day\_buf[16];}
-\DoxyCodeLine{00095\ \ \ \ \ snprintf(day\_buf,\ \textcolor{keyword}{sizeof}(day\_buf),\ \textcolor{stringliteral}{"{}\%s"{}},\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[info.tm\_wday]);}
-\DoxyCodeLine{00096\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ day\_buf);}
-\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ info;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&info))\{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{char}\ hour\_buf[16];}
+\DoxyCodeLine{00100\ \ \ \ \ snprintf(hour\_buf,\ \textcolor{keyword}{sizeof}(hour\_buf),\ \textcolor{stringliteral}{"{}\%02d:\%02d"{}},\ info.tm\_hour,\ info.tm\_min);}
+\DoxyCodeLine{00101\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{clock__mod_8cpp_a9f87e33c94a3fc7035dd2e852652d99c}{lbl\_time}},\ hour\_buf);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{char}\ day\_buf[16];}
+\DoxyCodeLine{00104\ \ \ \ \ snprintf(day\_buf,\ \textcolor{keyword}{sizeof}(day\_buf),\ \textcolor{stringliteral}{"{}\%s"{}},\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[info.tm\_wday]);}
+\DoxyCodeLine{00105\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{clock__mod_8cpp_acaeec819c1832dc3478d496f40623b11}{lbl\_day}},\ day\_buf);}
+\DoxyCodeLine{00106\ \}}
 
 \end{DoxyCode}
 
@@ -184,30 +193,30 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
+Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00024\ \{}
-\DoxyCodeLine{00025\ \ \ \ \ lv\_obj\_clean(parent);}
-\DoxyCodeLine{00026\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(parent,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_ac2ee8840b2945f52b9e866e0bd4be081}{clock\_init}}(parent);}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ lv\_obj\_t\ *btn\_init\ =\ lv\_btn\_create(parent);}
-\DoxyCodeLine{00031\ \ \ \ \ lv\_obj\_set\_size(btn\_init,\ 300,\ 90);}
-\DoxyCodeLine{00032\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_init,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00033\ \ \ \ \ lv\_obj\_set\_style\_radius(btn\_init,\ 20,\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00034\ \ \ \ \ lv\_obj\_align(btn\_init,\ LV\_ALIGN\_BOTTOM\_MID,\ 0,\ -\/10);}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ lv\_obj\_t\ *lbl\_init\ =\ lv\_label\_create(btn\_init);}
-\DoxyCodeLine{00037\ \ \ \ \ lv\_label\_set\_text(lbl\_init,\ \textcolor{stringliteral}{"{}INICIO"{}});}
-\DoxyCodeLine{00038\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_init,\ \&lv\_font\_montserrat\_40,\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00039\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_init,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{00040\ \ \ \ \ lv\_obj\_center(lbl\_init);}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_init,\ \mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ NULL);}
-\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ lv\_obj\_clean(parent);}
+\DoxyCodeLine{00029\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(parent,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_ac2ee8840b2945f52b9e866e0bd4be081}{clock\_init}}(parent);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ lv\_obj\_t\ *btn\_init\ =\ lv\_btn\_create(parent);}
+\DoxyCodeLine{00034\ \ \ \ \ lv\_obj\_set\_size(btn\_init,\ 300,\ 90);}
+\DoxyCodeLine{00035\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_init,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00036\ \ \ \ \ lv\_obj\_set\_style\_radius(btn\_init,\ 20,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00037\ \ \ \ \ lv\_obj\_align(btn\_init,\ LV\_ALIGN\_BOTTOM\_MID,\ 0,\ -\/10);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ lv\_obj\_t\ *lbl\_init\ =\ lv\_label\_create(btn\_init);}
+\DoxyCodeLine{00040\ \ \ \ \ lv\_label\_set\_text(lbl\_init,\ \textcolor{stringliteral}{"{}INICIO"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_init,\ \&lv\_font\_montserrat\_40,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00042\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_init,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00043\ \ \ \ \ lv\_obj\_center(lbl\_init);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_init,\ \mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00046\ \}}
 
 \end{DoxyCode}
 
@@ -216,7 +225,7 @@ References \mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{b
 
 
 
-Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}.
+Referenced by \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, and \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
 
 Here is the call graph for this function\+:
 \nopagebreak
@@ -231,7 +240,93 @@ Here is the caller graph for this function\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=264pt]{clock__mod_8h_a199e69d3e99f6122e7d30966d5377636_icgraph}
+\includegraphics[width=270pt]{clock__mod_8h_a199e69d3e99f6122e7d30966d5377636_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{clock__mod_8h_a64d48f6b24c06258cf71f9097b9272a0}\label{clock__mod_8h_a64d48f6b24c06258cf71f9097b9272a0} 
+\index{clock\_mod.h@{clock\_mod.h}!start\_clock\_timer@{start\_clock\_timer}}
+\index{start\_clock\_timer@{start\_clock\_timer}!clock\_mod.h@{clock\_mod.h}}
+\doxysubsubsection{\texorpdfstring{start\_clock\_timer()}{start\_clock\_timer()}}
+{\footnotesize\ttfamily void start\+\_\+clock\+\_\+timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00114}{114}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{clock__mod_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}{clock\_timer}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}{clock\_timer}}\ =}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_timer\_create(}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_adff04a727b74bd5b4cca55e438a4010d}{update\_clock\_task}},}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1000,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NULL}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{clock__mod_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}{clock\+\_\+timer}}, and \mbox{\hyperlink{clock__mod_8cpp_adff04a727b74bd5b4cca55e438a4010d}{update\+\_\+clock\+\_\+task()}}.
+
+
+
+Referenced by \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, and \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{clock__mod_8h_a64d48f6b24c06258cf71f9097b9272a0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{clock__mod_8h_a64d48f6b24c06258cf71f9097b9272a0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{clock__mod_8h_a8f1849fb2a25626ff009b0ec7e193745}\label{clock__mod_8h_a8f1849fb2a25626ff009b0ec7e193745} 
+\index{clock\_mod.h@{clock\_mod.h}!stop\_clock\_timer@{stop\_clock\_timer}}
+\index{stop\_clock\_timer@{stop\_clock\_timer}!clock\_mod.h@{clock\_mod.h}}
+\doxysubsubsection{\texorpdfstring{stop\_clock\_timer()}{stop\_clock\_timer()}}
+{\footnotesize\ttfamily void stop\+\_\+clock\+\_\+timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00127}{127}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00128\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{clock__mod_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}{clock\_timer}}\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ lv\_timer\_del(\mbox{\hyperlink{clock__mod_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}{clock\_timer}});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}{clock\_timer}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{clock__mod_8cpp_a832d8f246f38cf0995c02a8e8b5d00de}{clock\+\_\+timer}}.
+
+
+
+Referenced by \mbox{\hyperlink{clock__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{clock__mod_8h_a8f1849fb2a25626ff009b0ec7e193745_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d}\label{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d} 
@@ -242,14 +337,14 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00099}{99}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
+Definition at line \mbox{\hyperlink{clock__mod_8cpp_source_l00108}{108}} of file \mbox{\hyperlink{clock__mod_8cpp_source}{clock\+\_\+mod.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00100\ \{}
-\DoxyCodeLine{00101\ \ \ \ \ (void)\ timer;}
-\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_a3858320e789f5154bf2030598829b1a4}{clock\_update}}();}
-\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ (void)\ timer;}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{clock__mod_8cpp_a3858320e789f5154bf2030598829b1a4}{clock\_update}}();}
+\DoxyCodeLine{00112\ \}}
 
 \end{DoxyCode}
 
@@ -258,10 +353,9 @@ References \mbox{\hyperlink{clock__mod_8cpp_a3858320e789f5154bf2030598829b1a4}{c
 
 
 
-Referenced by \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}.
+Referenced by \mbox{\hyperlink{clock__mod_8h_a64d48f6b24c06258cf71f9097b9272a0}{start\+\_\+clock\+\_\+timer()}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -273,6 +367,6 @@ Here is the caller graph for this function\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=261pt]{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d_icgraph}
+\includegraphics[width=350pt]{clock__mod_8h_adff04a727b74bd5b4cca55e438a4010d_icgraph}
 \end{center}
 \end{figure}

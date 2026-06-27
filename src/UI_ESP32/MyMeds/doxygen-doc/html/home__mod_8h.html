@@ -95,13 +95,21 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="home__mod_8h__dep__incl.png" border="0" usemap="#ainclude_2user__interface_2home__mod_8hdep" alt=""/></div>
 <map name="ainclude_2user__interface_2home__mod_8hdep" id="ainclude_2user__interface_2home__mod_8hdep">
-<area shape="rect" title=" " alt="" coords="154,5,321,45"/>
+<area shape="rect" title=" " alt="" coords="506,5,673,45"/>
 <area shape="rect" href="clock__mod_8cpp.html" title=" " alt="" coords="5,93,144,133"/>
-<area shape="poly" title=" " alt="" coords="191,54,112,96,109,91,188,49"/>
+<area shape="poly" title=" " alt="" coords="493,42,335,65,156,96,145,98,144,93,156,91,334,60,492,37"/>
 <area shape="rect" href="home__mod_8cpp.html" title=" " alt="" coords="168,93,307,133"/>
-<area shape="poly" title=" " alt="" coords="240,59,240,93,235,93,235,59"/>
-<area shape="rect" href="today__takes_8cpp.html" title=" " alt="" coords="331,93,469,133"/>
-<area shape="poly" title=" " alt="" coords="286,49,366,91,363,96,284,54"/>
+<area shape="poly" title=" " alt="" coords="499,51,308,98,307,92,498,46"/>
+<area shape="rect" href="pin__screen_8cpp.html" title=" " alt="" coords="331,93,469,133"/>
+<area shape="poly" title=" " alt="" coords="537,53,443,96,440,91,534,49"/>
+<area shape="rect" href="pulse__history__screen_8cpp.html" title=" " alt="" coords="494,93,685,133"/>
+<area shape="poly" title=" " alt="" coords="592,59,592,93,587,93,587,59"/>
+<area shape="rect" href="pulse__screen_8cpp.html" title=" " alt="" coords="709,93,848,133"/>
+<area shape="poly" title=" " alt="" coords="644,49,738,91,736,96,642,53"/>
+<area shape="rect" href="settings__screen_8cpp.html" title=" " alt="" coords="872,93,1027,133"/>
+<area shape="poly" title=" " alt="" coords="682,46,872,91,871,96,681,51"/>
+<area shape="rect" href="today__takes_8cpp.html" title=" " alt="" coords="1051,93,1189,133"/>
+<area shape="poly" title=" " alt="" coords="687,36,852,59,1039,91,1051,93,1050,98,1038,96,851,65,686,41"/>
 </map>
 </div>
 </div>
@@ -128,124 +136,207 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="home__mod_8cpp_source.html#l00034">34</a> of file <a class="el" href="home__mod_8cpp_source.html">home_mod.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>{</div>
-<div class="line"><span class="lineno">   36</span>    lv_obj_t * scr = lv_obj_create(NULL);</div>
-<div class="line"><span class="lineno">   37</span>    <a class="code hl_function" href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19">load_screen</a>(scr);</div>
-<div class="line"><span class="lineno">   38</span>    lv_obj_set_style_bg_color(scr, lv_color_make(48, 25, 52), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>    lv_obj_t *btn1 = lv_btn_create(scr);</div>
-<div class="line"><span class="lineno">   41</span>    lv_obj_set_size(btn1, 265, 70);</div>
-<div class="line"><span class="lineno">   42</span>    lv_obj_set_style_bg_color(btn1, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   43</span>    lv_obj_align(btn1, LV_ALIGN_TOP_MID, 0, 40);</div>
-<div class="line"><span class="lineno">   44</span>    lv_obj_add_event_cb(btn1, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Tomas hoy&quot;</span>);</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>    lv_obj_t *lbl1 = lv_label_create(btn1);</div>
-<div class="line"><span class="lineno">   47</span>    lv_label_set_text(lbl1, <span class="stringliteral">&quot;Tomas hoy&quot;</span>);</div>
-<div class="line"><span class="lineno">   48</span>    lv_obj_set_style_text_font(lbl1, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   49</span>    lv_obj_set_style_text_color(lbl1, lv_color_white(), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   50</span>    lv_obj_center(lbl1);</div>
-<div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>    <span class="comment">// ---------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    lv_obj_t *btn2 = lv_btn_create(scr);</div>
-<div class="line"><span class="lineno">   55</span>    lv_obj_set_size(btn2, 265, 70);</div>
-<div class="line"><span class="lineno">   56</span>    lv_obj_set_style_bg_color(btn2, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   57</span>    lv_obj_align(btn2, LV_ALIGN_TOP_MID, 0, 130);</div>
-<div class="line"><span class="lineno">   58</span>    lv_obj_add_event_cb(btn2, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Historial&quot;</span>);</div>
-<div class="line"><span class="lineno">   59</span> </div>
-<div class="line"><span class="lineno">   60</span>    lv_obj_t *lbl2 = lv_label_create(btn2);</div>
-<div class="line"><span class="lineno">   61</span>    lv_label_set_text(lbl2, <span class="stringliteral">&quot;Historial&quot;</span>);</div>
-<div class="line"><span class="lineno">   62</span>    lv_obj_set_style_text_font(lbl2, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   63</span>    lv_obj_set_style_text_color(lbl2, lv_color_white(), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   64</span>    lv_obj_center(lbl2);</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>    <span class="comment">// ---------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>    lv_obj_t *btn3 = lv_btn_create(scr);</div>
-<div class="line"><span class="lineno">   69</span>    lv_obj_set_size(btn3, 265, 70);</div>
-<div class="line"><span class="lineno">   70</span>    lv_obj_set_style_bg_color(btn3, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   71</span>    lv_obj_align(btn3, LV_ALIGN_TOP_MID, 0, 220);</div>
-<div class="line"><span class="lineno">   72</span>    lv_obj_add_event_cb(btn3, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Pulsómetro&quot;</span>);</div>
-<div class="line"><span class="lineno">   73</span> </div>
-<div class="line"><span class="lineno">   74</span>    lv_obj_t *lbl3 = lv_label_create(btn3);</div>
-<div class="line"><span class="lineno">   75</span>    lv_label_set_text(lbl3, <span class="stringliteral">&quot;Pulsómetro&quot;</span>);</div>
-<div class="line"><span class="lineno">   76</span>    lv_obj_set_style_text_font(lbl3, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   77</span>    lv_obj_set_style_text_color(lbl3, lv_color_white(), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   78</span>    lv_obj_center(lbl3);</div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>    <span class="comment">// ---------------------------------------------------------------</span></div>
-<div class="line"><span class="lineno">   81</span> </div>
-<div class="line"><span class="lineno">   82</span>    lv_obj_t *btn4 = lv_btn_create(scr);</div>
-<div class="line"><span class="lineno">   83</span>    lv_obj_set_size(btn4, 265, 150);</div>
-<div class="line"><span class="lineno">   84</span>    lv_obj_set_style_bg_color(btn4, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   85</span>    lv_obj_align(btn4, LV_ALIGN_TOP_MID, 0, 310);</div>
-<div class="line"><span class="lineno">   86</span>    lv_obj_add_event_cb(btn4, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Configuración de tomas&quot;</span>);</div>
-<div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>    lv_obj_t *lbl4 = lv_label_create(btn4);</div>
-<div class="line"><span class="lineno">   89</span>    lv_label_set_text(lbl4, <span class="stringliteral">&quot;Configuración\n           de\n        tomas&quot;</span>);</div>
-<div class="line"><span class="lineno">   90</span>    lv_obj_set_style_text_font(lbl4, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   91</span>    lv_obj_set_style_text_color(lbl4, lv_color_white(), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   92</span>    lv_obj_center(lbl4);</div>
-<div class="line"><span class="lineno">   93</span>}</div>
-<div class="ttc" id="ahome__mod_8cpp_html_a603b0c4a9f6ea7b34bcb62ea0c2bab19"><div class="ttname"><a href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19">load_screen</a></div><div class="ttdeci">static void load_screen(lv_obj_t *scr)</div><div class="ttdef"><b>Definition</b> <a href="home__mod_8cpp_source.html#l00024">home_mod.cpp:24</a></div></div>
-<div class="ttc" id="ahome__mod_8cpp_html_a81c8e8828eb6ab49916c12061a884f23"><div class="ttname"><a href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a></div><div class="ttdeci">static void btn_event_cb(lv_event_t *e)</div><div class="ttdef"><b>Definition</b> <a href="home__mod_8cpp_source.html#l00008">home_mod.cpp:8</a></div></div>
+<p class="definition">Definition at line <a class="el" href="home__mod_8cpp_source.html#l00053">53</a> of file <a class="el" href="home__mod_8cpp_source.html">home_mod.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>{</div>
+<div class="line"><span class="lineno">   55</span>    lv_obj_t * scr = lv_obj_create(NULL);</div>
+<div class="line"><span class="lineno">   56</span>    <a class="code hl_function" href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19">load_screen</a>(scr);</div>
+<div class="line"><span class="lineno">   57</span>    lv_obj_set_style_bg_color(scr, lv_color_make(48, 25, 52), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>    lv_obj_t *btn1 = lv_btn_create(scr);</div>
+<div class="line"><span class="lineno">   60</span>    lv_obj_set_size(btn1, 265, 70);</div>
+<div class="line"><span class="lineno">   61</span>    lv_obj_set_style_bg_color(btn1, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   62</span>    lv_obj_align(btn1, LV_ALIGN_TOP_MID, 0, 40);</div>
+<div class="line"><span class="lineno">   63</span>    lv_obj_add_event_cb(btn1, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Tomas hoy&quot;</span>);</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>    lv_obj_t *lbl1 = lv_label_create(btn1);</div>
+<div class="line"><span class="lineno">   66</span>    lv_label_set_text(lbl1, <span class="stringliteral">&quot;Tomas hoy&quot;</span>);</div>
+<div class="line"><span class="lineno">   67</span>    lv_obj_set_style_text_font(lbl1, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   68</span>    lv_obj_set_style_text_color(lbl1, lv_color_white(), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   69</span>    lv_obj_center(lbl1);</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    <span class="comment">// ---------------------------------------------------------------</span></div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>    lv_obj_t *btn2 = lv_btn_create(scr);</div>
+<div class="line"><span class="lineno">   74</span>    lv_obj_set_size(btn2, 265, 70);</div>
+<div class="line"><span class="lineno">   75</span>    lv_obj_set_style_bg_color(btn2, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   76</span>    lv_obj_align(btn2, LV_ALIGN_TOP_MID, 0, 130);</div>
+<div class="line"><span class="lineno">   77</span>    lv_obj_add_event_cb(btn2, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Historial&quot;</span>);</div>
+<div class="line"><span class="lineno">   78</span> </div>
+<div class="line"><span class="lineno">   79</span>    lv_obj_t *lbl2 = lv_label_create(btn2);</div>
+<div class="line"><span class="lineno">   80</span>    lv_label_set_text(lbl2, <span class="stringliteral">&quot;Historial&quot;</span>);</div>
+<div class="line"><span class="lineno">   81</span>    lv_obj_set_style_text_font(lbl2, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   82</span>    lv_obj_set_style_text_color(lbl2, lv_color_white(), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   83</span>    lv_obj_center(lbl2);</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>    <span class="comment">// ---------------------------------------------------------------</span></div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>    lv_obj_t *btn3 = lv_btn_create(scr);</div>
+<div class="line"><span class="lineno">   88</span>    lv_obj_set_size(btn3, 265, 70);</div>
+<div class="line"><span class="lineno">   89</span>    lv_obj_set_style_bg_color(btn3, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   90</span>    lv_obj_align(btn3, LV_ALIGN_TOP_MID, 0, 220);</div>
+<div class="line"><span class="lineno">   91</span>    lv_obj_add_event_cb(btn3, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Pulsómetro&quot;</span>);</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>    lv_obj_t *lbl3 = lv_label_create(btn3);</div>
+<div class="line"><span class="lineno">   94</span>    lv_label_set_text(lbl3, <span class="stringliteral">&quot;Pulsómetro&quot;</span>);</div>
+<div class="line"><span class="lineno">   95</span>    lv_obj_set_style_text_font(lbl3, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   96</span>    lv_obj_set_style_text_color(lbl3, lv_color_white(), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   97</span>    lv_obj_center(lbl3);</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>    <span class="comment">// ---------------------------------------------------------------</span></div>
+<div class="line"><span class="lineno">  100</span> </div>
+<div class="line"><span class="lineno">  101</span>    lv_obj_t *btn4 = lv_btn_create(scr);</div>
+<div class="line"><span class="lineno">  102</span>    lv_obj_set_size(btn4, 265, 150);</div>
+<div class="line"><span class="lineno">  103</span>    lv_obj_set_style_bg_color(btn4, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">  104</span>    lv_obj_align(btn4, LV_ALIGN_TOP_MID, 0, 310);</div>
+<div class="line"><span class="lineno">  105</span>    lv_obj_add_event_cb(btn4, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Configuración de tomas&quot;</span>);</div>
+<div class="line"><span class="lineno">  106</span> </div>
+<div class="line"><span class="lineno">  107</span>    lv_obj_t *lbl4 = lv_label_create(btn4);</div>
+<div class="line"><span class="lineno">  108</span>    lv_label_set_text(lbl4, <span class="stringliteral">&quot;Configuración\n           de\n        tomas&quot;</span>);</div>
+<div class="line"><span class="lineno">  109</span>    lv_obj_set_style_text_font(lbl4, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">  110</span>    lv_obj_set_style_text_color(lbl4, lv_color_white(), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">  111</span>    lv_obj_center(lbl4);</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>    <span class="comment">// ---------------------------------------------------------------</span></div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>    lv_obj_t *btn5 = lv_btn_create(scr);</div>
+<div class="line"><span class="lineno">  116</span>    lv_obj_set_size(btn5, 265, 70);</div>
+<div class="line"><span class="lineno">  117</span>    lv_obj_set_style_bg_color(btn5, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">  118</span>    lv_obj_align(btn5, LV_ALIGN_TOP_MID, 0, 480);</div>
+<div class="line"><span class="lineno">  119</span>    lv_obj_add_event_cb(btn5, <a class="code hl_function" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a>, LV_EVENT_CLICKED, (<span class="keywordtype">void</span> *)<span class="stringliteral">&quot;Ajustes&quot;</span>);</div>
+<div class="line"><span class="lineno">  120</span> </div>
+<div class="line"><span class="lineno">  121</span>    lv_obj_t *lbl5 = lv_label_create(btn5);</div>
+<div class="line"><span class="lineno">  122</span>    lv_label_set_text(lbl5, <span class="stringliteral">&quot;Ajustes&quot;</span>);</div>
+<div class="line"><span class="lineno">  123</span>    lv_obj_set_style_text_font(lbl5, &amp;<a class="code hl_variable" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>, LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">  124</span>    lv_obj_set_style_text_color(lbl5, lv_color_white(), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">  125</span>    lv_obj_center(lbl5);</div>
+<div class="line"><span class="lineno">  126</span>}</div>
+<div class="ttc" id="ahome__mod_8cpp_html_a603b0c4a9f6ea7b34bcb62ea0c2bab19"><div class="ttname"><a href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19">load_screen</a></div><div class="ttdeci">static void load_screen(lv_obj_t *scr)</div><div class="ttdef"><b>Definition</b> <a href="home__mod_8cpp_source.html#l00043">home_mod.cpp:43</a></div></div>
+<div class="ttc" id="ahome__mod_8cpp_html_a81c8e8828eb6ab49916c12061a884f23"><div class="ttname"><a href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb</a></div><div class="ttdeci">static void btn_event_cb(lv_event_t *e)</div><div class="ttdef"><b>Definition</b> <a href="home__mod_8cpp_source.html#l00011">home_mod.cpp:11</a></div></div>
 <div class="ttc" id="amontserrat__34__regular_8c_html_a5ba17051ff077d1c35b9cb9eddbe9473"><div class="ttname"><a href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a></div><div class="ttdeci">lv_font_t montserrat_34_regular</div><div class="ttdef"><b>Definition</b> <a href="montserrat__34__regular_8c_source.html#l01522">montserrat_34_regular.c:1522</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb()</a>, <a class="el" href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19">load_screen()</a>, and <a class="el" href="montserrat__34__regular_8c.html#a5ba17051ff077d1c35b9cb9eddbe9473">montserrat_34_regular</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clock__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23">btn_event_cb()</a>, <a class="el" href="pill__takes_8h.html#ae9d1bc4cc19d7de8d5c16bf4961bb24b">takes_list_screen()</a>, and <a class="el" href="pill__takes_8h.html#a3cee774dd6a58d0c209aaeb4c3bf994e">today_takes_screen()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pulse__history__screen_8cpp.html#afc8fe7ee57fd775f3845310b9b4e5ad0">back_btn_event_cb()</a>, <a class="el" href="pulse__screen_8cpp.html#afc8fe7ee57fd775f3845310b9b4e5ad0">back_btn_event_cb()</a>, <a class="el" href="pin__screen_8h.html#add9f292c0b900f35b88b16fc4b81be47">show_pin_screen()</a>, <a class="el" href="settings__screen_8h.html#ad23f69d53abd94f0c85d6b14aa6c2aa9">show_settings_screen()</a>, <a class="el" href="pill__takes_8h.html#ae9d1bc4cc19d7de8d5c16bf4961bb24b">takes_list_screen()</a>, and <a class="el" href="pill__takes_8h.html#a3cee774dd6a58d0c209aaeb4c3bf994e">today_takes_screen()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_cgraph.png" border="0" usemap="#ahome__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_cgraph" alt=""/></div>
 <map name="ahome__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_cgraph" id="ahome__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_cgraph">
-<area shape="rect" title=" " alt="" coords="5,243,156,268"/>
-<area shape="rect" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23" title=" " alt="" coords="204,267,313,292"/>
-<area shape="poly" title=" " alt="" coords="157,263,191,268,190,273,156,268"/>
-<area shape="rect" href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="209,217,309,243"/>
-<area shape="poly" title=" " alt="" coords="156,242,195,236,195,242,157,247"/>
-<area shape="rect" href="takes__list_8cpp.html#ae9d1bc4cc19d7de8d5c16bf4961bb24b" title=" " alt="" coords="369,167,504,192"/>
-<area shape="poly" title=" " alt="" coords="287,264,312,252,403,197,406,202,315,256,290,269"/>
-<area shape="rect" href="today__takes_8cpp.html#a3cee774dd6a58d0c209aaeb4c3bf994e" title=" " alt="" coords="361,317,512,343"/>
-<area shape="poly" title=" " alt="" coords="305,290,379,311,377,316,304,295"/>
-<area shape="poly" title=" " alt="" coords="369,184,290,192,205,207,160,222,120,239,118,234,159,217,203,202,289,186,369,179"/>
-<area shape="rect" href="takes__list_8cpp.html#a8c837e300674dc4b5cd4a4f9968046cc" title=" " alt="" coords="570,67,689,92"/>
-<area shape="poly" title=" " alt="" coords="475,164,601,97,603,102,478,169"/>
-<area shape="rect" href="takes__list_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="787,55,887,80"/>
-<area shape="poly" title=" " alt="" coords="481,164,746,89,775,81,776,86,747,94,483,169"/>
-<area shape="rect" href="edit__takes_8cpp.html#a8e5cbca5436158cde9e16681693d1d6d" title=" " alt="" coords="560,204,699,229"/>
-<area shape="poly" title=" " alt="" coords="469,189,547,207,546,212,468,195"/>
-<area shape="poly" title=" " alt="" coords="591,94,465,161,463,157,589,90"/>
-<area shape="rect" href="takes__storage_8cpp.html#a092852dc2a97a9825c9e595827388e7a" title=" " alt="" coords="788,5,887,31"/>
-<area shape="poly" title=" " alt="" coords="668,64,746,39,774,32,775,37,747,45,669,69"/>
-<area shape="poly" title=" " alt="" coords="689,73,773,68,774,74,689,79"/>
-<area shape="rect" href="takes__storage_8cpp.html#a230495ec724f6295941efc6a5cabd1a0" title=" " alt="" coords="976,105,1065,131"/>
-<area shape="poly" title=" " alt="" coords="888,24,929,40,968,65,1000,94,996,98,965,70,927,44,886,29"/>
-<area shape="poly" title=" " alt="" coords="597,207,517,189,518,184,599,201"/>
-<area shape="poly" title=" " alt="" coords="699,219,750,219,808,215,869,205,927,188,965,165,997,138,1000,143,969,170,929,192,870,210,809,220,750,224,699,224"/>
-<area shape="rect" href="edit__takes_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="787,304,887,329"/>
-<area shape="poly" title=" " alt="" coords="649,227,692,258,748,289,775,299,774,304,746,294,689,262,646,232"/>
-<area shape="rect" href="edit__takes_8cpp.html#abd49422d84c367a440ffcfdcf569601d" title=" " alt="" coords="756,353,919,379"/>
-<area shape="poly" title=" " alt="" coords="648,227,701,278,714,296,723,312,732,326,748,340,758,346,755,350,745,344,728,329,718,314,710,299,697,281,644,231"/>
-<area shape="rect" href="edit__takes_8cpp.html#af7243c0003bee258aa5a4ca997b9286a" title=" " alt="" coords="987,329,1054,355"/>
-<area shape="poly" title=" " alt="" coords="650,227,676,249,701,278,716,311,720,340,727,366,735,378,748,389,772,402,793,410,813,413,833,413,876,403,927,389,960,376,989,360,992,365,962,381,929,394,877,408,834,418,813,419,792,415,769,407,745,394,731,382,722,369,715,341,710,312,696,281,672,253,647,231"/>
-<area shape="rect" href="edit__takes_8cpp.html#a25940f318b6609dd153cdb939e6dd402" title=" " alt="" coords="778,104,897,129"/>
-<area shape="poly" title=" " alt="" coords="645,202,689,170,746,138,764,131,766,136,748,143,692,175,648,206"/>
-<area shape="rect" href="edit__takes_8cpp.html#a5bb7422f61b57be1446b13981898762f" title=" " alt="" coords="753,153,921,179"/>
-<area shape="poly" title=" " alt="" coords="682,201,771,179,772,185,683,206"/>
-<area shape="rect" href="edit__takes_8cpp.html#af4ab132463fcc8eebd183eada8434121" title=" " alt="" coords="747,255,928,280"/>
-<area shape="poly" title=" " alt="" coords="683,227,772,249,771,254,682,232"/>
-<area shape="poly" title=" " alt="" coords="895,278,929,289,989,320,987,325,927,294,894,283"/>
-<area shape="poly" title=" " alt="" coords="361,329,284,321,203,306,160,292,120,276,122,271,161,287,205,301,285,316,361,324"/>
-<area shape="rect" href="today__takes_8cpp.html#a676e1e1c8118f8781c0ccf29dbcff2e5" title=" " alt="" coords="562,292,697,317"/>
-<area shape="poly" title=" " alt="" coords="512,317,548,313,549,318,512,323"/>
-<area shape="rect" href="today__takes_8cpp.html#a276e05999682cc809bd995a814059a4e" title=" " alt="" coords="573,341,685,367"/>
-<area shape="poly" title=" " alt="" coords="512,337,560,343,560,348,512,342"/>
-<area shape="rect" href="today__takes_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="579,391,679,416"/>
-<area shape="poly" title=" " alt="" coords="469,340,561,377,579,383,577,388,559,382,467,345"/>
-<area shape="rect" href="today__takes_8cpp.html#a226f34b9f45999e9887df6ba5697af85" title=" " alt="" coords="772,455,903,480"/>
-<area shape="poly" title=" " alt="" coords="676,364,700,377,716,392,725,406,734,420,748,433,775,447,772,452,745,438,730,423,720,409,712,395,697,382,673,369"/>
+<area shape="rect" title=" " alt="" coords="5,517,156,542"/>
+<area shape="rect" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23" title=" " alt="" coords="204,517,313,542"/>
+<area shape="poly" title=" " alt="" coords="156,527,190,527,190,532,156,532"/>
+<area shape="rect" href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="209,669,309,694"/>
+<area shape="poly" title=" " alt="" coords="95,540,141,590,206,647,223,659,220,664,202,651,138,593,91,544"/>
+<area shape="rect" href="pulse__history__screen_8cpp.html#ad1eaaad2198570756eba8847fab82ae9" title=" " alt="" coords="369,147,519,187"/>
+<area shape="poly" title=" " alt="" coords="261,516,296,413,324,342,359,272,386,231,414,196,418,199,390,234,364,275,329,344,301,414,266,517"/>
+<area shape="rect" href="pulse__screen_8cpp.html#a110b08df176a6163bf8834ea75df52b4" title=" " alt="" coords="370,286,518,311"/>
+<area shape="poly" title=" " alt="" coords="268,515,422,321,426,324,272,518"/>
+<area shape="rect" href="settings__screen_8cpp.html#ad23f69d53abd94f0c85d6b14aa6c2aa9" title=" " alt="" coords="361,491,527,517"/>
+<area shape="poly" title=" " alt="" coords="313,519,347,515,348,520,314,524"/>
+<area shape="rect" href="takes__list_8cpp.html#ae9d1bc4cc19d7de8d5c16bf4961bb24b" title=" " alt="" coords="377,741,511,766"/>
+<area shape="poly" title=" " alt="" coords="288,540,315,559,353,602,386,647,433,727,428,729,382,650,349,605,312,563,285,544"/>
+<area shape="rect" href="today__takes_8cpp.html#a3cee774dd6a58d0c209aaeb4c3bf994e" title=" " alt="" coords="369,913,519,938"/>
+<area shape="poly" title=" " alt="" coords="272,541,294,572,316,611,333,657,341,694,348,732,364,778,397,845,429,900,425,902,392,847,359,780,343,733,336,695,328,658,311,613,289,574,268,544"/>
+<area shape="rect" href="pulse__history__screen_8cpp.html#afc8fe7ee57fd775f3845310b9b4e5ad0" title=" " alt="" coords="595,97,741,122"/>
+<area shape="poly" title=" " alt="" coords="519,145,604,123,605,128,520,150"/>
+<area shape="rect" href="pulse__history__storage_8cpp.html#a0960402027fb0a22485861b189c94e40" title=" " alt="" coords="602,146,734,171"/>
+<area shape="poly" title=" " alt="" coords="520,161,588,159,588,164,520,167"/>
+<area shape="poly" title=" " alt="" coords="594,103,541,101,481,104,420,115,363,137,308,173,259,218,216,270,180,324,149,377,125,427,93,505,88,503,120,425,144,375,175,321,212,266,255,215,304,169,360,132,419,110,480,99,541,95,595,97"/>
+<area shape="rect" href="pulse__history__storage_8cpp.html#a84dbd670475840c071fd20ee485ba132" title=" " alt="" coords="1068,97,1209,122"/>
+<area shape="poly" title=" " alt="" coords="733,146,760,131,770,120,776,108,781,81,787,56,795,43,808,32,836,17,862,7,887,3,911,4,961,14,1021,32,1047,42,1073,56,1114,85,1111,90,1070,60,1045,47,1019,37,960,19,910,9,887,9,864,13,839,22,811,37,799,47,792,58,787,83,781,109,775,123,763,135,735,151"/>
+<area shape="rect" href="pulse__screen_8cpp.html#afc8fe7ee57fd775f3845310b9b4e5ad0" title=" " alt="" coords="595,195,741,221"/>
+<area shape="poly" title=" " alt="" coords="471,283,525,256,549,242,574,230,595,222,597,227,576,234,552,247,528,261,473,288"/>
+<area shape="rect" href="pulse__screen_8cpp.html#a6ffb9dc2f7142a4a4a0e34aea7fb4c15" title=" " alt="" coords="603,294,733,319"/>
+<area shape="poly" title=" " alt="" coords="519,299,589,301,589,306,518,304"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#abe7ca60cda316b5995a3b66a3453bfb3" title=" " alt="" coords="602,245,734,270"/>
+<area shape="poly" title=" " alt="" coords="513,283,588,269,589,275,514,289"/>
+<area shape="poly" title=" " alt="" coords="595,215,542,222,482,234,421,251,363,276,320,301,279,330,205,394,144,457,103,507,99,503,140,454,201,390,276,325,317,296,360,271,419,246,481,229,541,217,594,210"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a5ea88488da2c8f715e311e703d7bb801" title=" " alt="" coords="809,97,1020,122"/>
+<area shape="poly" title=" " alt="" coords="732,193,760,180,774,169,783,156,792,143,808,131,822,124,824,129,811,136,796,147,787,159,778,172,763,185,734,198"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#ac19f883343d0e93acf1df07622698f34" title=" " alt="" coords="829,146,1001,171"/>
+<area shape="poly" title=" " alt="" coords="732,193,837,171,838,177,733,198"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a17b79f2f6a2e4e4e75d7ff162fdd96f0" title=" " alt="" coords="849,47,980,73"/>
+<area shape="poly" title=" " alt="" coords="739,193,760,181,770,169,777,157,782,132,789,107,796,94,808,82,834,67,837,72,811,86,800,97,793,109,788,134,782,159,775,172,763,185,742,198"/>
+<area shape="rect" href="pulse__history__storage_8cpp.html#ae4c59227ee1369bb87a9ba451ee7ff52" title=" " alt="" coords="844,195,985,221"/>
+<area shape="poly" title=" " alt="" coords="742,205,831,205,831,211,742,211"/>
+<area shape="poly" title=" " alt="" coords="981,193,1019,180,1067,155,1108,128,1111,132,1070,160,1021,185,983,198"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a41c7a05b1e5f5a0cab20c88b7695831a" title=" " alt="" coords="837,245,993,270"/>
+<area shape="poly" title=" " alt="" coords="732,291,837,270,838,275,733,297"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#aa5570d6065286120699bd5889acab27e" title=" " alt="" coords="859,294,970,319"/>
+<area shape="poly" title=" " alt="" coords="733,304,846,304,846,309,733,309"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a72f1c324da2d6a7b50b6917b9f7d3b5d" title=" " alt="" coords="817,343,1012,369"/>
+<area shape="poly" title=" " alt="" coords="733,317,838,338,837,343,732,322"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#aff1a3915d6f5cef75e73ca44d3bcdfb4" title=" " alt="" coords="847,393,983,418"/>
+<area shape="poly" title=" " alt="" coords="735,316,763,328,778,341,787,354,796,366,811,378,834,388,832,393,808,382,792,370,783,357,774,345,760,333,732,321"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a8d768af20334a60389b733b15dd906c0" title=" " alt="" coords="821,442,1009,467"/>
+<area shape="poly" title=" " alt="" coords="735,313,763,329,775,341,782,354,788,379,794,404,800,416,811,427,820,433,817,438,808,431,796,419,789,406,783,381,777,356,771,344,760,333,732,318"/>
+<area shape="poly" title=" " alt="" coords="361,503,285,502,204,507,145,516,144,511,204,501,285,497,361,497"/>
+<area shape="poly" title=" " alt="" coords="413,493,407,483,410,473,423,467,444,465,469,468,480,477,477,481,467,473,444,470,425,472,414,477,412,482,418,490"/>
+<area shape="rect" href="clock__mod_8cpp.html#a0560780ed0fa14ae31b096e24fce8004" title=" " alt="" coords="621,590,715,615"/>
+<area shape="poly" title=" " alt="" coords="465,515,514,545,576,576,609,587,607,592,574,581,511,550,462,519"/>
+<area shape="rect" href="settings__screen_8cpp.html#a3fa40183709bd225defcfedb29f3ab8c" title=" " alt="" coords="589,639,747,665"/>
+<area shape="poly" title=" " alt="" coords="457,515,504,569,538,600,576,626,589,632,587,637,573,630,535,604,500,573,453,518"/>
+<area shape="rect" href="settings__screen_8cpp.html#a3eb559a94eb0b8cd26c09fbb4010cbab" title=" " alt="" coords="590,343,746,369"/>
+<area shape="poly" title=" " alt="" coords="453,489,500,435,535,404,573,378,587,371,589,376,576,382,538,408,504,439,457,493"/>
+<area shape="rect" href="settings__screen_8cpp.html#ac7f193e111dbca853ee4a1ab59e49890" title=" " alt="" coords="582,393,754,418"/>
+<area shape="poly" title=" " alt="" coords="462,489,511,458,574,427,594,420,596,425,576,432,514,463,465,493"/>
+<area shape="rect" href="settings__screen_8cpp.html#a1b6e4adb746348fca38f713ea42ecfc0" title=" " alt="" coords="579,442,757,467"/>
+<area shape="poly" title=" " alt="" coords="502,489,596,468,597,473,503,494"/>
+<area shape="rect" href="change__pin__screen_8cpp.html#ad08507623b40f34993103c86c1c34055" title=" " alt="" coords="575,491,761,517"/>
+<area shape="poly" title=" " alt="" coords="527,510,561,510,561,516,527,515"/>
+<area shape="rect" href="settings__screen_8cpp.html#a33f7ffbc57ce12dc7ae35dc9b08076ce" title=" " alt="" coords="577,541,759,566"/>
+<area shape="poly" title=" " alt="" coords="503,514,597,535,596,540,502,519"/>
+<area shape="poly" title=" " alt="" coords="574,498,541,498,541,492,574,492"/>
+<area shape="rect" href="change__pin__screen_8cpp.html#a8fd35668714ff150607a3723ef9ae3f7" title=" " alt="" coords="848,541,981,566"/>
+<area shape="poly" title=" " alt="" coords="733,514,838,535,837,541,732,519"/>
+<area shape="rect" href="change__pin__screen_8cpp.html#a433412ed9dfc52de08ae0d06b4c84ecd" title=" " alt="" coords="865,491,965,517"/>
+<area shape="poly" title=" " alt="" coords="762,501,851,501,851,507,762,507"/>
+<area shape="poly" title=" " alt="" coords="432,742,385,681,351,646,312,614,274,592,233,574,153,548,155,543,235,569,276,587,315,610,355,642,389,678,436,739"/>
+<area shape="rect" href="takes__list_8cpp.html#a8c837e300674dc4b5cd4a4f9968046cc" title=" " alt="" coords="609,741,727,766"/>
+<area shape="poly" title=" " alt="" coords="512,759,595,759,595,764,512,764"/>
+<area shape="rect" href="takes__list_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="865,590,965,615"/>
+<area shape="poly" title=" " alt="" coords="506,738,657,704,723,687,760,675,774,664,783,651,792,638,808,626,851,609,853,614,811,630,796,642,788,654,778,667,763,680,725,693,658,709,507,743"/>
+<area shape="rect" href="edit__takes_8cpp.html#a8e5cbca5436158cde9e16681693d1d6d" title=" " alt="" coords="599,839,737,865"/>
+<area shape="poly" title=" " alt="" coords="464,764,530,797,610,832,608,837,528,802,462,769"/>
+<area shape="poly" title=" " alt="" coords="609,748,525,747,525,742,609,743"/>
+<area shape="rect" href="takes__storage_8cpp.html#a092852dc2a97a9825c9e595827388e7a" title=" " alt="" coords="865,639,964,665"/>
+<area shape="poly" title=" " alt="" coords="714,738,760,719,784,700,808,682,851,664,853,669,811,686,787,705,763,724,717,743"/>
+<area shape="poly" title=" " alt="" coords="726,738,760,719,776,697,782,673,789,649,808,626,828,614,850,606,852,611,830,619,811,630,794,652,787,675,781,699,763,723,729,743"/>
+<area shape="rect" href="takes__storage_8cpp.html#a230495ec724f6295941efc6a5cabd1a0" title=" " alt="" coords="1094,665,1183,690"/>
+<area shape="poly" title=" " alt="" coords="964,655,1081,668,1080,673,964,660"/>
+<area shape="poly" title=" " alt="" coords="648,842,582,808,502,774,504,769,584,803,651,837"/>
+<area shape="poly" title=" " alt="" coords="685,837,759,777,782,750,792,738,808,727,878,699,951,683,1021,675,1080,673,1080,678,1022,681,952,688,880,705,811,732,795,742,786,753,763,781,688,841"/>
+<area shape="rect" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81" title=" " alt="" coords="1083,1163,1194,1189"/>
+<area shape="poly" title=" " alt="" coords="739,862,763,875,780,895,788,915,795,935,811,954,838,972,864,983,914,992,964,1000,992,1010,1022,1027,1055,1056,1084,1089,1126,1150,1121,1153,1080,1092,1051,1060,1018,1031,990,1015,963,1005,913,997,863,988,836,977,808,958,791,938,783,917,776,898,760,879,736,867"/>
+<area shape="rect" href="edit__takes_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="865,1041,965,1066"/>
+<area shape="poly" title=" " alt="" coords="739,860,763,875,778,894,785,912,788,949,791,985,798,1002,811,1019,830,1033,852,1042,850,1047,827,1038,807,1023,793,1005,786,986,783,949,780,913,773,896,760,879,736,865"/>
+<area shape="rect" href="edit__takes_8cpp.html#abd49422d84c367a440ffcfdcf569601d" title=" " alt="" coords="833,1163,996,1189"/>
+<area shape="poly" title=" " alt="" coords="739,859,763,875,786,911,795,946,793,981,787,1016,781,1050,780,1084,789,1117,811,1150,823,1160,819,1164,807,1154,784,1119,775,1084,776,1049,782,1015,788,981,789,947,781,913,759,879,736,863"/>
+<area shape="rect" href="edit__takes_8cpp.html#ae4651fbe523abcc40959dd080499f6b2" title=" " alt="" coords="830,1114,999,1139"/>
+<area shape="poly" title=" " alt="" coords="739,860,763,875,782,901,790,926,792,951,790,976,789,1026,796,1051,811,1077,830,1094,852,1106,850,1111,827,1098,807,1080,791,1053,784,1027,785,976,787,951,785,927,777,903,759,879,736,864"/>
+<area shape="rect" href="edit__takes_8cpp.html#af7243c0003bee258aa5a4ca997b9286a" title=" " alt="" coords="1105,914,1172,939"/>
+<area shape="poly" title=" " alt="" coords="734,862,763,875,778,888,787,902,796,914,811,924,846,936,884,944,961,949,1033,944,1091,935,1092,940,1033,949,961,954,883,950,845,942,808,929,792,918,782,905,774,892,760,880,732,867"/>
+<area shape="rect" href="pill__takes_8h.html#af693b03152fb88fbdcdfecf4138de775" title=" " alt="" coords="878,741,951,766"/>
+<area shape="poly" title=" " alt="" coords="689,837,742,807,808,776,863,760,865,765,810,781,744,811,691,841"/>
+<area shape="rect" href="edit__takes_8cpp.html#a25940f318b6609dd153cdb939e6dd402" title=" " alt="" coords="855,790,974,815"/>
+<area shape="poly" title=" " alt="" coords="732,837,841,814,842,820,733,842"/>
+<area shape="rect" href="edit__takes_8cpp.html#a5bb7422f61b57be1446b13981898762f" title=" " alt="" coords="831,839,999,865"/>
+<area shape="poly" title=" " alt="" coords="738,849,817,849,817,855,738,855"/>
+<area shape="rect" href="edit__takes_8cpp.html#af4ab132463fcc8eebd183eada8434121" title=" " alt="" coords="824,889,1005,914"/>
+<area shape="poly" title=" " alt="" coords="733,862,838,883,837,889,732,867"/>
+<area shape="poly" title=" " alt="" coords="997,1173,1069,1173,1069,1179,997,1179"/>
+<area shape="poly" title=" " alt="" coords="879,1116,871,1106,875,1096,890,1089,915,1087,945,1091,958,1100,954,1104,943,1096,915,1093,891,1095,878,1100,876,1105,883,1112"/>
+<area shape="poly" title=" " alt="" coords="1006,909,1092,919,1091,924,1005,914"/>
+<area shape="poly" title=" " alt="" coords="432,914,399,856,359,780,347,744,341,714,332,688,311,659,286,640,262,633,235,627,203,614,152,583,108,552,111,548,154,579,205,610,236,622,263,627,288,636,315,655,337,685,346,713,352,743,364,778,404,854,437,911"/>
+<area shape="rect" href="today__takes_8cpp.html#a1626cffba53bfed701700270d36987a2" title=" " alt="" coords="601,889,735,914"/>
+<area shape="poly" title=" " alt="" coords="519,915,587,907,587,913,520,920"/>
+<area shape="rect" href="today__takes_8cpp.html#ad7a30a2621259f647ab1fd6204be924f" title=" " alt="" coords="591,987,745,1013"/>
+<area shape="poly" title=" " alt="" coords="476,936,576,973,601,981,599,986,574,979,474,940"/>
+<area shape="rect" href="today__takes_8cpp.html#a276e05999682cc809bd995a814059a4e" title=" " alt="" coords="612,938,724,963"/>
+<area shape="poly" title=" " alt="" coords="520,931,599,940,598,945,519,936"/>
+<area shape="rect" href="today__takes_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="618,1037,718,1062"/>
+<area shape="poly" title=" " alt="" coords="460,936,508,979,541,1003,576,1023,606,1034,604,1039,574,1028,538,1007,505,983,456,940"/>
+<area shape="poly" title=" " alt="" coords="725,953,746,961,763,974,783,1003,790,1033,789,1063,784,1093,780,1122,781,1149,790,1175,811,1199,844,1219,881,1230,920,1234,960,1231,1036,1215,1098,1192,1100,1197,1038,1220,961,1237,920,1239,880,1236,842,1224,808,1203,785,1178,776,1150,775,1121,779,1092,784,1063,785,1034,778,1005,759,978,743,966,723,958"/>
 </map>
 </div>
 <div class="dynheader">
@@ -253,29 +344,50 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_icgraph.png" border="0" usemap="#ahome__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_icgraph" alt=""/></div>
 <map name="ahome__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_icgraph" id="ahome__mod_8h_a347f29b0cd5aca029a64be2107bb9f13_icgraph">
-<area shape="rect" title=" " alt="" coords="581,80,732,105"/>
-<area shape="rect" href="clock__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23" title=" " alt="" coords="403,5,513,31"/>
-<area shape="poly" title=" " alt="" coords="613,77,532,44,500,33,502,28,534,40,615,72"/>
-<area shape="rect" href="takes__list_8cpp.html#ae9d1bc4cc19d7de8d5c16bf4961bb24b" title=" " alt="" coords="391,156,525,181"/>
-<area shape="poly" title=" " alt="" coords="611,113,493,158,491,153,609,108"/>
-<area shape="rect" href="today__takes_8cpp.html#a3cee774dd6a58d0c209aaeb4c3bf994e" title=" " alt="" coords="383,55,533,80"/>
-<area shape="poly" title=" " alt="" coords="568,84,533,80,534,74,568,79"/>
-<area shape="rect" href="clock__mod_8cpp.html#a199e69d3e99f6122e7d30966d5377636" title=" " alt="" coords="188,5,335,31"/>
-<area shape="poly" title=" " alt="" coords="389,21,335,21,335,15,389,15"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="47,5,98,31"/>
-<area shape="poly" title=" " alt="" coords="174,21,98,21,98,15,174,15"/>
-<area shape="rect" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23" title=" " alt="" coords="207,105,316,131"/>
-<area shape="poly" title=" " alt="" coords="394,155,311,133,312,128,395,150"/>
-<area shape="rect" href="takes__list_8cpp.html#a8c837e300674dc4b5cd4a4f9968046cc" title=" " alt="" coords="202,155,321,180"/>
-<area shape="poly" title=" " alt="" coords="377,180,321,179,321,173,377,174"/>
-<area shape="rect" href="edit__takes_8cpp.html#a8e5cbca5436158cde9e16681693d1d6d" title=" " alt="" coords="192,204,331,229"/>
-<area shape="poly" title=" " alt="" coords="419,188,331,211,330,206,417,183"/>
-<area shape="poly" title=" " alt="" coords="330,111,581,95,581,100,330,116"/>
-<area shape="poly" title=" " alt="" coords="335,156,390,157,390,162,334,162"/>
-<area shape="poly" title=" " alt="" coords="300,197,390,174,391,179,302,202"/>
-<area shape="rect" href="repetition_8cpp.html#a5e444d9110c8a48b6d02495ce4c165d3" title=" " alt="" coords="5,204,140,229"/>
-<area shape="poly" title=" " alt="" coords="178,219,140,219,140,214,178,214"/>
-<area shape="poly" title=" " alt="" coords="395,86,312,108,311,103,394,81"/>
+<area shape="rect" title=" " alt="" coords="755,171,905,197"/>
+<area shape="rect" href="pulse__history__screen_8cpp.html#afc8fe7ee57fd775f3845310b9b4e5ad0" title=" " alt="" coords="551,17,697,42"/>
+<area shape="poly" title=" " alt="" coords="808,163,763,115,705,66,662,44,664,40,708,62,767,111,812,159"/>
+<area shape="rect" href="pulse__screen_8cpp.html#afc8fe7ee57fd775f3845310b9b4e5ad0" title=" " alt="" coords="551,121,697,146"/>
+<area shape="poly" title=" " alt="" coords="764,171,676,149,677,143,765,165"/>
+<area shape="rect" href="pin__screen_8cpp.html#add9f292c0b900f35b88b16fc4b81be47" title=" " alt="" coords="557,447,691,473"/>
+<area shape="poly" title=" " alt="" coords="823,211,806,253,782,306,749,362,709,414,683,434,657,449,654,445,680,430,705,410,745,359,777,304,801,251,818,209"/>
+<area shape="rect" href="settings__screen_8cpp.html#ad23f69d53abd94f0c85d6b14aa6c2aa9" title=" " alt="" coords="541,258,707,283"/>
+<area shape="poly" title=" " alt="" coords="787,205,657,260,654,255,785,200"/>
+<area shape="rect" href="takes__list_8cpp.html#ae9d1bc4cc19d7de8d5c16bf4961bb24b" title=" " alt="" coords="557,374,691,399"/>
+<area shape="poly" title=" " alt="" coords="808,208,640,376,636,372,804,205"/>
+<area shape="rect" href="today__takes_8cpp.html#a3cee774dd6a58d0c209aaeb4c3bf994e" title=" " alt="" coords="549,171,699,197"/>
+<area shape="poly" title=" " alt="" coords="741,187,700,187,700,181,741,181"/>
+<area shape="rect" href="pulse__history__screen_8cpp.html#ad1eaaad2198570756eba8847fab82ae9" title=" " alt="" coords="325,5,475,45"/>
+<area shape="poly" title=" " alt="" coords="536,30,475,29,476,24,537,25"/>
+<area shape="rect" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23" title=" " alt="" coords="131,146,240,171"/>
+<area shape="poly" title=" " alt="" coords="333,53,308,66,247,109,202,148,198,144,244,105,305,62,330,49"/>
+<area shape="poly" title=" " alt="" coords="220,137,260,119,306,105,418,84,508,74,551,75,597,80,707,105,740,118,770,135,816,169,813,173,767,140,738,123,706,111,596,85,551,80,508,79,419,89,307,111,262,124,222,142"/>
+<area shape="rect" href="pulse__screen_8cpp.html#a110b08df176a6163bf8834ea75df52b4" title=" " alt="" coords="326,121,474,146"/>
+<area shape="poly" title=" " alt="" coords="537,136,474,136,474,131,537,131"/>
+<area shape="poly" title=" " alt="" coords="313,146,241,155,240,150,312,141"/>
+<area shape="rect" href="clock__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23" title=" " alt="" coords="345,473,455,498"/>
+<area shape="poly" title=" " alt="" coords="544,472,455,482,455,477,543,466"/>
+<area shape="rect" href="clock__mod_8cpp.html#a199e69d3e99f6122e7d30966d5377636" title=" " alt="" coords="112,473,259,498"/>
+<area shape="poly" title=" " alt="" coords="331,488,259,488,259,483,331,483"/>
+<area shape="rect" href="src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,447,60,473"/>
+<area shape="poly" title=" " alt="" coords="98,473,60,467,61,461,99,468"/>
+<area shape="rect" href="src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,497,64,522"/>
+<area shape="poly" title=" " alt="" coords="99,502,65,507,64,502,98,497"/>
+<area shape="poly" title=" " alt="" coords="559,257,236,174,237,169,560,252"/>
+<area shape="poly" title=" " alt="" coords="661,248,650,240,624,237,602,239,591,243,588,249,594,256,590,260,583,250,587,240,601,234,624,231,653,235,664,244"/>
+<area shape="rect" href="change__pin__screen_8cpp.html#ad08507623b40f34993103c86c1c34055" title=" " alt="" coords="307,273,493,298"/>
+<area shape="poly" title=" " alt="" coords="544,287,494,291,493,285,543,282"/>
+<area shape="poly" title=" " alt="" coords="480,269,541,265,541,270,481,274"/>
+<area shape="poly" title=" " alt="" coords="548,374,402,341,340,324,305,312,265,279,232,239,191,173,195,170,237,236,269,275,308,307,342,319,403,336,549,368"/>
+<area shape="rect" href="takes__list_8cpp.html#a8c837e300674dc4b5cd4a4f9968046cc" title=" " alt="" coords="341,374,459,399"/>
+<area shape="poly" title=" " alt="" coords="543,398,459,397,459,392,543,393"/>
+<area shape="rect" href="edit__takes_8cpp.html#a8e5cbca5436158cde9e16681693d1d6d" title=" " alt="" coords="331,423,469,449"/>
+<area shape="poly" title=" " alt="" coords="581,406,470,432,469,427,580,401"/>
+<area shape="poly" title=" " alt="" coords="473,376,556,376,556,381,473,381"/>
+<area shape="poly" title=" " alt="" coords="442,417,556,391,557,396,444,422"/>
+<area shape="rect" href="repetition_8cpp.html#a5e444d9110c8a48b6d02495ce4c165d3" title=" " alt="" coords="118,423,253,449"/>
+<area shape="poly" title=" " alt="" coords="317,439,253,439,253,433,317,433"/>
+<area shape="poly" title=" " alt="" coords="534,182,240,164,240,159,535,176"/>
 </map>
 </div>
 

@@ -1,0 +1,44 @@
+\doxysection{Medicine\+List\+Adapter.\+kt}
+\hypertarget{MedicineListAdapter_8kt_source}{}\label{MedicineListAdapter_8kt_source}\index{app/src/main/java/com/example/mymeds/ui/medicine/MedicineListAdapter.kt@{app/src/main/java/com/example/mymeds/ui/medicine/MedicineListAdapter.kt}}
+\mbox{\hyperlink{MedicineListAdapter_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00001}00001\ package\ com.example.mymeds.ui.medicine}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00003}00003\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00004}00004\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00005}00005\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00006}00006\ import\ com.example.mymeds.data.model.Medicine}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00007}00007\ import\ com.example.mymeds.databinding.ItemMedicineSimpleBinding}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00009}00009\ class\ MedicineListAdapter(}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00010}00010\ \ \ \ \ private\ val\ medicines:\ List<Medicine>,}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00011}00011\ \ \ \ \ private\ val\ onDelete:\ (Int)\ -\/>\ Unit}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00012}00012\ )\ :\ RecyclerView.Adapter<MedicineListAdapter.ViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00014}00014\ \ \ \ \ inner\ class\ ViewHolder(val\ binding:\ ItemMedicineSimpleBinding)}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00015}00015\ \ \ \ \ \ \ \ \ :\ RecyclerView.ViewHolder(binding.root)}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00017}00017\ \ \ \ \ override\ fun\ onCreateViewHolder(parent:\ ViewGroup,\ viewType:\ Int):\ ViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00018}00018\ \ \ \ \ \ \ \ \ val\ binding\ =\ ItemMedicineSimpleBinding.inflate(}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ LayoutInflater.from(parent.context),}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ parent,}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ false}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00022}00022\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00023}00023\ \ \ \ \ \ \ \ \ return\ ViewHolder(binding)}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00026}00026\ \ \ \ \ override\ fun\ onBindViewHolder(holder:\ ViewHolder,\ position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ val\ med\ =\ medicines[position]}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ holder.binding.textName.text\ =\ med.name}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ holder.binding.buttonDelete.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ onDelete(position)}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00037}00037\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ medicines.size}
+\DoxyCodeLine{\Hypertarget{MedicineListAdapter_8kt_source_l00038}00038\ \}}
+
+\end{DoxyCode}

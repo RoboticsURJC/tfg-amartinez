@@ -1,0 +1,7 @@
+<map id="playNote" name="playNote">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,87,56"/>
+<area shape="rect" id="Node000002" href="$speaker__test_2test_8cpp.html#aa7daae0aa205583770fd07d82a60bf89" title=" " alt="" coords="141,5,203,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,33,127,24,128,29,87,38"/>
+<area shape="rect" id="Node000003" href="$speaker__test_2test_8cpp.html#ad8f30ed47a24c9b191adae164180f6c5" title=" " alt="" coords="135,55,209,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="87,48,122,55,121,60,86,54"/>
+</map>

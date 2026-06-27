@@ -1,0 +1,308 @@
+\doxysection{change\+\_\+pin\+\_\+screen.\+cpp}
+\hypertarget{change__pin__screen_8cpp_source}{}\label{change__pin__screen_8cpp_source}\index{src/user\_interface/change\_pin\_screen.cpp@{src/user\_interface/change\_pin\_screen.cpp}}
+\mbox{\hyperlink{change__pin__screen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <lvgl.h>}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <Preferences.h>}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{change__pin__screen_8h}{user\_interface/change\_pin\_screen.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{settings__screen_8h}{user\_interface/settings\_screen.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00008}00008\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{change__pin__screen_8cpp_a1e8840a3dae85aab7a417604b4dff6c2}{DEVICE\_PIN}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00010}\mbox{\hyperlink{change__pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{00010}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{change__pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00011}\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{00011}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00012}\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{00012}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00014}\mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{00014}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00016}\mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{00016}}\ \textcolor{keyword}{static}\ String\ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00017}\mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{00017}}\ \textcolor{keyword}{static}\ String\ \mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{new\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00019}\mbox{\hyperlink{change__pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{00019}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{change__pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}()}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00021}00021\ \ \ \ \ String\ stars\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ stars\ +=\ \textcolor{stringliteral}{"{}*"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00027}00027\ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ stars.c\_str()}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00030}00030\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00033}\mbox{\hyperlink{change__pin__screen_8cpp_a433412ed9dfc52de08ae0d06b4c84ecd}{00033}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{change__pin__screen_8cpp_a433412ed9dfc52de08ae0d06b4c84ecd}{update\_title}}()}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}},\ \textcolor{stringliteral}{"{}PIN\ actual"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ ==\ 1)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}},\ \textcolor{stringliteral}{"{}Nuevo\ PIN"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}},\ \textcolor{stringliteral}{"{}Confirmar\ PIN"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00043}00043\ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00045}\mbox{\hyperlink{change__pin__screen_8h_ad08507623b40f34993103c86c1c34055}{00045}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{change__pin__screen_8cpp_ad08507623b40f34993103c86c1c34055}{show\_change\_pin\_screen}}()\{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00046}00046\ \ \ \ \ lv\_obj\_t\ *scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00047}00047\ \ \ \ \ lv\_scr\_load(scr);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00048}00048\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00052}00052\ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00053}00053\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}},\textcolor{stringliteral}{"{}Introducir\ PIN"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00054}00054\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}},\&lv\_font\_montserrat\_24,0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00055}00055\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}},lv\_color\_white(),0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00056}00056\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{change__pin__screen_8cpp_ae7b7ed2539d3f93b7c20d47d0e1b9443}{title\_label}},LV\_ALIGN\_TOP\_MID,0,20);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00058}00058\ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00059}00059\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00060}00060\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{change__pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},\&lv\_font\_montserrat\_32,0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00061}00061\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{change__pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},lv\_color\_white(),0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00062}00062\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{change__pin__screen_8cpp_af05b2f44f6a1907e9cdfac0e6851730d}{label\_pin}},LV\_ALIGN\_TOP\_MID,0,80);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}})\ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00069}00069\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ lv\_palette\_main(LV\_PALETTE\_RED),0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00070}00070\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ \&lv\_font\_montserrat\_24,\ 0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00071}00071\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ LV\_ALIGN\_TOP\_MID,\ 0,\ 130);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{int}\ num\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ 3;\ row++)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ 3;\ col++)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_radius(btn,15,LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(btn,\ 70,\ 70);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_align(btn,LV\_ALIGN\_TOP\_LEFT,35\ +\ col\ *\ 85,160\ +\ row\ *\ 85);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *lbl\ =\ lv\_label\_create(btn);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ txt[4];}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ snprintf(txt,\ \textcolor{keyword}{sizeof}(txt),\ \textcolor{stringliteral}{"{}\%d"{}},\ num);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl,\ txt);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl,lv\_color\_white(),0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_center(lbl);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ digit\ =\ num;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_event\_cb(btn,}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ digit\ =}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (int)(intptr\_t)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_event\_get\_user\_data(e);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length()\ >=\ 4)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}})\ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ +=\ String(digit);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}*)(intptr\_t)digit);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ num++;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00120}00120\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00122}00122\ \ \ \ \ \textcolor{comment}{//\ botón\ 0}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00124}00124\ \ \ \ \ lv\_obj\_t\ *btn0\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00125}00125\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn0,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00126}00126\ \ \ \ \ lv\_obj\_set\_style\_radius(btn0,15,LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00127}00127\ \ \ \ \ lv\_obj\_set\_size(btn0,\ 70,\ 70);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00128}00128\ \ \ \ \ lv\_obj\_align(btn0,LV\_ALIGN\_TOP\_MID,0,415);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00130}00130\ \ \ \ \ lv\_obj\_t\ *lbl0\ =\ lv\_label\_create(btn0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00131}00131\ \ \ \ \ lv\_label\_set\_text(lbl0,\ \textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00132}00132\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl0,lv\_color\_white(),0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00133}00133\ \ \ \ \ lv\_obj\_center(lbl0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00135}00135\ \ \ \ \ lv\_obj\_add\_event\_cb(btn0,}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00137}00137\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length()\ >=\ 4)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}})\ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ +=\ \textcolor{stringliteral}{"{}0"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00149}00149\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{comment}{//\ botón\ OK}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00153}00153\ \ \ \ \ lv\_obj\_t\ *btn\_ok\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00154}00154\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_ok,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00155}00155\ \ \ \ \ lv\_obj\_set\_style\_radius(btn\_ok,15,LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00157}00157\ \ \ \ \ lv\_obj\_set\_size(btn\_ok,\ 90,\ 55);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00158}00158\ \ \ \ \ lv\_obj\_set\_pos(btn\_ok,190,500);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00160}00160\ \ \ \ \ lv\_obj\_t\ *lbl\_ok\ =\ lv\_label\_create(btn\_ok);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00161}00161\ \ \ \ \ lv\_label\_set\_text(lbl\_ok,\ \textcolor{stringliteral}{"{}OK"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00162}00162\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_ok,lv\_color\_white(),0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00163}00163\ \ \ \ \ lv\_obj\_center(lbl\_ok);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00165}00165\ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_ok,[](lv\_event\_t\ *e)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ ==\ \mbox{\hyperlink{change__pin__screen_8cpp_a1e8840a3dae85aab7a417604b4dff6c2}{DEVICE\_PIN}})}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}PIN\ actual\ validado"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a433412ed9dfc52de08ae0d06b4c84ecd}{update\_title}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\textcolor{stringliteral}{"{}PIN\ incorrecto"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ ==\ 1)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length()\ !=\ 4)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\textcolor{stringliteral}{"{}Debe\ tener\ 4\ digitos"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{new\_pin}}\ =\ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a433412ed9dfc52de08ae0d06b4c84ecd}{update\_title}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ ==\ 2)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ ==\ \mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{new\_pin}})}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Preferences\ p;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p.begin(\textcolor{stringliteral}{"{}sys"{}},\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p.putString(\textcolor{stringliteral}{"{}pin"{}},\mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{new\_pin}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p.end();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a1e8840a3dae85aab7a417604b4dff6c2}{DEVICE\_PIN}}\ =\ \mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{new\_pin}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}PIN\ cambiado:"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{new\_pin}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_clean(lv\_scr\_act());}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(lv\_scr\_act(),lv\_color\_make(48,\ 25,\ 52),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{new\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mensaje}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *msg\ =\ lv\_label\_create(lv\_scr\_act());}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(msg,\textcolor{stringliteral}{"{}PIN\ actualizado"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(msg,\&lv\_font\_montserrat\_32,0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(msg,lv\_color\_white(),\ 0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_center(msg);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Volver\ a\ ajustes\ en\ 3\ segundos}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_timer\_create(}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [](lv\_timer\_t\ *t)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9}{show\_settings\_screen}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_timer\_del(t);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},3000,NULL}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a8fd35668714ff150607a3723ef9ae3f7}{update\_pin\_label}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{change__pin__screen_8cpp_a4b90e76a77fceac413be371a0c5f62ba}{label\_error}},\textcolor{stringliteral}{"{}No\ coincide"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \},LV\_EVENT\_CLICKED,\ NULL}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00253}00253\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00255}00255\ \ \ \ \ \textcolor{comment}{//\ borrar}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00257}00257\ \ \ \ \ lv\_obj\_t\ *btn\_del\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00258}00258\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_del,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00259}00259\ \ \ \ \ lv\_obj\_set\_style\_radius(btn\_del,15,LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00260}00260\ \ \ \ \ lv\_obj\_set\_size(btn\_del,\ 140,\ 55);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00262}00262\ \ \ \ \ lv\_obj\_set\_pos(btn\_del,\ 25,\ 500);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00263}00263\ \ \ \ \ lv\_obj\_t\ *lbl\_del\ =\ lv\_label\_create(btn\_del);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00264}00264\ \ \ \ \ lv\_label\_set\_text(lbl\_del,\ \textcolor{stringliteral}{"{}Borrar"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00265}00265\ \ \ \ \ lv\_obj\_center(lbl\_del);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00267}00267\ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_del,}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00269}00269\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}.length()\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ entered\_pin.remove(}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entered\_pin.length()\ -\/\ 1}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ update\_pin\_label();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00279}00279\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00281}00281\ \ \ \ \ \textcolor{comment}{//\ volver}}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00283}00283\ \ \ \ \ lv\_obj\_t\ *\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}}\ =\ lv\_btn\_create(lv\_scr\_act());}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00284}00284\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00285}00285\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},15,LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00286}00286\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},255,55);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00287}00287\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},25,565);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00289}00289\ \ \ \ \ lv\_obj\_t\ *lbl\_back\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00290}00290\ \ \ \ \ lv\_label\_set\_text(lbl\_back,\textcolor{stringliteral}{"{}Volver"{}});}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00291}00291\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_back,lv\_color\_white(),0);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00292}00292\ \ \ \ \ lv\_obj\_center(lbl\_back);}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00293}00293\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},[](lv\_event\_t\ *e)}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a9db29425f4c71935798716696415e4a4}{entered\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_a1330e03565b96cc17d48f88215902ac3}{new\_pin}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8cpp_acce9ec4cb4cb25e70951d00571b36471}{pin\_step}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9}{show\_settings\_screen}}();}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00300}00300\ \ \ \ \ \ \ \ \ \},LV\_EVENT\_CLICKED,NULL}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00301}00301\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{change__pin__screen_8cpp_source_l00302}00302\ \}}
+
+\end{DoxyCode}

@@ -177,105 +177,186 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   49</span>        lv_label_set_text(lbl_btn, <a class="code hl_variable" href="clock__mod_8cpp.html#a3a1d74533635583b083a83a9eaafdcc0">days</a>[i]);</div>
 <div class="line"><span class="lineno">   50</span>        lv_obj_center(lbl_btn);</div>
 <div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>-&gt;<a class="code hl_variable" href="structTakeConfig.html#a19af5f6390dcbcc7f71f34ca77d478a7">repeat</a>[i]) {</div>
-<div class="line"><span class="lineno">   53</span>            lv_obj_add_state(<a class="code hl_variable" href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a>[i], LV_STATE_CHECKED);</div>
-<div class="line"><span class="lineno">   54</span>        }</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>        lv_obj_set_user_data(<a class="code hl_variable" href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a>[i], (<span class="keywordtype">void</span>*)i);</div>
-<div class="line"><span class="lineno">   57</span>        lv_obj_add_event_cb(<a class="code hl_variable" href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a>[i], [](lv_event_t *e){</div>
-<div class="line"><span class="lineno">   58</span>            lv_obj_t *obj = lv_event_get_target(e);</div>
-<div class="line"><span class="lineno">   59</span>            <span class="keywordtype">int</span> day = (int)lv_obj_get_user_data(lv_event_get_target(e));</div>
-<div class="line"><span class="lineno">   60</span>            <a class="code hl_variable" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>-&gt;<a class="code hl_variable" href="structTakeConfig.html#a19af5f6390dcbcc7f71f34ca77d478a7">repeat</a>[day] = !<a class="code hl_variable" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>-&gt;<a class="code hl_variable" href="structTakeConfig.html#a19af5f6390dcbcc7f71f34ca77d478a7">repeat</a>[day];</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>-&gt;<a class="code hl_variable" href="structTakeConfig.html#a19af5f6390dcbcc7f71f34ca77d478a7">repeat</a>[day]){</div>
-<div class="line"><span class="lineno">   63</span>                lv_obj_add_state(lv_event_get_target(e), LV_STATE_CHECKED);</div>
-<div class="line"><span class="lineno">   64</span>            } <span class="keywordflow">else</span>{</div>
-<div class="line"><span class="lineno">   65</span>                lv_obj_clear_state(lv_event_get_target(e), LV_STATE_CHECKED);</div>
-<div class="line"><span class="lineno">   66</span>            }</div>
-<div class="line"><span class="lineno">   67</span>        }, LV_EVENT_CLICKED, NULL);</div>
-<div class="line"><span class="lineno">   68</span>    }</div>
-<div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>    lv_obj_t *<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a> = lv_btn_create(scr);</div>
-<div class="line"><span class="lineno">   71</span>    lv_obj_set_size(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, 140, 45);</div>
-<div class="line"><span class="lineno">   72</span>    lv_obj_set_style_bg_color(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   73</span>    lv_obj_align(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, LV_ALIGN_BOTTOM_MID, 0, -10);</div>
-<div class="line"><span class="lineno">   74</span>    lv_obj_t * lbl_save = lv_label_create(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>);</div>
-<div class="line"><span class="lineno">   75</span>    lv_label_set_text(lbl_save, <span class="stringliteral">&quot;Guardar&quot;</span>);</div>
-<div class="line"><span class="lineno">   76</span>    lv_obj_set_style_text_font(lbl_save, &amp;lv_font_montserrat_24, LV_PART_MAIN);</div>
-<div class="line"><span class="lineno">   77</span>    lv_obj_center(lbl_save);</div>
-<div class="line"><span class="lineno">   78</span> </div>
-<div class="line"><span class="lineno">   79</span>    lv_obj_add_event_cb(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, [](lv_event_t *e){</div>
-<div class="line"><span class="lineno">   80</span>        <span class="keywordtype">int</span> idx = <a class="code hl_variable" href="repetition_8cpp.html#aa109b69c74e781d1c99d60b2861cbf5d">current_index</a>;</div>
-<div class="line"><span class="lineno">   81</span>        lv_async_call([](<span class="keywordtype">void</span> *p){</div>
-<div class="line"><span class="lineno">   82</span>            <a class="code hl_function" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen</a>((<span class="keywordtype">int</span>)p);</div>
-<div class="line"><span class="lineno">   83</span>        }, (<span class="keywordtype">void</span>*)idx);</div>
-<div class="line"><span class="lineno">   84</span>    }, LV_EVENT_CLICKED, NULL);</div>
-<div class="line"><span class="lineno">   85</span>}</div>
-<div class="ttc" id="aclock__mod_8cpp_html_a3a1d74533635583b083a83a9eaafdcc0"><div class="ttname"><a href="clock__mod_8cpp.html#a3a1d74533635583b083a83a9eaafdcc0">days</a></div><div class="ttdeci">const char * days[]</div><div class="ttdef"><b>Definition</b> <a href="clock__mod_8cpp_source.html#l00013">clock_mod.cpp:13</a></div></div>
-<div class="ttc" id="aedit__takes_8cpp_html_ab14bb0cef44d22ad891ff256cd74eee5"><div class="ttname"><a href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a></div><div class="ttdeci">static lv_obj_t * btn_save</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00017">edit_takes.cpp:17</a></div></div>
-<div class="ttc" id="apill__takes_8h_html_a8e5cbca5436158cde9e16681693d1d6d"><div class="ttname"><a href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen</a></div><div class="ttdeci">void edit_takes_screen(int index)</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00120">edit_takes.cpp:120</a></div></div>
+<div class="line"><span class="lineno">   52</span>        <span class="comment">// Estado inicial</span></div>
+<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active</a>(<a class="code hl_variable" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>-&gt;<a class="code hl_variable" href="structTakeConfig.html#a714c7c032d42076ea0bc3eda89f64ff4">repeat_mask</a>, i)) {</div>
+<div class="line"><span class="lineno">   54</span>            lv_obj_add_state(<a class="code hl_variable" href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a>[i], LV_STATE_CHECKED);</div>
+<div class="line"><span class="lineno">   55</span>        }</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>        <span class="comment">// Guardar índice del día</span></div>
+<div class="line"><span class="lineno">   58</span>        lv_obj_set_user_data(<a class="code hl_variable" href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a>[i], (<span class="keywordtype">void</span>*)i);</div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>        <span class="comment">// Evento click</span></div>
+<div class="line"><span class="lineno">   61</span>        lv_obj_add_event_cb(<a class="code hl_variable" href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a>[i], [](lv_event_t *e){</div>
+<div class="line"><span class="lineno">   62</span> </div>
+<div class="line"><span class="lineno">   63</span>            lv_obj_t *obj = lv_event_get_target(e);</div>
+<div class="line"><span class="lineno">   64</span>            <span class="keywordtype">int</span> day = (int)lv_obj_get_user_data(obj);</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>            <span class="keywordtype">bool</span> active = <a class="code hl_function" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active</a>(<a class="code hl_variable" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>-&gt;<a class="code hl_variable" href="structTakeConfig.html#a714c7c032d42076ea0bc3eda89f64ff4">repeat_mask</a>, day);</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>            <span class="comment">// Toggle</span></div>
+<div class="line"><span class="lineno">   69</span>            <a class="code hl_function" href="pill__takes_8h.html#af693b03152fb88fbdcdfecf4138de775">set_day</a>(<a class="code hl_variable" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>-&gt;<a class="code hl_variable" href="structTakeConfig.html#a714c7c032d42076ea0bc3eda89f64ff4">repeat_mask</a>, day, !active);</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>            <span class="keywordflow">if</span> (!active) {</div>
+<div class="line"><span class="lineno">   72</span>                lv_obj_add_state(obj, LV_STATE_CHECKED);</div>
+<div class="line"><span class="lineno">   73</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   74</span>                lv_obj_clear_state(obj, LV_STATE_CHECKED);</div>
+<div class="line"><span class="lineno">   75</span>            }</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span>        }, LV_EVENT_CLICKED, NULL);</div>
+<div class="line"><span class="lineno">   78</span>    }</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>    lv_obj_t *<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a> = lv_btn_create(scr);</div>
+<div class="line"><span class="lineno">   81</span>    lv_obj_set_size(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, 140, 45);</div>
+<div class="line"><span class="lineno">   82</span>    lv_obj_set_style_bg_color(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, lv_color_make(160, 50, 200), LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   83</span>    lv_obj_align(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, LV_ALIGN_BOTTOM_MID, 0, -10);</div>
+<div class="line"><span class="lineno">   84</span>    lv_obj_t * lbl_save = lv_label_create(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>);</div>
+<div class="line"><span class="lineno">   85</span>    lv_label_set_text(lbl_save, <span class="stringliteral">&quot;Guardar&quot;</span>);</div>
+<div class="line"><span class="lineno">   86</span>    lv_obj_set_style_text_font(lbl_save, &amp;lv_font_montserrat_24, LV_PART_MAIN);</div>
+<div class="line"><span class="lineno">   87</span>    lv_obj_center(lbl_save);</div>
+<div class="line"><span class="lineno">   88</span> </div>
+<div class="line"><span class="lineno">   89</span>    lv_obj_add_event_cb(<a class="code hl_variable" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, [](lv_event_t *e){</div>
+<div class="line"><span class="lineno">   90</span>        <span class="keywordtype">int</span> idx = <a class="code hl_variable" href="repetition_8cpp.html#aa109b69c74e781d1c99d60b2861cbf5d">current_index</a>;</div>
+<div class="line"><span class="lineno">   91</span>        lv_async_call([](<span class="keywordtype">void</span> *p){</div>
+<div class="line"><span class="lineno">   92</span>            <a class="code hl_function" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen</a>((<span class="keywordtype">int</span>)p);</div>
+<div class="line"><span class="lineno">   93</span>        }, (<span class="keywordtype">void</span>*)idx);</div>
+<div class="line"><span class="lineno">   94</span>    }, LV_EVENT_CLICKED, NULL);</div>
+<div class="line"><span class="lineno">   95</span>}</div>
+<div class="ttc" id="aclock__mod_8cpp_html_a3a1d74533635583b083a83a9eaafdcc0"><div class="ttname"><a href="clock__mod_8cpp.html#a3a1d74533635583b083a83a9eaafdcc0">days</a></div><div class="ttdeci">const char * days[]</div><div class="ttdef"><b>Definition</b> <a href="clock__mod_8cpp_source.html#l00015">clock_mod.cpp:15</a></div></div>
+<div class="ttc" id="aedit__takes_8cpp_html_ab14bb0cef44d22ad891ff256cd74eee5"><div class="ttname"><a href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a></div><div class="ttdeci">static lv_obj_t * btn_save</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00018">edit_takes.cpp:18</a></div></div>
+<div class="ttc" id="apill__takes_8h_html_a75d0c2d8eda77edbff00929e20d48b81"><div class="ttname"><a href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active</a></div><div class="ttdeci">bool is_day_active(uint8_t mask, int day)</div><div class="ttdef"><b>Definition</b> <a href="pill__takes_8h_source.html#l00043">pill_takes.h:43</a></div></div>
+<div class="ttc" id="apill__takes_8h_html_a8e5cbca5436158cde9e16681693d1d6d"><div class="ttname"><a href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen</a></div><div class="ttdeci">void edit_takes_screen(int index)</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00225">edit_takes.cpp:225</a></div></div>
+<div class="ttc" id="apill__takes_8h_html_af693b03152fb88fbdcdfecf4138de775"><div class="ttname"><a href="pill__takes_8h.html#af693b03152fb88fbdcdfecf4138de775">set_day</a></div><div class="ttdeci">void set_day(uint8_t &amp;mask, int day, bool value)</div><div class="ttdef"><b>Definition</b> <a href="pill__takes_8h_source.html#l00047">pill_takes.h:47</a></div></div>
 <div class="ttc" id="arepetition_8cpp_html_a10681e26319d397e90323640b5668cde"><div class="ttname"><a href="repetition_8cpp.html#a10681e26319d397e90323640b5668cde">takes</a></div><div class="ttdeci">TakeConfig takes[]</div><div class="ttdef"><b>Definition</b> <a href="takes__list_8cpp_source.html#l00006">takes_list.cpp:6</a></div></div>
-<div class="ttc" id="arepetition_8cpp_html_a36f05edcf3c880af11c0488bda358639"><div class="ttname"><a href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a></div><div class="ttdeci">TakeConfig * current_cfg</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00021">edit_takes.cpp:21</a></div></div>
+<div class="ttc" id="arepetition_8cpp_html_a36f05edcf3c880af11c0488bda358639"><div class="ttname"><a href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a></div><div class="ttdeci">TakeConfig * current_cfg</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00027">edit_takes.cpp:27</a></div></div>
 <div class="ttc" id="arepetition_8cpp_html_a7b79c5f50e596c21f7dc65cac62971a2"><div class="ttname"><a href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a></div><div class="ttdeci">static lv_obj_t * btn_days[7]</div><div class="ttdef"><b>Definition</b> <a href="repetition_8cpp_source.html#l00005">repetition.cpp:5</a></div></div>
-<div class="ttc" id="arepetition_8cpp_html_aa109b69c74e781d1c99d60b2861cbf5d"><div class="ttname"><a href="repetition_8cpp.html#aa109b69c74e781d1c99d60b2861cbf5d">current_index</a></div><div class="ttdeci">int current_index</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00024">edit_takes.cpp:24</a></div></div>
-<div class="ttc" id="arepetition_8cpp_html_aabb6534677aba3c03073f564c562adea"><div class="ttname"><a href="repetition_8cpp.html#aabb6534677aba3c03073f564c562adea">editing_existing</a></div><div class="ttdeci">bool editing_existing</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00023">edit_takes.cpp:23</a></div></div>
-<div class="ttc" id="arepetition_8cpp_html_ace0df1c9f8f032bf2bc146be1de84cd9"><div class="ttname"><a href="repetition_8cpp.html#ace0df1c9f8f032bf2bc146be1de84cd9">temp_take</a></div><div class="ttdeci">TakeConfig temp_take</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00020">edit_takes.cpp:20</a></div></div>
-<div class="ttc" id="astructTakeConfig_html_a19af5f6390dcbcc7f71f34ca77d478a7"><div class="ttname"><a href="structTakeConfig.html#a19af5f6390dcbcc7f71f34ca77d478a7">TakeConfig::repeat</a></div><div class="ttdeci">bool repeat[7]</div><div class="ttdef"><b>Definition</b> <a href="pill__takes_8h_source.html#l00008">pill_takes.h:8</a></div></div>
+<div class="ttc" id="arepetition_8cpp_html_aa109b69c74e781d1c99d60b2861cbf5d"><div class="ttname"><a href="repetition_8cpp.html#aa109b69c74e781d1c99d60b2861cbf5d">current_index</a></div><div class="ttdeci">int current_index</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00030">edit_takes.cpp:30</a></div></div>
+<div class="ttc" id="arepetition_8cpp_html_aabb6534677aba3c03073f564c562adea"><div class="ttname"><a href="repetition_8cpp.html#aabb6534677aba3c03073f564c562adea">editing_existing</a></div><div class="ttdeci">bool editing_existing</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00029">edit_takes.cpp:29</a></div></div>
+<div class="ttc" id="arepetition_8cpp_html_ace0df1c9f8f032bf2bc146be1de84cd9"><div class="ttname"><a href="repetition_8cpp.html#ace0df1c9f8f032bf2bc146be1de84cd9">temp_take</a></div><div class="ttdeci">TakeConfig temp_take</div><div class="ttdef"><b>Definition</b> <a href="edit__takes_8cpp_source.html#l00026">edit_takes.cpp:26</a></div></div>
+<div class="ttc" id="astructTakeConfig_html_a714c7c032d42076ea0bc3eda89f64ff4"><div class="ttname"><a href="structTakeConfig.html#a714c7c032d42076ea0bc3eda89f64ff4">TakeConfig::repeat_mask</a></div><div class="ttdeci">uint8_t repeat_mask</div><div class="ttdef"><b>Definition</b> <a href="pill__takes_8h_source.html#l00017">pill_takes.h:17</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a>, <a class="el" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, <a class="el" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>, <a class="el" href="repetition_8cpp.html#aa109b69c74e781d1c99d60b2861cbf5d">current_index</a>, <a class="el" href="clock__mod_8cpp.html#a3a1d74533635583b083a83a9eaafdcc0">days</a>, <a class="el" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen()</a>, <a class="el" href="repetition_8cpp.html#aabb6534677aba3c03073f564c562adea">editing_existing</a>, <a class="el" href="structTakeConfig.html#a19af5f6390dcbcc7f71f34ca77d478a7">TakeConfig::repeat</a>, <a class="el" href="repetition_8cpp.html#a10681e26319d397e90323640b5668cde">takes</a>, and <a class="el" href="repetition_8cpp.html#ace0df1c9f8f032bf2bc146be1de84cd9">temp_take</a>.</p>
+<p class="reference">References <a class="el" href="repetition_8cpp.html#a7b79c5f50e596c21f7dc65cac62971a2">btn_days</a>, <a class="el" href="edit__takes_8cpp.html#ab14bb0cef44d22ad891ff256cd74eee5">btn_save</a>, <a class="el" href="repetition_8cpp.html#a36f05edcf3c880af11c0488bda358639">current_cfg</a>, <a class="el" href="repetition_8cpp.html#aa109b69c74e781d1c99d60b2861cbf5d">current_index</a>, <a class="el" href="clock__mod_8cpp.html#a3a1d74533635583b083a83a9eaafdcc0">days</a>, <a class="el" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen()</a>, <a class="el" href="repetition_8cpp.html#aabb6534677aba3c03073f564c562adea">editing_existing</a>, <a class="el" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81">is_day_active()</a>, <a class="el" href="structTakeConfig.html#a714c7c032d42076ea0bc3eda89f64ff4">TakeConfig::repeat_mask</a>, <a class="el" href="pill__takes_8h.html#af693b03152fb88fbdcdfecf4138de775">set_day()</a>, <a class="el" href="repetition_8cpp.html#a10681e26319d397e90323640b5668cde">takes</a>, and <a class="el" href="repetition_8cpp.html#ace0df1c9f8f032bf2bc146be1de84cd9">temp_take</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="repetition_8cpp_a5e444d9110c8a48b6d02495ce4c165d3_cgraph.png" border="0" usemap="#arepetition_8cpp_a5e444d9110c8a48b6d02495ce4c165d3_cgraph" alt=""/></div>
 <map name="arepetition_8cpp_a5e444d9110c8a48b6d02495ce4c165d3_cgraph" id="arepetition_8cpp_a5e444d9110c8a48b6d02495ce4c165d3_cgraph">
-<area shape="rect" title=" " alt="" coords="5,207,140,232"/>
-<area shape="rect" href="edit__takes_8cpp.html#a8e5cbca5436158cde9e16681693d1d6d" title=" " alt="" coords="188,207,327,232"/>
-<area shape="poly" title=" " alt="" coords="140,217,174,217,174,222,140,222"/>
-<area shape="rect" href="edit__takes_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="415,5,515,31"/>
-<area shape="poly" title=" " alt="" coords="261,205,275,172,299,127,331,80,373,40,401,26,403,31,376,44,335,83,303,130,280,174,266,207"/>
-<area shape="rect" href="edit__takes_8cpp.html#abd49422d84c367a440ffcfdcf569601d" title=" " alt="" coords="384,55,547,80"/>
-<area shape="poly" title=" " alt="" coords="266,205,308,153,339,123,373,97,402,82,404,87,376,102,342,128,312,157,270,208"/>
-<area shape="rect" href="edit__takes_8cpp.html#af7243c0003bee258aa5a4ca997b9286a" title=" " alt="" coords="646,131,713,156"/>
-<area shape="poly" title=" " alt="" coords="271,204,314,171,343,153,374,141,443,127,514,124,579,127,633,133,632,138,579,132,514,129,444,132,375,146,345,158,317,175,274,209"/>
-<area shape="rect" href="takes__storage_8cpp.html#a230495ec724f6295941efc6a5cabd1a0" title=" " alt="" coords="991,232,1080,257"/>
-<area shape="poly" title=" " alt="" coords="327,219,977,240,977,245,327,224"/>
-<area shape="rect" href="edit__takes_8cpp.html#a25940f318b6609dd153cdb939e6dd402" title=" " alt="" coords="406,307,525,332"/>
-<area shape="poly" title=" " alt="" coords="277,230,320,261,376,292,397,300,395,305,374,296,317,265,274,234"/>
-<area shape="rect" href="takes__list_8cpp.html#ae9d1bc4cc19d7de8d5c16bf4961bb24b" title=" " alt="" coords="398,257,533,283"/>
-<area shape="poly" title=" " alt="" coords="286,230,385,257,384,262,284,235"/>
-<area shape="rect" href="edit__takes_8cpp.html#a5bb7422f61b57be1446b13981898762f" title=" " alt="" coords="381,356,549,381"/>
-<area shape="poly" title=" " alt="" coords="269,230,311,284,341,315,376,341,390,348,388,353,373,346,338,319,307,288,265,234"/>
-<area shape="rect" href="edit__takes_8cpp.html#af4ab132463fcc8eebd183eada8434121" title=" " alt="" coords="375,156,556,181"/>
-<area shape="poly" title=" " alt="" coords="310,204,399,182,400,187,311,209"/>
-<area shape="poly" title=" " alt="" coords="437,260,339,233,341,228,438,255"/>
-<area shape="rect" href="takes__list_8cpp.html#a8c837e300674dc4b5cd4a4f9968046cc" title=" " alt="" coords="620,257,739,283"/>
-<area shape="poly" title=" " alt="" coords="533,276,606,276,606,281,533,281"/>
-<area shape="rect" href="takes__list_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="807,307,907,332"/>
-<area shape="poly" title=" " alt="" coords="533,280,604,291,794,312,793,317,604,297,532,285"/>
-<area shape="rect" href="home__mod_8cpp.html#a347f29b0cd5aca029a64be2107bb9f13" title=" " alt="" coords="604,409,755,435"/>
-<area shape="poly" title=" " alt="" coords="534,279,558,292,577,316,583,340,590,364,606,388,624,401,621,405,602,392,585,367,578,342,572,318,554,296,531,283"/>
-<area shape="poly" title=" " alt="" coords="620,265,547,264,547,259,620,259"/>
-<area shape="rect" href="takes__storage_8cpp.html#a092852dc2a97a9825c9e595827388e7a" title=" " alt="" coords="808,257,907,283"/>
-<area shape="poly" title=" " alt="" coords="739,267,794,267,794,273,739,273"/>
-<area shape="poly" title=" " alt="" coords="727,280,798,300,796,305,725,285"/>
-<area shape="poly" title=" " alt="" coords="907,260,977,250,977,256,907,266"/>
-<area shape="rect" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23" title=" " alt="" coords="803,359,912,384"/>
-<area shape="poly" title=" " alt="" coords="724,407,798,385,800,390,726,412"/>
-<area shape="rect" href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="807,460,907,485"/>
-<area shape="poly" title=" " alt="" coords="726,432,800,454,798,459,724,437"/>
-<area shape="poly" title=" " alt="" coords="802,366,708,348,603,319,579,308,555,296,532,289,534,284,557,292,581,303,605,314,709,343,803,361"/>
-<area shape="rect" href="today__takes_8cpp.html#a3cee774dd6a58d0c209aaeb4c3bf994e" title=" " alt="" coords="960,384,1111,409"/>
-<area shape="poly" title=" " alt="" coords="913,376,946,381,946,387,912,382"/>
-<area shape="poly" title=" " alt="" coords="960,405,768,418,768,413,959,399"/>
-<area shape="rect" href="today__takes_8cpp.html#a676e1e1c8118f8781c0ccf29dbcff2e5" title=" " alt="" coords="1159,335,1293,360"/>
-<area shape="poly" title=" " alt="" coords="1084,381,1162,361,1163,366,1086,387"/>
-<area shape="rect" href="today__takes_8cpp.html#a276e05999682cc809bd995a814059a4e" title=" " alt="" coords="1170,384,1282,409"/>
-<area shape="poly" title=" " alt="" coords="1111,394,1156,394,1156,399,1111,399"/>
-<area shape="rect" href="today__takes_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="1176,433,1276,459"/>
-<area shape="poly" title=" " alt="" coords="1086,407,1163,427,1162,432,1084,412"/>
-<area shape="rect" href="today__takes_8cpp.html#a226f34b9f45999e9887df6ba5697af85" title=" " alt="" coords="1341,384,1472,409"/>
-<area shape="poly" title=" " alt="" coords="1282,394,1327,394,1327,399,1282,399"/>
-<area shape="poly" title=" " alt="" coords="556,155,632,146,632,152,557,161"/>
+<area shape="rect" title=" " alt="" coords="5,622,140,647"/>
+<area shape="rect" href="edit__takes_8cpp.html#a8e5cbca5436158cde9e16681693d1d6d" title=" " alt="" coords="188,622,327,647"/>
+<area shape="poly" title=" " alt="" coords="140,632,174,632,174,637,140,637"/>
+<area shape="rect" href="pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81" title=" " alt="" coords="1470,69,1581,94"/>
+<area shape="poly" title=" " alt="" coords="73,621,80,569,96,487,121,386,159,279,182,226,210,175,241,128,276,87,316,52,360,26,410,9,464,3,1056,3,1170,9,1283,24,1385,44,1465,63,1464,68,1383,49,1282,30,1170,14,1056,8,464,8,411,14,363,31,319,57,280,91,245,132,214,178,187,228,164,281,126,388,101,488,86,570,78,622"/>
+<area shape="rect" href="pill__takes_8h.html#af693b03152fb88fbdcdfecf4138de775" title=" " alt="" coords="429,922,502,947"/>
+<area shape="poly" title=" " alt="" coords="86,646,127,695,194,766,279,843,327,878,376,908,416,924,414,929,373,913,324,882,276,847,190,770,123,698,82,649"/>
+<area shape="poly" title=" " alt="" coords="259,621,292,496,324,404,368,305,395,257,425,211,459,168,496,130,537,99,582,74,631,59,684,53,1056,53,1276,60,1456,73,1456,78,1275,66,1056,59,684,59,632,64,584,79,540,103,500,134,463,172,430,214,400,260,373,308,329,406,297,498,264,622"/>
+<area shape="rect" href="edit__takes_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="415,698,515,723"/>
+<area shape="poly" title=" " alt="" coords="293,645,376,676,416,691,414,696,374,681,291,650"/>
+<area shape="rect" href="edit__takes_8cpp.html#abd49422d84c367a440ffcfdcf569601d" title=" " alt="" coords="604,206,767,231"/>
+<area shape="poly" title=" " alt="" coords="284,620,374,581,427,569,472,567,512,558,533,548,554,530,569,513,579,496,586,462,590,425,601,380,636,304,668,242,673,245,641,306,607,382,595,426,592,463,584,498,574,516,558,534,536,552,514,563,473,572,428,575,375,587,286,624"/>
+<area shape="rect" href="edit__takes_8cpp.html#ae4651fbe523abcc40959dd080499f6b2" title=" " alt="" coords="381,771,550,797"/>
+<area shape="poly" title=" " alt="" coords="274,646,318,686,376,732,427,763,424,767,373,737,314,690,270,650"/>
+<area shape="rect" href="edit__takes_8cpp.html#af7243c0003bee258aa5a4ca997b9286a" title=" " alt="" coords="652,847,719,873"/>
+<area shape="poly" title=" " alt="" coords="266,647,279,680,302,724,335,769,354,789,376,806,396,815,424,824,495,838,638,854,638,859,494,843,423,829,394,820,373,810,351,793,331,772,298,727,275,682,261,649"/>
+<area shape="rect" href="takes__storage_8cpp.html#a230495ec724f6295941efc6a5cabd1a0" title=" " alt="" coords="1010,719,1099,745"/>
+<area shape="poly" title=" " alt="" coords="327,640,997,722,996,728,326,646"/>
+<area shape="poly" title=" " alt="" coords="268,646,329,778,340,817,345,850,354,879,376,909,395,921,416,928,415,933,393,925,373,913,349,882,340,851,335,818,324,780,263,649"/>
+<area shape="rect" href="edit__takes_8cpp.html#a25940f318b6609dd153cdb939e6dd402" title=" " alt="" coords="406,446,525,471"/>
+<area shape="poly" title=" " alt="" coords="262,620,302,554,334,514,373,480,392,471,394,475,376,485,338,518,307,557,267,623"/>
+<area shape="rect" href="takes__list_8cpp.html#ae9d1bc4cc19d7de8d5c16bf4961bb24b" title=" " alt="" coords="398,597,533,622"/>
+<area shape="poly" title=" " alt="" coords="327,632,408,622,409,627,327,637"/>
+<area shape="rect" href="edit__takes_8cpp.html#a5bb7422f61b57be1446b13981898762f" title=" " alt="" coords="381,495,549,521"/>
+<area shape="poly" title=" " alt="" coords="269,620,313,580,373,538,405,523,408,528,376,542,317,584,273,624"/>
+<area shape="rect" href="edit__takes_8cpp.html#af4ab132463fcc8eebd183eada8434121" title=" " alt="" coords="375,873,556,898"/>
+<area shape="poly" title=" " alt="" coords="267,647,324,761,355,820,377,851,398,865,395,869,373,855,351,823,319,763,263,649"/>
+<area shape="poly" title=" " alt="" coords="730,203,839,174,972,145,1106,124,1240,106,1456,84,1457,89,1240,112,1107,129,972,151,841,180,731,209"/>
+<area shape="poly" title=" " alt="" coords="431,773,424,763,428,753,442,747,465,745,494,748,506,757,502,762,492,753,465,750,443,752,431,757,429,762,435,770"/>
+<area shape="poly" title=" " alt="" coords="398,612,315,622,314,617,397,606"/>
+<area shape="rect" href="takes__list_8cpp.html#a8c837e300674dc4b5cd4a4f9968046cc" title=" " alt="" coords="626,597,745,622"/>
+<area shape="poly" title=" " alt="" coords="533,615,612,615,612,621,533,620"/>
+<area shape="rect" href="takes__list_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="819,647,919,673"/>
+<area shape="poly" title=" " alt="" coords="533,619,604,631,806,652,806,658,604,636,532,625"/>
+<area shape="rect" href="home__mod_8cpp.html#a347f29b0cd5aca029a64be2107bb9f13" title=" " alt="" coords="610,446,761,471"/>
+<area shape="poly" title=" " alt="" coords="512,594,555,575,586,553,616,528,663,480,666,484,620,531,590,557,557,580,514,599"/>
+<area shape="poly" title=" " alt="" coords="626,604,546,603,547,598,626,599"/>
+<area shape="rect" href="takes__storage_8cpp.html#a092852dc2a97a9825c9e595827388e7a" title=" " alt="" coords="820,598,919,623"/>
+<area shape="poly" title=" " alt="" coords="745,607,806,608,806,613,745,612"/>
+<area shape="poly" title=" " alt="" coords="733,620,810,641,809,646,732,625"/>
+<area shape="poly" title=" " alt="" coords="908,621,926,633,942,652,950,670,958,688,974,705,998,718,996,722,970,709,953,691,945,672,937,655,922,637,905,626"/>
+<area shape="rect" href="home__mod_8cpp.html#a81c8e8828eb6ab49916c12061a884f23" title=" " alt="" coords="815,345,924,370"/>
+<area shape="poly" title=" " alt="" coords="708,444,832,374,835,379,711,448"/>
+<area shape="rect" href="home__mod_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="819,497,919,522"/>
+<area shape="poly" title=" " alt="" coords="733,469,810,490,809,495,732,474"/>
+<area shape="poly" title=" " alt="" coords="815,361,765,367,709,380,654,402,629,417,606,435,592,452,585,469,582,505,579,542,572,561,558,579,540,593,537,589,554,575,567,558,574,540,577,505,580,468,588,450,602,431,625,412,651,397,708,374,764,362,814,356"/>
+<area shape="rect" href="pulse__history__screen_8cpp.html#ad1eaaad2198570756eba8847fab82ae9" title=" " alt="" coords="979,195,1130,235"/>
+<area shape="poly" title=" " alt="" coords="886,342,1015,242,1018,246,889,346"/>
+<area shape="rect" href="pulse__screen_8cpp.html#a110b08df176a6163bf8834ea75df52b4" title=" " alt="" coords="981,345,1129,370"/>
+<area shape="poly" title=" " alt="" coords="924,355,967,355,967,360,924,360"/>
+<area shape="rect" href="settings__screen_8cpp.html#ad23f69d53abd94f0c85d6b14aa6c2aa9" title=" " alt="" coords="972,670,1137,695"/>
+<area shape="poly" title=" " alt="" coords="880,369,1042,657,1037,659,876,371"/>
+<area shape="rect" href="today__takes_8cpp.html#a3cee774dd6a58d0c209aaeb4c3bf994e" title=" " alt="" coords="979,395,1130,421"/>
+<area shape="poly" title=" " alt="" coords="917,368,995,389,993,394,916,373"/>
+<area shape="rect" href="pulse__history__screen_8cpp.html#afc8fe7ee57fd775f3845310b9b4e5ad0" title=" " alt="" coords="1205,145,1352,170"/>
+<area shape="poly" title=" " alt="" coords="1130,193,1215,171,1216,176,1131,198"/>
+<area shape="rect" href="pulse__history__storage_8cpp.html#a0960402027fb0a22485861b189c94e40" title=" " alt="" coords="1459,133,1591,158"/>
+<area shape="poly" title=" " alt="" coords="1130,207,1244,196,1371,179,1419,167,1454,159,1455,164,1421,172,1373,184,1245,202,1131,212"/>
+<area shape="poly" title=" " alt="" coords="1205,153,1152,152,1093,155,1031,166,973,185,927,210,883,240,843,274,806,311,745,381,705,436,700,433,741,378,802,307,839,270,880,236,924,205,971,180,1030,161,1092,150,1152,147,1205,148"/>
+<area shape="rect" href="pulse__history__storage_8cpp.html#a84dbd670475840c071fd20ee485ba132" title=" " alt="" coords="1679,281,1820,306"/>
+<area shape="poly" title=" " alt="" coords="1593,152,1632,167,1664,189,1692,216,1734,267,1730,271,1688,220,1660,194,1629,172,1591,157"/>
+<area shape="rect" href="pulse__screen_8cpp.html#afc8fe7ee57fd775f3845310b9b4e5ad0" title=" " alt="" coords="1205,394,1352,419"/>
+<area shape="poly" title=" " alt="" coords="1114,367,1208,388,1206,394,1112,373"/>
+<area shape="rect" href="pulse__screen_8cpp.html#a6ffb9dc2f7142a4a4a0e34aea7fb4c15" title=" " alt="" coords="1213,345,1344,370"/>
+<area shape="poly" title=" " alt="" coords="1129,355,1199,355,1199,360,1129,360"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#abe7ca60cda316b5995a3b66a3453bfb3" title=" " alt="" coords="1213,246,1345,271"/>
+<area shape="poly" title=" " alt="" coords="1073,342,1122,312,1184,280,1205,273,1206,278,1186,285,1125,316,1076,347"/>
+<area shape="poly" title=" " alt="" coords="1217,422,1138,435,943,452,774,459,774,454,943,446,1137,429,1216,417"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a5ea88488da2c8f715e311e703d7bb801" title=" " alt="" coords="1420,478,1631,503"/>
+<area shape="poly" title=" " alt="" coords="1343,417,1373,428,1398,446,1421,463,1443,471,1441,476,1419,468,1394,450,1371,433,1341,422"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#ac19f883343d0e93acf1df07622698f34" title=" " alt="" coords="1439,527,1611,553"/>
+<area shape="poly" title=" " alt="" coords="1354,417,1374,429,1391,450,1398,472,1405,493,1422,513,1432,519,1429,524,1418,517,1400,496,1393,474,1387,452,1370,433,1351,422"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a17b79f2f6a2e4e4e75d7ff162fdd96f0" title=" " alt="" coords="1460,577,1591,602"/>
+<area shape="poly" title=" " alt="" coords="1354,416,1374,429,1388,445,1395,463,1399,497,1402,531,1409,547,1422,562,1448,578,1446,582,1418,566,1404,549,1397,532,1393,498,1390,464,1383,448,1370,433,1351,420"/>
+<area shape="rect" href="pulse__history__storage_8cpp.html#ae4c59227ee1369bb87a9ba451ee7ff52" title=" " alt="" coords="1455,429,1596,454"/>
+<area shape="poly" title=" " alt="" coords="1353,414,1442,427,1441,432,1352,420"/>
+<area shape="poly" title=" " alt="" coords="1595,428,1629,414,1660,392,1688,366,1730,315,1734,319,1692,370,1664,396,1632,418,1598,433"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a41c7a05b1e5f5a0cab20c88b7695831a" title=" " alt="" coords="1447,281,1603,306"/>
+<area shape="poly" title=" " alt="" coords="1327,342,1371,329,1419,315,1452,307,1453,312,1421,320,1373,335,1328,347"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#aa5570d6065286120699bd5889acab27e" title=" " alt="" coords="1470,330,1581,355"/>
+<area shape="poly" title=" " alt="" coords="1344,351,1456,344,1456,349,1344,356"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a72f1c324da2d6a7b50b6917b9f7d3b5d" title=" " alt="" coords="1428,379,1623,405"/>
+<area shape="poly" title=" " alt="" coords="1344,364,1421,375,1421,380,1344,369"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#aff1a3915d6f5cef75e73ca44d3bcdfb4" title=" " alt="" coords="1457,182,1593,207"/>
+<area shape="poly" title=" " alt="" coords="1343,345,1370,330,1382,317,1388,303,1393,275,1398,245,1405,231,1418,217,1443,202,1445,207,1422,221,1410,234,1403,247,1398,275,1394,305,1386,320,1374,334,1345,350"/>
+<area shape="rect" href="pulse__sensor_8cpp.html#a8d768af20334a60389b733b15dd906c0" title=" " alt="" coords="1431,231,1619,257"/>
+<area shape="poly" title=" " alt="" coords="1343,343,1370,330,1386,315,1393,299,1402,282,1418,266,1429,260,1432,264,1422,270,1406,285,1398,301,1390,318,1374,334,1345,348"/>
+<area shape="poly" title=" " alt="" coords="1037,672,987,632,923,588,869,561,813,536,717,481,720,476,816,531,871,556,925,583,991,628,1040,668"/>
+<area shape="poly" title=" " alt="" coords="1024,671,1018,662,1021,652,1034,646,1055,643,1080,647,1091,656,1087,660,1078,652,1055,649,1035,651,1025,655,1023,661,1028,668"/>
+<area shape="rect" href="clock__mod_8cpp.html#a0560780ed0fa14ae31b096e24fce8004" title=" " alt="" coords="1232,838,1325,863"/>
+<area shape="poly" title=" " alt="" coords="1122,693,1139,705,1152,720,1159,735,1164,766,1168,795,1175,809,1187,823,1202,834,1220,841,1218,846,1200,838,1184,827,1171,812,1163,797,1159,767,1154,737,1148,723,1136,709,1119,698"/>
+<area shape="rect" href="settings__screen_8cpp.html#a3fa40183709bd225defcfedb29f3ab8c" title=" " alt="" coords="1199,887,1358,913"/>
+<area shape="poly" title=" " alt="" coords="1124,693,1139,705,1155,726,1163,748,1164,791,1165,833,1172,853,1187,873,1193,878,1190,882,1183,876,1167,855,1160,834,1158,791,1158,749,1150,729,1135,709,1120,698"/>
+<area shape="rect" href="settings__screen_8cpp.html#a3eb559a94eb0b8cd26c09fbb4010cbab" title=" " alt="" coords="1201,591,1357,617"/>
+<area shape="poly" title=" " alt="" coords="1082,668,1184,625,1209,618,1211,623,1186,631,1084,672"/>
+<area shape="rect" href="settings__screen_8cpp.html#ac7f193e111dbca853ee4a1ab59e49890" title=" " alt="" coords="1193,641,1365,666"/>
+<area shape="poly" title=" " alt="" coords="1137,669,1179,664,1179,669,1138,674"/>
+<area shape="rect" href="settings__screen_8cpp.html#a1b6e4adb746348fca38f713ea42ecfc0" title=" " alt="" coords="1189,690,1368,715"/>
+<area shape="poly" title=" " alt="" coords="1138,687,1176,691,1175,696,1138,693"/>
+<area shape="rect" href="change__pin__screen_8cpp.html#ad08507623b40f34993103c86c1c34055" title=" " alt="" coords="1185,739,1372,765"/>
+<area shape="poly" title=" " alt="" coords="1072,693,1138,716,1175,732,1173,737,1136,721,1070,698"/>
+<area shape="rect" href="settings__screen_8cpp.html#a33f7ffbc57ce12dc7ae35dc9b08076ce" title=" " alt="" coords="1188,789,1369,814"/>
+<area shape="poly" title=" " alt="" coords="1118,693,1139,705,1156,722,1164,740,1171,758,1187,774,1198,781,1196,785,1184,778,1167,761,1159,743,1151,725,1136,709,1115,698"/>
+<area shape="poly" title=" " alt="" coords="1260,742,1184,717,1149,702,1151,697,1186,712,1261,737"/>
+<area shape="rect" href="change__pin__screen_8cpp.html#a8fd35668714ff150607a3723ef9ae3f7" title=" " alt="" coords="1459,739,1592,765"/>
+<area shape="poly" title=" " alt="" coords="1372,749,1445,749,1445,755,1372,755"/>
+<area shape="poly" title=" " alt="" coords="979,420,815,443,775,448,774,443,814,437,979,415"/>
+<area shape="rect" href="today__takes_8cpp.html#a1626cffba53bfed701700270d36987a2" title=" " alt="" coords="1211,443,1346,469"/>
+<area shape="poly" title=" " alt="" coords="1115,418,1206,438,1205,443,1114,423"/>
+<area shape="rect" href="today__takes_8cpp.html#ad7a30a2621259f647ab1fd6204be924f" title=" " alt="" coords="1201,493,1356,518"/>
+<area shape="poly" title=" " alt="" coords="1077,418,1126,448,1186,478,1211,486,1209,491,1184,482,1123,452,1074,423"/>
+<area shape="rect" href="today__takes_8cpp.html#a276e05999682cc809bd995a814059a4e" title=" " alt="" coords="1223,295,1335,321"/>
+<area shape="poly" title=" " alt="" coords="1106,393,1136,379,1150,367,1159,355,1168,342,1184,330,1208,319,1210,324,1187,334,1172,346,1163,358,1154,371,1139,384,1109,398"/>
+<area shape="rect" href="today__takes_8cpp.html#a603b0c4a9f6ea7b34bcb62ea0c2bab19" title=" " alt="" coords="1229,542,1329,567"/>
+<area shape="poly" title=" " alt="" coords="1068,419,1115,471,1149,501,1187,527,1216,540,1214,544,1184,532,1146,506,1112,475,1064,423"/>
+<area shape="poly" title=" " alt="" coords="1334,300,1354,292,1370,281,1385,261,1392,242,1394,202,1396,161,1403,139,1418,118,1436,104,1456,93,1458,98,1439,108,1422,122,1408,142,1401,162,1400,202,1398,243,1390,264,1374,285,1356,297,1336,305"/>
+<area shape="poly" title=" " alt="" coords="556,872,638,863,639,868,557,878"/>
 </map>
 </div>
 
@@ -328,9 +409,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="edit__takes_8cpp_source.html#l00021">21</a> of file <a class="el" href="edit__takes_8cpp_source.html">edit_takes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="edit__takes_8cpp_source.html#l00027">27</a> of file <a class="el" href="edit__takes_8cpp_source.html">edit_takes.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen()</a>, <a class="el" href="edit__takes_8cpp.html#abd49422d84c367a440ffcfdcf569601d">refresh_days_buttons()</a>, and <a class="el" href="pill__takes_8h.html#a5e444d9110c8a48b6d02495ce4c165d3">repetition_screen()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen()</a>, <a class="el" href="edit__takes_8cpp.html#abd49422d84c367a440ffcfdcf569601d">refresh_days_buttons()</a>, <a class="el" href="edit__takes_8cpp.html#ae4651fbe523abcc40959dd080499f6b2">refresh_medicines_list()</a>, and <a class="el" href="pill__takes_8h.html#a5e444d9110c8a48b6d02495ce4c165d3">repetition_screen()</a>.</p>
 
 </div>
 </div>
@@ -354,7 +435,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="edit__takes_8cpp_source.html#l00024">24</a> of file <a class="el" href="edit__takes_8cpp_source.html">edit_takes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="edit__takes_8cpp_source.html#l00030">30</a> of file <a class="el" href="edit__takes_8cpp_source.html">edit_takes.cpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen()</a>, and <a class="el" href="pill__takes_8h.html#a5e444d9110c8a48b6d02495ce4c165d3">repetition_screen()</a>.</p>
 
@@ -380,7 +461,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="edit__takes_8cpp_source.html#l00023">23</a> of file <a class="el" href="edit__takes_8cpp_source.html">edit_takes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="edit__takes_8cpp_source.html#l00029">29</a> of file <a class="el" href="edit__takes_8cpp_source.html">edit_takes.cpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen()</a>, and <a class="el" href="pill__takes_8h.html#a5e444d9110c8a48b6d02495ce4c165d3">repetition_screen()</a>.</p>
 
@@ -480,7 +561,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="edit__takes_8cpp_source.html#l00020">20</a> of file <a class="el" href="edit__takes_8cpp_source.html">edit_takes.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="edit__takes_8cpp_source.html#l00026">26</a> of file <a class="el" href="edit__takes_8cpp_source.html">edit_takes.cpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pill__takes_8h.html#a8e5cbca5436158cde9e16681693d1d6d">edit_takes_screen()</a>, and <a class="el" href="pill__takes_8h.html#a5e444d9110c8a48b6d02495ce4c165d3">repetition_screen()</a>.</p>
 

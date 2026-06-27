@@ -1,11 +1,25 @@
 <map id="wifi_portal_init" name="wifi_portal_init">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,124,105"/>
-<area shape="rect" id="Node000002" href="$wifi__portal_8cpp.html#affa2625e0a0e8aacfbf2c6016cd2c015" title=" " alt="" coords="190,5,287,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,77,171,40,187,33,189,38,173,44,92,82"/>
-<area shape="rect" id="Node000003" href="$wifi__portal_8cpp.html#a56a42abadde7879918d1cd7ae9d07a05" title=" " alt="" coords="187,55,291,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,81,173,74,173,79,124,87"/>
-<area shape="rect" id="Node000004" href="$wifi__portal_8cpp.html#a79d6ac99b4b3fb43de8b45fbf780068f" title=" " alt="" coords="185,104,293,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="124,98,172,105,171,110,124,103"/>
-<area shape="rect" id="Node000005" href="$wifi__portal_8cpp.html#af5e9b018d143ba1174cd9fcec21c0543" title=" " alt="" coords="172,153,305,179"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="94,103,173,138,192,146,190,151,171,143,92,108"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,179,124,204"/>
+<area shape="rect" id="Node000002" href="$wifi__portal_8cpp.html#a01b0c3c0f9209a1c0333f7e3a411bd00" title=" " alt="" coords="190,5,322,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,177,105,112,134,73,170,40,180,34,182,39,174,44,138,77,109,115,74,180"/>
+<area shape="rect" id="Node000004" href="$wifi__portal_8cpp.html#aed7f7c07dec43bffcda8d8d26828b210" title=" " alt="" coords="181,55,331,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="74,177,113,134,140,110,171,89,184,83,186,87,173,94,144,114,117,138,78,180"/>
+<area shape="rect" id="Node000005" href="$wifi__portal_8cpp.html#ab899f5d39c805aa6237418298c4d13b2" title=" " alt="" coords="172,104,340,129"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="89,176,171,138,192,131,194,136,173,143,91,181"/>
+<area shape="rect" id="Node000006" href="$wifi__portal_8cpp.html#ae38a5eed23fccbea213858100fc7768a" title=" " alt="" coords="188,153,324,179"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="124,181,174,174,175,179,125,186"/>
+<area shape="rect" id="Node000007" href="$wifi__portal_8cpp.html#a56a42abadde7879918d1cd7ae9d07a05" title=" " alt="" coords="204,203,308,228"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="124,196,190,204,189,210,124,201"/>
+<area shape="rect" id="Node000008" href="$wifi__portal_8cpp.html#a955c1c31d397355ec56d70ff4059df2d" title=" " alt="" coords="173,301,339,327"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="78,202,118,243,144,266,173,286,189,294,187,299,171,291,141,271,114,247,74,206"/>
+<area shape="rect" id="Node000010" href="$wifi__portal_8cpp.html#aac63c9ecd3547ed69fa236e0fcfe8e34" title=" " alt="" coords="179,252,333,277"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="93,202,173,237,197,245,196,250,171,242,91,207"/>
+<area shape="rect" id="Node000011" href="$wifi__portal_8cpp.html#af5e9b018d143ba1174cd9fcec21c0543" title=" " alt="" coords="189,351,323,376"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="74,203,110,267,139,304,174,336,185,343,182,347,170,340,135,307,105,269,69,205"/>
+<area shape="rect" id="Node000003" href="$takes__storage_8cpp.html#a230495ec724f6295941efc6a5cabd1a0" title=" " alt="" coords="403,55,492,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="307,28,390,50,388,55,305,33"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="331,65,389,65,389,70,331,70"/>
+<area shape="rect" id="Node000009" href="$medicines__storage_8cpp.html#aa3455ca297405ba55eda2b5f9f0d6b5f" title=" " alt="" coords="388,301,507,327"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="340,311,374,311,374,317,340,317"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="316,250,338,237,372,204,400,164,420,125,434,92,439,94,425,127,404,167,376,207,342,241,319,254"/>
 </map>

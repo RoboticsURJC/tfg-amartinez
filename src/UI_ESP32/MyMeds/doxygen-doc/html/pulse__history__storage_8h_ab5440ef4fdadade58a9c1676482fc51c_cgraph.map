@@ -1,0 +1,7 @@
+<map id="visitPulseHistory" name="visitPulseHistory">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,137,31"/>
+<area shape="rect" id="Node000002" href="$pulse__history__storage_8cpp.html#a84dbd670475840c071fd20ee485ba132" title=" " alt="" coords="185,5,327,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,15,172,15,172,21,137,21"/>
+<area shape="rect" id="Node000003" href="$pulse__history__storage_8cpp.html#afd8ec49707588593793c9e3a0c0e41e2" title=" " alt="" coords="375,5,432,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,15,361,15,361,21,327,21"/>
+</map>

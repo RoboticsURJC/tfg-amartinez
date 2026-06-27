@@ -1,6 +1,6 @@
 <map id="include/user_interface/wifi_mod.h" name="include/user_interface/wifi_mod.h">
 <area shape="rect" id="Node000001" title=" " alt="" coords="48,5,215,45"/>
-<area shape="rect" id="Node000002" href="$main_8cpp.html" title=" " alt="" coords="5,101,111,126"/>
+<area shape="rect" id="Node000002" href="$src_2main_8cpp.html" title=" " alt="" coords="5,101,111,126"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,58,70,102,66,98,104,54"/>
 <area shape="rect" id="Node000003" href="$wifi__mod_8cpp.html" title=" " alt="" coords="135,93,274,133"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,54,190,91,186,95,154,58"/>

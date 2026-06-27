@@ -1,0 +1,10 @@
+<map id="handle_set_medicines" name="handle_set_medicines">
+<area shape="rect" id="Node000001" title=" " alt="" coords="279,56,445,81"/>
+<area shape="rect" id="Node000002" href="$src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="146,5,197,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="300,55,196,27,198,22,301,50"/>
+<area shape="rect" id="Node000003" href="$src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,64,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="265,79,64,94,64,89,265,73"/>
+<area shape="rect" id="Node000004" href="$wifi__portal_8cpp.html#acea97721c016346078a369b33d2603fa" title=" " alt="" coords="112,107,231,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="301,88,221,109,219,104,299,82"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="98,108,64,102,65,97,99,103"/>
+</map>

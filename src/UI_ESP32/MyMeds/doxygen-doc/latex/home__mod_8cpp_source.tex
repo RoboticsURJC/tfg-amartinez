@@ -6,94 +6,127 @@
 \DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
 \DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pill__takes_8h}{user\_interface/pill\_takes.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{home__mod_8h}{user\_interface/home\_mod.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00005}00005\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00006}\mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{00006}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}}\ =\ NULL;}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00007}00007\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00008}\mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{00008}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}}(lv\_event\_t\ *e)}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00009}00009\ \{}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00010}00010\ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_event\_get\_target(e);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *txt\ =\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)lv\_event\_get\_user\_data(e);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00012}00012\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{if}\ (!strcmp(txt,\ \textcolor{stringliteral}{"{}Configuración\ de\ tomas"{}}))\{}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00016}00016\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00017}00017\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (!strcmp(txt,\ \textcolor{stringliteral}{"{}Tomas\ hoy"{}}))\{}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\_takes\_screen}}();}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00021}00021\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00022}00022\ \}}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00023}00023\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00024}\mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{00024}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(lv\_obj\_t\ *scr)}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00025}00025\ \{}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}})}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ lv\_obj\_del\_async(\mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00028}00028\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}}\ =\ scr;}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{settings__screen_8h}{user\_interface/settings\_screen.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pulse__screen_8h}{user\_interface/pulse\_screen.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pulse__history__screen_8h}{user\_interface/pulse\_history\_screen.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00009}\mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{00009}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00011}\mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{00011}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}}(lv\_event\_t\ *e)}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00013}00013\ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *txt\ =\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)lv\_event\_get\_user\_data(e);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{if}\ (!strcmp(txt,\ \textcolor{stringliteral}{"{}Configuración\ de\ tomas"{}}))\{}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (!strcmp(txt,\ \textcolor{stringliteral}{"{}Tomas\ hoy"{}}))\{}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\_takes\_screen}}();}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (!strcmp(txt,\ \textcolor{stringliteral}{"{}Historial"{}}))\{}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__history__screen_8h_ad1eaaad2198570756eba8847fab82ae9}{show\_pulse\_history\_screen}}(lv\_scr\_act());}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00029}00029\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00030}00030\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00031}00031\ \ \ \ \ lv\_scr\_load(scr);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00032}00032\ \}}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00033}00033\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00034}\mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{00034}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{home__mod_8cpp_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}()}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00035}00035\ \{}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00036}00036\ \ \ \ \ lv\_obj\_t\ *\ scr\ =\ lv\_obj\_create(NULL);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00037}00037\ \ \ \ \ \mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(scr);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00038}00038\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00039}00039\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00040}00040\ \ \ \ \ lv\_obj\_t\ *btn1\ =\ lv\_btn\_create(scr);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00041}00041\ \ \ \ \ lv\_obj\_set\_size(btn1,\ 265,\ 70);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00042}00042\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn1,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00043}00043\ \ \ \ \ lv\_obj\_align(btn1,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 40);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00044}00044\ \ \ \ \ lv\_obj\_add\_event\_cb(btn1,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Tomas\ hoy"{}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00045}00045\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00046}00046\ \ \ \ \ lv\_obj\_t\ *lbl1\ =\ lv\_label\_create(btn1);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00047}00047\ \ \ \ \ lv\_label\_set\_text(lbl1,\ \textcolor{stringliteral}{"{}Tomas\ hoy"{}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00048}00048\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl1,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00049}00049\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl1,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00050}00050\ \ \ \ \ lv\_obj\_center(lbl1);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00051}00051\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00053}00053\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00054}00054\ \ \ \ \ lv\_obj\_t\ *btn2\ =\ lv\_btn\_create(scr);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00055}00055\ \ \ \ \ lv\_obj\_set\_size(btn2,\ 265,\ 70);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00056}00056\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn2,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00057}00057\ \ \ \ \ lv\_obj\_align(btn2,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 130);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00058}00058\ \ \ \ \ lv\_obj\_add\_event\_cb(btn2,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Historial"{}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00059}00059\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00060}00060\ \ \ \ \ lv\_obj\_t\ *lbl2\ =\ lv\_label\_create(btn2);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00061}00061\ \ \ \ \ lv\_label\_set\_text(lbl2,\ \textcolor{stringliteral}{"{}Historial"{}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00062}00062\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl2,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00063}00063\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl2,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00064}00064\ \ \ \ \ lv\_obj\_center(lbl2);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00065}00065\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00067}00067\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00068}00068\ \ \ \ \ lv\_obj\_t\ *btn3\ =\ lv\_btn\_create(scr);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00069}00069\ \ \ \ \ lv\_obj\_set\_size(btn3,\ 265,\ 70);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00070}00070\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn3,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00071}00071\ \ \ \ \ lv\_obj\_align(btn3,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 220);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00072}00072\ \ \ \ \ lv\_obj\_add\_event\_cb(btn3,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Pulsómetro"{}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00073}00073\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00074}00074\ \ \ \ \ lv\_obj\_t\ *lbl3\ =\ lv\_label\_create(btn3);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00075}00075\ \ \ \ \ lv\_label\_set\_text(lbl3,\ \textcolor{stringliteral}{"{}Pulsómetro"{}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00076}00076\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl3,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00077}00077\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl3,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00078}00078\ \ \ \ \ lv\_obj\_center(lbl3);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00079}00079\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00081}00081\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00082}00082\ \ \ \ \ lv\_obj\_t\ *btn4\ =\ lv\_btn\_create(scr);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00083}00083\ \ \ \ \ lv\_obj\_set\_size(btn4,\ 265,\ 150);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00084}00084\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn4,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00085}00085\ \ \ \ \ lv\_obj\_align(btn4,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 310);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00086}00086\ \ \ \ \ lv\_obj\_add\_event\_cb(btn4,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Configuración\ de\ tomas"{}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00087}00087\ }
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00088}00088\ \ \ \ \ lv\_obj\_t\ *lbl4\ =\ lv\_label\_create(btn4);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00089}00089\ \ \ \ \ lv\_label\_set\_text(lbl4,\ \textcolor{stringliteral}{"{}Configuración\(\backslash\)n\ \ \ \ \ \ \ \ \ \ \ de\(\backslash\)n\ \ \ \ \ \ \ \ tomas"{}});}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00090}00090\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl4,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00091}00091\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl4,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00092}00092\ \ \ \ \ lv\_obj\_center(lbl4);}
-\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00093}00093\ \}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (!strcmp(txt,\ \textcolor{stringliteral}{"{}Ajustes"{}}))\{}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9}{show\_settings\_screen}}\ ();}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (!strcmp(txt,\ \textcolor{stringliteral}{"{}Pulsómetro"{}}))\{}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8h_a110b08df176a6163bf8834ea75df52b4}{show\_pulse\_screen}}(lv\_scr\_act());}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00043}\mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{00043}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(lv\_obj\_t\ *scr)}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}})}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ lv\_obj\_del\_async(\mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{home__mod_8cpp_adbf1ac300b0a4276bf7524cb23fad107}{current\_screen}}\ =\ scr;}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00050}00050\ \ \ \ \ lv\_scr\_load(scr);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00051}00051\ \}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00053}\mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{00053}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{home__mod_8cpp_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}()}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00054}00054\ \{}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00055}00055\ \ \ \ \ lv\_obj\_t\ *\ scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00056}00056\ \ \ \ \ \mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(scr);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00057}00057\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00059}00059\ \ \ \ \ lv\_obj\_t\ *btn1\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00060}00060\ \ \ \ \ lv\_obj\_set\_size(btn1,\ 265,\ 70);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00061}00061\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn1,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00062}00062\ \ \ \ \ lv\_obj\_align(btn1,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 40);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00063}00063\ \ \ \ \ lv\_obj\_add\_event\_cb(btn1,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Tomas\ hoy"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00065}00065\ \ \ \ \ lv\_obj\_t\ *lbl1\ =\ lv\_label\_create(btn1);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00066}00066\ \ \ \ \ lv\_label\_set\_text(lbl1,\ \textcolor{stringliteral}{"{}Tomas\ hoy"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00067}00067\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl1,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00068}00068\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl1,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00069}00069\ \ \ \ \ lv\_obj\_center(lbl1);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00073}00073\ \ \ \ \ lv\_obj\_t\ *btn2\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00074}00074\ \ \ \ \ lv\_obj\_set\_size(btn2,\ 265,\ 70);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00075}00075\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn2,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00076}00076\ \ \ \ \ lv\_obj\_align(btn2,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 130);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00077}00077\ \ \ \ \ lv\_obj\_add\_event\_cb(btn2,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Historial"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00079}00079\ \ \ \ \ lv\_obj\_t\ *lbl2\ =\ lv\_label\_create(btn2);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00080}00080\ \ \ \ \ lv\_label\_set\_text(lbl2,\ \textcolor{stringliteral}{"{}Historial"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00081}00081\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl2,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00082}00082\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl2,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00083}00083\ \ \ \ \ lv\_obj\_center(lbl2);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00087}00087\ \ \ \ \ lv\_obj\_t\ *btn3\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00088}00088\ \ \ \ \ lv\_obj\_set\_size(btn3,\ 265,\ 70);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00089}00089\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn3,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00090}00090\ \ \ \ \ lv\_obj\_align(btn3,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 220);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00091}00091\ \ \ \ \ lv\_obj\_add\_event\_cb(btn3,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Pulsómetro"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00093}00093\ \ \ \ \ lv\_obj\_t\ *lbl3\ =\ lv\_label\_create(btn3);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00094}00094\ \ \ \ \ lv\_label\_set\_text(lbl3,\ \textcolor{stringliteral}{"{}Pulsómetro"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00095}00095\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl3,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00096}00096\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl3,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00097}00097\ \ \ \ \ lv\_obj\_center(lbl3);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00101}00101\ \ \ \ \ lv\_obj\_t\ *btn4\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00102}00102\ \ \ \ \ lv\_obj\_set\_size(btn4,\ 265,\ 150);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00103}00103\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn4,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00104}00104\ \ \ \ \ lv\_obj\_align(btn4,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 310);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00105}00105\ \ \ \ \ lv\_obj\_add\_event\_cb(btn4,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Configuración\ de\ tomas"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00107}00107\ \ \ \ \ lv\_obj\_t\ *lbl4\ =\ lv\_label\_create(btn4);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00108}00108\ \ \ \ \ lv\_label\_set\_text(lbl4,\ \textcolor{stringliteral}{"{}Configuración\(\backslash\)n\ \ \ \ \ \ \ \ \ \ \ de\(\backslash\)n\ \ \ \ \ \ \ \ tomas"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00109}00109\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl4,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00110}00110\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl4,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00111}00111\ \ \ \ \ lv\_obj\_center(lbl4);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00115}00115\ \ \ \ \ lv\_obj\_t\ *btn5\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00116}00116\ \ \ \ \ lv\_obj\_set\_size(btn5,\ 265,\ 70);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00117}00117\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn5,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00118}00118\ \ \ \ \ lv\_obj\_align(btn5,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 480);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00119}00119\ \ \ \ \ lv\_obj\_add\_event\_cb(btn5,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Ajustes"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00121}00121\ \ \ \ \ lv\_obj\_t\ *lbl5\ =\ lv\_label\_create(btn5);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00122}00122\ \ \ \ \ lv\_label\_set\_text(lbl5,\ \textcolor{stringliteral}{"{}Ajustes"{}});}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00123}00123\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl5,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00124}00124\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl5,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00125}00125\ \ \ \ \ lv\_obj\_center(lbl5);}
+\DoxyCodeLine{\Hypertarget{home__mod_8cpp_source_l00126}00126\ \}}
 
 \end{DoxyCode}

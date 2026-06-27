@@ -1,0 +1,19 @@
+<map id="src/user_interface/take_alert_screen.cpp" name="src/user_interface/take_alert_screen.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="476,5,644,45"/>
+<area shape="rect" id="Node000002" href="$take__alert__screen_8h.html" title=" " alt="" coords="5,93,152,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="476,43,171,96,166,97,165,92,170,91,475,38"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="219,181,303,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="476,34,401,41,324,52,257,70,233,82,217,95,210,113,214,132,226,152,240,169,236,173,221,155,209,134,205,112,213,92,230,77,255,65,323,47,401,35,476,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="924,181,983,207"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="645,25,738,30,839,40,927,60,961,74,983,92,992,111,991,132,983,152,973,171,968,168,979,150,986,131,987,112,979,95,958,79,925,65,838,46,737,35,644,30"/>
+<area shape="rect" id="Node000005" href="$dose__actuators_8h.html" title=" " alt="" coords="461,101,659,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="563,46,563,87,557,87,557,46"/>
+<area shape="rect" id="Node000006" href="$idle__manager_8h.html" title=" " alt="" coords="684,101,807,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="602,43,709,92,707,97,600,48"/>
+<area shape="rect" id="Node000007" href="$medicines__storage_8h.html" title=" " alt="" coords="227,101,437,126"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="511,48,376,98,374,93,509,43"/>
+<area shape="rect" id="Node000008" href="$pill__takes_8h.html" title=" " alt="" coords="831,93,969,133"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="635,43,818,89,816,94,634,48"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="324,128,283,173,279,169,320,124"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="915,132,940,168,935,171,911,135"/>
+</map>

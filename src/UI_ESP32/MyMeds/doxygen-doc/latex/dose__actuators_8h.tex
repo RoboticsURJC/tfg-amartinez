@@ -1,0 +1,306 @@
+\doxysection{include/actuators/dose\+\_\+actuators.h File Reference}
+\hypertarget{dose__actuators_8h}{}\label{dose__actuators_8h}\index{include/actuators/dose\_actuators.h@{include/actuators/dose\_actuators.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dose__actuators_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dose__actuators_8h_a90366f1dd5099976555f1bf89c2f6368}{dose\+Actuators\+Init}} ()
+\item 
+void \mbox{\hyperlink{dose__actuators_8h_a0f1727521e693270353667af5028e01e}{dose\+Actuators\+Start}} ()
+\item 
+void \mbox{\hyperlink{dose__actuators_8h_abe128edf1c216d13592f2978a73233d4}{dose\+Actuators\+Update}} ()
+\item 
+void \mbox{\hyperlink{dose__actuators_8h_aef9d1076996174bbc8d5c4c2f7a2095a}{dose\+Actuators\+Acknowledge}} ()
+\item 
+void \mbox{\hyperlink{dose__actuators_8h_a195951ef742e6c2e8000be600039b9be}{dose\+Actuators\+Stop}} ()
+\item 
+bool \mbox{\hyperlink{dose__actuators_8h_a777492a883259b2cf3f213f70a0af356}{dose\+Actuators\+Busy}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dose__actuators_8h_aef9d1076996174bbc8d5c4c2f7a2095a}\label{dose__actuators_8h_aef9d1076996174bbc8d5c4c2f7a2095a} 
+\index{dose\_actuators.h@{dose\_actuators.h}!doseActuatorsAcknowledge@{doseActuatorsAcknowledge}}
+\index{doseActuatorsAcknowledge@{doseActuatorsAcknowledge}!dose\_actuators.h@{dose\_actuators.h}}
+\doxysubsubsection{\texorpdfstring{doseActuatorsAcknowledge()}{doseActuatorsAcknowledge()}}
+{\footnotesize\ttfamily void dose\+Actuators\+Acknowledge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{dose__actuators_8cpp_source_l00243}{243}} of file \mbox{\hyperlink{dose__actuators_8cpp_source}{dose\+\_\+actuators.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00244\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ ledcWrite(\mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\_CHANNEL}},\ 0);}
+\DoxyCodeLine{00246\ \ \ \ \ ledcWriteTone(\mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\_CHANNEL}},\ 0);}
+\DoxyCodeLine{00247\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_ac5565dd80cb3b5e90c19fa43d92c0355}{speakerPhase}}\ =\ \mbox{\hyperlink{dose__actuators_8cpp_a45d65548cffea70bc247413e44a952cba57fe09cb08bce5328044b0e2cac2f093}{SPEAKER\_DONE}};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dose__actuators_8cpp_a2d00833ed2d6cfd049d75779db3d1887}{servoPhase}}\ ==\ \mbox{\hyperlink{dose__actuators_8cpp_aa686c0f2c79aa968478ad2408bb29927ad568f2064a9912ebe9e651d2ac327f82}{SERVO\_DONE}})}
+\DoxyCodeLine{00250\ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}, \mbox{\hyperlink{dose__actuators_8cpp_aa686c0f2c79aa968478ad2408bb29927ad568f2064a9912ebe9e651d2ac327f82}{SERVO\+\_\+\+DONE}}, \mbox{\hyperlink{dose__actuators_8cpp_a2d00833ed2d6cfd049d75779db3d1887}{servo\+Phase}}, \mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\+\_\+\+CHANNEL}}, \mbox{\hyperlink{dose__actuators_8cpp_a45d65548cffea70bc247413e44a952cba57fe09cb08bce5328044b0e2cac2f093}{SPEAKER\+\_\+\+DONE}}, and \mbox{\hyperlink{dose__actuators_8cpp_ac5565dd80cb3b5e90c19fa43d92c0355}{speaker\+Phase}}.
+
+
+
+Referenced by \mbox{\hyperlink{take__alert__screen_8cpp_af88032e98c44388094b6f14afa28fd88}{close\+Alert()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dose__actuators_8h_aef9d1076996174bbc8d5c4c2f7a2095a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dose__actuators_8h_a777492a883259b2cf3f213f70a0af356}\label{dose__actuators_8h_a777492a883259b2cf3f213f70a0af356} 
+\index{dose\_actuators.h@{dose\_actuators.h}!doseActuatorsBusy@{doseActuatorsBusy}}
+\index{doseActuatorsBusy@{doseActuatorsBusy}!dose\_actuators.h@{dose\_actuators.h}}
+\doxysubsubsection{\texorpdfstring{doseActuatorsBusy()}{doseActuatorsBusy()}}
+{\footnotesize\ttfamily bool dose\+Actuators\+Busy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{dose__actuators_8cpp_source_l00255}{255}} of file \mbox{\hyperlink{dose__actuators_8cpp_source}{dose\+\_\+actuators.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00256\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}};}
+\DoxyCodeLine{00258\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}.
+
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8h_a316d6941189851a072229370c65696bb}{check\+Takes()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dose__actuators_8h_a777492a883259b2cf3f213f70a0af356_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dose__actuators_8h_a90366f1dd5099976555f1bf89c2f6368}\label{dose__actuators_8h_a90366f1dd5099976555f1bf89c2f6368} 
+\index{dose\_actuators.h@{dose\_actuators.h}!doseActuatorsInit@{doseActuatorsInit}}
+\index{doseActuatorsInit@{doseActuatorsInit}!dose\_actuators.h@{dose\_actuators.h}}
+\doxysubsubsection{\texorpdfstring{doseActuatorsInit()}{doseActuatorsInit()}}
+{\footnotesize\ttfamily void dose\+Actuators\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{dose__actuators_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{dose__actuators_8cpp_source}{dose\+\_\+actuators.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dose__actuators_8cpp_aedeffc7d23da25d52b9a50045189fe2b}{initialized}})}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a0cd0f3edd01a0d2f5b8c0731437d9642}{pwm}}.begin();}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a0cd0f3edd01a0d2f5b8c0731437d9642}{pwm}}.setPWMFreq(50);}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a0cd0f3edd01a0d2f5b8c0731437d9642}{pwm}}.setPWM(\mbox{\hyperlink{dose__actuators_8cpp_a373cc323be319444a900646df5450865}{SERVO\_CHANNEL}},\ 0,\ \mbox{\hyperlink{dose__actuators_8cpp_aa62f9d3d5f202b89068f61793389ecb8}{SERVO\_POS\_MAX}});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ ledcSetup(\mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\_CHANNEL}},\ 1000,\ 8);}
+\DoxyCodeLine{00073\ \ \ \ \ ledcAttachPin(\mbox{\hyperlink{dose__actuators_8cpp_a57526ed712025c1ba18dcbbc365f1021}{SPEAKER\_PIN}},\ \mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\_CHANNEL}});}
+\DoxyCodeLine{00074\ \ \ \ \ ledcWrite(\mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\_CHANNEL}},\ 0);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_aedeffc7d23da25d52b9a50045189fe2b}{initialized}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00077\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dose__actuators_8cpp_aedeffc7d23da25d52b9a50045189fe2b}{initialized}}, \mbox{\hyperlink{dose__actuators_8cpp_a0cd0f3edd01a0d2f5b8c0731437d9642}{pwm()}}, \mbox{\hyperlink{dose__actuators_8cpp_a373cc323be319444a900646df5450865}{SERVO\+\_\+\+CHANNEL}}, \mbox{\hyperlink{dose__actuators_8cpp_aa62f9d3d5f202b89068f61793389ecb8}{SERVO\+\_\+\+POS\+\_\+\+MAX}}, \mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\+\_\+\+CHANNEL}}, and \mbox{\hyperlink{dose__actuators_8cpp_a57526ed712025c1ba18dcbbc365f1021}{SPEAKER\+\_\+\+PIN}}.
+
+
+
+Referenced by \mbox{\hyperlink{dose__actuators_8h_a0f1727521e693270353667af5028e01e}{dose\+Actuators\+Start()}}, and \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{dose__actuators_8h_a90366f1dd5099976555f1bf89c2f6368_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dose__actuators_8h_a90366f1dd5099976555f1bf89c2f6368_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dose__actuators_8h_a0f1727521e693270353667af5028e01e}\label{dose__actuators_8h_a0f1727521e693270353667af5028e01e} 
+\index{dose\_actuators.h@{dose\_actuators.h}!doseActuatorsStart@{doseActuatorsStart}}
+\index{doseActuatorsStart@{doseActuatorsStart}!dose\_actuators.h@{dose\_actuators.h}}
+\doxysubsubsection{\texorpdfstring{doseActuatorsStart()}{doseActuatorsStart()}}
+{\footnotesize\ttfamily void dose\+Actuators\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{dose__actuators_8cpp_source_l00079}{79}} of file \mbox{\hyperlink{dose__actuators_8cpp_source}{dose\+\_\+actuators.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a90366f1dd5099976555f1bf89c2f6368}{doseActuatorsInit}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}})}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ now\ =\ millis();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_aea38528c28b9fce58b59a4873048a328}{servoPosition}}\ =\ \mbox{\hyperlink{dose__actuators_8cpp_aa62f9d3d5f202b89068f61793389ecb8}{SERVO\_POS\_MAX}};}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a3a277f7e2b45c548d3190ad7fe3da02e}{servoActionCount}}\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a2d00833ed2d6cfd049d75779db3d1887}{servoPhase}}\ =\ \mbox{\hyperlink{dose__actuators_8cpp_aa686c0f2c79aa968478ad2408bb29927aa95a7feca92e02d9a62f65a91167139d}{SERVO\_MOVING\_TO\_MIN}};}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_aba6fbe7455050f3c8e1acc5bf94108b7}{servoNextUpdate}}\ =\ now;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a415a52e7b4ca79431a8bb2183fe558b2}{speakerNote}}\ =\ 0;}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a89dbf28494ce5bf281a63ba03366c1ee}{speakerCycle}}\ =\ 0;}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a8d2ce29f3592de821c40c5295dafe530}{startSpeakerNote}}(now);}
+\DoxyCodeLine{00099\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dose__actuators_8cpp_a90366f1dd5099976555f1bf89c2f6368}{dose\+Actuators\+Init()}}, \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}, \mbox{\hyperlink{dose__actuators_8cpp_aa686c0f2c79aa968478ad2408bb29927aa95a7feca92e02d9a62f65a91167139d}{SERVO\+\_\+\+MOVING\+\_\+\+TO\+\_\+\+MIN}}, \mbox{\hyperlink{dose__actuators_8cpp_aa62f9d3d5f202b89068f61793389ecb8}{SERVO\+\_\+\+POS\+\_\+\+MAX}}, \mbox{\hyperlink{dose__actuators_8cpp_a3a277f7e2b45c548d3190ad7fe3da02e}{servo\+Action\+Count}}, \mbox{\hyperlink{dose__actuators_8cpp_aba6fbe7455050f3c8e1acc5bf94108b7}{servo\+Next\+Update}}, \mbox{\hyperlink{dose__actuators_8cpp_a2d00833ed2d6cfd049d75779db3d1887}{servo\+Phase}}, \mbox{\hyperlink{dose__actuators_8cpp_aea38528c28b9fce58b59a4873048a328}{servo\+Position}}, \mbox{\hyperlink{dose__actuators_8cpp_a89dbf28494ce5bf281a63ba03366c1ee}{speaker\+Cycle}}, \mbox{\hyperlink{dose__actuators_8cpp_a415a52e7b4ca79431a8bb2183fe558b2}{speaker\+Note}}, and \mbox{\hyperlink{dose__actuators_8cpp_a8d2ce29f3592de821c40c5295dafe530}{start\+Speaker\+Note()}}.
+
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8h_a482ab07f300f81b1d70be416e5581dfd}{execute\+Take()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dose__actuators_8h_a0f1727521e693270353667af5028e01e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dose__actuators_8h_a0f1727521e693270353667af5028e01e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dose__actuators_8h_a195951ef742e6c2e8000be600039b9be}\label{dose__actuators_8h_a195951ef742e6c2e8000be600039b9be} 
+\index{dose\_actuators.h@{dose\_actuators.h}!doseActuatorsStop@{doseActuatorsStop}}
+\index{doseActuatorsStop@{doseActuatorsStop}!dose\_actuators.h@{dose\_actuators.h}}
+\doxysubsubsection{\texorpdfstring{doseActuatorsStop()}{doseActuatorsStop()}}
+{\footnotesize\ttfamily void dose\+Actuators\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{dose__actuators_8cpp_source_l00227}{227}} of file \mbox{\hyperlink{dose__actuators_8cpp_source}{dose\+\_\+actuators.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00228\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ ledcWrite(\mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\_CHANNEL}},\ 0);}
+\DoxyCodeLine{00230\ \ \ \ \ ledcWriteTone(\mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\_CHANNEL}},\ 0);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dose__actuators_8cpp_aedeffc7d23da25d52b9a50045189fe2b}{initialized}})}
+\DoxyCodeLine{00233\ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_aea38528c28b9fce58b59a4873048a328}{servoPosition}}\ =\ \mbox{\hyperlink{dose__actuators_8cpp_aa62f9d3d5f202b89068f61793389ecb8}{SERVO\_POS\_MAX}};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a0cd0f3edd01a0d2f5b8c0731437d9642}{pwm}}.setPWM(\mbox{\hyperlink{dose__actuators_8cpp_a373cc323be319444a900646df5450865}{SERVO\_CHANNEL}},\ 0,\ \mbox{\hyperlink{dose__actuators_8cpp_aa62f9d3d5f202b89068f61793389ecb8}{SERVO\_POS\_MAX}});}
+\DoxyCodeLine{00236\ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a2d00833ed2d6cfd049d75779db3d1887}{servoPhase}}\ =\ \mbox{\hyperlink{dose__actuators_8cpp_aa686c0f2c79aa968478ad2408bb29927a500c95ec85cb709c9315f72a41fed68a}{SERVO\_IDLE}};}
+\DoxyCodeLine{00239\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_ac5565dd80cb3b5e90c19fa43d92c0355}{speakerPhase}}\ =\ \mbox{\hyperlink{dose__actuators_8cpp_a45d65548cffea70bc247413e44a952cba8c8e0253cbb17d1b98049c116e739ce2}{SPEAKER\_IDLE}};}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00241\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dose__actuators_8cpp_aedeffc7d23da25d52b9a50045189fe2b}{initialized}}, \mbox{\hyperlink{dose__actuators_8cpp_a0cd0f3edd01a0d2f5b8c0731437d9642}{pwm()}}, \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}, \mbox{\hyperlink{dose__actuators_8cpp_a373cc323be319444a900646df5450865}{SERVO\+\_\+\+CHANNEL}}, \mbox{\hyperlink{dose__actuators_8cpp_aa686c0f2c79aa968478ad2408bb29927a500c95ec85cb709c9315f72a41fed68a}{SERVO\+\_\+\+IDLE}}, \mbox{\hyperlink{dose__actuators_8cpp_aa62f9d3d5f202b89068f61793389ecb8}{SERVO\+\_\+\+POS\+\_\+\+MAX}}, \mbox{\hyperlink{dose__actuators_8cpp_a2d00833ed2d6cfd049d75779db3d1887}{servo\+Phase}}, \mbox{\hyperlink{dose__actuators_8cpp_aea38528c28b9fce58b59a4873048a328}{servo\+Position}}, \mbox{\hyperlink{dose__actuators_8cpp_ae7b41e96c8837bde2159a540363c796c}{SPEAKER\+\_\+\+CHANNEL}}, \mbox{\hyperlink{dose__actuators_8cpp_a45d65548cffea70bc247413e44a952cba8c8e0253cbb17d1b98049c116e739ce2}{SPEAKER\+\_\+\+IDLE}}, and \mbox{\hyperlink{dose__actuators_8cpp_ac5565dd80cb3b5e90c19fa43d92c0355}{speaker\+Phase}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{dose__actuators_8h_a195951ef742e6c2e8000be600039b9be_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dose__actuators_8h_abe128edf1c216d13592f2978a73233d4}\label{dose__actuators_8h_abe128edf1c216d13592f2978a73233d4} 
+\index{dose\_actuators.h@{dose\_actuators.h}!doseActuatorsUpdate@{doseActuatorsUpdate}}
+\index{doseActuatorsUpdate@{doseActuatorsUpdate}!dose\_actuators.h@{dose\_actuators.h}}
+\doxysubsubsection{\texorpdfstring{doseActuatorsUpdate()}{doseActuatorsUpdate()}}
+{\footnotesize\ttfamily void dose\+Actuators\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{dose__actuators_8cpp_source_l00210}{210}} of file \mbox{\hyperlink{dose__actuators_8cpp_source}{dose\+\_\+actuators.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00211\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}})}
+\DoxyCodeLine{00213\ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ now\ =\ millis();}
+\DoxyCodeLine{00218\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_af6fc5ed8b0fac11e8b82485603c100ef}{updateServo}}(now);}
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a70b4120c9aef677e56422e61746f219f}{updateSpeaker}}(now);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dose__actuators_8cpp_a2d00833ed2d6cfd049d75779db3d1887}{servoPhase}}\ ==\ \mbox{\hyperlink{dose__actuators_8cpp_aa686c0f2c79aa968478ad2408bb29927ad568f2064a9912ebe9e651d2ac327f82}{SERVO\_DONE}}\ \&\&\ \mbox{\hyperlink{dose__actuators_8cpp_ac5565dd80cb3b5e90c19fa43d92c0355}{speakerPhase}}\ ==\ \mbox{\hyperlink{dose__actuators_8cpp_a45d65548cffea70bc247413e44a952cba57fe09cb08bce5328044b0e2cac2f093}{SPEAKER\_DONE}})}
+\DoxyCodeLine{00222\ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dose__actuators_8cpp_a36f7b6be7108281af77939ceaec42fd6}{running}}, \mbox{\hyperlink{dose__actuators_8cpp_aa686c0f2c79aa968478ad2408bb29927ad568f2064a9912ebe9e651d2ac327f82}{SERVO\+\_\+\+DONE}}, \mbox{\hyperlink{dose__actuators_8cpp_a2d00833ed2d6cfd049d75779db3d1887}{servo\+Phase}}, \mbox{\hyperlink{dose__actuators_8cpp_a45d65548cffea70bc247413e44a952cba57fe09cb08bce5328044b0e2cac2f093}{SPEAKER\+\_\+\+DONE}}, \mbox{\hyperlink{dose__actuators_8cpp_ac5565dd80cb3b5e90c19fa43d92c0355}{speaker\+Phase}}, \mbox{\hyperlink{dose__actuators_8cpp_af6fc5ed8b0fac11e8b82485603c100ef}{update\+Servo()}}, and \mbox{\hyperlink{dose__actuators_8cpp_a70b4120c9aef677e56422e61746f219f}{update\+Speaker()}}.
+
+
+
+Referenced by \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dose__actuators_8h_abe128edf1c216d13592f2978a73233d4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{dose__actuators_8h_abe128edf1c216d13592f2978a73233d4_icgraph}
+\end{center}
+\end{figure}

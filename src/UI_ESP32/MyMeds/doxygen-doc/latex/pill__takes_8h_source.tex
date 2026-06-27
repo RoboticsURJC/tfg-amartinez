@@ -5,27 +5,54 @@
 \DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <lvgl.h>}}
 \DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00003}00003\ }
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00004}\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{00004}}\ \textcolor{preprocessor}{\#define\ MAX\_TAKES\ 30}}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00005}00005\ }
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00006}\mbox{\hyperlink{structTakeConfig}{00006}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00007}\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{00007}}\ \ \ \ \ \textcolor{keywordtype}{char}\ hour[6];}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00008}\mbox{\hyperlink{structTakeConfig_a19af5f6390dcbcc7f71f34ca77d478a7}{00008}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ repeat[7];}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00009}\mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{00009}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{recordatory}};}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00010}\mbox{\hyperlink{structTakeConfig_ab7b0568726dc2e0623041bd86f8d0fe7}{00010}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structTakeConfig_ab7b0568726dc2e0623041bd86f8d0fe7}{warning\_time}};}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00011}00011\ \}\ \mbox{\hyperlink{structTakeConfig}{TakeConfig}};}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00012}00012\ }
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00013}00013\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00014}00014\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structTakeConfig}{TakeConfig}}\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\_TAKES}}];}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00015}00015\ }
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00016}00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00017}00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\_takes\_screen}}(\textcolor{keywordtype}{int}\ index);}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00018}00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\_screen}}(\textcolor{keywordtype}{int}\ index);}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00019}00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a}{delete\_take}}(\textcolor{keywordtype}{int}\ index);}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00020}00020\ }
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00021}00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00023}00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\_takes\_screen}}();}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00024}00024\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{pill__takes_8h_a226f34b9f45999e9887df6ba5697af85}{get\_today\_index}}();}
-\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00025}00025\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pill__takes_8h_a276e05999682cc809bd995a814059a4e}{is\_take\_today}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00004}\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{00004}}\ \textcolor{preprocessor}{\#define\ MAX\_TAKES\ 7}}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00005}\mbox{\hyperlink{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}{00005}}\ \textcolor{preprocessor}{\#define\ MAX\_MEDICINES\_PER\_TAKE\ 3}}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00007}\mbox{\hyperlink{structTakeMedicine}{00007}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00008}\mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{00008}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \textcolor{keywordtype}{id}[20];}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00009}\mbox{\hyperlink{structTakeMedicine_a7510f3f12906be2110957b5e10a57803}{00009}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structTakeMedicine_a7510f3f12906be2110957b5e10a57803}{quantity}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00010}00010\ \}\ \mbox{\hyperlink{structTakeMedicine}{TakeMedicine}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00012}\mbox{\hyperlink{structTakeConfig}{00012}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00014}\mbox{\hyperlink{structTakeConfig_ade8955ef6c601c781f1395441d1d1676}{00014}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \textcolor{keywordtype}{id}[20];}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00015}\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{00015}}\ \ \ \ \ \textcolor{keywordtype}{char}\ hour[6];}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00017}\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{00017}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00019}\mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{00019}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{recordatory}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00020}\mbox{\hyperlink{structTakeConfig_a1585b7bf16ba49994864ef8a572e3e61}{00020}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structTakeConfig_a1585b7bf16ba49994864ef8a572e3e61}{warning\_time}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00022}\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{00022}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00024}\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{00024}}\ \ \ \ \ \mbox{\hyperlink{structTakeMedicine}{TakeMedicine}}\ medicines[\mbox{\hyperlink{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}{MAX\_MEDICINES\_PER\_TAKE}}];}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00026}00026\ \}\ \mbox{\hyperlink{structTakeConfig}{TakeConfig}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00028}00028\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00029}00029\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structTakeConfig}{TakeConfig}}\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\_TAKES}}];}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00031}00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00032}00032\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\_takes\_screen}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00033}00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\_screen}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00034}00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a}{delete\_take}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00036}00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00038}00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\_takes\_screen}}();}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00039}00039\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{pill__takes_8h_a226f34b9f45999e9887df6ba5697af85}{get\_today\_index}}();}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00040}00040\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pill__takes_8h_a276e05999682cc809bd995a814059a4e}{is\_take\_today}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00043}\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{00043}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(uint8\_t\ mask,\ \textcolor{keywordtype}{int}\ day)\ \{}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{return}\ (mask\ \&\ (1\ <<\ day))\ !=\ 0;}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00047}\mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{00047}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(uint8\_t\ \&mask,\ \textcolor{keywordtype}{int}\ day,\ \textcolor{keywordtype}{bool}\ value)\ \{}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (value)}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ mask\ |=\ (1\ <<\ day);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ mask\ \&=\ \string~(1\ <<\ day);}
+\DoxyCodeLine{\Hypertarget{pill__takes_8h_source_l00052}00052\ \}}
 
 \end{DoxyCode}

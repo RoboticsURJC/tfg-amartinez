@@ -1,0 +1,117 @@
+\doxysection{Today\+Takes\+Fragment.\+kt}
+\hypertarget{TodayTakesFragment_8kt_source}{}\label{TodayTakesFragment_8kt_source}\index{app/src/main/java/com/example/mymeds/ui/todayTakes/TodayTakesFragment.kt@{app/src/main/java/com/example/mymeds/ui/todayTakes/TodayTakesFragment.kt}}
+\mbox{\hyperlink{TodayTakesFragment_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00001}00001\ package\ com.example.mymeds.ui.todayTakes}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00003}00003\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00004}00004\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00005}00005\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00006}00006\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00007}00007\ import\ androidx.fragment.app.Fragment}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00008}00008\ import\ com.example.mymeds.databinding.FragmentTodayTakesBinding}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00009}00009\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00010}00010\ import\ com.example.mymeds.data.repository.TakeRepository}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00011}00011\ import\ androidx.navigation.fragment.findNavController}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00012}00012\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00013}00013\ import\ com.example.mymeds.data.util.JsonUtils}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00015}00015\ class\ TodayTakesFragment\ :\ Fragment()\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00017}00017\ \ \ \ \ private\ var\ \_binding:\ FragmentTodayTakesBinding?\ =\ null}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00018}00018\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00020}00020\ \ \ \ \ override\ fun\ onViewCreated(}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ view:\ View,}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00022}00022\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00023}00023\ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ super.onViewCreated(view,\ savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ loadTakesFromPrefs()}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ binding.buttonBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigateUp()}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ val\ calendar\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ java.util.Calendar.getInstance()}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ val\ day\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ calendar.get(java.util.Calendar.DAY\_OF\_WEEK)}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ val\ today\ =\ when\ (day)\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ java.util.Calendar.MONDAY\ -\/>\ "{}MONDAY"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ java.util.Calendar.TUESDAY\ -\/>\ "{}TUESDAY"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ java.util.Calendar.WEDNESDAY\ -\/>\ "{}WEDNESDAY"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ java.util.Calendar.THURSDAY\ -\/>\ "{}THURSDAY"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ java.util.Calendar.FRIDAY\ -\/>\ "{}FRIDAY"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ java.util.Calendar.SATURDAY\ -\/>\ "{}SATURDAY"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ else\ -\/>\ "{}SUNDAY"{}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ val\ todayTakes\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.getTakes()}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .filter\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it.days.any\ \{\ day\ -\/>}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day.name.equals(today,\ true)}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .sortedBy\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it.time}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ binding.todayRecycler.layoutManager\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ LinearLayoutManager(requireContext())}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ binding.todayRecycler.adapter\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ TodayTakesAdapter(todayTakes)}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00072}00072\ \ \ \ \ override\ fun\ onCreateView(}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ container:\ ViewGroup?,}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00076}00076\ \ \ \ \ ):\ View\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentTodayTakesBinding.inflate(}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ inflater,}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ container,}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ false}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ return\ binding.root}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00087}00087\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ super.onDestroyView()}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00092}00092\ \ \ \ \ private\ fun\ loadTakesFromPrefs()\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ val\ prefs\ =\ requireContext()}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ .getSharedPreferences(}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}app"{},}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Context.MODE\_PRIVATE}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ val\ json\ =\ prefs.getString("{}takes"{},\ null)}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ if\ (json\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ val\ takes\ =}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JsonUtils.jsonToTakes(json)}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.clear()}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.addAll(takes)}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TodayTakesFragment_8kt_source_l00111}00111\ \}}
+
+\end{DoxyCode}

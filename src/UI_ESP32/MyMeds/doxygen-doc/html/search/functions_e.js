@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['savetakes_0',['savetakes',['../takes__storage_8h.html#a230495ec724f6295941efc6a5cabd1a0',1,'saveTakes():&#160;takes_storage.cpp'],['../takes__storage_8cpp.html#a230495ec724f6295941efc6a5cabd1a0',1,'saveTakes():&#160;takes_storage.cpp']]],
-  ['server_1',['server',['../main_8cpp.html#a48f3f185be3ea2d153c347a157b38d42',1,'main.cpp']]],
-  ['set_5frollers_5finit_2',['set_rollers_init',['../edit__takes_8cpp.html#a25940f318b6609dd153cdb939e6dd402',1,'edit_takes.cpp']]],
-  ['setmodulebounded_3',['setModuleBounded',['../qrcodegen_8c.html#a15c31cc3974d3162b6804fc4a1f6c14a',1,'qrcodegen.c']]],
-  ['setmoduleunbounded_4',['setModuleUnbounded',['../qrcodegen_8c.html#ae0b2fcd2ff740612ce23157eaacb7fb1',1,'qrcodegen.c']]],
-  ['setup_5',['setup',['../main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d',1,'main.cpp']]],
-  ['setup1_6',['setup1',['../test_8cpp.html#ac764ee28e2916a7de10b22927e02d1a4',1,'test.cpp']]],
-  ['show_5fclock_5fscreen_7',['show_clock_screen',['../clock__mod_8h.html#a199e69d3e99f6122e7d30966d5377636',1,'show_clock_screen(lv_obj_t *parent):&#160;clock_mod.cpp'],['../clock__mod_8cpp.html#a199e69d3e99f6122e7d30966d5377636',1,'show_clock_screen(lv_obj_t *parent):&#160;clock_mod.cpp']]],
-  ['show_5fhome_5fscreen_8',['show_home_screen',['../home__mod_8h.html#a347f29b0cd5aca029a64be2107bb9f13',1,'show_home_screen():&#160;home_mod.cpp'],['../pill__takes_8h.html#a347f29b0cd5aca029a64be2107bb9f13',1,'show_home_screen():&#160;home_mod.cpp'],['../home__mod_8cpp.html#a347f29b0cd5aca029a64be2107bb9f13',1,'show_home_screen():&#160;home_mod.cpp']]],
-  ['show_5fwifi_5fscreen_9',['show_wifi_screen',['../wifi__mod_8h.html#a47793befeb6bd8738a1e6b7b8ddb38df',1,'show_wifi_screen(lv_obj_t *parent, const char *text):&#160;wifi_mod.cpp'],['../wifi__mod_8cpp.html#a47793befeb6bd8738a1e6b7b8ddb38df',1,'show_wifi_screen(lv_obj_t *parent, const char *text):&#160;wifi_mod.cpp']]]
+  ['reedsolomoncomputedivisor_0',['reedSolomonComputeDivisor',['../qrcodegen_8c.html#ac74eae03dc0c0462a79eee356ff40443',1,'qrcodegen.c']]],
+  ['reedsolomoncomputeremainder_1',['reedSolomonComputeRemainder',['../qrcodegen_8c.html#a859a4a9e045e79ca631ea58807c07713',1,'qrcodegen.c']]],
+  ['reedsolomonmultiply_2',['reedSolomonMultiply',['../qrcodegen_8c.html#af3eccd8d887a881d203a8bad18b81902',1,'qrcodegen.c']]],
+  ['refresh_5fdays_5fbuttons_3',['refresh_days_buttons',['../edit__takes_8cpp.html#abd49422d84c367a440ffcfdcf569601d',1,'edit_takes.cpp']]],
+  ['refresh_5fmedicines_5flist_4',['refresh_medicines_list',['../edit__takes_8cpp.html#ae4651fbe523abcc40959dd080499f6b2',1,'edit_takes.cpp']]],
+  ['repetition_5fscreen_5',['repetition_screen',['../pill__takes_8h.html#a5e444d9110c8a48b6d02495ce4c165d3',1,'repetition_screen(int index):&#160;repetition.cpp'],['../repetition_8cpp.html#a5e444d9110c8a48b6d02495ce4c165d3',1,'repetition_screen(int index):&#160;repetition.cpp']]],
+  ['reset_5ffactory_5ftimer_5fcb_6',['reset_factory_timer_cb',['../settings__screen_8cpp.html#ac7f193e111dbca853ee4a1ab59e49890',1,'settings_screen.cpp']]],
+  ['restart_5fdevice_5ftimer_5fcb_7',['restart_device_timer_cb',['../settings__screen_8cpp.html#a1b6e4adb746348fca38f713ea42ecfc0',1,'settings_screen.cpp']]],
+  ['right_5fx_8',['right_x',['../edit__takes_8cpp.html#af7243c0003bee258aa5a4ca997b9286a',1,'edit_takes.cpp']]]
 ];

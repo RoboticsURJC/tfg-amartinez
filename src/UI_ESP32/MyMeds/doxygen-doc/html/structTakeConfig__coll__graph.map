@@ -1,3 +1,5 @@
 <map id="TakeConfig" name="TakeConfig">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,123,131"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,153,137,319"/>
+<area shape="rect" id="Node000002" href="$structTakeMedicine.html" title=" " alt="" coords="20,5,123,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,91,74,137,69,137,69,91"/>
 </map>

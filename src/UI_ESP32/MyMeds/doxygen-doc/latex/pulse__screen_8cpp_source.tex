@@ -1,0 +1,177 @@
+\doxysection{pulse\+\_\+screen.\+cpp}
+\hypertarget{pulse__screen_8cpp_source}{}\label{pulse__screen_8cpp_source}\index{src/user\_interface/pulse\_screen.cpp@{src/user\_interface/pulse\_screen.cpp}}
+\mbox{\hyperlink{pulse__screen_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pulse__screen_8h}{user\_interface/pulse\_screen.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{home__mod_8h}{user\_interface/home\_mod.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pulse__sensor_8h}{sensors/pulse\_sensor.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pulse__history__storage_8h}{storage/pulse\_history\_storage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{idle__manager_8h}{idle\_manager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <lvgl.h>}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00009}\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{00009}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00010}\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{00010}}\ \textcolor{keyword}{static}\ lv\_obj\_t\ *\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00011}\mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{00011}}\ \textcolor{keyword}{static}\ lv\_timer\_t\ *\mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00013}\mbox{\hyperlink{pulse__screen_8cpp_ae88a7109e0c40fca4693d608cea029bf}{00013}}\ \mbox{\hyperlink{pulse__screen_8cpp_ae88a7109e0c40fca4693d608cea029bf}{LV\_IMG\_DECLARE}}(\mbox{\hyperlink{heart_8c_a3119341481da7b8bf32d04c669ca4637}{heart}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00015}\mbox{\hyperlink{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}{00015}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}{pulse\_update\_cb}}(lv\_timer\_t\ *timer)}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}}\ ==\ \textcolor{keyword}{nullptr}\ ||}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}}\ ==\ \textcolor{keyword}{nullptr}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00020}00020\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pulse__sensor_8h_a41c7a05b1e5f5a0cab20c88b7695831a}{pulseFingerDetected}}())}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00026}00026\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\textcolor{stringliteral}{"{}Coloque\ el\ dedo"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},\textcolor{stringliteral}{"{}-\/-\/\ BPM"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pulse__sensor_8h_a8d768af20334a60389b733b15dd906c0}{pulseMeasurementReady}}())}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00034}00034\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ txt[32];}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ snprintf(}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ txt,}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(txt),}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Midiendo\ \%d:\%d"{}},}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_aff1a3915d6f5cef75e73ca44d3bcdfb4}{pulseGetSamples}}(),}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_a72f1c324da2d6a7b50b6917b9f7d3b5d}{pulseGetRequiredSamples}}()}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ txt}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/\ BPM"{}}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{char}\ bpmText[16];}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00060}00060\ \ \ \ \ snprintf(bpmText,\textcolor{keyword}{sizeof}(bpmText),\textcolor{stringliteral}{"{}\%d\ BPM"{}},\mbox{\hyperlink{pulse__sensor_8h_aa5570d6065286120699bd5889acab27e}{pulseGetBpm}}());}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00061}00061\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},bpmText);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_aff1a3915d6f5cef75e73ca44d3bcdfb4}{pulseGetSamples}}()\ <}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_a72f1c324da2d6a7b50b6917b9f7d3b5d}{pulseGetRequiredSamples}}()}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00066}00066\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00067}00067\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ txt[32];}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ snprintf(}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ txt,}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(txt),}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Midiendo\ \%d:\%d"{}},}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_aff1a3915d6f5cef75e73ca44d3bcdfb4}{pulseGetSamples}}(),}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_a72f1c324da2d6a7b50b6917b9f7d3b5d}{pulseGetRequiredSamples}}()}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ txt}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00084}00084\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00087}00087\ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00089}\mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{00089}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\_btn\_event\_cb}}(lv\_event\_t\ *e)}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00090}00090\ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00091}00091\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\_idle\_timeout}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00093}00093\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_adaf9d8edb551c08d362d712d8d1357e2}{last\_touch\_time}}\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00094}00094\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_a24fc9786d6fce7521eeef5a7c971f0ac}{idle\_timeout\_triggered}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}})}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00097}00097\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ lv\_timer\_del(\mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00100}00100\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00102}00102\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00105}00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pulse__sensor_8h_a5ea88488da2c8f715e311e703d7bb801}{pulseFullMeasurementReady}}())\ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bpm\ =\ \mbox{\hyperlink{pulse__sensor_8h_ac19f883343d0e93acf1df07622698f34}{pulseGetFullBufferBpm}}();}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Guardando\ media\ de\ pulso:\ "{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ Serial.println(bpm);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ ok\ =\ \mbox{\hyperlink{pulse__history__storage_8h_ae4c59227ee1369bb87a9ba451ee7ff52}{savePulseAverage}}(bpm);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Guardado\ SD:\ "{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ Serial.println(ok\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}ERROR"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00117}00117\ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_a17b79f2f6a2e4e4e75d7ff162fdd96f0}{pulseSensorStop}}();}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00118}00118\ \ \ \ \ \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00119}00119\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Home\ cargado"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00120}00120\ \}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00122}\mbox{\hyperlink{pulse__screen_8h_a110b08df176a6163bf8834ea75df52b4}{00122}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pulse__screen_8cpp_a110b08df176a6163bf8834ea75df52b4}{show\_pulse\_screen}}(lv\_obj\_t\ *parent)}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00123}00123\ \{}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00124}00124\ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_abe7ca60cda316b5995a3b66a3453bfb3}{pulseSensorStart}}();}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00125}00125\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\_idle\_timeout}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00127}00127\ \ \ \ \ lv\_obj\_clean(parent);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00128}00128\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(parent,lv\_color\_make(48,25,52),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00130}00130\ \ \ \ \ lv\_obj\_t\ *title\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00131}00131\ \ \ \ \ lv\_label\_set\_text(title,\textcolor{stringliteral}{"{}Pulsómetro"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00132}00132\ \ \ \ \ lv\_obj\_set\_style\_text\_color(title,lv\_color\_white(),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00133}00133\ \ \ \ \ lv\_obj\_set\_style\_text\_font(title,\&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00134}00134\ \ \ \ \ lv\_obj\_align(title,LV\_ALIGN\_TOP\_MID,0,20);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00138}00138\ \ \ \ \ lv\_obj\_t\ *heart\_img\ =\ lv\_img\_create(parent);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00139}00139\ \ \ \ \ lv\_img\_set\_src(heart\_img,\ \&\mbox{\hyperlink{heart_8c_a3119341481da7b8bf32d04c669ca4637}{heart}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00140}00140\ \ \ \ \ lv\_obj\_align(heart\_img,LV\_ALIGN\_TOP\_MID,0,125);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00144}00144\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}}\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00145}00145\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},\textcolor{stringliteral}{"{}-\/-\/\ BPM"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00146}00146\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},lv\_color\_white(),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00147}00147\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},\&lv\_font\_montserrat\_34,LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00148}00148\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},LV\_ALIGN\_CENTER,0,-\/20);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00152}00152\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}}\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00153}00153\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\textcolor{stringliteral}{"{}Coloque\ el\ dedo"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00154}00154\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},lv\_color\_white(),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00155}00155\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00156}00156\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\ LV\_ALIGN\_TOP\_MID,\ 0,\ 190);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00160}00160\ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_btn\_create(parent);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00161}00161\ \ \ \ \ lv\_obj\_set\_size(btn,\ 180,\ 60);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00162}00162\ \ \ \ \ lv\_obj\_align(btn,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 250);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00163}00163\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00164}00164\ \ \ \ \ lv\_obj\_add\_event\_cb(btn,\ \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\_btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00166}00166\ \ \ \ \ lv\_obj\_t\ *lbl\ =\ lv\_label\_create(btn);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00167}00167\ \ \ \ \ lv\_label\_set\_text(lbl,\textcolor{stringliteral}{"{}Volver"{}});}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00168}00168\ \ \ \ \ lv\_obj\_center(lbl);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00170}00170\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}}\ =\ lv\_timer\_create(\mbox{\hyperlink{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}{pulse\_update\_cb}},\ 500,\ NULL);}
+\DoxyCodeLine{\Hypertarget{pulse__screen_8cpp_source_l00171}00171\ \}}
+
+\end{DoxyCode}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['qrcodegen_5fsegment_0',['qrcodegen_Segment',['../structqrcodegen__Segment.html',1,'']]]
+  ['catalogmedicine_0',['CatalogMedicine',['../structCatalogMedicine.html',1,'']]]
 ];

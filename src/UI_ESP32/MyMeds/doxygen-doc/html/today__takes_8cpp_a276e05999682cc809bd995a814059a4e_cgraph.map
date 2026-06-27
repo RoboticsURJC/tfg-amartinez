@@ -1,5 +1,7 @@
 <map id="is_take_today" name="is_take_today">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,117,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,117,56"/>
 <area shape="rect" id="Node000002" href="$today__takes_8cpp.html#a226f34b9f45999e9887df6ba5697af85" title=" " alt="" coords="165,5,296,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,15,152,15,152,21,118,21"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,32,151,27,152,32,118,38"/>
+<area shape="rect" id="Node000003" href="$pill__takes_8h.html#a75d0c2d8eda77edbff00929e20d48b81" title=" " alt="" coords="175,55,286,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="118,49,162,55,161,60,117,54"/>
 </map>

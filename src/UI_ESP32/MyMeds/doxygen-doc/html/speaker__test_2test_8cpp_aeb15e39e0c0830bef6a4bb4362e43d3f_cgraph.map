@@ -1,0 +1,9 @@
+<map id="warning_sound" name="warning_sound">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,125,56"/>
+<area shape="rect" id="Node000002" href="$speaker__test_2test_8cpp.html#a167362e167709fb1fb3512083e13bb0b" title=" " alt="" coords="173,31,255,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,41,160,41,160,46,126,46"/>
+<area shape="rect" id="Node000003" href="$speaker__test_2test_8cpp.html#aa7daae0aa205583770fd07d82a60bf89" title=" " alt="" coords="309,5,371,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="254,33,295,24,296,29,255,38"/>
+<area shape="rect" id="Node000004" href="$speaker__test_2test_8cpp.html#ad8f30ed47a24c9b191adae164180f6c5" title=" " alt="" coords="303,55,377,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="255,48,290,55,289,60,254,54"/>
+</map>

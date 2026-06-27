@@ -1,0 +1,11 @@
+<map id="src/sensors/pulse_sensor.cpp" name="src/sensors/pulse_sensor.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="103,5,313,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,69,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,33,79,76,77,71,180,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="93,79,197,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,33,167,70,163,66,196,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="221,79,320,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="220,29,253,66,249,70,216,33"/>
+<area shape="rect" id="Node000005" href="$pulse__sensor_8h.html" title=" " alt="" coords="345,79,517,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="245,28,383,72,381,77,243,33"/>
+</map>

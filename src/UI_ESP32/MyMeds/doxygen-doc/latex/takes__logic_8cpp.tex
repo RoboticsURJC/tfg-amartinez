@@ -1,7 +1,9 @@
 \doxysection{src/logic/takes\+\_\+logic.cpp File Reference}
 \hypertarget{takes__logic_8cpp}{}\label{takes__logic_8cpp}\index{src/logic/takes\_logic.cpp@{src/logic/takes\_logic.cpp}}
 {\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}actuators/dose\+\_\+actuators.\+h"{}}\newline
 {\ttfamily \#include "{}logic/takes\+\_\+logic.\+h"{}}\newline
+{\ttfamily \#include "{}user\+\_\+interface/take\+\_\+alert\+\_\+screen.\+h"{}}\newline
 {\ttfamily \#include "{}user\+\_\+interface/pill\+\_\+takes.\+h"{}}\newline
 Include dependency graph for takes\+\_\+logic.\+cpp\+:
 \nopagebreak
@@ -18,6 +20,13 @@ void \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{execu
 \item 
 void \mbox{\hyperlink{takes__logic_8cpp_a316d6941189851a072229370c65696bb}{check\+Takes}} ()
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static long \mbox{\hyperlink{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}{last\+Triggered\+Minute}} \mbox{[}\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\+\_\+\+TAKES}}\mbox{]}
+\item 
+static unsigned long \mbox{\hyperlink{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}{last\+Check}} = 0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -29,39 +38,74 @@ void \mbox{\hyperlink{takes__logic_8cpp_a316d6941189851a072229370c65696bb}{check
 
 
 
-Definition at line \mbox{\hyperlink{takes__logic_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{takes__logic_8cpp_source}{takes\+\_\+logic.\+cpp}}.
+Definition at line \mbox{\hyperlink{takes__logic_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{takes__logic_8cpp_source}{takes\+\_\+logic.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00011\ \{}
-\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ timeInfo;}
-\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&timeInfo))\{}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00015\ \ \ \ \ \}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i\ ++)\{}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hh\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[0]);}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mm\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[3]);}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeInfo.tm\_hour\ ==\ hh\ \&\&\ timeInfo.tm\_min\ ==\ mm)\{}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].repeat[timeInfo.tm\_wday])\{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{executeTake}}(i);}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00026\ \ \ \ \ \}}
-\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (millis()\ -\/\ \mbox{\hyperlink{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}{lastCheck}}\ <\ 500)}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}{lastCheck}}\ =\ millis();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dose__actuators_8h_a777492a883259b2cf3f213f70a0af356}{doseActuatorsBusy}}()\ ||\ \mbox{\hyperlink{take__alert__screen_8h_af074c92aec3f5ff37fcfe738a0b70d78}{takeAlertVisible}}())}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ timeInfo;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&timeInfo))\{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ currentDay\ =\ (timeInfo.tm\_wday\ +\ 6)\ \%\ 7;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{long}\ minuteKey\ =}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ ((long)timeInfo.tm\_year\ *\ 366L\ +\ timeInfo.tm\_yday)\ *\ 1440L\ +}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ timeInfo.tm\_hour\ *\ 60L\ +}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ timeInfo.tm\_min;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i\ ++)\{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hh\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[0]);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mm\ =\ atoi(\&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour[3]);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeInfo.tm\_hour\ ==\ hh\ \&\&\ timeInfo.tm\_min\ ==\ mm)\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].repeat\_mask,\ currentDay)\ \&\&}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}{lastTriggeredMinute}}[i]\ !=\ minuteKey}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ )\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}{lastTriggeredMinute}}[i]\ =\ minuteKey;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{executeTake}}(i);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \}}
 
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{execute\+Take()}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, and \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+References \mbox{\hyperlink{dose__actuators_8h_a777492a883259b2cf3f213f70a0af356}{dose\+Actuators\+Busy()}}, \mbox{\hyperlink{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}{execute\+Take()}}, \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\+\_\+day\+\_\+active()}}, \mbox{\hyperlink{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}{last\+Check}}, \mbox{\hyperlink{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}{last\+Triggered\+Minute}}, \mbox{\hyperlink{take__alert__screen_8h_af074c92aec3f5ff37fcfe738a0b70d78}{take\+Alert\+Visible()}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, and \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+
+
+
+Referenced by \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}.
 
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=265pt]{takes__logic_8cpp_a316d6941189851a072229370c65696bb_cgraph}
+\includegraphics[width=350pt]{takes__logic_8cpp_a316d6941189851a072229370c65696bb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{takes__logic_8cpp_a316d6941189851a072229370c65696bb_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd}\label{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd} 
@@ -72,24 +116,83 @@ Here is the call graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{takes__logic_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{takes__logic_8cpp_source}{takes\+\_\+logic.\+cpp}}.
+Definition at line \mbox{\hyperlink{takes__logic_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{takes__logic_8cpp_source}{takes\+\_\+logic.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00006\ \{}
-\DoxyCodeLine{00007\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Ejecutando\ toma\ \%d\(\backslash\)n"{}},\ index+1);}
-\DoxyCodeLine{00008\ \}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Ejecutando\ toma\ \%d\(\backslash\)n"{}},\ index+1);}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{take__alert__screen_8h_a7d4b85367414f994adf1f70eac9df88d}{show\_take\_alert}}(index);}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{dose__actuators_8h_a0f1727521e693270353667af5028e01e}{doseActuatorsStart}}();}
+\DoxyCodeLine{00018\ \}}
 
 \end{DoxyCode}
 
 
-Referenced by \mbox{\hyperlink{takes__logic_8cpp_a316d6941189851a072229370c65696bb}{check\+Takes()}}.
+References \mbox{\hyperlink{dose__actuators_8h_a0f1727521e693270353667af5028e01e}{dose\+Actuators\+Start()}}, and \mbox{\hyperlink{take__alert__screen_8h_a7d4b85367414f994adf1f70eac9df88d}{show\+\_\+take\+\_\+alert()}}.
 
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8h_a316d6941189851a072229370c65696bb}{check\+Takes()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=265pt]{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd_icgraph}
+\includegraphics[width=339pt]{takes__logic_8cpp_a482ab07f300f81b1d70be416e5581dfd_icgraph}
 \end{center}
 \end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9}\label{takes__logic_8cpp_ad9b80b243bf6b056da95b4f1233017b9} 
+\index{takes\_logic.cpp@{takes\_logic.cpp}!lastCheck@{lastCheck}}
+\index{lastCheck@{lastCheck}!takes\_logic.cpp@{takes\_logic.cpp}}
+\doxysubsubsection{\texorpdfstring{lastCheck}{lastCheck}}
+{\footnotesize\ttfamily unsigned long last\+Check = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{takes__logic_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{takes__logic_8cpp_source}{takes\+\_\+logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8h_a316d6941189851a072229370c65696bb}{check\+Takes()}}.
+
+\Hypertarget{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e}\label{takes__logic_8cpp_ae2e6f354a1ada990aa165ded62e2d14e} 
+\index{takes\_logic.cpp@{takes\_logic.cpp}!lastTriggeredMinute@{lastTriggeredMinute}}
+\index{lastTriggeredMinute@{lastTriggeredMinute}!takes\_logic.cpp@{takes\_logic.cpp}}
+\doxysubsubsection{\texorpdfstring{lastTriggeredMinute}{lastTriggeredMinute}}
+{\footnotesize\ttfamily long last\+Triggered\+Minute\mbox{[}\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\+\_\+\+TAKES}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{takes__logic_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{takes__logic_8cpp_source}{takes\+\_\+logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00008\ \ \ \ \ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1}
+\DoxyCodeLine{00009\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8h_a316d6941189851a072229370c65696bb}{check\+Takes()}}.
+

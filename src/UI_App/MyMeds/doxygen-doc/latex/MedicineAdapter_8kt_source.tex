@@ -6,61 +6,111 @@
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00002}00002\ }
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00003}00003\ import\ android.view.LayoutInflater}
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00004}00004\ import\ android.view.ViewGroup}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00005}00005\ import\ androidx.core.widget.doAfterTextChanged}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00006}00006\ import\ androidx.recyclerview.widget.RecyclerView}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00007}00007\ import\ com.example.mymeds.data.model.Medicine}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00008}00008\ import\ com.example.mymeds.databinding.ItemMedicineBinding}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00009}00009\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00010}00010\ class\ MedicineAdapter\ (}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00011}00011\ \ \ \ \ private\ val\ medicines:\ MutableList<Medicine>,}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00012}00012\ \ \ \ \ private\ val\ onDelete:\ (Int)\ -\/>\ Unit}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00013}00013\ )\ :\ RecyclerView.Adapter<MedicineAdapter.MedicineViewHolder>()\ \{}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00014}00014\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00015}00015\ \ \ \ \ inner\ class\ MedicineViewHolder(}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00016}00016\ \ \ \ \ \ \ \ \ val\ binding:\ ItemMedicineBinding}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00017}00017\ \ \ \ \ )\ :\ RecyclerView.ViewHolder(binding.root)}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00018}00018\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00019}00019\ \ \ \ \ override\ fun\ onCreateViewHolder(}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ parent:\ ViewGroup,}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ viewType:\ Int}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00022}00022\ \ \ \ \ ):\ MedicineViewHolder\ \{}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00023}00023\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ val\ binding\ =\ ItemMedicineBinding.inflate(}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ LayoutInflater.from(parent.context),}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ parent,}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ false}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00005}00005\ import\ android.widget.ArrayAdapter}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00006}00006\ import\ androidx.core.widget.doAfterTextChanged}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00007}00007\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00008}00008\ import\ com.example.mymeds.data.model.TakeMedicine}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00009}00009\ import\ com.example.mymeds.data.repository.MedicineRepository}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00010}00010\ import\ com.example.mymeds.databinding.ItemMedicineBinding}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00012}00012\ class\ MedicineAdapter(}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00013}00013\ \ \ \ \ private\ val\ medicines:\ MutableList<TakeMedicine>,}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00014}00014\ \ \ \ \ private\ val\ onDelete:\ (Int)\ -\/>\ Unit}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00015}00015\ )\ :\ RecyclerView.Adapter<MedicineAdapter.MedicineViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00017}00017\ \ \ \ \ inner\ class\ MedicineViewHolder(}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00018}00018\ \ \ \ \ \ \ \ \ val\ binding:\ ItemMedicineBinding}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00019}00019\ \ \ \ \ )\ :\ RecyclerView.ViewHolder(binding.root)}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00021}00021\ \ \ \ \ override\ fun\ onCreateViewHolder(parent:\ ViewGroup,\ viewType:\ Int):\ MedicineViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00023}00023\ \ \ \ \ \ \ \ \ val\ binding\ =\ ItemMedicineBinding.inflate(}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ LayoutInflater.from(parent.context),}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ parent,}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ false}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00028}00028\ }
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ return\ MedicineViewHolder(binding)}
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00030}00030\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00032}00032\ \ \ \ \ override\ fun\ onBindViewHolder(}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ holder:\ MedicineViewHolder,}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ position:\ Int}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00035}00035\ \ \ \ \ )\ \{}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ val\ medicine\ =\ medicines[position]}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00037}00037\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ holder.binding.nameInput.setText(medicine.name)}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ holder.binding.quantityInput.setText(medicine.quantity)}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00032}00032\ \ \ \ \ override\ fun\ onBindViewHolder(holder:\ MedicineViewHolder,\ position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ val\ medicine\ =\ medicines[position]}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ val\ context\ =\ holder.binding.root.context}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/\ CATÁLOGO\ -\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ val\ catalog\ =\ MedicineRepository.getAll()}
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00040}00040\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ holder.binding.nameInput.doAfterTextChanged\ \{}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ medicine.name\ =\ it?.toString().orEmpty()}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00044}00044\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ holder.binding.quantityInput.doAfterTextChanged\ \{}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ medicine.quantity\ =\ it?.toString().orEmpty()}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ val\ catalogNames\ =\ catalog.map\ \{\ it.name\ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ val\ dropdownAdapter\ =\ ArrayAdapter(}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ context,}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ android.R.layout.simple\_list\_item\_1,}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ catalogNames}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ )}
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00048}00048\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ holder.binding.deleteButton.setOnClickListener\ \{}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ onDelete(position)}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00052}00052\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00053}00053\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00054}00054\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ medicines.size}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ holder.binding.nameInput.setAdapter(dropdownAdapter)}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/\ MOSTRAR\ NOMBRE\ DESDE\ ID\ -\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ val\ selectedMedicine\ =}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ MedicineRepository.findById(medicine.id)}
 \DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00055}00055\ }
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00056}00056\ \ \ \ \ fun\ addMedicine(medicine:\ Medicine)\ \{}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ medicines.add(medicine)}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ notifyItemInserted(medicines.size\ -\/\ 1)}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00059}00059\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00060}00060\ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ holder.binding.nameInput.setText(}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ selectedMedicine?.name\ ?:\ "{}"{},}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ false}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ holder.binding.quantityInput.setText(medicine.quantity.toString())}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/\ SOLO\ DROPDOWN\ -\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ holder.binding.nameInput.inputType\ =\ 0}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ holder.binding.nameInput.keyListener\ =\ null}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ holder.binding.nameInput.isFocusable\ =\ false}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ holder.binding.nameInput.isClickable\ =\ true}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ holder.binding.nameInput.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ holder.binding.nameInput.showDropDown()}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/\ SELECCIÓN\ -\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ holder.binding.nameInput.setOnItemClickListener\ \{\ parent,\ \_,\ pos,\ \_\ -\/>}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ val\ selectedName\ =}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parent.getItemAtPosition(pos)\ as\ String}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ val\ realMedicine\ =}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ catalog.find\ \{\ it.name\ ==\ selectedName\ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (realMedicine\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ medicine.id\ =\ realMedicine.id}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/\ CANTIDAD\ -\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ holder.binding.quantityInput.doAfterTextChanged\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ medicine.quantity\ =\ it?.toString()?.toIntOrNull()\ ?:\ 1}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/\ ELIMINAR\ -\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ holder.binding.deleteButton.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ onDelete(holder.adapterPosition)}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00100}00100\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00102}00102\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ medicines.size}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00104}00104\ \ \ \ \ fun\ addMedicine(medicine:\ TakeMedicine)\ \{}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ medicines.add(medicine)}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ notifyItemInserted(medicines.size\ -\/\ 1)}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MedicineAdapter_8kt_source_l00110}00110\ \}}
 
 \end{DoxyCode}

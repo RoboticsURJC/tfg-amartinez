@@ -1,12 +1,15 @@
 <map id="src/user_interface/edit_takes.cpp" name="src/user_interface/edit_takes.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="65,5,204,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="65,181,124,207"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,48,40,67,26,80,14,95,8,113,14,132,33,155,57,173,54,177,29,159,10,135,3,113,10,92,22,76,37,63,70,43"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="25,101,109,126"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,47,86,91,82,88,117,44"/>
-<area shape="rect" id="Node000004" href="$pill__takes_8h.html" title=" " alt="" coords="133,93,272,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="152,44,181,81,177,84,148,47"/>
-<area shape="rect" id="Node000005" href="$takes__storage_8h.html" title=" " alt="" coords="296,101,475,126"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="190,43,340,94,338,99,189,48"/>
-<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="178,136,124,175,120,171,175,131"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="132,5,270,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="12,181,70,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,35,100,42,68,54,39,71,15,95,9,112,10,132,27,169,22,171,5,133,3,112,11,92,35,67,65,49,98,37,131,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="331,181,415,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,45,208,88,216,111,228,132,248,149,270,163,318,181,317,186,268,168,244,153,224,135,211,114,203,89,198,46"/>
+<area shape="rect" id="Node000004" href="$pill__takes_8h.html" title=" " alt="" coords="25,93,164,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="179,48,130,87,127,83,176,44"/>
+<area shape="rect" id="Node000005" href="$takes__storage_8h.html" title=" " alt="" coords="238,101,417,126"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="231,43,301,91,298,95,228,48"/>
+<area shape="rect" id="Node000006" href="$medicines__storage_8h.html" title=" " alt="" coords="441,101,652,126"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="271,41,488,95,486,100,270,46"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="84,135,59,171,55,168,79,132"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="522,128,412,178,410,173,520,124"/>
 </map>

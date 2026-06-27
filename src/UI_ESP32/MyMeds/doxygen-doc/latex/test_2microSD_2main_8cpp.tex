@@ -1,0 +1,86 @@
+\doxysection{test/micro\+SD/main.cpp File Reference}
+\hypertarget{test_2microSD_2main_8cpp}{}\label{test_2microSD_2main_8cpp}\index{test/microSD/main.cpp@{test/microSD/main.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$SPI.\+h$>$}\newline
+{\ttfamily \#include $<$SD.\+h$>$}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{test_2microSD_2main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{test_2microSD_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\item 
+void \mbox{\hyperlink{test_2microSD_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{test_2microSD_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}\label{test_2microSD_2main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test_2microSD_2main_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{test_2microSD_2main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}
+\Hypertarget{test_2microSD_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\label{test_2microSD_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test_2microSD_2main_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{test_2microSD_2main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ Serial.begin(115200);}
+\DoxyCodeLine{00008\ \ \ \ \ delay(2000);}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Probando\ SD..."{}});}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{if}\ (!SD.begin(5))}
+\DoxyCodeLine{00013\ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}SD\ ERROR"{}});}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00016\ \ \ \ \ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}SD\ OK"{}});}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ uint64\_t\ cardSize\ =\ SD.cardSize()\ /\ (1024\ *\ 1024);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Capacidad:\ "{}});}
+\DoxyCodeLine{00023\ \ \ \ \ Serial.print(cardSize);}
+\DoxyCodeLine{00024\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ MB"{}});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ File\ file\ =\ SD.open(\textcolor{stringliteral}{"{}/test.txt"{}},\ FILE\_WRITE);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}No\ se\ pudo\ crear\ archivo"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ file.println(\textcolor{stringliteral}{"{}Hola\ SD"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ file.close();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Archivo\ creado\ correctamente"{}});}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}

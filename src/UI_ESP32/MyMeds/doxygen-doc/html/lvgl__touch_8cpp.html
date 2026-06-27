@@ -82,6 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="lvgl__touch_8h_source.html">lvgl_touch.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="idle__manager_8h_source.html">idle_manager.h</a>&quot;</code><br />
 <code>#include &lt;SPI.h&gt;</code><br />
 <code>#include &lt;XPT2046_Touchscreen.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -89,13 +90,15 @@ Include dependency graph for lvgl_touch.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="lvgl__touch_8cpp__incl.png" border="0" usemap="#asrc_2lvgl__touch_8cpp" alt=""/></div>
 <map name="asrc_2lvgl__touch_8cpp" id="asrc_2lvgl__touch_8cpp">
-<area shape="rect" title=" " alt="" coords="89,5,228,31"/>
+<area shape="rect" title=" " alt="" coords="179,5,317,31"/>
 <area shape="rect" href="lvgl__touch_8h.html" title=" " alt="" coords="5,79,107,104"/>
-<area shape="poly" title=" " alt="" coords="144,33,86,73,83,68,141,28"/>
-<area shape="rect" title=" " alt="" coords="131,79,186,104"/>
-<area shape="poly" title=" " alt="" coords="161,31,161,65,156,65,156,31"/>
-<area shape="rect" title=" " alt="" coords="211,79,389,104"/>
-<area shape="poly" title=" " alt="" coords="183,28,266,70,264,75,180,33"/>
+<area shape="poly" title=" " alt="" coords="218,33,101,76,99,71,216,28"/>
+<area shape="rect" href="idle__manager_8h.html" title=" " alt="" coords="131,79,253,104"/>
+<area shape="poly" title=" " alt="" coords="241,33,212,69,207,66,237,29"/>
+<area shape="rect" title=" " alt="" coords="278,79,333,104"/>
+<area shape="poly" title=" " alt="" coords="260,29,289,66,285,70,255,33"/>
+<area shape="rect" title=" " alt="" coords="357,79,536,104"/>
+<area shape="poly" title=" " alt="" coords="281,28,402,71,400,76,279,33"/>
 <area shape="rect" title=" " alt="" coords="27,152,85,177"/>
 <area shape="poly" title=" " alt="" coords="59,104,59,138,53,138,53,104"/>
 </map>
@@ -122,6 +125,8 @@ Functions</h2></td></tr>
 <tr class="separator:a7c86d5ac28d219b55d2c94aacb139157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77505c2b918dec6cea21b12e13657c5b" id="r_a77505c2b918dec6cea21b12e13657c5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lvgl__touch_8cpp.html#a77505c2b918dec6cea21b12e13657c5b">lvgl_touch_init</a> ()</td></tr>
 <tr class="separator:a77505c2b918dec6cea21b12e13657c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6722fb21433079d903325b7b633e7e27" id="r_a6722fb21433079d903325b7b633e7e27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lvgl__touch_8cpp.html#a6722fb21433079d903325b7b633e7e27">lvgl_touch_reinit</a> ()</td></tr>
+<tr class="separator:a6722fb21433079d903325b7b633e7e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -141,7 +146,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00006">6</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00007">7</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
 
 </div>
 </div>
@@ -157,7 +162,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00005">5</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00006">6</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
 
 </div>
 </div>
@@ -173,7 +178,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00007">7</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00008">8</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
 
 </div>
 </div>
@@ -189,7 +194,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00008">8</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00009">9</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
 
 </div>
 </div>
@@ -209,25 +214,25 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00030">30</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   31</span>{</div>
-<div class="line"><span class="lineno">   32</span>    SPI.begin(<a class="code hl_define" href="lvgl__touch_8cpp.html#a830e716db81333e7dc058f7373c48d6b">T_CLK</a>, <a class="code hl_define" href="lvgl__touch_8cpp.html#a09b57adf03bb34ea1281d762abf9a0f2">T_MISO</a>, <a class="code hl_define" href="lvgl__touch_8cpp.html#acf4775705647aae50c55ab3f71b83d09">T_MOSI</a>);</div>
-<div class="line"><span class="lineno">   33</span>    <a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.begin();</div>
-<div class="line"><span class="lineno">   34</span>    <a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.setRotation(1);</div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>    <span class="keyword">static</span> lv_indev_drv_t indev_drv;</div>
-<div class="line"><span class="lineno">   37</span>    lv_indev_drv_init(&amp;indev_drv);</div>
-<div class="line"><span class="lineno">   38</span>    indev_drv.type = LV_INDEV_TYPE_POINTER;</div>
-<div class="line"><span class="lineno">   39</span>    indev_drv.read_cb = <a class="code hl_function" href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157">touch_read_cb</a>;</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    <a class="code hl_variable" href="lvgl__touch_8cpp.html#ad24b29315aa8baa7d61bf2084bcbcdc4">indev_touch</a> = lv_indev_drv_register(&amp;indev_drv);</div>
-<div class="line"><span class="lineno">   42</span>}</div>
-<div class="ttc" id="alvgl__touch_8cpp_html_a09b57adf03bb34ea1281d762abf9a0f2"><div class="ttname"><a href="lvgl__touch_8cpp.html#a09b57adf03bb34ea1281d762abf9a0f2">T_MISO</a></div><div class="ttdeci">#define T_MISO</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00007">lvgl_touch.cpp:7</a></div></div>
+<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00034">34</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>{</div>
+<div class="line"><span class="lineno">   36</span>    SPI.begin(<a class="code hl_define" href="lvgl__touch_8cpp.html#a830e716db81333e7dc058f7373c48d6b">T_CLK</a>, <a class="code hl_define" href="lvgl__touch_8cpp.html#a09b57adf03bb34ea1281d762abf9a0f2">T_MISO</a>, <a class="code hl_define" href="lvgl__touch_8cpp.html#acf4775705647aae50c55ab3f71b83d09">T_MOSI</a>);</div>
+<div class="line"><span class="lineno">   37</span>    <a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.begin();</div>
+<div class="line"><span class="lineno">   38</span>    <a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.setRotation(1);</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span>    <span class="keyword">static</span> lv_indev_drv_t indev_drv;</div>
+<div class="line"><span class="lineno">   41</span>    lv_indev_drv_init(&amp;indev_drv);</div>
+<div class="line"><span class="lineno">   42</span>    indev_drv.type = LV_INDEV_TYPE_POINTER;</div>
+<div class="line"><span class="lineno">   43</span>    indev_drv.read_cb = <a class="code hl_function" href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157">touch_read_cb</a>;</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>    <a class="code hl_variable" href="lvgl__touch_8cpp.html#ad24b29315aa8baa7d61bf2084bcbcdc4">indev_touch</a> = lv_indev_drv_register(&amp;indev_drv);</div>
+<div class="line"><span class="lineno">   46</span>}</div>
+<div class="ttc" id="alvgl__touch_8cpp_html_a09b57adf03bb34ea1281d762abf9a0f2"><div class="ttname"><a href="lvgl__touch_8cpp.html#a09b57adf03bb34ea1281d762abf9a0f2">T_MISO</a></div><div class="ttdeci">#define T_MISO</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00008">lvgl_touch.cpp:8</a></div></div>
 <div class="ttc" id="alvgl__touch_8cpp_html_a2d4d48bdec73b064fa73ac424cb2171b"><div class="ttname"><a href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a></div><div class="ttdeci">XPT2046_Touchscreen ts(T_CS)</div></div>
-<div class="ttc" id="alvgl__touch_8cpp_html_a7c86d5ac28d219b55d2c94aacb139157"><div class="ttname"><a href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157">touch_read_cb</a></div><div class="ttdeci">static void touch_read_cb(lv_indev_drv_t *drv, lv_indev_data_t *data)</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00013">lvgl_touch.cpp:13</a></div></div>
-<div class="ttc" id="alvgl__touch_8cpp_html_a830e716db81333e7dc058f7373c48d6b"><div class="ttname"><a href="lvgl__touch_8cpp.html#a830e716db81333e7dc058f7373c48d6b">T_CLK</a></div><div class="ttdeci">#define T_CLK</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00006">lvgl_touch.cpp:6</a></div></div>
-<div class="ttc" id="alvgl__touch_8cpp_html_acf4775705647aae50c55ab3f71b83d09"><div class="ttname"><a href="lvgl__touch_8cpp.html#acf4775705647aae50c55ab3f71b83d09">T_MOSI</a></div><div class="ttdeci">#define T_MOSI</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00008">lvgl_touch.cpp:8</a></div></div>
-<div class="ttc" id="alvgl__touch_8cpp_html_ad24b29315aa8baa7d61bf2084bcbcdc4"><div class="ttname"><a href="lvgl__touch_8cpp.html#ad24b29315aa8baa7d61bf2084bcbcdc4">indev_touch</a></div><div class="ttdeci">static lv_indev_t * indev_touch</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00011">lvgl_touch.cpp:11</a></div></div>
+<div class="ttc" id="alvgl__touch_8cpp_html_a7c86d5ac28d219b55d2c94aacb139157"><div class="ttname"><a href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157">touch_read_cb</a></div><div class="ttdeci">static void touch_read_cb(lv_indev_drv_t *drv, lv_indev_data_t *data)</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00014">lvgl_touch.cpp:14</a></div></div>
+<div class="ttc" id="alvgl__touch_8cpp_html_a830e716db81333e7dc058f7373c48d6b"><div class="ttname"><a href="lvgl__touch_8cpp.html#a830e716db81333e7dc058f7373c48d6b">T_CLK</a></div><div class="ttdeci">#define T_CLK</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00007">lvgl_touch.cpp:7</a></div></div>
+<div class="ttc" id="alvgl__touch_8cpp_html_acf4775705647aae50c55ab3f71b83d09"><div class="ttname"><a href="lvgl__touch_8cpp.html#acf4775705647aae50c55ab3f71b83d09">T_MOSI</a></div><div class="ttdeci">#define T_MOSI</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00009">lvgl_touch.cpp:9</a></div></div>
+<div class="ttc" id="alvgl__touch_8cpp_html_ad24b29315aa8baa7d61bf2084bcbcdc4"><div class="ttname"><a href="lvgl__touch_8cpp.html#ad24b29315aa8baa7d61bf2084bcbcdc4">indev_touch</a></div><div class="ttdeci">static lv_indev_t * indev_touch</div><div class="ttdef"><b>Definition</b> <a href="lvgl__touch_8cpp_source.html#l00012">lvgl_touch.cpp:12</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="lvgl__touch_8cpp.html#ad24b29315aa8baa7d61bf2084bcbcdc4">indev_touch</a>, <a class="el" href="lvgl__touch_8cpp.html#a830e716db81333e7dc058f7373c48d6b">T_CLK</a>, <a class="el" href="lvgl__touch_8cpp.html#a09b57adf03bb34ea1281d762abf9a0f2">T_MISO</a>, <a class="el" href="lvgl__touch_8cpp.html#acf4775705647aae50c55ab3f71b83d09">T_MOSI</a>, <a class="el" href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157">touch_read_cb()</a>, and <a class="el" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts()</a>.</p>
 
@@ -253,8 +258,44 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="249,5,367,31"/>
 <area shape="rect" href="lvgl__display_8cpp.html#ad56a01dcf5e79487fdc1d12bb0242f17" title=" " alt="" coords="112,5,201,31"/>
 <area shape="poly" title=" " alt="" coords="236,21,201,21,201,15,236,15"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,64,31"/>
+<area shape="rect" href="src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,64,31"/>
 <area shape="poly" title=" " alt="" coords="98,21,64,21,64,15,98,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6722fb21433079d903325b7b633e7e27" name="a6722fb21433079d903325b7b633e7e27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6722fb21433079d903325b7b633e7e27">&#9670;&#160;</a></span>lvgl_touch_reinit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvgl_touch_reinit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00048">48</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
+<div class="line"><span class="lineno">   50</span>    SPI.begin(<a class="code hl_define" href="lvgl__touch_8cpp.html#a830e716db81333e7dc058f7373c48d6b">T_CLK</a>, <a class="code hl_define" href="lvgl__touch_8cpp.html#a09b57adf03bb34ea1281d762abf9a0f2">T_MISO</a>, <a class="code hl_define" href="lvgl__touch_8cpp.html#acf4775705647aae50c55ab3f71b83d09">T_MOSI</a>);</div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.begin();</div>
+<div class="line"><span class="lineno">   52</span>    <a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.setRotation(1);</div>
+<div class="line"><span class="lineno">   53</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="lvgl__touch_8cpp.html#a830e716db81333e7dc058f7373c48d6b">T_CLK</a>, <a class="el" href="lvgl__touch_8cpp.html#a09b57adf03bb34ea1281d762abf9a0f2">T_MISO</a>, <a class="el" href="lvgl__touch_8cpp.html#acf4775705647aae50c55ab3f71b83d09">T_MOSI</a>, and <a class="el" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lvgl__touch_8cpp_a6722fb21433079d903325b7b633e7e27_cgraph.png" border="0" usemap="#alvgl__touch_8cpp_a6722fb21433079d903325b7b633e7e27_cgraph" alt=""/></div>
+<map name="alvgl__touch_8cpp_a6722fb21433079d903325b7b633e7e27_cgraph" id="alvgl__touch_8cpp_a6722fb21433079d903325b7b633e7e27_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,136,31"/>
+<area shape="rect" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b" title=" " alt="" coords="184,5,223,31"/>
+<area shape="poly" title=" " alt="" coords="136,15,170,15,170,21,136,21"/>
 </map>
 </div>
 
@@ -294,24 +335,29 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00013">13</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>{</div>
-<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.touched()){</div>
-<div class="line"><span class="lineno">   16</span>        data-&gt;state = LV_INDEV_STATE_REL;</div>
-<div class="line"><span class="lineno">   17</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   18</span>    }</div>
-<div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>    TS_Point p = <a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.getPoint();</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    uint16_t x = map(p.x, 3800, 300, 0, 320);</div>
-<div class="line"><span class="lineno">   23</span>    uint16_t y = map(p.y, 3685, 148, 0, 240);</div>
-<div class="line"><span class="lineno">   24</span> </div>
-<div class="line"><span class="lineno">   25</span>    data-&gt;state = LV_INDEV_STATE_PR;</div>
-<div class="line"><span class="lineno">   26</span>    data-&gt;point.x = x;</div>
-<div class="line"><span class="lineno">   27</span>    data-&gt;point.y = y;</div>
-<div class="line"><span class="lineno">   28</span>}</div>
+<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00014">14</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>{</div>
+<div class="line"><span class="lineno">   16</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.touched()){</div>
+<div class="line"><span class="lineno">   17</span>        data-&gt;state = LV_INDEV_STATE_REL;</div>
+<div class="line"><span class="lineno">   18</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   19</span>    }</div>
+<div class="line"><span class="lineno">   20</span> </div>
+<div class="line"><span class="lineno">   21</span>    <a class="code hl_variable" href="idle__manager_8h.html#adaf9d8edb551c08d362d712d8d1357e2">last_touch_time</a> = millis();</div>
+<div class="line"><span class="lineno">   22</span>    <a class="code hl_variable" href="idle__manager_8h.html#a24fc9786d6fce7521eeef5a7c971f0ac">idle_timeout_triggered</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   23</span> </div>
+<div class="line"><span class="lineno">   24</span>    TS_Point p = <a class="code hl_function" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts</a>.getPoint();</div>
+<div class="line"><span class="lineno">   25</span> </div>
+<div class="line"><span class="lineno">   26</span>    uint16_t x = map(p.x, 3800, 300, 0, 320);</div>
+<div class="line"><span class="lineno">   27</span>    uint16_t y = map(p.y, 3685, 148, 0, 240);</div>
+<div class="line"><span class="lineno">   28</span> </div>
+<div class="line"><span class="lineno">   29</span>    data-&gt;state = LV_INDEV_STATE_PR;</div>
+<div class="line"><span class="lineno">   30</span>    data-&gt;point.x = x;</div>
+<div class="line"><span class="lineno">   31</span>    data-&gt;point.y = y;</div>
+<div class="line"><span class="lineno">   32</span>}</div>
+<div class="ttc" id="aidle__manager_8h_html_a24fc9786d6fce7521eeef5a7c971f0ac"><div class="ttname"><a href="idle__manager_8h.html#a24fc9786d6fce7521eeef5a7c971f0ac">idle_timeout_triggered</a></div><div class="ttdeci">bool idle_timeout_triggered</div><div class="ttdef"><b>Definition</b> <a href="idle__manager_8cpp_source.html#l00004">idle_manager.cpp:4</a></div></div>
+<div class="ttc" id="aidle__manager_8h_html_adaf9d8edb551c08d362d712d8d1357e2"><div class="ttname"><a href="idle__manager_8h.html#adaf9d8edb551c08d362d712d8d1357e2">last_touch_time</a></div><div class="ttdeci">unsigned long last_touch_time</div><div class="ttdef"><b>Definition</b> <a href="idle__manager_8cpp_source.html#l00003">idle_manager.cpp:3</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts()</a>.</p>
+<p class="reference">References <a class="el" href="idle__manager_8h.html#a24fc9786d6fce7521eeef5a7c971f0ac">idle_timeout_triggered</a>, <a class="el" href="idle__manager_8h.html#adaf9d8edb551c08d362d712d8d1357e2">last_touch_time</a>, and <a class="el" href="lvgl__touch_8cpp.html#a2d4d48bdec73b064fa73ac424cb2171b">ts()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lvgl__touch_8h.html#a77505c2b918dec6cea21b12e13657c5b">lvgl_touch_init()</a>.</p>
 <div class="dynheader">
@@ -334,7 +380,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="401,21,367,21,367,15,401,15"/>
 <area shape="rect" href="lvgl__display_8cpp.html#ad56a01dcf5e79487fdc1d12bb0242f17" title=" " alt="" coords="112,5,201,31"/>
 <area shape="poly" title=" " alt="" coords="236,21,201,21,201,15,236,15"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,64,31"/>
+<area shape="rect" href="src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,64,31"/>
 <area shape="poly" title=" " alt="" coords="98,21,64,21,64,15,98,15"/>
 </map>
 </div>
@@ -357,22 +403,24 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="lvgl__touch_8h.html#a77505c2b918dec6cea21b12e13657c5b">lvgl_touch_init()</a>, and <a class="el" href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157">touch_read_cb()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lvgl__touch_8h.html#a77505c2b918dec6cea21b12e13657c5b">lvgl_touch_init()</a>, <a class="el" href="lvgl__touch_8h.html#a6722fb21433079d903325b7b633e7e27">lvgl_touch_reinit()</a>, and <a class="el" href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157">touch_read_cb()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="lvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b_icgraph.png" border="0" usemap="#alvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b_icgraph" alt=""/></div>
 <map name="alvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b_icgraph" id="alvgl__touch_8cpp_a2d4d48bdec73b064fa73ac424cb2171b_icgraph">
-<area shape="rect" title=" " alt="" coords="579,5,617,31"/>
-<area shape="rect" href="lvgl__touch_8cpp.html#a77505c2b918dec6cea21b12e13657c5b" title=" " alt="" coords="249,5,367,31"/>
-<area shape="poly" title=" " alt="" coords="564,21,367,21,367,15,564,15"/>
-<area shape="rect" href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157" title=" " alt="" coords="415,31,531,56"/>
-<area shape="poly" title=" " alt="" coords="566,27,532,34,530,29,565,22"/>
-<area shape="rect" href="lvgl__display_8cpp.html#ad56a01dcf5e79487fdc1d12bb0242f17" title=" " alt="" coords="112,5,201,31"/>
-<area shape="poly" title=" " alt="" coords="236,21,201,21,201,15,236,15"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,64,31"/>
-<area shape="poly" title=" " alt="" coords="98,21,64,21,64,15,98,15"/>
-<area shape="poly" title=" " alt="" coords="400,35,367,30,367,24,401,30"/>
+<area shape="rect" title=" " alt="" coords="593,25,632,50"/>
+<area shape="rect" href="lvgl__touch_8cpp.html#a77505c2b918dec6cea21b12e13657c5b" title=" " alt="" coords="249,25,367,50"/>
+<area shape="poly" title=" " alt="" coords="580,26,545,15,480,8,415,15,352,28,351,22,414,10,480,3,546,10,581,21"/>
+<area shape="rect" href="lvgl__touch_8cpp.html#a6722fb21433079d903325b7b633e7e27" title=" " alt="" coords="415,25,545,50"/>
+<area shape="poly" title=" " alt="" coords="580,40,546,40,546,35,580,35"/>
+<area shape="rect" href="lvgl__touch_8cpp.html#a7c86d5ac28d219b55d2c94aacb139157" title=" " alt="" coords="422,74,538,100"/>
+<area shape="poly" title=" " alt="" coords="582,52,516,77,514,72,580,47"/>
+<area shape="rect" href="lvgl__display_8cpp.html#ad56a01dcf5e79487fdc1d12bb0242f17" title=" " alt="" coords="112,25,201,50"/>
+<area shape="poly" title=" " alt="" coords="236,40,201,40,201,35,236,35"/>
+<area shape="rect" href="src_2main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,25,64,50"/>
+<area shape="poly" title=" " alt="" coords="98,40,64,40,64,35,98,35"/>
+<area shape="poly" title=" " alt="" coords="422,73,353,53,354,48,423,68"/>
 </map>
 </div>
 
@@ -399,7 +447,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00011">11</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lvgl__touch_8cpp_source.html#l00012">12</a> of file <a class="el" href="lvgl__touch_8cpp_source.html">lvgl_touch.cpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lvgl__touch_8h.html#a77505c2b918dec6cea21b12e13657c5b">lvgl_touch_init()</a>.</p>
 
