@@ -1,8 +1,8 @@
 ## Estructura de ficheros
 
-### Raíz
+### 1. Raíz
 
-#### Carpetas
+#### 1.1 Carpetas
 
 **capitulos**: aquí están los ficheros Latex correspondientes a los capítulos.
 
@@ -10,7 +10,7 @@
 
 **figs**: aquí deberás meter todas las figuras que enlaces en el documento.
 
-#### Ficheros que tendrás que editar
+#### 1.2 Ficheros que tendrás que editar
 
 **memoria.tex**: fichero principal. Desde él se acceden al estilo, páginas de portada, capítulos y bibliografía (estilo establecido: APA).
 
@@ -18,13 +18,13 @@
 
 **bibliografia.bib**: incluye las referencias bibliográficas.
 
-#### Ficheros auxiliares que no tendrás que editar
+#### 1.3 Ficheros auxiliares que no tendrás que editar
 
 **Makefile**: archivo de compilación.
 
 **listings.sty**, **lstmisc.sty**: paquetes de definición y estilo de "listings".
 
-### capitulos ###
+### 2. capitulos ###
 
 Los ficheros Latex aquí contenidos siguen la siguiente estructura:
 
@@ -38,7 +38,7 @@ Los ficheros Latex aquí contenidos siguen la siguiente estructura:
 
 **capitulo5.tex**: conclusiones.
 
-### portada ###
+### 3. portada ###
 
 En esta carpeta se encuentran los ficheros Latex correspondientes a las primeras páginas del documento.
 
