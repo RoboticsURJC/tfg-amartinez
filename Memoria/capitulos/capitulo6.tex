@@ -12,11 +12,11 @@ El sistema de dispensación constituye uno de los elementos fundamentales del di
 
 \subsection{Ajuste del mecanismo de dispensación}
 
-Antes de validar el funcionamiento integral del sistema de dispensación, fue necesario calibrar y ajustar los elementos mecámicos responsables del movimiento del carrusel. El propósito de este paso fue asegurar que se alinease correctamente cada compartimento con la salida de dispensación en cada toma programada.\\
+Antes de validar el funcionamiento integral del sistema de dispensación, fue necesario calibrar y ajustar los elementos mecánicos responsables del movimiento del carrusel. El propósito de este paso fue asegurar que se alinease correctamente cada compartimento con la salida de dispensación en cada toma programada.\\
 
 Durante las primeras pruebas del mecanismo se observó que pequeños aspectos como la holgura en el movimiento del carrusel o la altura a la que el trinquete tenía contacto con el impulsor del servo, afectaban al correcto comportamiento del mecanismo de dispensación.\\
 
-Debido a ello se realizaron sucesivos ajustes como modificar la altura a la que se posicionaba el trinquete, y el diseño del impulsor del servo para mejorar la transmisión del movimiento. La Figura~\ref{fig:impulsores} muestra la evolución de los diferentes diseños desarrollados durante esta fase.
+Debido a ello, se realizaron sucesivos ajustes, como modificar la altura a la que se posicionaba el trinquete, y el diseño del impulsor del servo para mejorar la transmisión del movimiento. La Figura~\ref{fig:impulsores} muestra la evolución de los diferentes diseños desarrollados durante esta fase.
 
 \begin{figure}[H]
     \centering
@@ -25,18 +25,18 @@ Debido a ello se realizaron sucesivos ajustes como modificar la altura a la que 
     \label{fig:impulsores}
 \end{figure}
 
-Además, se incorporó un elemento de apoyo para a reducir la libertad de movimiento del carrusel durante la rotación y, se reajustó la posición del muelle de retorno para asegurar que el trinquete recuperase su posición de inicio adecuadamente tras cada accionamiento. Las principales modificaciones se pueden ver en la Figura~\ref{fig:modificaciones}.
+Además, se incorporó un elemento de apoyo para reducir la libertad de movimiento del carrusel durante la rotación y se reajustó la posición del muelle de retorno para asegurar que el trinquete recuperase su posición de inicio adecuadamente tras cada accionamiento. Las principales modificaciones se pueden ver en la Figura~\ref{fig:modificaciones}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figs/modificaciones.png}
-    \caption{Principales modificaciones realizadas durante el ajuste del mecanismo de dispensación: Holgura observada, modificación de la posición del muelle del trinquete y configuración final del mecanismo.}
+    \caption{Principales modificaciones realizadas durante el ajuste del mecanismo de dispensación: holgura observada, modificación de la posición del muelle del trinquete y configuración final del mecanismo.}
     \label{fig:modificaciones}
 \end{figure}
 
-La metodología consistió en pobrar distintas combinaciones secuenciales de los cambios mencionados hasta dar con las combinación completa hasta verificar visualmente la alineación de los compartimentos con la salida de medicación y sin interferencias mecánicas en el movimiento.\\
+La metodología consistió en probar distintas combinaciones secuenciales de los cambios mencionados hasta verificar visualmente la alineación de los compartimentos con la salida de medicación y sin interferencias mecánicas en el movimiento.\\
 
-Una vez completado el ajuste, se establecieron las modificaciones posteriormente durante las pruebas de dispensación automática. Este método permitió que el sistema funcionara con una configuración mecánica estable antes de poner a prueba su desempeño en condiciones reales de uso.
+Una vez completado el ajuste se establecieron las modificaciones posteriormente durante las pruebas de dispensación automática. Este método permitió que el sistema funcionara con una configuración mecánica estable antes de poner a prueba su desempeño en condiciones reales de uso.
 
 \subsection{Validación del proceso de dispensación}
 
@@ -44,7 +44,7 @@ El objetivo de este experimento fue validar el funcionamiento completo del proce
 
 La metodología seguida consistió, en primer lugar, en programar una toma desde la aplicación móvil y comprobar que era sincronizada correctamente con el dispensador. Posteriormente, se esperó a la hora programada para verificar la activación del servomotor correspondiente y la correcta dispensación del medicamento. Una vez completada la primera dispensación, se programó una segunda toma directamente desde la interfaz del dispositivo.\\
 
-El desarrollo completo de la prueba puede observarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/XXXXXXXX}}.
+El desarrollo completo de la prueba puede observarse en el vídeo asociado\footnote{\url{https://tinyurl.com/3c78pjkb}}.
 Los resultados obtenidos confirman el correcto funcionamiento del proceso de dispensación implementado.
 
 \begin{figure}[H]
@@ -64,7 +64,7 @@ La correcta sincronización entre la aplicación móvil y el dispensador resulta
 
 La validación de la sincronización se realizó mediante dos conjuntos de pruebas complementarios. En primer lugar, se verificó la correcta sincronización del catálogo de medicamentos entre la aplicación móvil y el dispositivo. Posteriormente, se evaluó la sincronización bidireccional de las tomas programadas, comprobando que las modificaciones realizadas desde cualquiera de las dos interfaces eran transmitidas correctamente al otro sistema. De esta forma se verificó que la configuración podía gestionarse indistintamente desde cualquiera de las dos interfaces sin generar inconsistencias ni conflictos entre los datos almacenados.\\
 
-La Figura~\ref{fig:sync} muestra una captura correspondiente a ambas pruebas realizadas. El proceso de sincronización de medicamentos puede consultarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/uuppxkhh}}. La sincronización bidireccional de tomas puede consultarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/yeyz9pc4}}
+La Figura~\ref{fig:sync} muestra una captura correspondiente a ambas pruebas realizadas. El proceso de sincronización de medicamentos puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/uuppxkhh}}. Asimismo la sincronización bidireccional de tomas puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/yeyz9pc4}}.
 
 \begin{figure}[H]
 \centering
@@ -73,7 +73,7 @@ La Figura~\ref{fig:sync} muestra una captura correspondiente a ambas pruebas rea
 \label{fig:sync}
 \end{figure}
 
-Los resultados obtenidos se resumen en la Tabla~\ref{tab}.
+Los resultados obtenidos se resumen en la Tabla~\ref{tab:sincronizacion_tomas}.
 
 \begin{table}[H]
 \centering
@@ -100,21 +100,21 @@ Una vez sincronizada la configuración, el dispensador debe ser capaz de funcion
 
 La validación experimental se realizará con un ensayo en el que, tras sincronizar la configuración desde la aplicación móvil, se desconectará completamente el dispositivo Android y se verificará que el dispensador continúa ejecutando de forma autónoma las tareas programadas utilizando únicamente la información almacenada localmente.\\
 
-La Figura~\ref{fig} mostrará una captura correspondiente a una de las pruebas realizadas. El desarrollo completo del experimento podrá consultarse en el vídeo asociado.\footnote{\url{https://...}}
+La Figura~\ref{fig:func_autonomo} muestra una captura correspondiente a una de las pruebas realizadas. El desarrollo completo del experimento se puede consultar en el vídeo asociado\footnote{\url{https://tinyurl.com/3c78pjkb}}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{figs/funcionamiento_autonomo.jpeg}
 \caption{Funcionamiento autónomo del dispensador utilizando la configuración almacenada localmente.}
-\label{fig}
+\label{fig:func_autonomo}
 \end{figure}
 
-Los resultados obtenidos se resumirán en la Tabla~\ref{tab}.
+Los resultados obtenidos se resume en la Tabla~\ref{tab:val_autonomo}.
 
 \begin{table}[H]
 \centering
 \caption{Resultados de la validación del funcionamiento autónomo del dispositivo.}
-\label{tab}
+\label{tab:val_autonomo}
 \begin{tabular}{|l|c|}
 \hline
 \textbf{Prueba realizada} & \textbf{Resultado} \\ \hline
@@ -157,7 +157,7 @@ Para medir este comportamiento, se llevaron a cabo cinco pruebas independientes 
 
 Los resultados indican que el sistema necesita un promedio de 17.05 segundos para ofrecer al usuario la primera estimación de la frecuencia cardíaca y cerca de 21.89 segundos para finalizar el proceso de estabilización del parámetro.\\
 
-Se registraron oscilaciones importantes en la señal adquirida durante los primeros segundos después de que se colocó el dedo. Este comportamiento es consecuencia de que el algoritmo requiere la detección de un número adecuado de latidos válidos para estimar una media representativa y la influencia del ruido presente en la señal fotopletismográfica. Cuando se llega a este umbral, la lectura tiende a estabilizarse progresivamente.
+Se registraron oscilaciones importantes en la señal adquirida durante los primeros segundos después de que se colocara el dedo. Este comportamiento es consecuencia de que el algoritmo requiere la detección de un número adecuado de latidos válidos para estimar una media representativa y la influencia del ruido presente en la señal fotopletismográfica. Cuando se llega a este umbral, la lectura tiende a estabilizarse progresivamente.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.55\textwidth]{figs/estabilizacion_medida.jpeg}
@@ -165,9 +165,9 @@ Se registraron oscilaciones importantes en la señal adquirida durante los prime
     \label{fig:estabilizacion_medida}
 \end{figure}
 
-La Figura~\ref{fig:estabilizacion_medida} muestra una captura correspondiente a uno de los ensayos realizados. Con el fin de facilitar la reproducibilidad de los resultados obtenidos, el desarrollo completo de la prueba fue registrado en vídeo.\footnote{\url{https://bit.ly/4oBEemg}}\\
+La Figura~\ref{fig:estabilizacion_medida} muestra una captura correspondiente a uno de los ensayos realizados. Con el fin de facilitar la reproducibilidad de los resultados obtenidos, el desarrollo completo de la prueba fue registrado en vídeo\footnote{\url{https://bit.ly/4oBEemg}}.\\
 
-La diferencia que se ha notado entre los diferentes ensayos señala que el tiempo de estabilización depende de varios factores, incluyendo cómo está colocado el dedo, la calidad de la señal que capta el sensor y las características fisiológicas del usuario. Este comportamiento impulsó la realización de pruebas adicionales para investigar cómo influyen las condiciones de medida, cuyos resultados se exponen en el siguiente apartado.\\
+La diferencia que se ha notado entre los diferentes ensayos señala que el tiempo de estabilización depende de varios factores, incluyendo cómo está colocado el dedo, la calidad de la señal que capta el sensor, y las características fisiológicas del usuario. Este comportamiento impulsó la realización de pruebas adicionales para investigar cómo influyen las condiciones de medida, cuyos resultados se exponen en el siguiente apartado.\\
 
 Por lo tanto, se puede concluir que el sistema desarrollado tiene la capacidad de ofrecer estimaciones estables de la frecuencia cardíaca, pero necesita un tiempo inicial para adquirir y procesar la señal antes de presentar una lectura confiable al usuario.
 
@@ -177,7 +177,7 @@ Después de analizar el proceso de estabilización de la medida, se estudió có
 
 Para evaluar este comportamiento se realizaron dos rondas de pruebas utilizando cuatro configuraciones distintas: mano izquierda en orientación vertical, mano izquierda en orientación horizontal, mano derecha en orientación vertical y mano derecha en orientación horizontal. En cada ensayo se registró el tiempo transcurrido hasta la aparición de la primera lectura mostrada al usuario y el tiempo necesario para completar el buffer de medida.\\
 
-La Figura~\ref{fig:posiciones_pulso} muestra las diferentes configuraciones evaluadas durante las pruebas. Para que los resultados sean más fáciles de reproducir, se grabaron las dos rondas completas de ensayos.\footnote{Vídeo correspondiente a la primera ronda de pruebas: \url{https://bit.ly/4uuQOVv}}\footnote{Vídeo correspondiente a la segunda ronda de pruebas: \url{https://tinyurl.com/2c2ae7fa}}
+La Figura~\ref{fig:posiciones_pulso} muestra las diferentes configuraciones evaluadas durante las pruebas. Para que los resultados sean más fáciles de reproducir, se grabaron las dos rondas completas de ensayos\footnote{Vídeo correspondiente a la primera ronda de pruebas: \url{https://bit.ly/4uuQOVv}}\footnote{Vídeo correspondiente a la segunda ronda de pruebas: \url{https://tinyurl.com/2c2ae7fa}}.
 
 \begin{figure}[H]
 \centering
@@ -218,7 +218,7 @@ Mano derecha horizontal & 21.39 & 32.92 \\ \hline
 \end{tabular}
 \end{table}
 
-A partir de ambas rondas se calcularon los tiempos medios obtenidos para cada configuración, cuyos resultados se recogen en la Tabla~\ref{tab:condiciones_medida}.
+A partir de los resultados obtenidos tras las dos rondas se calcularon los tiempos medios obtenidos para cada configuración, cuyos resultados se recogen en la Tabla~\ref{tab:condiciones_medida}.
 
 \begin{table}[H]
 \centering
@@ -243,11 +243,11 @@ Sin embargo, a pesar de que las condiciones de medición afectaron en el tiempo 
 
 \subsection{Comparación con dispositivos de referencia}
 
-Se contrastaron los resultados conseguidos con los que suministró un pulsioxímetro comercial de dedo, empleado como aparato de referencia, con la finalidad de analizar la exactitud de las mediciones ejecutadas por el pulsómetro integrado. Se llevaron a cabo todas las mediciones en condiciones de reposo y empleando la mano izquierda en vertical. Para cada ensayo se registró la frecuencia cardíaca indicada por ambos dispositivos una vez que las mediciones alcanzaron un estado estable. Los resultados obtenidos se muestran en la Tabla~\ref{tab}.\\
+Se contrastaron los resultados conseguidos con los que proporcionó un pulsioxímetro comercial de dedo, que fue empleado como aparato de referencia con la finalidad de analizar la exactitud de las mediciones ejecutadas por el pulsómetro integrado. Se llevaron a cabo todas las mediciones en condiciones de reposo y empleando la mano izquierda en vertical. Para cada ensayo se registró la frecuencia cardíaca indicada por ambos dispositivos una vez que las mediciones alcanzaron un estado estable. Los resultados obtenidos se muestran en la Tabla~\ref{tab}.\\
 
 \begin{table}[H]
 \centering
-\caption{Comparación entre mediciones de MyMeds y el pulsioxímetro comercial.}
+\caption{Comparación entre mediciones de \textit{MyMeds} y el pulsioxímetro comercial.}
 \label{tab}
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -262,9 +262,9 @@ $\bar{x}$ & 67.5 & 69.75 & 2.25 \\ \hline
 
 \
 
-Los resultados logrados muestran una concordancia notable entre las mediciones efectuadas por MyMeds y las proporcionadas por el pulsioxímetro de referencia. En tres de los cuatro ensayos llevados a cabo, se encontró una diferencia igual o menor a 3 BPM, con un error medio absoluto de 2.25 BPM. Se registró un error máximo de 4 BPM.\\
+Los resultados logrados muestran una concordancia notable entre las mediciones efectuadas por \textit{MyMeds} y las proporcionadas por el pulsioxímetro de referencia. En tres de los cuatro ensayos llevados a cabo se encontró una diferencia igual o menor a 3 BPM con un error medio absoluto de 2.25 BPM. Se registró un error máximo de 4 BPM.\\
 
-La Figura~\ref{fig:comparacion} muestra una captura obtenida durante una de las pruebas de comparación realizadas. El desarrollo completo de los cuatro ensayos puede consultarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/3ezx7aew}}
+La Figura~\ref{fig:comparacion} muestra una captura obtenida durante una de las pruebas de comparación realizadas. El desarrollo completo de los cuatro ensayos puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/3ezx7aew}}.
 
 \begin{figure}[H]
 \centering
@@ -273,11 +273,11 @@ La Figura~\ref{fig:comparacion} muestra una captura obtenida durante una de las 
 \label{fig:comparacion}
 \end{figure}
 
-Las diferencias que se han observado pueden deberse a múltiples motivos, como el ruido en la señal fotopletismográfica, las fluctuaciones fisiológicas naturales que ocurren entre mediciones sucesivas y las discrepancias entre los algoritmos de procesamiento empleados por cada uno de los dispositivos.\\
+Las diferencias que se han observado pueden deberse a múltiples motivos, como el ruido en la señal fotopletismográfica, las fluctuaciones fisiológicas naturales que ocurren entre mediciones sucesivas, y las discrepancias entre los algoritmos de procesamiento empleados por cada uno de los dispositivos.\\
 
-Los ensayos además mostraron que ambos sistemas se comportaban dinámicamente de manera diferente. El pulsioxímetro comercial respondía de manera casi instantánea a alteraciones importantes en la frecuencia cardíaca, mientras que MyMeds modificaba el valor presentado de un modo más gradual.\\
+Además, los ensayos mostraron que ambos sistemas se comportaban dinámicamente de manera diferente. El pulsioxímetro comercial respondía de manera casi instantánea a alteraciones importantes en la frecuencia cardíaca, mientras que \textit{MyMeds} modificaba el valor presentado de un modo más gradual.\\
 
-Como consecuencia, MyMeds muestra una estabilidad más alta en las lecturas mostradas, aunque a costa de un tiempo de respuesta un poco más largo cuando ocurren cambios rápidos en la frecuencia cardíaca. Sin embargo, los resultados obtenidos muestran que el sistema desarrollado ofrece estimaciones que se aproximan adecuadamente a las de un dispositivo comercial, lo cual valida su uso como herramienta de monitoreo orientativa en el marco del proyecto.\\
+Como consecuencia, \textit{MyMeds} muestra una estabilidad más alta en las lecturas mostradas, aunque a costa de un tiempo de respuesta un poco más largo cuando ocurren cambios rápidos en la frecuencia cardíaca. Sin embargo, los resultados obtenidos muestran que el sistema desarrollado ofrece estimaciones que se aproximan adecuadamente a las de un dispositivo comercial, lo cual valida su uso como herramienta de monitoreo orientativa en el marco del proyecto.\\
 
 \
 
@@ -291,25 +291,25 @@ Además de las funcionalidades de dispensación y monitorización biomédica, el
 
 Además del almacenamiento del historial de mediciones, el sistema desarrollado incorpora mecanismos de persistencia destinados a conservar la configuración del dispositivo entre reinicios. Con el fin de validar su correcto funcionamiento, se realizaron diferentes pruebas orientadas a comprobar la conservación de las tomas programadas y del PIN de acceso tras apagar y volver a encender el dispositivo.\\
 
-En una primera prueba se configuraron varias tomas de medicación utilizando la aplicación móvil y posteriormente se reinició completamente el sistema. Tras el arranque, se verificó que la información asociada a las tomas programadas seguía disponible y podía consultarse desde el dispositivo sin necesidad de realizar una nueva sincronización. Igualmente, al modificar dichas tomas o eliminar alguna, seguían disponibles pero actualizadas. La Figura~\ref{fig} muestra una captura correspondiente a esta prueba. El desarrollo completo del ensayo puede consultarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/uuppxkhh}}
+En una primera prueba se configuraron varias tomas de medicación utilizando la aplicación móvil y posteriormente se reinició completamente el sistema. Tras el arranque, se verificó que la información asociada a las tomas programadas seguía disponible y podía consultarse desde el dispositivo sin necesidad de realizar una nueva sincronización. Igualmente, al modificar dichas tomas o eliminar alguna, seguían disponibles pero actualizadas. La Figura~\ref{fig:persistencia_tomas} muestra una captura correspondiente a esta prueba. El desarrollo completo del ensayo puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/uuppxkhh}}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.45\textwidth]{figs/persistencia_tomas.jpeg}
 \caption{Validación de la conservación de las tomas programadas tras reiniciar el dispositivo.}
-\label{fig}
+\label{fig:persistencia_tomas}
 \end{figure}
 
-Posteriormente se realizó una segunda prueba destinada a verificar la persistencia del PIN de acceso. Para ello se configuró un PIN personalizado, se apagó completamente el dispositivo y se volvió a encender. Tras el reinicio, se comprobó que el sistema continuaba solicitando el mismo PIN configurado previamente. Además, se verificó que tras modificar el PIN en cualquiera de los dos dispositivos, el PIN se actualizaba en ambos y persistía de igual manera. La Figura~\ref{fig} muestra una captura correspondiente a esta validación. El vídeo completo de la prueba puede consultarse en línea.\footnote{\url{https://tinyurl.com/t79yyy9z}}
+Posteriormente se realizó una segunda prueba destinada a verificar la persistencia del PIN de acceso. Para ello se configuró un PIN personalizado, se apagó completamente el dispositivo y se volvió a encender. Tras el reinicio, se comprobó que el sistema continuaba solicitando el mismo PIN configurado previamente. Además, se verificó que tras modificar el PIN en cualquiera de los dos dispositivos, el PIN se actualizaba en ambos y persistía de igual manera. La Figura~\ref{fig:persistencia_pin} muestra una captura correspondiente a esta validación. El vídeo completo de la prueba puede consultarse en línea\footnote{\url{https://tinyurl.com/t79yyy9z}}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{figs/persistencia_pin.jpeg}
 \caption{Validación de la conservación del PIN de acceso tras reiniciar el dispositivo.}
-\label{fig}
+\label{fig:persistencia_pin}
 \end{figure}
 
-Los resultados obtenidos se resumen en la Tabla~\ref{tab}.
+Los resultados obtenidos se resumen en la Tabla~\ref{tab:persistencia_configuracion}.
 
 \begin{table}[H]
 \centering
@@ -329,7 +329,7 @@ apagado y encendido del dispositivo. Esto confirma el correcto funcionamiento de
 
 \subsection{Almacenamiento del historial de mediciones}
 
-Además de mostrar la frecuencia cardíaca en tiempo real, el sistema desarrollado incorpora un mecanismo de almacenamiento persistente que permite conservar un historial de las mediciones realizadas por el usuario. Con el fin de validar su correcto funcionamiento, se llevaron a cabo diferentes pruebas destinadas a verificar el almacenamiento de los datos en la tarjeta microSD que incorpora el dispositivo, su posterior recuperación desde este y su sincronización con la aplicación móvil.\\
+Además de mostrar la frecuencia cardíaca en tiempo real, el sistema desarrollado incorpora un mecanismo de almacenamiento persistente que permite conservar un historial de las mediciones realizadas por el usuario. Con el fin de validar su correcto funcionamiento, se llevaron a cabo diferentes pruebas destinadas a verificar el almacenamiento de los datos en la tarjeta microSD que incorpora el dispositivo, su posterior recuperación desde este, y su sincronización con la aplicación móvil.\\
 
 Durante las pruebas se realizaron varias mediciones de frecuencia cardíaca que fueron almacenadas automáticamente en un fichero CSV alojado en la tarjeta SD. La Figura~\ref{fig:csv} muestra una captura del archivo utilizado para almacenar el historial de mediciones.
 
@@ -369,7 +369,7 @@ Finalmente, se verificó la correcta generación de informes PDF a partir de los
 
 \
 
-El desarrollo completo del experimento fue registrado en vídeo y puede consultarse en el enlace.\footnote{\url{https://...}}. Los resultados se resumen en la Tabla~\ref{tab}.
+El desarrollo completo del experimento fue registrado en vídeo y puede consultarse en el enlace\footnote{\url{https://tinyurl.com/bdht27wc}}. Los resultados se resumen en la Tabla~\ref{tab}.
 
 \begin{table}[H]
 \centering
@@ -389,11 +389,11 @@ Conservación del historial tras reinicio & Correcto \\ \hline
 
 Los resultados obtenidos muestran que todas las mediciones realizadas fueron almacenadas correctamente en la tarjeta SD y permanecieron disponibles tras reiniciar el dispositivo. Asimismo, los datos pudieron recuperarse tanto desde la interfaz local implementada en el ESP32 como desde la aplicación Android desarrollada.\\
 
-La correcta generación del informe PDF confirma además que la información almacenada puede ser procesada y exportada sin pérdidas de datos. En consecuencia, puede concluirse que los mecanismos de almacenamiento persistente y recuperación del historial implementados en el sistema funcionan de forma fiable y permiten conservar las mediciones realizadas para su posterior consulta y análisis.
+La correcta generación del informe PDF confirma, además, que la información almacenada puede ser procesada y exportada sin pérdidas de datos. En consecuencia, puede concluirse que los mecanismos de almacenamiento persistente y recuperación del historial implementados en el sistema funcionan de forma fiable y permiten conservar las mediciones realizadas para su posterior consulta y análisis.
 
 \section{Seguridad del sistema}
 
-Con el objetivo de restringir el acceso no autorizado y garantizar la correcta vinculación entre el dispositivo y la aplicación móvil, el sistema incorpora distintos mecanismos de seguridad. Entre ellos se incluyen un sistema de autenticación mediante PIN sincronizado entre ambos dispositivos y un mecanismo de vinculación basado en tokens únicos. Para validar su funcionamiento se realizaron diferentes pruebas relacionadas con la autenticación de usuarios y la sincronización segura de la información.\\
+Con el objetivo de restringir el acceso no autorizado y garantizar la correcta vinculación entre el dispositivo y la aplicación móvil, el sistema incorpora distintos mecanismos de seguridad. Entre ellos se incluyen un sistema de autenticación mediante PIN sincronizado entre ambos dispositivos, y un mecanismo de vinculación basado en tokens únicos. Para validar su funcionamiento se realizaron diferentes pruebas relacionadas con la autenticación de usuarios y la sincronización segura de la información.\\
 
 \
 
@@ -405,55 +405,31 @@ Se implementó un mecanismo de autenticación basado en un PIN configurable por 
 
 Durante los ensayos se comprobó que el acceso únicamente era concedido cuando el PIN introducido coincidía con el almacenado en el sistema. En caso contrario, el acceso era denegado y el usuario permanecía en la pantalla de autenticación.\\
 
-La Figura~\ref{fig} muestra una captura correspondiente a una de las pruebas realizadas. El desarrollo completo de los ensayos de seguridad realizados en este apartado puede consultarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/4sy8tfjf}} La grabación incluye simultáneamente la interfaz del dispositivo, la aplicación móvil y los registros de depuración generados por ambos sistemas, permitiendo observar en tiempo real los procesos de autenticación, sincronización del PIN y validación de las comunicaciones.
+La Figura~\ref{fig:validacion_pin} muestra una captura correspondiente a una de las pruebas realizadas. El desarrollo completo de los ensayos de seguridad realizados en este apartado puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/4sy8tfjf}}. La grabación incluye simultáneamente la interfaz del dispositivo, la aplicación móvil y los registros de depuración generados por ambos sistemas, permitiendo observar en tiempo real los procesos de autenticación, sincronización del PIN y validación de las comunicaciones.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{figs/validacion_pin.png}
+\includegraphics[width=0.8\textwidth]{figs/validacion_pin.png}
 \caption{Validación del acceso mediante PIN.}
 \label{fig:validacion_pin}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\caption{Resultados de la validación del acceso mediante PIN.}
-\label{tab:validacion_pin}
-\begin{tabular}{|l|c|}
-\hline
-\textbf{Prueba realizada} & \textbf{Resultado} \\ \hline
-Introducción de PIN correcto & Acceso permitido \\ \hline
-Introducción de PIN incorrecto & Acceso denegado \\ \hline
-\end{tabular}
-\end{table}
-
 \subsection{Sincronización del PIN}
 
-El PIN de acceso, además de emplearse como mecanismo de autenticación, debe conservarse sincronizado entre el dispositivo y la aplicación móvil para asegurar que el sistema funcione de manera coherente. Con el fin de validar esta funcionalidad, se realizaron diferentes pruebas destinadas a comprobar que los cambios realizados sobre el código de autenticación se transmitían correctamente.\\
+El PIN de acceso, además de emplearse como mecanismo de autenticación, debe conservarse sincronizado entre el dispositivo y la aplicación móvil para asegurar que el sistema funcione de manera coherente. Con el fin de validar esta funcionalidad, se realizaron diferentes pruebas destinadas a comprobar que los cambios realizados sobre el código de autenticación se transmitían correctamente.
 
 La metodología seguida consistió en modificar el PIN desde la aplicación móvil y verificar posteriormente que el nuevo valor era recibido y almacenado correctamente por el dispositivo. A continuación, se comprobó que el acceso mediante el PIN anterior era rechazado y que únicamente el nuevo código permitía desbloquear el sistema. Asimismo, se realizó un reinicio completo del dispositivo para verificar que el nuevo PIN se sincronizaría inmediatamente después del arranque.\\
 
-Tal y como puede observarse en el vídeo presentado en el apartado anterior, el proceso de actualización del PIN puede seguirse en tiempo real mediante los registros de depuración generados por la aplicación móvil y el ESP32. Estos registros permiten verificar la recepción del nuevo valor, su almacenamiento en el dispositivo y la posterior utilización del mismo durante el proceso de autenticación tras el reinicio del sistema.\\
+Tal y como puede observarse en el vídeo\footnote{\url{https://tinyurl.com/4sy8tfjf}}, el proceso de actualización del PIN puede seguirse en tiempo real mediante los registros de depuración generados por la aplicación móvil y el ESP32. Estos registros permiten verificar la recepción del nuevo valor, su almacenamiento en el dispositivo y la posterior utilización del mismo durante el proceso de autenticación tras el reinicio del sistema.\\
 
 La Figura~\ref{fig:sincronizacion_pin} muestra una captura correspondiente a una de las pruebas realizadas.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figs/sincronizacion_pin.png}
+\includegraphics[width=\textwidth]{figs/sincronizacion_pin.png}
 \caption{Validación de la sincronización del PIN entre app y dispositivo.}
 \label{fig:sincronizacion_pin}
 \end{figure}
-
-\
-
-\
-
-\
-
-\
-
-\
-
-\
 
 Los resultados obtenidos se resumen en la Tabla~\ref{tab:sincronizacion_pin}.
 
@@ -472,6 +448,10 @@ Persistencia tras reinicio & Correcto \\ \hline
 \end{tabular}
 \end{table}
 
+\
+
+\
+
 Los experimentos realizados demuestran que el PIN sincronizado entre el dispositivo y la aplicación móvil funciona de manera adecuada. El valor nuevo fue reemplazado y guardado de manera exitosa después de cada cambio, y además permaneció accesible tras reiniciar el sistema. Esto asegura la consistencia de la configuración de seguridad y previene contradicciones entre ambos componentes.
 
 \subsection{Sistema de vinculación mediante token}
@@ -482,16 +462,16 @@ Para validar su funcionamiento se analizaron los intercambios de información pr
 
 Tal y como puede observarse en el experimento descrito en los apartados anteriores, los registros de depuración mostrados simultáneamente por la aplicación móvil y el ESP32 permiten seguir en tiempo real el proceso de autorización. Gracias a ello fue posible verificar la correcta generación, transmisión y validación de los tokens utilizados durante la vinculación.\\
 
-La Figura~\ref{fig:token_vinculacion} muestra una captura correspondiente a los mensajes de depuración registrados durante una de las pruebas realizadas.
-
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figs/token_vinculacion.png}
+\includegraphics[width=\textwidth]{figs/token_vinculacion.png}
 \caption{Mensajes de generación y validación del token en el proceso de vinculación.}
 \label{fig:token_vinculacion}
 \end{figure}
 
-Los resultados obtenidos se resumen en la Tabla~\ref{tab:token_vinculacion}.
+\
+
+La Figura~\ref{fig:token_vinculacion} muestra una captura correspondiente a los mensajes de depuración registrados durante una de las pruebas realizadas. Asimismo, los resultados obtenidos se resumen en la Tabla~\ref{tab:token_vinculacion}.
 
 \begin{table}[H]
 \centering
@@ -511,11 +491,11 @@ Los ensayos realizados muestran que el mecanismo de vinculación implementado fu
 
 \section{Evaluación global del sistema}
 
-Finalmente, se realizó una evaluación integral del sistema reproduciendo un escenario de uso representativo. Esta prueba permitió verificar el funcionamiento conjunto de los distintos módulos desarrollados y comprobar la correcta integración entre los componentes hardware y software que forman la solución propuesta.\\
+Finalmente, se realizó una evaluación integral del sistema reproduciendo un escenario de uso representativo(Figura~\ref{fig:evaluacion_global}). Esta prueba permitió verificar el funcionamiento conjunto de los distintos módulos desarrollados y comprobar la correcta integración entre los componentes hardware y software que forman la solución propuesta.\\
 
-La prueba consistió en recorrer el flujo completo de utilización del sistema, comenzando por el proceso de autenticación mediante PIN, la gestión de medicamentos y tomas desde la aplicación móvil, la sincronización bidireccional de la información, la medición de la frecuencia cardíaca, la consulta del historial de medidas, la generación del informe en formato PDF y, la dispensación automática de una toma programada. Asimismo, se comprobó la persistencia de la configuración tras reiniciar el dispositivo y la correcta recuperación de su estado.\\
+La prueba consistió en recorrer el flujo completo de utilización del sistema, comenzando por el proceso de autenticación mediante PIN, la gestión de medicamentos y tomas desde la aplicación móvil, la sincronización bidireccional de la información, la medición de la frecuencia cardíaca, la consulta del historial de medidas, la generación del informe en formato PDF, y la dispensación automática de una toma programada. Asimismo, se comprobó la persistencia de la configuración tras reiniciar el dispositivo y la correcta recuperación de su estado.\\
 
-El desarrollo completo de esta evaluación puede observarse en el vídeo asociado.\footnote{\url{https://tinyurl.com/XXXXXXXX}}
+El desarrollo completo de esta evaluación puede observarse en el vídeo asociado\footnote{\url{https://tinyurl.com/y2fv5dud}}.
 
 \begin{figure}[H]
     \centering
@@ -551,6 +531,6 @@ Funcionamiento autónomo del dispositivo & Correcto \\
 \end{tabular}
 \end{table}
 
-Los resultados obtenidos confirman que el sistema desarrollado integra correctamente todos los módulos hardware y software implementados, proporcionando un funcionamiento estable y coherente en un escenario de utilización real. Asimismo, las pruebas realizadas demuestran que MyMeds satisface los requisitos funcionales definidos para el proyecto y constituye una solución capaz de gestionar de forma autónoma la programación y dispensación de medicamentos, así como el registro y consulta de información biomédica.
+Los resultados obtenidos, y mostrados en la Tabla~\ref{tab:evaluacion_global}, confirman que el sistema desarrollado integra correctamente todos los módulos hardware y software implementados, proporcionando un funcionamiento estable y coherente en un escenario de utilización real. Asimismo, las pruebas realizadas demuestran que \textit{MyMeds} satisface los requisitos funcionales definidos para el proyecto en la \autoref{sec:requisitos} y constituye una solución capaz de gestionar de forma autónoma la programación y dispensación de medicamentos, así como el registro y consulta de información biomédica.
 
 
