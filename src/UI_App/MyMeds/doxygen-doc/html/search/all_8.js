@@ -9,5 +9,8 @@ var searchData=
   ['ic_5fmenu_5fslideshow_2exml_6',['ic_menu_slideshow.xml',['../ic__menu__slideshow_8xml.html',1,'']]],
   ['ic_5fqr_5fcode_2exml_7',['ic_qr_code.xml',['../ic__qr__code_8xml.html',1,'']]],
   ['item_5fmedicine_2exml_8',['item_medicine.xml',['../item__medicine_8xml.html',1,'']]],
-  ['item_5ftake_2exml_9',['item_take.xml',['../item__take_8xml.html',1,'']]]
+  ['item_5fmedicine_5fsimple_2exml_9',['item_medicine_simple.xml',['../item__medicine__simple_8xml.html',1,'']]],
+  ['item_5fpulse_5fhistory_2exml_10',['item_pulse_history.xml',['../item__pulse__history_8xml.html',1,'']]],
+  ['item_5ftake_2exml_11',['item_take.xml',['../item__take_8xml.html',1,'']]],
+  ['item_5ftoday_5ftake_2exml_12',['item_today_take.xml',['../item__today__take_8xml.html',1,'']]]
 ];
