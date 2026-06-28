@@ -73,19 +73,9 @@ Respecto a la interacción con el usuario, el módulo de control se comunica con
 \subsection{Consideraciones de diseño}
 \label{sec:consideraciones_diseno}
 
-Durante el desarrollo del sistema se han tenido en cuenta diversos criterios de diseño con el objetivo de garantizar su funcionalidad, accesibilidad y fiabilidad en un entorno doméstico.\\
+Durante el desarrollo del sistema se han tenido en cuenta diversos criterios de diseño con el objetivo de garantizar su funcionalidad, accesibilidad y fiabilidad en un entorno doméstico. Información adicional sobre el diseño mecánico y electrónico puede consultarse en la Wiki del proyecto.\footnote{\url{https://github.com/RoboticsURJC/tfg-amartinez/wiki/3D-Design}, \url{https://github.com/RoboticsURJC/tfg-amartinez/wiki/Electronic-Design}}\\
 
 En primer lugar, se ha priorizado el \textbf{bajo coste} del dispositivo, seleccionando componentes electrónicos asequibles y de fácil disponibilidad, sin comprometer las prestaciones necesarias para el correcto funcionamiento del sistema. Todos los componentes usado son adquiribles en páginas como Aliexpress donde los costes de cada componente han sido inferiores a 5\euro, de este modo el coste total del dispositivo no supera los 30\euro.\\
-
-\
-\
-\
-
-\
-
-\
-
-\
 
 Asimismo, se ha prestado especial atención a la \textbf{facilidad de uso}, diseñando una interfaz sencilla e intuitiva tanto en el dispositivo como en la aplicación móvil. Para ello, se han empleado elementos visuales de gran tamaño, una navegación clara y una estructura de menús accesible, orientada especialmente a usuarios de edad avanzada o con poca experiencia tecnológica. Se a priorizado el contraste claro de colores para facilitar la lectura y la delimitación de los elementos gráficos, además de reducir los pasos de uso lo máximo posible.\\
 
@@ -99,6 +89,8 @@ Como parte de la integración hardware, se ha optado por el uso del protocolo I2
     \caption{Esquema de conexión del sensor biomédico mediante protocolo I2C}
     \label{fig:fritzing_sensor}
 \end{figure}
+
+\
 
 \
 
@@ -122,7 +114,10 @@ Para ello, se ha estructurado el sistema en distintos bloques software que permi
 \subsection{Interfaz del dispositivo}
 \label{sec:interfaz_dispositivo}
 
-La interfaz del dispositivo se ha desarrollado utilizando la librería LVGL, una herramienta ampliamente utilizada en sistemas embebidos para la creación de interfaces gráficas eficientes. Permite implementar una interfaz táctil fluida, optimizada para dispositivos con recursos limitados, como el microcontrolador utilizado en el sistema.\\
+La interfaz del dispositivo se ha desarrollado utilizando la librería LVGL, una herramienta ampliamente utilizada en sistemas embebidos para la creación de interfaces gráficas eficientes. Permite implementar una interfaz táctil fluida, optimizada para dispositivos con recursos limitados, como el microcontrolador utilizado en el sistema. El desarrollo de la interfaz y la configuración de LVGL se documentan en la Wiki del proyecto\footnote{
+\url{https://tinyurl.com/4vku9wkv},
+\url{https://tinyurl.com/2e3ucavb},
+\url{https://tinyurl.com/mr29rfsp}}.\\
 
 El diseño de la interfaz se ha realizado priorizando la simplicidad y la claridad visual, empleando botones de gran tamaño, un alto contraste de colores y una estructura de navegación intuitiva. Estas decisiones permiten facilitar el uso del dispositivo por parte de usuarios de edad avanzada o con poca experiencia tecnológica.\\
 
@@ -136,7 +131,9 @@ Las principales pantallas que componen la interfaz son las siguientes:
 
     \item \textbf{Pantallas de configuración inicial:} permiten establecer la conexión entre el dispositivo y la aplicación móvil. En primer lugar, se muestra un código QR que debe ser escaneado desde la aplicación. Posteriormente, el usuario introduce las credenciales de la red WiFi, tras lo cual el sistema muestra un estado de sincronización hasta completar el proceso.
 
-    Para simplificar este proceso, el dispositivo genera dinámicamente un código QR que contiene la información necesaria para la configuración. Este enfoque evita la introducción manual de datos y reduce la posibilidad de errores por parte del usuario. El código QR se construye a partir de una cadena de texto y se transforma en una representación gráfica que es mostrada en pantalla mediante la librería LVGL. En el Código~\ref{cod:qr} se muestra un fragmento simplificado del proceso de generación y visualización del QR:
+    Para simplificar este proceso, el dispositivo genera dinámicamente un código QR que contiene la información necesaria para la configuración. Este enfoque evita la introducción manual de datos y reduce la posibilidad de errores por parte del usuario.\\
+
+    El código QR se construye a partir de una cadena de texto y se transforma en una representación gráfica que es mostrada en pantalla mediante la librería LVGL. En el Código~\ref{cod:qr} se muestra un fragmento simplificado del proceso de generación y visualización del QR:
 
     \begin{code}[H]
     \begin{lstlisting}[language=C++]
@@ -173,18 +170,10 @@ Las principales pantallas que componen la interfaz son las siguientes:
 
 \end{itemize}
 
-\
-
-\
-
-\
-
-\
-
 \subsection{Aplicación móvil}
 \label{sec:app_movil}
 
-La aplicación móvil constituye la interfaz remota del sistema, permitiendo al usuario configurar el dispositivo y acceder a sus funcionalidades de forma inalámbrica. Utilizando las herramientas explicadas en el capítulo anterior, se ha desarrollado una aplicación que proporciona una interfaz sencilla e intuitiva, centrada en la gestión de tomas, la configuración del dispositivo y la visualización de datos del sensor biomédico.\\
+La aplicación móvil constituye la interfaz remota del sistema, permitiendo al usuario configurar el dispositivo y acceder a sus funcionalidades de forma inalámbrica. Utilizando las herramientas explicadas en el capítulo anterior, se ha desarrollado una aplicación que proporciona una interfaz sencilla e intuitiva, centrada en la gestión de tomas, la configuración del dispositivo y la visualización de datos del sensor biomédico. Su evolución se encuentra documentada en la Wiki del proyecto\footnote{\url{https://github.com/RoboticsURJC/tfg-amartinez/wiki/App-Development}}.\\
 
 Entre las principales funcionalidades de la aplicación se encuentran:
 
@@ -202,10 +191,6 @@ Por motivos de seguridad, el acceso a la aplicación se encuentra protegido medi
 
 El funcionamiento de la aplicación sigue un flujo estructurado que comienza con la configuración inicial del dispositivo. En primer lugar, el usuario accede al apartado de configuración, donde se muestra un lector de códigos QR que permite escanear el código generado por el dispositivo. El código contiene un token único de vinculación que permite identificar el dispensador y asociarlo de forma segura con la aplicación móvil.\\
 
-\
-
-\
-
 A continuación, se solicita al usuario la introducción de las credenciales de la red WiFi, necesarias para que el dispositivo pueda conectarse a la red del entorno. Una vez enviadas estas credenciales, se inicia un proceso de sincronización entre la aplicación y el dispositivo, durante el cual ambos intercambian la información necesaria para su funcionamiento conjunto.\\
 
 Tras completar la configuración inicial, la aplicación permite acceder directamente a la gestión del sistema, donde el usuario puede consultar y modificar las tomas de medicación, así como visualizar la información registrada por el sensor biomédico.\\
@@ -219,18 +204,16 @@ No es necesario repetir la configuración en usos posteriores. La aplicación co
     \label{fig:app_movil}
 \end{figure}
 
-Desde el punto de vista del diseño, la interfaz de la aplicación se ha desarrollado siguiendo criterios de simplicidad y accesibilidad, utilizando elementos visuales claros, botones de gran tamaño y una navegación intuitiva. Estas decisiones permiten facilitar el uso de la aplicación por parte de usuarios con distintos niveles de experiencia tecnológica.\\
+Desde el punto de vista del diseño, la interfaz de la aplicación se ha desarrollado siguiendo criterios de simplicidad y accesibilidad, utilizando elementos visuales claros, botones de gran tamaño y una navegación intuitiva. Estas decisiones permiten facilitar el uso de la aplicación para usuarios con distintos niveles de experiencia tecnológica.
 
 Durante el desarrollo, se ha hecho uso tanto de la simulación mediante emuladores como de pruebas en dispositivos físicos, lo que ha permitido validar el correcto funcionamiento de la aplicación en diferentes escenarios de uso. En la Figura~\ref{fig:app_movil} se muestran algunas de las pantallas principales de la aplicación móvil.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figs/collage_app.png}
+    \includegraphics[width=0.75\textwidth]{figs/collage_app.png}
     \caption{Algunas pantallas de la aplicación móvil}
     \label{fig:app_movil}
 \end{figure}
-
-\
 
 \subsection{Lógica de control del sistema}
 \label{sec:logica_control}
@@ -240,6 +223,8 @@ La lógica de control del sistema se encarga de coordinar el funcionamiento de l
 El sistema se basa en un modelo orientado a eventos, en el que las distintas acciones se ejecutan en función del estado del sistema y de las interacciones del usuario. Entre estos eventos se incluyen la llegada de una hora programada para una toma, la interacción con la interfaz de usuario o la recepción de datos desde la aplicación móvil.\\
 
 Uno de los elementos fundamentales del sistema es la gestión de las tomas de medicación. Para ello, se utilizan estructuras de datos específicas que permiten almacenar la configuración asociada a cada toma. Cada toma incluye información como la hora programada, los días de repetición, la activación de recordatorios y el tiempo de aviso previo, permitiendo definir de forma flexible el comportamiento del sistema.\\
+
+\
 
 Un ejemplo de esta estructura se muestra en el Código~\ref{cod:takeconfig}:
 
@@ -256,27 +241,9 @@ typedef struct {
 \label{cod:takeconfig}
 \end{code}
 
-Esta aproximación permite desacoplar la configuración de las tomas de la lógica de ejecución del sistema, facilitando su modificación desde la interfaz de usuario y su sincronización con la aplicación móvil.\\
+Esta aproximación permite desacoplar la configuración de las tomas de la lógica de ejecución del sistema, facilitando su modificación desde la interfaz de usuario y su sincronización con la aplicación móvil. Para garantizar la persistencia de la configuración, el sistema utiliza \textit{Non-Volatile Storage} (NVS), implementada mediante la librería \texttt{Preferences.h} del entorno de desarrollo de ESP32, lo que permite conservar los datos incluso tras reiniciar el dispositivo.\\
 
-Para garantizar la persistencia de la configuración, el sistema utiliza \textit{Non-Volatile Storage} (NVS), implementada mediante la librería \texttt{Preferences.h} del entorno de desarrollo de ESP32, lo que permite conservar los datos incluso tras reiniciar el dispositivo.\\
-
-La información de cada toma se serializa y almacena mediante claves específicas. Para optimizar el almacenamiento, los días de repetición se codifican en un único byte utilizando una representación binaria, donde cada bit corresponde a un día de la semana.\\
-
-\
-
-\
-
-\
-
-\
-
-\
-
-\
-
-\
-
-Un ejemplo simplificado del proceso de almacenamiento se muestra en el Código~\ref{cod:nvs}:
+La información de cada toma se serializa y almacena mediante claves específicas. Para optimizar el almacenamiento, los días de repetición se codifican en un único byte utilizando una representación binaria, donde cada bit corresponde a un día de la semana. Un ejemplo simplificado del proceso de almacenamiento se muestra en el Código~\ref{cod:nvs}:
 
 \begin{code}[H]
 \begin{lstlisting}[language=C++]
@@ -309,13 +276,9 @@ Este enfoque permite reducir el uso de memoria y facilita la recuperación de la
 \subsection{Comunicación}
 \label{sec:comunicacion}
 
-La comunicación entre el dispositivo y la aplicación móvil se realiza mediante conexión WiFi, permitiendo tanto la configuración inicial del sistema como el intercambio de información durante su funcionamiento.\\
+La comunicación entre el dispositivo y la aplicación móvil se realiza mediante conexión WiFi, permitiendo tanto la configuración inicial del sistema como el intercambio de información durante su funcionamiento\footnote{\url{https://tinyurl.com/mryfxb8a}}.\\
 
 El sistema implementa dos modos de operación diferenciados: modo punto de acceso (AP) y modo cliente. En la fase de configuración inicial, el dispositivo genera su propia red WiFi (denominada \texttt{MyMeds-Setup}), permitiendo que la aplicación se conecte directamente sin necesidad de utilizar una red WiFi externa.\\
-
-\
-
-\
 
 Una vez establecida la conexión, el dispositivo ejecuta un servidor web embebido que gestiona la comunicación mediante distintos \textit{endpoints}. Estos \textit{endpoints} permiten recibir credenciales de red, sincronizar el estado del sistema y actualizar la configuración de las tomas de medicación.\\
 
@@ -360,22 +323,14 @@ for (JsonObject t : takesJson) {
 \label{cod:json}
 \end{code}
 
-\
-
-\
-
-\
-
-\
-
 El proceso completo de conexión entre la aplicación y el dispositivo se realiza en varias etapas. En primer lugar, el dispositivo genera una red WiFi propia denominada \texttt{MyMeds-Setup}, a la que el usuario debe conectarse desde su dispositivo móvil. Una vez conectado, el usuario escanea el código QR mostrado en la pantalla del dispositivo, lo que permite introducir las credenciales de la red WiFi del entorno a través de la aplicación.\\
 
-Tras recibir estas credenciales, el dispositivo se conecta a la red WiFi indicada, pasando a modo cliente. En este momento, tanto el dispositivo como la aplicación se encuentran dentro de la misma red. Para establecer la comunicación definitiva, la aplicación realiza un proceso de búsqueda en la red mediante \textit{broadcast}, mientras que el dispositivo emite un mensaje identificativo que permite a la aplicación localizarlo automáticamente.\\
+Tras recibir estas credenciales, el dispositivo se conecta a la red WiFi indicada, pasando a modo cliente. En este momento, tanto el dispositivo como la aplicación se encuentran dentro de la misma red. Para establecer la comunicación definitiva, la aplicación realiza un proceso de búsqueda en la red mediante \textit{broadcast}, mientras que el dispositivo emite un mensaje identificativo que permite a la aplicación localizarlo automáticamente.
 
 \subsubsection{Descubrimiento del dispositivo}
 \label{sec:descubrimiento}
 
-Para facilitar la conexión entre la aplicación móvil y el dispositivo, se ha implementado un mecanismo de descubrimiento que permite localizar automáticamente la ESP32 dentro de la red. Este proceso evita que el usuario tenga que introducir manualmente la dirección IP del dispositivo, mejorando la experiencia de uso y simplificando la interacción con el sistema.\\
+Para facilitar la conexión entre la aplicación móvil y el dispositivo, se ha implementado un mecanismo de descubrimiento que permite localizar automáticamente la ESP32 dentro de la red. Este proceso evita que el usuario tenga que introducir manualmente la dirección IP del dispositivo, mejorando la experiencia de uso y simplificando la interacción con el sistema.
 
 En el funcionamiento normal, la aplicación localiza el dispositivo mediante un proceso de búsqueda activa en la red local. Para ello, se realizan peticiones HTTP de forma paralela a diferentes direcciones IP dentro del rango de la red, verificando la respuesta del \textit{endpoint} específico del dispositivo.
 
@@ -431,9 +386,7 @@ En este apartado se describe el diseño e integración de los componentes hardwa
 
 El sistema de dispensación constituye el núcleo funcional del dispositivo, siendo el encargado de liberar la medicación de forma controlada en los instantes programados por el sistema. Para ello, se ha desarrollado un mecanismo capaz de posicionar secuencialmente los compartimentos del carrusel y garantizar que la dosis correspondiente quede alineada con la zona de dispensación.\\
 
-El accionamiento del mecanismo se realiza mediante un servomotor SG90 controlado por la unidad central del sistema. La elección de este actuador responde a su bajo coste, reducido consumo energético y facilidad de integración con la plataforma hardware empleada.\\
-
-El mecanismo implementado está compuesto por un elemento impulsor accionado por el servomotor, un sistema de trinquete encargado de producir el avance del carrusel y un mecanismo de bloqueo asistido por muelle que impide movimientos no deseados entre posiciones consecutivas. Gracias a esta configuración, cada actuación del servomotor provoca un avance controlado, mientras que el sistema de retención garantiza la estabilidad de la posición alcanzada.\\
+El accionamiento del mecanismo se realiza mediante un servomotor SG90 controlado por la unidad central del sistema. La elección de este actuador responde a su bajo coste, reducido consumo energético y facilidad de integración con la plataforma hardware empleada.
 
 \begin{figure}[H]
 \centering
@@ -442,22 +395,15 @@ El mecanismo implementado está compuesto por un elemento impulsor accionado por
 \label{fig}
 \end{figure}
 
-La Figura~\ref{fig} muestra el mecanismo de dispensación desarrollado y su integración dentro de la estructura del carrusel.\\
+La Figura~\ref{fig} muestra el mecanismo de dispensación desarrollado y su integración dentro de la estructura del carrusel.
+
+El mecanismo implementado está compuesto por un elemento impulsor accionado por el servomotor, un sistema de trinquete encargado de producir el avance del carrusel y un mecanismo de bloqueo asistido por muelle que impide movimientos no deseados entre posiciones consecutivas. Gracias a esta configuración, cada actuación del servomotor provoca un avance controlado, mientras que el sistema de retención garantiza la estabilidad de la posición alcanzada.\\
 
 Esta solución permite obtener un sistema de dispensación fiable utilizando componentes de bajo coste y elementos fabricados mediante impresión 3D, proporcionando un posicionamiento repetible de los compartimentos y una correcta dispensación de la medicación programada.
 
 \subsection{Sistema biomédico}
 
-Con el objetivo de complementar las funcionalidades del dispensador, se ha incorporado un sistema de monitorización biomédica basado en el sensor MAX30102.\\
-
-Este sensor integra emisores LED y un fotodiodo capaces de realizar mediciones ópticas mediante fotopletismografía (PPG), técnica ampliamente utilizada para estimar parámetros fisiológicos como la frecuencia cardíaca. La Figura~\ref{fig:max30102_flow} resume las diferentes etapas empleadas para obtener la frecuencia cardíaca a partir de la señal capturada por el sensor.\\
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figs/sensor_esquema.png}
-    \caption{Proceso de obtención de la frecuencia cardíaca mediante el sensor MAX30102 (imagen generada por IA)}
-    \label{fig:max30102_flow}
-\end{figure}
+Con el objetivo de complementar las funcionalidades del dispensador, se ha incorporado un sistema de monitorización biomédica basado en el sensor MAX30102. Este sensor integra emisores LED y un fotodiodo capaces de realizar mediciones ópticas mediante fotopletismografía (PPG), técnica ampliamente utilizada para estimar parámetros fisiológicos como la frecuencia cardíaca. La Figura~\ref{fig:max30102_flow} resume las diferentes etapas empleadas para obtener la frecuencia cardíaca a partir de la señal capturada por el sensor.\\
 
 La obtención de la frecuencia cardíaca se basa en el análisis de la señal infrarroja capturada por el sensor. Para ello, el sistema realiza una lectura continua de la intensidad reflejada y emplea un algoritmo de detección de pulsos que identifica los máximos asociados a cada latido cardíaco.\\
 
@@ -470,7 +416,12 @@ beatsPerMinute =
 60.0 / (delta / 1000.0);
 \end{lstlisting}
 
-\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figs/sensor_esquema.png}
+    \caption{Proceso de obtención de la frecuencia cardíaca mediante el sensor MAX30102 (imagen generada por IA)}
+    \label{fig:max30102_flow}
+\end{figure}
 
 Debido a la presencia de ruido y pequeñas variaciones producidas por el movimiento del usuario o por las condiciones de adquisición de la señal, las mediciones instantáneas pueden presentar oscilaciones significativas. Para mejorar la estabilidad de los resultados, el sistema almacena las últimas medidas válidas en un buffer circular de diez muestras.\\
 
@@ -484,12 +435,7 @@ filteredBpm =
 
 \
 
-Este procedimiento permite reducir la influencia del ruido presente en la señal y obtener una estimación más estable y representativa de la frecuencia cardíaca del usuario.\\
-
-\
-
-\
-
+Este procedimiento permite reducir la influencia del ruido presente en la señal y obtener una estimación más estable y representativa de la frecuencia cardíaca del usuario.
 
 \subsection{Integración electrónica}
 \label{sec:integracion_electronica}
@@ -505,7 +451,7 @@ En la Figura~\ref{fig:montaje} se muestra la integración física de los distint
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figs/montaje.png}
+    \includegraphics[width=\textwidth]{figs/montaje.png}
     \caption{Integración hardware del sistema}
     \label{fig:montaje}
 \end{figure}

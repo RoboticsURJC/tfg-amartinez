@@ -64,7 +64,7 @@ La correcta sincronización entre la aplicación móvil y el dispensador resulta
 
 La validación de la sincronización se realizó mediante dos conjuntos de pruebas complementarios. En primer lugar, se verificó la correcta sincronización del catálogo de medicamentos entre la aplicación móvil y el dispositivo. Posteriormente, se evaluó la sincronización bidireccional de las tomas programadas, comprobando que las modificaciones realizadas desde cualquiera de las dos interfaces eran transmitidas correctamente al otro sistema. De esta forma se verificó que la configuración podía gestionarse indistintamente desde cualquiera de las dos interfaces sin generar inconsistencias ni conflictos entre los datos almacenados.\\
 
-La Figura~\ref{fig:sync} muestra una captura correspondiente a ambas pruebas realizadas. El proceso de sincronización de medicamentos puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/uuppxkhh}}. Asimismo la sincronización bidireccional de tomas puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/yeyz9pc4}}.
+La Figura~\ref{fig:sync} muestra una captura correspondiente a ambas pruebas realizadas. El desarrollo de esta funcionalidad puede consultarse en la Wiki del proyecto\footnote{\url{https://tinyurl.com/mryfxb8a}, \url{https://tinyurl.com/mr29pyxv}}. El proceso de sincronización de medicamentos puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/uuppxkhh}}. Asimismo la sincronización bidireccional de tomas puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/yeyz9pc4}}.
 
 \begin{figure}[H]
 \centering
@@ -131,7 +131,7 @@ Una vez completado el experimento, los resultados permitieron determinar el grad
 
 \section{Evaluación del pulsómetro}
 
-El pulsómetro integrado constituye una de las funcionalidades complementarias incorporadas al dispositivo. Debido a la naturaleza de las señales biomédicas adquiridas y a la sensibilidad de este tipo de sensores a las condiciones de medida, se realizaron diferentes pruebas destinadas a evaluar la estabilidad, precisión y robustez en las mediciones.\\
+El pulsómetro integrado constituye una de las funcionalidades complementarias incorporadas al dispositivo. Debido a la naturaleza de las señales biomédicas adquiridas y a la sensibilidad de este tipo de sensores a las condiciones de medida, se realizaron diferentes pruebas destinadas a evaluar la estabilidad, precisión y robustez en las mediciones. Su desarrollo se documenta en la Wiki del proyecto\footnote{\url{https://tinyurl.com/4hbaaw2u}}.\\
 
 \subsection{Estabilización de la medida}
 
@@ -285,11 +285,11 @@ Como consecuencia, \textit{MyMeds} muestra una estabilidad más alta en las lect
 
 \section{Persistencia y almacenamiento de datos}
 
-Además de las funcionalidades de dispensación y monitorización biomédica, el sistema incorpora mecanismos de almacenamiento persistente que permiten conservar tanto la configuración del dispositivo como el histórico de mediciones realizadas. Con el fin de validar estos mecanismos, se llevaron a cabo diferentes pruebas relacionadas con la conservación y recuperación de la información almacenada.\\
+Además de las funcionalidades de dispensación y monitorización biomédica, el sistema incorpora mecanismos de almacenamiento persistente que permiten conservar tanto la configuración del dispositivo como el histórico de mediciones realizadas. Con el fin de validar estos mecanismos, se llevaron a cabo diferentes pruebas relacionadas con la conservación y recuperación de la información almacenada.
 
 \subsection{Conservación de la configuración}
 
-Además del almacenamiento del historial de mediciones, el sistema desarrollado incorpora mecanismos de persistencia destinados a conservar la configuración del dispositivo entre reinicios. Con el fin de validar su correcto funcionamiento, se realizaron diferentes pruebas orientadas a comprobar la conservación de las tomas programadas y del PIN de acceso tras apagar y volver a encender el dispositivo.\\
+Además del almacenamiento del historial de mediciones, el sistema desarrollado incorpora mecanismos de persistencia destinados a conservar la configuración del dispositivo entre reinicios. Con el fin de validar su correcto funcionamiento, se realizaron diferentes pruebas orientadas a comprobar la conservación de las tomas programadas y del PIN de acceso tras apagar y volver a encender el dispositivo. El desarrollo de estas funcionalidades se documenta en la Wiki del proyecto\footnote{\url{https://tinyurl.com/3ffpuntm}, \url{https://tinyurl.com/4vku9wkv}}.\\
 
 En una primera prueba se configuraron varias tomas de medicación utilizando la aplicación móvil y posteriormente se reinició completamente el sistema. Tras el arranque, se verificó que la información asociada a las tomas programadas seguía disponible y podía consultarse desde el dispositivo sin necesidad de realizar una nueva sincronización. Igualmente, al modificar dichas tomas o eliminar alguna, seguían disponibles pero actualizadas. La Figura~\ref{fig:persistencia_tomas} muestra una captura correspondiente a esta prueba. El desarrollo completo del ensayo puede consultarse en el vídeo asociado\footnote{\url{https://tinyurl.com/uuppxkhh}}.
 
@@ -329,13 +329,13 @@ apagado y encendido del dispositivo. Esto confirma el correcto funcionamiento de
 
 \subsection{Almacenamiento del historial de mediciones}
 
-Además de mostrar la frecuencia cardíaca en tiempo real, el sistema desarrollado incorpora un mecanismo de almacenamiento persistente que permite conservar un historial de las mediciones realizadas por el usuario. Con el fin de validar su correcto funcionamiento, se llevaron a cabo diferentes pruebas destinadas a verificar el almacenamiento de los datos en la tarjeta microSD que incorpora el dispositivo, su posterior recuperación desde este, y su sincronización con la aplicación móvil.\\
+Además de mostrar la frecuencia cardíaca en tiempo real, el sistema desarrollado incorpora un mecanismo de almacenamiento persistente que permite conservar un historial de las mediciones realizadas por el usuario. Con el fin de validar su correcto funcionamiento, se llevaron a cabo diferentes pruebas destinadas a verificar el almacenamiento de los datos en la tarjeta microSD que incorpora el dispositivo, su posterior recuperación desde este, y su sincronización con la aplicación móvil. El desarrollo de esta funcionalidad se documenta en la Wiki del proyecto\footnote{\url{https://tinyurl.com/3mevkhw8}, \url{https://tinyurl.com/5wxy9she}}.\\
 
 Durante las pruebas se realizaron varias mediciones de frecuencia cardíaca que fueron almacenadas automáticamente en un fichero CSV alojado en la tarjeta SD. La Figura~\ref{fig:csv} muestra una captura del archivo utilizado para almacenar el historial de mediciones.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{figs/historial_csv.png}
+\includegraphics[width=0.45\textwidth]{figs/historial_csv.png}
 \caption{Archivo CSV utilizado para almacenar el historial de pulsaciones.}
 \label{fig:csv}
 \end{figure}
@@ -393,7 +393,7 @@ La correcta generación del informe PDF confirma, además, que la información a
 
 \section{Seguridad del sistema}
 
-Con el objetivo de restringir el acceso no autorizado y garantizar la correcta vinculación entre el dispositivo y la aplicación móvil, el sistema incorpora distintos mecanismos de seguridad. Entre ellos se incluyen un sistema de autenticación mediante PIN sincronizado entre ambos dispositivos, y un mecanismo de vinculación basado en tokens únicos. Para validar su funcionamiento se realizaron diferentes pruebas relacionadas con la autenticación de usuarios y la sincronización segura de la información.\\
+Con el objetivo de restringir el acceso no autorizado y garantizar la correcta vinculación entre el dispositivo y la aplicación móvil, el sistema incorpora distintos mecanismos de seguridad. Entre ellos se incluyen un sistema de autenticación mediante PIN sincronizado entre ambos dispositivos, y un mecanismo de vinculación basado en tokens únicos. Para validar su funcionamiento se realizaron diferentes pruebas relacionadas con la autenticación de usuarios y la sincronización segura de la información. El desarrollo de estas funcionalidades se documenta en la Wiki del proyecto\footnote{\url{https://tinyurl.com/mthuf2ku}, \url{https://tinyurl.com/ytp8sayv}}.\\
 
 \
 
@@ -409,7 +409,7 @@ La Figura~\ref{fig:validacion_pin} muestra una captura correspondiente a una de 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figs/validacion_pin.png}
+\includegraphics[width=0.75\textwidth]{figs/validacion_pin.png}
 \caption{Validación del acceso mediante PIN.}
 \label{fig:validacion_pin}
 \end{figure}
@@ -471,7 +471,7 @@ Tal y como puede observarse en el experimento descrito en los apartados anterior
 
 \
 
-La Figura~\ref{fig:token_vinculacion} muestra una captura correspondiente a los mensajes de depuración registrados durante una de las pruebas realizadas. Asimismo, los resultados obtenidos se resumen en la Tabla~\ref{tab:token_vinculacion}.
+La Figura~\ref{fig:token_vinculacion} muestra una captura correspondiente a los mensajes de depuración registrados durante una de las pruebas realizadas. Asimismo, los resultados obtenidos se resumen en la Tabla~\ref{tab:token_vinculacion}.\\
 
 \begin{table}[H]
 \centering
@@ -491,9 +491,17 @@ Los ensayos realizados muestran que el mecanismo de vinculación implementado fu
 
 \section{Evaluación global del sistema}
 
-Finalmente, se realizó una evaluación integral del sistema reproduciendo un escenario de uso representativo(Figura~\ref{fig:evaluacion_global}). Esta prueba permitió verificar el funcionamiento conjunto de los distintos módulos desarrollados y comprobar la correcta integración entre los componentes hardware y software que forman la solución propuesta.\\
+Finalmente, se realizó una evaluación integral del sistema reproduciendo un escenario de uso representativo (Figura~\ref{fig:evaluacion_global}). Esta prueba permitió verificar el funcionamiento conjunto de los distintos módulos desarrollados y comprobar la correcta integración entre los componentes hardware y software que forman la solución propuesta.\\
 
 La prueba consistió en recorrer el flujo completo de utilización del sistema, comenzando por el proceso de autenticación mediante PIN, la gestión de medicamentos y tomas desde la aplicación móvil, la sincronización bidireccional de la información, la medición de la frecuencia cardíaca, la consulta del historial de medidas, la generación del informe en formato PDF, y la dispensación automática de una toma programada. Asimismo, se comprobó la persistencia de la configuración tras reiniciar el dispositivo y la correcta recuperación de su estado.\\
+
+\
+
+\
+
+\
+
+\
 
 El desarrollo completo de esta evaluación puede observarse en el vídeo asociado\footnote{\url{https://tinyurl.com/y2fv5dud}}.
 
