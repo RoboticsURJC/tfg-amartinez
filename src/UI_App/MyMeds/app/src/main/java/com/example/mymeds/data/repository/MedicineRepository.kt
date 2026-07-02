@@ -22,4 +22,8 @@ object MedicineRepository {
     fun removeAt(position: Int) {
         medicines.removeAt(position)
     }
+
+    fun clear() {
+        medicines.clear()
+    }
 }

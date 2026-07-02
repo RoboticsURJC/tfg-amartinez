@@ -15,8 +15,6 @@ import com.example.mymeds.data.util.MedicineStorage
 import com.example.mymeds.databinding.FragmentMedicineListBinding
 import com.example.mymeds.R
 import com.example.mymeds.data.network.EspApi
-import com.example.mymeds.data.repository.EspConfig
-import com.example.mymeds.data.util.JsonUtils
 
 class MedicineListFragment : Fragment() {
 
@@ -43,27 +41,6 @@ class MedicineListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecycler()
-
-        //if (EspConfig.baseUrl.isNotEmpty()) {
-
-            //EspApi.getMedicines { json ->
-
-                //if (json != null) {
-
-                    //val meds =
-                        //JsonUtils.medicinesFromJson(json)
-
-                    //requireActivity().runOnUiThread {
-
-                        //MedicineRepository.setAll(meds)
-
-                        //MedicineStorage.save(requireContext())
-
-                        //updateUI()
-                    //}
-                //}
-            //}
-        //}
 
         binding.buttonAddMedicine.setOnClickListener {
             showAddDialog()
@@ -99,17 +76,39 @@ class MedicineListFragment : Fragment() {
         val input = android.widget.EditText(requireContext())
         input.hint = "Nombre del medicamento"
 
-        AlertDialog.Builder(requireContext())
+        val dialog = AlertDialog.Builder(requireContext())
             .setTitle("Nuevo medicamento")
             .setView(input)
-            .setPositiveButton("Añadir") { _, _ ->
+            .setPositiveButton("Añadir", null)
+            .setNegativeButton("Cancelar", null)
+            .create()
+
+        dialog.setOnShowListener {
+
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
 
                 val name = input.text.toString().trim()
 
                 if (name.isBlank()) {
-                    Toast.makeText(requireContext(), "Nombre vacío", Toast.LENGTH_SHORT).show()
-                    return@setPositiveButton
+                    Toast.makeText(
+                        requireContext(),
+                        "Nombre vacío",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
                 }
+
+                input.clearFocus()
+
+                val imm =
+                    requireContext().getSystemService(
+                        android.content.Context.INPUT_METHOD_SERVICE
+                    ) as android.view.inputmethod.InputMethodManager
+
+                imm.hideSoftInputFromWindow(
+                    input.windowToken,
+                    0
+                )
 
                 val med = Medicine(
                     id = "med_" + System.currentTimeMillis(),
@@ -123,9 +122,12 @@ class MedicineListFragment : Fragment() {
                 EspApi.sendMedicines()
 
                 updateUI()
+
+                dialog.dismiss()
             }
-            .setNegativeButton("Cancelar", null)
-            .show()
+        }
+
+        dialog.show()
     }
 
     override fun onDestroyView() {

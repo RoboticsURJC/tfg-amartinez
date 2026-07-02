@@ -9,10 +9,34 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mymeds.data.network.EspApi
 import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.databinding.ActivityPinBinding
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import com.example.mymeds.notifications.NotificationHelper
 
 class PinActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPinBinding
+
+    private val requestNotificationPermission =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { granted ->
+
+            if (granted) {
+                android.util.Log.d(
+                    "NOTIFICATIONS",
+                    "Permiso concedido"
+                )
+            } else {
+                android.util.Log.d(
+                    "NOTIFICATIONS",
+                    "Permiso denegado"
+                )
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +44,6 @@ class PinActivity : AppCompatActivity() {
         binding = ActivityPinBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
-        // Desactivar mientras sincronizamos
-        //binding.buttonUnlock.isEnabled = false
 
         val prefs =
             getSharedPreferences(
@@ -107,6 +128,21 @@ class PinActivity : AppCompatActivity() {
                     "PIN incorrecto",
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+
+            if (
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+
+                requestNotificationPermission.launch(
+                    Manifest.permission.POST_NOTIFICATIONS
+                )
             }
         }
     }

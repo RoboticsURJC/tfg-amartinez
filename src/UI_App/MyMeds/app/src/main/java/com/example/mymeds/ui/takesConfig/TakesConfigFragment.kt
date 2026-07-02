@@ -23,6 +23,7 @@ import com.example.mymeds.data.util.JsonUtils
 import com.example.mymeds.data.network.EspApi
 import android.util.Log
 import android.content.Context
+import com.example.mymeds.notifications.NotificationScheduler
 
 class TakesConfigFragment : Fragment() {
 
@@ -164,6 +165,8 @@ class TakesConfigFragment : Fragment() {
             } else {
                 TakeRepository.updateTake(editPosition, take)
             }
+
+            NotificationScheduler.scheduleAll(requireContext())
 
             saveTakesLocally()
 

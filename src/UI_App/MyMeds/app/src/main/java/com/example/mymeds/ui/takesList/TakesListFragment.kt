@@ -18,6 +18,7 @@ import com.example.mymeds.data.util.JsonUtils
 import com.example.mymeds.data.network.EspApi
 import android.content.Context
 import android.util.Log
+import com.example.mymeds.notifications.NotificationScheduler
 
 class TakesListFragment : Fragment() {
 
@@ -52,13 +53,19 @@ class TakesListFragment : Fragment() {
 
         loadTakesFromPrefs()
 
+        Log.d("TAKES_SYNC", "BaseUrl = ${EspConfig.baseUrl}")
+
         if (EspConfig.baseUrl.isNotEmpty()) {
 
             EspApi.getTakes { json ->
 
+                Log.d("TAKES_SYNC", "JSON recibido: $json")
+
                 if (json != null) {
 
                     val takes = JsonUtils.jsonToTakes(json)
+
+                    Log.d("TAKES_SYNC", "JSON recibido: $json")
 
                     requireActivity().runOnUiThread {
 
@@ -186,6 +193,8 @@ class TakesListFragment : Fragment() {
             .setPositiveButton("Eliminar") { _, _ ->
 
                 TakeRepository.removeTake(position)
+
+                NotificationScheduler.scheduleAll(requireContext())
 
                 saveTakesLocally()
                 EspApi.sendTakes()

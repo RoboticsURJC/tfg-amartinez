@@ -5,9 +5,9 @@ import com.example.mymeds.data.repository.EspConfig
 import com.example.mymeds.data.repository.TakeRepository
 import com.example.mymeds.data.util.JsonUtils
 import com.example.mymeds.data.repository.MedicineRepository
-import com.google.gson.Gson
 import android.content.Context
 import com.example.mymeds.MyMedsApplication
+import com.example.mymeds.data.util.MedicineStorage
 
 object EspApi {
 
@@ -487,5 +487,73 @@ object EspApi {
             }
 
         }.start()
+    }
+
+    fun checkConnection(onResult: (Boolean) -> Unit) {
+
+        getTakes { result ->
+
+            onResult(result != null)
+        }
+    }
+
+    fun synchronizeAll(
+        context: Context,
+        onResult: (Boolean) -> Unit
+    ) {
+
+        getMedicines { medicinesJson ->
+
+            if (medicinesJson == null) {
+                onResult(false)
+                return@getMedicines
+            }
+
+            val medicines =
+                JsonUtils.medicinesFromJson(
+                    medicinesJson
+                )
+
+            MedicineRepository.setAll(
+                medicines
+            )
+
+            MedicineStorage.save(
+                context
+            )
+
+            getTakes { takesJson ->
+
+                if (takesJson == null) {
+                    onResult(false)
+                    return@getTakes
+                }
+
+                val takes =
+                    JsonUtils.jsonToTakes(
+                        takesJson
+                    )
+
+                TakeRepository.clear()
+                TakeRepository.addAll(
+                    takes
+                )
+
+                val prefs =
+                    context.getSharedPreferences(
+                        "app",
+                        Context.MODE_PRIVATE
+                    )
+
+                prefs.edit()
+                    .putString(
+                        "takes",
+                        JsonUtils.takesToJson(takes)
+                    )
+                    .apply()
+
+                onResult(true)
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.mymeds
 
 import android.app.Application
+import com.example.mymeds.notifications.NotificationHelper
 
 class MyMedsApplication : Application() {
 
@@ -14,5 +15,7 @@ class MyMedsApplication : Application() {
         super.onCreate()
 
         instance = this
+
+        NotificationHelper.createNotificationChannel(this)
     }
 }

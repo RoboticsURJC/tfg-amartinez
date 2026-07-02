@@ -73,6 +73,12 @@ static void reset_factory_timer_cb(lv_timer_t *timer)
     prefs.clear();
     prefs.end();
 
+    prefs.begin("wifi", false);
+    prefs.clear();
+    prefs.end();
+
+    WiFi.disconnect(true, true);
+
     ESP.restart();
 }
 

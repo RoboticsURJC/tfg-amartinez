@@ -101,13 +101,13 @@ class ConfigFragment : Fragment() {
             var success = false
             var finalUrl: String? = savedUrl
 
-            // 🔹 1. Intentar con URL guardada
             if (savedUrl != null) {
+
                 Log.d("CONFIG", "Probando URL guardada: $savedUrl")
+
                 success = checkConnection(savedUrl)
             }
 
-            // 🔥 2. SI FALLA → DISCOVERY UDP
             if (!success) {
 
                 Log.d("CONFIG", "Fallback → buscando ESP por UDP")
@@ -123,7 +123,9 @@ class ConfigFragment : Fragment() {
                     success = checkConnection(finalUrl)
 
                     if (success) {
-                        prefs.edit().putString("esp_url", finalUrl).apply()
+                        prefs.edit()
+                            .putString("esp_url", finalUrl)
+                            .apply()
                     }
                 }
             }
@@ -137,19 +139,49 @@ class ConfigFragment : Fragment() {
                     .apply()
 
                 EspConfig.baseUrl = ""
-            }
 
-            if (success && finalUrl != null) {
-                EspConfig.baseUrl = finalUrl
-            }
+                activity?.runOnUiThread {
 
-            activity?.runOnUiThread {
+                    if (!isAdded || _binding == null) return@runOnUiThread
 
-                if (!isAdded || _binding == null) {
-                    return@runOnUiThread
+                    updateUI()
                 }
 
-                updateUI()
+                return@Thread
+            }
+
+            EspConfig.baseUrl = finalUrl!!
+
+            val token =
+                prefs.getString(
+                    "device_token",
+                    ""
+                ) ?: ""
+
+            if (token.isBlank()) {
+
+                Log.d("LINK", "Token vacío. Solicitando nuevo vínculo...")
+
+                EspApi.refreshLink {
+
+                    Log.d("LINK", "Vínculo actualizado correctamente")
+
+                    activity?.runOnUiThread {
+
+                        if (!isAdded || _binding == null) return@runOnUiThread
+
+                        updateUI()
+                    }
+                }
+
+            } else {
+
+                activity?.runOnUiThread {
+
+                    if (!isAdded || _binding == null) return@runOnUiThread
+
+                    updateUI()
+                }
             }
 
         }.start()
