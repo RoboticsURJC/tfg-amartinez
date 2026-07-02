@@ -12,7 +12,7 @@ All detailed information regarding the project’s development — including des
 
 The project documentation generated with Doxygen is available in the following formats:
 
-- **HTML:** [App](https://github.com/RoboticsURJC/tfg-amartinez/blob/main/Doc/Doxygen/App/doxygen-doc/html/index.html), [ESP](https://github.com/RoboticsURJC/tfg-amartinez/blob/main/Doc/Doxygen/ESP/doxygen-doc/html/index.html)
+- **HTML:** [App](https://rawcdn.githack.com/RoboticsURJC/tfg-amartinez/6384b620833e4afaa40a8c1caa4b9117afb29876/Doc/Doxygen/App/doxygen-doc/html/index.html), [ESP](https://rawcdn.githack.com/RoboticsURJC/tfg-amartinez/6384b620833e4afaa40a8c1caa4b9117afb29876/Doc/Doxygen/ESP/doxygen-doc/html/index.html)
 - **PDF:** [App](https://github.com/RoboticsURJC/tfg-amartinez/blob/main/Doc/Doxygen/App/doxygen-doc/latex/refman.pdf), [ESP](https://github.com/RoboticsURJC/tfg-amartinez/blob/main/Doc/Doxygen/ESP/doxygen-doc/latex/refman.pdf)
 
 If you have any questions or wish to contribute, feel free to open an issue or contact me.
