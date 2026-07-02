@@ -330,51 +330,47 @@ Tras recibir estas credenciales, el dispositivo se conecta a la red WiFi indicad
 \subsubsection{Descubrimiento del dispositivo}
 \label{sec:descubrimiento}
 
-Para facilitar la conexión entre la aplicación móvil y el dispositivo, se ha implementado un mecanismo de descubrimiento que permite localizar automáticamente la ESP32 dentro de la red. Este proceso evita que el usuario tenga que introducir manualmente la dirección IP del dispositivo, mejorando la experiencia de uso y simplificando la interacción con el sistema.
+Para facilitar la conexión entre la aplicación móvil y el dispositivo, se ha implementado un mecanismo de descubrimiento que permite localizar automáticamente la ESP32 dentro de la red local. Este proceso evita que el usuario tenga que introducir manualmente la dirección IP del dispositivo, mejorando la experiencia de uso y simplificando la interacción con el sistema.
 
-En el funcionamiento normal, la aplicación localiza el dispositivo mediante un proceso de búsqueda activa en la red local. Para ello, se realizan peticiones HTTP de forma paralela a diferentes direcciones IP dentro del rango de la red, verificando la respuesta del \textit{endpoint} específico del dispositivo.
+En el funcionamiento normal, la aplicación intenta inicialmente establecer comunicación utilizando la última dirección IP almacenada del dispositivo. Si la comprobación falla, se inicia un proceso de descubrimiento automático mediante difusión UDP (\textit{broadcast}) en la red local. Para ello, la aplicación envía un mensaje de descubrimiento al puerto correspondiente y espera la respuesta de la ESP32, obteniendo automáticamente su dirección IP.
 
-\begin{code}[H]
-\begin{lstlisting}[language=Kotlin]
-for (i in 1..255 step 10) {
+\begin{lstlisting}[language=Kotlin, caption={Descubrimiento automático del dispositivo mediante difusión UDP}, label={cod:discover_esp}]
+private fun discoverEsp(): String? {
 
-    val threads = mutableListOf<Thread>()
+    val socket = DatagramSocket()
+    socket.broadcast = true
+    socket.soTimeout = 2000
 
-    for (j in i until i + 10) {
+    val message = "DISCOVER_ESP".toByteArray()
 
-        val thread = Thread {
+    val address =
+        InetAddress.getByName(getBroadcastAddress())
 
-            val ip = "http://192.168.1.$j"
+    socket.send(
+        DatagramPacket(
+            message,
+            message.size,
+            address,
+            8888
+        )
+    )
 
-            try {
-                val url = URL("$ip/link")
-                val conn = url.openConnection() as HttpURLConnection
+    val buffer = ByteArray(1024)
+    val response = DatagramPacket(buffer, buffer.size)
 
-                conn.requestMethod = "GET"
-                conn.connectTimeout = 500
-                conn.readTimeout = 500
+    socket.receive(response)
 
-                if (conn.responseCode == 200) {
-                    foundIp = ip
-                }
-
-            } catch (_: Exception) {}
-        }
-
-        thread.start()
-        threads.add(thread)
+    return if (
+        String(response.data, 0, response.length) == "ESP_HERE"
+    ) {
+        response.address.hostAddress
+    } else {
+        null
     }
-
-    threads.forEach { it.join() }
-
-    if (foundIp != null) break
 }
 \end{lstlisting}
-\caption{Búsqueda paralela del dispositivo mediante peticiones HTTP}
-\label{cod:discover}
-\end{code}
 
-Este flujo permite automatizar completamente el proceso de conexión entre ambos sistemas, evitando configuraciones manuales por parte del usuario.
+Una vez obtenida la dirección IP, la aplicación verifica la conectividad mediante el endpoint \texttt{/ping}. Si la comprobación es satisfactoria, la dirección se almacena para futuras conexiones y, si es necesario, se solicita automáticamente un nuevo token mediante el endpoint \texttt{/link}, permitiendo establecer la comunicación de forma transparente y adaptándose a posibles cambios en la dirección IP del dispositivo.
 
 \section{Desarrollo hardware}
 \label{sec:desarrollo_hardware}
