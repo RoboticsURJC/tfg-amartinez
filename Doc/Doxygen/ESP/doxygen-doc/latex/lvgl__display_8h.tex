@@ -1,0 +1,85 @@
+\doxysection{include/lvgl\+\_\+display.h File Reference}
+\hypertarget{lvgl__display_8h}{}\label{lvgl__display_8h}\index{include/lvgl\_display.h@{include/lvgl\_display.h}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+Include dependency graph for lvgl\+\_\+display.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{lvgl__display_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{lvgl__display_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17}{lvgl\+\_\+begin}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17}\label{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17} 
+\index{lvgl\_display.h@{lvgl\_display.h}!lvgl\_begin@{lvgl\_begin}}
+\index{lvgl\_begin@{lvgl\_begin}!lvgl\_display.h@{lvgl\_display.h}}
+\doxysubsubsection{\texorpdfstring{lvgl\_begin()}{lvgl\_begin()}}
+{\footnotesize\ttfamily void lvgl\+\_\+begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{lvgl__display_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{lvgl__display_8cpp_source}{lvgl\+\_\+display.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ lv\_init();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.begin();}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.setRotation(3);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ TFT\_BL}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ pinMode(\mbox{\hyperlink{User__Setup_8h_a541b5fc642dbcc81f373d4b866c88f80}{TFT\_BL}},\ OUTPUT);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ digitalWrite(\mbox{\hyperlink{User__Setup_8h_a541b5fc642dbcc81f373d4b866c88f80}{TFT\_BL}},\ HIGH);}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ lv\_disp\_draw\_buf\_init(\&\mbox{\hyperlink{lvgl__display_8cpp_ad7e0ff2e01cd163f72fac07f0e70c950}{draw\_buf}},\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ NULL,\ 320*20);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ lv\_disp\_drv\_t\ disp\_drv;}
+\DoxyCodeLine{00037\ \ \ \ \ lv\_disp\_drv\_init(\&disp\_drv);}
+\DoxyCodeLine{00038\ \ \ \ \ disp\_drv.hor\_res\ =\ 320;}
+\DoxyCodeLine{00039\ \ \ \ \ disp\_drv.ver\_res\ =\ 240;}
+\DoxyCodeLine{00040\ \ \ \ \ disp\_drv.flush\_cb\ =\ \mbox{\hyperlink{lvgl__display_8cpp_a4911b62a05c52c43fabb6747033f82b9}{my\_disp\_flush}};}
+\DoxyCodeLine{00041\ \ \ \ \ disp\_drv.draw\_buf\ =\ \&\mbox{\hyperlink{lvgl__display_8cpp_ad7e0ff2e01cd163f72fac07f0e70c950}{draw\_buf}};}
+\DoxyCodeLine{00042\ \ \ \ \ disp\_drv.full\_refresh\ =\ 1;}
+\DoxyCodeLine{00043\ \ \ \ \ lv\_disp\_drv\_register(\&disp\_drv);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b}{lvgl\_touch\_init}}();}
+\DoxyCodeLine{00046\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}, \mbox{\hyperlink{lvgl__display_8cpp_ad7e0ff2e01cd163f72fac07f0e70c950}{draw\+\_\+buf}}, \mbox{\hyperlink{lvgl__touch_8h_a77505c2b918dec6cea21b12e13657c5b}{lvgl\+\_\+touch\+\_\+init()}}, \mbox{\hyperlink{lvgl__display_8cpp_a4911b62a05c52c43fabb6747033f82b9}{my\+\_\+disp\+\_\+flush()}}, \mbox{\hyperlink{lvgl__display_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}, and \mbox{\hyperlink{User__Setup_8h_a541b5fc642dbcc81f373d4b866c88f80}{TFT\+\_\+\+BL}}.
+
+
+
+Referenced by \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{lvgl__display_8h_ad56a01dcf5e79487fdc1d12bb0242f17_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,218 @@
+\doxysection{Takes\+List\+Fragment.\+kt}
+\hypertarget{TakesListFragment_8kt_source}{}\label{TakesListFragment_8kt_source}\index{app/src/main/java/com/example/mymeds/ui/takesList/TakesListFragment.kt@{app/src/main/java/com/example/mymeds/ui/takesList/TakesListFragment.kt}}
+\mbox{\hyperlink{TakesListFragment_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00001}00001\ package\ com.example.mymeds.ui.takesList}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00003}00003\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00004}00004\ import\ androidx.fragment.app.Fragment}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00005}00005\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00006}00006\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00007}00007\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00008}00008\ import\ com.example.mymeds.R}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00009}00009\ import\ androidx.appcompat.app.AlertDialog}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00010}00010\ import\ androidx.navigation.fragment.findNavController}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00011}00011\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00012}00012\ import\ com.example.mymeds.databinding.FragmentTakesListBinding}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00013}00013\ import\ com.example.mymeds.data.repository.TakeRepository}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00014}00014\ import\ com.example.mymeds.data.repository.MedicineRepository}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00015}00015\ import\ com.example.mymeds.data.util.MedicineStorage}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00016}00016\ import\ com.example.mymeds.data.repository.EspConfig}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00017}00017\ import\ com.example.mymeds.data.util.JsonUtils}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00018}00018\ import\ com.example.mymeds.data.network.EspApi}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00019}00019\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00020}00020\ import\ android.util.Log}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00021}00021\ import\ com.example.mymeds.notifications.NotificationScheduler}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00023}00023\ class\ TakesListFragment\ :\ Fragment()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00025}00025\ \ \ \ \ private\ var\ \_binding:\ FragmentTakesListBinding?\ =\ null}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00026}00026\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00028}00028\ \ \ \ \ private\ lateinit\ var\ adapter:\ TakesAdapter}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00030}00030\ \ \ \ \ override\ fun\ onCreateView(}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,\ container:\ ViewGroup?,}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00033}00033\ \ \ \ \ ):\ View\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentTakesListBinding.inflate(inflater,\ container,\ false)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ binding.buttonBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.configFragment)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ binding.buttonAddFirstTake.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.takesConfigFragment)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ binding.buttonAddTake.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.takesConfigFragment)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ return\ binding.root}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00051}00051\ \ \ \ \ override\ fun\ onViewCreated(view:\ View,\ savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ super.onViewCreated(view,\ savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ loadTakesFromPrefs()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ Log.d("{}TAKES\_SYNC"{},\ "{}BaseUrl\ =\ \$\{EspConfig.baseUrl\}"{})}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ if\ (EspConfig.baseUrl.isNotEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ EspApi.getTakes\ \{\ json\ -\/>}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}TAKES\_SYNC"{},\ "{}JSON\ recibido:\ \$json"{})}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (json\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ takes\ =\ JsonUtils.jsonToTakes(json)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}TAKES\_SYNC"{},\ "{}JSON\ recibido:\ \$json"{})}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireActivity().runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ current\ =\ TakeRepository.getTakes()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ merged\ =\ takes.map\ \{\ incoming\ -\/>}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ local\ =\ current.find\ \{\ it.id\ ==\ incoming.id\ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (local\ !=\ null\ \&\&\ local.medicines.isNotEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ incoming.copy(}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ medicines\ =\ local.medicines}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ incoming}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.clear()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.addAll(merged)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ saveTakesLocally()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ //EspApi.getMedicines\ \{\ json\ -\/>}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //if\ (json\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //val\ meds\ =}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //JsonUtils.medicinesFromJson(json)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //requireActivity().runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //MedicineRepository.setAll(meds)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //MedicineStorage.save(requireContext())}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //Log.d(}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //"{}ESP\_MED\_SYNC"{},}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //"{}Medicamentos\ sincronizados:\ \$\{meds.size\}"{}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ //\}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ val\ takes\ =\ TakeRepository.getTakes()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ adapter\ =\ TakesAdapter(}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ takes,}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ onEditClick\ =\ \{\ position\ -\/>}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ bundle\ =\ Bundle()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bundle.putInt("{}position"{},\ position)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R.id.takesConfigFragment,}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bundle}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ onDeleteClick\ =\ \{\ position\ -\/>}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ showDeleteConfirmation(position)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00134}00134\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ binding.takesRecycler.adapter\ =\ adapter}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ binding.takesRecycler.layoutManager\ =\ LinearLayoutManager(requireContext())}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00138}00138\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00140}00140\ \ \ \ \ override\ fun\ onResume()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ super.onResume()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00143}00143\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00145}00145\ \ \ \ \ private\ fun\ updateUI()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ val\ takes\ =\ TakeRepository.getTakes()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ if\ (takes.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ binding.emptyState.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ binding.takesState.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00152}00152\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ binding.emptyState.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ binding.takesState.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ adapter.notifyDataSetChanged()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00157}00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00158}00158\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00160}00160\ \ \ \ \ private\ fun\ loadTakesFromPrefs()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00162}00162\ \ \ \ \ \ \ \ \ val\ prefs\ =\ requireContext()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ .getSharedPreferences("{}app"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00165}00165\ \ \ \ \ \ \ \ \ val\ json\ =\ prefs.getString("{}takes"{},\ null)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00167}00167\ \ \ \ \ \ \ \ \ if\ (json\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ val\ takes\ =\ JsonUtils.jsonToTakes(json)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.clear()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.addAll(takes)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00173}00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00174}00174\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00176}00176\ \ \ \ \ private\ fun\ saveTakesLocally()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00178}00178\ \ \ \ \ \ \ \ \ val\ prefs\ =\ requireContext()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ .getSharedPreferences("{}app"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ val\ json\ =\ JsonUtils.takesToJson(TakeRepository.getTakes())}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00183}00183\ \ \ \ \ \ \ \ \ prefs.edit()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ .putString("{}takes"{},\ json)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ .apply()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00186}00186\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00188}00188\ \ \ \ \ private\ fun\ showDeleteConfirmation(position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00190}00190\ \ \ \ \ \ \ \ \ AlertDialog.Builder(requireContext())}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ .setTitle("{}Eliminar\ toma"{})}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ .setMessage("{}¿Estás\ seguro\ de\ que\ quieres\ eliminar\ esta\ toma?\(\backslash\)nEsta\ acción\ no\ se\ puede\ deshacer."{})}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ .setPositiveButton("{}Eliminar"{})\ \{\ \_,\ \_\ -\/>}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TakeRepository.removeTake(position)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NotificationScheduler.scheduleAll(requireContext())}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ saveTakesLocally()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EspApi.sendTakes()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ .setNegativeButton("{}Cancelar"{},\ null)}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ .show()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00206}00206\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00208}00208\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00209}00209\ \ \ \ \ \ \ \ \ super.onDestroyView()}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00210}00210\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00211}00211\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{TakesListFragment_8kt_source_l00212}00212\ \}}
+
+\end{DoxyCode}

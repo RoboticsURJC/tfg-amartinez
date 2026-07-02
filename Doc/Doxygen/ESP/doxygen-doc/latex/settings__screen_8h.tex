@@ -1,0 +1,163 @@
+\doxysection{include/user\+\_\+interface/settings\+\_\+screen.h File Reference}
+\hypertarget{settings__screen_8h}{}\label{settings__screen_8h}\index{include/user\_interface/settings\_screen.h@{include/user\_interface/settings\_screen.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__screen_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9}{show\+\_\+settings\+\_\+screen}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9}\label{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9} 
+\index{settings\_screen.h@{settings\_screen.h}!show\_settings\_screen@{show\_settings\_screen}}
+\index{show\_settings\_screen@{show\_settings\_screen}!settings\_screen.h@{settings\_screen.h}}
+\doxysubsubsection{\texorpdfstring{show\_settings\_screen()}{show\_settings\_screen()}}
+{\footnotesize\ttfamily void show\+\_\+settings\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{settings__screen_8cpp_source_l00085}{85}} of file \mbox{\hyperlink{settings__screen_8cpp_source}{settings\+\_\+screen.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ lv\_obj\_clean(lv\_scr\_act());}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a506d8a4a903e58e52fd3e541f061a453}{reset\_pending}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(lv\_scr\_act(),lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00091\ \ \ \ \ lv\_obj\_t\ *title\ =\ lv\_label\_create(lv\_scr\_act());}
+\DoxyCodeLine{00092\ \ \ \ \ lv\_label\_set\_text(title,\textcolor{stringliteral}{"{}Ajustes"{}});}
+\DoxyCodeLine{00093\ \ \ \ \ lv\_obj\_set\_style\_text\_color(title,lv\_color\_white(),0);}
+\DoxyCodeLine{00094\ \ \ \ \ lv\_obj\_set\_style\_text\_font(title,\&lv\_font\_montserrat\_24,0);}
+\DoxyCodeLine{00095\ \ \ \ \ lv\_obj\_align(title,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 14);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ lv\_obj\_t\ *status\_box\ =\ lv\_obj\_create(lv\_scr\_act());}
+\DoxyCodeLine{00098\ \ \ \ \ lv\_obj\_set\_size(status\_box,\ 265,\ 118);}
+\DoxyCodeLine{00099\ \ \ \ \ lv\_obj\_set\_pos(status\_box,\ 28,\ 54);}
+\DoxyCodeLine{00100\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(status\_box,\ lv\_color\_make(67,\ 37,\ 73),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00101\ \ \ \ \ lv\_obj\_set\_style\_border\_width(status\_box,\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00102\ \ \ \ \ lv\_obj\_set\_style\_radius(status\_box,\ 12,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00103\ \ \ \ \ lv\_obj\_clear\_flag(status\_box,\ LV\_OBJ\_FLAG\_SCROLLABLE);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ lv\_obj\_t\ *status\_title\ =\ lv\_label\_create(status\_box);}
+\DoxyCodeLine{00106\ \ \ \ \ lv\_label\_set\_text(status\_title,\ \textcolor{stringliteral}{"{}Estado\ del\ dispensador"{}});}
+\DoxyCodeLine{00107\ \ \ \ \ lv\_obj\_set\_style\_text\_color(status\_title,\ lv\_color\_white(),\ 0);}
+\DoxyCodeLine{00108\ \ \ \ \ lv\_obj\_set\_style\_text\_font(status\_title,\ \&lv\_font\_montserrat\_18,\ 0);}
+\DoxyCodeLine{00109\ \ \ \ \ lv\_obj\_align(status\_title,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 6);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ lv\_obj\_t\ *status\_value\ =\ lv\_label\_create(status\_box);}
+\DoxyCodeLine{00112\ \ \ \ \ lv\_label\_set\_text(status\_value,\ WiFi.status()\ ==\ WL\_CONNECTED\ ?\ \textcolor{stringliteral}{"{}Conectado"{}}\ :\ \textcolor{stringliteral}{"{}Desconectado"{}});}
+\DoxyCodeLine{00113\ \ \ \ \ lv\_obj\_set\_style\_text\_color(}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ status\_value,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ WiFi.status()\ ==\ WL\_CONNECTED\ ?\ lv\_palette\_main(LV\_PALETTE\_GREEN)\ :\ lv\_palette\_main(LV\_PALETTE\_RED),}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ 0}
+\DoxyCodeLine{00117\ \ \ \ \ );}
+\DoxyCodeLine{00118\ \ \ \ \ lv\_obj\_set\_style\_text\_font(status\_value,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ 0);}
+\DoxyCodeLine{00119\ \ \ \ \ lv\_obj\_align(status\_value,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 36);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ lv\_obj\_t\ *status\_detail\ =\ lv\_label\_create(status\_box);}
+\DoxyCodeLine{00122\ \ \ \ \ String\ detail\ =\ \textcolor{stringliteral}{"{}IP:\ "{}};}
+\DoxyCodeLine{00123\ \ \ \ \ detail\ +=\ WiFi.status()\ ==\ WL\_CONNECTED\ ?\ WiFi.localIP().toString()\ :\ String(\textcolor{stringliteral}{"{}-\/-\/"{}});}
+\DoxyCodeLine{00124\ \ \ \ \ lv\_label\_set\_text(status\_detail,\ detail.c\_str());}
+\DoxyCodeLine{00125\ \ \ \ \ lv\_obj\_set\_style\_text\_color(status\_detail,\ lv\_color\_make(230,\ 220,\ 235),\ 0);}
+\DoxyCodeLine{00126\ \ \ \ \ lv\_obj\_set\_style\_text\_font(status\_detail,\ \&lv\_font\_montserrat\_24,\ 0);}
+\DoxyCodeLine{00127\ \ \ \ \ lv\_obj\_align(status\_detail,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 68);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a3eb559a94eb0b8cd26c09fbb4010cbab}{create\_section\_label}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Seguridad"{}},\ 188);}
+\DoxyCodeLine{00130\ \ \ \ \ lv\_obj\_t\ *btnPin\ =\ \mbox{\hyperlink{settings__screen_8cpp_a3fa40183709bd225defcfedb29f3ab8c}{create\_action\_button}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Cambiar\ PIN"{}},\ 222);}
+\DoxyCodeLine{00131\ \ \ \ \ lv\_obj\_add\_event\_cb(btnPin,[](lv\_event\_t\ *e)}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a506d8a4a903e58e52fd3e541f061a453}{reset\_pending}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{change__pin__screen_8h_ad08507623b40f34993103c86c1c34055}{show\_change\_pin\_screen}}();}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \},LV\_EVENT\_CLICKED,NULL}
+\DoxyCodeLine{00136\ \ \ \ \ );}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a3eb559a94eb0b8cd26c09fbb4010cbab}{create\_section\_label}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Sincronizacion"{}},\ 280);}
+\DoxyCodeLine{00139\ \ \ \ \ lv\_obj\_t\ *btnSync\ =\ \mbox{\hyperlink{settings__screen_8cpp_a3fa40183709bd225defcfedb29f3ab8c}{create\_action\_button}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Sincronizar\(\backslash\)nconfiguracion"{}},\ 314);}
+\DoxyCodeLine{00140\ \ \ \ \ lv\_obj\_set\_size(btnSync,\ 285,\ 68);}
+\DoxyCodeLine{00141\ \ \ \ \ lv\_obj\_add\_event\_cb(btnSync,\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a506d8a4a903e58e52fd3e541f061a453}{reset\_pending}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clock__mod_8h_a0560780ed0fa14ae31b096e24fce8004}{clock\_sync}}();}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a33f7ffbc57ce12dc7ae35dc9b08076ce}{show\_settings\_message}}(\textcolor{stringliteral}{"{}Configuracion\ sincronizada"{}});}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL}
+\DoxyCodeLine{00147\ \ \ \ \ );}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ lv\_obj\_t\ *btnStatus\ =\ \mbox{\hyperlink{settings__screen_8cpp_a3fa40183709bd225defcfedb29f3ab8c}{create\_action\_button}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Actualizar\ estado"{}},\ 394);}
+\DoxyCodeLine{00150\ \ \ \ \ lv\_obj\_add\_event\_cb(btnStatus,\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_ad23f69d53abd94f0c85d6b14aa6c2aa9}{show\_settings\_screen}}();}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL}
+\DoxyCodeLine{00154\ \ \ \ \ );}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a3eb559a94eb0b8cd26c09fbb4010cbab}{create\_section\_label}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Sistema"{}},\ 456);}
+\DoxyCodeLine{00157\ \ \ \ \ lv\_obj\_t\ *btnRestart\ =\ \mbox{\hyperlink{settings__screen_8cpp_a3fa40183709bd225defcfedb29f3ab8c}{create\_action\_button}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Reiniciar\ dispositivo"{}},\ 490);}
+\DoxyCodeLine{00158\ \ \ \ \ lv\_obj\_add\_event\_cb(btnRestart,\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a506d8a4a903e58e52fd3e541f061a453}{reset\_pending}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a33f7ffbc57ce12dc7ae35dc9b08076ce}{show\_settings\_message}}(\textcolor{stringliteral}{"{}Reiniciando\ dispositivo..."{}});}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_timer\_create(\mbox{\hyperlink{settings__screen_8cpp_a1b6e4adb746348fca38f713ea42ecfc0}{restart\_device\_timer\_cb}},\ 1200,\ NULL);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL}
+\DoxyCodeLine{00164\ \ \ \ \ );}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ lv\_obj\_t\ *btnReset\ =\ \mbox{\hyperlink{settings__screen_8cpp_a3fa40183709bd225defcfedb29f3ab8c}{create\_action\_button}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Restablecer\ fabrica"{}},\ 548);}
+\DoxyCodeLine{00167\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btnReset,\ lv\_color\_make(185,\ 55,\ 95),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00168\ \ \ \ \ lv\_obj\_add\_event\_cb(btnReset,\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{settings__screen_8cpp_a506d8a4a903e58e52fd3e541f061a453}{reset\_pending}})\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a506d8a4a903e58e52fd3e541f061a453}{reset\_pending}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a33f7ffbc57ce12dc7ae35dc9b08076ce}{show\_settings\_message}}(\textcolor{stringliteral}{"{}Pulsa\ otra\ vez\ para\ restablecer"{}});}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a33f7ffbc57ce12dc7ae35dc9b08076ce}{show\_settings\_message}}(\textcolor{stringliteral}{"{}Restableciendo\ fabrica..."{}});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_timer\_create(\mbox{\hyperlink{settings__screen_8cpp_ac7f193e111dbca853ee4a1ab59e49890}{reset\_factory\_timer\_cb}},\ 1400,\ NULL);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL}
+\DoxyCodeLine{00179\ \ \ \ \ );}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_aed79df842c937eef4f9893a17ae77d25}{message\_label}}\ =\ lv\_label\_create(lv\_scr\_act());}
+\DoxyCodeLine{00182\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{settings__screen_8cpp_aed79df842c937eef4f9893a17ae77d25}{message\_label}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00183\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{settings__screen_8cpp_aed79df842c937eef4f9893a17ae77d25}{message\_label}},\ lv\_color\_make(230,\ 220,\ 235),\ 0);}
+\DoxyCodeLine{00184\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{settings__screen_8cpp_aed79df842c937eef4f9893a17ae77d25}{message\_label}},\ \&lv\_font\_montserrat\_14,\ 0);}
+\DoxyCodeLine{00185\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{settings__screen_8cpp_aed79df842c937eef4f9893a17ae77d25}{message\_label}},\ LV\_ALIGN\_TOP\_MID,\ 0,\ 598);}
+\DoxyCodeLine{00186\ \ \ \ \ lv\_obj\_add\_flag(\mbox{\hyperlink{settings__screen_8cpp_aed79df842c937eef4f9893a17ae77d25}{message\_label}},\ LV\_OBJ\_FLAG\_HIDDEN);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ lv\_obj\_t\ *btnBack\ =\ \mbox{\hyperlink{settings__screen_8cpp_a3fa40183709bd225defcfedb29f3ab8c}{create\_action\_button}}(lv\_scr\_act(),\ \textcolor{stringliteral}{"{}Volver"{}},\ 624);}
+\DoxyCodeLine{00189\ \ \ \ \ lv\_obj\_add\_event\_cb(btnBack,[](lv\_event\_t\ *e)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{settings__screen_8cpp_a506d8a4a903e58e52fd3e541f061a453}{reset\_pending}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \},LV\_EVENT\_CLICKED,NULL}
+\DoxyCodeLine{00194\ \ \ \ \ );}
+\DoxyCodeLine{00195\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{clock__mod_8h_a0560780ed0fa14ae31b096e24fce8004}{clock\+\_\+sync()}}, \mbox{\hyperlink{settings__screen_8cpp_a3fa40183709bd225defcfedb29f3ab8c}{create\+\_\+action\+\_\+button()}}, \mbox{\hyperlink{settings__screen_8cpp_a3eb559a94eb0b8cd26c09fbb4010cbab}{create\+\_\+section\+\_\+label()}}, \mbox{\hyperlink{settings__screen_8cpp_aed79df842c937eef4f9893a17ae77d25}{message\+\_\+label}}, \mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\+\_\+24\+\_\+regular}}, \mbox{\hyperlink{settings__screen_8cpp_ac7f193e111dbca853ee4a1ab59e49890}{reset\+\_\+factory\+\_\+timer\+\_\+cb()}}, \mbox{\hyperlink{settings__screen_8cpp_a506d8a4a903e58e52fd3e541f061a453}{reset\+\_\+pending}}, \mbox{\hyperlink{settings__screen_8cpp_a1b6e4adb746348fca38f713ea42ecfc0}{restart\+\_\+device\+\_\+timer\+\_\+cb()}}, \mbox{\hyperlink{change__pin__screen_8h_ad08507623b40f34993103c86c1c34055}{show\+\_\+change\+\_\+pin\+\_\+screen()}}, \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\+\_\+home\+\_\+screen()}}, \mbox{\hyperlink{settings__screen_8cpp_a33f7ffbc57ce12dc7ae35dc9b08076ce}{show\+\_\+settings\+\_\+message()}}, and \mbox{\hyperlink{settings__screen_8cpp_ad23f69d53abd94f0c85d6b14aa6c2aa9}{show\+\_\+settings\+\_\+screen()}}.
+
+
+
+Referenced by \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{change__pin__screen_8h_ad08507623b40f34993103c86c1c34055}{show\+\_\+change\+\_\+pin\+\_\+screen()}}, and \mbox{\hyperlink{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9}{show\+\_\+settings\+\_\+screen()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__screen_8h_ad23f69d53abd94f0c85d6b14aa6c2aa9_icgraph}
+\end{center}
+\end{figure}

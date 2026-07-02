@@ -1,0 +1,1508 @@
+\doxysection{include/user\+\_\+interface/pill\+\_\+takes.h File Reference}
+\hypertarget{pill__takes_8h}{}\label{pill__takes_8h}\index{include/user\_interface/pill\_takes.h@{include/user\_interface/pill\_takes.h}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+Include dependency graph for pill\+\_\+takes.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{pill__takes_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTakeMedicine}{Take\+Medicine}}
+\item 
+struct \mbox{\hyperlink{structTakeConfig}{Take\+Config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\+\_\+\+TAKES}}~7
+\item 
+\#define \mbox{\hyperlink{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}{MAX\+\_\+\+MEDICINES\+\_\+\+PER\+\_\+\+TAKE}}~3
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen}} ()
+\item 
+void \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen}} (int index)
+\item 
+void \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen}} (int index)
+\item 
+void \mbox{\hyperlink{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a}{delete\+\_\+take}} (int index)
+\item 
+void \mbox{\hyperlink{pill__takes_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\+\_\+home\+\_\+screen}} ()
+\item 
+void \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\+\_\+takes\+\_\+screen}} ()
+\item 
+int \mbox{\hyperlink{pill__takes_8h_a226f34b9f45999e9887df6ba5697af85}{get\+\_\+today\+\_\+index}} ()
+\item 
+bool \mbox{\hyperlink{pill__takes_8h_a276e05999682cc809bd995a814059a4e}{is\+\_\+take\+\_\+today}} (int index)
+\item 
+bool \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\+\_\+day\+\_\+active}} (uint8\+\_\+t mask, int day)
+\item 
+void \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\+\_\+day}} (uint8\+\_\+t \&mask, int day, bool value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}
+\item 
+\mbox{\hyperlink{structTakeConfig}{Take\+Config}} \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}} \mbox{[}\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\+\_\+\+TAKES}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}\label{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c} 
+\index{pill\_takes.h@{pill\_takes.h}!MAX\_MEDICINES\_PER\_TAKE@{MAX\_MEDICINES\_PER\_TAKE}}
+\index{MAX\_MEDICINES\_PER\_TAKE@{MAX\_MEDICINES\_PER\_TAKE}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_MEDICINES\_PER\_TAKE}{MAX\_MEDICINES\_PER\_TAKE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+MEDICINES\+\_\+\+PER\+\_\+\+TAKE~3}
+
+
+
+Definition at line \mbox{\hyperlink{pill__takes_8h_source_l00005}{5}} of file \mbox{\hyperlink{pill__takes_8h_source}{pill\+\_\+takes.\+h}}.
+
+\Hypertarget{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}\label{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4} 
+\index{pill\_takes.h@{pill\_takes.h}!MAX\_TAKES@{MAX\_TAKES}}
+\index{MAX\_TAKES@{MAX\_TAKES}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_TAKES}{MAX\_TAKES}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+TAKES~7}
+
+
+
+Definition at line \mbox{\hyperlink{pill__takes_8h_source_l00004}{4}} of file \mbox{\hyperlink{pill__takes_8h_source}{pill\+\_\+takes.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a}\label{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a} 
+\index{pill\_takes.h@{pill\_takes.h}!delete\_take@{delete\_take}}
+\index{delete\_take@{delete\_take}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{delete\_take()}{delete\_take()}}
+{\footnotesize\ttfamily void delete\+\_\+take (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{takes__storage_8cpp_source_l00175}{175}} of file \mbox{\hyperlink{takes__storage_8cpp_source}{takes\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ 0\ ||\ index\ >=\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}})}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ index;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}\ -\/\ 1;\ i++)}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i]\ =\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i\ +\ 1];}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}-\/-\/;}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{takes__storage_8cpp_a230495ec724f6295941efc6a5cabd1a0}{saveTakes}}();}
+\DoxyCodeLine{00188\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{takes__storage_8cpp_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes()}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, and \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+
+
+
+Referenced by \mbox{\hyperlink{takes__list_8cpp_a8c837e300674dc4b5cd4a4f9968046cc}{confirm\+\_\+delete()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}\label{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d} 
+\index{pill\_takes.h@{pill\_takes.h}!edit\_takes\_screen@{edit\_takes\_screen}}
+\index{edit\_takes\_screen@{edit\_takes\_screen}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{edit\_takes\_screen()}{edit\_takes\_screen()}}
+{\footnotesize\ttfamily void edit\+\_\+takes\+\_\+screen (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{edit__takes_8cpp_source_l00225}{225}} of file \mbox{\hyperlink{edit__takes_8cpp_source}{edit\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00226\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i]\ =\ NULL;}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}}\ =\ NULL;}
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}}\ =\ NULL;}
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}}\ =\ NULL;}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ ==\ -\/1)}
+\DoxyCodeLine{00236\ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ memset(\&\mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTakeConfig}{TakeConfig}}));}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ strcpy(\mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}}.\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{hour}},\ \textcolor{stringliteral}{"{}00:00"{}});}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}}.\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}\ =\ \&\mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\_index}}\ =\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};}
+\DoxyCodeLine{00247\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}\ =\ \&\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[index];}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\_index}}\ =\ index;}
+\DoxyCodeLine{00251\ \ \ \ \ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ lv\_obj\_t\ *scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(scr);}
+\DoxyCodeLine{00255\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00256\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(scr,\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{char}\ txt\_tittle[32];}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}})\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ sprintf(txt\_tittle,\ \textcolor{stringliteral}{"{}Editar\ Toma\ \%d"{}},\ \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\_index}}\ +\ 1);}
+\DoxyCodeLine{00262\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ sprintf(txt\_tittle,\ \textcolor{stringliteral}{"{}Nueva\ toma"{}});}
+\DoxyCodeLine{00264\ \ \ \ \ \}}
+\DoxyCodeLine{00265\ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \ \ lv\_obj\_t\ *lbl\_tittle\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00267\ \ \ \ \ lv\_label\_set\_text(lbl\_tittle,\ txt\_tittle);}
+\DoxyCodeLine{00268\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_tittle,\ \&\mbox{\hyperlink{montserrat__30__regular_8c_a53988053adb3570fce4c666dd13c0bce}{montserrat\_30\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00269\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_tittle,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00270\ \ \ \ \ lv\_obj\_align(lbl\_tittle,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 5);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ HORA\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00273\ \ \ \ \ lv\_obj\_t\ *lbl\_hour\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00274\ \ \ \ \ lv\_label\_set\_text(lbl\_hour,\ \textcolor{stringliteral}{"{}Hora"{}});}
+\DoxyCodeLine{00275\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_hour,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00276\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_hour,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00277\ \ \ \ \ lv\_obj\_set\_pos(lbl\_hour,\ 10,\ 50);}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roller\_w\ =\ 70;}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roller\_h\ =\ 60;}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ roller\_gap\ =\ 10;}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ group\_w\ =\ roller\_w*2\ +\ roller\_gap;}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ lv\_obj\_t\ *hour\_group\ =\ lv\_obj\_create(scr);}
+\DoxyCodeLine{00285\ \ \ \ \ lv\_obj\_set\_size(hour\_group,\ group\_w,\ roller\_h);}
+\DoxyCodeLine{00286\ \ \ \ \ lv\_obj\_set\_pos(hour\_group,\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(group\_w),\ 45);}
+\DoxyCodeLine{00287\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(hour\_group,\ LV\_OPA\_TRANSP,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00288\ \ \ \ \ lv\_obj\_set\_style\_border\_width(hour\_group,\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00289\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(hour\_group,\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00290\ \ \ \ \ lv\_obj\_clear\_flag(hour\_group,\ LV\_OBJ\_FLAG\_SCROLLABLE);}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{comment}{//****ROLLER\ HOURS****}}
+\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}}\ =\ lv\_roller\_create(hour\_group);}
+\DoxyCodeLine{00294\ \ \ \ \ lv\_roller\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}00\(\backslash\)n01\(\backslash\)n02\(\backslash\)n03\(\backslash\)n04\(\backslash\)n05\(\backslash\)n06\(\backslash\)n07\(\backslash\)n08\(\backslash\)n09\(\backslash\)n10\(\backslash\)n11\(\backslash\)n"{}}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}12\(\backslash\)n13\(\backslash\)n14\(\backslash\)n15\(\backslash\)n16\(\backslash\)n17\(\backslash\)n18\(\backslash\)n19\(\backslash\)n20\(\backslash\)n21\(\backslash\)n22\(\backslash\)n23"{}},}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ LV\_ROLLER\_MODE\_NORMAL);}
+\DoxyCodeLine{00298\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ roller\_w,\ roller\_h);}
+\DoxyCodeLine{00299\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ 0);}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{comment}{//Normal}}
+\DoxyCodeLine{00302\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ LV\_OPA\_TRANSP,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00303\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00304\ \ \ \ \ lv\_obj\_set\_style\_clip\_corner(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ \textcolor{keyword}{true},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00305\ \ \ \ \ lv\_obj\_set\_style\_border\_width(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00306\ \ \ \ \ lv\_obj\_set\_style\_shadow\_width(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00307\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00308\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{//Selected}}
+\DoxyCodeLine{00311\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ lv\_color\_make(238,\ 173,\ 253),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00312\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ LV\_OPA\_COVER,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00313\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 10,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00314\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ 0,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00315\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}},\ lv\_color\_black(),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{comment}{//****ROLLER\ MINUTES****}}
+\DoxyCodeLine{00318\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}}\ =\ lv\_roller\_create(hour\_group);}
+\DoxyCodeLine{00319\ \ \ \ \ lv\_roller\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}00\(\backslash\)n01\(\backslash\)n02\(\backslash\)n03\(\backslash\)n04\(\backslash\)n05\(\backslash\)n06\(\backslash\)n07\(\backslash\)n08\(\backslash\)n09\(\backslash\)n"{}}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}10\(\backslash\)n11\(\backslash\)n12\(\backslash\)n13\(\backslash\)n14\(\backslash\)n15\(\backslash\)n16\(\backslash\)n17\(\backslash\)n18\(\backslash\)n19\(\backslash\)n"{}}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}20\(\backslash\)n21\(\backslash\)n22\(\backslash\)n23\(\backslash\)n24\(\backslash\)n25\(\backslash\)n26\(\backslash\)n27\(\backslash\)n28\(\backslash\)n29\(\backslash\)n"{}}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}30\(\backslash\)n31\(\backslash\)n32\(\backslash\)n33\(\backslash\)n34\(\backslash\)n35\(\backslash\)n36\(\backslash\)n37\(\backslash\)n38\(\backslash\)n39\(\backslash\)n"{}}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}40\(\backslash\)n41\(\backslash\)n42\(\backslash\)n43\(\backslash\)n44\(\backslash\)n45\(\backslash\)n46\(\backslash\)n47\(\backslash\)n48\(\backslash\)n49\(\backslash\)n"{}}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}50\(\backslash\)n51\(\backslash\)n52\(\backslash\)n53\(\backslash\)n54\(\backslash\)n55\(\backslash\)n56\(\backslash\)n57\(\backslash\)n58\(\backslash\)n59"{}},}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ LV\_ROLLER\_MODE\_NORMAL);}
+\DoxyCodeLine{00327\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ roller\_w,\ roller\_h);}
+\DoxyCodeLine{00328\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ roller\_w+roller\_gap,\ 0);}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{comment}{//Normal}}
+\DoxyCodeLine{00331\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ LV\_OPA\_TRANSP,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00332\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00333\ \ \ \ \ lv\_obj\_set\_style\_clip\_corner(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ \textcolor{keyword}{true},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00334\ \ \ \ \ lv\_obj\_set\_style\_border\_width(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00335\ \ \ \ \ lv\_obj\_set\_style\_shadow\_width(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00336\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 0,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00337\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{comment}{//Selected}}
+\DoxyCodeLine{00340\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ lv\_color\_make(238,\ 173,\ 253),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00341\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ LV\_OPA\_COVER,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00342\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 10,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00343\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ 0,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00344\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}},\ lv\_color\_black(),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402}{set\_rollers\_init}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{hour}});}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ REPETITION\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rep\_row\_y\ =\ 120;}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rep\_dd\_w\ =\ 190;}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rep\_dd\_h\ =\ 40;}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordtype}{int}\ dd\_x\ =\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(rep\_dd\_w);}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ lv\_obj\_t\ *lbl\_repeat\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00355\ \ \ \ \ lv\_label\_set\_text(lbl\_repeat,\ \textcolor{stringliteral}{"{}Repetir"{}});}
+\DoxyCodeLine{00356\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_repeat,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00357\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_repeat,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00358\ \ \ \ \ lv\_obj\_set\_pos(lbl\_repeat,\ 10,\ rep\_row\_y);}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}}\ =\ lv\_dropdown\_create(scr);}
+\DoxyCodeLine{00361\ \ \ \ \ lv\_dropdown\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Todos\ los\ días\(\backslash\)n"{}}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Entre\ semana\(\backslash\)n"{}}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Personalizar"{}});}
+\DoxyCodeLine{00365\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ rep\_dd\_w,\ rep\_dd\_h);}
+\DoxyCodeLine{00366\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ dd\_x,\ rep\_row\_y-\/5);\ }
+\DoxyCodeLine{00367\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00368\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00369\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00370\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00371\ \ \ \ \ lv\_dropdown\_set\_symbol(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ NULL);}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordtype}{bool}\ all\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordtype}{bool}\ week\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;i<7;i++)}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i))}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ all\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;i<5;i++)}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i))}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ 5))\ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ 6))\ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keywordflow}{if}\ (all)}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},0);}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (week)}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},1);}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},2);}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keywordtype}{int}\ sel\ =\ lv\_dropdown\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}});}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keywordflow}{if}\ (sel\ ==\ 0)\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sel\ ==\ 1)\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ i++)\ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ 5,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ 6,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\_repeat}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00410\ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ lv\_event\_code\_t\ code\ =\ lv\_event\_get\_code(e);}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *obj\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_READY)}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *list\ =\ lv\_dropdown\_get\_list(obj);}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(list,\ 180,\ 120);}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(list,}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_color\_white(),}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN);}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(list,}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_color\_black(),}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN);}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(list,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(obj,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_ITEMS);}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_VALUE\_CHANGED)}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sel\ =\ lv\_dropdown\_get\_selected(obj);}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sel\ ==\ 0)}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sel\ ==\ 1)\ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ i++)}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ 5,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ 6,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00450\ \ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sel\ ==\ 2)\ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ all\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ week\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i))}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ all\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ i++)}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i))}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ 5))\ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ 6))\ week\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ venimos\ de\ TODOS\ o\ SEMANA\ →\ limpiar}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (all\ ||\ week)}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 7;\ i++)}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}{refresh\_days\_buttons}}();}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\_days\_visibility}}();}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\_layout\_positions}}();}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \},\ LV\_EVENT\_ALL,\ NULL);}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ DAYS\ REPEAT\ BUTTONS-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[7]\ =\ \{\textcolor{stringliteral}{"{}L"{}},\textcolor{stringliteral}{"{}M"{}},\textcolor{stringliteral}{"{}X"{}},\textcolor{stringliteral}{"{}J"{}},\textcolor{stringliteral}{"{}V"{}},\textcolor{stringliteral}{"{}S"{}},\textcolor{stringliteral}{"{}D"{}}\};}
+\DoxyCodeLine{00487\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i\ <\ 7;\ i++)\{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ 5)\ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 40\ +\ i*45;}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ rep\_row\_y\ +\ 45;}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 110\ +\ (i-\/5)*45;}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ rep\_row\_y\ +\ 90;}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i]\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ 36,\ 36);}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_ALIGN\_TOP\_LEFT,\ x,\ y);}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *\ lbl\_btn\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i]);}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl\_btn,\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[i]);}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ lv\_obj\_center(lbl\_btn);}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i))\ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ lv\_obj\_set\_user\_data(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ (\textcolor{keywordtype}{void}*)(intptr\_t)i);}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ [](lv\_event\_t\ *e)\{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *obj\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ day\ =\ (int)(intptr\_t)lv\_obj\_get\_user\_data(obj);}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ active\ =\ \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ day);}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ day,\ !active);}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ day))\{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(lv\_event\_get\_target(e),\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_clear\_state(lv\_event\_get\_target(e),\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\_days\_visibility}}();}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ MEDICAMENTO\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ac53a925de52162247000411dd57766cc}{lbl\_med}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00530\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{edit__takes_8cpp_ac53a925de52162247000411dd57766cc}{lbl\_med}},\ \textcolor{stringliteral}{"{}Medicina"{}});}
+\DoxyCodeLine{00531\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_ac53a925de52162247000411dd57766cc}{lbl\_med}},\ \&lv\_font\_montserrat\_22,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00532\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_ac53a925de52162247000411dd57766cc}{lbl\_med}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00533\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ac53a925de52162247000411dd57766cc}{lbl\_med}},\ 10,\ 245);}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}}\ =\ lv\_dropdown\_create(scr);}
+\DoxyCodeLine{00536\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ 120,\ 250);}
+\DoxyCodeLine{00537\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ 170,\ 40);}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \ \ \ \ \textcolor{comment}{//\ estilo\ dropdown}}
+\DoxyCodeLine{00540\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ \&lv\_font\_montserrat\_22,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00541\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00542\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ lv\_color\_white(),LV\_PART\_MAIN);}
+\DoxyCodeLine{00543\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00544\ \ \ \ \ lv\_dropdown\_set\_symbol(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ NULL);}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{comment}{//\ construir\ opciones}}
+\DoxyCodeLine{00547\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ med\_options[256];}
+\DoxyCodeLine{00548\ \ \ \ \ med\_options[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00549\ }
+\DoxyCodeLine{00550\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}};\ i++)\ \{}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ strcat(med\_options,\ \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[i].name);}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}\ -\/\ 1)\ \{}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ strcat(med\_options,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00555\ \ \ \ \ \}}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \ \ \ \ lv\_dropdown\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ med\_options);}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CONTENEDOR\ VISUAL\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a0a7149963d657b64c0cfa74c1c2e1e91}{meds\_container}}\ =\ lv\_obj\_create(scr);}
+\DoxyCodeLine{00562\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a0a7149963d657b64c0cfa74c1c2e1e91}{meds\_container}},\ 280,\ 90);}
+\DoxyCodeLine{00563\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a0a7149963d657b64c0cfa74c1c2e1e91}{meds\_container}},\ 20,\ 300);}
+\DoxyCodeLine{00564\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(\mbox{\hyperlink{edit__takes_8cpp_a0a7149963d657b64c0cfa74c1c2e1e91}{meds\_container}},\ 5,\ 0);}
+\DoxyCodeLine{00565\ \ \ \ \ lv\_obj\_set\_style\_pad\_row(\mbox{\hyperlink{edit__takes_8cpp_a0a7149963d657b64c0cfa74c1c2e1e91}{meds\_container}},\ 5,\ 0);}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ lv\_obj\_set\_scroll\_dir(\mbox{\hyperlink{edit__takes_8cpp_a0a7149963d657b64c0cfa74c1c2e1e91}{meds\_container}},\ LV\_DIR\_VER);}
+\DoxyCodeLine{00568\ \ \ \ \ lv\_obj\_set\_flex\_flow(\mbox{\hyperlink{edit__takes_8cpp_a0a7149963d657b64c0cfa74c1c2e1e91}{meds\_container}},\ LV\_FLEX\_FLOW\_COLUMN);}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{comment}{//\ PRESELECCIÓN}}
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}}\ \&\&\ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}}\ >\ 0)\ \{}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}};\ i++)\ \{}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[i].\textcolor{keywordtype}{id},}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[0].\mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{id}}}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ )\ ==\ 0)\ \{}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ i);}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00584\ \ \ \ \ \}}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \ \ \textcolor{comment}{//\ refrescar\ lista\ visual\ inicial}}
+\DoxyCodeLine{00587\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ae4651fbe523abcc40959dd080499f6b2}{refresh\_medicines\_list}}();}
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{comment}{//\ EVENTOS}}
+\DoxyCodeLine{00590\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\_medicine}},\ [](lv\_event\_t\ *e)\{}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ lv\_event\_code\_t\ code\ =\ lv\_event\_get\_code(e);}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *obj\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ estilo\ lista\ desplegable}}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_READY)}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *list\ =\ lv\_dropdown\_get\_list(obj);}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(list,\ 180,\ 120);}
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list,}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_color\_white(),}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list,}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_color\_black(),}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list,}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&lv\_font\_montserrat\_18,}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ obj,}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&lv\_font\_montserrat\_18,}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_ITEMS}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ selección\ medicamento}}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_VALUE\_CHANGED)}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sel\ =\ lv\_dropdown\_get\_selected(obj);}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sel\ >=\ \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}})}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ selectedId\ =}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[sel].\mbox{\hyperlink{structCatalogMedicine_aa92be97d7ed9222fea9bf46696af1313}{id}};}
+\DoxyCodeLine{00637\ }
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ buscar\ si\ ya\ existe}}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ <\ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}};}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i++)}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[i].\mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{id}},}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedId}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ ==\ 0)}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[i].\mbox{\hyperlink{structTakeMedicine_a7510f3f12906be2110957b5e10a57803}{quantity}}++;}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ae4651fbe523abcc40959dd080499f6b2}{refresh\_medicines\_list}}();}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Cantidad\ aumentada:\ "{}});}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[sel].name}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00660\ }
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ evitar\ overflow}}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}}\ >=}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}{MAX\_MEDICINES\_PER\_TAKE}})}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ idx\ =\ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}};}
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[idx].\mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{id}},}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedId}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[idx].\mbox{\hyperlink{structTakeMedicine_a7510f3f12906be2110957b5e10a57803}{quantity}}\ =\ 1;}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}}++;}
+\DoxyCodeLine{00676\ }
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ae4651fbe523abcc40959dd080499f6b2}{refresh\_medicines\_list}}();}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Medicamento\ añadido:\ "{}});}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicineCatalog}}[sel].name}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ \ \ \ \ \},\ LV\_EVENT\_ALL,\ NULL);}
+\DoxyCodeLine{00686\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ RECORDATORY\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00687\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rec\_row\_y\ =\ 305;}
+\DoxyCodeLine{00688\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ sw\_rec\_w\ =\ 60;}
+\DoxyCodeLine{00689\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ sw\_rec\_h\ =\ 30;}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00691\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00692\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ \textcolor{stringliteral}{"{}Recordatorio"{}});}
+\DoxyCodeLine{00693\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00694\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00695\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\_recordatory}},\ 10,\ rec\_row\_y);}
+\DoxyCodeLine{00696\ }
+\DoxyCodeLine{00697\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}}\ =\ lv\_switch\_create(scr);}
+\DoxyCodeLine{00698\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ sw\_rec\_w,\ sw\_rec\_h);}
+\DoxyCodeLine{00699\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(sw\_rec\_w),\ rec\_row\_y-\/5);}
+\DoxyCodeLine{00700\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{recordatory}})\{}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00702\ \ \ \ \ \}}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ EARLIER\ WARNING\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00705\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ warn\_row\_y\ =\ 350;}
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ warn\_dd\_w\ =\ 110;}
+\DoxyCodeLine{00707\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ warn\_dd\_h\ =\ 40;}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}}\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00710\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ \textcolor{stringliteral}{"{}Avisar\ antes"{}});}
+\DoxyCodeLine{00711\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00712\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00713\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\_warning}},\ 10,\ warn\_row\_y);}
+\DoxyCodeLine{00714\ }
+\DoxyCodeLine{00715\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}}\ =\ lv\_dropdown\_create(scr);}
+\DoxyCodeLine{00716\ \ \ \ \ lv\_dropdown\_set\_options(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}0\ min\(\backslash\)n5\ min\(\backslash\)n10\ min\(\backslash\)n15\ min\(\backslash\)n20\ min"{}});}
+\DoxyCodeLine{00718\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ warn\_dd\_w,\ warn\_dd\_h);}
+\DoxyCodeLine{00719\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(warn\_dd\_w),\ warn\_row\_y-\/5);}
+\DoxyCodeLine{00720\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00721\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00722\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00723\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00724\ \ \ \ \ lv\_dropdown\_set\_symbol(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ NULL);}
+\DoxyCodeLine{00725\ \ \ \ \ lv\_dropdown\_set\_selected(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a1585b7bf16ba49994864ef8a572e3e61}{warning\_time}}/5);}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00727\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00728\ \ \ \ \ \{}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ lv\_event\_code\_t\ code\ =\ lv\_event\_get\_code(e);}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *obj\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_READY)\ \{}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *list\ =\ lv\_dropdown\_get\_list(obj);}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(list,\ warn\_dd\_w,\ 160);}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(list,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(list,\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(list,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(list,\ lv\_color\_black(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(obj,\ lv\_color\_hex(0xDDDDDD),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(obj,\ LV\_OPA\_COVER,\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(obj,\ lv\_color\_black(),\ LV\_PART\_SELECTED);}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(obj,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_ITEMS);}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_color(obj,\ lv\_color\_black(),\ LV\_PART\_ITEMS);}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ LV\_EVENT\_VALUE\_CHANGED)\ \{}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}})\ \{}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ sel\ =\ lv\_dropdown\_get\_selected(obj);}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a1585b7bf16ba49994864ef8a572e3e61}{warning\_time}}\ =\ sel*5;}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00754\ }
+\DoxyCodeLine{00755\ \ \ \ \ \},\ LV\_EVENT\_ALL,\ NULL);}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00757\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SAVE\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00758\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}}\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00759\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ 150,\ 45);}
+\DoxyCodeLine{00760\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00761\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00762\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00763\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\_x}}(150),\ 395);}
+\DoxyCodeLine{00764\ }
+\DoxyCodeLine{00765\ \ \ \ \ lv\_obj\_t\ *lbl\_save\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}});}
+\DoxyCodeLine{00766\ \ \ \ \ lv\_label\_set\_text(lbl\_save,\ \textcolor{stringliteral}{"{}Guardar"{}});}
+\DoxyCodeLine{00767\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_save,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00768\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_save,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00769\ \ \ \ \ lv\_obj\_center(lbl\_save);}
+\DoxyCodeLine{00770\ }
+\DoxyCodeLine{00771\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00772\ \ \ \ \ \{}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hh\ =\ lv\_roller\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\_hours}});}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mm\ =\ lv\_roller\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\_minutes}});}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ sprintf(\mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{hour}},\ \textcolor{stringliteral}{"{}\%02d:\%02d"{}},\ hh,\ mm);}
+\DoxyCodeLine{00777\ }
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{recordatory}}\ =\ lv\_obj\_has\_state(\mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\_recordatory}},\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a1585b7bf16ba49994864ef8a572e3e61}{warning\_time}}\ =\ lv\_dropdown\_get\_selected(\mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\_warning}})*5;}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}})\ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}\ <\ \mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\_TAKES}})\ \{}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[\mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}]\ =\ \mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}};}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}++;}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}MAX\_TAKES\ reached"{}});}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__storage_8h_a230495ec724f6295941efc6a5cabd1a0}{saveTakes}}();}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
+\DoxyCodeLine{00792\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ GO\ BACK\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00795\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}}\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00796\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 150,\ 45);}
+\DoxyCodeLine{00797\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00798\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00799\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00800\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 5,\ 395);}
+\DoxyCodeLine{00801\ }
+\DoxyCodeLine{00802\ \ \ \ \ lv\_obj\_t\ *lbl\_back\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}});}
+\DoxyCodeLine{00803\ \ \ \ \ lv\_label\_set\_text(lbl\_back,\ \textcolor{stringliteral}{"{}Atrás"{}});}
+\DoxyCodeLine{00804\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_back,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00805\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_back,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00806\ \ \ \ \ lv\_obj\_center(lbl\_back);}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00808\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00809\ \ \ \ \ \{}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\_list\_screen}}();}
+\DoxyCodeLine{00811\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00812\ }
+\DoxyCodeLine{00813\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\_days\_visibility}}();}
+\DoxyCodeLine{00814\ \ \ \ \ \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\_layout\_positions}}();}
+\DoxyCodeLine{00815\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\+\_\+back}}, \mbox{\hyperlink{edit__takes_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\+\_\+days}}, \mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\+\_\+save}}, \mbox{\hyperlink{edit__takes_8cpp_a36f05edcf3c880af11c0488bda358639}{current\+\_\+cfg}}, \mbox{\hyperlink{edit__takes_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\+\_\+index}}, \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}, \mbox{\hyperlink{edit__takes_8cpp_a19881b468298269aca0234c95fc3f5da}{days\+\_\+repeat}}, \mbox{\hyperlink{edit__takes_8cpp_a2f4b335f58c3634bc706e0b3ec611209}{days\+\_\+warning}}, \mbox{\hyperlink{edit__takes_8cpp_a7acc581518e3ecd2b33704ace33ef4e2}{dd\+\_\+medicine}}, \mbox{\hyperlink{edit__takes_8cpp_aabb6534677aba3c03073f564c562adea}{editing\+\_\+existing}}, \mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{Take\+Config\+::hour}}, \mbox{\hyperlink{structCatalogMedicine_aa92be97d7ed9222fea9bf46696af1313}{Catalog\+Medicine\+::id}}, \mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{Take\+Medicine\+::id}}, \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\+\_\+day\+\_\+active()}}, \mbox{\hyperlink{edit__takes_8cpp_ac53a925de52162247000411dd57766cc}{lbl\+\_\+med}}, \mbox{\hyperlink{edit__takes_8cpp_a88b4632f33ddfe57b37bfde65cc7c980}{lbl\+\_\+recordatory}}, \mbox{\hyperlink{edit__takes_8cpp_aa5bec9ff12a39d2f1afea9744bc3361b}{lbl\+\_\+warning}}, \mbox{\hyperlink{edit__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}{MAX\+\_\+\+MEDICINES\+\_\+\+PER\+\_\+\+TAKE}}, \mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\+\_\+\+TAKES}}, \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\+\_\+count}}, \mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{Take\+Config\+::medicine\+\_\+count}}, \mbox{\hyperlink{medicines__storage_8h_a43003cc9158ddb82784559ced6132c05}{medicine\+Catalog}}, \mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{Take\+Config\+::medicines}}, \mbox{\hyperlink{edit__takes_8cpp_a0a7149963d657b64c0cfa74c1c2e1e91}{meds\+\_\+container}}, \mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\+\_\+24\+\_\+regular}}, \mbox{\hyperlink{montserrat__30__regular_8c_a53988053adb3570fce4c666dd13c0bce}{montserrat\+\_\+30\+\_\+regular}}, \mbox{\hyperlink{structTakeMedicine_a7510f3f12906be2110957b5e10a57803}{Take\+Medicine\+::quantity}}, \mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{Take\+Config\+::recordatory}}, \mbox{\hyperlink{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}{refresh\+\_\+days\+\_\+buttons()}}, \mbox{\hyperlink{edit__takes_8cpp_ae4651fbe523abcc40959dd080499f6b2}{refresh\+\_\+medicines\+\_\+list()}}, \mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{Take\+Config\+::repeat\+\_\+mask}}, \mbox{\hyperlink{edit__takes_8cpp_af7243c0003bee258aa5a4ca997b9286a}{right\+\_\+x()}}, \mbox{\hyperlink{edit__takes_8cpp_ab103449b5aab5409257e374ddfb075d4}{roller\+\_\+hours}}, \mbox{\hyperlink{edit__takes_8cpp_a4ed1cdf78a4ca3fa4f958f557cb38723}{roller\+\_\+minutes}}, \mbox{\hyperlink{takes__storage_8h_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes()}}, \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\+\_\+day()}}, \mbox{\hyperlink{edit__takes_8cpp_a25940f318b6609dd153cdb939e6dd402}{set\+\_\+rollers\+\_\+init()}}, \mbox{\hyperlink{edit__takes_8cpp_a5ccd636898f858539e37844b2decea34}{sw\+\_\+recordatory}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen()}}, \mbox{\hyperlink{edit__takes_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\+\_\+take}}, \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}, \mbox{\hyperlink{edit__takes_8cpp_a5bb7422f61b57be1446b13981898762f}{update\+\_\+days\+\_\+visibility()}}, \mbox{\hyperlink{edit__takes_8cpp_af4ab132463fcc8eebd183eada8434121}{update\+\_\+layout\+\_\+positions()}}, and \mbox{\hyperlink{structTakeConfig_a1585b7bf16ba49994864ef8a572e3e61}{Take\+Config\+::warning\+\_\+time}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}, and \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pill__takes_8h_a226f34b9f45999e9887df6ba5697af85}\label{pill__takes_8h_a226f34b9f45999e9887df6ba5697af85} 
+\index{pill\_takes.h@{pill\_takes.h}!get\_today\_index@{get\_today\_index}}
+\index{get\_today\_index@{get\_today\_index}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{get\_today\_index()}{get\_today\_index()}}
+{\footnotesize\ttfamily int get\+\_\+today\+\_\+index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{today__takes_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{today__takes_8cpp_source}{today\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ info;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&info))\{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ }
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ w\ =\ info.tm\_wday;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ ==\ 0)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 6;}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ w\ -\/\ 1;}
+\DoxyCodeLine{00036\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a276e05999682cc809bd995a814059a4e}{is\+\_\+take\+\_\+today()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a226f34b9f45999e9887df6ba5697af85_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}\label{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81} 
+\index{pill\_takes.h@{pill\_takes.h}!is\_day\_active@{is\_day\_active}}
+\index{is\_day\_active@{is\_day\_active}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{is\_day\_active()}{is\_day\_active()}}
+{\footnotesize\ttfamily bool is\+\_\+day\+\_\+active (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mask,  }\item[{int}]{day }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{pill__takes_8h_source_l00043}{43}} of file \mbox{\hyperlink{pill__takes_8h_source}{pill\+\_\+takes.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ (mask\ \&\ (1\ <<\ day))\ !=\ 0;}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8h_a316d6941189851a072229370c65696bb}{check\+Takes()}}, \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_a276e05999682cc809bd995a814059a4e}{is\+\_\+take\+\_\+today()}}, \mbox{\hyperlink{edit__takes_8cpp_abd49422d84c367a440ffcfdcf569601d}{refresh\+\_\+days\+\_\+buttons()}}, and \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pill__takes_8h_a276e05999682cc809bd995a814059a4e}\label{pill__takes_8h_a276e05999682cc809bd995a814059a4e} 
+\index{pill\_takes.h@{pill\_takes.h}!is\_take\_today@{is\_take\_today}}
+\index{is\_take\_today@{is\_take\_today}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{is\_take\_today()}{is\_take\_today()}}
+{\footnotesize\ttfamily bool is\+\_\+take\+\_\+today (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{today__takes_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{today__takes_8cpp_source}{today\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ today\ =\ \mbox{\hyperlink{today__takes_8cpp_a226f34b9f45999e9887df6ba5697af85}{get\_today\_index}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}\ (today\ <\ 0)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ 0\ ||\ index\ >=\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}})\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[index].repeat\_mask,\ today);}
+\DoxyCodeLine{00052\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{today__takes_8cpp_a226f34b9f45999e9887df6ba5697af85}{get\+\_\+today\+\_\+index()}}, \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\+\_\+day\+\_\+active()}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, and \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\+\_\+takes\+\_\+screen()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{pill__takes_8h_a276e05999682cc809bd995a814059a4e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a276e05999682cc809bd995a814059a4e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}\label{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3} 
+\index{pill\_takes.h@{pill\_takes.h}!repetition\_screen@{repetition\_screen}}
+\index{repetition\_screen@{repetition\_screen}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{repetition\_screen()}{repetition\_screen()}}
+{\footnotesize\ttfamily void repetition\+\_\+screen (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{repetition_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{repetition_8cpp_source}{repetition.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{repetition_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\_index}}\ =\ index;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{repetition_8cpp_aabb6534677aba3c03073f564c562adea}{editing\_existing}})}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{repetition_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}\ =\ \&\mbox{\hyperlink{repetition_8cpp_a10681e26319d397e90323640b5668cde}{takes}}[index];}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{repetition_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}\ =\ \&\mbox{\hyperlink{repetition_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\_take}};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ lv\_obj\_t\ *scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00024\ \ \ \ \ lv\_scr\_load(scr);}
+\DoxyCodeLine{00025\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ 0);}
+\DoxyCodeLine{00026\ \ \ \ \ lv\_obj\_t\ *\ tittle\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00027\ \ \ \ \ lv\_label\_set\_text(tittle,\ \textcolor{stringliteral}{"{}Repetir\ tomas"{}});}
+\DoxyCodeLine{00028\ \ \ \ \ lv\_obj\_set\_style\_text\_color(tittle,\ lv\_color\_white(),\ 0);}
+\DoxyCodeLine{00029\ \ \ \ \ lv\_obj\_align(tittle,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 10);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[7]\ =\ \{\textcolor{stringliteral}{"{}L"{}},\textcolor{stringliteral}{"{}M"{}},\textcolor{stringliteral}{"{}X"{}},\textcolor{stringliteral}{"{}J"{}},\textcolor{stringliteral}{"{}V"{}},\textcolor{stringliteral}{"{}S"{}},\textcolor{stringliteral}{"{}D"{}}\};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i\ <\ 7;\ i++)\{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ 5)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 45\ +\ i*50;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ 70;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 115\ +\ (i-\/5)*50;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ 120;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i]\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ 40,\ 40);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_ALIGN\_TOP\_LEFT,\ 45+i*50,\ 70);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *\ lbl\_btn\ =\ lv\_label\_create(\mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i]);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl\_btn,\ \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}[i]);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ lv\_obj\_center(lbl\_btn);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Estado\ inicial}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{repetition_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ i))\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(\mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Guardar\ índice\ del\ día}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ lv\_obj\_set\_user\_data(\mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ (\textcolor{keywordtype}{void}*)i);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evento\ click}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\_days}}[i],\ [](lv\_event\_t\ *e)\{}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *obj\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ day\ =\ (int)lv\_obj\_get\_user\_data(obj);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ active\ =\ \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\_day\_active}}(\mbox{\hyperlink{repetition_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ day);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Toggle}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\_day}}(\mbox{\hyperlink{repetition_8cpp_a36f05edcf3c880af11c0488bda358639}{current\_cfg}}-\/>\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}},\ day,\ !active);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!active)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_state(obj,\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_clear\_state(obj,\ LV\_STATE\_CHECKED);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ lv\_obj\_t\ *\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}}\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00081\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ 140,\ 45);}
+\DoxyCodeLine{00082\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00083\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ LV\_ALIGN\_BOTTOM\_MID,\ 0,\ -\/10);}
+\DoxyCodeLine{00084\ \ \ \ \ lv\_obj\_t\ *\ lbl\_save\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}});}
+\DoxyCodeLine{00085\ \ \ \ \ lv\_label\_set\_text(lbl\_save,\ \textcolor{stringliteral}{"{}Guardar"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_save,\ \&lv\_font\_montserrat\_24,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00087\ \ \ \ \ lv\_obj\_center(lbl\_save);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\_save}},\ [](lv\_event\_t\ *e)\{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ idx\ =\ \mbox{\hyperlink{repetition_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\_index}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ lv\_async\_call([](\textcolor{keywordtype}{void}\ *p)\{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\_takes\_screen}}((\textcolor{keywordtype}{int})p);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \},\ (\textcolor{keywordtype}{void}*)idx);}
+\DoxyCodeLine{00094\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00095\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{repetition_8cpp_a7b79c5f50e596c21f7dc65cac62971a2}{btn\+\_\+days}}, \mbox{\hyperlink{edit__takes_8cpp_ab14bb0cef44d22ad891ff256cd74eee5}{btn\+\_\+save}}, \mbox{\hyperlink{repetition_8cpp_a36f05edcf3c880af11c0488bda358639}{current\+\_\+cfg}}, \mbox{\hyperlink{repetition_8cpp_aa109b69c74e781d1c99d60b2861cbf5d}{current\+\_\+index}}, \mbox{\hyperlink{clock__mod_8cpp_a3a1d74533635583b083a83a9eaafdcc0}{days}}, \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{repetition_8cpp_aabb6534677aba3c03073f564c562adea}{editing\+\_\+existing}}, \mbox{\hyperlink{pill__takes_8h_a75d0c2d8eda77edbff00929e20d48b81}{is\+\_\+day\+\_\+active()}}, \mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{Take\+Config\+::repeat\+\_\+mask}}, \mbox{\hyperlink{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}{set\+\_\+day()}}, \mbox{\hyperlink{repetition_8cpp_a10681e26319d397e90323640b5668cde}{takes}}, and \mbox{\hyperlink{repetition_8cpp_ace0df1c9f8f032bf2bc146be1de84cd9}{temp\+\_\+take}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775}\label{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775} 
+\index{pill\_takes.h@{pill\_takes.h}!set\_day@{set\_day}}
+\index{set\_day@{set\_day}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{set\_day()}{set\_day()}}
+{\footnotesize\ttfamily void set\+\_\+day (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \&}]{mask,  }\item[{int}]{day,  }\item[{bool}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{pill__takes_8h_source_l00047}{47}} of file \mbox{\hyperlink{pill__takes_8h_source}{pill\+\_\+takes.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (value)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ mask\ |=\ (1\ <<\ day);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ mask\ \&=\ \string~(1\ <<\ day);}
+\DoxyCodeLine{00052\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{pill__takes_8h_a5e444d9110c8a48b6d02495ce4c165d3}{repetition\+\_\+screen()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_af693b03152fb88fbdcdfecf4138de775_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pill__takes_8h_a347f29b0cd5aca029a64be2107bb9f13}\label{pill__takes_8h_a347f29b0cd5aca029a64be2107bb9f13} 
+\index{pill\_takes.h@{pill\_takes.h}!show\_home\_screen@{show\_home\_screen}}
+\index{show\_home\_screen@{show\_home\_screen}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{show\_home\_screen()}{show\_home\_screen()}}
+{\footnotesize\ttfamily void show\+\_\+home\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{home__mod_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{home__mod_8cpp_source}{home\+\_\+mod.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ lv\_obj\_t\ *\ scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{home__mod_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(scr);}
+\DoxyCodeLine{00057\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ lv\_obj\_t\ *btn1\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00060\ \ \ \ \ lv\_obj\_set\_size(btn1,\ 265,\ 70);}
+\DoxyCodeLine{00061\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn1,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00062\ \ \ \ \ lv\_obj\_align(btn1,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 40);}
+\DoxyCodeLine{00063\ \ \ \ \ lv\_obj\_add\_event\_cb(btn1,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Tomas\ hoy"{}});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ lv\_obj\_t\ *lbl1\ =\ lv\_label\_create(btn1);}
+\DoxyCodeLine{00066\ \ \ \ \ lv\_label\_set\_text(lbl1,\ \textcolor{stringliteral}{"{}Tomas\ hoy"{}});}
+\DoxyCodeLine{00067\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl1,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00068\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl1,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00069\ \ \ \ \ lv\_obj\_center(lbl1);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ lv\_obj\_t\ *btn2\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00074\ \ \ \ \ lv\_obj\_set\_size(btn2,\ 265,\ 70);}
+\DoxyCodeLine{00075\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn2,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00076\ \ \ \ \ lv\_obj\_align(btn2,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 130);}
+\DoxyCodeLine{00077\ \ \ \ \ lv\_obj\_add\_event\_cb(btn2,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Historial"{}});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ lv\_obj\_t\ *lbl2\ =\ lv\_label\_create(btn2);}
+\DoxyCodeLine{00080\ \ \ \ \ lv\_label\_set\_text(lbl2,\ \textcolor{stringliteral}{"{}Historial"{}});}
+\DoxyCodeLine{00081\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl2,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00082\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl2,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00083\ \ \ \ \ lv\_obj\_center(lbl2);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ lv\_obj\_t\ *btn3\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00088\ \ \ \ \ lv\_obj\_set\_size(btn3,\ 265,\ 70);}
+\DoxyCodeLine{00089\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn3,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00090\ \ \ \ \ lv\_obj\_align(btn3,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 220);}
+\DoxyCodeLine{00091\ \ \ \ \ lv\_obj\_add\_event\_cb(btn3,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Pulsómetro"{}});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ lv\_obj\_t\ *lbl3\ =\ lv\_label\_create(btn3);}
+\DoxyCodeLine{00094\ \ \ \ \ lv\_label\_set\_text(lbl3,\ \textcolor{stringliteral}{"{}Pulsómetro"{}});}
+\DoxyCodeLine{00095\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl3,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00096\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl3,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00097\ \ \ \ \ lv\_obj\_center(lbl3);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ lv\_obj\_t\ *btn4\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00102\ \ \ \ \ lv\_obj\_set\_size(btn4,\ 265,\ 150);}
+\DoxyCodeLine{00103\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn4,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00104\ \ \ \ \ lv\_obj\_align(btn4,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 310);}
+\DoxyCodeLine{00105\ \ \ \ \ lv\_obj\_add\_event\_cb(btn4,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Configuración\ de\ tomas"{}});}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ lv\_obj\_t\ *lbl4\ =\ lv\_label\_create(btn4);}
+\DoxyCodeLine{00108\ \ \ \ \ lv\_label\_set\_text(lbl4,\ \textcolor{stringliteral}{"{}Configuración\(\backslash\)n\ \ \ \ \ \ \ \ \ \ \ de\(\backslash\)n\ \ \ \ \ \ \ \ tomas"{}});}
+\DoxyCodeLine{00109\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl4,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00110\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl4,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00111\ \ \ \ \ lv\_obj\_center(lbl4);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ lv\_obj\_t\ *btn5\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00116\ \ \ \ \ lv\_obj\_set\_size(btn5,\ 265,\ 70);}
+\DoxyCodeLine{00117\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn5,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00118\ \ \ \ \ lv\_obj\_align(btn5,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 480);}
+\DoxyCodeLine{00119\ \ \ \ \ lv\_obj\_add\_event\_cb(btn5,\ \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ (\textcolor{keywordtype}{void}\ *)\textcolor{stringliteral}{"{}Ajustes"{}});}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ lv\_obj\_t\ *lbl5\ =\ lv\_label\_create(btn5);}
+\DoxyCodeLine{00122\ \ \ \ \ lv\_label\_set\_text(lbl5,\ \textcolor{stringliteral}{"{}Ajustes"{}});}
+\DoxyCodeLine{00123\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl5,\ \&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00124\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl5,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00125\ \ \ \ \ lv\_obj\_center(lbl5);}
+\DoxyCodeLine{00126\ \}}
+
+\end{DoxyCode}
+\Hypertarget{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}\label{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b} 
+\index{pill\_takes.h@{pill\_takes.h}!takes\_list\_screen@{takes\_list\_screen}}
+\index{takes\_list\_screen@{takes\_list\_screen}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{takes\_list\_screen()}{takes\_list\_screen()}}
+{\footnotesize\ttfamily void takes\+\_\+list\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{takes__list_8cpp_source_l00089}{89}} of file \mbox{\hyperlink{takes__list_8cpp_source}{takes\+\_\+list.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ lv\_obj\_t\ *scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{takes__list_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(scr);}
+\DoxyCodeLine{00093\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,\ 25,\ 52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00094\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(scr,\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ lv\_obj\_t\ *title\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00097\ \ \ \ \ lv\_label\_set\_text(title,\ \textcolor{stringliteral}{"{}Configuración\ de\ tomas"{}});}
+\DoxyCodeLine{00098\ \ \ \ \ lv\_obj\_set\_style\_text\_font(title,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00099\ \ \ \ \ lv\_obj\_set\_style\_text\_color(title,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00100\ \ \ \ \ lv\_obj\_align(title,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 10);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ lv\_obj\_t\ *btn\_add\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00103\ \ \ \ \ lv\_obj\_set\_size(btn\_add,\ 300,\ 40);}
+\DoxyCodeLine{00104\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_add,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//lv\_obj\_align(btn\_add,\ LV\_ALIGN\_TOP\_LEFT,\ 10,\ 50);}}
+\DoxyCodeLine{00106\ \ \ \ \ lv\_obj\_set\_pos(btn\_add,\ 5,\ 50);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ lv\_obj\_t\ *lbl\_btn\_add\ =\ lv\_label\_create(btn\_add);}
+\DoxyCodeLine{00109\ \ \ \ \ lv\_label\_set\_text(lbl\_btn\_add,\ \textcolor{stringliteral}{"{}+\ Añadir\ toma"{}});}
+\DoxyCodeLine{00110\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_btn\_add,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00111\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_btn\_add,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00112\ \ \ \ \ lv\_obj\_center(lbl\_btn\_add);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_add,\ [](lv\_event\_t\ *e)\{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ (total\_takes\ >=\ MAX\_TAKES)\ return;}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ int\ new\_index\ =\ total\_takes;}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ total\_takes++;}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ strcpy(takes[new\_index].hour,\ "{}00:00"{});}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ (int\ r\ =\ 0;\ r\ <\ 7;\ r++)\{}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ takes[new\_index].repeat[r]\ =\ true;}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ takes[new\_index].personalized\ =\ false;}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ takes[new\_index].recordatory\ =\ true;}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ takes[new\_index].warning\_time\ =\ 0;}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{//edit\_takes\_screen(new\_index);}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\_takes\_screen}}(-\/1);}
+\DoxyCodeLine{00132\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\_list}}\ =\ lv\_obj\_create(scr);}
+\DoxyCodeLine{00135\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\_list}},\ 300,\ 150);}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//lv\_obj\_align(takes\_list,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 100);}}
+\DoxyCodeLine{00137\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\_list}},\ 5,\ 100);}
+\DoxyCodeLine{00138\ \ \ \ \ lv\_obj\_clear\_flag(\mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\_list}},\ LV\_OBJ\_FLAG\_SCROLL\_ELASTIC);}
+\DoxyCodeLine{00139\ \ \ \ \ lv\_obj\_set\_scrollbar\_mode(\mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\_list}},\ LV\_SCROLLBAR\_MODE\_AUTO);}
+\DoxyCodeLine{00140\ \ \ \ \ lv\_obj\_set\_scroll\_dir(\mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\_list}},\ LV\_DIR\_VER);}
+\DoxyCodeLine{00141\ \ \ \ \ lv\_obj\_set\_flex\_flow(\mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\_list}},\ LV\_FLEX\_FLOW\_COLUMN);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i\ <\ \mbox{\hyperlink{takes__list_8cpp_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i++)\{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *row\ =\ lv\_obj\_create(\mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\_list}});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(row,\ 280,\ 45);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ lv\_obj\_clear\_flag(row,\ LV\_OBJ\_FLAG\_SCROLLABLE);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ lv\_obj\_set\_scrollbar\_mode(row,\ LV\_SCROLLBAR\_MODE\_OFF);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ lv\_obj\_set\_flex\_flow(row,\ LV\_FLEX\_FLOW\_ROW);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ lv\_obj\_set\_flex\_align(row,\ LV\_FLEX\_ALIGN\_SPACE\_BETWEEN,\ LV\_FLEX\_ALIGN\_CENTER,\ LV\_FLEX\_ALIGN\_CENTER);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ lbl\_text[20];}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ sprintf(lbl\_text,\ \textcolor{stringliteral}{"{}Toma\ \%d"{}},\ i+1);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *lbl\_name\ =\ lv\_label\_create(row);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl\_name,\ lbl\_text);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_name,\ \&lv\_font\_montserrat\_24,\ 0);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *lbl\_hour\ =\ lv\_label\_create(row);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl\_hour,\ \mbox{\hyperlink{takes__list_8cpp_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_hour,\ \&lv\_font\_montserrat\_24,\ 0);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *btn\_edit\ =\ lv\_btn\_create(row);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(btn\_edit,\ 36,\ 28);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_edit,\ lv\_color\_make(0,\ 255,\ 33),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *lbl\_edit\ =\ lv\_label\_create(btn\_edit);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl\_edit,\ LV\_SYMBOL\_EDIT);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_edit,\ \&lv\_font\_montserrat\_16,\ 0);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ lv\_obj\_center(lbl\_edit);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ lv\_obj\_set\_user\_data(btn\_edit,\ (\textcolor{keywordtype}{void}*)(intptr\_t)i);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_edit,\ [](lv\_event\_t\ *e)\{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *row\ =\ lv\_obj\_get\_parent(btn);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ lv\_obj\_get\_index(row);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\_takes\_screen}}(index);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *btn\_del\ =\ lv\_btn\_create(row);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(btn\_del,\ 36,\ 28);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn\_del,\ lv\_color\_make(255,\ 38,\ 0),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *lbl\_del\ =\ lv\_label\_create(btn\_del);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl\_del,\ LV\_SYMBOL\_TRASH);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_del,\ \&lv\_font\_montserrat\_16,\ 0);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ lv\_obj\_center(lbl\_del);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ lv\_obj\_set\_user\_data(btn\_del,\ (\textcolor{keywordtype}{void}*)(intptr\_t)i);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ lv\_obj\_add\_event\_cb(btn\_del,\ [](lv\_event\_t\ *e)\{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *row\ =\ lv\_obj\_get\_parent(btn);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ lv\_obj\_get\_index(row);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{takes__list_8cpp_a8c837e300674dc4b5cd4a4f9968046cc}{confirm\_delete}}(index);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ delete\_take(index);}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ takes\_list\_screen();}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ lv\_obj\_t\ *\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}}\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00211\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 300,\ 45);}
+\DoxyCodeLine{00212\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00213\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00214\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00215\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 5,\ 260);}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ lv\_obj\_t\ *lbl\_back\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}});}
+\DoxyCodeLine{00218\ \ \ \ \ lv\_label\_set\_text(lbl\_back,\ \textcolor{stringliteral}{"{}Atrás"{}});}
+\DoxyCodeLine{00219\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl\_back,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00220\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl\_back,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00221\ \ \ \ \ lv\_obj\_center(lbl\_back);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00224\ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{00226\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00227\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\+\_\+back}}, \mbox{\hyperlink{takes__list_8cpp_a8c837e300674dc4b5cd4a4f9968046cc}{confirm\+\_\+delete()}}, \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{takes__list_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\+\_\+screen()}}, \mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\+\_\+24\+\_\+regular}}, \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\+\_\+home\+\_\+screen()}}, \mbox{\hyperlink{takes__list_8cpp_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, \mbox{\hyperlink{takes__list_8cpp_a167f0d0300c1c2199c15c29e12a0e4d9}{takes\+\_\+list}}, and \mbox{\hyperlink{takes__list_8cpp_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+
+
+
+Referenced by \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{takes__list_8cpp_a8c837e300674dc4b5cd4a4f9968046cc}{confirm\+\_\+delete()}}, and \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}\label{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e} 
+\index{pill\_takes.h@{pill\_takes.h}!today\_takes\_screen@{today\_takes\_screen}}
+\index{today\_takes\_screen@{today\_takes\_screen}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{today\_takes\_screen()}{today\_takes\_screen()}}
+{\footnotesize\ttfamily void today\+\_\+takes\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{today__takes_8cpp_source_l00085}{85}} of file \mbox{\hyperlink{today__takes_8cpp_source}{today\+\_\+takes.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ lv\_obj\_t\ *scr\ =\ lv\_obj\_create(NULL);}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{today__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\_screen}}(scr);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(scr,\ lv\_color\_make(48,25,52),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ lv\_obj\_t\ *title\ =\ lv\_label\_create(scr);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ lv\_label\_set\_text(title,\ \textcolor{stringliteral}{"{}Tomas\ de\ hoy"{}});}
+\DoxyCodeLine{00095\ \ \ \ \ lv\_obj\_set\_style\_text\_color(title,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00096\ \ \ \ \ lv\_obj\_align(title,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 10);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ lv\_obj\_t\ *list\ =\ lv\_obj\_create(scr);}
+\DoxyCodeLine{00100\ \ \ \ \ lv\_obj\_set\_size(list,\ 300,\ 180);}
+\DoxyCodeLine{00101\ \ \ \ \ lv\_obj\_set\_pos(list,\ 10,\ 60);}
+\DoxyCodeLine{00102\ \ \ \ \ lv\_obj\_set\_scroll\_dir(list,\ LV\_DIR\_VER);}
+\DoxyCodeLine{00103\ \ \ \ \ lv\_obj\_set\_scrollbar\_mode(list,\ LV\_SCROLLBAR\_MODE\_OFF);}
+\DoxyCodeLine{00104\ \ \ \ \ lv\_obj\_set\_style\_border\_width(list,\ 0,\ 0);}
+\DoxyCodeLine{00105\ \ \ \ \ lv\_obj\_set\_style\_pad\_all(list,\ 4,\ 0);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ lv\_obj\_clear\_flag(list,\ LV\_OBJ\_FLAG\_SCROLL\_ELASTIC);}
+\DoxyCodeLine{00108\ \ \ \ \ lv\_obj\_clear\_flag(list,\ LV\_OBJ\_FLAG\_SCROLL\_MOMENTUM);}
+\DoxyCodeLine{00109\ \ \ \ \ lv\_obj\_set\_flex\_flow(list,\ LV\_FLEX\_FLOW\_COLUMN);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i++)}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{today__takes_8cpp_a276e05999682cc809bd995a814059a4e}{is\_take\_today}}(i))}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *row\ =\ lv\_obj\_create(list);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ lv\_obj\_set\_width(row,\ 280);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ lv\_obj\_set\_height(row,\ LV\_SIZE\_CONTENT);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ lv\_obj\_set\_flex\_flow(row,\ LV\_FLEX\_FLOW\_COLUMN);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_btn\_create(row);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ lv\_obj\_set\_size(btn,\ 250,\ 40);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn,\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ txt[32];}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ sprintf(txt,\ \textcolor{stringliteral}{"{}Toma\ \%d\ \ \%s"{}},\ i\ +\ 1,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *lbl\ =\ lv\_label\_create(btn);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(lbl,\ txt);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ lv\_obj\_center(lbl);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *details\ =\ lv\_obj\_create(row);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ lv\_obj\_set\_width(details,\ 250);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ lv\_obj\_set\_height(details,\ LV\_SIZE\_CONTENT);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ lv\_obj\_set\_flex\_flow(details,\ LV\_FLEX\_FLOW\_COLUMN);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_pad\_all(details,\ 5,\ 0);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_pad\_row(details,\ 4,\ 0);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ lv\_obj\_add\_flag(details,\ LV\_OBJ\_FLAG\_HIDDEN);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ rec\_txt[32];}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ sprintf(rec\_txt,\ \textcolor{stringliteral}{"{}Recordatorio:\ \%s"{}},\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].recordatory\ ?\ \textcolor{stringliteral}{"{}Si"{}}\ :\ \textcolor{stringliteral}{"{}No"{}});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *l1\ =\ lv\_label\_create(details);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(l1,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(l1,\ rec\_txt);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ warn\_txt[32];}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ sprintf(warn\_txt,\ \textcolor{stringliteral}{"{}Aviso:\ \%d\ min"{}},\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].warning\_time);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *l2\ =\ lv\_label\_create(details);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(l2,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(l2,\ warn\_txt);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ rep\_txt[64]\ =\ \textcolor{stringliteral}{"{}Días:\ "{}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tmp[32];}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{today__takes_8cpp_a1626cffba53bfed701700270d36987a2}{days\_text\_repeat}}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].repeat\_mask,\ tmp);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ strcat(rep\_txt,\ tmp);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *l3\ =\ lv\_label\_create(details);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(l3,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(l3,\ rep\_txt);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/\ MEDICAMENTOS\ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ lv\_obj\_t\ *med\_title\ =\ lv\_label\_create(details);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ med\_title,}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ med\_title,}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Medicamentos:"{}}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ m\ =\ 0;\ m\ <\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}};\ m++)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ medName\ =}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{today__takes_8cpp_ad7a30a2621259f647ab1fd6204be924f}{get\_medicine\_name}}(}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].medicines[m].\textcolor{keywordtype}{id}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ med\_txt[64];}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ med\_txt,}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\%s\ x\%d"{}},}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ medName,}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].medicines[m].quantity}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *med\_label\ =}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_create(details);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_set\_style\_text\_font(}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ med\_label,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LV\_PART\_MAIN}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ med\_label,}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ med\_txt}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ lv\_obj\_set\_user\_data(btn,\ details);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ lv\_obj\_add\_event\_cb(btn,\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_event\_get\_target(e);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_t\ *details\ =\ (lv\_obj\_t\ *)lv\_obj\_get\_user\_data(btn);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!details)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lv\_obj\_has\_flag(details,\ LV\_OBJ\_FLAG\_HIDDEN))}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_clear\_flag(details,\ LV\_OBJ\_FLAG\_HIDDEN);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_add\_flag(details,\ LV\_OBJ\_FLAG\_HIDDEN);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_mark\_layout\_as\_dirty(}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lv\_obj\_get\_parent(details)}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ lv\_obj\_t\ *\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}}\ =\ lv\_btn\_create(scr);}
+\DoxyCodeLine{00233\ \ \ \ \ lv\_obj\_set\_size(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 300,\ 45);}
+\DoxyCodeLine{00234\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ lv\_color\_make(160,\ 50,\ 200),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00235\ \ \ \ \ lv\_obj\_set\_style\_bg\_opa(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ LV\_OPA\_COVER,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00236\ \ \ \ \ lv\_obj\_set\_style\_radius(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 10,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00237\ \ \ \ \ lv\_obj\_set\_pos(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ 10,\ 255);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ lv\_obj\_t\ *lbl\ =\ lv\_label\_create(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}});}
+\DoxyCodeLine{00240\ \ \ \ \ lv\_obj\_set\_style\_text\_font(lbl,\ \&\mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\_24\_regular}},\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00241\ \ \ \ \ lv\_obj\_set\_style\_text\_color(lbl,\ lv\_color\_white(),\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00242\ \ \ \ \ lv\_label\_set\_text(lbl,\ \textcolor{stringliteral}{"{}Volver"{}});}
+\DoxyCodeLine{00243\ \ \ \ \ }
+\DoxyCodeLine{00244\ \ \ \ \ lv\_obj\_center(lbl);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ lv\_obj\_add\_event\_cb(\mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\_back}},\ [](lv\_event\_t\ *e)}
+\DoxyCodeLine{00247\ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{00249\ \ \ \ \ \},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00250\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{edit__takes_8cpp_ac97235e57796cc5b39aa00b09df99c9a}{btn\+\_\+back}}, \mbox{\hyperlink{today__takes_8cpp_a1626cffba53bfed701700270d36987a2}{days\+\_\+text\+\_\+repeat()}}, \mbox{\hyperlink{today__takes_8cpp_ad7a30a2621259f647ab1fd6204be924f}{get\+\_\+medicine\+\_\+name()}}, \mbox{\hyperlink{today__takes_8cpp_a276e05999682cc809bd995a814059a4e}{is\+\_\+take\+\_\+today()}}, \mbox{\hyperlink{today__takes_8cpp_a603b0c4a9f6ea7b34bcb62ea0c2bab19}{load\+\_\+screen()}}, \mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{Take\+Config\+::medicine\+\_\+count}}, \mbox{\hyperlink{montserrat__24__regular_8c_a816826a70f5eeb12a2a6fccd97a90169}{montserrat\+\_\+24\+\_\+regular}}, \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\+\_\+home\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, and \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+
+
+
+Referenced by \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}\label{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72} 
+\index{pill\_takes.h@{pill\_takes.h}!takes@{takes}}
+\index{takes@{takes}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{takes}{takes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTakeConfig}{Take\+Config}} takes\mbox{[}\mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\+\_\+\+TAKES}}\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{takes__list_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{takes__list_8cpp_source}{takes\+\_\+list.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8h_a316d6941189851a072229370c65696bb}{check\+Takes()}}, \mbox{\hyperlink{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a}{delete\+\_\+take()}}, \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{wifi__portal_8h_a01b0c3c0f9209a1c0333f7e3a411bd00}{handle\+\_\+add\+\_\+take()}}, \mbox{\hyperlink{wifi__portal_8h_aed7f7c07dec43bffcda8d8d26828b210}{handle\+\_\+delete\+\_\+take()}}, \mbox{\hyperlink{wifi__portal_8h_ae38a5eed23fccbea213858100fc7768a}{handle\+\_\+get\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_aac63c9ecd3547ed69fa236e0fcfe8e34}{handle\+\_\+update\+\_\+take()}}, \mbox{\hyperlink{pill__takes_8h_a276e05999682cc809bd995a814059a4e}{is\+\_\+take\+\_\+today()}}, \mbox{\hyperlink{takes__storage_8h_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes()}}, \mbox{\hyperlink{take__alert__screen_8h_a7d4b85367414f994adf1f70eac9df88d}{show\+\_\+take\+\_\+alert()}}, \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{takes__storage_8h_ab1b6c8b803c156d0a5b4918b8cb77bde}{upload\+Takes()}}.
+
+\Hypertarget{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}\label{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6} 
+\index{pill\_takes.h@{pill\_takes.h}!total\_takes@{total\_takes}}
+\index{total\_takes@{total\_takes}!pill\_takes.h@{pill\_takes.h}}
+\doxysubsubsection{\texorpdfstring{total\_takes}{total\_takes}}
+{\footnotesize\ttfamily int total\+\_\+takes\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{takes__list_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{takes__list_8cpp_source}{takes\+\_\+list.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{takes__logic_8h_a316d6941189851a072229370c65696bb}{check\+Takes()}}, \mbox{\hyperlink{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a}{delete\+\_\+take()}}, \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{wifi__portal_8h_a01b0c3c0f9209a1c0333f7e3a411bd00}{handle\+\_\+add\+\_\+take()}}, \mbox{\hyperlink{wifi__portal_8h_aed7f7c07dec43bffcda8d8d26828b210}{handle\+\_\+delete\+\_\+take()}}, \mbox{\hyperlink{wifi__portal_8h_ae38a5eed23fccbea213858100fc7768a}{handle\+\_\+get\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, \mbox{\hyperlink{wifi__portal_8h_aac63c9ecd3547ed69fa236e0fcfe8e34}{handle\+\_\+update\+\_\+take()}}, \mbox{\hyperlink{pill__takes_8h_a276e05999682cc809bd995a814059a4e}{is\+\_\+take\+\_\+today()}}, \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, \mbox{\hyperlink{takes__storage_8h_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes()}}, \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}, \mbox{\hyperlink{take__alert__screen_8h_a7d4b85367414f994adf1f70eac9df88d}{show\+\_\+take\+\_\+alert()}}, \mbox{\hyperlink{pill__takes_8h_ae9d1bc4cc19d7de8d5c16bf4961bb24b}{takes\+\_\+list\+\_\+screen()}}, \mbox{\hyperlink{pill__takes_8h_a3cee774dd6a58d0c209aaeb4c3bf994e}{today\+\_\+takes\+\_\+screen()}}, and \mbox{\hyperlink{takes__storage_8h_ab1b6c8b803c156d0a5b4918b8cb77bde}{upload\+Takes()}}.
+

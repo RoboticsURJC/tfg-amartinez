@@ -1,0 +1,227 @@
+\doxysection{src/user\+\_\+interface/wifi\+\_\+mod.cpp File Reference}
+\hypertarget{wifi__mod_8cpp}{}\label{wifi__mod_8cpp}\index{src/user\_interface/wifi\_mod.cpp@{src/user\_interface/wifi\_mod.cpp}}
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}qrcodegen.\+h"{}}\newline
+{\ttfamily \#include "{}user\+\_\+interface/wifi\+\_\+mod.\+h"{}}\newline
+Include dependency graph for wifi\+\_\+mod.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__mod_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr}} (lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}parent, const char \texorpdfstring{$\ast$}{*}qr\+\_\+text)
+\item 
+void \mbox{\hyperlink{wifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7}{show\+\_\+wifi\+\_\+screen}} (lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}parent, const char \texorpdfstring{$\ast$}{*}label\+\_\+text, const char \texorpdfstring{$\ast$}{*}qr\+\_\+text)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{wifi__mod_8cpp_a46edf81bb65df2d82f04cbe3ac7786ab}{qr\+\_\+img}} = nullptr
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{wifi__mod_8cpp_a11b70750483ae203722784ad1da56628}{qr\+\_\+data}} \mbox{[}\mbox{\hyperlink{qrcodegen_8h_a82257a23d67f51b04926c4fd64bc4fa5}{qrcodegen\+\_\+\+BUFFER\+\_\+\+LEN\+\_\+\+MAX}}\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}} \mbox{[}\mbox{\hyperlink{qrcodegen_8h_a82257a23d67f51b04926c4fd64bc4fa5}{qrcodegen\+\_\+\+BUFFER\+\_\+\+LEN\+\_\+\+MAX}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}\label{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e} 
+\index{wifi\_mod.cpp@{wifi\_mod.cpp}!generate\_wifi\_qr@{generate\_wifi\_qr}}
+\index{generate\_wifi\_qr@{generate\_wifi\_qr}!wifi\_mod.cpp@{wifi\_mod.cpp}}
+\doxysubsubsection{\texorpdfstring{generate\_wifi\_qr()}{generate\_wifi\_qr()}}
+{\footnotesize\ttfamily static void generate\+\_\+wifi\+\_\+qr (\begin{DoxyParamCaption}\item[{lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}}]{parent,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{qr\+\_\+text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__mod_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{wifi__mod_8cpp_source}{wifi\+\_\+mod.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\_encodeText}}(}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ qr\_text,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}},}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__mod_8cpp_a11b70750483ae203722784ad1da56628}{qr\_data}},}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65caa6f4e3ad3cd16ee38110410f1d14e18a}{qrcodegen\_Ecc\_LOW}},}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\_VERSION\_MIN}},}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\_VERSION\_MAX}},}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841}{qrcodegen\_Mask\_AUTO}},}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{true}}
+\DoxyCodeLine{00021\ \ \ \ \ );}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ size\ =\ \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\_getSize}}(\mbox{\hyperlink{wifi__mod_8cpp_a11b70750483ae203722784ad1da56628}{qr\_data}});}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ scale\ =\ 4;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ out\_size\ =\ size\ *\ scale;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ lv\_color\_t\ *\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}})\{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}\ =\ (lv\_color\_t\ *)\ malloc(out\_size\ *\ out\_size\ *\ \textcolor{keyword}{sizeof}(lv\_color\_t));}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}})\{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ size;\ y++)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ size;\ x++)\ \{}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ black\ =\ \mbox{\hyperlink{qrcodegen_8c_a495cb24d97c9b90a9c1e8a62903debf5}{qrcodegen\_getModule}}(\mbox{\hyperlink{wifi__mod_8cpp_a11b70750483ae203722784ad1da56628}{qr\_data}},\ x,\ y);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ lv\_color\_t\ c\ =\ black\ ?\ lv\_color\_black()\ :\ lv\_color\_white();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ dy\ =\ 0;\ dy\ <\ scale;\ dy++)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ dx\ =\ 0;\ dx\ <\ scale;\ dx++)\ \{}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ px\ =\ x\ *\ scale\ +\ dx;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ py\ =\ y\ *\ scale\ +\ dy;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[py\ *\ out\_size\ +\ px]\ =\ c;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ lv\_img\_dsc\_t\ img\_desc\ =\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ .header\ =\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ .cf\ =\ LV\_IMG\_CF\_TRUE\_COLOR,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ .always\_zero\ =\ 0,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ .w\ =\ 0,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ .h\ =\ 0}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ .data\_size\ =\ 0,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ .data\ =\ NULL}
+\DoxyCodeLine{00063\ \ \ \ \ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ img\_desc.header.w\ =\ out\_size;}
+\DoxyCodeLine{00066\ \ \ \ \ img\_desc.header.h\ =\ out\_size;}
+\DoxyCodeLine{00067\ \ \ \ \ img\_desc.data\_size\ =\ out\_size\ *\ out\_size\ *\ \textcolor{keyword}{sizeof}(lv\_color\_t);}
+\DoxyCodeLine{00068\ \ \ \ \ img\_desc.data\ =\ (\textcolor{keyword}{const}\ uint8\_t\ *)\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{wifi__mod_8cpp_a46edf81bb65df2d82f04cbe3ac7786ab}{qr\_img}})\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__mod_8cpp_a46edf81bb65df2d82f04cbe3ac7786ab}{qr\_img}}\ =\ lv\_img\_create(parent);}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ lv\_img\_set\_src(\mbox{\hyperlink{wifi__mod_8cpp_a46edf81bb65df2d82f04cbe3ac7786ab}{qr\_img}},\ \&img\_desc);}
+\DoxyCodeLine{00075\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{wifi__mod_8cpp_a46edf81bb65df2d82f04cbe3ac7786ab}{qr\_img}},\ LV\_ALIGN\_CENTER,\ 0,\ 20);}
+\DoxyCodeLine{00076\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}, \mbox{\hyperlink{wifi__mod_8cpp_a11b70750483ae203722784ad1da56628}{qr\+\_\+data}}, \mbox{\hyperlink{wifi__mod_8cpp_a46edf81bb65df2d82f04cbe3ac7786ab}{qr\+\_\+img}}, \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65caa6f4e3ad3cd16ee38110410f1d14e18a}{qrcodegen\+\_\+\+Ecc\+\_\+\+LOW}}, \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text()}}, \mbox{\hyperlink{qrcodegen_8c_a495cb24d97c9b90a9c1e8a62903debf5}{qrcodegen\+\_\+get\+Module()}}, \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\+\_\+get\+Size()}}, \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841}{qrcodegen\+\_\+\+Mask\+\_\+\+AUTO}}, \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\+\_\+\+VERSION\+\_\+\+MAX}}, \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\+\_\+\+VERSION\+\_\+\+MIN}}, and \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__mod_8h_a7e1affbbcf92e141e700ce5e36aaf9a4}{show\+\_\+wifi\+\_\+screen()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7}\label{wifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7} 
+\index{wifi\_mod.cpp@{wifi\_mod.cpp}!show\_wifi\_screen@{show\_wifi\_screen}}
+\index{show\_wifi\_screen@{show\_wifi\_screen}!wifi\_mod.cpp@{wifi\_mod.cpp}}
+\doxysubsubsection{\texorpdfstring{show\_wifi\_screen()}{show\_wifi\_screen()}}
+{\footnotesize\ttfamily void show\+\_\+wifi\+\_\+screen (\begin{DoxyParamCaption}\item[{lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}}]{parent,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{label\+\_\+text,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{qr\+\_\+text }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__mod_8cpp_source_l00078}{78}} of file \mbox{\hyperlink{wifi__mod_8cpp_source}{wifi\+\_\+mod.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ lv\_obj\_clean(parent);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ TEXTO\ -\/-\/-\/}}
+\DoxyCodeLine{00083\ \ \ \ \ lv\_obj\_t\ *label\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00084\ \ \ \ \ lv\_label\_set\_text(label,\ label\_text);}
+\DoxyCodeLine{00085\ \ \ \ \ lv\_obj\_set\_style\_text\_font(label,\ \&lv\_font\_montserrat\_32,\ LV\_PART\_MAIN);}
+\DoxyCodeLine{00086\ \ \ \ \ lv\_obj\_align(label,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 20);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ QR\ -\/-\/-\/}}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\_wifi\_qr}}(parent,\ qr\_text);}
+\DoxyCodeLine{00090\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr()}}.
+
+
+
+Referenced by \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{wifi__mod_8cpp_a974108b8928c5d565a6adc5af542fee7_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{wifi__mod_8cpp_a11b70750483ae203722784ad1da56628}\label{wifi__mod_8cpp_a11b70750483ae203722784ad1da56628} 
+\index{wifi\_mod.cpp@{wifi\_mod.cpp}!qr\_data@{qr\_data}}
+\index{qr\_data@{qr\_data}!wifi\_mod.cpp@{wifi\_mod.cpp}}
+\doxysubsubsection{\texorpdfstring{qr\_data}{qr\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t qr\+\_\+data\mbox{[}\mbox{\hyperlink{qrcodegen_8h_a82257a23d67f51b04926c4fd64bc4fa5}{qrcodegen\+\_\+\+BUFFER\+\_\+\+LEN\+\_\+\+MAX}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__mod_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{wifi__mod_8cpp_source}{wifi\+\_\+mod.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr()}}.
+
+\Hypertarget{wifi__mod_8cpp_a46edf81bb65df2d82f04cbe3ac7786ab}\label{wifi__mod_8cpp_a46edf81bb65df2d82f04cbe3ac7786ab} 
+\index{wifi\_mod.cpp@{wifi\_mod.cpp}!qr\_img@{qr\_img}}
+\index{qr\_img@{qr\_img}!wifi\_mod.cpp@{wifi\_mod.cpp}}
+\doxysubsubsection{\texorpdfstring{qr\_img}{qr\_img}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} qr\+\_\+img = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__mod_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{wifi__mod_8cpp_source}{wifi\+\_\+mod.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr()}}.
+
+\Hypertarget{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}\label{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff} 
+\index{wifi\_mod.cpp@{wifi\_mod.cpp}!temp@{temp}}
+\index{temp@{temp}!wifi\_mod.cpp@{wifi\_mod.cpp}}
+\doxysubsubsection{\texorpdfstring{temp}{temp}}
+{\footnotesize\ttfamily uint8\+\_\+t temp\mbox{[}\mbox{\hyperlink{qrcodegen_8h_a82257a23d67f51b04926c4fd64bc4fa5}{qrcodegen\+\_\+\+BUFFER\+\_\+\+LEN\+\_\+\+MAX}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{wifi__mod_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{wifi__mod_8cpp_source}{wifi\+\_\+mod.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr()}}, \mbox{\hyperlink{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb}{num\+Char\+Count\+Bits()}}, \mbox{\hyperlink{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506}{qrcodegen\+\_\+calc\+Segment\+Buffer\+Size()}}, and \mbox{\hyperlink{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d}{qrcodegen\+\_\+make\+Alphanumeric()}}.
+

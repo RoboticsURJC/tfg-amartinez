@@ -1,0 +1,350 @@
+\doxysection{src/user\+\_\+interface/pulse\+\_\+screen.cpp File Reference}
+\hypertarget{pulse__screen_8cpp}{}\label{pulse__screen_8cpp}\index{src/user\_interface/pulse\_screen.cpp@{src/user\_interface/pulse\_screen.cpp}}
+{\ttfamily \#include "{}user\+\_\+interface/pulse\+\_\+screen.\+h"{}}\newline
+{\ttfamily \#include "{}user\+\_\+interface/home\+\_\+mod.\+h"{}}\newline
+{\ttfamily \#include "{}sensors/pulse\+\_\+sensor.\+h"{}}\newline
+{\ttfamily \#include "{}storage/pulse\+\_\+history\+\_\+storage.\+h"{}}\newline
+{\ttfamily \#include "{}idle\+\_\+manager.\+h"{}}\newline
+{\ttfamily \#include $<$lvgl.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+Include dependency graph for pulse\+\_\+screen.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__screen_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{pulse__screen_8cpp_ae88a7109e0c40fca4693d608cea029bf}{LV\+\_\+\+IMG\+\_\+\+DECLARE}} (\mbox{\hyperlink{heart_8c_a3119341481da7b8bf32d04c669ca4637}{heart}})
+\item 
+static void \mbox{\hyperlink{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}{pulse\+\_\+update\+\_\+cb}} (lv\+\_\+timer\+\_\+t \texorpdfstring{$\ast$}{*}timer)
+\item 
+static void \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb}} (lv\+\_\+event\+\_\+t \texorpdfstring{$\ast$}{*}e)
+\item 
+void \mbox{\hyperlink{pulse__screen_8cpp_a110b08df176a6163bf8834ea75df52b4}{show\+\_\+pulse\+\_\+screen}} (lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}parent)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\+\_\+label}} = nullptr
+\item 
+static lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\+\_\+label}} = nullptr
+\item 
+static lv\+\_\+timer\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\+\_\+timer}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}\label{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0} 
+\index{pulse\_screen.cpp@{pulse\_screen.cpp}!back\_btn\_event\_cb@{back\_btn\_event\_cb}}
+\index{back\_btn\_event\_cb@{back\_btn\_event\_cb}!pulse\_screen.cpp@{pulse\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{back\_btn\_event\_cb()}{back\_btn\_event\_cb()}}
+{\footnotesize\ttfamily static void back\+\_\+btn\+\_\+event\+\_\+cb (\begin{DoxyParamCaption}\item[{lv\+\_\+event\+\_\+t \texorpdfstring{$\ast$}{*}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__screen_8cpp_source_l00089}{89}} of file \mbox{\hyperlink{pulse__screen_8cpp_source}{pulse\+\_\+screen.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\_idle\_timeout}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_adaf9d8edb551c08d362d712d8d1357e2}{last\_touch\_time}}\ =\ millis();}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_a24fc9786d6fce7521eeef5a7c971f0ac}{idle\_timeout\_triggered}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}})}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ lv\_timer\_del(\mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}});}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pulse__sensor_8h_a5ea88488da2c8f715e311e703d7bb801}{pulseFullMeasurementReady}}())\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bpm\ =\ \mbox{\hyperlink{pulse__sensor_8h_ac19f883343d0e93acf1df07622698f34}{pulseGetFullBufferBpm}}();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Guardando\ media\ de\ pulso:\ "{}});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Serial.println(bpm);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ ok\ =\ \mbox{\hyperlink{pulse__history__storage_8h_ae4c59227ee1369bb87a9ba451ee7ff52}{savePulseAverage}}(bpm);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Guardado\ SD:\ "{}});}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ Serial.println(ok\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}ERROR"{}});}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_a17b79f2f6a2e4e4e75d7ff162fdd96f0}{pulseSensorStop}}();}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\_home\_screen}}();}
+\DoxyCodeLine{00119\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Home\ cargado"{}});}
+\DoxyCodeLine{00120\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\+\_\+idle\+\_\+timeout}}, \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\+\_\+label}}, \mbox{\hyperlink{idle__manager_8h_a24fc9786d6fce7521eeef5a7c971f0ac}{idle\+\_\+timeout\+\_\+triggered}}, \mbox{\hyperlink{idle__manager_8h_adaf9d8edb551c08d362d712d8d1357e2}{last\+\_\+touch\+\_\+time}}, \mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\+\_\+timer}}, \mbox{\hyperlink{pulse__sensor_8h_a5ea88488da2c8f715e311e703d7bb801}{pulse\+Full\+Measurement\+Ready()}}, \mbox{\hyperlink{pulse__sensor_8h_ac19f883343d0e93acf1df07622698f34}{pulse\+Get\+Full\+Buffer\+Bpm()}}, \mbox{\hyperlink{pulse__sensor_8h_a17b79f2f6a2e4e4e75d7ff162fdd96f0}{pulse\+Sensor\+Stop()}}, \mbox{\hyperlink{pulse__history__storage_8h_ae4c59227ee1369bb87a9ba451ee7ff52}{save\+Pulse\+Average()}}, \mbox{\hyperlink{home__mod_8h_a347f29b0cd5aca029a64be2107bb9f13}{show\+\_\+home\+\_\+screen()}}, and \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\+\_\+label}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8h_a110b08df176a6163bf8834ea75df52b4}{show\+\_\+pulse\+\_\+screen()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pulse__screen_8cpp_ae88a7109e0c40fca4693d608cea029bf}\label{pulse__screen_8cpp_ae88a7109e0c40fca4693d608cea029bf} 
+\index{pulse\_screen.cpp@{pulse\_screen.cpp}!LV\_IMG\_DECLARE@{LV\_IMG\_DECLARE}}
+\index{LV\_IMG\_DECLARE@{LV\_IMG\_DECLARE}!pulse\_screen.cpp@{pulse\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{LV\_IMG\_DECLARE()}{LV\_IMG\_DECLARE()}}
+{\footnotesize\ttfamily LV\+\_\+\+IMG\+\_\+\+DECLARE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{heart_8c_a3119341481da7b8bf32d04c669ca4637}{heart}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}\label{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15} 
+\index{pulse\_screen.cpp@{pulse\_screen.cpp}!pulse\_update\_cb@{pulse\_update\_cb}}
+\index{pulse\_update\_cb@{pulse\_update\_cb}!pulse\_screen.cpp@{pulse\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{pulse\_update\_cb()}{pulse\_update\_cb()}}
+{\footnotesize\ttfamily static void pulse\+\_\+update\+\_\+cb (\begin{DoxyParamCaption}\item[{lv\+\_\+timer\+\_\+t \texorpdfstring{$\ast$}{*}}]{timer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__screen_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{pulse__screen_8cpp_source}{pulse\+\_\+screen.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}}\ ==\ \textcolor{keyword}{nullptr}\ ||}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}}\ ==\ \textcolor{keyword}{nullptr}}
+\DoxyCodeLine{00020\ \ \ \ \ )}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pulse__sensor_8h_a41c7a05b1e5f5a0cab20c88b7695831a}{pulseFingerDetected}}())}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\textcolor{stringliteral}{"{}Coloque\ el\ dedo"{}});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},\textcolor{stringliteral}{"{}-\/-\/\ BPM"{}});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pulse__sensor_8h_a8d768af20334a60389b733b15dd906c0}{pulseMeasurementReady}}())}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ txt[32];}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ snprintf(}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ txt,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(txt),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Midiendo\ \%d:\%d"{}},}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_aff1a3915d6f5cef75e73ca44d3bcdfb4}{pulseGetSamples}}(),}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_a72f1c324da2d6a7b50b6917b9f7d3b5d}{pulseGetRequiredSamples}}()}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ txt}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/\ BPM"{}}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{char}\ bpmText[16];}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ snprintf(bpmText,\textcolor{keyword}{sizeof}(bpmText),\textcolor{stringliteral}{"{}\%d\ BPM"{}},\mbox{\hyperlink{pulse__sensor_8h_aa5570d6065286120699bd5889acab27e}{pulseGetBpm}}());}
+\DoxyCodeLine{00061\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},bpmText);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_aff1a3915d6f5cef75e73ca44d3bcdfb4}{pulseGetSamples}}()\ <}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_a72f1c324da2d6a7b50b6917b9f7d3b5d}{pulseGetRequiredSamples}}()}
+\DoxyCodeLine{00066\ \ \ \ \ )}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ txt[32];}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ snprintf(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ txt,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(txt),}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Midiendo\ \%d:\%d"{}},}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_aff1a3915d6f5cef75e73ca44d3bcdfb4}{pulseGetSamples}}(),}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_a72f1c324da2d6a7b50b6917b9f7d3b5d}{pulseGetRequiredSamples}}()}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ txt}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\+\_\+label}}, \mbox{\hyperlink{pulse__sensor_8h_a41c7a05b1e5f5a0cab20c88b7695831a}{pulse\+Finger\+Detected()}}, \mbox{\hyperlink{pulse__sensor_8h_aa5570d6065286120699bd5889acab27e}{pulse\+Get\+Bpm()}}, \mbox{\hyperlink{pulse__sensor_8h_a72f1c324da2d6a7b50b6917b9f7d3b5d}{pulse\+Get\+Required\+Samples()}}, \mbox{\hyperlink{pulse__sensor_8h_aff1a3915d6f5cef75e73ca44d3bcdfb4}{pulse\+Get\+Samples()}}, \mbox{\hyperlink{pulse__sensor_8h_a8d768af20334a60389b733b15dd906c0}{pulse\+Measurement\+Ready()}}, and \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\+\_\+label}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8h_a110b08df176a6163bf8834ea75df52b4}{show\+\_\+pulse\+\_\+screen()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pulse__screen_8cpp_a110b08df176a6163bf8834ea75df52b4}\label{pulse__screen_8cpp_a110b08df176a6163bf8834ea75df52b4} 
+\index{pulse\_screen.cpp@{pulse\_screen.cpp}!show\_pulse\_screen@{show\_pulse\_screen}}
+\index{show\_pulse\_screen@{show\_pulse\_screen}!pulse\_screen.cpp@{pulse\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{show\_pulse\_screen()}{show\_pulse\_screen()}}
+{\footnotesize\ttfamily void show\+\_\+pulse\+\_\+screen (\begin{DoxyParamCaption}\item[{lv\+\_\+obj\+\_\+t \texorpdfstring{$\ast$}{*}}]{parent }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__screen_8cpp_source_l00122}{122}} of file \mbox{\hyperlink{pulse__screen_8cpp_source}{pulse\+\_\+screen.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{pulse__sensor_8h_abe7ca60cda316b5995a3b66a3453bfb3}{pulseSensorStart}}();}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\_idle\_timeout}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ lv\_obj\_clean(parent);}
+\DoxyCodeLine{00128\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(parent,lv\_color\_make(48,25,52),LV\_PART\_MAIN);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ lv\_obj\_t\ *title\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00131\ \ \ \ \ lv\_label\_set\_text(title,\textcolor{stringliteral}{"{}Pulsómetro"{}});}
+\DoxyCodeLine{00132\ \ \ \ \ lv\_obj\_set\_style\_text\_color(title,lv\_color\_white(),LV\_PART\_MAIN);}
+\DoxyCodeLine{00133\ \ \ \ \ lv\_obj\_set\_style\_text\_font(title,\&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},LV\_PART\_MAIN);}
+\DoxyCodeLine{00134\ \ \ \ \ lv\_obj\_align(title,LV\_ALIGN\_TOP\_MID,0,20);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ lv\_obj\_t\ *heart\_img\ =\ lv\_img\_create(parent);}
+\DoxyCodeLine{00139\ \ \ \ \ lv\_img\_set\_src(heart\_img,\ \&\mbox{\hyperlink{heart_8c_a3119341481da7b8bf32d04c669ca4637}{heart}});}
+\DoxyCodeLine{00140\ \ \ \ \ lv\_obj\_align(heart\_img,LV\_ALIGN\_TOP\_MID,0,125);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}}\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00145\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},\textcolor{stringliteral}{"{}-\/-\/\ BPM"{}});}
+\DoxyCodeLine{00146\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},lv\_color\_white(),LV\_PART\_MAIN);}
+\DoxyCodeLine{00147\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},\&lv\_font\_montserrat\_34,LV\_PART\_MAIN);}
+\DoxyCodeLine{00148\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\_label}},LV\_ALIGN\_CENTER,0,-\/20);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}}\ =\ lv\_label\_create(parent);}
+\DoxyCodeLine{00153\ \ \ \ \ lv\_label\_set\_text(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\textcolor{stringliteral}{"{}Coloque\ el\ dedo"{}});}
+\DoxyCodeLine{00154\ \ \ \ \ lv\_obj\_set\_style\_text\_color(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},lv\_color\_white(),LV\_PART\_MAIN);}
+\DoxyCodeLine{00155\ \ \ \ \ lv\_obj\_set\_style\_text\_font(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\&\mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\_34\_regular}},LV\_PART\_MAIN);}
+\DoxyCodeLine{00156\ \ \ \ \ lv\_obj\_align(\mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\_label}},\ LV\_ALIGN\_TOP\_MID,\ 0,\ 190);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ lv\_obj\_t\ *btn\ =\ lv\_btn\_create(parent);}
+\DoxyCodeLine{00161\ \ \ \ \ lv\_obj\_set\_size(btn,\ 180,\ 60);}
+\DoxyCodeLine{00162\ \ \ \ \ lv\_obj\_align(btn,\ LV\_ALIGN\_TOP\_MID,\ 0,\ 250);}
+\DoxyCodeLine{00163\ \ \ \ \ lv\_obj\_set\_style\_bg\_color(btn,lv\_color\_make(160,\ 50,\ 200),LV\_PART\_MAIN);}
+\DoxyCodeLine{00164\ \ \ \ \ lv\_obj\_add\_event\_cb(btn,\ \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\_btn\_event\_cb}},\ LV\_EVENT\_CLICKED,\ NULL);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ lv\_obj\_t\ *lbl\ =\ lv\_label\_create(btn);}
+\DoxyCodeLine{00167\ \ \ \ \ lv\_label\_set\_text(lbl,\textcolor{stringliteral}{"{}Volver"{}});}
+\DoxyCodeLine{00168\ \ \ \ \ lv\_obj\_center(lbl);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\_timer}}\ =\ lv\_timer\_create(\mbox{\hyperlink{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}{pulse\_update\_cb}},\ 500,\ NULL);}
+\DoxyCodeLine{00171\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{idle__manager_8h_aa65a7399b781ce5204ca482bc65bf075}{block\+\_\+idle\+\_\+timeout}}, \mbox{\hyperlink{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}{bpm\+\_\+label}}, \mbox{\hyperlink{heart_8c_a3119341481da7b8bf32d04c669ca4637}{heart}}, \mbox{\hyperlink{montserrat__34__regular_8c_a5ba17051ff077d1c35b9cb9eddbe9473}{montserrat\+\_\+34\+\_\+regular}}, \mbox{\hyperlink{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}{pulse\+\_\+timer}}, \mbox{\hyperlink{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}{pulse\+\_\+update\+\_\+cb()}}, \mbox{\hyperlink{pulse__sensor_8h_abe7ca60cda316b5995a3b66a3453bfb3}{pulse\+Sensor\+Start()}}, and \mbox{\hyperlink{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}{status\+\_\+label}}.
+
+
+
+Referenced by \mbox{\hyperlink{home__mod_8cpp_a81c8e8828eb6ab49916c12061a884f23}{btn\+\_\+event\+\_\+cb()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__screen_8cpp_a110b08df176a6163bf8834ea75df52b4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__screen_8cpp_a110b08df176a6163bf8834ea75df52b4_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6}\label{pulse__screen_8cpp_a98f20d72bf2410f398f69bc8066a4ee6} 
+\index{pulse\_screen.cpp@{pulse\_screen.cpp}!bpm\_label@{bpm\_label}}
+\index{bpm\_label@{bpm\_label}!pulse\_screen.cpp@{pulse\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{bpm\_label}{bpm\_label}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} bpm\+\_\+label = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__screen_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{pulse__screen_8cpp_source}{pulse\+\_\+screen.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}{pulse\+\_\+update\+\_\+cb()}}, and \mbox{\hyperlink{pulse__screen_8h_a110b08df176a6163bf8834ea75df52b4}{show\+\_\+pulse\+\_\+screen()}}.
+
+\Hypertarget{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932}\label{pulse__screen_8cpp_ac12b34fd7c342c391163714e8959d932} 
+\index{pulse\_screen.cpp@{pulse\_screen.cpp}!pulse\_timer@{pulse\_timer}}
+\index{pulse\_timer@{pulse\_timer}!pulse\_screen.cpp@{pulse\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{pulse\_timer}{pulse\_timer}}
+{\footnotesize\ttfamily lv\+\_\+timer\+\_\+t\texorpdfstring{$\ast$}{*} pulse\+\_\+timer = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__screen_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{pulse__screen_8cpp_source}{pulse\+\_\+screen.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}, and \mbox{\hyperlink{pulse__screen_8h_a110b08df176a6163bf8834ea75df52b4}{show\+\_\+pulse\+\_\+screen()}}.
+
+\Hypertarget{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0}\label{pulse__screen_8cpp_ac4b382b229c227a83d418b45c2db03f0} 
+\index{pulse\_screen.cpp@{pulse\_screen.cpp}!status\_label@{status\_label}}
+\index{status\_label@{status\_label}!pulse\_screen.cpp@{pulse\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{status\_label}{status\_label}}
+{\footnotesize\ttfamily lv\+\_\+obj\+\_\+t\texorpdfstring{$\ast$}{*} status\+\_\+label = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__screen_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{pulse__screen_8cpp_source}{pulse\+\_\+screen.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{pulse__screen_8cpp_a6ffb9dc2f7142a4a4a0e34aea7fb4c15}{pulse\+\_\+update\+\_\+cb()}}, and \mbox{\hyperlink{pulse__screen_8h_a110b08df176a6163bf8834ea75df52b4}{show\+\_\+pulse\+\_\+screen()}}.
+

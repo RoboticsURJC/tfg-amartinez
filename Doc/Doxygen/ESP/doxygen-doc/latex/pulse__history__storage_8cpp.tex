@@ -1,0 +1,517 @@
+\doxysection{src/storage/pulse\+\_\+history\+\_\+storage.cpp File Reference}
+\hypertarget{pulse__history__storage_8cpp}{}\label{pulse__history__storage_8cpp}\index{src/storage/pulse\_history\_storage.cpp@{src/storage/pulse\_history\_storage.cpp}}
+{\ttfamily \#include "{}storage/pulse\+\_\+history\+\_\+storage.\+h"{}}\newline
+{\ttfamily \#include "{}lvgl\+\_\+touch.\+h"{}}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$SD.\+h$>$}\newline
+{\ttfamily \#include $<$SPI.\+h$>$}\newline
+Include dependency graph for pulse\+\_\+history\+\_\+storage.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static SPIClass \mbox{\hyperlink{pulse__history__storage_8cpp_afd8ec49707588593793c9e3a0c0e41e2}{sd\+SPI}} (HSPI)
+\item 
+bool \mbox{\hyperlink{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin}} ()
+\item 
+int \mbox{\hyperlink{pulse__history__storage_8cpp_a0960402027fb0a22485861b189c94e40}{load\+Pulse\+History}} (\mbox{\hyperlink{structPulseRecord}{Pulse\+Record}} records\mbox{[}$\,$\mbox{]}, int max\+Records)
+\item 
+bool \mbox{\hyperlink{pulse__history__storage_8cpp_ab5440ef4fdadade58a9c1676482fc51c}{visit\+Pulse\+History}} (\mbox{\hyperlink{pulse__history__storage_8h_aa5228a05b78c5e85a63b5c5fff11ff09}{Pulse\+History\+Visitor}} visitor, void \texorpdfstring{$\ast$}{*}context)
+\item 
+bool \mbox{\hyperlink{pulse__history__storage_8cpp_ae4c59227ee1369bb87a9ba451ee7ff52}{save\+Pulse\+Average}} (int bpm)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{pulse__history__storage_8cpp_a32bd43d7e7de1b34f382477ceda2a61d}{SD\+\_\+\+SCK}} = 18
+\item 
+static const int \mbox{\hyperlink{pulse__history__storage_8cpp_af01e1bb2c0509f4e35a7ae16eaee545f}{SD\+\_\+\+MISO}} = 19
+\item 
+static const int \mbox{\hyperlink{pulse__history__storage_8cpp_aed461b01f19060beb50b62e2c60116da}{SD\+\_\+\+MOSI}} = 23
+\item 
+static const int \mbox{\hyperlink{pulse__history__storage_8cpp_a7436b3f1ea366c2125bc301486c9acc4}{SD\+\_\+\+CS}} = 5
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\+\_\+\+HISTORY\+\_\+\+FILE}} = "{}/pulse\+\_\+history.\+csv"{}
+\item 
+static bool \mbox{\hyperlink{pulse__history__storage_8cpp_a1af6eebc2debc23c1362fda0a6dd072a}{sd\+\_\+initialized}} = false
+\item 
+static bool \mbox{\hyperlink{pulse__history__storage_8cpp_a5f775c506cdb65289c8e8363cea4065e}{sd\+\_\+available}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pulse__history__storage_8cpp_a0960402027fb0a22485861b189c94e40}\label{pulse__history__storage_8cpp_a0960402027fb0a22485861b189c94e40} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!loadPulseHistory@{loadPulseHistory}}
+\index{loadPulseHistory@{loadPulseHistory}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{loadPulseHistory()}{loadPulseHistory()}}
+{\footnotesize\ttfamily int load\+Pulse\+History (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPulseRecord}{Pulse\+Record}}}]{records\mbox{[}$\,$\mbox{]},  }\item[{int}]{max\+Records }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132}{pulseHistoryBegin}}())\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (!SD.exists(\mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\_HISTORY\_FILE}}))\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ File\ file\ =\ SD.open(\mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\_HISTORY\_FILE}},\ FILE\_READ);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ firstLine\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{while}\ (file.available())\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ String\ line\ =\ file.readStringUntil(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (firstLine)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ firstLine\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ line.trim();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.length()\ ==\ 0)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ firstSep\ =\ line.indexOf(\textcolor{charliteral}{';'});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ secondSep\ =\ line.indexOf(\textcolor{charliteral}{';'},\ firstSep\ +\ 1);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (firstSep\ <\ 0\ ||\ secondSep\ <\ 0)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPulseRecord}{PulseRecord}}\ record;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_ac6b074fe0fff7b1f81446e7a6618dfec}{date}}\ =\ line.substring(0,\ firstSep);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_aeb8f373a6999d82e9986856fa52bcc20}{time}}\ =\ line.substring(firstSep\ +\ 1,\ secondSep);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{bpm}}\ =\ line.substring(secondSep\ +\ 1).toInt();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (record.\mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{bpm}}\ <=\ 0)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ <\ maxRecords)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ records[count++]\ =\ record;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ maxRecords;\ i++)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ records[i\ -\/\ 1]\ =\ records[i];}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ records[maxRecords\ -\/\ 1]\ =\ record;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}===\ HISTORIAL\ LEIDO\ ==="{}});}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ Serial.print(i);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}:\ "{}});}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ Serial.print(records[i].date);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Serial.print(records[i].time);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ Serial.println(records[i].bpm);}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}======================"{}});}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ file.close();}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{00117\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{Pulse\+Record\+::bpm}}, \mbox{\hyperlink{structPulseRecord_ac6b074fe0fff7b1f81446e7a6618dfec}{Pulse\+Record\+::date}}, \mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\+\_\+\+HISTORY\+\_\+\+FILE}}, \mbox{\hyperlink{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}, and \mbox{\hyperlink{structPulseRecord_aeb8f373a6999d82e9986856fa52bcc20}{Pulse\+Record\+::time}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__screen_8h_ad1eaaad2198570756eba8847fab82ae9}{show\+\_\+pulse\+\_\+history\+\_\+screen()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp_a0960402027fb0a22485861b189c94e40_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp_a0960402027fb0a22485861b189c94e40_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132}\label{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!pulseHistoryBegin@{pulseHistoryBegin}}
+\index{pulseHistoryBegin@{pulseHistoryBegin}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{pulseHistoryBegin()}{pulseHistoryBegin()}}
+{\footnotesize\ttfamily bool pulse\+History\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pulse__history__storage_8cpp_a1af6eebc2debc23c1362fda0a6dd072a}{sd\_initialized}})\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{pulse__history__storage_8cpp_a5f775c506cdb65289c8e8363cea4065e}{sd\_available}};}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{pulse__history__storage_8cpp_a1af6eebc2debc23c1362fda0a6dd072a}{sd\_initialized}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{pulse__history__storage_8cpp_afd8ec49707588593793c9e3a0c0e41e2}{sdSPI}}.begin(\mbox{\hyperlink{pulse__history__storage_8cpp_a32bd43d7e7de1b34f382477ceda2a61d}{SD\_SCK}},\ \mbox{\hyperlink{pulse__history__storage_8cpp_af01e1bb2c0509f4e35a7ae16eaee545f}{SD\_MISO}},\ \mbox{\hyperlink{pulse__history__storage_8cpp_aed461b01f19060beb50b62e2c60116da}{SD\_MOSI}},\ \mbox{\hyperlink{pulse__history__storage_8cpp_a7436b3f1ea366c2125bc301486c9acc4}{SD\_CS}});}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{pulse__history__storage_8cpp_a5f775c506cdb65289c8e8363cea4065e}{sd\_available}}\ =\ SD.begin(\mbox{\hyperlink{pulse__history__storage_8cpp_a7436b3f1ea366c2125bc301486c9acc4}{SD\_CS}},\ \mbox{\hyperlink{pulse__history__storage_8cpp_afd8ec49707588593793c9e3a0c0e41e2}{sdSPI}});}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pulse__history__storage_8cpp_a5f775c506cdb65289c8e8363cea4065e}{sd\_available}})\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}No\ se\ pudo\ inicializar\ la\ microSD"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}microSD\ inicializada"{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pulse__history__storage_8cpp_a5f775c506cdb65289c8e8363cea4065e}{sd\+\_\+available}}, \mbox{\hyperlink{pulse__history__storage_8cpp_a7436b3f1ea366c2125bc301486c9acc4}{SD\+\_\+\+CS}}, \mbox{\hyperlink{pulse__history__storage_8cpp_a1af6eebc2debc23c1362fda0a6dd072a}{sd\+\_\+initialized}}, \mbox{\hyperlink{pulse__history__storage_8cpp_af01e1bb2c0509f4e35a7ae16eaee545f}{SD\+\_\+\+MISO}}, \mbox{\hyperlink{pulse__history__storage_8cpp_aed461b01f19060beb50b62e2c60116da}{SD\+\_\+\+MOSI}}, \mbox{\hyperlink{pulse__history__storage_8cpp_a32bd43d7e7de1b34f382477ceda2a61d}{SD\+\_\+\+SCK}}, and \mbox{\hyperlink{pulse__history__storage_8cpp_afd8ec49707588593793c9e3a0c0e41e2}{sd\+SPI()}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_a41d09bd70e40d7a7a73ef81541193e2d}{handle\+\_\+get\+\_\+pulse\+\_\+history()}}, \mbox{\hyperlink{pulse__history__storage_8h_a0960402027fb0a22485861b189c94e40}{load\+Pulse\+History()}}, \mbox{\hyperlink{pulse__history__storage_8h_ae4c59227ee1369bb87a9ba451ee7ff52}{save\+Pulse\+Average()}}, and \mbox{\hyperlink{pulse__history__storage_8h_ab5440ef4fdadade58a9c1676482fc51c}{visit\+Pulse\+History()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pulse__history__storage_8cpp_ae4c59227ee1369bb87a9ba451ee7ff52}\label{pulse__history__storage_8cpp_ae4c59227ee1369bb87a9ba451ee7ff52} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!savePulseAverage@{savePulseAverage}}
+\index{savePulseAverage@{savePulseAverage}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{savePulseAverage()}{savePulseAverage()}}
+{\footnotesize\ttfamily bool save\+Pulse\+Average (\begin{DoxyParamCaption}\item[{int}]{bpm }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00176}{176}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00177\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Entrando\ en\ savePulseAverage"{}});}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (bpm\ <=\ 0)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}BPM\ invalido"{}});}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132}{pulseHistoryBegin}}())\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}pulseHistoryBegin\ fallo"{}});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}SD\ inicializada"{}});}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{if}\ (!SD.exists(\mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\_HISTORY\_FILE}}))\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ File\ headerFile\ =\ SD.open(\mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\_HISTORY\_FILE}},\ FILE\_WRITE);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (headerFile)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ headerFile.println(\textcolor{stringliteral}{"{}Fecha,Hora,BPM"{}});}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ headerFile.close();}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ File\ file\ =\ SD.open(\mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\_HISTORY\_FILE}},\ FILE\_APPEND);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}No\ se\ pudo\ abrir\ el\ fichero"{}});}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Fichero\ abierto"{}});}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ timeinfo;}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{if}\ (!getLocalTime(\&timeinfo))\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ file.printf(\textcolor{stringliteral}{"{}SIN\_FECHA;SIN\_HORA;\%d\(\backslash\)n"{}},\ bpm);}
+\DoxyCodeLine{00213\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ file.printf(}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\%04d-\/\%02d-\/\%02d;\%02d:\%02d:\%02d;\%d\(\backslash\)n"{}},}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ timeinfo.tm\_year\ +\ 1900,}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ timeinfo.tm\_mon\ +\ 1,}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ timeinfo.tm\_mday,}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ timeinfo.tm\_hour,}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ timeinfo.tm\_min,}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ timeinfo.tm\_sec,}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ bpm}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Dato\ escrito"{}});}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ file.close();}
+\DoxyCodeLine{00229\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Reinicializando\ touch"{}});}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ SPI.end();}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ delay(50);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ SPI.begin(25,39,32);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00238\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\+\_\+\+HISTORY\+\_\+\+FILE}}, and \mbox{\hyperlink{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp_ae4c59227ee1369bb87a9ba451ee7ff52_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp_ae4c59227ee1369bb87a9ba451ee7ff52_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pulse__history__storage_8cpp_afd8ec49707588593793c9e3a0c0e41e2}\label{pulse__history__storage_8cpp_afd8ec49707588593793c9e3a0c0e41e2} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!sdSPI@{sdSPI}}
+\index{sdSPI@{sdSPI}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{sdSPI()}{sdSPI()}}
+{\footnotesize\ttfamily static SPIClass sd\+SPI (\begin{DoxyParamCaption}\item[{HSPI}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__storage_8h_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp_afd8ec49707588593793c9e3a0c0e41e2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pulse__history__storage_8cpp_ab5440ef4fdadade58a9c1676482fc51c}\label{pulse__history__storage_8cpp_ab5440ef4fdadade58a9c1676482fc51c} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!visitPulseHistory@{visitPulseHistory}}
+\index{visitPulseHistory@{visitPulseHistory}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{visitPulseHistory()}{visitPulseHistory()}}
+{\footnotesize\ttfamily bool visit\+Pulse\+History (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pulse__history__storage_8h_aa5228a05b78c5e85a63b5c5fff11ff09}{Pulse\+History\+Visitor}}}]{visitor,  }\item[{void \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00119}{119}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132}{pulseHistoryBegin}}())\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (!SD.exists(\mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\_HISTORY\_FILE}}))\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ File\ file\ =\ SD.open(\mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\_HISTORY\_FILE}},\ FILE\_READ);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{bool}\ firstLine\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{while}\ (file.available())\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ String\ line\ =\ file.readStringUntil(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (firstLine)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ firstLine\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ line.trim();}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ firstSep\ =\ line.indexOf(\textcolor{charliteral}{';'});}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ secondSep\ =\ line.indexOf(\textcolor{charliteral}{';'},\ firstSep\ +\ 1);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (firstSep\ <\ 0\ ||\ secondSep\ <\ 0)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPulseRecord}{PulseRecord}}\ record;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_ac6b074fe0fff7b1f81446e7a6618dfec}{date}}\ =\ line.substring(0,\ firstSep);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_aeb8f373a6999d82e9986856fa52bcc20}{time}}\ =\ line.substring(firstSep\ +\ 1,\ secondSep);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ record.\mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{bpm}}\ =\ line.substring(secondSep\ +\ 1).toInt();}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (record.\mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{bpm}}\ <=\ 0)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visitor(record,\ context))\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ file.close();}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00174\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structPulseRecord_a4bfc5b668ffeef4a83ed01dc8933ec11}{Pulse\+Record\+::bpm}}, \mbox{\hyperlink{structPulseRecord_ac6b074fe0fff7b1f81446e7a6618dfec}{Pulse\+Record\+::date}}, \mbox{\hyperlink{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}{PULSE\+\_\+\+HISTORY\+\_\+\+FILE}}, \mbox{\hyperlink{pulse__history__storage_8cpp_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}, and \mbox{\hyperlink{structPulseRecord_aeb8f373a6999d82e9986856fa52bcc20}{Pulse\+Record\+::time}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__portal_8h_a41d09bd70e40d7a7a73ef81541193e2d}{handle\+\_\+get\+\_\+pulse\+\_\+history()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp_ab5440ef4fdadade58a9c1676482fc51c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pulse__history__storage_8cpp_ab5440ef4fdadade58a9c1676482fc51c_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6}\label{pulse__history__storage_8cpp_a17308895676490551308dc8358b1abb6} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!PULSE\_HISTORY\_FILE@{PULSE\_HISTORY\_FILE}}
+\index{PULSE\_HISTORY\_FILE@{PULSE\_HISTORY\_FILE}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{PULSE\_HISTORY\_FILE}{PULSE\_HISTORY\_FILE}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} PULSE\+\_\+\+HISTORY\+\_\+\+FILE = "{}/pulse\+\_\+history.\+csv"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__storage_8h_a0960402027fb0a22485861b189c94e40}{load\+Pulse\+History()}}, \mbox{\hyperlink{pulse__history__storage_8h_ae4c59227ee1369bb87a9ba451ee7ff52}{save\+Pulse\+Average()}}, and \mbox{\hyperlink{pulse__history__storage_8h_ab5440ef4fdadade58a9c1676482fc51c}{visit\+Pulse\+History()}}.
+
+\Hypertarget{pulse__history__storage_8cpp_a5f775c506cdb65289c8e8363cea4065e}\label{pulse__history__storage_8cpp_a5f775c506cdb65289c8e8363cea4065e} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!sd\_available@{sd\_available}}
+\index{sd\_available@{sd\_available}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{sd\_available}{sd\_available}}
+{\footnotesize\ttfamily bool sd\+\_\+available = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__storage_8h_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}.
+
+\Hypertarget{pulse__history__storage_8cpp_a7436b3f1ea366c2125bc301486c9acc4}\label{pulse__history__storage_8cpp_a7436b3f1ea366c2125bc301486c9acc4} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!SD\_CS@{SD\_CS}}
+\index{SD\_CS@{SD\_CS}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{SD\_CS}{SD\_CS}}
+{\footnotesize\ttfamily const int SD\+\_\+\+CS = 5\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__storage_8h_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}.
+
+\Hypertarget{pulse__history__storage_8cpp_a1af6eebc2debc23c1362fda0a6dd072a}\label{pulse__history__storage_8cpp_a1af6eebc2debc23c1362fda0a6dd072a} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!sd\_initialized@{sd\_initialized}}
+\index{sd\_initialized@{sd\_initialized}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{sd\_initialized}{sd\_initialized}}
+{\footnotesize\ttfamily bool sd\+\_\+initialized = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__storage_8h_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}.
+
+\Hypertarget{pulse__history__storage_8cpp_af01e1bb2c0509f4e35a7ae16eaee545f}\label{pulse__history__storage_8cpp_af01e1bb2c0509f4e35a7ae16eaee545f} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!SD\_MISO@{SD\_MISO}}
+\index{SD\_MISO@{SD\_MISO}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{SD\_MISO}{SD\_MISO}}
+{\footnotesize\ttfamily const int SD\+\_\+\+MISO = 19\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__storage_8h_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}.
+
+\Hypertarget{pulse__history__storage_8cpp_aed461b01f19060beb50b62e2c60116da}\label{pulse__history__storage_8cpp_aed461b01f19060beb50b62e2c60116da} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!SD\_MOSI@{SD\_MOSI}}
+\index{SD\_MOSI@{SD\_MOSI}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{SD\_MOSI}{SD\_MOSI}}
+{\footnotesize\ttfamily const int SD\+\_\+\+MOSI = 23\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__storage_8h_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}.
+
+\Hypertarget{pulse__history__storage_8cpp_a32bd43d7e7de1b34f382477ceda2a61d}\label{pulse__history__storage_8cpp_a32bd43d7e7de1b34f382477ceda2a61d} 
+\index{pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}!SD\_SCK@{SD\_SCK}}
+\index{SD\_SCK@{SD\_SCK}!pulse\_history\_storage.cpp@{pulse\_history\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{SD\_SCK}{SD\_SCK}}
+{\footnotesize\ttfamily const int SD\+\_\+\+SCK = 18\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pulse__history__storage_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{pulse__history__storage_8cpp_source}{pulse\+\_\+history\+\_\+storage.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__history__storage_8h_a84dbd670475840c071fd20ee485ba132}{pulse\+History\+Begin()}}.
+

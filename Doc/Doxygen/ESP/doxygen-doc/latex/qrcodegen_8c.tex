@@ -1,0 +1,2223 @@
+\doxysection{lib/qrcodegen/qrcodegen.c File Reference}
+\hypertarget{qrcodegen_8c}{}\label{qrcodegen_8c}\index{lib/qrcodegen/qrcodegen.c@{lib/qrcodegen/qrcodegen.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}qrcodegen.\+h"{}}\newline
+Include dependency graph for qrcodegen.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}}~static
+\item 
+\#define \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}~-\/1
+\item 
+\#define \mbox{\hyperlink{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c}{qrcodegen\+\_\+\+REED\+\_\+\+SOLOMON\+\_\+\+DEGREE\+\_\+\+MAX}}~30
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{append\+Bits\+To\+Buffer}} (unsigned int val, int num\+Bits, uint8\+\_\+t buffer\mbox{[}$\,$\mbox{]}, int \texorpdfstring{$\ast$}{*}bit\+Len)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{add\+Ecc\+And\+Interleave}} (uint8\+\_\+t data\mbox{[}$\,$\mbox{]}, int version, enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}} ecl, uint8\+\_\+t result\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{get\+Num\+Data\+Codewords}} (int version, enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}} ecl)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int \mbox{\hyperlink{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5}{get\+Num\+Raw\+Data\+Modules}} (int ver)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void \mbox{\hyperlink{qrcodegen_8c_ac74eae03dc0c0462a79eee356ff40443}{reed\+Solomon\+Compute\+Divisor}} (int degree, uint8\+\_\+t result\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void \mbox{\hyperlink{qrcodegen_8c_a859a4a9e045e79ca631ea58807c07713}{reed\+Solomon\+Compute\+Remainder}} (const uint8\+\_\+t data\mbox{[}$\,$\mbox{]}, int data\+Len, const uint8\+\_\+t generator\mbox{[}$\,$\mbox{]}, int degree, uint8\+\_\+t result\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} uint8\+\_\+t \mbox{\hyperlink{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902}{reed\+Solomon\+Multiply}} (uint8\+\_\+t x, uint8\+\_\+t y)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void \mbox{\hyperlink{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41}{initialize\+Function\+Modules}} (int version, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]})
+\item 
+static void \mbox{\hyperlink{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145}{draw\+Light\+Function\+Modules}} (uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]}, int version)
+\item 
+static void \mbox{\hyperlink{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed}{draw\+Format\+Bits}} (enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}} ecl, enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}} mask, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int \mbox{\hyperlink{qrcodegen_8c_a7a7938db5bdc0a2abae8ff2ec0ad1fee}{get\+Alignment\+Pattern\+Positions}} (int version, uint8\+\_\+t result\mbox{[}7\mbox{]})
+\item 
+static void \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fill\+Rectangle}} (int left, int top, int width, int height, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]})
+\item 
+static void \mbox{\hyperlink{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba}{draw\+Codewords}} (const uint8\+\_\+t data\mbox{[}$\,$\mbox{]}, int data\+Len, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]})
+\item 
+static void \mbox{\hyperlink{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}{apply\+Mask}} (const uint8\+\_\+t function\+Modules\mbox{[}$\,$\mbox{]}, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]}, enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}} mask)
+\item 
+static long \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score}} (const uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]})
+\item 
+static int \mbox{\hyperlink{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473}{finder\+Penalty\+Count\+Patterns}} (const int run\+History\mbox{[}7\mbox{]}, int qrsize)
+\item 
+static int \mbox{\hyperlink{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03}{finder\+Penalty\+Terminate\+And\+Count}} (bool current\+Run\+Color, int current\+Run\+Length, int run\+History\mbox{[}7\mbox{]}, int qrsize)
+\item 
+static void \mbox{\hyperlink{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834}{finder\+Penalty\+Add\+History}} (int current\+Run\+Length, int run\+History\mbox{[}7\mbox{]}, int qrsize)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} bool \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{get\+Module\+Bounded}} (const uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]}, int x, int y)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{set\+Module\+Bounded}} (uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]}, int x, int y, bool is\+Dark)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void \mbox{\hyperlink{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1}{set\+Module\+Unbounded}} (uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]}, int x, int y, bool is\+Dark)
+\item 
+static bool \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{get\+Bit}} (int x, int i)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calc\+Segment\+Bit\+Length}} (enum \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\+\_\+\+Mode}} mode, size\+\_\+t num\+Chars)
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int \mbox{\hyperlink{qrcodegen_8c_a2a6584906b509f7a7833d20473de86e9}{get\+Total\+Bits}} (const struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} segs\mbox{[}$\,$\mbox{]}, size\+\_\+t len, int version)
+\item 
+static int \mbox{\hyperlink{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb}{num\+Char\+Count\+Bits}} (enum \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\+\_\+\+Mode}} mode, int version)
+\item 
+bool \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text}} (const char \texorpdfstring{$\ast$}{*}text, uint8\+\_\+t temp\+Buffer\mbox{[}$\,$\mbox{]}, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]}, enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}} ecl, int min\+Version, int max\+Version, enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}} mask, bool boost\+Ecl)
+\item 
+bool \mbox{\hyperlink{qrcodegen_8c_a1cc45de66046354d5aad2ee1cc6b2581}{qrcodegen\+\_\+encode\+Binary}} (uint8\+\_\+t data\+And\+Temp\mbox{[}$\,$\mbox{]}, size\+\_\+t data\+Len, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]}, enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}} ecl, int min\+Version, int max\+Version, enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}} mask, bool boost\+Ecl)
+\item 
+bool \mbox{\hyperlink{qrcodegen_8c_a41164e2a41efb324b919395ffde14fa7}{qrcodegen\+\_\+encode\+Segments}} (const struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} segs\mbox{[}$\,$\mbox{]}, size\+\_\+t len, enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}} ecl, uint8\+\_\+t temp\+Buffer\mbox{[}$\,$\mbox{]}, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced}} (const struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} segs\mbox{[}$\,$\mbox{]}, size\+\_\+t len, enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}} ecl, int min\+Version, int max\+Version, enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}} mask, bool boost\+Ecl, uint8\+\_\+t temp\+Buffer\mbox{[}$\,$\mbox{]}, uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\+\_\+get\+Size}} (const uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{qrcodegen_8c_a495cb24d97c9b90a9c1e8a62903debf5}{qrcodegen\+\_\+get\+Module}} (const uint8\+\_\+t qrcode\mbox{[}$\,$\mbox{]}, int x, int y)
+\item 
+bool \mbox{\hyperlink{qrcodegen_8c_aa873e0a91056118719064ea4f2a15013}{qrcodegen\+\_\+is\+Numeric}} (const char \texorpdfstring{$\ast$}{*}text)
+\item 
+bool \mbox{\hyperlink{qrcodegen_8c_a25856a1d9c76851f8b83640ba3c6a3fc}{qrcodegen\+\_\+is\+Alphanumeric}} (const char \texorpdfstring{$\ast$}{*}text)
+\item 
+size\+\_\+t \mbox{\hyperlink{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506}{qrcodegen\+\_\+calc\+Segment\+Buffer\+Size}} (enum \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\+\_\+\+Mode}} mode, size\+\_\+t num\+Chars)
+\item 
+struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} \mbox{\hyperlink{qrcodegen_8c_a5b28f0f89765839d8f4c8a803edc4ad4}{qrcodegen\+\_\+make\+Bytes}} (const uint8\+\_\+t data\mbox{[}$\,$\mbox{]}, size\+\_\+t len, uint8\+\_\+t \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}\mbox{[}$\,$\mbox{]})
+\item 
+struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} \mbox{\hyperlink{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43}{qrcodegen\+\_\+make\+Numeric}} (const char \texorpdfstring{$\ast$}{*}digits, uint8\+\_\+t \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}\mbox{[}$\,$\mbox{]})
+\item 
+struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} \mbox{\hyperlink{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d}{qrcodegen\+\_\+make\+Alphanumeric}} (const char \texorpdfstring{$\ast$}{*}text, uint8\+\_\+t \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}\mbox{[}$\,$\mbox{]})
+\item 
+struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} \mbox{\hyperlink{qrcodegen_8c_a27c3b3d01e91f9532689adbb01c1ff2c}{qrcodegen\+\_\+make\+Eci}} (long assign\+Val, uint8\+\_\+t \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{qrcodegen_8c_abc8e497ac83f11842522e6dcefde5a9d}{ALPHANUMERIC\+\_\+\+CHARSET}} = "{}0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ \$\%\texorpdfstring{$\ast$}{*}+-\/./\+:"{}
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} const int8\+\_\+t \mbox{\hyperlink{qrcodegen_8c_aa317616612730b289013844a2b040f26}{ECC\+\_\+\+CODEWORDS\+\_\+\+PER\+\_\+\+BLOCK}} \mbox{[}4\mbox{]}\mbox{[}41\mbox{]}
+\item 
+\mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} const int8\+\_\+t \mbox{\hyperlink{qrcodegen_8c_a7deaf66d3af6d18ec53e2f1e7a1913c9}{NUM\+\_\+\+ERROR\+\_\+\+CORRECTION\+\_\+\+BLOCKS}} \mbox{[}4\mbox{]}\mbox{[}41\mbox{]}
+\item 
+static const int \mbox{\hyperlink{qrcodegen_8c_a3928d5c05a7afc1a1dbacd946ced60e1}{PENALTY\+\_\+\+N1}} = 3
+\item 
+static const int \mbox{\hyperlink{qrcodegen_8c_a2e77c1abffa48b55a464b8ebebe6236b}{PENALTY\+\_\+\+N2}} = 3
+\item 
+static const int \mbox{\hyperlink{qrcodegen_8c_a04495626b845c0e983106c741235b500}{PENALTY\+\_\+\+N3}} = 40
+\item 
+static const int \mbox{\hyperlink{qrcodegen_8c_a69bbf54cb5fecf7d5b18908177662400}{PENALTY\+\_\+\+N4}} = 10
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}\label{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8} 
+\index{qrcodegen.c@{qrcodegen.c}!LENGTH\_OVERFLOW@{LENGTH\_OVERFLOW}}
+\index{LENGTH\_OVERFLOW@{LENGTH\_OVERFLOW}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{LENGTH\_OVERFLOW}{LENGTH\_OVERFLOW}}
+{\footnotesize\ttfamily \#define LENGTH\+\_\+\+OVERFLOW~-\/1}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00097}{97}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+\Hypertarget{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c}\label{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX@{qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}}
+\index{qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX@{qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}{qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}}
+{\footnotesize\ttfamily \#define qrcodegen\+\_\+\+REED\+\_\+\+SOLOMON\+\_\+\+DEGREE\+\_\+\+MAX~30}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00109}{109}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+\Hypertarget{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}\label{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9} 
+\index{qrcodegen.c@{qrcodegen.c}!testable@{testable}}
+\index{testable@{testable}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{testable}{testable}}
+{\footnotesize\ttfamily \#define testable~static}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00031}{31}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}\label{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539} 
+\index{qrcodegen.c@{qrcodegen.c}!addEccAndInterleave@{addEccAndInterleave}}
+\index{addEccAndInterleave@{addEccAndInterleave}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{addEccAndInterleave()}{addEccAndInterleave()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void add\+Ecc\+And\+Interleave (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data\mbox{[}$\,$\mbox{]},  }\item[{int}]{version,  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}}}]{ecl,  }\item[{uint8\+\_\+t}]{result\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00297}{297}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{comment}{//\ Calculate\ parameter\ numbers}}
+\DoxyCodeLine{00299\ \ \ \ \ assert(0\ <=\ (\textcolor{keywordtype}{int})ecl\ \&\&\ (\textcolor{keywordtype}{int})ecl\ <\ 4\ \&\&\ \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\_VERSION\_MIN}}\ <=\ version\ \&\&\ version\ <=\ \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\_VERSION\_MAX}});}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordtype}{int}\ numBlocks\ =\ \mbox{\hyperlink{qrcodegen_8c_a7deaf66d3af6d18ec53e2f1e7a1913c9}{NUM\_ERROR\_CORRECTION\_BLOCKS}}[(int)ecl][version];}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{int}\ blockEccLen\ =\ \mbox{\hyperlink{qrcodegen_8c_aa317616612730b289013844a2b040f26}{ECC\_CODEWORDS\_PER\_BLOCK}}\ \ [(int)ecl][version];}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordtype}{int}\ rawCodewords\ =\ \mbox{\hyperlink{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5}{getNumRawDataModules}}(version)\ /\ 8;}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keywordtype}{int}\ dataLen\ =\ \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{getNumDataCodewords}}(version,\ ecl);}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{int}\ numShortBlocks\ =\ numBlocks\ -\/\ rawCodewords\ \%\ numBlocks;}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordtype}{int}\ shortBlockDataLen\ =\ rawCodewords\ /\ numBlocks\ -\/\ blockEccLen;}
+\DoxyCodeLine{00306\ \ \ \ \ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{comment}{//\ Split\ data\ into\ blocks,\ calculate\ ECC,\ and\ interleave}}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{comment}{//\ (not\ concatenate)\ the\ bytes\ into\ a\ single\ sequence}}
+\DoxyCodeLine{00309\ \ \ \ \ uint8\_t\ rsdiv[\mbox{\hyperlink{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c}{qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}}];}
+\DoxyCodeLine{00310\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_ac74eae03dc0c0462a79eee356ff40443}{reedSolomonComputeDivisor}}(blockEccLen,\ rsdiv);}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *dat\ =\ data;}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numBlocks;\ i++)\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ datLen\ =\ shortBlockDataLen\ +\ (i\ <\ numShortBlocks\ ?\ 0\ :\ 1);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ uint8\_t\ *ecc\ =\ \&data[dataLen];\ \ \textcolor{comment}{//\ Temporary\ storage}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a859a4a9e045e79ca631ea58807c07713}{reedSolomonComputeRemainder}}(dat,\ datLen,\ rsdiv,\ blockEccLen,\ ecc);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0,\ k\ =\ i;\ j\ <\ datLen;\ j++,\ k\ +=\ numBlocks)\ \{\ \ \textcolor{comment}{//\ Copy\ data}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ ==\ shortBlockDataLen)}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k\ -\/=\ numShortBlocks;}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ result[k]\ =\ dat[j];}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0,\ k\ =\ dataLen\ +\ i;\ j\ <\ blockEccLen;\ j++,\ k\ +=\ numBlocks)\ \ \textcolor{comment}{//\ Copy\ ECC}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ result[k]\ =\ ecc[j];}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ dat\ +=\ datLen;}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_aa317616612730b289013844a2b040f26}{ECC\+\_\+\+CODEWORDS\+\_\+\+PER\+\_\+\+BLOCK}}, \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{get\+Num\+Data\+Codewords()}}, \mbox{\hyperlink{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5}{get\+Num\+Raw\+Data\+Modules()}}, \mbox{\hyperlink{qrcodegen_8c_a7deaf66d3af6d18ec53e2f1e7a1913c9}{NUM\+\_\+\+ERROR\+\_\+\+CORRECTION\+\_\+\+BLOCKS}}, \mbox{\hyperlink{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c}{qrcodegen\+\_\+\+REED\+\_\+\+SOLOMON\+\_\+\+DEGREE\+\_\+\+MAX}}, \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\+\_\+\+VERSION\+\_\+\+MAX}}, \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\+\_\+\+VERSION\+\_\+\+MIN}}, \mbox{\hyperlink{qrcodegen_8c_ac74eae03dc0c0462a79eee356ff40443}{reed\+Solomon\+Compute\+Divisor()}}, and \mbox{\hyperlink{qrcodegen_8c_a859a4a9e045e79ca631ea58807c07713}{reed\+Solomon\+Compute\+Remainder()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}\label{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147} 
+\index{qrcodegen.c@{qrcodegen.c}!appendBitsToBuffer@{appendBitsToBuffer}}
+\index{appendBitsToBuffer@{appendBitsToBuffer}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{appendBitsToBuffer()}{appendBitsToBuffer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void append\+Bits\+To\+Buffer (\begin{DoxyParamCaption}\item[{unsigned int}]{val,  }\item[{int}]{num\+Bits,  }\item[{uint8\+\_\+t}]{buffer\mbox{[}$\,$\mbox{]},  }\item[{int \texorpdfstring{$\ast$}{*}}]{bit\+Len }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00188}{188}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ assert(0\ <=\ numBits\ \&\&\ numBits\ <=\ 16\ \&\&\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})val\ >>\ numBits\ ==\ 0);}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ numBits\ -\/\ 1;\ i\ >=\ 0;\ i-\/-\/,\ (*bitLen)++)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ buffer[*bitLen\ >>\ 3]\ |=\ ((val\ >>\ i)\ \&\ 1)\ <<\ (7\ -\/\ (*bitLen\ \&\ 7));}
+\DoxyCodeLine{00192\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}, \mbox{\hyperlink{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d}{qrcodegen\+\_\+make\+Alphanumeric()}}, \mbox{\hyperlink{qrcodegen_8c_a27c3b3d01e91f9532689adbb01c1ff2c}{qrcodegen\+\_\+make\+Eci()}}, and \mbox{\hyperlink{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43}{qrcodegen\+\_\+make\+Numeric()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}\label{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7} 
+\index{qrcodegen.c@{qrcodegen.c}!applyMask@{applyMask}}
+\index{applyMask@{applyMask}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{applyMask()}{applyMask()}}
+{\footnotesize\ttfamily static void apply\+Mask (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{function\+Modules\mbox{[}$\,$\mbox{]},  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]},  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}}}]{mask }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00610}{610}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00611\ \ \ \ \ assert(0\ <=\ (\textcolor{keywordtype}{int})mask\ \&\&\ (\textcolor{keywordtype}{int})mask\ <=\ 7);\ \ \textcolor{comment}{//\ Disallows\ qrcodegen\_Mask\_AUTO}}
+\DoxyCodeLine{00612\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\_getSize}}(qrcode);}
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ qrsize;\ y++)\ \{}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ qrsize;\ x++)\ \{}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(functionModules,\ x,\ y))}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ invert;}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ ((\textcolor{keywordtype}{int})mask)\ \{}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \ invert\ =\ (x\ +\ y)\ \%\ 2\ ==\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \ invert\ =\ y\ \%\ 2\ ==\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \ invert\ =\ x\ \%\ 3\ ==\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \ invert\ =\ (x\ +\ y)\ \%\ 3\ ==\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \ invert\ =\ (x\ /\ 3\ +\ y\ /\ 2)\ \%\ 2\ ==\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \ invert\ =\ x\ *\ y\ \%\ 2\ +\ x\ *\ y\ \%\ 3\ ==\ 0;\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \ invert\ =\ (x\ *\ y\ \%\ 2\ +\ x\ *\ y\ \%\ 3)\ \%\ 2\ ==\ 0;\ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \ invert\ =\ ((x\ +\ y)\ \%\ 2\ +\ x\ *\ y\ \%\ 3)\ \%\ 2\ ==\ 0;\ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \ assert(\textcolor{keyword}{false});\ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ val\ =\ \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y);}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ x,\ y,\ val\ \string^\ invert);}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00632\ \ \ \ \ \}}
+\DoxyCodeLine{00633\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{get\+Module\+Bounded()}}, \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\+\_\+get\+Size()}}, and \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{set\+Module\+Bounded()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}\label{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62} 
+\index{qrcodegen.c@{qrcodegen.c}!calcSegmentBitLength@{calcSegmentBitLength}}
+\index{calcSegmentBitLength@{calcSegmentBitLength}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{calcSegmentBitLength()}{calcSegmentBitLength()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int calc\+Segment\+Bit\+Length (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\+\_\+\+Mode}}}]{mode,  }\item[{size\+\_\+t}]{num\+Chars }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00851}{851}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00852\ \ \ \ \ \textcolor{comment}{//\ All\ calculations\ are\ designed\ to\ avoid\ overflow\ on\ all\ platforms}}
+\DoxyCodeLine{00853\ \ \ \ \ \textcolor{keywordflow}{if}\ (numChars\ >\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})INT16\_MAX)}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}};}
+\DoxyCodeLine{00855\ \ \ \ \ \textcolor{keywordtype}{long}\ result\ =\ (long)numChars;}
+\DoxyCodeLine{00856\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\_Mode\_NUMERIC}})}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ result\ =\ (result\ *\ 10\ +\ 2)\ /\ 3;\ \ \textcolor{comment}{//\ ceil(10/3\ *\ n)}}
+\DoxyCodeLine{00858\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\_Mode\_ALPHANUMERIC}})}
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ result\ =\ (result\ *\ 11\ +\ 1)\ /\ 2;\ \ \textcolor{comment}{//\ ceil(11/2\ *\ n)}}
+\DoxyCodeLine{00860\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\_Mode\_BYTE}})}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ result\ *=\ 8;}
+\DoxyCodeLine{00862\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097badc5fad762df1a0dff0462be08dbdb99f}{qrcodegen\_Mode\_KANJI}})}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ result\ *=\ 13;}
+\DoxyCodeLine{00864\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baeb08ea4e31c49946cfbf032946fea4e5}{qrcodegen\_Mode\_ECI}}\ \&\&\ numChars\ ==\ 0)}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ result\ =\ 3\ *\ 8;}
+\DoxyCodeLine{00866\ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ \ \textcolor{comment}{//\ Invalid\ argument}}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false});}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}};}
+\DoxyCodeLine{00869\ \ \ \ \ \}}
+\DoxyCodeLine{00870\ \ \ \ \ assert(result\ >=\ 0);}
+\DoxyCodeLine{00871\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ >\ INT16\_MAX)}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}};}
+\DoxyCodeLine{00873\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})result;}
+\DoxyCodeLine{00874\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\+\_\+\+Mode\+\_\+\+ALPHANUMERIC}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\+\_\+\+Mode\+\_\+\+BYTE}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baeb08ea4e31c49946cfbf032946fea4e5}{qrcodegen\+\_\+\+Mode\+\_\+\+ECI}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097badc5fad762df1a0dff0462be08dbdb99f}{qrcodegen\+\_\+\+Mode\+\_\+\+KANJI}}, and \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\+\_\+\+Mode\+\_\+\+NUMERIC}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506}{qrcodegen\+\_\+calc\+Segment\+Buffer\+Size()}}, \mbox{\hyperlink{qrcodegen_8c_a1cc45de66046354d5aad2ee1cc6b2581}{qrcodegen\+\_\+encode\+Binary()}}, \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text()}}, \mbox{\hyperlink{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d}{qrcodegen\+\_\+make\+Alphanumeric()}}, \mbox{\hyperlink{qrcodegen_8c_a5b28f0f89765839d8f4c8a803edc4ad4}{qrcodegen\+\_\+make\+Bytes()}}, and \mbox{\hyperlink{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43}{qrcodegen\+\_\+make\+Numeric()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba}\label{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba} 
+\index{qrcodegen.c@{qrcodegen.c}!drawCodewords@{drawCodewords}}
+\index{drawCodewords@{drawCodewords}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{drawCodewords()}{drawCodewords()}}
+{\footnotesize\ttfamily static void draw\+Codewords (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{data\mbox{[}$\,$\mbox{]},  }\item[{int}]{data\+Len,  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00579}{579}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\_getSize}}(qrcode);}
+\DoxyCodeLine{00581\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;\ \ \textcolor{comment}{//\ Bit\ index\ into\ the\ data}}
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{comment}{//\ Do\ the\ funny\ zigzag\ scan}}
+\DoxyCodeLine{00583\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ right\ =\ qrsize\ -\/\ 1;\ right\ >=\ 1;\ right\ -\/=\ 2)\ \{\ \ \textcolor{comment}{//\ Index\ of\ right\ column\ in\ each\ column\ pair}}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (right\ ==\ 6)}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ right\ =\ 5;}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ vert\ =\ 0;\ vert\ <\ qrsize;\ vert++)\ \{\ \ \textcolor{comment}{//\ Vertical\ counter}}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 2;\ j++)\ \{}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ right\ -\/\ j;\ \ \textcolor{comment}{//\ Actual\ x\ coordinate}}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ upward\ =\ ((right\ +\ 1)\ \&\ 2)\ ==\ 0;}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ upward\ ?\ qrsize\ -\/\ 1\ -\/\ vert\ :\ vert;\ \ \textcolor{comment}{//\ Actual\ y\ coordinate}}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y)\ \&\&\ i\ <\ dataLen\ *\ 8)\ \{}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ dark\ =\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(data[i\ >>\ 3],\ 7\ -\/\ (i\ \&\ 7));}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ x,\ y,\ dark);}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ this\ QR\ Code\ has\ any\ remainder\ bits\ (0\ to\ 7),\ they\ were\ assigned\ as}}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0/false/light\ by\ the\ constructor\ and\ are\ left\ unchanged\ by\ this\ method}}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00600\ \ \ \ \ \}}
+\DoxyCodeLine{00601\ \ \ \ \ assert(i\ ==\ dataLen\ *\ 8);}
+\DoxyCodeLine{00602\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{get\+Bit()}}, \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{get\+Module\+Bounded()}}, \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\+\_\+get\+Size()}}, and \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{set\+Module\+Bounded()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed}\label{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed} 
+\index{qrcodegen.c@{qrcodegen.c}!drawFormatBits@{drawFormatBits}}
+\index{drawFormatBits@{drawFormatBits}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{drawFormatBits()}{drawFormatBits()}}
+{\footnotesize\ttfamily static void draw\+Format\+Bits (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}}}]{ecl,  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}}}]{mask,  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00519}{519}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{comment}{//\ Calculate\ error\ correction\ code\ and\ pack\ bits}}
+\DoxyCodeLine{00521\ \ \ \ \ assert(0\ <=\ (\textcolor{keywordtype}{int})mask\ \&\&\ (\textcolor{keywordtype}{int})mask\ <=\ 7);}
+\DoxyCodeLine{00522\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ table[]\ =\ \{1,\ 0,\ 3,\ 2\};}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordtype}{int}\ data\ =\ table[(int)ecl]\ <<\ 3\ |\ (\textcolor{keywordtype}{int})mask;\ \ \textcolor{comment}{//\ errCorrLvl\ is\ uint2,\ mask\ is\ uint3}}
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{keywordtype}{int}\ rem\ =\ data;}
+\DoxyCodeLine{00525\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 10;\ i++)}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ rem\ =\ (rem\ <<\ 1)\ \string^\ ((rem\ >>\ 9)\ *\ 0x537);}
+\DoxyCodeLine{00527\ \ \ \ \ \textcolor{keywordtype}{int}\ bits\ =\ (data\ <<\ 10\ |\ rem)\ \string^\ 0x5412;\ \ \textcolor{comment}{//\ uint15}}
+\DoxyCodeLine{00528\ \ \ \ \ assert(bits\ >>\ 15\ ==\ 0);}
+\DoxyCodeLine{00529\ \ \ \ \ }
+\DoxyCodeLine{00530\ \ \ \ \ \textcolor{comment}{//\ Draw\ first\ copy}}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <=\ 5;\ i++)}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ 8,\ i,\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(bits,\ i));}
+\DoxyCodeLine{00533\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ 8,\ 7,\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(bits,\ 6));}
+\DoxyCodeLine{00534\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ 8,\ 8,\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(bits,\ 7));}
+\DoxyCodeLine{00535\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ 7,\ 8,\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(bits,\ 8));}
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 9;\ i\ <\ 15;\ i++)}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ 14\ -\/\ i,\ 8,\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(bits,\ i));}
+\DoxyCodeLine{00538\ \ \ \ \ }
+\DoxyCodeLine{00539\ \ \ \ \ \textcolor{comment}{//\ Draw\ second\ copy}}
+\DoxyCodeLine{00540\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\_getSize}}(qrcode);}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 8;\ i++)}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ qrsize\ -\/\ 1\ -\/\ i,\ 8,\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(bits,\ i));}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 8;\ i\ <\ 15;\ i++)}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ 8,\ qrsize\ -\/\ 15\ +\ i,\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(bits,\ i));}
+\DoxyCodeLine{00545\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ 8,\ qrsize\ -\/\ 8,\ \textcolor{keyword}{true});\ \ \textcolor{comment}{//\ Always\ dark}}
+\DoxyCodeLine{00546\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{get\+Bit()}}, \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\+\_\+get\+Size()}}, and \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{set\+Module\+Bounded()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145}\label{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145} 
+\index{qrcodegen.c@{qrcodegen.c}!drawLightFunctionModules@{drawLightFunctionModules}}
+\index{drawLightFunctionModules@{drawLightFunctionModules}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{drawLightFunctionModules()}{drawLightFunctionModules()}}
+{\footnotesize\ttfamily static void draw\+Light\+Function\+Modules (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]},  }\item[{int}]{version }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00458}{458}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{comment}{//\ Draw\ horizontal\ and\ vertical\ timing\ patterns}}
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\_getSize}}(qrcode);}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 7;\ i\ <\ qrsize\ -\/\ 7;\ i\ +=\ 2)\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ 6,\ i,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ i,\ 6,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00464\ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \ \ \ \ }
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{comment}{//\ Draw\ 3\ finder\ patterns\ (all\ corners\ except\ bottom\ right;\ overwrites\ some\ timing\ modules)}}
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ dy\ =\ -\/4;\ dy\ <=\ 4;\ dy++)\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ dx\ =\ -\/4;\ dx\ <=\ 4;\ dx++)\ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dist\ =\ abs(dx);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (abs(dy)\ >\ dist)}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dist\ =\ abs(dy);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\ ==\ 2\ ||\ dist\ ==\ 4)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1}{setModuleUnbounded}}(qrcode,\ 3\ +\ dx,\ 3\ +\ dy,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1}{setModuleUnbounded}}(qrcode,\ qrsize\ -\/\ 4\ +\ dx,\ 3\ +\ dy,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1}{setModuleUnbounded}}(qrcode,\ 3\ +\ dx,\ qrsize\ -\/\ 4\ +\ dy,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \ \ \}}
+\DoxyCodeLine{00479\ \ \ \ \ }
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{comment}{//\ Draw\ numerous\ alignment\ patterns}}
+\DoxyCodeLine{00481\ \ \ \ \ uint8\_t\ alignPatPos[7];}
+\DoxyCodeLine{00482\ \ \ \ \ \textcolor{keywordtype}{int}\ numAlign\ =\ \mbox{\hyperlink{qrcodegen_8c_a7a7938db5bdc0a2abae8ff2ec0ad1fee}{getAlignmentPatternPositions}}(version,\ alignPatPos);}
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numAlign;\ i++)\ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ numAlign;\ j++)\ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ 0\ \&\&\ j\ ==\ 0)\ ||\ (i\ ==\ 0\ \&\&\ j\ ==\ numAlign\ -\/\ 1)\ ||\ (i\ ==\ numAlign\ -\/\ 1\ \&\&\ j\ ==\ 0))}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \ \textcolor{comment}{//\ Don't\ draw\ on\ the\ three\ finder\ corners}}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ dy\ =\ -\/1;\ dy\ <=\ 1;\ dy++)\ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ dx\ =\ -\/1;\ dx\ <=\ 1;\ dx++)}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ alignPatPos[i]\ +\ dx,\ alignPatPos[j]\ +\ dy,\ dx\ ==\ 0\ \&\&\ dy\ ==\ 0);}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00492\ \ \ \ \ \}}
+\DoxyCodeLine{00493\ \ \ \ \ }
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{comment}{//\ Draw\ version\ blocks}}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keywordflow}{if}\ (version\ >=\ 7)\ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ error\ correction\ code\ and\ pack\ bits}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rem\ =\ version;\ \ \textcolor{comment}{//\ version\ is\ uint6,\ in\ the\ range\ [7,\ 40]}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 12;\ i++)}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ rem\ =\ (rem\ <<\ 1)\ \string^\ ((rem\ >>\ 11)\ *\ 0x1F25);}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ bits\ =\ (long)version\ <<\ 12\ |\ rem;\ \ \textcolor{comment}{//\ uint18}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ assert(bits\ >>\ 18\ ==\ 0);}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ two\ copies}}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 6;\ i++)\ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 3;\ j++)\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ k\ =\ qrsize\ -\/\ 11\ +\ j;}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ k,\ i,\ (bits\ \&\ 1)\ !=\ 0);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ i,\ k,\ (bits\ \&\ 1)\ !=\ 0);}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bits\ >>=\ 1;}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00512\ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a7a7938db5bdc0a2abae8ff2ec0ad1fee}{get\+Alignment\+Pattern\+Positions()}}, \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\+\_\+get\+Size()}}, \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{set\+Module\+Bounded()}}, and \mbox{\hyperlink{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1}{set\+Module\+Unbounded()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}\label{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15} 
+\index{qrcodegen.c@{qrcodegen.c}!fillRectangle@{fillRectangle}}
+\index{fillRectangle@{fillRectangle}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{fillRectangle()}{fillRectangle()}}
+{\footnotesize\ttfamily static void fill\+Rectangle (\begin{DoxyParamCaption}\item[{int}]{left,  }\item[{int}]{top,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00566}{566}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ dy\ =\ 0;\ dy\ <\ height;\ dy++)\ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ dx\ =\ 0;\ dx\ <\ width;\ dx++)}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ left\ +\ dx,\ top\ +\ dy,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00570\ \ \ \ \ \}}
+\DoxyCodeLine{00571\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{set\+Module\+Bounded()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41}{initialize\+Function\+Modules()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834}\label{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834} 
+\index{qrcodegen.c@{qrcodegen.c}!finderPenaltyAddHistory@{finderPenaltyAddHistory}}
+\index{finderPenaltyAddHistory@{finderPenaltyAddHistory}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{finderPenaltyAddHistory()}{finderPenaltyAddHistory()}}
+{\footnotesize\ttfamily static void finder\+Penalty\+Add\+History (\begin{DoxyParamCaption}\item[{int}]{current\+Run\+Length,  }\item[{int}]{run\+History\mbox{[}7\mbox{]},  }\item[{int}]{qrsize }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00742}{742}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00743\ \ \ \ \ \textcolor{keywordflow}{if}\ (runHistory[0]\ ==\ 0)}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ currentRunLength\ +=\ qrsize;\ \ \textcolor{comment}{//\ Add\ light\ border\ to\ initial\ run}}
+\DoxyCodeLine{00745\ \ \ \ \ memmove(\&runHistory[1],\ \&runHistory[0],\ 6\ *\ \textcolor{keyword}{sizeof}(runHistory[0]));}
+\DoxyCodeLine{00746\ \ \ \ \ runHistory[0]\ =\ currentRunLength;}
+\DoxyCodeLine{00747\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03}{finder\+Penalty\+Terminate\+And\+Count()}}, and \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473}\label{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473} 
+\index{qrcodegen.c@{qrcodegen.c}!finderPenaltyCountPatterns@{finderPenaltyCountPatterns}}
+\index{finderPenaltyCountPatterns@{finderPenaltyCountPatterns}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{finderPenaltyCountPatterns()}{finderPenaltyCountPatterns()}}
+{\footnotesize\ttfamily static int finder\+Penalty\+Count\+Patterns (\begin{DoxyParamCaption}\item[{const int}]{run\+History\mbox{[}7\mbox{]},  }\item[{int}]{qrsize }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00718}{718}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00719\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ runHistory[1];}
+\DoxyCodeLine{00720\ \ \ \ \ assert(n\ <=\ qrsize\ *\ 3);\ \ (void)qrsize;}
+\DoxyCodeLine{00721\ \ \ \ \ \textcolor{keywordtype}{bool}\ core\ =\ n\ >\ 0\ \&\&\ runHistory[2]\ ==\ n\ \&\&\ runHistory[3]\ ==\ n\ *\ 3\ \&\&\ runHistory[4]\ ==\ n\ \&\&\ runHistory[5]\ ==\ n;}
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{comment}{//\ The\ maximum\ QR\ Code\ size\ is\ 177,\ hence\ the\ dark\ run\ length\ n\ <=\ 177.}}
+\DoxyCodeLine{00723\ \ \ \ \ \textcolor{comment}{//\ Arithmetic\ is\ promoted\ to\ int,\ so\ n*4\ will\ not\ overflow.}}
+\DoxyCodeLine{00724\ \ \ \ \ \textcolor{keywordflow}{return}\ (core\ \&\&\ runHistory[0]\ >=\ n\ *\ 4\ \&\&\ runHistory[6]\ >=\ n\ ?\ 1\ :\ 0)}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ +\ (core\ \&\&\ runHistory[6]\ >=\ n\ *\ 4\ \&\&\ runHistory[0]\ >=\ n\ ?\ 1\ :\ 0);}
+\DoxyCodeLine{00726\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03}{finder\+Penalty\+Terminate\+And\+Count()}}, and \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03}\label{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03} 
+\index{qrcodegen.c@{qrcodegen.c}!finderPenaltyTerminateAndCount@{finderPenaltyTerminateAndCount}}
+\index{finderPenaltyTerminateAndCount@{finderPenaltyTerminateAndCount}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{finderPenaltyTerminateAndCount()}{finderPenaltyTerminateAndCount()}}
+{\footnotesize\ttfamily static int finder\+Penalty\+Terminate\+And\+Count (\begin{DoxyParamCaption}\item[{bool}]{current\+Run\+Color,  }\item[{int}]{current\+Run\+Length,  }\item[{int}]{run\+History\mbox{[}7\mbox{]},  }\item[{int}]{qrsize }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00730}{730}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00731\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentRunColor)\ \{\ \ \textcolor{comment}{//\ Terminate\ dark\ run}}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834}{finderPenaltyAddHistory}}(currentRunLength,\ runHistory,\ qrsize);}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ currentRunLength\ =\ 0;}
+\DoxyCodeLine{00734\ \ \ \ \ \}}
+\DoxyCodeLine{00735\ \ \ \ \ currentRunLength\ +=\ qrsize;\ \ \textcolor{comment}{//\ Add\ light\ border\ to\ final\ run}}
+\DoxyCodeLine{00736\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834}{finderPenaltyAddHistory}}(currentRunLength,\ runHistory,\ qrsize);}
+\DoxyCodeLine{00737\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473}{finderPenaltyCountPatterns}}(runHistory,\ qrsize);}
+\DoxyCodeLine{00738\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834}{finder\+Penalty\+Add\+History()}}, and \mbox{\hyperlink{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473}{finder\+Penalty\+Count\+Patterns()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a7a7938db5bdc0a2abae8ff2ec0ad1fee}\label{qrcodegen_8c_a7a7938db5bdc0a2abae8ff2ec0ad1fee} 
+\index{qrcodegen.c@{qrcodegen.c}!getAlignmentPatternPositions@{getAlignmentPatternPositions}}
+\index{getAlignmentPatternPositions@{getAlignmentPatternPositions}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{getAlignmentPatternPositions()}{getAlignmentPatternPositions()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int get\+Alignment\+Pattern\+Positions (\begin{DoxyParamCaption}\item[{int}]{version,  }\item[{uint8\+\_\+t}]{result\mbox{[}7\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00553}{553}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \textcolor{keywordflow}{if}\ (version\ ==\ 1)}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00556\ \ \ \ \ \textcolor{keywordtype}{int}\ numAlign\ =\ version\ /\ 7\ +\ 2;}
+\DoxyCodeLine{00557\ \ \ \ \ \textcolor{keywordtype}{int}\ step\ =\ (version\ *\ 8\ +\ numAlign\ *\ 3\ +\ 5)\ /\ (numAlign\ *\ 4\ -\/\ 4)\ *\ 2;}
+\DoxyCodeLine{00558\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ numAlign\ -\/\ 1,\ pos\ =\ version\ *\ 4\ +\ 10;\ i\ >=\ 1;\ i-\/-\/,\ pos\ -\/=\ step)}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ result[i]\ =\ (uint8\_t)pos;}
+\DoxyCodeLine{00560\ \ \ \ \ result[0]\ =\ 6;}
+\DoxyCodeLine{00561\ \ \ \ \ \textcolor{keywordflow}{return}\ numAlign;}
+\DoxyCodeLine{00562\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145}{draw\+Light\+Function\+Modules()}}, and \mbox{\hyperlink{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41}{initialize\+Function\+Modules()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a7a7938db5bdc0a2abae8ff2ec0ad1fee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}\label{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b} 
+\index{qrcodegen.c@{qrcodegen.c}!getBit@{getBit}}
+\index{getBit@{getBit}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{getBit()}{getBit()}}
+{\footnotesize\ttfamily static bool get\+Bit (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00803}{803}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00804\ \ \ \ \ \textcolor{keywordflow}{return}\ ((x\ >>\ i)\ \&\ 1)\ !=\ 0;}
+\DoxyCodeLine{00805\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba}{draw\+Codewords()}}, \mbox{\hyperlink{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed}{draw\+Format\+Bits()}}, and \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{get\+Module\+Bounded()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}\label{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1} 
+\index{qrcodegen.c@{qrcodegen.c}!getModuleBounded@{getModuleBounded}}
+\index{getModuleBounded@{getModuleBounded}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{getModuleBounded()}{getModuleBounded()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} bool get\+Module\+Bounded (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00772}{772}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00773\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ qrcode[0];}
+\DoxyCodeLine{00774\ \ \ \ \ assert(21\ <=\ qrsize\ \&\&\ qrsize\ <=\ 177\ \&\&\ 0\ <=\ x\ \&\&\ x\ <\ qrsize\ \&\&\ 0\ <=\ y\ \&\&\ y\ <\ qrsize);}
+\DoxyCodeLine{00775\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ y\ *\ qrsize\ +\ x;}
+\DoxyCodeLine{00776\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{getBit}}(qrcode[(index\ >>\ 3)\ +\ 1],\ index\ \&\ 7);}
+\DoxyCodeLine{00777\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_aa38afb84462cf1264ffc63fa5e60c62b}{get\+Bit()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}{apply\+Mask()}}, \mbox{\hyperlink{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba}{draw\+Codewords()}}, \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}, and \mbox{\hyperlink{qrcodegen_8c_a495cb24d97c9b90a9c1e8a62903debf5}{qrcodegen\+\_\+get\+Module()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}\label{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af} 
+\index{qrcodegen.c@{qrcodegen.c}!getNumDataCodewords@{getNumDataCodewords}}
+\index{getNumDataCodewords@{getNumDataCodewords}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{getNumDataCodewords()}{getNumDataCodewords()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int get\+Num\+Data\+Codewords (\begin{DoxyParamCaption}\item[{int}]{version,  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}}}]{ecl }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00330}{330}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordtype}{int}\ v\ =\ version,\ e\ =\ (int)ecl;}
+\DoxyCodeLine{00332\ \ \ \ \ assert(0\ <=\ e\ \&\&\ e\ <\ 4);}
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5}{getNumRawDataModules}}(v)\ /\ 8}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ -\/\ \mbox{\hyperlink{qrcodegen_8c_aa317616612730b289013844a2b040f26}{ECC\_CODEWORDS\_PER\_BLOCK}}\ \ \ \ [e][v]}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ *\ \mbox{\hyperlink{qrcodegen_8c_a7deaf66d3af6d18ec53e2f1e7a1913c9}{NUM\_ERROR\_CORRECTION\_BLOCKS}}[e][v];}
+\DoxyCodeLine{00336\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_aa317616612730b289013844a2b040f26}{ECC\+\_\+\+CODEWORDS\+\_\+\+PER\+\_\+\+BLOCK}}, \mbox{\hyperlink{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5}{get\+Num\+Raw\+Data\+Modules()}}, and \mbox{\hyperlink{qrcodegen_8c_a7deaf66d3af6d18ec53e2f1e7a1913c9}{NUM\+\_\+\+ERROR\+\_\+\+CORRECTION\+\_\+\+BLOCKS}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{add\+Ecc\+And\+Interleave()}}, and \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5}\label{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5} 
+\index{qrcodegen.c@{qrcodegen.c}!getNumRawDataModules@{getNumRawDataModules}}
+\index{getNumRawDataModules@{getNumRawDataModules}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{getNumRawDataModules()}{getNumRawDataModules()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int get\+Num\+Raw\+Data\+Modules (\begin{DoxyParamCaption}\item[{int}]{ver }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00342}{342}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ assert(\mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\_VERSION\_MIN}}\ <=\ ver\ \&\&\ ver\ <=\ \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\_VERSION\_MAX}});}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ (16\ *\ ver\ +\ 128)\ *\ ver\ +\ 64;}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{if}\ (ver\ >=\ 2)\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numAlign\ =\ ver\ /\ 7\ +\ 2;}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ result\ -\/=\ (25\ *\ numAlign\ -\/\ 10)\ *\ numAlign\ -\/\ 55;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ver\ >=\ 7)}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ result\ -\/=\ 36;}
+\DoxyCodeLine{00350\ \ \ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \ \ assert(208\ <=\ result\ \&\&\ result\ <=\ 29648);}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00353\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\+\_\+\+VERSION\+\_\+\+MAX}}, and \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\+\_\+\+VERSION\+\_\+\+MIN}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{add\+Ecc\+And\+Interleave()}}, \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{get\+Num\+Data\+Codewords()}}, and \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}\label{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35} 
+\index{qrcodegen.c@{qrcodegen.c}!getPenaltyScore@{getPenaltyScore}}
+\index{getPenaltyScore@{getPenaltyScore}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{getPenaltyScore()}{getPenaltyScore()}}
+{\footnotesize\ttfamily static long get\+Penalty\+Score (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00638}{638}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00639\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\_getSize}}(qrcode);}
+\DoxyCodeLine{00640\ \ \ \ \ \textcolor{keywordtype}{long}\ result\ =\ 0;}
+\DoxyCodeLine{00641\ \ \ \ \ }
+\DoxyCodeLine{00642\ \ \ \ \ \textcolor{comment}{//\ Adjacent\ modules\ in\ row\ having\ same\ color,\ and\ finder-\/like\ patterns}}
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ qrsize;\ y++)\ \{}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ runColor\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ runX\ =\ 0;}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ runHistory[7]\ =\ \{0\};}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ qrsize;\ x++)\ \{}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y)\ ==\ runColor)\ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ runX++;}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (runX\ ==\ 5)}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{qrcodegen_8c_a3928d5c05a7afc1a1dbacd946ced60e1}{PENALTY\_N1}};}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (runX\ >\ 5)}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result++;}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834}{finderPenaltyAddHistory}}(runX,\ runHistory,\ qrsize);}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!runColor)}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473}{finderPenaltyCountPatterns}}(runHistory,\ qrsize)\ *\ \mbox{\hyperlink{qrcodegen_8c_a04495626b845c0e983106c741235b500}{PENALTY\_N3}};}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ runColor\ =\ \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y);}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ runX\ =\ 1;}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03}{finderPenaltyTerminateAndCount}}(runColor,\ runX,\ runHistory,\ qrsize)\ *\ \mbox{\hyperlink{qrcodegen_8c_a04495626b845c0e983106c741235b500}{PENALTY\_N3}};}
+\DoxyCodeLine{00663\ \ \ \ \ \}}
+\DoxyCodeLine{00664\ \ \ \ \ \textcolor{comment}{//\ Adjacent\ modules\ in\ column\ having\ same\ color,\ and\ finder-\/like\ patterns}}
+\DoxyCodeLine{00665\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ qrsize;\ x++)\ \{}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ runColor\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ runY\ =\ 0;}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ runHistory[7]\ =\ \{0\};}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ qrsize;\ y++)\ \{}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y)\ ==\ runColor)\ \{}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ runY++;}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (runY\ ==\ 5)}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{qrcodegen_8c_a3928d5c05a7afc1a1dbacd946ced60e1}{PENALTY\_N1}};}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (runY\ >\ 5)}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result++;}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834}{finderPenaltyAddHistory}}(runY,\ runHistory,\ qrsize);}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!runColor)}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473}{finderPenaltyCountPatterns}}(runHistory,\ qrsize)\ *\ \mbox{\hyperlink{qrcodegen_8c_a04495626b845c0e983106c741235b500}{PENALTY\_N3}};}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ runColor\ =\ \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y);}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ runY\ =\ 1;}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03}{finderPenaltyTerminateAndCount}}(runColor,\ runY,\ runHistory,\ qrsize)\ *\ \mbox{\hyperlink{qrcodegen_8c_a04495626b845c0e983106c741235b500}{PENALTY\_N3}};}
+\DoxyCodeLine{00685\ \ \ \ \ \}}
+\DoxyCodeLine{00686\ \ \ \ \ }
+\DoxyCodeLine{00687\ \ \ \ \ \textcolor{comment}{//\ 2*2\ blocks\ of\ modules\ having\ same\ color}}
+\DoxyCodeLine{00688\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ qrsize\ -\/\ 1;\ y++)\ \{}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ qrsize\ -\/\ 1;\ x++)\ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ color\ =\ \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y);}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \ color\ ==\ \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x\ +\ 1,\ y)\ \&\&}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ color\ ==\ \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y\ +\ 1)\ \&\&}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ color\ ==\ \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x\ +\ 1,\ y\ +\ 1))}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{qrcodegen_8c_a2e77c1abffa48b55a464b8ebebe6236b}{PENALTY\_N2}};}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00696\ \ \ \ \ \}}
+\DoxyCodeLine{00697\ \ \ \ \ }
+\DoxyCodeLine{00698\ \ \ \ \ \textcolor{comment}{//\ Balance\ of\ dark\ and\ light\ modules}}
+\DoxyCodeLine{00699\ \ \ \ \ \textcolor{keywordtype}{int}\ dark\ =\ 0;}
+\DoxyCodeLine{00700\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ qrsize;\ y++)\ \{}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ qrsize;\ x++)\ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y))}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dark++;}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00705\ \ \ \ \ \}}
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keywordtype}{int}\ total\ =\ qrsize\ *\ qrsize;\ \ \textcolor{comment}{//\ Note\ that\ size\ is\ odd,\ so\ dark/total\ !=\ 1/2}}
+\DoxyCodeLine{00707\ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ smallest\ integer\ k\ >=\ 0\ such\ that\ (45-\/5k)\%\ <=\ dark/total\ <=\ (55+5k)\%}}
+\DoxyCodeLine{00708\ \ \ \ \ \textcolor{keywordtype}{int}\ k\ =\ (int)((labs(dark\ *\ 20L\ -\/\ total\ *\ 10L)\ +\ total\ -\/\ 1)\ /\ total)\ -\/\ 1;}
+\DoxyCodeLine{00709\ \ \ \ \ assert(0\ <=\ k\ \&\&\ k\ <=\ 9);}
+\DoxyCodeLine{00710\ \ \ \ \ result\ +=\ k\ *\ \mbox{\hyperlink{qrcodegen_8c_a69bbf54cb5fecf7d5b18908177662400}{PENALTY\_N4}};}
+\DoxyCodeLine{00711\ \ \ \ \ assert(0\ <=\ result\ \&\&\ result\ <=\ 2568888L);\ \ \textcolor{comment}{//\ Non-\/tight\ upper\ bound\ based\ on\ default\ values\ of\ PENALTY\_N1,\ ...,\ N4}}
+\DoxyCodeLine{00712\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00713\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_af1e57ce4fb9f424847de34c97e225834}{finder\+Penalty\+Add\+History()}}, \mbox{\hyperlink{qrcodegen_8c_a4b244a5be4430b06766c30adce3f3473}{finder\+Penalty\+Count\+Patterns()}}, \mbox{\hyperlink{qrcodegen_8c_a4ed5055136d23dfa45ff25fab71dbb03}{finder\+Penalty\+Terminate\+And\+Count()}}, \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{get\+Module\+Bounded()}}, \mbox{\hyperlink{qrcodegen_8c_a3928d5c05a7afc1a1dbacd946ced60e1}{PENALTY\+\_\+\+N1}}, \mbox{\hyperlink{qrcodegen_8c_a2e77c1abffa48b55a464b8ebebe6236b}{PENALTY\+\_\+\+N2}}, \mbox{\hyperlink{qrcodegen_8c_a04495626b845c0e983106c741235b500}{PENALTY\+\_\+\+N3}}, \mbox{\hyperlink{qrcodegen_8c_a69bbf54cb5fecf7d5b18908177662400}{PENALTY\+\_\+\+N4}}, and \mbox{\hyperlink{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}{qrcodegen\+\_\+get\+Size()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a2a6584906b509f7a7833d20473de86e9}\label{qrcodegen_8c_a2a6584906b509f7a7833d20473de86e9} 
+\index{qrcodegen.c@{qrcodegen.c}!getTotalBits@{getTotalBits}}
+\index{getTotalBits@{getTotalBits}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{getTotalBits()}{getTotalBits()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} int get\+Total\+Bits (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}}}]{segs\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{len,  }\item[{int}]{version }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00990}{990}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00991\ \ \ \ \ assert(segs\ !=\ NULL\ ||\ len\ ==\ 0);}
+\DoxyCodeLine{00992\ \ \ \ \ \textcolor{keywordtype}{long}\ result\ =\ 0;}
+\DoxyCodeLine{00993\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ len;\ i++)\ \{}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numChars\ \ =\ segs[i].\mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{numChars}};}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bitLength\ =\ segs[i].\mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{bitLength}};}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ assert(0\ <=\ numChars\ \ \&\&\ numChars\ \ <=\ INT16\_MAX);}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ assert(0\ <=\ bitLength\ \&\&\ bitLength\ <=\ INT16\_MAX);}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ccbits\ =\ \mbox{\hyperlink{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb}{numCharCountBits}}(segs[i].mode,\ version);}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ assert(0\ <=\ ccbits\ \&\&\ ccbits\ <=\ 16);}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (numChars\ >=\ (1L\ <<\ ccbits))}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}};\ \ \textcolor{comment}{//\ The\ segment's\ length\ doesn't\ fit\ the\ field's\ bit\ width}}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ result\ +=\ 4L\ +\ ccbits\ +\ bitLength;}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ >\ INT16\_MAX)}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}};\ \ \textcolor{comment}{//\ The\ sum\ might\ overflow\ an\ int\ type}}
+\DoxyCodeLine{01005\ \ \ \ \ \}}
+\DoxyCodeLine{01006\ \ \ \ \ assert(0\ <=\ result\ \&\&\ result\ <=\ INT16\_MAX);}
+\DoxyCodeLine{01007\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})result;}
+\DoxyCodeLine{01008\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{qrcodegen\+\_\+\+Segment\+::bit\+Length}}, \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb}{num\+Char\+Count\+Bits()}}, and \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{qrcodegen_8c_a2a6584906b509f7a7833d20473de86e9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a2a6584906b509f7a7833d20473de86e9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41}\label{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41} 
+\index{qrcodegen.c@{qrcodegen.c}!initializeFunctionModules@{initializeFunctionModules}}
+\index{initializeFunctionModules@{initializeFunctionModules}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{initializeFunctionModules()}{initializeFunctionModules()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void initialize\+Function\+Modules (\begin{DoxyParamCaption}\item[{int}]{version,  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00421}{421}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{comment}{//\ Initialize\ QR\ Code}}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ version\ *\ 4\ +\ 17;}
+\DoxyCodeLine{00424\ \ \ \ \ memset(qrcode,\ 0,\ (\textcolor{keywordtype}{size\_t})((qrsize\ *\ qrsize\ +\ 7)\ /\ 8\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(qrcode[0]));}
+\DoxyCodeLine{00425\ \ \ \ \ qrcode[0]\ =\ (uint8\_t)qrsize;}
+\DoxyCodeLine{00426\ \ \ \ \ }
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{comment}{//\ Fill\ horizontal\ and\ vertical\ timing\ patterns}}
+\DoxyCodeLine{00428\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fillRectangle}}(6,\ 0,\ 1,\ qrsize,\ qrcode);}
+\DoxyCodeLine{00429\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fillRectangle}}(0,\ 6,\ qrsize,\ 1,\ qrcode);}
+\DoxyCodeLine{00430\ \ \ \ \ }
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{comment}{//\ Fill\ 3\ finder\ patterns\ (all\ corners\ except\ bottom\ right)\ and\ format\ bits}}
+\DoxyCodeLine{00432\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fillRectangle}}(0,\ 0,\ 9,\ 9,\ qrcode);}
+\DoxyCodeLine{00433\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fillRectangle}}(qrsize\ -\/\ 8,\ 0,\ 8,\ 9,\ qrcode);}
+\DoxyCodeLine{00434\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fillRectangle}}(0,\ qrsize\ -\/\ 8,\ 9,\ 8,\ qrcode);}
+\DoxyCodeLine{00435\ \ \ \ \ }
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{comment}{//\ Fill\ numerous\ alignment\ patterns}}
+\DoxyCodeLine{00437\ \ \ \ \ uint8\_t\ alignPatPos[7];}
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keywordtype}{int}\ numAlign\ =\ \mbox{\hyperlink{qrcodegen_8c_a7a7938db5bdc0a2abae8ff2ec0ad1fee}{getAlignmentPatternPositions}}(version,\ alignPatPos);}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numAlign;\ i++)\ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ numAlign;\ j++)\ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ draw\ on\ the\ three\ finder\ corners}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!((i\ ==\ 0\ \&\&\ j\ ==\ 0)\ ||\ (i\ ==\ 0\ \&\&\ j\ ==\ numAlign\ -\/\ 1)\ ||\ (i\ ==\ numAlign\ -\/\ 1\ \&\&\ j\ ==\ 0)))}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fillRectangle}}(alignPatPos[i]\ -\/\ 2,\ alignPatPos[j]\ -\/\ 2,\ 5,\ 5,\ qrcode);}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ }
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{comment}{//\ Fill\ version\ blocks}}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{if}\ (version\ >=\ 7)\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fillRectangle}}(qrsize\ -\/\ 11,\ 0,\ 3,\ 6,\ qrcode);}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fillRectangle}}(0,\ qrsize\ -\/\ 11,\ 6,\ 3,\ qrcode);}
+\DoxyCodeLine{00451\ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fill\+Rectangle()}}, and \mbox{\hyperlink{qrcodegen_8c_a7a7938db5bdc0a2abae8ff2ec0ad1fee}{get\+Alignment\+Pattern\+Positions()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb}\label{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb} 
+\index{qrcodegen.c@{qrcodegen.c}!numCharCountBits@{numCharCountBits}}
+\index{numCharCountBits@{numCharCountBits}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{numCharCountBits()}{numCharCountBits()}}
+{\footnotesize\ttfamily static int num\+Char\+Count\+Bits (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\+\_\+\+Mode}}}]{mode,  }\item[{int}]{version }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l01013}{1013}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01014\ \ \ \ \ assert(\mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\_VERSION\_MIN}}\ <=\ version\ \&\&\ version\ <=\ \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\_VERSION\_MAX}});}
+\DoxyCodeLine{01015\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ (version\ +\ 7)\ /\ 17;}
+\DoxyCodeLine{01016\ \ \ \ \ \textcolor{keywordflow}{switch}\ (mode)\ \{}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\_Mode\_NUMERIC}}\ \ \ \ \ :\ \{\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}[]\ =\ \{10,\ 12,\ 14\};\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}[i];\ \}}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\_Mode\_ALPHANUMERIC}}:\ \{\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}[]\ =\ \{\ 9,\ 11,\ 13\};\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}[i];\ \}}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\_Mode\_BYTE}}\ \ \ \ \ \ \ \ :\ \{\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}[]\ =\ \{\ 8,\ 16,\ 16\};\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}[i];\ \}}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097badc5fad762df1a0dff0462be08dbdb99f}{qrcodegen\_Mode\_KANJI}}\ \ \ \ \ \ \ :\ \{\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}[]\ =\ \{\ 8,\ 10,\ 12\};\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}[i];\ \}}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baeb08ea4e31c49946cfbf032946fea4e5}{qrcodegen\_Mode\_ECI}}\ \ \ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \ assert(\textcolor{keyword}{false});\ \ \textcolor{keywordflow}{return}\ -\/1;\ \ \textcolor{comment}{//\ Dummy\ value}}
+\DoxyCodeLine{01023\ \ \ \ \ \}}
+\DoxyCodeLine{01024\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\+\_\+\+Mode\+\_\+\+ALPHANUMERIC}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\+\_\+\+Mode\+\_\+\+BYTE}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baeb08ea4e31c49946cfbf032946fea4e5}{qrcodegen\+\_\+\+Mode\+\_\+\+ECI}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097badc5fad762df1a0dff0462be08dbdb99f}{qrcodegen\+\_\+\+Mode\+\_\+\+KANJI}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\+\_\+\+Mode\+\_\+\+NUMERIC}}, \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\+\_\+\+VERSION\+\_\+\+MAX}}, \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\+\_\+\+VERSION\+\_\+\+MIN}}, and \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a2a6584906b509f7a7833d20473de86e9}{get\+Total\+Bits()}}, and \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506}\label{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_calcSegmentBufferSize@{qrcodegen\_calcSegmentBufferSize}}
+\index{qrcodegen\_calcSegmentBufferSize@{qrcodegen\_calcSegmentBufferSize}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_calcSegmentBufferSize()}{qrcodegen\_calcSegmentBufferSize()}}
+{\footnotesize\ttfamily size\+\_\+t qrcodegen\+\_\+calc\+Segment\+Buffer\+Size (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097b}{qrcodegen\+\_\+\+Mode}}}]{mode,  }\item[{size\+\_\+t}]{num\+Chars }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00834}{834}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00835\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}\ =\ \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calcSegmentBitLength}}(mode,\ numChars);}
+\DoxyCodeLine{00836\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}\ ==\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}})}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ SIZE\_MAX;}
+\DoxyCodeLine{00838\ \ \ \ \ assert(0\ <=\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}\ \&\&\ \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}\ <=\ INT16\_MAX);}
+\DoxyCodeLine{00839\ \ \ \ \ \textcolor{keywordflow}{return}\ ((\textcolor{keywordtype}{size\_t})\mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}\ +\ 7)\ /\ 8;}
+\DoxyCodeLine{00840\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calc\+Segment\+Bit\+Length()}}, \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, and \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a1cc45de66046354d5aad2ee1cc6b2581}\label{qrcodegen_8c_a1cc45de66046354d5aad2ee1cc6b2581} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_encodeBinary@{qrcodegen\_encodeBinary}}
+\index{qrcodegen\_encodeBinary@{qrcodegen\_encodeBinary}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_encodeBinary()}{qrcodegen\_encodeBinary()}}
+{\footnotesize\ttfamily bool qrcodegen\+\_\+encode\+Binary (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data\+And\+Temp\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{data\+Len,  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]},  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}}}]{ecl,  }\item[{int}]{min\+Version,  }\item[{int}]{max\+Version,  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}}}]{mask,  }\item[{bool}]{boost\+Ecl }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00170}{170}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ seg;}
+\DoxyCodeLine{00174\ \ \ \ \ seg.\mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{mode}}\ =\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\_Mode\_BYTE}};}
+\DoxyCodeLine{00175\ \ \ \ \ seg.bitLength\ =\ \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calcSegmentBitLength}}(seg.mode,\ dataLen);}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{if}\ (seg.bitLength\ ==\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}})\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ qrcode[0]\ =\ 0;\ \ \textcolor{comment}{//\ Set\ size\ to\ invalid\ value\ for\ safety}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ seg.numChars\ =\ (int)dataLen;}
+\DoxyCodeLine{00181\ \ \ \ \ seg.data\ =\ dataAndTemp;}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\_encodeSegmentsAdvanced}}(\&seg,\ 1,\ ecl,\ minVersion,\ maxVersion,\ mask,\ boostEcl,\ dataAndTemp,\ qrcode);}
+\DoxyCodeLine{00183\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{qrcodegen\+\_\+\+Segment\+::bit\+Length}}, \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calc\+Segment\+Bit\+Length()}}, \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}, and \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\+\_\+\+Mode\+\_\+\+BYTE}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a1cc45de66046354d5aad2ee1cc6b2581_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a41164e2a41efb324b919395ffde14fa7}\label{qrcodegen_8c_a41164e2a41efb324b919395ffde14fa7} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_encodeSegments@{qrcodegen\_encodeSegments}}
+\index{qrcodegen\_encodeSegments@{qrcodegen\_encodeSegments}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_encodeSegments()}{qrcodegen\_encodeSegments()}}
+{\footnotesize\ttfamily bool qrcodegen\+\_\+encode\+Segments (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}}}]{segs\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{len,  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}}}]{ecl,  }\item[{uint8\+\_\+t}]{temp\+Buffer\mbox{[}$\,$\mbox{]},  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00199}{199}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\_encodeSegmentsAdvanced}}(segs,\ len,\ ecl,}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\_VERSION\_MIN}},\ \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\_VERSION\_MAX}},\ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841}{qrcodegen\_Mask\_AUTO}},\ \textcolor{keyword}{true},\ tempBuffer,\ qrcode);}
+\DoxyCodeLine{00203\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}, \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841}{qrcodegen\+\_\+\+Mask\+\_\+\+AUTO}}, \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\+\_\+\+VERSION\+\_\+\+MAX}}, and \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\+\_\+\+VERSION\+\_\+\+MIN}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a41164e2a41efb324b919395ffde14fa7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}\label{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_encodeSegmentsAdvanced@{qrcodegen\_encodeSegmentsAdvanced}}
+\index{qrcodegen\_encodeSegmentsAdvanced@{qrcodegen\_encodeSegmentsAdvanced}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_encodeSegmentsAdvanced()}{qrcodegen\_encodeSegmentsAdvanced()}}
+{\footnotesize\ttfamily bool qrcodegen\+\_\+encode\+Segments\+Advanced (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}}}]{segs\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{len,  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}}}]{ecl,  }\item[{int}]{min\+Version,  }\item[{int}]{max\+Version,  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}}}]{mask,  }\item[{bool}]{boost\+Ecl,  }\item[{uint8\+\_\+t}]{temp\+Buffer\mbox{[}$\,$\mbox{]},  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00207}{207}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ assert(segs\ !=\ NULL\ ||\ len\ ==\ 0);}
+\DoxyCodeLine{00210\ \ \ \ \ assert(\mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\_VERSION\_MIN}}\ <=\ minVersion\ \&\&\ minVersion\ <=\ maxVersion\ \&\&\ maxVersion\ <=\ \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\_VERSION\_MAX}});}
+\DoxyCodeLine{00211\ \ \ \ \ assert(0\ <=\ (\textcolor{keywordtype}{int})ecl\ \&\&\ (\textcolor{keywordtype}{int})ecl\ <=\ 3\ \&\&\ -\/1\ <=\ (\textcolor{keywordtype}{int})mask\ \&\&\ (\textcolor{keywordtype}{int})mask\ <=\ 7);}
+\DoxyCodeLine{00212\ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ minimal\ version\ number\ to\ use}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{int}\ version,\ dataUsedBits;}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{for}\ (version\ =\ minVersion;\ ;\ version++)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dataCapacityBits\ =\ \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{getNumDataCodewords}}(version,\ ecl)\ *\ 8;\ \ \textcolor{comment}{//\ Number\ of\ data\ bits\ available}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ dataUsedBits\ =\ \mbox{\hyperlink{qrcodegen_8c_a2a6584906b509f7a7833d20473de86e9}{getTotalBits}}(segs,\ len,\ version);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dataUsedBits\ !=\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}}\ \&\&\ dataUsedBits\ <=\ dataCapacityBits)}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \ \textcolor{comment}{//\ This\ version\ number\ is\ found\ to\ be\ suitable}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (version\ >=\ maxVersion)\ \{\ \ \textcolor{comment}{//\ All\ versions\ in\ the\ range\ could\ not\ fit\ the\ given\ data}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ qrcode[0]\ =\ 0;\ \ \textcolor{comment}{//\ Set\ size\ to\ invalid\ value\ for\ safety}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ assert(dataUsedBits\ !=\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}});}
+\DoxyCodeLine{00226\ \ \ \ \ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ Increase\ the\ error\ correction\ level\ while\ the\ data\ still\ fits\ in\ the\ current\ version\ number}}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ (\textcolor{keywordtype}{int})\mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca09d959a0d2081c1f9bf679d0b2aae62a}{qrcodegen\_Ecc\_MEDIUM}};\ i\ <=\ (int)\mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca0fc0cef57fd9214dc450fb3ad4762501}{qrcodegen\_Ecc\_HIGH}};\ i++)\ \{\ \ \textcolor{comment}{//\ From\ low\ to\ high}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (boostEcl\ \&\&\ dataUsedBits\ <=\ \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{getNumDataCodewords}}(version,\ (\textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\_Ecc}})i)\ *\ 8)}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ ecl\ =\ (\textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\_Ecc}})i;}
+\DoxyCodeLine{00231\ \ \ \ \ \}}
+\DoxyCodeLine{00232\ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{comment}{//\ Concatenate\ all\ segments\ to\ create\ the\ data\ bit\ string}}
+\DoxyCodeLine{00234\ \ \ \ \ memset(qrcode,\ 0,\ (\textcolor{keywordtype}{size\_t})\mbox{\hyperlink{qrcodegen_8h_a44e02d707085c5157c9a4d1293786aaf}{qrcodegen\_BUFFER\_LEN\_FOR\_VERSION}}(version)\ *\ \textcolor{keyword}{sizeof}(qrcode[0]));}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{int}\ bitLen\ =\ 0;}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ len;\ i++)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ *seg\ =\ \&segs[i];}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})seg-\/>\mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{mode}},\ 4,\ qrcode,\ \&bitLen);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})seg-\/>\mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{numChars}},\ \mbox{\hyperlink{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb}{numCharCountBits}}(seg-\/>\mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{mode}},\ version),\ qrcode,\ \&bitLen);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ seg-\/>\mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{bitLength}};\ j++)\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bit\ =\ (seg-\/>\mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{data}}[j\ >>\ 3]\ >>\ (7\ -\/\ (j\ \&\ 7)))\ \&\ 1;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})bit,\ 1,\ qrcode,\ \&bitLen);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ assert(bitLen\ ==\ dataUsedBits);}
+\DoxyCodeLine{00246\ \ \ \ \ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{//\ Add\ terminator\ and\ pad\ up\ to\ a\ byte\ if\ applicable}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{int}\ dataCapacityBits\ =\ \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{getNumDataCodewords}}(version,\ ecl)\ *\ 8;}
+\DoxyCodeLine{00249\ \ \ \ \ assert(bitLen\ <=\ dataCapacityBits);}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{int}\ terminatorBits\ =\ dataCapacityBits\ -\/\ bitLen;}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordflow}{if}\ (terminatorBits\ >\ 4)}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ terminatorBits\ =\ 4;}
+\DoxyCodeLine{00253\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(0,\ terminatorBits,\ qrcode,\ \&bitLen);}
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(0,\ (8\ -\/\ bitLen\ \%\ 8)\ \%\ 8,\ qrcode,\ \&bitLen);}
+\DoxyCodeLine{00255\ \ \ \ \ assert(bitLen\ \%\ 8\ ==\ 0);}
+\DoxyCodeLine{00256\ \ \ \ \ }
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{comment}{//\ Pad\ with\ alternating\ bytes\ until\ data\ capacity\ is\ reached}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ padByte\ =\ 0xEC;\ bitLen\ <\ dataCapacityBits;\ padByte\ \string^=\ 0xEC\ \string^\ 0x11)}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(padByte,\ 8,\ qrcode,\ \&bitLen);}
+\DoxyCodeLine{00260\ \ \ \ \ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{comment}{//\ Compute\ ECC,\ draw\ modules}}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{addEccAndInterleave}}(qrcode,\ version,\ ecl,\ tempBuffer);}
+\DoxyCodeLine{00263\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41}{initializeFunctionModules}}(version,\ qrcode);}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba}{drawCodewords}}(tempBuffer,\ \mbox{\hyperlink{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5}{getNumRawDataModules}}(version)\ /\ 8,\ qrcode);}
+\DoxyCodeLine{00265\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145}{drawLightFunctionModules}}(qrcode,\ version);}
+\DoxyCodeLine{00266\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41}{initializeFunctionModules}}(version,\ tempBuffer);}
+\DoxyCodeLine{00267\ \ \ \ \ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{comment}{//\ Do\ masking}}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordflow}{if}\ (mask\ ==\ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841}{qrcodegen\_Mask\_AUTO}})\ \{\ \ \textcolor{comment}{//\ Automatically\ choose\ best\ mask}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ minPenalty\ =\ LONG\_MAX;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 8;\ i++)\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\_Mask}}\ msk\ =\ (\textcolor{keyword}{enum}\ \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\_Mask}})i;}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}{applyMask}}(tempBuffer,\ qrcode,\ msk);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed}{drawFormatBits}}(ecl,\ msk,\ qrcode);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ penalty\ =\ \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{getPenaltyScore}}(qrcode);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (penalty\ <\ minPenalty)\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mask\ =\ msk;}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minPenalty\ =\ penalty;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}{applyMask}}(tempBuffer,\ qrcode,\ msk);\ \ \textcolor{comment}{//\ Undoes\ the\ mask\ due\ to\ XOR}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ assert(0\ <=\ (\textcolor{keywordtype}{int})mask\ \&\&\ (\textcolor{keywordtype}{int})mask\ <=\ 7);}
+\DoxyCodeLine{00284\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}{applyMask}}(tempBuffer,\ qrcode,\ mask);\ \ \textcolor{comment}{//\ Apply\ the\ final\ choice\ of\ mask}}
+\DoxyCodeLine{00285\ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed}{drawFormatBits}}(ecl,\ mask,\ qrcode);\ \ \textcolor{comment}{//\ Overwrite\ old\ format\ bits}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00287\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{add\+Ecc\+And\+Interleave()}}, \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{append\+Bits\+To\+Buffer()}}, \mbox{\hyperlink{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}{apply\+Mask()}}, \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{qrcodegen\+\_\+\+Segment\+::bit\+Length}}, \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba}{draw\+Codewords()}}, \mbox{\hyperlink{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed}{draw\+Format\+Bits()}}, \mbox{\hyperlink{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145}{draw\+Light\+Function\+Modules()}}, \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{get\+Num\+Data\+Codewords()}}, \mbox{\hyperlink{qrcodegen_8c_a8725e511e96e40dda99377e2f89bcda5}{get\+Num\+Raw\+Data\+Modules()}}, \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}, \mbox{\hyperlink{qrcodegen_8c_a2a6584906b509f7a7833d20473de86e9}{get\+Total\+Bits()}}, \mbox{\hyperlink{qrcodegen_8c_a687c2ba705ea43d61e3cb6bd79cb0f41}{initialize\+Function\+Modules()}}, \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{qrcodegen_8c_a16a720d755035eac84bf4c110935aadb}{num\+Char\+Count\+Bits()}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, \mbox{\hyperlink{qrcodegen_8h_a44e02d707085c5157c9a4d1293786aaf}{qrcodegen\+\_\+\+BUFFER\+\_\+\+LEN\+\_\+\+FOR\+\_\+\+VERSION}}, \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca0fc0cef57fd9214dc450fb3ad4762501}{qrcodegen\+\_\+\+Ecc\+\_\+\+HIGH}}, \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65ca09d959a0d2081c1f9bf679d0b2aae62a}{qrcodegen\+\_\+\+Ecc\+\_\+\+MEDIUM}}, \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952eaab7db72352dfe446a65025749b77c841}{qrcodegen\+\_\+\+Mask\+\_\+\+AUTO}}, \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\+\_\+\+VERSION\+\_\+\+MAX}}, and \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\+\_\+\+VERSION\+\_\+\+MIN}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a1cc45de66046354d5aad2ee1cc6b2581}{qrcodegen\+\_\+encode\+Binary()}}, \mbox{\hyperlink{qrcodegen_8c_a41164e2a41efb324b919395ffde14fa7}{qrcodegen\+\_\+encode\+Segments()}}, and \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}\label{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_encodeText@{qrcodegen\_encodeText}}
+\index{qrcodegen\_encodeText@{qrcodegen\_encodeText}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_encodeText()}{qrcodegen\_encodeText()}}
+{\footnotesize\ttfamily bool qrcodegen\+\_\+encode\+Text (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text,  }\item[{uint8\+\_\+t}]{temp\+Buffer\mbox{[}$\,$\mbox{]},  }\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]},  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_a4823d2c403f1e1ae151939d14003b65c}{qrcodegen\+\_\+\+Ecc}}}]{ecl,  }\item[{int}]{min\+Version,  }\item[{int}]{max\+Version,  }\item[{enum \mbox{\hyperlink{qrcodegen_8h_ab76629ca36a731ee5fdd02ab06f6952e}{qrcodegen\+\_\+\+Mask}}}]{mask,  }\item[{bool}]{boost\+Ecl }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00132}{132}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ textLen\ =\ strlen(text);}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (textLen\ ==\ 0)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\_encodeSegmentsAdvanced}}(NULL,\ 0,\ ecl,\ minVersion,\ maxVersion,\ mask,\ boostEcl,\ tempBuffer,\ qrcode);}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bufLen\ =\ (size\_t)\mbox{\hyperlink{qrcodegen_8h_a44e02d707085c5157c9a4d1293786aaf}{qrcodegen\_BUFFER\_LEN\_FOR\_VERSION}}(maxVersion);}
+\DoxyCodeLine{00139\ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ seg;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qrcodegen_8c_aa873e0a91056118719064ea4f2a15013}{qrcodegen\_isNumeric}}(text))\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506}{qrcodegen\_calcSegmentBufferSize}}(\mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\_Mode\_NUMERIC}},\ textLen)\ >\ bufLen)}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ fail;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ seg\ =\ \mbox{\hyperlink{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43}{qrcodegen\_makeNumeric}}(text,\ tempBuffer);}
+\DoxyCodeLine{00145\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qrcodegen_8c_a25856a1d9c76851f8b83640ba3c6a3fc}{qrcodegen\_isAlphanumeric}}(text))\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506}{qrcodegen\_calcSegmentBufferSize}}(\mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\_Mode\_ALPHANUMERIC}},\ textLen)\ >\ bufLen)}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ fail;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ seg\ =\ \mbox{\hyperlink{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d}{qrcodegen\_makeAlphanumeric}}(text,\ tempBuffer);}
+\DoxyCodeLine{00149\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textLen\ >\ bufLen)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ fail;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ textLen;\ i++)}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ tempBuffer[i]\ =\ (uint8\_t)text[i];}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ seg.mode\ =\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\_Mode\_BYTE}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ seg.bitLength\ =\ \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calcSegmentBitLength}}(seg.mode,\ textLen);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (seg.bitLength\ ==\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}})}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ fail;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ seg.numChars\ =\ (int)textLen;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ seg.data\ =\ tempBuffer;}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\_encodeSegmentsAdvanced}}(\&seg,\ 1,\ ecl,\ minVersion,\ maxVersion,\ mask,\ boostEcl,\ tempBuffer,\ qrcode);}
+\DoxyCodeLine{00162\ \ \ \ \ }
+\DoxyCodeLine{00163\ fail:}
+\DoxyCodeLine{00164\ \ \ \ \ qrcode[0]\ =\ 0;\ \ \textcolor{comment}{//\ Set\ size\ to\ invalid\ value\ for\ safety}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00166\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{qrcodegen\+\_\+\+Segment\+::bit\+Length}}, \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calc\+Segment\+Bit\+Length()}}, \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, \mbox{\hyperlink{qrcodegen_8h_a44e02d707085c5157c9a4d1293786aaf}{qrcodegen\+\_\+\+BUFFER\+\_\+\+LEN\+\_\+\+FOR\+\_\+\+VERSION}}, \mbox{\hyperlink{qrcodegen_8c_a15e9a13d5e49596089d6506558f6e506}{qrcodegen\+\_\+calc\+Segment\+Buffer\+Size()}}, \mbox{\hyperlink{qrcodegen_8c_a34ed012ca4082c41fe7f8c161d4cc7d9}{qrcodegen\+\_\+encode\+Segments\+Advanced()}}, \mbox{\hyperlink{qrcodegen_8c_a25856a1d9c76851f8b83640ba3c6a3fc}{qrcodegen\+\_\+is\+Alphanumeric()}}, \mbox{\hyperlink{qrcodegen_8c_aa873e0a91056118719064ea4f2a15013}{qrcodegen\+\_\+is\+Numeric()}}, \mbox{\hyperlink{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d}{qrcodegen\+\_\+make\+Alphanumeric()}}, \mbox{\hyperlink{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43}{qrcodegen\+\_\+make\+Numeric()}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\+\_\+\+Mode\+\_\+\+ALPHANUMERIC}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\+\_\+\+Mode\+\_\+\+BYTE}}, and \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\+\_\+\+Mode\+\_\+\+NUMERIC}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a495cb24d97c9b90a9c1e8a62903debf5}\label{qrcodegen_8c_a495cb24d97c9b90a9c1e8a62903debf5} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_getModule@{qrcodegen\_getModule}}
+\index{qrcodegen\_getModule@{qrcodegen\_getModule}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_getModule()}{qrcodegen\_getModule()}}
+{\footnotesize\ttfamily bool qrcodegen\+\_\+get\+Module (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00764}{764}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00765\ \ \ \ \ assert(qrcode\ !=\ NULL);}
+\DoxyCodeLine{00766\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ qrcode[0];}
+\DoxyCodeLine{00767\ \ \ \ \ \textcolor{keywordflow}{return}\ (0\ <=\ x\ \&\&\ x\ <\ qrsize\ \&\&\ 0\ <=\ y\ \&\&\ y\ <\ qrsize)\ \&\&\ \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{getModuleBounded}}(qrcode,\ x,\ y);}
+\DoxyCodeLine{00768\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a2895c5f283edfc88cbffe8b555032aa1}{get\+Module\+Bounded()}}.
+
+
+
+Referenced by \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a495cb24d97c9b90a9c1e8a62903debf5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a495cb24d97c9b90a9c1e8a62903debf5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8}\label{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_getSize@{qrcodegen\_getSize}}
+\index{qrcodegen\_getSize@{qrcodegen\_getSize}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_getSize()}{qrcodegen\_getSize()}}
+{\footnotesize\ttfamily int qrcodegen\+\_\+get\+Size (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00754}{754}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00755\ \ \ \ \ assert(qrcode\ !=\ NULL);}
+\DoxyCodeLine{00756\ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ qrcode[0];}
+\DoxyCodeLine{00757\ \ \ \ \ assert((\mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\_VERSION\_MIN}}\ *\ 4\ +\ 17)\ <=\ result}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \&\&\ result\ <=\ (\mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\_VERSION\_MAX}}\ *\ 4\ +\ 17));}
+\DoxyCodeLine{00759\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00760\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8h_a347f93227050ed89e6f70f0b1cfb64fe}{qrcodegen\+\_\+\+VERSION\+\_\+\+MAX}}, and \mbox{\hyperlink{qrcodegen_8h_a8d1f6f0044dde26b3cda74b815be3f2c}{qrcodegen\+\_\+\+VERSION\+\_\+\+MIN}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}{apply\+Mask()}}, \mbox{\hyperlink{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba}{draw\+Codewords()}}, \mbox{\hyperlink{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed}{draw\+Format\+Bits()}}, \mbox{\hyperlink{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145}{draw\+Light\+Function\+Modules()}}, \mbox{\hyperlink{wifi__mod_8cpp_a9219a70f40e688dac2ed3a86d2dbdf5e}{generate\+\_\+wifi\+\_\+qr()}}, and \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_afe30b8ff2b6218f37a2945871e6f11b8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a25856a1d9c76851f8b83640ba3c6a3fc}\label{qrcodegen_8c_a25856a1d9c76851f8b83640ba3c6a3fc} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_isAlphanumeric@{qrcodegen\_isAlphanumeric}}
+\index{qrcodegen\_isAlphanumeric@{qrcodegen\_isAlphanumeric}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_isAlphanumeric()}{qrcodegen\_isAlphanumeric()}}
+{\footnotesize\ttfamily bool qrcodegen\+\_\+is\+Alphanumeric (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00823}{823}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00824\ \ \ \ \ assert(text\ !=\ NULL);}
+\DoxyCodeLine{00825\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ *text\ !=\ \textcolor{charliteral}{'\(\backslash\)0'};\ text++)\ \{}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strchr(\mbox{\hyperlink{qrcodegen_8c_abc8e497ac83f11842522e6dcefde5a9d}{ALPHANUMERIC\_CHARSET}},\ *text)\ ==\ NULL)}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00828\ \ \ \ \ \}}
+\DoxyCodeLine{00829\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00830\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_abc8e497ac83f11842522e6dcefde5a9d}{ALPHANUMERIC\+\_\+\+CHARSET}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a25856a1d9c76851f8b83640ba3c6a3fc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_aa873e0a91056118719064ea4f2a15013}\label{qrcodegen_8c_aa873e0a91056118719064ea4f2a15013} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_isNumeric@{qrcodegen\_isNumeric}}
+\index{qrcodegen\_isNumeric@{qrcodegen\_isNumeric}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_isNumeric()}{qrcodegen\_isNumeric()}}
+{\footnotesize\ttfamily bool qrcodegen\+\_\+is\+Numeric (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00812}{812}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00813\ \ \ \ \ assert(text\ !=\ NULL);}
+\DoxyCodeLine{00814\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ *text\ !=\ \textcolor{charliteral}{'\(\backslash\)0'};\ text++)\ \{}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*text\ <\ \textcolor{charliteral}{'0'}\ ||\ *text\ >\ \textcolor{charliteral}{'9'})}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00817\ \ \ \ \ \}}
+\DoxyCodeLine{00818\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00819\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aa873e0a91056118719064ea4f2a15013_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d}\label{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_makeAlphanumeric@{qrcodegen\_makeAlphanumeric}}
+\index{qrcodegen\_makeAlphanumeric@{qrcodegen\_makeAlphanumeric}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_makeAlphanumeric()}{qrcodegen\_makeAlphanumeric()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} qrcodegen\+\_\+make\+Alphanumeric (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text,  }\item[{uint8\+\_\+t}]{buf\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00927}{927}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00928\ \ \ \ \ assert(text\ !=\ NULL);}
+\DoxyCodeLine{00929\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ result;}
+\DoxyCodeLine{00930\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ strlen(text);}
+\DoxyCodeLine{00931\ \ \ \ \ result.mode\ =\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\_Mode\_ALPHANUMERIC}};}
+\DoxyCodeLine{00932\ \ \ \ \ \textcolor{keywordtype}{int}\ bitLen\ =\ \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calcSegmentBitLength}}(result.mode,\ len);}
+\DoxyCodeLine{00933\ \ \ \ \ assert(bitLen\ !=\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}});}
+\DoxyCodeLine{00934\ \ \ \ \ result.numChars\ =\ (int)len;}
+\DoxyCodeLine{00935\ \ \ \ \ \textcolor{keywordflow}{if}\ (bitLen\ >\ 0)}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ memset(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ 0,\ ((\textcolor{keywordtype}{size\_t})bitLen\ +\ 7)\ /\ 8\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[0]));}
+\DoxyCodeLine{00937\ \ \ \ \ result.bitLength\ =\ 0;}
+\DoxyCodeLine{00938\ \ \ \ \ }
+\DoxyCodeLine{00939\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ accumData\ =\ 0;}
+\DoxyCodeLine{00940\ \ \ \ \ \textcolor{keywordtype}{int}\ accumCount\ =\ 0;}
+\DoxyCodeLine{00941\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ *text\ !=\ \textcolor{charliteral}{'\(\backslash\)0'};\ text++)\ \{}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}\ =\ strchr(\mbox{\hyperlink{qrcodegen_8c_abc8e497ac83f11842522e6dcefde5a9d}{ALPHANUMERIC\_CHARSET}},\ *text);}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ assert(\mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}\ !=\ NULL);}
+\DoxyCodeLine{00944\ \ \ \ \ \ \ \ \ accumData\ =\ accumData\ *\ 45\ +\ (\textcolor{keywordtype}{unsigned}\ int)(\mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}\ -\/\ \mbox{\hyperlink{qrcodegen_8c_abc8e497ac83f11842522e6dcefde5a9d}{ALPHANUMERIC\_CHARSET}});}
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ accumCount++;}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (accumCount\ ==\ 2)\ \{}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(accumData,\ 11,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ \ \ \ \ accumData\ =\ 0;}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \ \ \ \ accumCount\ =\ 0;}
+\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00951\ \ \ \ \ \}}
+\DoxyCodeLine{00952\ \ \ \ \ \textcolor{keywordflow}{if}\ (accumCount\ >\ 0)\ \ \textcolor{comment}{//\ 1\ character\ remaining}}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(accumData,\ 6,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00954\ \ \ \ \ assert(result.bitLength\ ==\ bitLen);}
+\DoxyCodeLine{00955\ \ \ \ \ result.data\ =\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}};}
+\DoxyCodeLine{00956\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00957\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_abc8e497ac83f11842522e6dcefde5a9d}{ALPHANUMERIC\+\_\+\+CHARSET}}, \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{append\+Bits\+To\+Buffer()}}, \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{qrcodegen\+\_\+\+Segment\+::bit\+Length}}, \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}, \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calc\+Segment\+Bit\+Length()}}, \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba37a682a91826e7b640c70b85e679b9d1}{qrcodegen\+\_\+\+Mode\+\_\+\+ALPHANUMERIC}}, and \mbox{\hyperlink{wifi__mod_8cpp_a912020253c131df3b8e1471b8eec99ff}{temp}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a5b28f0f89765839d8f4c8a803edc4ad4}\label{qrcodegen_8c_a5b28f0f89765839d8f4c8a803edc4ad4} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_makeBytes@{qrcodegen\_makeBytes}}
+\index{qrcodegen\_makeBytes@{qrcodegen\_makeBytes}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_makeBytes()}{qrcodegen\_makeBytes()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} qrcodegen\+\_\+make\+Bytes (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{data\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t}]{buf\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00878}{878}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00879\ \ \ \ \ assert(data\ !=\ NULL\ ||\ len\ ==\ 0);}
+\DoxyCodeLine{00880\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ result;}
+\DoxyCodeLine{00881\ \ \ \ \ result.\mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{mode}}\ =\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\_Mode\_BYTE}};}
+\DoxyCodeLine{00882\ \ \ \ \ result.bitLength\ =\ \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calcSegmentBitLength}}(result.mode,\ len);}
+\DoxyCodeLine{00883\ \ \ \ \ assert(result.bitLength\ !=\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}});}
+\DoxyCodeLine{00884\ \ \ \ \ result.numChars\ =\ (int)len;}
+\DoxyCodeLine{00885\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ >\ 0)}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ memcpy(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{data}},\ len\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[0]));}
+\DoxyCodeLine{00887\ \ \ \ \ result.data\ =\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}};}
+\DoxyCodeLine{00888\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00889\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{qrcodegen\+\_\+\+Segment\+::bit\+Length}}, \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}, \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calc\+Segment\+Bit\+Length()}}, \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, and \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baa1e2b04937fdae040e1107bf3d31ea2d}{qrcodegen\+\_\+\+Mode\+\_\+\+BYTE}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a5b28f0f89765839d8f4c8a803edc4ad4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a27c3b3d01e91f9532689adbb01c1ff2c}\label{qrcodegen_8c_a27c3b3d01e91f9532689adbb01c1ff2c} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_makeEci@{qrcodegen\_makeEci}}
+\index{qrcodegen\_makeEci@{qrcodegen\_makeEci}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_makeEci()}{qrcodegen\_makeEci()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} qrcodegen\+\_\+make\+Eci (\begin{DoxyParamCaption}\item[{long}]{assign\+Val,  }\item[{uint8\+\_\+t}]{buf\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00961}{961}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00962\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ result;}
+\DoxyCodeLine{00963\ \ \ \ \ result.\mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{mode}}\ =\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baeb08ea4e31c49946cfbf032946fea4e5}{qrcodegen\_Mode\_ECI}};}
+\DoxyCodeLine{00964\ \ \ \ \ result.numChars\ =\ 0;}
+\DoxyCodeLine{00965\ \ \ \ \ result.bitLength\ =\ 0;}
+\DoxyCodeLine{00966\ \ \ \ \ \textcolor{keywordflow}{if}\ (assignVal\ <\ 0)}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false});}
+\DoxyCodeLine{00968\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (assignVal\ <\ (1\ <<\ 7))\ \{}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ memset(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ 0,\ 1\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[0]));}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})assignVal,\ 8,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00971\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (assignVal\ <\ (1\ <<\ 14))\ \{}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ memset(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ 0,\ 2\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[0]));}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(2,\ 2,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})assignVal,\ 14,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00975\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (assignVal\ <\ 1000000L)\ \{}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ memset(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ 0,\ 3\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[0]));}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(6,\ 3,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})(assignVal\ >>\ 10),\ 11,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})(assignVal\ \&\ 0x3FF),\ 10,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00980\ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{false});}
+\DoxyCodeLine{00982\ \ \ \ \ result.data\ =\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}};}
+\DoxyCodeLine{00983\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00984\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{append\+Bits\+To\+Buffer()}}, \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{qrcodegen\+\_\+\+Segment\+::bit\+Length}}, \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}, \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, and \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097baeb08ea4e31c49946cfbf032946fea4e5}{qrcodegen\+\_\+\+Mode\+\_\+\+ECI}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{qrcodegen_8c_a27c3b3d01e91f9532689adbb01c1ff2c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43}\label{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43} 
+\index{qrcodegen.c@{qrcodegen.c}!qrcodegen\_makeNumeric@{qrcodegen\_makeNumeric}}
+\index{qrcodegen\_makeNumeric@{qrcodegen\_makeNumeric}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{qrcodegen\_makeNumeric()}{qrcodegen\_makeNumeric()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\+\_\+\+Segment}} qrcodegen\+\_\+make\+Numeric (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{digits,  }\item[{uint8\+\_\+t}]{buf\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00893}{893}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00894\ \ \ \ \ assert(digits\ !=\ NULL);}
+\DoxyCodeLine{00895\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqrcodegen__Segment}{qrcodegen\_Segment}}\ result;}
+\DoxyCodeLine{00896\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ strlen(digits);}
+\DoxyCodeLine{00897\ \ \ \ \ result.mode\ =\ \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\_Mode\_NUMERIC}};}
+\DoxyCodeLine{00898\ \ \ \ \ \textcolor{keywordtype}{int}\ bitLen\ =\ \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calcSegmentBitLength}}(result.mode,\ len);}
+\DoxyCodeLine{00899\ \ \ \ \ assert(bitLen\ !=\ \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\_OVERFLOW}});}
+\DoxyCodeLine{00900\ \ \ \ \ result.numChars\ =\ (int)len;}
+\DoxyCodeLine{00901\ \ \ \ \ \textcolor{keywordflow}{if}\ (bitLen\ >\ 0)}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ memset(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ 0,\ ((\textcolor{keywordtype}{size\_t})bitLen\ +\ 7)\ /\ 8\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}[0]));}
+\DoxyCodeLine{00903\ \ \ \ \ result.bitLength\ =\ 0;}
+\DoxyCodeLine{00904\ \ \ \ \ }
+\DoxyCodeLine{00905\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ accumData\ =\ 0;}
+\DoxyCodeLine{00906\ \ \ \ \ \textcolor{keywordtype}{int}\ accumCount\ =\ 0;}
+\DoxyCodeLine{00907\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ *digits\ !=\ \textcolor{charliteral}{'\(\backslash\)0'};\ digits++)\ \{}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ c\ =\ *digits;}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ assert(\textcolor{charliteral}{'0'}\ <=\ c\ \&\&\ c\ <=\ \textcolor{charliteral}{'9'});}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ accumData\ =\ accumData\ *\ 10\ +\ (\textcolor{keywordtype}{unsigned}\ int)(c\ -\/\ \textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ accumCount++;}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (accumCount\ ==\ 3)\ \{}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(accumData,\ 10,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \ \ \ \ accumData\ =\ 0;}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \ \ \ \ accumCount\ =\ 0;}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00917\ \ \ \ \ \}}
+\DoxyCodeLine{00918\ \ \ \ \ \textcolor{keywordflow}{if}\ (accumCount\ >\ 0)\ \ \textcolor{comment}{//\ 1\ or\ 2\ digits\ remaining}}
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{appendBitsToBuffer}}(accumData,\ accumCount\ *\ 3\ +\ 1,\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}},\ \&result.bitLength);}
+\DoxyCodeLine{00920\ \ \ \ \ assert(result.bitLength\ ==\ bitLen);}
+\DoxyCodeLine{00921\ \ \ \ \ result.data\ =\ \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}};}
+\DoxyCodeLine{00922\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00923\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a1770960166ba425470648e0bb2c4d147}{append\+Bits\+To\+Buffer()}}, \mbox{\hyperlink{structqrcodegen__Segment_a3f9c0e922dbb1a8aa5f8fea7fbe90ad3}{qrcodegen\+\_\+\+Segment\+::bit\+Length}}, \mbox{\hyperlink{lvgl__display_8cpp_aa2cf5a6cba232df3ea4033c2f5b9aa38}{buf}}, \mbox{\hyperlink{qrcodegen_8c_ae34ade648f24fea23665ebe784556a62}{calc\+Segment\+Bit\+Length()}}, \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_ac6dec5c71602c5256ad839b819f9f1e8}{LENGTH\+\_\+\+OVERFLOW}}, \mbox{\hyperlink{structqrcodegen__Segment_aec23b42bfdb2a0468bfffca96343b513}{qrcodegen\+\_\+\+Segment\+::mode}}, \mbox{\hyperlink{structqrcodegen__Segment_a36a92341f466a3a13acc56449943634c}{qrcodegen\+\_\+\+Segment\+::num\+Chars}}, and \mbox{\hyperlink{qrcodegen_8h_abc07959354ad4ea91d2a97be2cce097ba309c8f7c2e85eb9f9510488e70f36fc6}{qrcodegen\+\_\+\+Mode\+\_\+\+NUMERIC}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a2eb79247b6f8bed92514c1815fe0079c}{qrcodegen\+\_\+encode\+Text()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_aa1c8b8a85f121c8cd1be89ddab684d43_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_ac74eae03dc0c0462a79eee356ff40443}\label{qrcodegen_8c_ac74eae03dc0c0462a79eee356ff40443} 
+\index{qrcodegen.c@{qrcodegen.c}!reedSolomonComputeDivisor@{reedSolomonComputeDivisor}}
+\index{reedSolomonComputeDivisor@{reedSolomonComputeDivisor}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{reedSolomonComputeDivisor()}{reedSolomonComputeDivisor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void reed\+Solomon\+Compute\+Divisor (\begin{DoxyParamCaption}\item[{int}]{degree,  }\item[{uint8\+\_\+t}]{result\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00361}{361}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00362\ \ \ \ \ assert(1\ <=\ degree\ \&\&\ degree\ <=\ \mbox{\hyperlink{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c}{qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}});}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{comment}{//\ Polynomial\ coefficients\ are\ stored\ from\ highest\ to\ lowest\ power,\ excluding\ the\ leading\ term\ which\ is\ always\ 1.}}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{comment}{//\ For\ example\ the\ polynomial\ x\string^3\ +\ 255x\string^2\ +\ 8x\ +\ 93\ is\ stored\ as\ the\ uint8\ array\ \{255,\ 8,\ 93\}.}}
+\DoxyCodeLine{00365\ \ \ \ \ memset(result,\ 0,\ (\textcolor{keywordtype}{size\_t})degree\ *\ \textcolor{keyword}{sizeof}(result[0]));}
+\DoxyCodeLine{00366\ \ \ \ \ result[degree\ -\/\ 1]\ =\ 1;\ \ \textcolor{comment}{//\ Start\ off\ with\ the\ monomial\ x\string^0}}
+\DoxyCodeLine{00367\ \ \ \ \ }
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ product\ polynomial\ (x\ -\/\ r\string^0)\ *\ (x\ -\/\ r\string^1)\ *\ (x\ -\/\ r\string^2)\ *\ ...\ *\ (x\ -\/\ r\string^\{degree-\/1\}),}}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{comment}{//\ drop\ the\ highest\ monomial\ term\ which\ is\ always\ 1x\string^degree.}}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ r\ =\ 0x02,\ which\ is\ a\ generator\ element\ of\ this\ field\ GF(2\string^8/0x11D).}}
+\DoxyCodeLine{00371\ \ \ \ \ uint8\_t\ root\ =\ 1;}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ degree;\ i++)\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Multiply\ the\ current\ product\ by\ (x\ -\/\ r\string^i)}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ degree;\ j++)\ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ result[j]\ =\ \mbox{\hyperlink{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902}{reedSolomonMultiply}}(result[j],\ root);}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ +\ 1\ <\ degree)}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result[j]\ \string^=\ result[j\ +\ 1];}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ root\ =\ \mbox{\hyperlink{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902}{reedSolomonMultiply}}(root,\ 0x02);}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c}{qrcodegen\+\_\+\+REED\+\_\+\+SOLOMON\+\_\+\+DEGREE\+\_\+\+MAX}}, and \mbox{\hyperlink{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902}{reed\+Solomon\+Multiply()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{add\+Ecc\+And\+Interleave()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_ac74eae03dc0c0462a79eee356ff40443_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_ac74eae03dc0c0462a79eee356ff40443_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a859a4a9e045e79ca631ea58807c07713}\label{qrcodegen_8c_a859a4a9e045e79ca631ea58807c07713} 
+\index{qrcodegen.c@{qrcodegen.c}!reedSolomonComputeRemainder@{reedSolomonComputeRemainder}}
+\index{reedSolomonComputeRemainder@{reedSolomonComputeRemainder}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{reedSolomonComputeRemainder()}{reedSolomonComputeRemainder()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void reed\+Solomon\+Compute\+Remainder (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{data\mbox{[}$\,$\mbox{]},  }\item[{int}]{data\+Len,  }\item[{const uint8\+\_\+t}]{generator\mbox{[}$\,$\mbox{]},  }\item[{int}]{degree,  }\item[{uint8\+\_\+t}]{result\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00387}{387}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ assert(1\ <=\ degree\ \&\&\ degree\ <=\ \mbox{\hyperlink{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c}{qrcodegen\_REED\_SOLOMON\_DEGREE\_MAX}});}
+\DoxyCodeLine{00390\ \ \ \ \ memset(result,\ 0,\ (\textcolor{keywordtype}{size\_t})degree\ *\ \textcolor{keyword}{sizeof}(result[0]));}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ dataLen;\ i++)\ \{\ \ \textcolor{comment}{//\ Polynomial\ division}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ uint8\_t\ factor\ =\ data[i]\ \string^\ result[0];}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ memmove(\&result[0],\ \&result[1],\ (\textcolor{keywordtype}{size\_t})(degree\ -\/\ 1)\ *\ \textcolor{keyword}{sizeof}(result[0]));}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ result[degree\ -\/\ 1]\ =\ 0;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ degree;\ j++)}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ result[j]\ \string^=\ \mbox{\hyperlink{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902}{reedSolomonMultiply}}(generator[j],\ factor);}
+\DoxyCodeLine{00397\ \ \ \ \ \}}
+\DoxyCodeLine{00398\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structqrcodegen__Segment_a0e9cd1915812ada8e06cfd49be30f8b9}{qrcodegen\+\_\+\+Segment\+::data}}, \mbox{\hyperlink{qrcodegen_8c_ac4493a6fd7027601e073129a5f10717c}{qrcodegen\+\_\+\+REED\+\_\+\+SOLOMON\+\_\+\+DEGREE\+\_\+\+MAX}}, and \mbox{\hyperlink{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902}{reed\+Solomon\+Multiply()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{add\+Ecc\+And\+Interleave()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a859a4a9e045e79ca631ea58807c07713_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a859a4a9e045e79ca631ea58807c07713_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902}\label{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902} 
+\index{qrcodegen.c@{qrcodegen.c}!reedSolomonMultiply@{reedSolomonMultiply}}
+\index{reedSolomonMultiply@{reedSolomonMultiply}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{reedSolomonMultiply()}{reedSolomonMultiply()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} uint8\+\_\+t reed\+Solomon\+Multiply (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x,  }\item[{uint8\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00405}{405}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{comment}{//\ Russian\ peasant\ multiplication}}
+\DoxyCodeLine{00407\ \ \ \ \ uint8\_t\ z\ =\ 0;}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 7;\ i\ >=\ 0;\ i-\/-\/)\ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ z\ =\ (uint8\_t)((z\ <<\ 1)\ \string^\ ((z\ >>\ 7)\ *\ 0x11D));}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ z\ \string^=\ ((y\ >>\ i)\ \&\ 1)\ *\ x;}
+\DoxyCodeLine{00411\ \ \ \ \ \}}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keywordflow}{return}\ z;}
+\DoxyCodeLine{00413\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_ac74eae03dc0c0462a79eee356ff40443}{reed\+Solomon\+Compute\+Divisor()}}, and \mbox{\hyperlink{qrcodegen_8c_a859a4a9e045e79ca631ea58807c07713}{reed\+Solomon\+Compute\+Remainder()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_af3eccd8d887a881d203a8bad18b81902_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}\label{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a} 
+\index{qrcodegen.c@{qrcodegen.c}!setModuleBounded@{setModuleBounded}}
+\index{setModuleBounded@{setModuleBounded}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{setModuleBounded()}{setModuleBounded()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void set\+Module\+Bounded (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{bool}]{is\+Dark }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00781}{781}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ qrcode[0];}
+\DoxyCodeLine{00783\ \ \ \ \ assert(21\ <=\ qrsize\ \&\&\ qrsize\ <=\ 177\ \&\&\ 0\ <=\ x\ \&\&\ x\ <\ qrsize\ \&\&\ 0\ <=\ y\ \&\&\ y\ <\ qrsize);}
+\DoxyCodeLine{00784\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ y\ *\ qrsize\ +\ x;}
+\DoxyCodeLine{00785\ \ \ \ \ \textcolor{keywordtype}{int}\ bitIndex\ =\ index\ \&\ 7;}
+\DoxyCodeLine{00786\ \ \ \ \ \textcolor{keywordtype}{int}\ byteIndex\ =\ (index\ >>\ 3)\ +\ 1;}
+\DoxyCodeLine{00787\ \ \ \ \ \textcolor{keywordflow}{if}\ (isDark)}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ qrcode[byteIndex]\ |=\ 1\ <<\ bitIndex;}
+\DoxyCodeLine{00789\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ qrcode[byteIndex]\ \&=\ (1\ <<\ bitIndex)\ \string^\ 0xFF;}
+\DoxyCodeLine{00791\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_adf3d74364bfb12d77aa1288f8d5a40b7}{apply\+Mask()}}, \mbox{\hyperlink{qrcodegen_8c_abf713aa31a914535d069ff0cd118feba}{draw\+Codewords()}}, \mbox{\hyperlink{qrcodegen_8c_a8a738b8d8b88aeaa42ee32e95b45f6ed}{draw\+Format\+Bits()}}, \mbox{\hyperlink{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145}{draw\+Light\+Function\+Modules()}}, \mbox{\hyperlink{qrcodegen_8c_a4fcf8f4bd9d8ad6fd0d43f3c14a4ec15}{fill\+Rectangle()}}, and \mbox{\hyperlink{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1}{set\+Module\+Unbounded()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1}\label{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1} 
+\index{qrcodegen.c@{qrcodegen.c}!setModuleUnbounded@{setModuleUnbounded}}
+\index{setModuleUnbounded@{setModuleUnbounded}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{setModuleUnbounded()}{setModuleUnbounded()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} void set\+Module\+Unbounded (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{qrcode\mbox{[}$\,$\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{bool}]{is\+Dark }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00795}{795}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00796\ \ \ \ \ \textcolor{keywordtype}{int}\ qrsize\ =\ qrcode[0];}
+\DoxyCodeLine{00797\ \ \ \ \ \textcolor{keywordflow}{if}\ (0\ <=\ x\ \&\&\ x\ <\ qrsize\ \&\&\ 0\ <=\ y\ \&\&\ y\ <\ qrsize)}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{setModuleBounded}}(qrcode,\ x,\ y,\ isDark);}
+\DoxyCodeLine{00799\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qrcodegen_8c_a15c31cc3974d3162b6804fc4a1f6c14a}{set\+Module\+Bounded()}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_aa42cc519c55e976aca2fee39678d7145}{draw\+Light\+Function\+Modules()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qrcodegen_8c_ae0b2fcd2ff740612ce23157eaacb7fb1_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{qrcodegen_8c_abc8e497ac83f11842522e6dcefde5a9d}\label{qrcodegen_8c_abc8e497ac83f11842522e6dcefde5a9d} 
+\index{qrcodegen.c@{qrcodegen.c}!ALPHANUMERIC\_CHARSET@{ALPHANUMERIC\_CHARSET}}
+\index{ALPHANUMERIC\_CHARSET@{ALPHANUMERIC\_CHARSET}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{ALPHANUMERIC\_CHARSET}{ALPHANUMERIC\_CHARSET}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} ALPHANUMERIC\+\_\+\+CHARSET = "{}0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ \$\%\texorpdfstring{$\ast$}{*}+-\/./\+:"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00094}{94}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a25856a1d9c76851f8b83640ba3c6a3fc}{qrcodegen\+\_\+is\+Alphanumeric()}}, and \mbox{\hyperlink{qrcodegen_8c_aaed32d45f095ce02e6718c8a48f4393d}{qrcodegen\+\_\+make\+Alphanumeric()}}.
+
+\Hypertarget{qrcodegen_8c_aa317616612730b289013844a2b040f26}\label{qrcodegen_8c_aa317616612730b289013844a2b040f26} 
+\index{qrcodegen.c@{qrcodegen.c}!ECC\_CODEWORDS\_PER\_BLOCK@{ECC\_CODEWORDS\_PER\_BLOCK}}
+\index{ECC\_CODEWORDS\_PER\_BLOCK@{ECC\_CODEWORDS\_PER\_BLOCK}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{ECC\_CODEWORDS\_PER\_BLOCK}{ECC\_CODEWORDS\_PER\_BLOCK}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} const int8\+\_\+t ECC\+\_\+\+CODEWORDS\+\_\+\+PER\+\_\+\+BLOCK\mbox{[}4\mbox{]}\mbox{[}41\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{-\/1,\ \ 7,\ 10,\ 15,\ 20,\ 26,\ 18,\ 20,\ 24,\ 30,\ 18,\ 20,\ 24,\ 26,\ 30,\ 22,\ 24,\ 28,\ 30,\ 28,\ 28,\ 28,\ 28,\ 30,\ 30,\ 26,\ 28,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30\},\ \ }
+\DoxyCodeLine{\ \ \ \ \{-\/1,\ 10,\ 16,\ 26,\ 18,\ 24,\ 16,\ 18,\ 22,\ 22,\ 26,\ 30,\ 22,\ 22,\ 24,\ 24,\ 28,\ 28,\ 26,\ 26,\ 26,\ 26,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28\},\ \ }
+\DoxyCodeLine{\ \ \ \ \{-\/1,\ 13,\ 22,\ 18,\ 26,\ 18,\ 24,\ 18,\ 22,\ 20,\ 24,\ 28,\ 26,\ 24,\ 20,\ 30,\ 24,\ 28,\ 28,\ 26,\ 30,\ 28,\ 30,\ 30,\ 30,\ 30,\ 28,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30\},\ \ }
+\DoxyCodeLine{\ \ \ \ \{-\/1,\ 17,\ 28,\ 22,\ 16,\ 22,\ 28,\ 26,\ 26,\ 24,\ 28,\ 24,\ 28,\ 22,\ 24,\ 24,\ 30,\ 28,\ 28,\ 26,\ 28,\ 30,\ 24,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30\},\ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00100}{100}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ Version:\ (note\ that\ index\ 0\ is\ for\ padding,\ and\ is\ set\ to\ an\ illegal\ value)}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//0,\ \ 1,\ \ 2,\ \ 3,\ \ 4,\ \ 5,\ \ 6,\ \ 7,\ \ 8,\ \ 9,\ 10,\ 11,\ 12,\ 13,\ 14,\ 15,\ 16,\ 17,\ 18,\ 19,\ 20,\ 21,\ 22,\ 23,\ 24,\ 25,\ 26,\ 27,\ 28,\ 29,\ 30,\ 31,\ 32,\ 33,\ 34,\ 35,\ 36,\ 37,\ 38,\ 39,\ 40\ \ \ \ Error\ correction\ level}}
+\DoxyCodeLine{00103\ \ \ \ \ \{-\/1,\ \ 7,\ 10,\ 15,\ 20,\ 26,\ 18,\ 20,\ 24,\ 30,\ 18,\ 20,\ 24,\ 26,\ 30,\ 22,\ 24,\ 28,\ 30,\ 28,\ 28,\ 28,\ 28,\ 30,\ 30,\ 26,\ 28,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30\},\ \ \textcolor{comment}{//\ Low}}
+\DoxyCodeLine{00104\ \ \ \ \ \{-\/1,\ 10,\ 16,\ 26,\ 18,\ 24,\ 16,\ 18,\ 22,\ 22,\ 26,\ 30,\ 22,\ 22,\ 24,\ 24,\ 28,\ 28,\ 26,\ 26,\ 26,\ 26,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28,\ 28\},\ \ \textcolor{comment}{//\ Medium}}
+\DoxyCodeLine{00105\ \ \ \ \ \{-\/1,\ 13,\ 22,\ 18,\ 26,\ 18,\ 24,\ 18,\ 22,\ 20,\ 24,\ 28,\ 26,\ 24,\ 20,\ 30,\ 24,\ 28,\ 28,\ 26,\ 30,\ 28,\ 30,\ 30,\ 30,\ 30,\ 28,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30\},\ \ \textcolor{comment}{//\ Quartile}}
+\DoxyCodeLine{00106\ \ \ \ \ \{-\/1,\ 17,\ 28,\ 22,\ 16,\ 22,\ 28,\ 26,\ 26,\ 24,\ 28,\ 24,\ 28,\ 22,\ 24,\ 24,\ 30,\ 28,\ 28,\ 26,\ 28,\ 30,\ 24,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30,\ 30\},\ \ \textcolor{comment}{//\ High}}
+\DoxyCodeLine{00107\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{add\+Ecc\+And\+Interleave()}}, and \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{get\+Num\+Data\+Codewords()}}.
+
+\Hypertarget{qrcodegen_8c_a7deaf66d3af6d18ec53e2f1e7a1913c9}\label{qrcodegen_8c_a7deaf66d3af6d18ec53e2f1e7a1913c9} 
+\index{qrcodegen.c@{qrcodegen.c}!NUM\_ERROR\_CORRECTION\_BLOCKS@{NUM\_ERROR\_CORRECTION\_BLOCKS}}
+\index{NUM\_ERROR\_CORRECTION\_BLOCKS@{NUM\_ERROR\_CORRECTION\_BLOCKS}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{NUM\_ERROR\_CORRECTION\_BLOCKS}{NUM\_ERROR\_CORRECTION\_BLOCKS}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qrcodegen_8c_af133be2ddbf0cfabb0bb6b0d5f6c00b9}{testable}} const int8\+\_\+t NUM\+\_\+\+ERROR\+\_\+\+CORRECTION\+\_\+\+BLOCKS\mbox{[}4\mbox{]}\mbox{[}41\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{-\/1,\ 1,\ 1,\ 1,\ 1,\ 1,\ 2,\ 2,\ 2,\ 2,\ 4,\ \ 4,\ \ 4,\ \ 4,\ \ 4,\ \ 6,\ \ 6,\ \ 6,\ \ 6,\ \ 7,\ \ 8,\ \ 8,\ \ 9,\ \ 9,\ 10,\ 12,\ 12,\ 12,\ 13,\ 14,\ 15,\ 16,\ 17,\ 18,\ 19,\ 19,\ 20,\ 21,\ 22,\ 24,\ 25\},\ \ }
+\DoxyCodeLine{\ \ \ \ \{-\/1,\ 1,\ 1,\ 1,\ 2,\ 2,\ 4,\ 4,\ 4,\ 5,\ 5,\ \ 5,\ \ 8,\ \ 9,\ \ 9,\ 10,\ 10,\ 11,\ 13,\ 14,\ 16,\ 17,\ 17,\ 18,\ 20,\ 21,\ 23,\ 25,\ 26,\ 28,\ 29,\ 31,\ 33,\ 35,\ 37,\ 38,\ 40,\ 43,\ 45,\ 47,\ 49\},\ \ }
+\DoxyCodeLine{\ \ \ \ \{-\/1,\ 1,\ 1,\ 2,\ 2,\ 4,\ 4,\ 6,\ 6,\ 8,\ 8,\ \ 8,\ 10,\ 12,\ 16,\ 12,\ 17,\ 16,\ 18,\ 21,\ 20,\ 23,\ 23,\ 25,\ 27,\ 29,\ 34,\ 34,\ 35,\ 38,\ 40,\ 43,\ 45,\ 48,\ 51,\ 53,\ 56,\ 59,\ 62,\ 65,\ 68\},\ \ }
+\DoxyCodeLine{\ \ \ \ \{-\/1,\ 1,\ 1,\ 2,\ 4,\ 4,\ 4,\ 5,\ 6,\ 8,\ 8,\ 11,\ 11,\ 16,\ 16,\ 18,\ 16,\ 19,\ 21,\ 25,\ 25,\ 25,\ 34,\ 30,\ 32,\ 35,\ 37,\ 40,\ 42,\ 45,\ 48,\ 51,\ 54,\ 57,\ 60,\ 63,\ 66,\ 70,\ 74,\ 77,\ 81\},\ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00112}{112}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ Version:\ (note\ that\ index\ 0\ is\ for\ padding,\ and\ is\ set\ to\ an\ illegal\ value)}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//0,\ 1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7,\ 8,\ 9,10,\ 11,\ 12,\ 13,\ 14,\ 15,\ 16,\ 17,\ 18,\ 19,\ 20,\ 21,\ 22,\ 23,\ 24,\ 25,\ 26,\ 27,\ 28,\ 29,\ 30,\ 31,\ 32,\ 33,\ 34,\ 35,\ 36,\ 37,\ 38,\ 39,\ 40\ \ \ \ Error\ correction\ level}}
+\DoxyCodeLine{00115\ \ \ \ \ \{-\/1,\ 1,\ 1,\ 1,\ 1,\ 1,\ 2,\ 2,\ 2,\ 2,\ 4,\ \ 4,\ \ 4,\ \ 4,\ \ 4,\ \ 6,\ \ 6,\ \ 6,\ \ 6,\ \ 7,\ \ 8,\ \ 8,\ \ 9,\ \ 9,\ 10,\ 12,\ 12,\ 12,\ 13,\ 14,\ 15,\ 16,\ 17,\ 18,\ 19,\ 19,\ 20,\ 21,\ 22,\ 24,\ 25\},\ \ \textcolor{comment}{//\ Low}}
+\DoxyCodeLine{00116\ \ \ \ \ \{-\/1,\ 1,\ 1,\ 1,\ 2,\ 2,\ 4,\ 4,\ 4,\ 5,\ 5,\ \ 5,\ \ 8,\ \ 9,\ \ 9,\ 10,\ 10,\ 11,\ 13,\ 14,\ 16,\ 17,\ 17,\ 18,\ 20,\ 21,\ 23,\ 25,\ 26,\ 28,\ 29,\ 31,\ 33,\ 35,\ 37,\ 38,\ 40,\ 43,\ 45,\ 47,\ 49\},\ \ \textcolor{comment}{//\ Medium}}
+\DoxyCodeLine{00117\ \ \ \ \ \{-\/1,\ 1,\ 1,\ 2,\ 2,\ 4,\ 4,\ 6,\ 6,\ 8,\ 8,\ \ 8,\ 10,\ 12,\ 16,\ 12,\ 17,\ 16,\ 18,\ 21,\ 20,\ 23,\ 23,\ 25,\ 27,\ 29,\ 34,\ 34,\ 35,\ 38,\ 40,\ 43,\ 45,\ 48,\ 51,\ 53,\ 56,\ 59,\ 62,\ 65,\ 68\},\ \ \textcolor{comment}{//\ Quartile}}
+\DoxyCodeLine{00118\ \ \ \ \ \{-\/1,\ 1,\ 1,\ 2,\ 4,\ 4,\ 4,\ 5,\ 6,\ 8,\ 8,\ 11,\ 11,\ 16,\ 16,\ 18,\ 16,\ 19,\ 21,\ 25,\ 25,\ 25,\ 34,\ 30,\ 32,\ 35,\ 37,\ 40,\ 42,\ 45,\ 48,\ 51,\ 54,\ 57,\ 60,\ 63,\ 66,\ 70,\ 74,\ 77,\ 81\},\ \ \textcolor{comment}{//\ High}}
+\DoxyCodeLine{00119\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_a26abd9af78a1ebc168486c698e29e539}{add\+Ecc\+And\+Interleave()}}, and \mbox{\hyperlink{qrcodegen_8c_ae3402527eaf904babc6f218acd6195af}{get\+Num\+Data\+Codewords()}}.
+
+\Hypertarget{qrcodegen_8c_a3928d5c05a7afc1a1dbacd946ced60e1}\label{qrcodegen_8c_a3928d5c05a7afc1a1dbacd946ced60e1} 
+\index{qrcodegen.c@{qrcodegen.c}!PENALTY\_N1@{PENALTY\_N1}}
+\index{PENALTY\_N1@{PENALTY\_N1}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{PENALTY\_N1}{PENALTY\_N1}}
+{\footnotesize\ttfamily const int PENALTY\+\_\+\+N1 = 3\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00122}{122}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}.
+
+\Hypertarget{qrcodegen_8c_a2e77c1abffa48b55a464b8ebebe6236b}\label{qrcodegen_8c_a2e77c1abffa48b55a464b8ebebe6236b} 
+\index{qrcodegen.c@{qrcodegen.c}!PENALTY\_N2@{PENALTY\_N2}}
+\index{PENALTY\_N2@{PENALTY\_N2}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{PENALTY\_N2}{PENALTY\_N2}}
+{\footnotesize\ttfamily const int PENALTY\+\_\+\+N2 = 3\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00123}{123}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}.
+
+\Hypertarget{qrcodegen_8c_a04495626b845c0e983106c741235b500}\label{qrcodegen_8c_a04495626b845c0e983106c741235b500} 
+\index{qrcodegen.c@{qrcodegen.c}!PENALTY\_N3@{PENALTY\_N3}}
+\index{PENALTY\_N3@{PENALTY\_N3}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{PENALTY\_N3}{PENALTY\_N3}}
+{\footnotesize\ttfamily const int PENALTY\+\_\+\+N3 = 40\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00124}{124}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}.
+
+\Hypertarget{qrcodegen_8c_a69bbf54cb5fecf7d5b18908177662400}\label{qrcodegen_8c_a69bbf54cb5fecf7d5b18908177662400} 
+\index{qrcodegen.c@{qrcodegen.c}!PENALTY\_N4@{PENALTY\_N4}}
+\index{PENALTY\_N4@{PENALTY\_N4}!qrcodegen.c@{qrcodegen.c}}
+\doxysubsubsection{\texorpdfstring{PENALTY\_N4}{PENALTY\_N4}}
+{\footnotesize\ttfamily const int PENALTY\+\_\+\+N4 = 10\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{qrcodegen_8c_source_l00125}{125}} of file \mbox{\hyperlink{qrcodegen_8c_source}{qrcodegen.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{qrcodegen_8c_aebd61c0fae8c8590e5e7ff2cdb6d8a35}{get\+Penalty\+Score()}}.
+

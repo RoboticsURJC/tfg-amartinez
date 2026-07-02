@@ -1,0 +1,74 @@
+\doxysection{Android\+Manifest.\+xml}
+\hypertarget{AndroidManifest_8xml_source}{}\label{AndroidManifest_8xml_source}\index{app/src/main/AndroidManifest.xml@{app/src/main/AndroidManifest.xml}}
+\mbox{\hyperlink{AndroidManifest_8xml}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00001}00001\ <?\textcolor{keyword}{xml}\ \textcolor{keyword}{version}=\textcolor{stringliteral}{"{}1.0"{}}\ \textcolor{keyword}{encoding}=\textcolor{stringliteral}{"{}utf-\/8"{}}?>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00002}00002\ <\textcolor{keywordtype}{manifest}\ \textcolor{keyword}{xmlns:android}=\textcolor{stringliteral}{"{}http://schemas.android.com/apk/res/android"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00003}00003\ \ \ \ \ \textcolor{keyword}{xmlns:tools}=\textcolor{stringliteral}{"{}http://schemas.android.com/tools"{}}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00005}00005\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.READ\_EXTERNAL\_STORAGE"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00006}00006\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.WRITE\_EXTERNAL\_STORAGE"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00008}00008\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.POST\_NOTIFICATIONS"{}}\ />}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00010}00010\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.ACCESS\_NETWORK\_STATE"{}}\ />}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00011}00011\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.CAMERA"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00012}00012\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.INTERNET"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00013}00013\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.ACCESS\_WIFI\_STATE"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00014}00014\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.CHANGE\_WIFI\_MULTICAST\_STATE"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00015}00015\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.ACCESS\_FINE\_LOCATION"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00016}00016\ \ \ \ \ <\textcolor{keywordtype}{uses-\/permission}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.permission.ACCESS\_COARSE\_LOCATION"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00018}00018\ \ \ \ \ <\textcolor{keywordtype}{uses-\/feature}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.hardware.camera"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:required}=\textcolor{stringliteral}{"{}true"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00022}00022\ \ \ \ \ <\textcolor{keywordtype}{application}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}.MyMedsApplication"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:usesCleartextTraffic}=\textcolor{stringliteral}{"{}true"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:allowBackup}=\textcolor{stringliteral}{"{}true"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:dataExtractionRules}=\textcolor{stringliteral}{"{}@xml/data\_extraction\_rules"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:fullBackupContent}=\textcolor{stringliteral}{"{}@xml/backup\_rules"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:icon}=\textcolor{stringliteral}{"{}@mipmap/ic\_launcher"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:label}=\textcolor{stringliteral}{"{}@string/app\_name"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:roundIcon}=\textcolor{stringliteral}{"{}@mipmap/ic\_launcher\_round"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:supportsRtl}=\textcolor{stringliteral}{"{}true"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:theme}=\textcolor{stringliteral}{"{}@style/Theme.MyMeds"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{tools:targetApi}=\textcolor{stringliteral}{"{}31"{}}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00035}00035\ \ \ \ \ \ \ \ \ <\textcolor{keywordtype}{activity}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}.PinActivity"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:exported}=\textcolor{stringliteral}{"{}false"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00039}00039\ \ \ \ \ \ \ \ \ <\textcolor{keywordtype}{activity}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}.MainActivity"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:exported}=\textcolor{stringliteral}{"{}true"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:theme}=\textcolor{stringliteral}{"{}@style/Theme.MyMeds.Splash"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:windowSoftInputMode}=\textcolor{stringliteral}{"{}stateAlwaysVisible|adjustResize"{}}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00045}00045\ \ \ \ \ \ \ \ \ <\textcolor{keywordtype}{intent-\/filter}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <\textcolor{keywordtype}{action}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.intent.action.MAIN"{}}\ />}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <\textcolor{keywordtype}{category}\ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.intent.category.LAUNCHER"{}}\ />}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ </\textcolor{keywordtype}{intent-\/filter}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00050}00050\ \ \ \ \ \ \ \ \ </\textcolor{keywordtype}{activity}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00052}00052\ \ \ \ \ \ \ \ \ <\textcolor{keywordtype}{provider}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}androidx.core.content.FileProvider"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:authorities}=\textcolor{stringliteral}{"{}\$\{applicationId\}.provider"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:exported}=\textcolor{stringliteral}{"{}false"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:grantUriPermissions}=\textcolor{stringliteral}{"{}true"{}}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ <\textcolor{keywordtype}{meta-\/data}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}android.support.FILE\_PROVIDER\_PATHS"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:resource}=\textcolor{stringliteral}{"{}@xml/file\_paths"{}}/>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00061}00061\ \ \ \ \ \ \ \ \ </\textcolor{keywordtype}{provider}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00063}00063\ \ \ \ \ \ \ \ \ <\textcolor{keywordtype}{receiver}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:name}=\textcolor{stringliteral}{"{}.notifications.AlarmReceiver"{}}}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{android:exported}=\textcolor{stringliteral}{"{}false"{}}\ />}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00067}00067\ \ \ \ \ </\textcolor{keywordtype}{application}>}
+\DoxyCodeLine{\Hypertarget{AndroidManifest_8xml_source_l00068}00068\ </\textcolor{keywordtype}{manifest}>}
+
+\end{DoxyCode}

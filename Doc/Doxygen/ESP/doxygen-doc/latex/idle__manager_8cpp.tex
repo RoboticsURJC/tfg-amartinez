@@ -1,0 +1,64 @@
+\doxysection{src/idle\+\_\+manager.cpp File Reference}
+\hypertarget{idle__manager_8cpp}{}\label{idle__manager_8cpp}\index{src/idle\_manager.cpp@{src/idle\_manager.cpp}}
+{\ttfamily \#include "{}idle\+\_\+manager.\+h"{}}\newline
+Include dependency graph for idle\+\_\+manager.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{idle__manager_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \mbox{\hyperlink{idle__manager_8cpp_adaf9d8edb551c08d362d712d8d1357e2}{last\+\_\+touch\+\_\+time}} = 0
+\item 
+bool \mbox{\hyperlink{idle__manager_8cpp_a24fc9786d6fce7521eeef5a7c971f0ac}{idle\+\_\+timeout\+\_\+triggered}} = false
+\item 
+bool \mbox{\hyperlink{idle__manager_8cpp_aa65a7399b781ce5204ca482bc65bf075}{block\+\_\+idle\+\_\+timeout}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{idle__manager_8cpp_aa65a7399b781ce5204ca482bc65bf075}\label{idle__manager_8cpp_aa65a7399b781ce5204ca482bc65bf075} 
+\index{idle\_manager.cpp@{idle\_manager.cpp}!block\_idle\_timeout@{block\_idle\_timeout}}
+\index{block\_idle\_timeout@{block\_idle\_timeout}!idle\_manager.cpp@{idle\_manager.cpp}}
+\doxysubsubsection{\texorpdfstring{block\_idle\_timeout}{block\_idle\_timeout}}
+{\footnotesize\ttfamily bool block\+\_\+idle\+\_\+timeout = false}
+
+
+
+Definition at line \mbox{\hyperlink{idle__manager_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{idle__manager_8cpp_source}{idle\+\_\+manager.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{take__alert__screen_8cpp_af88032e98c44388094b6f14afa28fd88}{close\+Alert()}}, \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, \mbox{\hyperlink{pulse__screen_8h_a110b08df176a6163bf8834ea75df52b4}{show\+\_\+pulse\+\_\+screen()}}, and \mbox{\hyperlink{take__alert__screen_8h_a7d4b85367414f994adf1f70eac9df88d}{show\+\_\+take\+\_\+alert()}}.
+
+\Hypertarget{idle__manager_8cpp_a24fc9786d6fce7521eeef5a7c971f0ac}\label{idle__manager_8cpp_a24fc9786d6fce7521eeef5a7c971f0ac} 
+\index{idle\_manager.cpp@{idle\_manager.cpp}!idle\_timeout\_triggered@{idle\_timeout\_triggered}}
+\index{idle\_timeout\_triggered@{idle\_timeout\_triggered}!idle\_manager.cpp@{idle\_manager.cpp}}
+\doxysubsubsection{\texorpdfstring{idle\_timeout\_triggered}{idle\_timeout\_triggered}}
+{\footnotesize\ttfamily bool idle\+\_\+timeout\+\_\+triggered = false}
+
+
+
+Definition at line \mbox{\hyperlink{idle__manager_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{idle__manager_8cpp_source}{idle\+\_\+manager.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{take__alert__screen_8cpp_af88032e98c44388094b6f14afa28fd88}{close\+Alert()}}, \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, and \mbox{\hyperlink{lvgl__touch_8cpp_a7c86d5ac28d219b55d2c94aacb139157}{touch\+\_\+read\+\_\+cb()}}.
+
+\Hypertarget{idle__manager_8cpp_adaf9d8edb551c08d362d712d8d1357e2}\label{idle__manager_8cpp_adaf9d8edb551c08d362d712d8d1357e2} 
+\index{idle\_manager.cpp@{idle\_manager.cpp}!last\_touch\_time@{last\_touch\_time}}
+\index{last\_touch\_time@{last\_touch\_time}!idle\_manager.cpp@{idle\_manager.cpp}}
+\doxysubsubsection{\texorpdfstring{last\_touch\_time}{last\_touch\_time}}
+{\footnotesize\ttfamily unsigned long last\+\_\+touch\+\_\+time = 0}
+
+
+
+Definition at line \mbox{\hyperlink{idle__manager_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{idle__manager_8cpp_source}{idle\+\_\+manager.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{pulse__screen_8cpp_afc8fe7ee57fd775f3845310b9b4e5ad0}{back\+\_\+btn\+\_\+event\+\_\+cb()}}, \mbox{\hyperlink{take__alert__screen_8cpp_af88032e98c44388094b6f14afa28fd88}{close\+Alert()}}, \mbox{\hyperlink{src_2main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}, \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}, and \mbox{\hyperlink{lvgl__touch_8cpp_a7c86d5ac28d219b55d2c94aacb139157}{touch\+\_\+read\+\_\+cb()}}.
+

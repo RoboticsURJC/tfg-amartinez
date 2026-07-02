@@ -1,0 +1,352 @@
+\doxysection{Config\+Fragment.\+kt}
+\hypertarget{ConfigFragment_8kt_source}{}\label{ConfigFragment_8kt_source}\index{app/src/main/java/com/example/mymeds/ui/config/ConfigFragment.kt@{app/src/main/java/com/example/mymeds/ui/config/ConfigFragment.kt}}
+\mbox{\hyperlink{ConfigFragment_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00001}00001\ package\ com.example.mymeds.ui.config}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00003}00003\ import\ android.Manifest}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00004}00004\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00005}00005\ import\ android.content.pm.PackageManager}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00006}00006\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00007}00007\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00008}00008\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00009}00009\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00010}00010\ import\ androidx.core.content.ContextCompat}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00011}00011\ import\ androidx.fragment.app.Fragment}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00012}00012\ import\ androidx.navigation.fragment.findNavController}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00013}00013\ import\ com.example.mymeds.R}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00014}00014\ import\ com.example.mymeds.databinding.FragmentConfigPillsBinding}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00015}00015\ import\ com.example.mymeds.data.repository.EspConfig}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00016}00016\ import\ android.util.Log}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00017}00017\ import\ com.example.mymeds.data.network.EspApi}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00019}00019\ class\ ConfigFragment\ :\ Fragment()\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00021}00021\ \ \ \ \ private\ var\ \_binding:\ FragmentConfigPillsBinding?\ =\ null}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00022}00022\ \ \ \ \ private\ val\ binding\ get()\ =\ \_binding!!}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00024}00024\ \ \ \ \ private\ var\ deviceDetected\ =\ false}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00026}00026\ \ \ \ \ companion\ object\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ private\ const\ val\ LOCATION\_PERMISSION\_REQUEST\ =\ 1001}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00030}00030\ \ \ \ \ override\ fun\ onCreateView(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ inflater:\ LayoutInflater,}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ container:\ ViewGroup?,}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ savedInstanceState:\ Bundle?}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00034}00034\ \ \ \ \ ):\ View\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ \_binding\ =\ FragmentConfigPillsBinding.inflate(inflater,\ container,\ false)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ binding.buttonBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(R.id.homeFragment)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ return\ binding.root}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00045}00045\ \ \ \ \ override\ fun\ onViewCreated(view:\ View,\ savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ super.onViewCreated(view,\ savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ checkLocationPermissionAndStart()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00050}00050\ \ \ \ \ override\ fun\ onResume()\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ super.onResume()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ EspApi.syncPinFromEsp()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00056}00056\ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ PERMISOS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00058}00058\ \ \ \ \ private\ fun\ checkLocationPermissionAndStart()\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ if\ (ContextCompat.checkSelfPermission(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requireContext(),}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Manifest.permission.ACCESS\_FINE\_LOCATION}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ )\ ==\ PackageManager.PERMISSION\_GRANTED}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ startDeviceCheck()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ requestPermissions(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ arrayOf(Manifest.permission.ACCESS\_FINE\_LOCATION),}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LOCATION\_PERMISSION\_REQUEST}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00073}00073\ \ \ \ \ override\ fun\ onRequestPermissionsResult(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ requestCode:\ Int,}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ permissions:\ Array<out\ String>,}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ grantResults:\ IntArray}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00077}00077\ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ if\ (requestCode\ ==\ LOCATION\_PERMISSION\_REQUEST)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (grantResults.isNotEmpty()\ \&\&}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ grantResults[0]\ ==\ PackageManager.PERMISSION\_GRANTED}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startDeviceCheck()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deviceDetected\ =\ false}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00090}00090\ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ LÓGICA\ PRINCIPAL\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00092}00092\ \ \ \ \ private\ fun\ startDeviceCheck()\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ val\ prefs\ =\ requireContext()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ .getSharedPreferences("{}app"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ val\ savedUrl\ =\ prefs.getString("{}esp\_url"{},\ null)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ Thread\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ var\ success\ =\ false}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ var\ finalUrl:\ String?\ =\ savedUrl}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (savedUrl\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}CONFIG"{},\ "{}Probando\ URL\ guardada:\ \$savedUrl"{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ checkConnection(savedUrl)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!success)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}CONFIG"{},\ "{}Fallback\ →\ buscando\ ESP\ por\ UDP"{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ foundIp\ =\ discoverEsp()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (foundIp\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finalUrl\ =\ "{}http://\$foundIp"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}CONFIG"{},\ "{}Nueva\ IP\ encontrada:\ \$finalUrl"{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ checkConnection(finalUrl)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (success)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefs.edit()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .putString("{}esp\_url"{},\ finalUrl)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .apply()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ deviceDetected\ =\ success}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!success)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefs.edit()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .remove("{}esp\_url"{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .apply()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EspConfig.baseUrl\ =\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ activity?.runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!isAdded\ ||\ \_binding\ ==\ null)\ return@runOnUiThread}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@Thread}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ EspConfig.baseUrl\ =\ finalUrl!!}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ val\ token\ =}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefs.getString(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}device\_token"{},}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (token.isBlank())\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}LINK"{},\ "{}Token\ vacío.\ Solicitando\ nuevo\ vínculo..."{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EspApi.refreshLink\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}LINK"{},\ "{}Vínculo\ actualizado\ correctamente"{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ activity?.runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!isAdded\ ||\ \_binding\ ==\ null)\ return@runOnUiThread}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ activity?.runOnUiThread\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!isAdded\ ||\ \_binding\ ==\ null)\ return@runOnUiThread}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00187}00187\ \ \ \ \ \ \ \ \ \}.start()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00188}00188\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00190}00190\ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CHECK\ HTTP\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00192}00192\ \ \ \ \ private\ fun\ checkConnection(urlBase:\ String):\ Boolean\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00193}00193\ \ \ \ \ \ \ \ \ return\ try\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ val\ url\ =\ java.net.URL("{}\$urlBase/ping"{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ val\ conn\ =\ url.openConnection()\ as\ java.net.HttpURLConnection}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ conn.requestMethod\ =\ "{}GET"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ conn.setRequestProperty("{}X-\/DEVICE-\/TOKEN"{},\ "{}mymeds\_secure\_token"{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ conn.connectTimeout\ =\ 2000}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ conn.readTimeout\ =\ 2000}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ val\ code\ =\ conn.responseCode}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}CONFIG"{},\ "{}Check\ \$urlBase\ →\ \$code"{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (code\ ==\ 200)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ response\ =}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ conn.inputStream}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .bufferedReader()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .readText()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\ ==\ "{}MYMEDS\_ESP\_OK"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ false}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00221}00221\ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}CONFIG"{},\ "{}Check\ falló:\ \$urlBase"{},\ e)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ false}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00224}00224\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00225}00225\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00227}00227\ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ DISCOVERY\ UDP\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00229}00229\ \ \ \ \ private\ fun\ discoverEsp():\ String?\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00231}00231\ \ \ \ \ \ \ \ \ return\ try\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ val\ socket\ =\ java.net.DatagramSocket()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ socket.broadcast\ =\ true}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ socket.soTimeout\ =\ 2000}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ val\ message\ =\ "{}DISCOVER\_ESP"{}.toByteArray()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ val\ wifiManager\ =\ requireContext().applicationContext}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .getSystemService(Context.WIFI\_SERVICE)\ as\ android.net.wifi.WifiManager}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ val\ ipInt\ =\ wifiManager.connectionInfo.ipAddress}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ val\ ip\ =\ java.net.InetAddress.getByAddress(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ byteArrayOf(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (ipInt\ and\ 0xff).toByte(),}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (ipInt\ shr\ 8\ and\ 0xff).toByte(),}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (ipInt\ shr\ 16\ and\ 0xff).toByte(),}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (ipInt\ shr\ 24\ and\ 0xff).toByte()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ val\ ipString\ =\ ip.hostAddress\ ?:\ return\ null}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ val\ parts\ =\ ipString.split("{}."{})}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ val\ broadcast\ =\ "{}\$\{parts[0]\}.\$\{parts[1]\}.\$\{parts[2]\}.255"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ val\ address\ =\ java.net.InetAddress.getByName(broadcast)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00258}00258\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ val\ packet\ =\ java.net.DatagramPacket(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message,}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message.size,}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ address,}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8888}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ socket.send(packet)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ val\ buffer\ =\ ByteArray(1024)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ val\ response\ =\ java.net.DatagramPacket(buffer,\ buffer.size)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ socket.receive(response)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ val\ received\ =\ String(response.data,\ 0,\ response.length)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (received\ ==\ "{}ESP\_HERE"{})\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ foundIp\ =\ response.address.hostAddress}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socket.close()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ foundIp}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ socket.close()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ null}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00284}00284\ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}CONFIG"{},\ "{}Discovery\ falló"{},\ e)}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ null}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00287}00287\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00288}00288\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00290}00290\ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ UI\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00292}00292\ \ \ \ \ private\ fun\ updateUI()\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00294}00294\ \ \ \ \ \ \ \ \ if\ (\_binding\ ==\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00296}00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00298}00298\ \ \ \ \ \ \ \ \ if\ (!deviceDetected)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ binding.textStatus.text\ =}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}No\ hay\ ningún\ dispensador\ configurado"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ binding.buttonConf.text\ =}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Escanear\ QR"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00306}00306\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ binding.textStatus.text\ =}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Dispensador\ conectado"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ binding.buttonConf.text\ =}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Gestionar\ tomas"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00313}00313\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00315}00315\ \ \ \ \ \ \ \ \ binding.buttonConf.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00317}00317\ \ \ \ \ \ \ \ \ binding.buttonConf.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!deviceDetected)\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ bundle\ =\ Bundle()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bundle.putString(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}mode"{},}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}WIFI"{}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R.id.qrScannerFragment,}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bundle}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00334}00334\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ findNavController().navigate(}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R.id.takesListFragment}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00339}00339\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00340}00340\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00341}00341\ }
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00342}00342\ \ \ \ \ override\ fun\ onDestroyView()\ \{}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00343}00343\ \ \ \ \ \ \ \ \ super.onDestroyView()}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00344}00344\ \ \ \ \ \ \ \ \ \_binding\ =\ null}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00345}00345\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ConfigFragment_8kt_source_l00346}00346\ \}}
+
+\end{DoxyCode}

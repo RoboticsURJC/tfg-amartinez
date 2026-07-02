@@ -1,0 +1,211 @@
+\doxysection{Notification\+Scheduler.\+kt}
+\hypertarget{NotificationScheduler_8kt_source}{}\label{NotificationScheduler_8kt_source}\index{app/src/main/java/com/example/mymeds/notifications/NotificationScheduler.kt@{app/src/main/java/com/example/mymeds/notifications/NotificationScheduler.kt}}
+\mbox{\hyperlink{NotificationScheduler_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00001}00001\ package\ com.example.mymeds.notifications}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00003}00003\ import\ android.app.AlarmManager}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00004}00004\ import\ android.app.PendingIntent}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00005}00005\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00006}00006\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00007}00007\ import\ java.util.Calendar}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00008}00008\ import\ com.example.mymeds.data.repository.TakeRepository}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00010}00010\ object\ NotificationScheduler\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00012}00012\ \ \ \ \ fun\ scheduleAll(context:\ Context)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00014}00014\ \ \ \ \ \ \ \ \ cancelAll(context)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00016}00016\ \ \ \ \ \ \ \ \ TakeRepository.getTakes().forEachIndexed\ \{\ takeIndex,\ take\ -\/>}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ val\ parts\ =\ take.time.split("{}:"{})}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ val\ hour\ =\ parts[0].toInt()}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ val\ minute\ =\ parts[1].toInt()}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ take.days.forEachIndexed\ \{\ dayIndex,\ day\ -\/>}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ calendar\ =\ getNextOccurrence(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ dayToCalendar(day),}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hour\ =\ hour,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minute\ =\ minute}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ requestCode\ =}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ takeIndex\ *\ 100\ +}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dayIndex\ *\ 2}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scheduleNotification(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context\ =\ context,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ calendar\ =\ calendar,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestCode\ =\ requestCode,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ title\ =\ "{}MyMeds"{},}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ "{}"{},}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ takeIndex\ =\ takeIndex,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dayIndex\ =\ dayIndex,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isReminder\ =\ false}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ take.reminderEnabled\ \&\&}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ take.advanceWarningMinutes\ !=\ null}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ reminderCalendar\ =}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ calendar.clone()\ as\ Calendar}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reminderCalendar.add(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Calendar.MINUTE,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/take.advanceWarningMinutes}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (reminderCalendar.after(Calendar.getInstance()))\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scheduleNotification(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context\ =\ context,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ calendar\ =\ reminderCalendar,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestCode\ =\ requestCode\ +\ 1,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ title\ =\ "{}MyMeds"{},}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ "{}"{},}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ takeIndex\ =\ takeIndex,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dayIndex\ =\ dayIndex,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isReminder\ =\ true}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00077}00077\ \ \ \ \ fun\ cancelAll(context:\ Context)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ val\ alarmManager\ =}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ context.getSystemService(Context.ALARM\_SERVICE)\ as\ AlarmManager}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ for\ (requestCode\ in\ 0..1000)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ val\ pendingIntent\ =}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PendingIntent.getBroadcast(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestCode,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Intent(context,\ AlarmReceiver::class.java),}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PendingIntent.FLAG\_NO\_CREATE\ or\ PendingIntent.FLAG\_IMMUTABLE}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (pendingIntent\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alarmManager.cancel(pendingIntent)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pendingIntent.cancel()}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00100}00100\ \ \ \ \ private\ fun\ createPendingIntent(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ context:\ Context,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ requestCode:\ Int,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ title:\ String,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ message:\ String,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ takeIndex:\ Int,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ dayIndex:\ Int,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ isReminder:\ Boolean}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00108}00108\ \ \ \ \ ):\ PendingIntent\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ val\ intent\ =}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ Intent(context,\ AlarmReceiver::class.java).apply\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}title"{},\ title)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}message"{},\ message)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}takeIndex"{},\ takeIndex)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}dayIndex"{},\ dayIndex)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}isReminder"{},\ isReminder)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}notificationId"{},\ requestCode)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ return\ PendingIntent.getBroadcast(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ context,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ requestCode,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ intent,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ PendingIntent.FLAG\_UPDATE\_CURRENT\ or\ PendingIntent.FLAG\_IMMUTABLE}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00131}00131\ \ \ \ \ private\ fun\ dayToCalendar(day:\ com.example.mymeds.data.model.DayOfWeek):\ Int\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ return\ when\ (day)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ com.example.mymeds.data.model.DayOfWeek.MONDAY\ -\/>\ Calendar.MONDAY}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ com.example.mymeds.data.model.DayOfWeek.TUESDAY\ -\/>\ Calendar.TUESDAY}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ com.example.mymeds.data.model.DayOfWeek.WEDNESDAY\ -\/>\ Calendar.WEDNESDAY}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ com.example.mymeds.data.model.DayOfWeek.THURSDAY\ -\/>\ Calendar.THURSDAY}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ com.example.mymeds.data.model.DayOfWeek.FRIDAY\ -\/>\ Calendar.FRIDAY}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ com.example.mymeds.data.model.DayOfWeek.SATURDAY\ -\/>\ Calendar.SATURDAY}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ com.example.mymeds.data.model.DayOfWeek.SUNDAY\ -\/>\ Calendar.SUNDAY}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00143}00143\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00145}00145\ \ \ \ \ private\ fun\ getNextOccurrence(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ day:\ Int,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ hour:\ Int,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ minute:\ Int}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00149}00149\ \ \ \ \ ):\ Calendar\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ val\ now\ =\ Calendar.getInstance()}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ val\ calendar\ =\ Calendar.getInstance().apply\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ set(Calendar.DAY\_OF\_WEEK,\ day)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ set(Calendar.HOUR\_OF\_DAY,\ hour)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ set(Calendar.MINUTE,\ minute)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ set(Calendar.SECOND,\ 0)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ set(Calendar.MILLISECOND,\ 0)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00160}00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00162}00162\ \ \ \ \ \ \ \ \ if\ (calendar.before(now))\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ calendar.add(Calendar.WEEK\_OF\_YEAR,\ 1)}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00164}00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00166}00166\ \ \ \ \ \ \ \ \ return\ calendar}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00169}00169\ \ \ \ \ private\ fun\ scheduleNotification(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00170}00170\ \ \ \ \ \ \ \ \ context:\ Context,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00171}00171\ \ \ \ \ \ \ \ \ calendar:\ Calendar,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00172}00172\ \ \ \ \ \ \ \ \ requestCode:\ Int,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00173}00173\ \ \ \ \ \ \ \ \ title:\ String,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00174}00174\ \ \ \ \ \ \ \ \ message:\ String,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00175}00175\ \ \ \ \ \ \ \ \ takeIndex:\ Int,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00176}00176\ \ \ \ \ \ \ \ \ dayIndex:\ Int,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00177}00177\ \ \ \ \ \ \ \ \ isReminder:\ Boolean}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00178}00178\ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00180}00180\ \ \ \ \ \ \ \ \ val\ alarmManager\ =}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ context.getSystemService(Context.ALARM\_SERVICE)\ as\ AlarmManager}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00183}00183\ \ \ \ \ \ \ \ \ val\ pendingIntent\ =}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ createPendingIntent(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context\ =\ context,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestCode\ =\ requestCode,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ title\ =\ title,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ message,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ takeIndex\ =\ takeIndex,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dayIndex\ =\ dayIndex,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isReminder\ =\ isReminder}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00194}00194\ \ \ \ \ \ \ \ \ android.util.Log.d(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ "{}NOTIFICATIONS"{},}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ "{}Programando\ alarma\ para\ \$\{calendar.time\}"{}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00197}00197\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00199}00199\ \ \ \ \ \ \ \ \ alarmManager.setExactAndAllowWhileIdle(}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ AlarmManager.RTC\_WAKEUP,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ calendar.timeInMillis,}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ pendingIntent}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00203}00203\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00204}00204\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationScheduler_8kt_source_l00205}00205\ \}}
+
+\end{DoxyCode}

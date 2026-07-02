@@ -1,0 +1,315 @@
+\doxysection{src/storage/takes\+\_\+storage.cpp File Reference}
+\hypertarget{takes__storage_8cpp}{}\label{takes__storage_8cpp}\index{src/storage/takes\_storage.cpp@{src/storage/takes\_storage.cpp}}
+{\ttfamily \#include $<$Preferences.\+h$>$}\newline
+{\ttfamily \#include "{}user\+\_\+interface/pill\+\_\+takes.\+h"{}}\newline
+{\ttfamily \#include "{}Arduino.\+h"{}}\newline
+{\ttfamily \#include "{}user\+\_\+interface/wifi\+\_\+portal.\+h"{}}\newline
+Include dependency graph for takes\+\_\+storage.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{takes__storage_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{takes__storage_8cpp_ac57e5c9dc34d76103eb88ee17fe72e51}{init\+NVS}} ()
+\item 
+void \mbox{\hyperlink{takes__storage_8cpp_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes}} ()
+\item 
+void \mbox{\hyperlink{takes__storage_8cpp_ab1b6c8b803c156d0a5b4918b8cb77bde}{upload\+Takes}} ()
+\item 
+void \mbox{\hyperlink{takes__storage_8cpp_a092852dc2a97a9825c9e595827388e7a}{delete\+\_\+take}} (int index)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{takes__storage_8cpp_a092852dc2a97a9825c9e595827388e7a}\label{takes__storage_8cpp_a092852dc2a97a9825c9e595827388e7a} 
+\index{takes\_storage.cpp@{takes\_storage.cpp}!delete\_take@{delete\_take}}
+\index{delete\_take@{delete\_take}!takes\_storage.cpp@{takes\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{delete\_take()}{delete\_take()}}
+{\footnotesize\ttfamily void delete\+\_\+take (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{takes__storage_8cpp_source_l00175}{175}} of file \mbox{\hyperlink{takes__storage_8cpp_source}{takes\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ 0\ ||\ index\ >=\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}})}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ index;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}\ -\/\ 1;\ i++)}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i]\ =\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i\ +\ 1];}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}-\/-\/;}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{takes__storage_8cpp_a230495ec724f6295941efc6a5cabd1a0}{saveTakes}}();}
+\DoxyCodeLine{00188\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{takes__storage_8cpp_a230495ec724f6295941efc6a5cabd1a0}{save\+Takes()}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, and \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+
+
+
+Referenced by \mbox{\hyperlink{takes__list_8cpp_a8c837e300674dc4b5cd4a4f9968046cc}{confirm\+\_\+delete()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{takes__storage_8cpp_a092852dc2a97a9825c9e595827388e7a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{takes__storage_8cpp_a092852dc2a97a9825c9e595827388e7a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{takes__storage_8cpp_ac57e5c9dc34d76103eb88ee17fe72e51}\label{takes__storage_8cpp_ac57e5c9dc34d76103eb88ee17fe72e51} 
+\index{takes\_storage.cpp@{takes\_storage.cpp}!initNVS@{initNVS}}
+\index{initNVS@{initNVS}!takes\_storage.cpp@{takes\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{initNVS()}{initNVS()}}
+{\footnotesize\ttfamily void init\+NVS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{takes__storage_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{takes__storage_8cpp_source}{takes\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.begin(\textcolor{stringliteral}{"{}takes"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00009\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.
+
+\Hypertarget{takes__storage_8cpp_a230495ec724f6295941efc6a5cabd1a0}\label{takes__storage_8cpp_a230495ec724f6295941efc6a5cabd1a0} 
+\index{takes\_storage.cpp@{takes\_storage.cpp}!saveTakes@{saveTakes}}
+\index{saveTakes@{saveTakes}!takes\_storage.cpp@{takes\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{saveTakes()}{saveTakes()}}
+{\footnotesize\ttfamily void save\+Takes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{takes__storage_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{takes__storage_8cpp_source}{takes\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.begin(\textcolor{stringliteral}{"{}takes"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.clear();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putInt(\textcolor{stringliteral}{"{}total"{}},\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}});}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i++)\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ key[32];}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ ID\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}id\%d"{}},\ i);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putString(key,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ HOUR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}hour\%d"{}},\ i);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putString(key,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ REPEAT\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}rep\%d"{}},\ i);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putUChar(key,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].repeat\_mask);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ REMINDER\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}rec\%d"{}},\ i);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putBool(key,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].recordatory);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ WARNING\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}warn\%d"{}},\ i);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putUChar(key,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].warning\_time);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ MED\ COUNT\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}mcount\%d"{}},\ i);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putUChar(key,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ MEDICINES\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ m\ =\ 0;\ m\ <\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}};\ m++)\ \{}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}mid\%d\_\%d"{}},\ i,\ m);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putString(key,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].medicines[m].\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}mqty\%d\_\%d"{}},\ i,\ m);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.putUChar(key,\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].medicines[m].quantity);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.end();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Takes\ guardadas"{}});}
+\DoxyCodeLine{00061\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\+\_\+count}}, \mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{Take\+Config\+::medicine\+\_\+count}}, \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, and \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}.
+
+
+
+Referenced by \mbox{\hyperlink{pill__takes_8h_a092852dc2a97a9825c9e595827388e7a}{delete\+\_\+take()}}, \mbox{\hyperlink{pill__takes_8h_a8e5cbca5436158cde9e16681693d1d6d}{edit\+\_\+takes\+\_\+screen()}}, \mbox{\hyperlink{wifi__portal_8h_a01b0c3c0f9209a1c0333f7e3a411bd00}{handle\+\_\+add\+\_\+take()}}, \mbox{\hyperlink{wifi__portal_8h_aed7f7c07dec43bffcda8d8d26828b210}{handle\+\_\+delete\+\_\+take()}}, \mbox{\hyperlink{wifi__portal_8h_a79d6ac99b4b3fb43de8b45fbf780068f}{handle\+\_\+takes()}}, and \mbox{\hyperlink{wifi__portal_8h_aac63c9ecd3547ed69fa236e0fcfe8e34}{handle\+\_\+update\+\_\+take()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{takes__storage_8cpp_a230495ec724f6295941efc6a5cabd1a0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{takes__storage_8cpp_ab1b6c8b803c156d0a5b4918b8cb77bde}\label{takes__storage_8cpp_ab1b6c8b803c156d0a5b4918b8cb77bde} 
+\index{takes\_storage.cpp@{takes\_storage.cpp}!uploadTakes@{uploadTakes}}
+\index{uploadTakes@{uploadTakes}!takes\_storage.cpp@{takes\_storage.cpp}}
+\doxysubsubsection{\texorpdfstring{uploadTakes()}{uploadTakes()}}
+{\footnotesize\ttfamily void upload\+Takes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{takes__storage_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{takes__storage_8cpp_source}{takes\+\_\+storage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.begin(\textcolor{stringliteral}{"{}takes"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}\ =\ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getInt(\textcolor{stringliteral}{"{}total"{}},\ 0);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}\ >\ \mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\_TAKES}})}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}}\ =\ \mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\_TAKES}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\_takes}};\ i++)\ \{}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ key[32];}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ ID\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}id\%d"{}},\ i);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ String\ \textcolor{keywordtype}{id}\ =\ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getString(key,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ strncpy(}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\textcolor{keywordtype}{id},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}.c\_str(),}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\textcolor{keywordtype}{id})}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ HOUR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}hour\%d"{}},\ i);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ String\ hour\ =\ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getString(key,\ \textcolor{stringliteral}{"{}00:00"{}});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ strncpy(}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ hour.c\_str(),}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{hour}})}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ REPEAT\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}rep\%d"{}},\ i);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{repeat\_mask}}\ =}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getUChar(key,\ 0x7F);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ REMINDER\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}rec\%d"{}},\ i);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{recordatory}}\ =}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getBool(key,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ WARNING\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}warn\%d"{}},\ i);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a1585b7bf16ba49994864ef8a572e3e61}{warning\_time}}\ =}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getUChar(key,\ 0);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ MED\ COUNT\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}mcount\%d"{}},\ i);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}}\ =}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getUChar(key,\ 0);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}}\ >\ \mbox{\hyperlink{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}{MAX\_MEDICINES\_PER\_TAKE}})}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}}\ =\ \mbox{\hyperlink{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}{MAX\_MEDICINES\_PER\_TAKE}};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ MEDICINES\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ m\ =\ 0;\ m\ <\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}};\ m++)\ \{}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}mid\%d\_\%d"{}},\ i,\ m);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ String\ medId\ =\ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getString(key,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].medicines[m].\textcolor{keywordtype}{id},}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ medId.c\_str(),}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[m].\mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{id}})}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[m]}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{id}}[}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[m].\mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{id}})\ -\/\ 1}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(key,\ \textcolor{stringliteral}{"{}mqty\%d\_\%d"{}},\ i,\ m);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{medicines}}[m].\mbox{\hyperlink{structTakeMedicine_a7510f3f12906be2110957b5e10a57803}{quantity}}\ =}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.getUChar(key,\ 1);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/\ TAKE\ LOADED\ -\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}ID:\ "{}});}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ Serial.println(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Hour:\ "{}});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ Serial.println(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].hour);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Medicine\ count:\ "{}});}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ Serial.println(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\_count}});}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ m\ =\ 0;\ m\ <\ \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].\mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{medicine\_count}};\ m++)\ \{}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Medicine\ ID:\ "{}});}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].medicines[m].\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Quantity:\ "{}});}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}[i].medicines[m].quantity);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}.end();}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Takes\ cargadas"{}});}
+\DoxyCodeLine{00173\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{structTakeConfig_add75ebc697182f02403162747aa7c7df}{Take\+Config\+::hour}}, \mbox{\hyperlink{structTakeMedicine_a7dc671255abad587febc37fd10ce25ed}{Take\+Medicine\+::id}}, \mbox{\hyperlink{pill__takes_8h_a4e65f9f0463be64b838b9f3c1486e38c}{MAX\+\_\+\+MEDICINES\+\_\+\+PER\+\_\+\+TAKE}}, \mbox{\hyperlink{pill__takes_8h_a0e82c3990fe3ab5eaf26b64e93cd51a4}{MAX\+\_\+\+TAKES}}, \mbox{\hyperlink{medicines__storage_8h_a4608e73a7c41e5f9a7565f5650134a9f}{medicine\+\_\+count}}, \mbox{\hyperlink{structTakeConfig_a9601bf39c1f1b6beebfbcfc912973e2f}{Take\+Config\+::medicine\+\_\+count}}, \mbox{\hyperlink{structTakeConfig_a709c94d5a57886d3e48915146eeb7afa}{Take\+Config\+::medicines}}, \mbox{\hyperlink{wifi__portal_8h_a77f70a9d88156f5f7dbdd99bfaaee64e}{prefs}}, \mbox{\hyperlink{structTakeMedicine_a7510f3f12906be2110957b5e10a57803}{Take\+Medicine\+::quantity}}, \mbox{\hyperlink{structTakeConfig_a1c04bd559a4b4a9afd32716278a21ee0}{Take\+Config\+::recordatory}}, \mbox{\hyperlink{structTakeConfig_a714c7c032d42076ea0bc3eda89f64ff4}{Take\+Config\+::repeat\+\_\+mask}}, \mbox{\hyperlink{pill__takes_8h_a6b1f77e3a939e4c8d37c90e9a6e7fc72}{takes}}, \mbox{\hyperlink{pill__takes_8h_a53a81415a7b7e40473e9503dde963ff6}{total\+\_\+takes}}, and \mbox{\hyperlink{structTakeConfig_a1585b7bf16ba49994864ef8a572e3e61}{Take\+Config\+::warning\+\_\+time}}.
+
+
+
+Referenced by \mbox{\hyperlink{src_2main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{takes__storage_8cpp_ab1b6c8b803c156d0a5b4918b8cb77bde_icgraph}
+\end{center}
+\end{figure}
