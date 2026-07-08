@@ -1,0 +1,704 @@
+% Completa los datos convenientemente en las zonas marcadas con TODO
+
+\documentclass{beamer}
+%PARA VISUALIZAR PRESENTACIONN CON NOTAS USAR VISUALIZADOR "pdfpc":
+%Para ver las notas, el cronometro y siguente diapo:
+% pdfpc --notes=right slides.pdf
+% "tecla p": para pausar el cronometro
+\mode<presentation> {
+  \usetheme{CambridgeUS}
+  \usecolortheme{crane} % color naranja
+}
+\setbeamercolor{titlelike}{parent=structure,bg=yellow!85!orange} % Cambia el color de la caja del título de la página inicial
+
+\setbeamertemplate{navigation symbols}{} % ocultar iconos de navegación
+\setbeamerfont{subsection in toc}{size=\small} % reducir tamaño en TOC
+\setbeamerfont{date}{size=\tiny}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{pgfpages}
+\usepackage{listings}
+\usepackage{multimedia}
+\usepackage[export]{adjustbox}
+\usepackage{outlines} % Para poner bullets tabulados (\1 \2 \3 ...) y no items
+
+\usepackage{array,tabularx} % para tabular leyenda de ecuaciones
+\newenvironment{conditions*} % entorno de "leyenda de ecuación"
+  {\par\vspace{\abovedisplayskip}\noindent
+   \tabularx{\columnwidth}{>{$}l<{$} @{\ : } >{\raggedright\arraybackslash}X}}
+  {\endtabularx\par\vspace{\belowdisplayskip}}
+  
+% USO DE NOTAS
+\setbeameroption{hide notes} % Para mostrar u ocultar (hide/show)
+%\setbeameroption{show only notes} % Mostrar solo las notas
+%\setbeameroption{show notes on second screen=right} % Mostrar notas en otra pantalla
+\setbeamertemplate{note page}{ % asi solo muestro el texto de las notas
+  \insertnote%
+}
+
+%========= TODO: datos internos del documento
+\hypersetup{
+	pdftitle={Defensa de trabajo de fin de grado de Pon tu nombre},
+	pdfauthor={Pon tu nombre},
+	pdfsubject={Pon aquí el título completo del trabajo},
+	pdfkeywords={teaching, robotics, vision, sensors, actuators, raspberry},
+	pdfproducer={pdfLaTeX},
+  colorlinks=true,
+  linkcolor=blue
+}
+%=========
+
+%========= TODO: diapositiva de portada
+\title[MyMeds]{Sistema inteligente de dispensación y monitorización de
+medicamentos para el entorno doméstico} % El título reducido aparece en la parte inferior de todas las diapositivas
+                                         % El título completo aparece solo en la diapositiva de portada
+\author[Ana Martínez Albendea]{Ana Martínez Albendea}
+\institute[URJC]
+{
+\textit{\href{mailto:a.martinezal.2021@alumnos.urjc.es}{\color{blue}{\underline{a.martinezal.2021@alumnos.urjc.es}}}}\\
+\vspace{0.5cm}
+\includegraphics[width=3cm]{figs/logo-urjc}\\
+\vspace{1cm}
+Trabajo Fin de Grado
+}
+\date{6 de Julio de 2026}
+%=========
+
+%========= COMIENZO DEL DOCUMENTO
+\begin{document}
+
+%========= Portada inicial con notas
+\begin{frame}[plain] % plain: quita header y footer
+\large{\titlepage}
+\note[item]{En esta presentación voy a hablar sobre...}
+\note[item]{En primer lugar...}
+\end{frame}
+
+%========= Licencia
+\begin{frame}
+\input{licencia.tex}
+\end{frame}
+
+%========= Índice o tabla de contenidos (TOC)
+\begin{frame}
+\frametitle{Contenidos}
+%\begin{multicols}{2} % si tengo muchas secciones, lo parte en dos columnas
+  \tableofcontents[hideallsubsections] % no muestra subsecciones
+%\end{multicols}
+\note[item]{La presentaci\'on esta dividida en cuatro partes.}
+\end{frame}
+
+%==================================================
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Introducción}
+\note[item]{Comencemos con la introducción.}
+\end{frame}
+%==================================================
+\section{Introducción}
+\subsection{Robótica de servicio}
+
+\begin{frame}
+\frametitle{Robótica de servicio}
+
+\begin{figure}
+\centering
+
+\includegraphics[width=0.44\textwidth,height=3.2cm,valign=c]{figs/robot_asistencial.jpg}
+\hspace{0.02\textwidth}
+\includegraphics[width=0.44\textwidth,height=3.2cm,valign=c]{figs/Robot_Camarero.jpg}
+
+\vspace{0.3cm}
+
+\includegraphics[width=0.44\textwidth,height=3.2cm,valign=c]{figs/Serve_robot.jpeg}
+\hspace{0.02\textwidth}
+\includegraphics[width=0.44\textwidth,height=3.2cm,valign=c]{figs/stiga.jpg}
+
+\end{figure}
+
+\note[item]{
+La robótica de servicio engloba aquellos robots diseñados para asistir a las personas fuera del ámbito industrial. Actualmente está presente en sectores como la limpieza, la logística, la hostelería o la asistencia sanitaria.
+}
+
+\end{frame}
+
+%==================================================
+\subsection{Robótica de asistencia sanitaria}
+
+\begin{frame}
+\frametitle{Robótica de asistencia sanitaria}
+
+\begin{figure}
+\centering
+
+\includegraphics[width=0.445\textwidth,height=3.8cm]{figs/rosa.jpg}
+\hspace{0.02\textwidth}
+\includegraphics[width=0.445\textwidth,height=3.8cm]{figs/robot_rehab.jpg}
+
+\vspace{0.30cm}
+
+\includegraphics[width=0.445\textwidth,height=3.2cm]{figs/sad.jpeg}
+\hspace{0.02\textwidth}
+\includegraphics[width=0.445\textwidth,height=3.2cm]{figs/spd.jpg}
+
+\end{figure}
+
+\note[item]{
+La robótica de asistencia sanitaria ha experimentado un importante desarrollo durante los últimos años. Actualmente existen soluciones destinadas a la cirugía asistida, la rehabilitación de pacientes y la automatización de la gestión y dispensación de medicamentos, contribuyendo a mejorar la seguridad y la calidad de la atención sanitaria.
+}
+
+\end{frame}
+
+%==================================================
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Objetivos}
+\note[item]{Pasemos ahora a comentar los objetivos que nos hemos marcado con este trabajo.}
+\end{frame}
+
+\section{Objetivos}
+\subsection{Descripción del problema}
+\begin{frame}{Descripción del problema}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{figs/esquema_problema.png}
+\end{figure}
+
+\note[item]{
+El envejecimiento de la población y el aumento de enfermedades crónicas hacen que muchas personas deban gestionar tratamientos con múltiples medicamentos y diferentes horarios de administración. Esta situación incrementa el riesgo de olvidos y errores, poniendo de manifiesto la necesidad de soluciones inteligentes que faciliten la dispensación y el seguimiento de la medicación en el entorno doméstico.
+}
+\end{frame}
+
+\subsection{Objetivos}
+\begin{frame}
+\frametitle{Objetivos}
+
+\begin{block}{Objetivos}
+\begin{itemize}
+\item Diseñar la \alert{arquitectura general} del sistema.
+\item Desarrollar el \alert{diseño mecánico} del pastillero.
+\item Integrar el \alert{microcontrolador} y la lógica de control.
+\item Implementar una \alert{interfaz táctil} intuitiva.
+\item Incorporar un \alert{sensor biomédico}.
+\item Desarrollar una \alert{aplicación Android}.
+\item Implementar la comunicación \alert{WiFi}.
+\item Realizar la \alert{validación experimental}.
+\end{itemize}
+\end{block}
+
+\note[item]{
+El objetivo principal del trabajo ha sido desarrollar un sistema inteligente para el entorno doméstico. Para alcanzarlo se definieron varios objetivos específicos relacionados con el desarrollo del dispositivo, la aplicación móvil, la comunicación entre ambos y la validación experimental.
+}
+
+\end{frame}
+
+\subsection{Requisitos}
+\begin{frame}
+\frametitle{Requisitos}
+
+\begin{block}{Requisitos}
+\begin{itemize}
+\item Uso de \alert{ESP32-2432S028}.
+\item Desarrollo en \alert{C++} y \alert{Kotlin}.
+\item Comunicación mediante \alert{WiFi}.
+\item Funcionamiento en \alert{tiempo real}.
+\item Fabricación mediante \alert{impresión 3D (PLA)}.
+\item Coste inferior a \alert{50\,€}.
+\item \alert{Almacenamiento} de medicación y medidas.
+\item Avisos \alert{visuales y acústicos}.
+\end{itemize}
+\end{block}
+
+\note[item]{
+Además de los objetivos, el sistema debía cumplir una serie de requisitos de diseño y técnicos. Entre ellos destacan el bajo coste, el funcionamiento autónomo, la comunicación WiFi, una arquitectura modular y el uso de un ESP32 como unidad de control.
+}
+
+\end{frame}
+
+\subsection{Metodología}
+\begin{frame}
+\frametitle{Metodología}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.36\textwidth]{figs/pdca.png}
+\end{figure}
+
+\begin{block}{Metodología de desarrollo}
+\begin{itemize}
+\item Desarrollo \alert{iterativo} basado en el ciclo \alert{PDCA}.
+\item Integración progresiva de los módulos \alert{hardware} y \alert{software}.
+\item \alert{Pruebas parciales} tras cada etapa de desarrollo.
+\item \alert{Reuniones semanales} con el tutor para revisar el progreso.
+\end{itemize}
+\end{block}
+
+\note[item]{
+El proyecto se desarrolló siguiendo una metodología iterativa basada en el ciclo PDCA. Cada módulo se diseñó, implementó y validó de forma independiente antes de integrarlo con el resto del sistema. Además, el progreso se revisó semanalmente mediante reuniones con el tutor, permitiendo detectar problemas e introducir mejoras de forma continua.
+}
+
+\end{frame}
+
+
+%==================================================
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Plataforma de desarrollo}
+\end{frame}
+
+\section{Plataforma de desarrollo}
+\subsection{Hardware}
+\begin{frame}
+\frametitle{Hardware}
+
+\begin{center}
+
+\includegraphics[width=\textwidth]{figs/hard.png}
+
+\end{center}
+
+\end{frame}
+
+\subsection{Software}
+\begin{frame}
+\frametitle{Software}
+
+\begin{center}
+
+\includegraphics[width=\textwidth]{figs/software.png}
+
+\end{center}
+
+\end{frame}
+
+%==================================================
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Diseño del sistema}
+\end{frame}
+
+\section{Diseño del sistema}
+\subsection{Arquitectura general}
+
+\begin{frame}
+\frametitle{Arquitectura general del sistema}
+
+\begin{center}
+    \includegraphics[width=\textwidth]{figs/arquitectura_sistema.jpg}
+\end{center}
+
+\note[item]{
+Una vez definidas las herramientas de desarrollo, el siguiente paso fue diseñar la arquitectura del sistema.
+
+En el centro se encuentra el ESP32, que actúa como unidad de control. Este microcontrolador gestiona la interfaz táctil, la comunicación WiFi con la aplicación Android, el accionamiento del servomotor para la dispensación y la adquisición de datos del sensor biomédico MAX30102 mediante I2C.
+
+La aplicación móvil permite configurar el dispositivo y consultar la información registrada, mientras que el usuario también puede interactuar directamente desde la pantalla integrada.
+
+Esta arquitectura modular facilita la integración de todos los elementos hardware y software del sistema.
+}
+
+\end{frame}
+
+\subsection{Aplicación móvil}
+\begin{frame}
+\frametitle{Aplicación móvil}
+
+\begin{center}
+    \includegraphics[width=0.97\textwidth]{figs/flujo_app.jpg}
+    \caption{Elaboración propia mediante IA}
+\end{center}
+
+\note[item]{
+La aplicación Android es la interfaz remota del usuario con el dispensador.
+
+En el primer uso se realiza la vinculación mediante el escaneo de un código QR y la introducción de las credenciales WiFi. Una vez completado este proceso, las conexiones posteriores se realizan automáticamente.
+
+Desde el menú principal el usuario puede configurar las tomas de medicación, consultar las tomas programadas, visualizar el historial de frecuencia cardíaca, gestionar los medicamentos y acceder a la configuración del dispositivo.
+}
+\end{frame}
+
+%==================================================
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Validación experimental}
+\end{frame}
+
+\section{Validación experimental}
+\subsection{Sistema de dispensación}
+
+\begin{frame}
+\frametitle{Validación del sistema de dispensación}
+
+\begin{columns}[c]
+
+\column{0.5\textwidth}
+\centering
+\includegraphics[width=0.85\linewidth]{figs/evolucion_impulsor.png}
+
+{\small\textbf{Evolución del impulsor}}
+
+\column{0.5\textwidth}
+\centering
+\includegraphics[width=0.85\linewidth]{figs/mecanismo.jpg}
+
+\vspace{0.2cm}
+
+{\small\textbf{Mecanismo definitivo}}
+
+\end{columns}
+
+\vspace{0.4cm}
+
+\begin{block}{Resultado}
+Se realizaron diversas iteraciones del mecanismo de dispensación hasta conseguir un sistema capaz de posicionar correctamente el compartimento y dispensar una única dosis de forma repetible.
+\end{block}
+
+\note[item]{
+El mecanismo no funcionó correctamente desde el primer diseño. Fue necesario modificar el impulsor en varias ocasiones, ajustar su geometría y la posición del trinquete hasta obtener un funcionamiento fiable. Finalmente, el mecanismo fue capaz de posicionar correctamente el carrusel y dispensar una única pastilla en cada activación del servomotor.
+}
+
+\end{frame}
+
+\subsection{Integración MAX30102}
+
+\begin{frame}
+\frametitle{Integración del sensor MAX30102}
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figs/esquema.jpg}
+\end{center}
+
+\note[item]{
+El pulsómetro se implementó mediante el sensor biomédico MAX30102, conectado al ESP32 utilizando el protocolo I2C.
+
+La alimentación se realiza a 3.3 voltios y únicamente son necesarias dos líneas de comunicación, SDA y SCL, lo que simplifica considerablemente la integración hardware del sistema.
+
+Una vez integrado, el sensor proporciona la señal fotopletismográfica utilizada para estimar la frecuencia cardíaca.
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Procesamiento de la señal PPG}
+
+\begin{center}
+    \includegraphics[width=0.95\textwidth]{figs/sensor_esquema.jpg}
+    \caption{Elaboración propia mediante IA}
+\end{center}
+
+\note[item]{
+El sensor ilumina el dedo mediante LEDs rojo e infrarrojo y el fotodiodo recoge la luz reflejada por el flujo sanguíneo.
+
+A partir de esta señal PPG se detectan los picos correspondientes a cada latido, se calcula el intervalo entre pulsos y se obtiene la frecuencia cardíaca instantánea.
+
+Finalmente, el firmware aplica un promedio y un filtro exponencial para reducir el ruido y mejorar la estabilidad de las medidas antes de mostrarlas al usuario.
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Resultados experimentales del sensor}
+
+\begin{center}
+    \includegraphics[width=0.95\textwidth]{figs/experimento_sensor.png}
+\end{center}
+
+\note[item]{
+Se realizaron pruebas en cuatro posiciones distintas del dedo para analizar el tiempo necesario hasta obtener una medida estable.
+
+Cada configuración se repitió dos veces y se calcularon los valores medios.
+
+Los resultados muestran que la orientación del dedo afecta al tiempo de estabilización, obteniéndose el mejor comportamiento con la mano derecha en posición vertical.
+}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Comparación con pulsioxímetro comercial}
+
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{figs/experimento_comercial.png}
+\end{center}
+
+\note[item]{
+Como validación final, las medidas del sistema desarrollado se compararon con un pulsioxímetro comercial.
+
+La diferencia observada entre ambos dispositivos fue reducida, lo que confirma que el algoritmo implementado proporciona una estimación fiable de la frecuencia cardíaca para el objetivo del proyecto.
+}
+
+\end{frame}
+
+\subsection{Persistencia y almacenamiento}
+
+\begin{frame}
+\frametitle{Persistencia de la configuración}
+
+\begin{center}
+    \includegraphics[width=\textwidth]{figs/conservacion.png}
+\end{center}
+
+\note[item]{
+Se verificó que toda la configuración del dispositivo permanece almacenada incluso después de apagar y volver a encender el ESP32. Esto incluye la programación de las tomas, la configuración del usuario y los parámetros necesarios para el funcionamiento del sistema.
+
+}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Historial de medidas}
+
+\begin{center}
+    \includegraphics[width=\textwidth]{figs/datos.png}
+\end{center}
+
+\note[item]{
+Además de la configuración, el sistema almacena el historial de las medidas realizadas por el usuario. Estas medidas pueden visualizarse desde la aplicación móvil y exportarse posteriormente en formato PDF para facilitar su consulta y seguimiento.
+}
+
+\end{frame}
+
+\subsection{Seguridad}
+
+\begin{frame}
+\frametitle{Proceso de autenticación}
+
+\begin{center}
+\includegraphics[width=0.96\textwidth]{figs/autenticacion.png}
+\caption{Elaboración propia mediante IA}
+\end{center}
+
+\note[item]{
+El proceso comienza con la vinculación entre la aplicación y el dispensador mediante un código QR. La aplicación envía las credenciales WiFi al dispositivo, que genera un token único de autenticación. A partir de ese momento, todas las peticiones HTTP incluyen dicho token, permitiendo que únicamente los dispositivos autorizados puedan acceder al dispensador.
+}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Validación experimental de la seguridad}
+
+\begin{center}
+\includegraphics[width=\textwidth]{figs/experimentos_seguridad.png}
+\end{center}
+
+\note[item]{
+Se verificó el proceso completo de autenticación realizando la vinculación inicial entre la aplicación y el ESP32. Tras generar el token de autenticación, se comprobó que únicamente las peticiones que incluían un token válido eran aceptadas por el servidor del dispositivo.
+}
+
+\end{frame}
+
+%==================================================
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Conclusiones}
+\end{frame}
+
+\section{Conclusiones}
+\subsection{Objetivos alcanzados}
+
+\begin{frame}
+\begin{block}{Objetivos alcanzados}
+\begin{itemize}
+\item Desarrollo de un \textcolor{red}{\textbf{dispensador inteligente}} para el entorno doméstico.
+\item Integración de \textcolor{red}{\textbf{hardware y software}} en un único sistema.
+\item Desarrollo de una \textcolor{red}{\textbf{aplicación Android}} para gestión remota.
+\item Integración de \textcolor{red}{\textbf{monitorización biomédica}} con el sensor MAX30102.
+\item \textcolor{red}{\textbf{Validación experimental}} del funcionamiento del sistema.
+\end{itemize}
+\end{block}
+
+\vspace{0.3cm}
+
+\begin{block}{Resultado final}
+\centering
+\textcolor{red}{\textbf{MyMeds constituye un prototipo funcional de asistencia sanitaria doméstica de bajo coste.}}
+\end{block}
+
+\note[item]{
+En conclusión, se ha desarrollado un sistema completo que integra dispensación automática de medicamentos, monitorización biomédica y una aplicación móvil. Las pruebas experimentales realizadas han permitido validar el funcionamiento de todos los módulos, demostrando la viabilidad del prototipo como solución de asistencia sanitaria en el entorno doméstico.
+}
+
+\end{frame}
+
+\subsection{Líneas futuras}
+\begin{frame}
+
+\begin{block}{Líneas futuras}
+\begin{itemize}
+\item Integración con \textcolor{red}{\textbf{sistemas sanitarios}}.
+\item Soporte \textcolor{red}{\textbf{multiusuario}}.
+\item Integración de nuevos \textcolor{red}{\textbf{sensores biomédicos}}.
+\item \textcolor{red}{\textbf{Notificaciones remotas}} para cuidadores.
+\item Aplicación de \textcolor{red}{\textbf{inteligencia artificial}}.
+\end{itemize}
+\end{block}
+
+\vspace{0.3cm}
+
+\begin{block}{Perspectiva}
+\centering
+\textcolor{red}{\textbf{Estas mejoras permitirían evolucionar MyMeds hacia una solución más completa, escalable y preparada para entornos reales.}}
+\end{block}
+
+\note[item]{
+Aunque el prototipo desarrollado cumple los objetivos planteados, existen diversas líneas de trabajo que permitirían ampliar sus capacidades. Entre ellas destacan la integración con sistemas sanitarios, el soporte para múltiples usuarios, la incorporación de nuevos sensores biomédicos, el envío de notificaciones a cuidadores y la utilización de técnicas de inteligencia artificial para ofrecer un seguimiento más inteligente y personalizado.
+}
+
+\end{frame}
+% %========= Diapositiva "vacía" de comienzo de sección:
+% \section*{}
+% \begin{frame}{}
+%   \centering \Huge
+%   \emph{Introducción}
+% \note[item]{Comencemos con la introducción.}
+% \end{frame}
+%
+% \section{Introducción}
+% \subsection{Contexto general}
+% %========= Diapositiva con imágenes:
+% \begin{frame}
+% \frametitle{Situación de la Robótica}
+% \begin{figure}
+% \centering
+% \includegraphics[width=3.4cm]{figs/roomba.jpg}
+% \end{figure}
+% \end{frame}
+%
+% %========= Diapositiva con ítems resaltados con colores:
+% \begin{frame}
+% \frametitle{Situación de la Robótica}
+% \begin{itemize}
+% \item La \textcolor{red}{tecnología} está cada vez más presente en la vida cotidiana.
+% \item Los robots de servicio aparecen en el \textcolor{blue}{mercado}.
+% \item La \textcolor{red}{domótica} presenta cada vez más aplicaciones domésticas.
+% \end{itemize}
+% \end{frame}
+%
+% \subsection{Contexto específico}
+% %========= Diapositiva con bloques:
+% \begin{frame}
+% \frametitle{Precedentes de la robótica}
+% \begin{block}{Primera revolución industrial de 1800}
+% Productos fabricados por \textcolor{blue}{máquinas}. La \textcolor{red}{máquina de vapor} fue clave.
+% \end{block}
+% \end{frame}
+%
+% %========= Diapositiva con bullets en diferentes niveles (outline):
+% \section{Principios de transducción}
+% \subsection{Principio de transducción piezoresistivo}
+% \begin{frame}
+% \frametitle{Conceptos}
+% \begin{outline}
+% \1 Piezoresistividad: relación entre resistencia eléctrica y deformación.
+% \2 Material piezoresistivo: (1) material en reposo (átomos en equilibrio).
+% \3 (2) Si sufre deformación, movimiento átomos, modifican su resistividad.
+% \2 Resistencia vs. resistividad de un material.
+% \3 Resistencia: depende del volumen del material a tratar.
+% \3 Resistividad: caract. intrínseca relacionada con colocación de átomos.
+% \end{outline}
+% \end{frame}
+%
+% \section*{}
+% \begin{frame}{}
+%   \centering \Huge
+%   \emph{Objetivos}
+% \note[item]{Pasemos ahora a comentar los objetivos que nos hemos con este trabajo.}
+% \end{frame}
+%
+% \section{Objetivos}
+% \begin{frame}
+% \begin{enumerate}
+% \item Crear una herramienta multiplataforma.
+% \item Sin necesidad de instalación.
+% \item Toda ejecución vía web.
+% \end{enumerate}
+% \end{frame}
+%
+% \section*{}
+% \begin{frame}{}
+%   \centering \Huge
+%   \emph{Diseño}
+% \note[item]{Una vez descritos los objetivos, veamos qué hemos hecho para alcanzarlos.}
+% \end{frame}
+%
+% \section{Diseño}
+% %========= Diapositiva con matemáticas:
+% \subsection{Matemáticas empleadas}
+% \begin{frame}
+% \frametitle{Matrices de la cámara}
+% \begin{itemize}
+% \item Se usa una matriz $RT (4x4)$ en lugar de $R$ y $T$.
+% \item La matriz $RT$ rota $\theta$ grados en los ejes $X$, $Y$ y $Z$:
+% \end{itemize}
+% \begin{equation}
+% 	\begin{bmatrix}
+% 	1 & 0 & 0 & X \\
+% 	0 & cos(\theta) & sin(\theta) &	Y \\
+% 	0 & -sin(\theta)& cos(\theta) & Z \\
+% 	0 & 0 & 0 & 1
+% 	\end{bmatrix}
+% \end{equation}
+% \end{frame}
+%
+% %========= Diapositiva con matemáticas y leyenda (conditions*):
+% \begin{frame}
+% \frametitle{Resistencia de un material}
+% \begin{outline}
+% \1 Si material piezoresistivo se deforma, cambia su resistencia eléctrica.
+% \begin{equation}
+% R=\rho\frac{l}{A}
+% \end{equation}
+% donde:
+% \begin{conditions*}
+% R & resistencia del material $[\Omega]$\\
+% \rho & resistividad $[\Omega-m]$\\
+% l & longitud $[m]$\\
+% A & área de sección transversal $[m^2]$
+% \end{conditions*}
+% \1 El cambio de resistencia se obtiene a partir de:
+% \begin{equation}
+% \frac{\Delta R}{R}=\frac{\Delta\rho}{\rho}=\frac{\Delta A}{A}=\frac{\Delta l}{l}
+% \end{equation}
+% \1 Otra forma de medir el efecto piezoresistivo: el factor de deformación.
+% \begin{equation}
+% GF(\textit{Gauge Factor})=\frac{\frac{\Delta R}{R}}{\varepsilon}=\frac{\frac{\Delta R}{R}}{\frac{\Delta l}{l}}
+% \end{equation}
+% \end{outline}
+% \end{frame}
+%
+% %========= Diapositiva con códigos:
+% \subsection{Algoritmo principal}
+% \begin{frame}[fragile]
+% \frametitle{Algoritmo de visión}
+% \begin{lstlisting}
+% cvCvtColor (&image, IplTmp1, CV_RGB2GRAY);//to Gray
+% cvNormalize(IplTmp1, IplTmp1, 0, 255, CV_MINMAX);
+% cvSmooth(IplTmp1,IplTmp2,CV_BLUR,3,3);//Avrg filter
+% cvLaplace(IplTmp2, IplLaplace, 3);//Laplace
+% cvConvertScale(IplLaplace,IplTmp1);
+% cvThreshold(IplTmp1,IplTmp2,Thress,255,CV_THRESH_BIN);
+% \end{lstlisting}
+% \end{frame}
+%
+% \section*{}
+% \begin{frame}{}
+%   \centering \Huge
+%   \emph{Conclusiones}
+% \note[item]{Para acabar esta presentación, vamos a repasar lo hecho, unas breves conclusiones y las líneas futuras.}
+% \end{frame}
+
+\begin{frame}[plain]
+\large{\titlepage}
+\note[item]{Y hasta aquí mi exposición.}
+\note[item]{Quedo a disposición del tribunal...}
+\end{frame}
+
+\end{document}
