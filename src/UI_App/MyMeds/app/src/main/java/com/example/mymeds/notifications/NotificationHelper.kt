@@ -52,10 +52,6 @@ object NotificationHelper {
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build()
 
-                //val audioAttributes = AudioAttributes.Builder()
-                    //.setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                    //.build()
-
                 setSound(
                     RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION),
                     audioAttributes
