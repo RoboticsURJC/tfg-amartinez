@@ -5,6 +5,8 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.media.AudioAttributes
+import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -41,6 +43,23 @@ object NotificationHelper {
 
                 enableLights(true)
                 enableVibration(true)
+                if (vibrationEnabled) {
+                    vibrationPattern = longArrayOf(0, 500, 300, 500)
+                }
+
+                val audioAttributes = AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION_EVENT)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build()
+
+                //val audioAttributes = AudioAttributes.Builder()
+                    //.setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    //.build()
+
+                setSound(
+                    RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION),
+                    audioAttributes
+                )
             }
 
             val manager =
@@ -84,6 +103,7 @@ object NotificationHelper {
                 )
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_REMINDER)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setAutoCancel(true)
 
         val notification = builder.build()

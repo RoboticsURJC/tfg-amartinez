@@ -9,7 +9,8 @@ import com.example.mymeds.databinding.ItemTodayTakeBinding
 import android.view.View
 
 class TodayTakesAdapter(
-    private val takes: List<Take>
+    private val takes: List<Take>,
+    private val nextIndex: Int
 ) : RecyclerView.Adapter<TodayTakesAdapter.ViewHolder>() {
 
     inner class ViewHolder(
@@ -38,16 +39,11 @@ class TodayTakesAdapter(
 
         val take = takes[position]
 
-        if (position == 0) {
-
-            holder.binding.textNext.visibility =
+        holder.binding.textNext.visibility =
+            if (position == nextIndex)
                 View.VISIBLE
-
-        } else {
-
-            holder.binding.textNext.visibility =
+            else
                 View.GONE
-        }
 
         holder.binding.textTime.text =
             take.time

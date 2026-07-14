@@ -49,24 +49,37 @@ class TodayTakesFragment : Fragment() {
 
         val todayTakes =
             TakeRepository.getTakes()
-
                 .filter {
-
                     it.days.any { day ->
-
                         day.name.equals(today, true)
                     }
                 }
+                .sortedBy { it.time }
 
-                .sortedBy {
-                    it.time
-                }
+        val currentMinutes =
+            calendar.get(java.util.Calendar.HOUR_OF_DAY) * 60 +
+                    calendar.get(java.util.Calendar.MINUTE)
+
+        val nextIndex =
+            todayTakes.indexOfFirst {
+
+                val parts = it.time.split(":")
+
+                val takeMinutes =
+                    parts[0].toInt() * 60 +
+                            parts[1].toInt()
+
+                takeMinutes >= currentMinutes
+            }
 
         binding.todayRecycler.layoutManager =
             LinearLayoutManager(requireContext())
 
         binding.todayRecycler.adapter =
-            TodayTakesAdapter(todayTakes)
+            TodayTakesAdapter(
+                todayTakes,
+                nextIndex
+            )
     }
 
     override fun onCreateView(
