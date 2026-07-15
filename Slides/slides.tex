@@ -33,19 +33,20 @@
   {\endtabularx\par\vspace{\belowdisplayskip}}
   
 % USO DE NOTAS
-\setbeameroption{hide notes} % Para mostrar u ocultar (hide/show)
+%\setbeameroption{hide notes} % Para mostrar u ocultar (hide/show)
 %\setbeameroption{show only notes} % Mostrar solo las notas
-%\setbeameroption{show notes on second screen=right} % Mostrar notas en otra pantalla
+\setbeameroption{show notes on second screen=right} % Mostrar notas en otra pantalla
 \setbeamertemplate{note page}{ % asi solo muestro el texto de las notas
   \insertnote%
 }
 
 %========= TODO: datos internos del documento
 \hypersetup{
-	pdftitle={Defensa de trabajo de fin de grado de Pon tu nombre},
-	pdfauthor={Pon tu nombre},
-	pdfsubject={Pon aquí el título completo del trabajo},
-	pdfkeywords={teaching, robotics, vision, sensors, actuators, raspberry},
+	pdftitle={Defensa de trabajo de fin de grado de Ana Martínez Albendea},
+	pdfauthor={Ana Martínez Albendea},
+	pdfsubject={Sistema inteligente de dispensación y monitorización de
+medicamentos para el entorno doméstico},
+	pdfkeywords={teaching, robotics, vision, sensors, actuators, ESP32},
 	pdfproducer={pdfLaTeX},
   colorlinks=true,
   linkcolor=blue
@@ -65,7 +66,7 @@ medicamentos para el entorno doméstico} % El título reducido aparece en la par
 \vspace{1cm}
 Trabajo Fin de Grado
 }
-\date{6 de Julio de 2026}
+\date{16 de julio de 2026}
 %=========
 
 %========= COMIENZO DEL DOCUMENTO
@@ -74,8 +75,7 @@ Trabajo Fin de Grado
 %========= Portada inicial con notas
 \begin{frame}[plain] % plain: quita header y footer
 \large{\titlepage}
-\note[item]{En esta presentación voy a hablar sobre...}
-\note[item]{En primer lugar...}
+\note[item]{Muchas gracias, buenos días a todos. }
 \end{frame}
 
 %========= Licencia
@@ -89,7 +89,7 @@ Trabajo Fin de Grado
 %\begin{multicols}{2} % si tengo muchas secciones, lo parte en dos columnas
   \tableofcontents[hideallsubsections] % no muestra subsecciones
 %\end{multicols}
-\note[item]{La presentaci\'on esta dividida en cuatro partes.}
+\note[item]{Mi nombre es Ana Martínez Albendea y a lo largo de esta presentación explicaré el contexto del proyecto, el diseño y desarrollo del sistema, la validación experimental realizada y, finalmente, las conclusiones obtenidas.}
 \end{frame}
 
 %==================================================
@@ -97,7 +97,7 @@ Trabajo Fin de Grado
 \begin{frame}{}
   \centering \Huge
   \emph{Introducción}
-\note[item]{Comencemos con la introducción.}
+\note[item]{Para comenzar, es importante situar este trabajo dentro del ámbito de la robótica de servicios. }
 \end{frame}
 %==================================================
 \section{Introducción}
@@ -122,8 +122,11 @@ Trabajo Fin de Grado
 \end{figure}
 
 \note[item]{
-La robótica de servicio engloba aquellos robots diseñados para asistir a las personas fuera del ámbito industrial. Actualmente está presente en sectores como la limpieza, la logística, la hostelería o la asistencia sanitaria.
+\item Robótica de servicios
+\item Asistencia fuera industria
+\item Robótica sanitaria
 }
+
 
 \end{frame}
 
@@ -149,7 +152,10 @@ La robótica de servicio engloba aquellos robots diseñados para asistir a las p
 \end{figure}
 
 \note[item]{
-La robótica de asistencia sanitaria ha experimentado un importante desarrollo durante los últimos años. Actualmente existen soluciones destinadas a la cirugía asistida, la rehabilitación de pacientes y la automatización de la gestión y dispensación de medicamentos, contribuyendo a mejorar la seguridad y la calidad de la atención sanitaria.
+\item Calidad de vida
+\item Envejecimiento + crónicos
+\item Atención personalizada
+\item $\rightarrow$ Problema medicación
 }
 
 \end{frame}
@@ -159,7 +165,7 @@ La robótica de asistencia sanitaria ha experimentado un importante desarrollo d
 \begin{frame}{}
   \centering \Huge
   \emph{Objetivos}
-\note[item]{Pasemos ahora a comentar los objetivos que nos hemos marcado con este trabajo.}
+\note[item]{Uno de los problemas donde estas tecnologías pueden aportar un mayor beneficio es la correcta administración de la medicación.}
 \end{frame}
 
 \section{Objetivos}
@@ -172,7 +178,13 @@ La robótica de asistencia sanitaria ha experimentado un importante desarrollo d
 \end{figure}
 
 \note[item]{
-El envejecimiento de la población y el aumento de enfermedades crónicas hacen que muchas personas deban gestionar tratamientos con múltiples medicamentos y diferentes horarios de administración. Esta situación incrementa el riesgo de olvidos y errores, poniendo de manifiesto la necesidad de soluciones inteligentes que faciliten la dispensación y el seguimiento de la medicación en el entorno doméstico.
+\item Polimedicación
+\item Olvidos / errores
+\item Consecuencias salud
+\item Dispensadores comerciales
+\item Coste elevado
+\item MyMeds
+\item $\rightarrow$ Objetivos
 }
 \end{frame}
 
@@ -194,7 +206,14 @@ El envejecimiento de la población y el aumento de enfermedades crónicas hacen 
 \end{block}
 
 \note[item]{
-El objetivo principal del trabajo ha sido desarrollar un sistema inteligente para el entorno doméstico. Para alcanzarlo se definieron varios objetivos específicos relacionados con el desarrollo del dispositivo, la aplicación móvil, la comunicación entre ambos y la validación experimental.
+\item Objetivo general
+\item Dispensación automática
+\item Monitorización biomédica
+\item Arquitectura
+\item Hardware + software
+\item App Android
+\item Validación
+\item $\rightarrow$ Requisitos
 }
 
 \end{frame}
@@ -217,7 +236,14 @@ El objetivo principal del trabajo ha sido desarrollar un sistema inteligente par
 \end{block}
 
 \note[item]{
-Además de los objetivos, el sistema debía cumplir una serie de requisitos de diseño y técnicos. Entre ellos destacan el bajo coste, el funcionamiento autónomo, la comunicación WiFi, una arquitectura modular y el uso de un ESP32 como unidad de control.
+\item Bajo coste
+\item Impresión 3D
+\item ESP32
+\item WiFi
+\item Avisos
+\item Persistencia
+\item Interfaz sencilla
+\item $\rightarrow$ Metodología
 }
 
 \end{frame}
@@ -241,7 +267,13 @@ Además de los objetivos, el sistema debía cumplir una serie de requisitos de d
 \end{block}
 
 \note[item]{
-El proyecto se desarrolló siguiendo una metodología iterativa basada en el ciclo PDCA. Cada módulo se diseñó, implementó y validó de forma independiente antes de integrarlo con el resto del sistema. Además, el progreso se revisó semanalmente mediante reuniones con el tutor, permitiendo detectar problemas e introducir mejoras de forma continua.
+\item Ciclo PDCA
+\item Planificar
+\item Implementar
+\item Verificar
+\item Mejorar
+\item Desarrollo iterativo
+\item $\rightarrow$ Plataforma
 }
 
 \end{frame}
@@ -265,6 +297,18 @@ El proyecto se desarrolló siguiendo una metodología iterativa basada en el cic
 
 \end{center}
 
+\note[item]{
+\item ESP32-2432S028
+\item MCU + TFT + WiFi
+\item PCB personalizada
+\item PCA9685
+\item MAX30102 + I2C
+\item Protoboard
+\item Trinquete + muelle
+\item Carcasa 3D
+\item $\rightarrow$ Software
+}
+
 \end{frame}
 
 \subsection{Software}
@@ -276,6 +320,15 @@ El proyecto se desarrolló siguiendo una metodología iterativa basada en el cic
 \includegraphics[width=\textwidth]{figs/software.png}
 
 \end{center}
+
+\note[item]{
+\item 3 herramientas
+\item PlatformIO (firmware)
+\item Android Studio (app)
+\item Sharp3D (CAD)
+\item Cada una → módulo
+\item $\rightarrow$ Arquitectura
+}
 
 \end{frame}
 
@@ -297,13 +350,16 @@ El proyecto se desarrolló siguiendo una metodología iterativa basada en el cic
 \end{center}
 
 \note[item]{
-Una vez definidas las herramientas de desarrollo, el siguiente paso fue diseñar la arquitectura del sistema.
-
-En el centro se encuentra el ESP32, que actúa como unidad de control. Este microcontrolador gestiona la interfaz táctil, la comunicación WiFi con la aplicación Android, el accionamiento del servomotor para la dispensación y la adquisición de datos del sensor biomédico MAX30102 mediante I2C.
-
-La aplicación móvil permite configurar el dispositivo y consultar la información registrada, mientras que el usuario también puede interactuar directamente desde la pantalla integrada.
-
-Esta arquitectura modular facilita la integración de todos los elementos hardware y software del sistema.
+\item Firmware = núcleo
+\item Inicialización
+\item Configuración persistente
+\item Comunicación App
+\item UI + planificación
+\item Dispensación
+\item Pulsómetro
+\item WiFi + almacenamiento
+\item Sistema embebido
+\item $\rightarrow$ App
 }
 
 \end{frame}
@@ -314,16 +370,22 @@ Esta arquitectura modular facilita la integración de todos los elementos hardwa
 
 \begin{center}
     \includegraphics[width=0.97\textwidth]{figs/flujo_app.jpg}
-    \caption{Elaboración propia mediante IA}
+    \caption{[Elaboración propia con IA]}
 \end{center}
 
 \note[item]{
-La aplicación Android es la interfaz remota del usuario con el dispensador.
-
-En el primer uso se realiza la vinculación mediante el escaneo de un código QR y la introducción de las credenciales WiFi. Una vez completado este proceso, las conexiones posteriores se realizan automáticamente.
-
-Desde el menú principal el usuario puede configurar las tomas de medicación, consultar las tomas programadas, visualizar el historial de frecuencia cardíaca, gestionar los medicamentos y acceder a la configuración del dispositivo.
+\item Punto interacción
+\item QR
+\item Vinculación segura
+\item Menú principal
+\item Medicamentos
+\item Tomas
+\item Historial
+\item Sincronización WiFi
+\item Centro gestión
+\item Experimentos
 }
+
 \end{frame}
 
 %==================================================
@@ -359,12 +421,15 @@ Desde el menú principal el usuario puede configurar las tomas de medicación, c
 
 \vspace{0.4cm}
 
-\begin{block}{Resultado}
-Se realizaron diversas iteraciones del mecanismo de dispensación hasta conseguir un sistema capaz de posicionar correctamente el compartimento y dispensar una única dosis de forma repetible.
-\end{block}
-
 \note[item]{
-El mecanismo no funcionó correctamente desde el primer diseño. Fue necesario modificar el impulsor en varias ocasiones, ajustar su geometría y la posición del trinquete hasta obtener un funcionamiento fiable. Finalmente, el mecanismo fue capaz de posicionar correctamente el carrusel y dispensar una única pastilla en cada activación del servomotor.
+\item 4 accionamientos
+\item 1 dosis
+\item Ajustes mecánicos
+\item Impulsor
+\item Muelle
+\item Alineación
+\item Validación App + ESP
+\item $\rightarrow$ MAX30102
 }
 
 \end{frame}
@@ -379,11 +444,12 @@ El mecanismo no funcionó correctamente desde el primer diseño. Fue necesario m
 \end{center}
 
 \note[item]{
-El pulsómetro se implementó mediante el sensor biomédico MAX30102, conectado al ESP32 utilizando el protocolo I2C.
-
-La alimentación se realiza a 3.3 voltios y únicamente son necesarias dos líneas de comunicación, SDA y SCL, lo que simplifica considerablemente la integración hardware del sistema.
-
-Una vez integrado, el sensor proporciona la señal fotopletismográfica utilizada para estimar la frecuencia cardíaca.
+\item Fotopletismografía
+\item FC + SpO2
+\item LEDs
+\item Luz reflejada
+\item Validación sensor
+\item Estabilización
 }
 \end{frame}
 
@@ -392,10 +458,9 @@ Una vez integrado, el sensor proporciona la señal fotopletismográfica utilizad
 
 \begin{center}
     \includegraphics[width=0.95\textwidth]{figs/sensor_esquema.jpg}
-    \caption{Elaboración propia mediante IA}
 \end{center}
 
-\note[item]{
+\note{
 El sensor ilumina el dedo mediante LEDs rojo e infrarrojo y el fotodiodo recoge la luz reflejada por el flujo sanguíneo.
 
 A partir de esta señal PPG se detectan los picos correspondientes a cada latido, se calcula el intervalo entre pulsos y se obtiene la frecuencia cardíaca instantánea.
@@ -412,11 +477,12 @@ Finalmente, el firmware aplica un promedio y un filtro exponencial para reducir 
 \end{center}
 
 \note[item]{
-Se realizaron pruebas en cuatro posiciones distintas del dedo para analizar el tiempo necesario hasta obtener una medida estable.
-
-Cada configuración se repitió dos veces y se calcularon los valores medios.
-
-Los resultados muestran que la orientación del dedo afecta al tiempo de estabilización, obteniéndose el mejor comportamiento con la mano derecha en posición vertical.
+\item Primera lectura
+\item Estabilización
+\item 17 s
+\item 22 s
+\item Sensor óptico
+\item $\rightarrow$ Posición
 }
 
 \end{frame}
@@ -429,9 +495,12 @@ Los resultados muestran que la orientación del dedo afecta al tiempo de estabil
 \end{center}
 
 \note[item]{
-Como validación final, las medidas del sistema desarrollado se compararon con un pulsioxímetro comercial.
-
-La diferencia observada entre ambos dispositivos fue reducida, lo que confirma que el algoritmo implementado proporciona una estimación fiable de la frecuencia cardíaca para el objetivo del proyecto.
+\item Pulsioxímetro referencia
+\item Error medio 2,25 BPM
+\item Error máx. 4 BPM
+\item Resultados consistentes
+\item No dispositivo médico
+\item Persistencia
 }
 
 \end{frame}
@@ -446,7 +515,12 @@ La diferencia observada entre ambos dispositivos fue reducida, lo que confirma q
 \end{center}
 
 \note[item]{
-Se verificó que toda la configuración del dispositivo permanece almacenada incluso después de apagar y volver a encender el ESP32. Esto incluye la programación de las tomas, la configuración del usuario y los parámetros necesarios para el funcionamiento del sistema.
+\item Reinicio ESP32
+\item Configuración intacta
+\item Medicamentos
+\item Tomas
+\item Persistencia
+\item Historial
 
 }
 
@@ -460,7 +534,12 @@ Se verificó que toda la configuración del dispositivo permanece almacenada inc
 \end{center}
 
 \note[item]{
-Además de la configuración, el sistema almacena el historial de las medidas realizadas por el usuario. Estas medidas pueden visualizarse desde la aplicación móvil y exportarse posteriormente en formato PDF para facilitar su consulta y seguimiento.
+\item microSD
+\item Fecha + hora
+\item Historial App
+\item Exportación PDF
+\item Sin pérdida datos
+\item $\rightarrow$ Seguridad
 }
 
 \end{frame}
@@ -472,11 +551,15 @@ Además de la configuración, el sistema almacena el historial de las medidas re
 
 \begin{center}
 \includegraphics[width=0.96\textwidth]{figs/autenticacion.png}
-\caption{Elaboración propia mediante IA}
+\caption{[Elaboración propia con IA]}
 \end{center}
 
 \note[item]{
-El proceso comienza con la vinculación entre la aplicación y el dispensador mediante un código QR. La aplicación envía las credenciales WiFi al dispositivo, que genera un token único de autenticación. A partir de ese momento, todas las peticiones HTTP incluyen dicho token, permitiendo que únicamente los dispositivos autorizados puedan acceder al dispensador.
+\item PIN
+\item Token sesión
+\item Autorización
+\item Protección WiFi
+\item Validación
 }
 
 \end{frame}
@@ -489,7 +572,26 @@ El proceso comienza con la vinculación entre la aplicación y el dispensador me
 \end{center}
 
 \note[item]{
-Se verificó el proceso completo de autenticación realizando la vinculación inicial entre la aplicación y el ESP32. Tras generar el token de autenticación, se comprobó que únicamente las peticiones que incluían un token válido eran aceptadas por el servidor del dispositivo.
+\item PIN correcto
+\item Token generado
+\item Acceso permitido
+\item PIN incorrecto
+\item Acceso denegado
+\item Validación completa
+\item Conclusiones
+}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Validación experimental de la seguridad}
+
+\begin{center}
+\includegraphics[width=\textwidth]{figs/terminal_seguridad.png}
+\end{center}
+
+\note[item]{
+Tras generar el token de autenticación, se comprobó que únicamente las peticiones que incluían un token válido eran aceptadas por el servidor del dispositivo.
 }
 
 \end{frame}
@@ -499,6 +601,7 @@ Se verificó el proceso completo de autenticación realizando la vinculación in
 \begin{frame}{}
   \centering \Huge
   \emph{Conclusiones}
+  \note[item]{Para finalizar, me gustaría destacar las principales conclusiones obtenidas tras el desarrollo de este trabajo.}
 \end{frame}
 
 \section{Conclusiones}
@@ -507,11 +610,11 @@ Se verificó el proceso completo de autenticación realizando la vinculación in
 \begin{frame}
 \begin{block}{Objetivos alcanzados}
 \begin{itemize}
-\item Desarrollo de un \textcolor{red}{\textbf{dispensador inteligente}} para el entorno doméstico.
-\item Integración de \textcolor{red}{\textbf{hardware y software}} en un único sistema.
-\item Desarrollo de una \textcolor{red}{\textbf{aplicación Android}} para gestión remota.
-\item Integración de \textcolor{red}{\textbf{monitorización biomédica}} con el sensor MAX30102.
-\item \textcolor{red}{\textbf{Validación experimental}} del funcionamiento del sistema.
+\item Desarrollo de un \textcolor{red}{dispensador inteligente} para el entorno doméstico.
+\item Integración de \textcolor{red}{hardware y software} en un único sistema.
+\item Desarrollo de una \textcolor{red}{aplicación Android} para gestión remota.
+\item Integración de \textcolor{red}{monitorización biomédica} con el sensor MAX30102.
+\item \textcolor{red}{Validación experimental} del funcionamiento del sistema.
 \end{itemize}
 \end{block}
 
@@ -519,11 +622,18 @@ Se verificó el proceso completo de autenticación realizando la vinculación in
 
 \begin{block}{Resultado final}
 \centering
-\textcolor{red}{\textbf{MyMeds constituye un prototipo funcional de asistencia sanitaria doméstica de bajo coste.}}
+\textcolor{red}{MyMeds constituye un prototipo funcional de asistencia sanitaria doméstica de bajo coste.}
 \end{block}
 
 \note[item]{
-En conclusión, se ha desarrollado un sistema completo que integra dispensación automática de medicamentos, monitorización biomédica y una aplicación móvil. Las pruebas experimentales realizadas han permitido validar el funcionamiento de todos los módulos, demostrando la viabilidad del prototipo como solución de asistencia sanitaria en el entorno doméstico.
+\item MyMeds desarrollado
+\item HW + SW
+\item Firmware + App
+\item Validación completa
+\item Objetivos cumplidos
+\item Sistema funcional
+\item Bajo coste
+\item Líneas futuras
 }
 
 \end{frame}
@@ -533,11 +643,11 @@ En conclusión, se ha desarrollado un sistema completo que integra dispensación
 
 \begin{block}{Líneas futuras}
 \begin{itemize}
-\item Integración con \textcolor{red}{\textbf{sistemas sanitarios}}.
-\item Soporte \textcolor{red}{\textbf{multiusuario}}.
-\item Integración de nuevos \textcolor{red}{\textbf{sensores biomédicos}}.
-\item \textcolor{red}{\textbf{Notificaciones remotas}} para cuidadores.
-\item Aplicación de \textcolor{red}{\textbf{inteligencia artificial}}.
+\item Integración con \textcolor{red}{sistemas sanitarios}.
+\item Soporte \textcolor{red}{multiusuario}.
+\item Integración de nuevos \textcolor{red}{sensores biomédicos}.
+\item \textcolor{red}{Notificaciones remotas} para cuidadores.
+\item Aplicación de \textcolor{red}{inteligencia artificial}.
 \end{itemize}
 \end{block}
 
@@ -545,11 +655,15 @@ En conclusión, se ha desarrollado un sistema completo que integra dispensación
 
 \begin{block}{Perspectiva}
 \centering
-\textcolor{red}{\textbf{Estas mejoras permitirían evolucionar MyMeds hacia una solución más completa, escalable y preparada para entornos reales.}}
+\textcolor{red}{Estas mejoras permitirían evolucionar MyMeds hacia una solución más completa, escalable y preparada para entornos reales.}
 \end{block}
 
 \note[item]{
-Aunque el prototipo desarrollado cumple los objetivos planteados, existen diversas líneas de trabajo que permitirían ampliar sus capacidades. Entre ellas destacan la integración con sistemas sanitarios, el soporte para múltiples usuarios, la incorporación de nuevos sensores biomédicos, el envío de notificaciones a cuidadores y la utilización de técnicas de inteligencia artificial para ofrecer un seguimiento más inteligente y personalizado.
+\item Historia clínica
+\item Multiusuario
+\item Nuevos sensores
+\item Notificaciones
+\item IA
 }
 
 \end{frame}
@@ -697,8 +811,8 @@ Aunque el prototipo desarrollado cumple los objetivos planteados, existen divers
 
 \begin{frame}[plain]
 \large{\titlepage}
-\note[item]{Y hasta aquí mi exposición.}
-\note[item]{Quedo a disposición del tribunal...}
+\note[item]{
+Hasta aquí mi presentación, y ahora, con el permiso del tribunal, voy a dedicar unos minutos a hacer una pequeña demo en vivo.}
 \end{frame}
 
 \end{document}
